@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Header</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <style>
+      .carousel-inner > .carousel-item > img {
+        height: 30rem;
+        margin: auto;
+      }
+
+      .item-image:hover {
+        transform: scale(1.1);
+      }
+
+      a.footerLink {
+        color: black;
+      }
+
+      footer {
+        background-color: #f7f7f7;
+        border: 1px solid #d8d8d8;
+        padding-left: 50px;
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="d-flex ml-3">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+            width="200"
+            height="60"
+            class="d-inline-block align-top"
+            alt=""
+          />
+        </a>
+
+        <form class="form-inline ml-3">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Tìm kiếm
+          </button>
+        </form>
+
+        <ul class="nav align-items-center ml-3">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Giới thiệu</a>
+          </li>
+          <li class="nav-item">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Sản phẩm
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Rau củ</a>
+                <a class="dropdown-item" href="#">Hoa quả</a>
+                <a class="dropdown-item" href="#">Hải sản</a>
+                <a class="dropdown-item" href="#">Các loại hạt</a>
+                <a class="dropdown-item" href="#">Thực phẩm tươi sống</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Tất cả</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tin tức</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Liên hệ</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mr-3">
+        <span style="font-size: 1em; color: gray;">
+          <i class="fas fa-user-plus"></i>
+        </span>
+
+        <span class="ml-3" style="font-size: 2em; color: green;">
+          <i class="fas fa-shopping-cart"></i>
+        </span>
+      </div>
+    </nav>
+
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide"
+      data-ride="carousel"
+    >
+      <ol class="carousel-indicators">
+        <li
+          data-target="#carouselExampleCaptions"
+          data-slide-to="0"
+          class="active"
+        ></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="3000">
+          <img
+            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1553920233466"
+            class="d-block h-75 w-100"
+          />
+          <div class="carousel-caption d-none d-md-block text-left">
+            <h5 class="text-uppercase">nơi an tâm mua sắm</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="3000">
+          <img
+            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1553920233466"
+            class="d-block h-75 w-100"
+          />
+          <div class="carousel-caption d-none d-md-block text-left">
+            <h5 class="text-uppercase">ăn ngon mỗi ngày</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-interval="3000">
+          <img
+            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1553920233466"
+            class="d-block h-75 w-100"
+          />
+          <div class="carousel-caption d-none d-md-block text-left">
+            <h5 class="text-uppercase">tổ ấm xanh</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleCaptions"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleCaptions"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!-- Header -->
+
+    <!-- Intro -->
+    <div class="row">
+      <div class="col-sm">
+        <div
+          class="card border-0 d-flex flex-row"
+          style="height: 20rem; background-color: #F4F4F4"
+        >
+          <img
+            src="https://loremflickr.com/240/480"
+            class="card-img-center"
+            style="height: auto; width: 6rem; cursor: pointer;"
+            alt="..."
+          />
+          <div class="card-body ml-2">
+            <h5 class="">Sản phẩm an toàn</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div
+          class="card border-0 d-flex flex-row"
+          style="height: 20rem; background-color: #F4F4F4"
+        >
+          <img
+            src="https://loremflickr.com/240/480"
+            class="card-img-center"
+            style="height: auto; width: 6rem; cursor: pointer;"
+            alt="..."
+          />
+          <div class="card-body ml-2">
+            <h5 class="">Sản phẩm an toàn</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div
+          class="card border-0 d-flex flex-row"
+          style="height: 20rem; background-color: #F4F4F4"
+        >
+          <img
+            src="https://loremflickr.com/240/480"
+            class="card-img-center"
+            style="height: auto; width: 6rem; cursor: pointer;"
+            alt="..."
+          />
+          <div class="card-body ml-2">
+            <h5 class="">Sản phẩm an toàn</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div
+          class="card border-0 d-flex flex-row"
+          style="height: 20rem; background-color: #F4F4F4"
+        >
+          <img
+            src="https://loremflickr.com/240/480"
+            class="card-img-center"
+            style="height: auto; width: 6rem; cursor: pointer;"
+            alt="..."
+          />
+          <div class="card-body ml-2">
+            <h5 class="">Sản phẩm an toàn</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Intro -->
+
+    <!-- Sale -->
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <h3>KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
+      </div>
+      <div class="row justify-content-center">
+        <img
+          src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+          width="60"
+          height="30"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container ">
+      <div class="row justify-content-end">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- Sale -->
+
+    <!-- Compo -->
+    <div class="container mt-2">
+      <div class="row justify-content-center">
+        <h3>COMPO BÁN CHẠY TỪ ORGANIC.VN</h3>
+      </div>
+      <div class="row justify-content-center">
+        <img
+          src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+          width="60"
+          height="30"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="card d-flex flex-column align-items-center border-0"
+            style="width: 18rem;"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top item-image"
+              style="width: 13rem; transition: 200ms; cursor: pointer;"
+            />
+            <div class="mt-2 card-body text-center">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title text-uppercase font-weight-normal">
+                  xương đuôi heo
+                </h5>
+              </a>
+
+              <h3 class="mr-1" style="color: red; display: inline-block;">
+                63.100
+              </h3>
+              <h3 class="mr-2" style="color: red; display: inline-block;">
+                <u>đ</u>
+              </h3>
+              <h6
+                class="mr-2 align-middle p-1"
+                style="color: #FFF; background-color: red; display: inline-block;"
+              >
+                15%
+              </h6>
+
+              <h6>
+                <del>
+                  76.900
+                  <span>&nbsp<u>đ</u></span>
+                </del>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container ">
+      <div class="row justify-content-end">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- Compo -->
+
+    <div class="row" 
+        style="background-size: cover; background-image: url('https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1553920233466');">
+    </div>
+
+    <!-- Info -->
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <h3>THÔNG TIN MỚI NHẤT TỪ ORGANIC.VN</h3>
+      </div>
+      <div class="row justify-content-center">
+        <img
+          src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+          width="60"
+          height="30"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div
+            class="card border-0"
+            style="height: 51rem; background-color: #F4F4F4"
+          >
+            <img
+              src="https://loremflickr.com/320/240"
+              class="card-img-top"
+              style="height: 25rem; cursor: pointer;"
+              alt="..."
+            />
+            <div class="card-body">
+              <a style="color: #000;" href="#">
+                <h5 class="card-title font-weight-normal">
+                  Hãy tăng tốc mua sắm trong tháng 3
+                  <span class="text-uppercase"
+                    >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
+                  >
+                </h5>
+              </a>
+
+              <div class="font-italic small">
+                <i class="far fa-clock"></i>
+                &nbsp
+                <span>04/03/2019</span>
+              </div>
+
+              <p class="mt-2">
+                Những lợi ích ưu việt của tính năng VinMart Scan & Go giúp khách
+                hàng có thể thanh toán siêu tốc, tiết kiệm tối đa thời gian mua
+                sắm, đồng thời tra cứu toàn bộ thông tin sản phẩm từ giá cả cho
+                tới các chương trình khuyến mãi… chỉ với chiếc Smartphone.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <div
+                class="card border-0"
+                style="height: 25rem; background-color: #F4F4F4"
+              >
+                <img
+                  src="https://loremflickr.com/320/240"
+                  class="card-img-top"
+                  style="height: 13rem; cursor: pointer;"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <a style="color: #000;" href="#">
+                    <h5 class="card-title font-weight-normal">
+                      Hãy tăng tốc mua sắm trong tháng 3
+                      <span class="text-uppercase"
+                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
+                      >
+                    </h5>
+                  </a>
+                  <div class="font-italic small">
+                    <i class="far fa-clock"></i>
+                    &nbsp
+                    <span>04/03/2019</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div
+                class="card border-0"
+                style="height: 25rem; background-color: #F4F4F4"
+              >
+                <img
+                  src="https://loremflickr.com/320/240"
+                  class="card-img-top"
+                  style="height: 13rem; cursor: pointer;"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <a style="color: #000;" href="#">
+                    <h5 class="card-title font-weight-normal">
+                      Hãy tăng tốc mua sắm trong tháng 3
+                      <span class="text-uppercase"
+                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
+                      >
+                    </h5>
+                  </a>
+                  <div class="font-italic small">
+                    <i class="far fa-clock"></i>
+                    &nbsp
+                    <span>04/03/2019</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-6">
+              <div
+                class="card border-0"
+                style="height: 25rem; background-color: #F4F4F4"
+              >
+                <img
+                  src="https://loremflickr.com/320/240"
+                  class="card-img-top"
+                  style="height: 13rem; cursor: pointer;"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <a style="color: #000;" href="#">
+                    <h5 class="card-title font-weight-normal">
+                      Hãy tăng tốc mua sắm trong tháng 3
+                      <span class="text-uppercase"
+                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
+                      >
+                    </h5>
+                  </a>
+                  <div class="font-italic small">
+                    <i class="far fa-clock"></i>
+                    &nbsp
+                    <span>04/03/2019</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div
+                class="card border-0"
+                style="height: 25rem; background-color: #F4F4F4"
+              >
+                <img
+                  src="https://loremflickr.com/320/240"
+                  class="card-img-top"
+                  style="height: 13rem; cursor: pointer;"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <a style="color: #000;" href="#">
+                    <h5 class="card-title font-weight-normal">
+                      Hãy tăng tốc mua sắm trong tháng 3
+                      <span class="text-uppercase"
+                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
+                      >
+                    </h5>
+                  </a>
+                  <div class="font-italic small">
+                    <i class="far fa-clock"></i>
+                    &nbsp
+                    <span>04/03/2019</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Info -->
+
+    <footer class="page-footer font-small blue mt-5">
+      <!-- Footer Links -->
+      <div class="container-fluid text-center text-md-left">
+        <!-- Grid row -->
+        <div class="row">
+          <hr class="clearfix w-100 d-md-none pb-3" />
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3">
+            <div class="footer-section">
+              <a href="#">
+                <img
+                  src="https://vinmart.com/Content/themes/vinmart/assets/img/logo.png"
+                  alt="logo"
+                />
+              </a>
+
+              <ul class="list-unstyled">
+                <li>
+                  <a class="footerLink" href="#">Giới thiệu về Vinmart</a>
+                </li>
+                <li>
+                  <a class="footerLink" href="#"
+                    >Quy chế hoạt động của sàn giao dịch</a
+                  >
+                </li>
+                <li>
+                  <a class="footerLink" href="#"
+                    >Điều khoản và điều kiện giao dịch</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h5 class="text-uppercase">được chứng nhận</h5>
+              <div class="certificate">
+                <img
+                  src="https://vinmart.com/Content/themes/vinmart/assets/img/Layer 9.png"
+                />
+                <img
+                  src="https://vinmart.com/Content/themes/vinmart/assets/img/Layer 10.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3 border-left">
+            <!-- Links -->
+            <h6 class="text-uppercase">chăm sóc khách hàng</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a class="footerLink" href="#!">Trung tâm hỗ trợ khách hàng</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!"
+                  >Chính sách bảo mật thanh toán</a
+                >
+              </li>
+              <li>
+                <a class="footerLink" href="#!"
+                  >Chính sách định danh khách hàng</a
+                >
+              </li>
+              <li>
+                <a class="footerLink" href="#!">Chính sách thanh toán</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!">Chính sách giao hàng</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!">Chính sách đổi trả</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!">Chính sách bảo hành</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!">Bán hàng cùng Adayroi</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!">Câu hỏi thường gặp</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3 border-left">
+            <!-- Links -->
+            <h6 class="text-uppercase">tài khoản</h6>
+
+            <ul class="list-unstyled">
+              <li>
+                <a class="footerLink" href="#!">Đăng ký</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!">Đăng nhập</a>
+              </li>
+              <li>
+                <a class="footerLink" href="#!"
+                  >Chính sách bảo mật và chia sẻ thông tin</a
+                >
+              </li>
+            </ul>
+            <h6 class="text-uppercase">liên kết website</h6>
+            <ul class="list-unstyled row">
+              <li class="col-md-6">
+                <a class="footerLink" href="#">VinHomes.vn</a>
+              </li>
+              <li class="col-md-6">
+                <a class="footerLink" href="#">VinHomes.vn</a>
+              </li>
+              <li class="col-md-6">
+                <a class="footerLink" href="#">VinHomes.vn</a>
+              </li>
+              <li class="col-md-6">
+                <a class="footerLink" href="#">VinHomes.vn</a>
+              </li>
+              <li class="col-md-6">
+                <a class="footerLink" href="#">VinHomes.vn</a>
+              </li>
+              <li class="col-md-6">
+                <a class="footerLink" href="#">VinHomes.vn</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3 border-left">
+            <!-- Links -->
+            <h6 class="text-uppercase">kết nối với chúng tôi</h6>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+      <!-- Footer Links -->
+
+      <!-- Footer address -->
+
+      <div>
+        <h5 class="footer-title d-none d-lg-block">
+          CÔNG TY CỔ PHẦN DỊCH VỤ THƯƠNG MẠI THÔNG HỢP VINCOMERCE
+        </h5>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="footer-section">
+              <h5 class="footer-title">TRỤ SỞ CHÍNH</h5>
+              <p>
+                Số 72 Lê Thánh Tôn, Phường Bến Nghé, Quận 1,
+                <br />
+                Thành phố Hồ Chí Minh, Việt Nam.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class="footer-section">
+              <h5 class="footer-title">ĐỊA CHỈ GIAO DỊCH</h5>
+              <div class="row">
+                <div class="col-md-6">
+                  <h5 class="footer-subtitle">Tại thành phố Hồ Chí Minh</h5>
+
+                  <p>
+                    Tầng B1, Vincom Mega Mall Thảo Điền, 159-161 Xa Lộ Hà
+                    <br />Nội,Phường Thảo Điền, Quận 2, Thành Phố Hồ Chí Minh.
+                  </p>
+                </div>
+
+                <div class="col-md-6">
+                  <h5 class="footer-subtitle">Tại Hà Nội</h5>
+
+                  <p>
+                    Tower 2, Times City, 458 Minh Khai, Phường Vĩnh Tuy,Quận Hai
+                    <br />Bà Trưng, Thành Phố Hà Nội.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <p>Điện thoại: 02471066866. Email: cskh@vinmart.com.</p>
+        <p>
+          Mã số doanh nghiệp: 0104918404 do Sở Kế hoạch và Đầu tư TP. Hà Nội cấp
+          lần đầu ngày 20/09/2010. Đăng ký thay đổi lần thứ 35 do Sở kế hoạch
+          Đầu tư TP. Hồ Chí Minh ngày 04/04/2018.
+        </p>
+      </div>
+
+      <!-- Footer address -->
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      function haha() {
+        var a;
+        console.log("TCL: haha -> a", a);
+        console.log("TCL: haha -> a", a);
+
+        var b;
+        console.log("TCL: haha -> b", b);
+      }
+
+      function huhu() {}
+    </script>
+  </body>
+</html>
