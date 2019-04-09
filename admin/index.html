@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import css bootrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--end import css bootrap-->
+    <!-- import fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- end import fontawesome-->
+    <!--import my css-->
+    <link rel="stylesheet" type="text/css" href="./admin-style.css">
+    <!--end import my css-->
+    <title>Document</title>
+</head>
+
+<body>
+    <!--Thẻ lớn nhất chứa cả trang web-->
+    <div class="container-fluid table h-100">
+        <!--Chia ra từng hàng-->
+        <div class="row table-row h-100">
+            <!--slide menu-->
+            <div class="col-md-2 table-cell float-none align-top h-100" id="side-menu">
+                <h1>Trang quản trị</h1>
+                <ul>
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-home"></span>
+                            <span>Trang chủ</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                            <a href="index.html">
+                                <span class="fas fa-users"></span>
+                                <span>Khách hàng</span>
+                            </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Nội dung-->
+            <!--Mặc định padding -15 của col-->
+            <div class="col-md-10 table-cell float-none align-top p-0">
+
+                <header id="nav-header">
+                    <!--mặc định bị padding-->
+                    <div class="row m-0">
+                        <div class="col-md-5 ">
+                            <input type="text" placeholder="Tìm kiếm..." id="header-search-field">
+                        </div>
+
+                        <div class="col-md-7">
+                            <ul>
+                                <li>Chào mừng đến trang quản trị bán hàng</li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fas fa-bell"></span>
+                                        <span class="badge badge-warning label-message">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fas fa-envelope"></span>
+                                        <span class="badge badge-warning label-message">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="logout">
+                                        <span class="fas fa-sign-out-alt"></span>
+                                        Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                </header>
+                <footer id="admin-footer">
+
+                    <div class="float-left"><b>Copyright</b>&copy; 2019</div>
+                    <div class="float-right">Trang admin</div>
+
+                </footer>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    </div>
+
+    <!--import script bootrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!--end import sript bootrap-->
+</body>
+
+</html>
