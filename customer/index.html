@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Header</title>
+    <title>Organic.Vn</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -34,8 +34,57 @@
         font-size: 0.875rem;
       }
 
-      div>div>div>h1>a:hover {
+      div > div > div > h1 > a:hover {
         color: greenyellow !important;
+      }
+
+      .title:hover {
+        color: #80b3ff;
+      }
+
+      .component1:hover .overlay {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      .title {
+        color: #000;
+      }
+
+      .title:hover {
+        color: #99cc00;
+      }
+
+      .overlay > a {
+        opacity: 0;
+        background-color: #f2f2f2;
+      }
+
+      .overlay > a i {
+        color: #000;
+      }
+
+      .component2:hover .overlay > a {
+        opacity: 1;
+      }
+
+      .overlay > a:hover {
+        background-color: #99cc00;
+      }
+
+      .overlay > a:hover i {
+        color: #fff;
+      }
+
+      .component2:hover .overlay {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .component2:hover {
+        box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .component3:hover {
+        box-shadow: 4px 14px 15px rgba(0, 0, 0, 0.1);
       }
     </style>
   </head>
@@ -181,88 +230,69 @@
 
     <!-- Intro -->
     <div class="row ">
-      <div class="col-md-3 border border-success">
-        <div class="col-md-4">
-          <div
-            class="card border-0 d-flex flex-row"
-            style="height: 20rem; background-color: #F4F4F4"
-          >
-            <img
-              src="https://loremflickr.com/240/480"
-              class="card-img-center"
-              style="height: auto; width: 6rem; cursor: pointer;"
-              alt="..."
-            />
-            <div class="card-body ml-2">
-              <h5 class="">Sản phẩm an toàn</h5>
-            </div>
+      <div class="col-md-3">
+          <div col-md-4  m-0 p-0>
+              <div class="component1 card" style="width: 20.5rem; height: 21rem; background-image: url(https://live.staticflickr.com/5299/5441286529_8c98913771_b.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; font-family: 'Nunito', sans-serif;">
+                <div class="overlay pl-4 pr-4 pt-1 pb-1" style="height: 100%; transition: 200ms">
+                  <div class="card-body" style="color: #FFF; font-size: 1rem;">
+                    <a data-toggle="tooltip" title="Rau quả tươi" style="color: #FFF; text-decoration: none;" href="#"><h5 class="title card-title text-uppercase text-white" style="display: inline-block; transition: 200ms;">Rau quả tươi</h5></a>
+                    <p class="card-text">Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng, sạch, an toàn và đảm bảo chất lượng ngon nhất giao đến tận tay người tiêu dùng, để san sẻ sự vất vả của các mẹ, các chị</p>
+                    <a href="#" class="btn btn-outline-light mt-2" style="font-size: .8rem; transition: 200ms;" onmouseover="changetoBlue()" onmouseleave="defaultButton()">Xem ngay</a>
+                  </div>
+                </div>
+              </div>
           </div>
-        </div>
       </div>
 
-      <div class="col-md-3 border border-success">
-        <div class="col-md-4">
-          <div
-            class="card border-0 d-flex flex-row"
-            style="height: 20rem; background-color: #F4F4F4"
-          >
-            <img
-              src="https://loremflickr.com/240/480"
-              class="card-img-center"
-              style="height: auto; width: 6rem; cursor: pointer;"
-              alt="..."
-            />
-            <div class="card-body ml-2">
-              <h5 class="">Sản phẩm an toàn</h5>
-            </div>
+      <div class="col-md-3 m-0 p-0">
+          <div col-md-4 >
+              <div class="component1 card rounded-0" style="width: 21.5rem; height: 21rem; background-image: url(https://live.staticflickr.com/1076/538144532_6ec7d4827e_z.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; font-family: 'Nunito', sans-serif;">
+                <div class="overlay pl-4 pr-4 pt-1 pb-1" style="height: 100%; transition: 200ms">
+                  <div class="card-body" style="color: #FFF; font-size: 1rem;">
+                    <a data-toggle="tooltip" title="Rau quả tươi" style="color: #FFF; text-decoration: none;" href="#"><h5 class="title card-title text-uppercase text-white" style="display: inline-block; transition: 200ms;">Rau quả tươi</h5></a>
+                    <p class="card-text">Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng, sạch, an toàn và đảm bảo chất lượng ngon nhất giao đến tận tay người tiêu dùng, để san sẻ sự vất vả của các mẹ, các chị</p>
+                    <a href="#"class="btn btn-outline-light mt-2" style="font-size: .8rem; transition: 200ms;" onmouseover="changetoBlue()" onmouseleave="defaultButton()">Xem ngay</a>
+                  </div>
+                </div>
+              </div>
           </div>
-        </div>
       </div>
 
-      <div class="col-md-3 border border-success">
-        <div class="col-md-4">
-          <div
-            class="card border-0 d-flex flex-row"
-            style="height: 20rem; background-color: #F4F4F4"
-          >
-            <img
-              src="https://loremflickr.com/240/480"
-              class="card-img-center"
-              style="height: auto; width: 6rem; cursor: pointer;"
-              alt="..."
-            />
-            <div class="card-body ml-2">
-              <h5 class="">Sản phẩm an toàn</h5>
-            </div>
+      <div class="col-md-3 m-0 p-0">
+          <div col-md-4>
+              <div class="component1 card rounded-0" style="width: 21.5rem; height: 21rem; background-image: url(https://live.staticflickr.com/7171/6399328309_71abea09c5.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; font-family: 'Nunito', sans-serif;">
+                <div class="overlay pl-4 pr-4 pt-1 pb-1" style="height: 100%; transition: 200ms">
+                  <div class="card-body" style="color: #FFF; font-size: 1rem;">
+                    <a data-toggle="tooltip" title="Rau quả tươi" style="color: #FFF; text-decoration: none;" href="#"><h5 class="title card-title text-uppercase text-white" style="display: inline-block; transition: 200ms;">Rau quả tươi</h5></a>
+                    <p class="card-text">Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng, sạch, an toàn và đảm bảo chất lượng ngon nhất giao đến tận tay người tiêu dùng, để san sẻ sự vất vả của các mẹ, các chị</p>
+                    <a href="#" class="btn btn-outline-light mt-2" style="font-size: .8rem; transition: 200ms;" onmouseover="changetoBlue()" onmouseleave="defaultButton()">Xem ngay</a>
+                  </div>
+                </div>
+              </div>
           </div>
-        </div>
       </div>
 
-      <div class="col-md-3 border border-success">
-        <div class="col-md-4">
-          <div
-            class="card border-0 d-flex flex-row"
-            style="height: 20rem; background-color: #F4F4F4"
-          >
-            <img
-              src="https://loremflickr.com/240/480"
-              class="card-img-center"
-              style="height: auto; width: 6rem; cursor: pointer;"
-              alt="..."
-            />
-            <div class="card-body ml-2">
-              <h5 class="">Sản phẩm an toàn</h5>
-            </div>
+      <div class="col-md-3 border m-0 p-0">
+          <div col-md-4>
+              <div class="component1 card rounded-0" style="width: 21.5rem; height: 21rem; background-image: url(https://live.staticflickr.com/8449/7935349636_0c450076ac_z.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; font-family: 'Nunito', sans-serif;">
+                <div class="overlay pl-4 pr-4 pt-1 pb-1" style="height: 100%; transition: 200ms">
+                  <div class="card-body" style="color: #FFF; font-size: 1rem;">
+                    <a data-toggle="tooltip" title="Rau quả tươi" style="color: #FFF; text-decoration: none;" href="#"><h5 class="title card-title text-uppercase text-white" style="display: inline-block; transition: 200ms;">Rau quả tươi</h5></a>
+                    <p class="card-text">Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng, sạch, an toàn và đảm bảo chất lượng ngon nhất giao đến tận tay người tiêu dùng, để san sẻ sự vất vả của các mẹ, các chị</p>
+                    <a href="#"class="btn btn-outline-light mt-2" style="font-size: .8rem; transition: 200ms;" onmouseover="changetoBlue()" onmouseleave="defaultButton()">Xem ngay</a>
+                  </div>
+                </div>
+              </div>
           </div>
-        </div>
       </div>
     </div>
     <!-- Intro -->
 
+    <!-- Sale, combo -->
     <div class="container mt-5">
       <!-- Sale -->
       <div class="row justify-content-center">
-        <h3>KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
+        <h3 class="text-success">KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
       </div>
 
       <div class="row justify-content-center">
@@ -277,328 +307,528 @@
       <div class="row mt-5">
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row justify-content-end">
+      <div class="row justify-content-end mt-5">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
@@ -623,7 +853,7 @@
 
       <!-- Combo -->
       <div class="row justify-content-center">
-        <h3>COMBO BÁN CHẠY TỪ ORGANIC.VN</h3>
+        <h3 class="text-success">COMBO BÁN CHẠY TỪ ORGANIC.VN</h3>
       </div>
 
       <div class="row justify-content-center">
@@ -638,328 +868,528 @@
       <div class="row mt-5">
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div
-            class="card d-flex flex-column align-items-center border-0"
-            style="width: 18rem;"
+            class="component2 card"
+            style="width: 14rem; height: 18rem; background-color: #f7f7f7; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
           >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top item-image"
-              style="width: 13rem; transition: 200ms; cursor: pointer;"
-            />
-            <div class="mt-2 card-body text-center">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title text-uppercase font-weight-normal">
-                  xương đuôi heo
-                </h5>
-              </a>
-
-              <h3 class="mr-1" style="color: red; display: inline-block;">
-                63.100
-              </h3>
-              <h3 class="mr-2" style="color: red; display: inline-block;">
-                <u>đ</u>
-              </h3>
-              <h6
-                class="mr-2 align-middle p-1"
-                style="color: #FFF; background-color: red; display: inline-block;"
+            <div
+              style="height: 12.5rem; width: 100%; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
               >
-                15%
-              </h6>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2rem; height: 2rem; cursor: pointer; border-radius: 50%; font-size: 13px; display: flex; justify-content: center; align-items: center; transition: 200ms; z-index: 0; text-decoration: none;"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search" style=""></i>
+                </a>
+              </div>
+            </div>
 
-              <h6>
-                <del>
-                  76.900
-                  <span>&nbsp<u>đ</u></span>
-                </del>
-              </h6>
+            <div
+              class="card-body"
+              style="font-size: .8rem; text-align: center;"
+            >
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="m-0" style="display: flex; justify-content: center;">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-2" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row justify-content-end">
+      <div class="row justify-content-end mt-5">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">
@@ -982,22 +1412,36 @@
       </div>
       <!-- Combo -->
     </div>
+    <!-- sale, Combo -->
 
+    <!-- image -->
     <div class="container-fluid mt-5 p-0">
-      <div 
-          style="height: 20rem; background-size: cover; background-position: bottom; background-attachment: fixed; background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/NjvB6BIPg/videoblocks-sunny-morning-at-highland-tea-plantations-with-foggy-mountains-and-green-tea-leaves-with-morning-dew-on-foreground-sri-lanka-zooming-out-video_bvrorrvie_thumbnail-full01.png');">
-          <div class="text-light w-100 h-100 d-flex flex-column justify-content-center align-items-center"> 
-              <h3>Hotline</h3>
-              <h1><a href="#" style="text-decoration: none; color: white;">0973-446-184</a></h1>
-              <p class="text-center">Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng, <br> sạch, an toàn và đảm bảo chất lượng ngon nhất.</p>
-          </div>
+      <div
+        style="height: 20rem; background-size: cover; background-position: center; background-attachment: fixed; background-image: url('https://live.staticflickr.com/7273/6979472408_84266527a8_k.jpg');"
+      >
+        <div
+          class="text-light w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+        >
+          <h3>Hotline</h3>
+          <h1>
+            <a href="#" style="text-decoration: none; color: white;"
+              >0973-446-184</a
+            >
+          </h1>
+          <p class="text-center">
+            Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng,
+            <br />
+            sạch, an toàn và đảm bảo chất lượng ngon nhất.
+          </p>
+        </div>
       </div>
     </div>
+    <!-- image -->
 
-     <!-- Info -->
+    <!-- Info -->
     <div class="container-fluid mt-5">
       <div class="row justify-content-center mt-5">
-        <h3>THÔNG TIN MỚI NHẤT TỪ ORGANIC.VN</h3>
+        <h3 class="text-success">THÔNG TIN MỚI NHẤT TỪ ORGANIC.VN</h3>
       </div>
 
       <div class="row justify-content-center">
@@ -1008,41 +1452,70 @@
           alt=""
         />
       </div>
-  
+
       <div class="row mt-5">
         <div class="col-md-6">
-          <div
-            class="card border-0"
-            style="height: 51rem; background-color: #F4F4F4"
-          >
-            <img
-              src="https://loremflickr.com/320/240"
-              class="card-img-top"
-              style="height: 25rem; cursor: pointer;"
-              alt="..."
-            />
-            <div class="card-body">
-              <a style="color: #000;" href="#">
-                <h5 class="card-title font-weight-normal">
-                  Hãy tăng tốc mua sắm trong tháng 3
-                  <span class="text-uppercase"
-                    >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
-                  >
-                </h5>
-              </a>
-
-              <div class="font-italic small">
-                <i class="far fa-clock"></i>
-                &nbsp
-                <span>04/03/2019</span>
+          <div class="col-md-6">
+            <div
+              class="component3 card"
+              style="width: 38rem; height: 54rem; font-family: 'Nunito', sans-serif; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+            >
+              <div
+                style="height: 20rem; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+                class="card-img-top"
+                data-toggle="tooltip"
+                title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+              >
+                <a
+                  href="#"
+                  style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+                ></a>
+                <div
+                  class="p-2"
+                  style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:89%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+                >
+                  <div class="mr-3">
+                    <i class="far fa-calendar"></i>
+                    &nbsp
+                    <span style="color: #99cc00">27/03/2019</span>
+                  </div>
+                  <div>
+                    <span class="font-weight-normal">Đăng bởi: </span>
+                    <span style="color: #99cc00">Cool Team</span>
+                  </div>
+                </div>
               </div>
 
-              <p class="mt-2">
-                Những lợi ích ưu việt của tính năng VinMart Scan & Go giúp khách
-                hàng có thể thanh toán siêu tốc, tiết kiệm tối đa thời gian mua
-                sắm, đồng thời tra cứu toàn bộ thông tin sản phẩm từ giá cả cho
-                tới các chương trình khuyến mãi… chỉ với chiếc Smartphone.
-              </p>
+              <div class="card-body" style="text-align: center;">
+                <a
+                  href="#"
+                  class="title card-title m-0"
+                  style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                  >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                  đao</a
+                >
+                <p
+                  class="mt-2 font-weight-normal text-left "
+                  style="font-size: 15px;  text-indent:2rem; color: #6D6B6A"
+                >
+                  Ngoài việc tăng diện tích, sản lượng, vài năm gần đây, Hà Nội
+                  còn tập trung nâng cao về chất lượng rau màu. Điều đó được thể
+                  hiện qua diện tích trồng rau được cấp giấy chứng nhận vùng sản
+                  xuất an toàn liên tục tăng. Hiện, toàn TP có 5.000ha rau màu
+                  đã được chứng nhận là vùng rau sản xuất theo tiêu chuẩn
+                  VietGAP. Đặc biệt, để đảm bảo chất lượng rau màu, hạn chế việc
+                  người nông dân sử dụng các loại thuốc kích thích tăng trưởng,
+                  Sở NN&PTNT Hà Nội phối hợp với chính quyền địa phương tăng
+                  cường hướng dẫn và giám sát bà con áp dụng các quy trình sản
+                  xuất an toàn. Đồng thời khuyến khích phát triển sản xuất vùng
+                  chuyên canh tập trung, hỗ trợ thuốc bảo vệ thực vật có nguồn
+                  gốc sinh học, chế phẩm sinh học. Từ đó đã góp phần thay đổi tư
+                  duy về sử dụng thuốc bảo vệ thực vật của người dân, chuyển dần
+                  từ sử dụng thuốc bảo vệ thực vật hóa học sang các loại thuốc
+                  có nguồn gốc sinh học, chế phẩm sinh học nhằm bảo vệ sức khỏe
+                  người sản xuất, người tiêu dùng và bảo vệ môi trường.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1050,116 +1523,200 @@
           <div class="row">
             <div class="col-md-6">
               <div
-                class="card border-0"
-                style="height: 25rem; background-color: #F4F4F4"
+                class="component3 card"
+                style="width: 18rem; height: 26rem; font-family: 'Nunito', sans-serif; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
               >
-                <img
-                  src="https://loremflickr.com/320/240"
+                <div
+                  style="height: 18rem; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
                   class="card-img-top"
-                  style="height: 13rem; cursor: pointer;"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <a style="color: #000;" href="#">
-                    <h5 class="card-title font-weight-normal">
-                      Hãy tăng tốc mua sắm trong tháng 3
-                      <span class="text-uppercase"
-                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
-                      >
-                    </h5>
-                  </a>
-                  <div class="font-italic small">
-                    <i class="far fa-clock"></i>
-                    &nbsp
-                    <span>04/03/2019</span>
+                  data-toggle="tooltip"
+                  title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+                >
+                  <a
+                    href="#"
+                    style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+                  ></a>
+                  <div
+                    class="p-2"
+                    style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:89%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+                  >
+                    <div class="mr-3">
+                      <i class="far fa-calendar"></i>
+                      &nbsp
+                      <span style="color: #99cc00">27/03/2019</span>
+                    </div>
+                    <div>
+                      <span class="font-weight-normal">Đăng bởi: </span>
+                      <span style="color: #99cc00">Cool Team</span>
+                    </div>
                   </div>
+                </div>
+
+                <div class="card-body" style="text-align: center;">
+                  <a
+                    href="#"
+                    class="title card-title m-0"
+                    style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                    >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                    đao</a
+                  >
+                  <p
+                    class="mt-2 font-weight-normal"
+                    style="font-size: 15px; color: #6D6B6A"
+                  >
+                    Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo
+                    dài liên tiếp nên...
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div
-                class="card border-0"
-                style="height: 25rem; background-color: #F4F4F4"
+                class="component3 card"
+                style="width: 18rem; height: 26rem; font-family: 'Nunito', sans-serif; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
               >
-                <img
-                  src="https://loremflickr.com/320/240"
+                <div
+                  style="height: 18rem; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
                   class="card-img-top"
-                  style="height: 13rem; cursor: pointer;"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <a style="color: #000;" href="#">
-                    <h5 class="card-title font-weight-normal">
-                      Hãy tăng tốc mua sắm trong tháng 3
-                      <span class="text-uppercase"
-                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
-                      >
-                    </h5>
-                  </a>
-                  <div class="font-italic small">
-                    <i class="far fa-clock"></i>
-                    &nbsp
-                    <span>04/03/2019</span>
+                  data-toggle="tooltip"
+                  title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+                >
+                  <a
+                    href="#"
+                    style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+                  ></a>
+                  <div
+                    class="p-2"
+                    style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:89%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+                  >
+                    <div class="mr-3">
+                      <i class="far fa-calendar"></i>
+                      &nbsp
+                      <span style="color: #99cc00">27/03/2019</span>
+                    </div>
+                    <div>
+                      <span class="font-weight-normal">Đăng bởi: </span>
+                      <span style="color: #99cc00">Cool Team</span>
+                    </div>
                   </div>
+                </div>
+
+                <div class="card-body" style="text-align: center;">
+                  <a
+                    href="#"
+                    class="title card-title m-0"
+                    style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                    >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                    đao</a
+                  >
+                  <p
+                    class="mt-2 font-weight-normal"
+                    style="font-size: 15px; color: #6D6B6A"
+                  >
+                    Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo
+                    dài liên tiếp nên...
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="row mt-3">
+          <div class="row mt-4">
             <div class="col-md-6">
               <div
-                class="card border-0"
-                style="height: 25rem; background-color: #F4F4F4"
+                class="component3 card"
+                style="width: 18rem; height: 26rem; font-family: 'Nunito', sans-serif; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
               >
-                <img
-                  src="https://loremflickr.com/320/240"
+                <div
+                  style="height: 18rem; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
                   class="card-img-top"
-                  style="height: 13rem; cursor: pointer;"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <a style="color: #000;" href="#">
-                    <h5 class="card-title font-weight-normal">
-                      Hãy tăng tốc mua sắm trong tháng 3
-                      <span class="text-uppercase"
-                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
-                      >
-                    </h5>
-                  </a>
-                  <div class="font-italic small">
-                    <i class="far fa-clock"></i>
-                    &nbsp
-                    <span>04/03/2019</span>
+                  data-toggle="tooltip"
+                  title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+                >
+                  <a
+                    href="#"
+                    style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+                  ></a>
+                  <div
+                    class="p-2"
+                    style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:89%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+                  >
+                    <div class="mr-3">
+                      <i class="far fa-calendar"></i>
+                      &nbsp
+                      <span style="color: #99cc00">27/03/2019</span>
+                    </div>
+                    <div>
+                      <span class="font-weight-normal">Đăng bởi: </span>
+                      <span style="color: #99cc00">Cool Team</span>
+                    </div>
                   </div>
+                </div>
+
+                <div class="card-body" style="text-align: center;">
+                  <a
+                    href="#"
+                    class="title card-title m-0"
+                    style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                    >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                    đao</a
+                  >
+                  <p
+                    class="mt-2 font-weight-normal"
+                    style="font-size: 15px; color: #6D6B6A"
+                  >
+                    Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo
+                    dài liên tiếp nên...
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div
-                class="card border-0"
-                style="height: 25rem; background-color: #F4F4F4"
+                class="component3 card"
+                style="width: 18rem; height: 26rem; font-family: 'Nunito', sans-serif; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
               >
-                <img
-                  src="https://loremflickr.com/320/240"
+                <div
+                  style="height: 18rem; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
                   class="card-img-top"
-                  style="height: 13rem; cursor: pointer;"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <a style="color: #000;" href="#">
-                    <h5 class="card-title font-weight-normal">
-                      Hãy tăng tốc mua sắm trong tháng 3
-                      <span class="text-uppercase"
-                        >đại khuyến mại - tháng của nàng, rẻ ngỡ ngàng!!!</span
-                      >
-                    </h5>
-                  </a>
-                  <div class="font-italic small">
-                    <i class="far fa-clock"></i>
-                    &nbsp
-                    <span>04/03/2019</span>
+                  data-toggle="tooltip"
+                  title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+                >
+                  <a
+                    href="#"
+                    style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+                  ></a>
+                  <div
+                    class="p-2"
+                    style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:89%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+                  >
+                    <div class="mr-3">
+                      <i class="far fa-calendar"></i>
+                      &nbsp
+                      <span style="color: #99cc00">27/03/2019</span>
+                    </div>
+                    <div>
+                      <span class="font-weight-normal">Đăng bởi: </span>
+                      <span style="color: #99cc00">Cool Team</span>
+                    </div>
                   </div>
+                </div>
+
+                <div class="card-body" style="text-align: center;">
+                  <a
+                    href="#"
+                    class="title card-title m-0"
+                    style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                    >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                    đao</a
+                  >
+                  <p
+                    class="mt-2 font-weight-normal"
+                    style="font-size: 15px; color: #6D6B6A"
+                  >
+                    Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo
+                    dài liên tiếp nên...
+                  </p>
                 </div>
               </div>
             </div>
@@ -1168,7 +1725,7 @@
       </div>
     </div>
     <!-- Info -->
-   
+
     <footer class="page-footer font-small blue mt-5">
       <!-- Footer Links -->
       <div class="container-fluid text-center text-md-left">
@@ -1189,15 +1746,18 @@
               <ul class="list-unstyled mt-3">
                 <li class="m-2">
                   <i class="fas fa-map-marker-alt m-2"></i>
-                  <a class="footerLink" href="#">128/16/2c1 dường Âu Cơ, phường 14, quận 11, tp Hồ Chí Minh</a>
+                  <a class="footerLink" href="#"
+                    >128/16/2c1 dường Âu Cơ, phường 14, quận 11, tp Hồ Chí
+                    Minh</a
+                  >
                 </li>
                 <li class="m-2">
-                    <i class="fas fa-phone m-2"></i>
-                    <a class="footerLink" href="#">0973-446-184</a>
+                  <i class="fas fa-phone m-2"></i>
+                  <a class="footerLink" href="#">0973-446-184</a>
                 </li>
                 <li class="m-2">
-                    <i class="fas fa-envelope m-2"></i>
-                    <a class="footerLink" href="#">ngochanh2703@gmail.com</a>
+                  <i class="fas fa-envelope m-2"></i>
+                  <a class="footerLink" href="#">ngochanh2703@gmail.com</a>
                 </li>
               </ul>
             </div>
@@ -1223,20 +1783,20 @@
 
             <ul class="list-unstyled">
               <li class="m-2">
-                  <i class="fas fa-envelope m-2"></i>
-                  <a class="footerLink" href="#">Giới thiệu</a>
+                <i class="fas fa-envelope m-2"></i>
+                <a class="footerLink" href="#">Giới thiệu</a>
               </li>
               <li class="m-2">
-                  <i class="fab fa-product-hunt m-2"></i>
-                  <a class="footerLink" href="#">Sản phẩm</a>
+                <i class="fab fa-product-hunt m-2"></i>
+                <a class="footerLink" href="#">Sản phẩm</a>
               </li>
               <li class="m-2">
-                  <i class="far fa-newspaper m-2"></i>
-                  <a class="footerLink" href="#">Tin tức</a>
+                <i class="far fa-newspaper m-2"></i>
+                <a class="footerLink" href="#">Tin tức</a>
               </li>
               <li class="m-2">
-                  <i class="fas fa-info m-2"></i>
-                  <a class="footerLink" href="#">Liên hệ</a>
+                <i class="fas fa-info m-2"></i>
+                <a class="footerLink" href="#">Liên hệ</a>
               </li>
             </ul>
           </div>
@@ -1244,46 +1804,46 @@
 
           <!-- Grid column -->
           <div class="col-xs-6 col-md-4 col-lg-3 border-left mt-5">
-              <!-- Links -->
-              <h6 class="text-uppercase">Tài khoản khách hàng</h6>
-  
-              <ul class="list-unstyled">
-                <li class="m-2">
-                    <i class="far fa-registered m-2"></i>
-                    <a class="footerLink" href="#">Đăng kí</a>
-                </li>
-                <li class="m-2">
-                    <i class="fas fa-sign-in-alt m-2"></i>
-                    <a class="footerLink" href="#">Đăng nhập</a>
-                </li>
-                <li class="m-2">
-                    <i class="fas fa-sign-out-alt m-2"></i>
-                    <a class="footerLink" href="#">Đăng xuất</a>
-                </li>
-              </ul>
-            </div>
+            <!-- Links -->
+            <h6 class="text-uppercase">Tài khoản khách hàng</h6>
+
+            <ul class="list-unstyled">
+              <li class="m-2">
+                <i class="far fa-registered m-2"></i>
+                <a class="footerLink" href="#">Đăng kí</a>
+              </li>
+              <li class="m-2">
+                <i class="fas fa-sign-in-alt m-2"></i>
+                <a class="footerLink" href="#">Đăng nhập</a>
+              </li>
+              <li class="m-2">
+                <i class="fas fa-sign-out-alt m-2"></i>
+                <a class="footerLink" href="#">Đăng xuất</a>
+              </li>
+            </ul>
+          </div>
           <!-- Grid column -->
 
           <!-- Grid column -->
           <div class="col-xs-6 col-md-4 col-lg-3 border-left mt-5">
-              <!-- Links -->
-              <h6 class="text-uppercase">Kết nối với chúng tôi</h6>
-  
-              <ul class="list-unstyled">
-                <li class="m-2">
-                    <i class="fab fa-facebook-square m-2"></i>
-                    <a class="footerLink" href="#">https://www.facebook.com</a>
-                </li>
-                <li class="m-2">
-                    <i class="fab fa-twitter-square m-2"></i>
-                    <a class="footerLink" href="#">https://www.twitter.com</a>
-                </li>
-                <li class="m-2">
-                    <i class="fab fa-instagram m-2"></i>
-                    <a class="footerLink" href="#">https://www.instagram.com</a>
-                </li>
-              </ul>
-            </div>
+            <!-- Links -->
+            <h6 class="text-uppercase">Kết nối với chúng tôi</h6>
+
+            <ul class="list-unstyled">
+              <li class="m-2">
+                <i class="fab fa-facebook-square m-2"></i>
+                <a class="footerLink" href="#">https://www.facebook.com</a>
+              </li>
+              <li class="m-2">
+                <i class="fab fa-twitter-square m-2"></i>
+                <a class="footerLink" href="#">https://www.twitter.com</a>
+              </li>
+              <li class="m-2">
+                <i class="fab fa-instagram m-2"></i>
+                <a class="footerLink" href="#">https://www.instagram.com</a>
+              </li>
+            </ul>
+          </div>
           <!-- Grid column -->
         </div>
         <!-- Grid row -->
@@ -1294,8 +1854,10 @@
 
       <div>
         <br />
-        <p class="text-center">Điện thoại: 02471066866. Email: cskh@vinmart.com.</p>
-        <p class="text-center"> 
+        <p class="text-center">
+          Điện thoại: 02471066866. Email: cskh@vinmart.com.
+        </p>
+        <p class="text-center">
           Mã số doanh nghiệp: 0104918404 do Sở Kế hoạch và Đầu tư TP. Hà Nội cấp
           lần đầu ngày 20/09/2010. Đăng ký thay đổi lần thứ 35 do Sở kế hoạch
           Đầu tư TP. Hồ Chí Minh ngày 04/04/2018.
@@ -1321,16 +1883,6 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript">
-      function haha() {
-        var a;
-        console.log("TCL: haha -> a", a);
-        console.log("TCL: haha -> a", a);
-
-        var b;
-        console.log("TCL: haha -> b", b);
-      }
-
-      function huhu() {}
     </script>
   </body>
 </html>
