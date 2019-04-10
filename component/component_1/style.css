@@ -1,0 +1,7 @@
+.component1 .title:hover {
+	color: #80b3ff;
+}
+
+.component1:hover .overlay  {
+	background-color: rgba(0,0,0,.3);
+}
