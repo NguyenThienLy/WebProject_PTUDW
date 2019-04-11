@@ -160,7 +160,7 @@
 
                                 <div class="form-group">
                                     <label class="sr-only">Tiêu đề</label>
-                                    <textarea class="form-control">
+                                    <textarea class="form-control" name="contain">
 
                                     </textarea>
                                 </div>
@@ -172,7 +172,7 @@
                                 </div>
 
                                 <div class="clearfix">
-                                    <button type="button"class="btn btn-primary float-right">Xác nhận</button>
+                                    <button type="button" class="btn btn-primary float-right">Xác nhận</button>
 
                                 </div>
                             </form>
@@ -206,20 +206,29 @@
     <!--import chosen jquery-->
     <script src="./chosen_v1.8.7/chosen.jquery.min.js"></script>
     <!--end import chosen jquery-->
-    
+    <!--change select-->
     <script type="text/javascript">
         var config = {
-            '.chosen-select':{},
-            '.chosen-select-deselect':{allow_single_deselect:true},
-            '.chosen-select-no-single':{disable_search_threshold:10},
-            '.chosen-select-no-result':{no_results_text:'Không có gì để chọn'},
-            '.chosen-select-width':{width:"95%"}
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-result': { no_results_text: 'Không có gì để chọn' },
+            '.chosen-select-width': { width: "95%" }
         }
 
-        for(var selector in config){
+        for (var selector in config) {
             $(selector).chosen(config[selector]);
         }
     </script>
+    <!--end change select-->
+    <!--import ckeditor-->
+    <script src="./ckeditor/ckeditor.js"></script>
+    <!--end import ckeditor-->
+    <!--change textarea-->
+    <script>
+        CKEDITOR.replace('contain');
+    </script>
+    <!--end change textarea-->
 </body>
 
 </html>
