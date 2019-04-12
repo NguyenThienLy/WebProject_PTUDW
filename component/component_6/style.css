@@ -1,0 +1,37 @@
+.component6 .title {
+	color: #000;
+}
+
+.component6 .title:hover {
+	color: #99cc00;
+}
+
+.component6 .overlay > a {
+	opacity: 0;
+	background-color: #f2f2f2;
+}
+
+.component6 .overlay > a i {
+	color: #000;
+}
+
+.component6:hover .overlay > a {
+	opacity: 1;
+}
+
+.component6 .overlay > a:hover {
+	background-color: #99cc00;
+}
+
+.component6 .overlay > a:hover i {
+	color: #FFF;
+}
+
+.component6:hover .overlay  {
+	background-color: rgba(255,255,255,.5);
+}
+
+.component6:hover {
+	box-shadow: 1px 10px 15px rgba(0,0,0,.2);
+}
+
