@@ -177,3 +177,76 @@ html,body{
     background-color: #eee;
     padding: 20px;
 }
+
+/*Thêm important để overight thuộc tính của chosen */
+.chosen-container, .chosen-container-multi{
+   width: 100% !important;
+}
+
+.search-field{
+    height: 31px;
+    border: 1px #e7eaec solid;
+}
+
+.search-row{
+    margin-bottom: 30px;
+}
+
+.btn-search{
+    background-color: #1ab394;
+    border: 1px solid #1ab394;
+    height: 31px;
+}
+
+.btn-search:hover{
+    background-color: #1cc394;
+    border: 1px solid #1cc394;
+}
+
+.btn-search:focus{
+    background-color: #1cc394;
+    border: 1px solid #1cc394;
+}
+
+.btn-view{
+    background-color: #e5e5ee;
+    color: #676a6c;
+    border: 1px #eee solid;
+}
+
+.btn-view:hover{
+    background-color: #f3f3f4;
+    color: #676a6c;
+    border: 1px #eee solid;
+}
+
+.article-row{
+    border-bottom: 1px solid #eee;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.article-row:hover{
+    background-color: rgb(245, 241, 241);
+    cursor: pointer;
+}
+
+.article-row p{
+    font-size: 16px;
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+
+.article-title small{
+    color: #bbb;
+}
+
+/*padding để tránh bị đụng khi thu nhỏ màn hình*/
+@media(max-width:991px){
+    .article-title{
+        padding-left: 30px;
+    }
+}
+
+
+
