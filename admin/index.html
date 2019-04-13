@@ -16,6 +16,9 @@
     <!--import my css-->
     <link rel="stylesheet" type="text/css" href="./admin-style.css">
     <!--end import my css-->
+    <!--import chosen css-->
+    <link rel="stylesheet" type="text/css" href="./chosen_v1.8.7/chosen.min.css">
+    <!--end import chosen css-->
     <title>Document</title>
 </head>
 
@@ -24,6 +27,7 @@
     <div class="container-fluid table h-100">
         <!--Chia ra từng hàng-->
         <div class="row table-row h-100">
+
             <!--slide menu-->
             <div class="col-md-2 table-cell float-none align-top h-100" id="side-menu">
                 <h1>Trang quản trị</h1>
@@ -48,10 +52,10 @@
                             <span>Thống kê</span>
                         </a>
                     </li>
-                    
+
                     <!--Menu sản phẩm-->
-                     <!--collape-->
-                     <li class="link">
+                    <!--collape-->
+                    <li class="link">
                         <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
                             <span class="fas fa-tags"></span>
                             <span>Sản phẩm</span>
@@ -62,17 +66,33 @@
                     <ul class="collapse" id="collapse-post">
                         <li class="link">
                             <a href="index.html">
-                                <span class="fas fa-tags"></span>
-                                <span>Sản phẩm</span>
+
+                                <span>Danh sách sản phẩm</span>
                             </a>
                         </li>
                         <li class="link">
                             <a href="index.html">
-                                <span class="fas fa-tags"></span>
+
                                 <span>Sản phẩm</span>
                             </a>
                         </li>
                     </ul>
+
+                    <li class="link">
+                        <a href="new-posts.html">
+                            <span class="fas fa-file-alt"></span>
+                            <span>Thêm bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="articles.html">
+                            <span class="fas fa-stream"></span>
+                            <span>Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
 
                     <li class="link">
                         <a href="index.html">
@@ -89,11 +109,13 @@
                     </li>
                 </ul>
             </div>
+            <!--End slide menu-->
 
             <!--Nội dung-->
             <!--Mặc định padding -15 của col-->
             <div class="col-md-10 table-cell float-none align-top p-0">
 
+                <!--Header nội dung-->
                 <header id="nav-header">
                     <!--mặc định bị padding-->
                     <div class="row m-0">
@@ -125,13 +147,227 @@
                             </ul>
                         </div>
                 </header>
+                <!--End header nội dung-->
+
+
+                <!--Nội dung trang index-->
+                <div id="dashboard-con">
+
+                    <!--Row 1-->
+                    <div class="row">
+                            <div class="col-md-12">
+                                <div class="admin-content-con">
+                                    <header>
+                                        Khách hàng
+                                    </header>
+    
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Tên</th>
+                                                <th>Tài khoản</th>
+                                                <th>Trạng thái</th>
+                                                <th>Ngày tạo</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+    
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Lê Tường Qui</td>
+                                                <td>qui021098@gmail.com</td>
+                                                <td></td>
+                                                <td>13/4/2019</td>
+                                                <td><a href="#" class="badge badge-pill badge-danger">
+                                                        Xóa
+                                                    </a>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Lê Tường Qui</td>
+                                                <td>qui021098@gmail.com</td>
+                                                <td></td>
+                                                <td>13/4/2019</td>
+                                                <td><a href="#" class="badge badge-pill badge-danger">
+                                                        Xóa
+                                                    </a>
+                                                </td>
+                                            </tr>
+    
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Lê Tường Qui</td>
+                                                <td>qui021098@gmail.com</td>
+                                                <td></td>
+                                                <td>13/4/2019</td>
+                                                <td><a href="#" class="badge badge-pill badge-danger">
+                                                        Xóa
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End row 1-->
+                    <!--Row 2-->
+                    <div class="row">
+
+                        <!--Danh sách bài đăng bên trái-->
+                        <div class="col-md-6">
+                            <div class="admin-content-con">
+                                <header class="clearfix">
+                                    <h5 class="float-left">Nội dung</h5>
+                                    <a class="btn btn-primary float-right" href="#" role="button">
+                                        Tạo mới nội dung
+                                    </a>
+                                </header>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Tiêu đề</th>
+                                            <th>Tương tác</th>
+                                            <th>ngày đăng</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Bài đăng đầu</td>
+                                            <td>20</td>
+                                            <td>Hom nay</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xem
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Sửa
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xóa
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Bài đăng đầu</td>
+                                            <td>20</td>
+                                            <td>Hom nay</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xem
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Sửa
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xóa
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Bài đăng đầu</td>
+                                            <td>20</td>
+                                            <td>Hom nay</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xem
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Sửa
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xóa
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Bài đăng đầu</td>
+                                            <td>20</td>
+                                            <td>Hom nay</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xem
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Sửa
+                                                </a>
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xóa
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="clearfix">
+                                    <a href="#" class="float-right text-link">Xem tất cả bài viết</a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--End Danh sách bài đăng bên trái-->
+
+                        <!--Nội dung bình luân bên phải-->
+                        <div class="col-md-6">
+
+                            <div class="admin-content-con">
+
+                                <header>
+                                    Bình luận
+                                </header>
+                                <!--Nội dung bình luận-->
+                                <div class="comment-header-dash clearfix">
+                                    <div class="comment-name-dash float-left">
+                                        Lê Tường Qui
+                                    </div>
+                                    <div class="day-dash float-right">2 ngày trước</div>
+                                </div>
+                                <p class="comment-dash">
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo aperiam quae cum,
+                                    magni suscipit nesciunt repellendus sunt accusantium esse quaerat aliquam numquam
+                                    in. Quas dignissimos asperiores reiciendis obcaecati incidunt nam.
+                                </p>
+                                <small class="comment-date-dash">Hôm nay 13/4/2019 </small>
+                                <hr>
+                                <!--End nội dung bình luận-->
+
+                                
+                                <div class="clearfix">
+                                    <a href="#" class="float-right text-link">Xem tất cả bình luận</a>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                        <!--End Nội dung bình luân bên phải-->
+                    </div>
+                    <!--End row 2-->
+
+                    
+
+                </div>
+                <!--End Nội dung trang index-->
+
+                <!--footer-->
                 <footer id="admin-footer">
 
                     <div class="float-left"><b>Copyright</b>&copy; 2019</div>
                     <div class="float-right">Trang admin</div>
 
                 </footer>
-
+                <!--end footer-->
             </div>
         </div>
     </div>
@@ -148,6 +384,10 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <!--end import sript bootrap-->
+
+    <!--import chosen jquery-->
+    <script src="./chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <!--end import chosen jquery-->
 </body>
 
 </html>

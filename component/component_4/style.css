@@ -1,0 +1,17 @@
+.component4 .title {
+	color: #6D6B6A;
+}
+
+.component4 .title:hover {
+	color: #99cc00;
+}
+
+.component4 input[type=number]::-webkit-inner-spin-button, 
+.component4 input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.component4 input[type=number] {
+    -moz-appearance:textfield;
+}

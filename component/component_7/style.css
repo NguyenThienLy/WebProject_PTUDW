@@ -1,0 +1,34 @@
+.component7 .title {
+	color: #6D6B6A;
+}
+
+.component7 .title:hover {
+	color: #99cc00;
+}
+
+
+.component7 .style-scrollbar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+	background-color: #F5F5F5;
+}
+
+.component7 .style-scrollbar::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #F5F5F5;
+}
+
+.component7 .style-scrollbar::-webkit-scrollbar-thumb
+{
+	background-color: #99cc00;
+}
+
+.component7 .buttonPay {
+	background-image: linear-gradient(to right, #99cc00, #cabf1a, #eab23f, #fca863, #ffa484);
+}
+
+.component7 .buttonPay:hover {
+	background-image: linear-gradient(to right, #99cc00, #99cc00, #99cc00, #99cc00, #99cc00);
+
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</head>
+<body>
+	<div class="component1 card rounded-0" style="width: 17rem; background-image: url(http://www.backgroundppt.com/wp-content/uploads/2019/01/citrus-fruit-1-1024x576.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; font-family: 'Nunito', sans-serif;">
+		<div class="overlay pl-4 pr-4 pt-1 pb-1" style="height: 100%; transition: 200ms">
+			<div class="card-body" style="color: #FFF; font-size: .8rem;">
+				<a style="color: #FFF; text-decoration: none;" href="#" data-toggle="tooltip" title="Rau quả tươi"><h6 class="title card-title text-uppercase" style="display: inline-block; transition: 200ms;">Rau quả tươi</h6></a>
+				<p class="card-text">Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng, sạch, an toàn và đảm bảo chất lượng ngon nhất giao đến tận tay người tiêu dùng, để san sẻ sự vất vả của các mẹ, các chị</p>
+				<a href="#" id="btnXemngay" class="btn btn-dark mt-2" style="font-size: .8rem; transition: 200ms;" data-toggle="tooltip" title="Rau quả tươi" onmouseover="changetoBlue()" onmouseleave="defaultButton()">Xem ngay</a>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function changetoBlue() {
+			var element = document.getElementById("btnXemngay");
+			element.classList.remove("btn-dark");
+			element.classList.add("btn-primary");
+		}
+
+		function defaultButton() {
+			var element = document.getElementById("btnXemngay");
+			element.classList.remove("btn-primary");
+			element.classList.add("btn-dark");
+		}
+	</script>
+</body>
+</html>
+
+

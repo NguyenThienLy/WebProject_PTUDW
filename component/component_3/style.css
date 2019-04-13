@@ -1,0 +1,11 @@
+.component3 .title {
+	color: #000;
+}
+
+.component3 .title:hover {
+	color: #99cc00;
+}
+
+.component3:hover {
+	box-shadow: 4px 14px 15px rgba(0,0,0,.1);
+}
