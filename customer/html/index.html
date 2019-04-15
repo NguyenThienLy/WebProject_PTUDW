@@ -17,14 +17,15 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
-    <link href="./customer-style.css" rel="stylesheet" />
+    <link href="../css/customer-style.css" rel="stylesheet" />
+    <link href="../css/slide-show.css" rel="stylesheet" />
   </head>
 
   <body>
     <!-- Header -->
     <nav class="navbar navbar-light bg-light">
       <div class="d-flex ml-3">
-        <a class="navbar-brand" href="./index.html">
+        <a class="navbar-brand" href="../html/index.html">
           <img
             src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
             width="200"
@@ -229,71 +230,52 @@
         </div>
     </nav>
 
-    <div
-      id="carouselExampleCaptions"
-      class="carousel slide"
-      data-ride="carousel"
-    >
-      <ol class="carousel-indicators">
-        <li
-          data-target="#carouselExampleCaptions"
-          data-slide-to="0"
-          class="active"
-        ></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active" data-interval="3000">
-          <img
-            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1553920233466"
-            class="d-block h-75 w-100"
-          />
-          <div class="carousel-caption d-none d-md-block text-left">
-            <h5 class="text-uppercase">nơi an tâm mua sắm</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    <div style="width: 100%; height: 100%;">
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel" data-pause=false>
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-interval="5000">
+              
+              <img id="img1" src="//bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1555292522892" class="d-block w-100 h-100 animated fadeIn fast">
+              
+              
+              <div class="carousel-caption text-left" style="margin-bottom: 350px;">
+                <h5 class="text-uppercase item3 font-weight-bold" style="color: #99cc00;">nơi an tâm mua sắm</h5>
+                <p class="item3"  style="color: #99cc00;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <button type="button" class="btn btn-outline-success item4">Xem ngay</button>
+              </div>
+            </div>
+            <div class="carousel-item" data-interval="5000">
+              <img id="img2" src="//bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1555292522892" class="d-block w-100 h-100 animated slideInDown fast">
+              <div class="carousel-caption text-left" style="margin-bottom: 25px;">
+                <h5 class="text-uppercase item3 font-weight-bold"  style="color: #99cc00;">ăn ngon mỗi ngày</h5>
+                <p class="item3"  style="color: #99cc00;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <button type="button" class="btn btn-outline-success item4">Xem ngay</button>
+              </div>
+            </div>
+            <div class="carousel-item" data-interval="5000">
+              <img id="img3" src="//bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1555292522892" class="d-block w-100 h-100 animated slideInDown fast">
+              <div class="carousel-caption text-left" style="margin-bottom: 25px;">
+                <h5 class="text-uppercase item3 font-weight-bold" style="color: #99cc00;">tổ ấm xanh</h5>
+                <p class="item3" style="color: #99cc00;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <button type="button" class="btn btn-outline-success item4">Xem ngay</button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="carousel-item" data-interval="3000">
-          <img
-            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1553920233466"
-            class="d-block h-75 w-100"
-          />
-          <div class="carousel-caption d-none d-md-block text-left">
-            <h5 class="text-uppercase">ăn ngon mỗi ngày</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
-        </div>
-        <div class="carousel-item" data-interval="3000">
-          <img
-            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/slider_1.jpg?1553920233466"
-            class="d-block h-75 w-100"
-          />
-          <div class="carousel-caption d-none d-md-block text-left">
-            <h5 class="text-uppercase">tổ ấm xanh</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
+          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
-      <a
-        class="carousel-control-prev"
-        href="#carouselExampleCaptions"
-        role="button"
-        data-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a
-        class="carousel-control-next"
-        href="#carouselExampleCaptions"
-        role="button"
-        data-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
     <!-- Header -->
 
     <!-- Intro -->
@@ -1738,6 +1720,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="../js/slide-show.js"></script>
     <script type="text/javascript"></script>
   </body>
 </html>

@@ -7,6 +7,19 @@ body {
   color: #99cc00 !important;
 }
 
+.btn-outline-success 
+{
+  color: #99cc00 !important;
+  border:1px solid #99cc00 !important;
+}
+
+.btn-outline-success:hover
+{
+  color: #fff !important;
+  border:1px solid #fff !important;
+  background-color: #99cc00 !important;
+}
+
 .carousel-inner > .carousel-item > img {
   height: 30rem;
   margin: auto;
@@ -259,6 +272,42 @@ input[type=number] {
 {
 	background-color: #99cc00;
 }
+
+.input-group-text:hover 
+{
+  color: #99cc00;
+}
+
+.sort-header 
+{
+  border: 1px solid #99cc00 !important;
+}
+
+.badge-success
+{
+  background-color: #99cc00;
+}
+
+.list-group-item>a 
+{
+  color: #666;
+  text-decoration: none;
+}
+
+.list-group-item>label:active
+{
+  color: #99cc00;
+}
+
+input:checked 
+{
+  background-color: #2196F3;
+}
+
+/* .form-check-label:checked 
+{
+  background-color: #99cc00 !important;
+} */
 
 /* .btn-outline-success {
   color: #99cc00;

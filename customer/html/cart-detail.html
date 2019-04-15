@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Hiển thị sản phẩm</title>
+    <title>Chi tiết giỏ hàng</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -17,14 +17,14 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
-    <link href="./customer-style.css" rel="stylesheet" />
+    <link href="../css/customer-style.css" rel="stylesheet" />
   </head>
 
   <body>
     <!-- Header -->
     <nav class="navbar navbar-light bg-light">
       <div class="d-flex ml-3">
-        <a class="navbar-brand" href="./index.html">
+        <a class="navbar-brand" href="../html/index.html">
           <img
             src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
             width="200"
@@ -93,7 +93,7 @@
           aria-expanded="false"
           style="font-size: 2em; color: #99cc00;"
         >
-          <i class="fas fa-shopping-cart position-relative iconCart">
+          <i class="fas fa-shopping-cart position-relative">
             <div class="component7 card mt-3" style="font-family: 'Quicksand', sans-serif; border-color: #99cc00; border-radius: 10px;">		
               <div style="max-height: 21rem; min-height: 6rem; overflow-y: auto;" class="style-scrollbar mt-3">
                 <div>
@@ -236,7 +236,7 @@
         <div
           class="text-dark w-100 h-100 d-flex flex-column justify-content-center align-items-center"
         >
-          <h1>Tất cả sản phẩm</h1>
+          <h1>Chi tiết giỏ hàng</h1>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb" style="background: none!important;">
               <li class="breadcrumb-item">
@@ -247,7 +247,7 @@
                 style="color:#6c757d;"
                 aria-current="page"
               >
-                Tất cả sản phẩm
+                Chi tiết giỏ hàng
               </li>
             </ol>
           </nav>
@@ -256,7 +256,673 @@
     </div>
     <!-- category -->
 
-    <!-- Product -->
+    <!-- quantity -->
+    <div class="container mt-5">
+      <div class="row justify-content-start mt-5">
+        <h3 class="text-success">Giỏ hàng của bạn có 4 sản phẩm</h3>
+      </div>
+
+      <div class="row mt-5">
+        <div
+          class="component4 card d-flex flex-row align-items-start p-4 w-100"
+          style="height: 9rem; border-radius: 20px; border-color: #f1f1f1;"
+        >
+          <div
+            style="width: 10%; height: 100%; position: relative; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; cursor: pointer; background-size: cover; background-position: center;"
+            data-toggle="tooltip"
+            title="Chanh tươi"
+          >
+            <a class="stretched-link" href="#"></a>
+          </div>
+          <div class="d-flex" style="width: 85%; margin-left: 5%;">
+            <div style="width: 60%;">
+              <a
+                href="#"
+                class="title"
+                style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                >Chanh tươi</a
+              >
+
+              <div
+                class="font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span>30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div style="font-size: 17px;">
+                <del style="color: #6D6B6A">
+                  45.000
+                  <span><u>đ</u></span>
+                </del>
+              </div>
+            </div>
+            <div class="d-flex" style="width: 20%;">
+              <button
+                onclick="decreaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                -
+              </button>
+              <input
+                type="number"
+                id="quantity"
+                onblur="setNumber()"
+                onkeyup="checkNumber(event, this)"
+                class="mr-1 text-center p-1"
+                style="height: 1.6rem; width: 1.6rem; border-radius: 50%; outline: none; border: 1px solid #99cc00; background-color: #FFF; font-size: 14px;"
+              />
+              <button
+                onclick="increaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                +
+              </button>
+            </div>
+            <div class="text-right" style="width: 20%;">
+              <div class="mb-2" style="font-size: 16px; color: #6D6B6A;">
+                Tổng tiền:
+              </div>
+              <div
+                class="mb-2 font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span id="number">30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div
+                style="font-size: 16px; color: #6D6B6A; cursor: pointer;"
+                data-toggle="tooltip"
+                title="Xóa"
+              >
+                <i class="fas fa-trash mr-1" style="font-size: 12px;"></i>
+                <span>Xóa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div
+          class="component4 card d-flex flex-row align-items-start p-4 w-100"
+          style="height: 9rem; border-radius: 20px; border-color: #f1f1f1;"
+        >
+          <div
+            style="width: 10%; height: 100%; position: relative; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; cursor: pointer; background-size: cover; background-position: center;"
+            data-toggle="tooltip"
+            title="Chanh tươi"
+          >
+            <a class="stretched-link" href="#"></a>
+          </div>
+          <div class="d-flex" style="width: 85%; margin-left: 5%;">
+            <div style="width: 60%;">
+              <a
+                href="#"
+                class="title"
+                style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                >Chanh tươi</a
+              >
+
+              <div
+                class="font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span>30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div style="font-size: 17px;">
+                <del style="color: #6D6B6A">
+                  45.000
+                  <span><u>đ</u></span>
+                </del>
+              </div>
+            </div>
+            <div class="d-flex" style="width: 20%;">
+              <button
+                onclick="decreaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                -
+              </button>
+              <input
+                type="number"
+                id="quantity"
+                onblur="setNumber()"
+                onkeyup="checkNumber(event, this)"
+                class="mr-1 text-center p-1"
+                style="height: 1.6rem; width: 1.6rem; border-radius: 50%; outline: none; border: 1px solid #99cc00; background-color: #FFF; font-size: 14px;"
+              />
+              <button
+                onclick="increaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                +
+              </button>
+            </div>
+            <div class="text-right" style="width: 20%;">
+              <div class="mb-2" style="font-size: 16px; color: #6D6B6A;">
+                Tổng tiền:
+              </div>
+              <div
+                class="mb-2 font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span id="number">30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div
+                style="font-size: 16px; color: #6D6B6A; cursor: pointer;"
+                data-toggle="tooltip"
+                title="Xóa"
+              >
+                <i class="fas fa-trash mr-1" style="font-size: 12px;"></i>
+                <span>Xóa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div
+          class="component4 card d-flex flex-row align-items-start p-4 w-100"
+          style="height: 9rem; border-radius: 20px; border-color: #f1f1f1;"
+        >
+          <div
+            style="width: 10%; height: 100%; position: relative; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; cursor: pointer; background-size: cover; background-position: center;"
+            data-toggle="tooltip"
+            title="Chanh tươi"
+          >
+            <a class="stretched-link" href="#"></a>
+          </div>
+          <div class="d-flex" style="width: 85%; margin-left: 5%;">
+            <div style="width: 60%;">
+              <a
+                href="#"
+                class="title"
+                style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                >Chanh tươi</a
+              >
+
+              <div
+                class="font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span>30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div style="font-size: 17px;">
+                <del style="color: #6D6B6A">
+                  45.000
+                  <span><u>đ</u></span>
+                </del>
+              </div>
+            </div>
+            <div class="d-flex" style="width: 20%;">
+              <button
+                onclick="decreaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                -
+              </button>
+              <input
+                type="number"
+                id="quantity"
+                onblur="setNumber()"
+                onkeyup="checkNumber(event, this)"
+                class="mr-1 text-center p-1"
+                style="height: 1.6rem; width: 1.6rem; border-radius: 50%; outline: none; border: 1px solid #99cc00; background-color: #FFF; font-size: 14px;"
+              />
+              <button
+                onclick="increaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                +
+              </button>
+            </div>
+            <div class="text-right" style="width: 20%;">
+              <div class="mb-2" style="font-size: 16px; color: #6D6B6A;">
+                Tổng tiền:
+              </div>
+              <div
+                class="mb-2 font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span id="number">30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div
+                style="font-size: 16px; color: #6D6B6A; cursor: pointer;"
+                data-toggle="tooltip"
+                title="Xóa"
+              >
+                <i class="fas fa-trash mr-1" style="font-size: 12px;"></i>
+                <span>Xóa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-2">
+        <div
+          class="component4 card d-flex flex-row align-items-start p-4 w-100"
+          style="height: 9rem; border-radius: 20px; border-color: #f1f1f1;"
+        >
+          <div
+            style="width: 10%; height: 100%; position: relative; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; cursor: pointer; background-size: cover; background-position: center;"
+            data-toggle="tooltip"
+            title="Chanh tươi"
+          >
+            <a class="stretched-link" href="#"></a>
+          </div>
+          <div class="d-flex" style="width: 85%; margin-left: 5%;">
+            <div style="width: 60%;">
+              <a
+                href="#"
+                class="title"
+                style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                >Chanh tươi</a
+              >
+
+              <div
+                class="font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span>30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div style="font-size: 17px;">
+                <del style="color: #6D6B6A">
+                  45.000
+                  <span><u>đ</u></span>
+                </del>
+              </div>
+            </div>
+            <div class="d-flex" style="width: 20%;">
+              <button
+                onclick="decreaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                -
+              </button>
+              <input
+                type="number"
+                id="quantity"
+                onblur="setNumber()"
+                onkeyup="checkNumber(event, this)"
+                class="mr-1 text-center p-1"
+                style="height: 1.6rem; width: 1.6rem; border-radius: 50%; outline: none; border: 1px solid #99cc00; background-color: #FFF; font-size: 14px;"
+              />
+              <button
+                onclick="increaseQuantity()"
+                class="d-flex justify-content-center align-items-center mr-1"
+                style="width: 1.6rem; height: 1.6rem; cursor: pointer; border-radius: 50%; font-size: 15px; text-decoration: none; outline: none; border: 1px solid #99cc00; background-color: #FFF;"
+              >
+                +
+              </button>
+            </div>
+            <div class="text-right" style="width: 20%;">
+              <div class="mb-2" style="font-size: 16px; color: #6D6B6A;">
+                Tổng tiền:
+              </div>
+              <div
+                class="mb-2 font-weight-bold"
+                style="color: #99cc00; font-size: 17px;"
+              >
+                <span id="number">30.000</span>
+                <span><u>đ</u></span>
+              </div>
+              <div
+                style="font-size: 16px; color: #6D6B6A; cursor: pointer;"
+                data-toggle="tooltip"
+                title="Xóa"
+              >
+                <i class="fas fa-trash mr-1" style="font-size: 12px;"></i>
+                <span>Xóa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div
+          class="d-flex flex-column align-items-center justify-content-center w-100"
+          style="height: 9rem; border-radius: 20px; border-color: #f1f1f1;"
+        >
+          <div class="d-flex align-items-center justify-content-center">
+            <h3>Thành tiền:</h3>
+
+            <div class="font-weight-bold ml-3" style="color: #99cc00;">
+              <h1 class="d-inline ">120.000</h1>
+              <h1 class="d-inline"><u>đ</u></h1>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center mt-3">
+            <button type="button" class="d-block btn btn-outline-info btn-lg">
+              Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
+            </button>
+
+            <button
+              type="button"
+              class="ml-5 d-block btn btn-outline-success btn-lg"
+            >
+              Tiến hành thanh toán&ensp;<i class="fas fa-dollar-sign"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- quantity -->
+
+    <!-- image -->
+    <div class="container-fluid mt-5 p-0">
+      <div
+        class="image-divider"
+        style="height: 20rem; background-size: cover; background-position: center; background-attachment: fixed; background-image: url('https://live.staticflickr.com/7273/6979472408_84266527a8_k.jpg');"
+      >
+        <div class="overlay h-100 w-100" style="transition: 200ms">
+          <div
+            class="text-light w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+          >
+            <h3>Hotline</h3>
+            <h1>
+              <a href="#" style="text-decoration: none; color: white;"
+                >0973-446-184</a
+              >
+            </h1>
+            <p class="text-center">
+              Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng,
+              <br />
+              sạch, an toàn và đảm bảo chất lượng ngon nhất.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- image -->
+
+    <!-- the same product -->
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <h3 class="text-success">SẢN PHẨM CÙNG LOẠI TỪ ORGANIC.VN</h3>
+      </div>
+
+      <div class="row justify-content-center">
+        <img
+          src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+          width="60"
+          height="30"
+          alt=""
+        />
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-sm-3">
+          <div
+            class="component2 card w-100"
+            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
+          >
+            <div
+              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top w-100"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
+              >
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="card-body text-center" style="font-size: .9rem;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="mt-1 d-flex justify-content-center">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-3" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="component2 card w-100"
+            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
+          >
+            <div
+              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top w-100"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
+              >
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="card-body text-center" style="font-size: .9rem;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="mt-1 d-flex justify-content-center">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-3" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="component2 card w-100"
+            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
+          >
+            <div
+              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top w-100"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
+              >
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="card-body text-center" style="font-size: .9rem;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="mt-1 d-flex justify-content-center">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-3" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div
+            class="component2 card w-100"
+            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
+          >
+            <div
+              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
+              class="card-img-top w-100"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
+              ></a>
+              <div
+                class="overlay"
+                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
+              >
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Mua ngay"
+                >
+                  <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a
+                  href="#"
+                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
+                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                  data-toggle="tooltip"
+                  title="Xem nhanh"
+                >
+                  <i class="fas fa-search"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="card-body text-center" style="font-size: .9rem;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; transition: 200ms;"
+                >Chanh tươi</a
+              >
+              <div class="mt-1 d-flex justify-content-center">
+                <div>
+                  <span style="color: #99cc00;">30.000</span>
+                  <span style="color: #99cc00;"><u>đ</u></span>
+                </div>
+                <div>
+                  <del class="ml-3" style="color: #6D6B6A">
+                    45.000
+                    <span><u>đ</u></span>
+                  </del>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- the same product -->
+
+    <!-- sale product -->
     <div class="container mt-5">
       <div class="row justify-content-center">
         <h3 class="text-success">KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
@@ -524,792 +1190,8 @@
           </div>
         </div>
       </div>
-
-      <div class="row mt-5">
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div
-            class="component2 card w-100"
-            style="height: 22rem; background-color: #f7f7f7; font-weight: bold; border-color: #f4f4f4; transition: 200ms;"
-          >
-            <div
-              style="height: 16rem; background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; cursor: pointer; position: relative;"
-              class="card-img-top w-100"
-              data-toggle="tooltip"
-              title="Chanh tươi"
-            >
-              <a
-                href="#"
-                style="width: 100%; height: 100%; position: absolute; top:0; left:0;"
-              ></a>
-              <div
-                class="overlay"
-                style="height: 100%; transition: 200ms; display: flex; justify-content: center; align-items: flex-end;"
-              >
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Mua ngay"
-                >
-                  <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a
-                  href="#"
-                  style="width: 2.5rem; height: 2.5rem; cursor: pointer; font-size: 13px; transition: 200ms; z-index: 0; text-decoration: none;"
-                  class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                  data-toggle="tooltip"
-                  title="Xem nhanh"
-                >
-                  <i class="fas fa-search"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="card-body text-center" style="font-size: .9rem;">
-              <a
-                href="#"
-                class="title card-title m-0"
-                style="text-decoration: none; transition: 200ms;"
-                >Chanh tươi</a
-              >
-              <div class="mt-1 d-flex justify-content-center">
-                <div>
-                  <span style="color: #99cc00;">30.000</span>
-                  <span style="color: #99cc00;"><u>đ</u></span>
-                </div>
-                <div>
-                  <del class="ml-3" style="color: #6D6B6A">
-                    45.000
-                    <span><u>đ</u></span>
-                  </del>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-end mt-5">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
     </div>
-    <!-- Product -->
+    <!-- sale product -->
 
     <footer class="page-footer font-small blue mt-5">
       <!-- Footer Links -->
@@ -1467,6 +1349,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <script src="./cart-detail.js"></script>
+    <script src="../js/cart-detail.js"></script>
   </body>
 </html>

@@ -1,0 +1,65 @@
+.carousel-inner > .carousel-item > img {
+    height: 30rem;
+    margin: auto;
+}
+
+.carousel-caption h5 {
+font-size: 50px;
+}
+
+.item3 {
+animation-name: ani3;
+animation-duration: 6s;
+animation-fill-mode: both;
+animation-iteration-count: 1;
+animation-timing-function: ease-in-out;
+}
+
+@keyframes ani3 {
+from {
+opacity: 0;
+-webkit-transform: translate3d(-50px, 0, 0);
+transform: translate3d(-50px, 0, 0);
+}
+
+20%, 80% {
+opacity: 1;
+-webkit-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0);
+}
+
+to {
+opacity: 0;
+-webkit-transform: translate3d(-50px, 0, 0);
+transform: translate3d(-50px, 0, 0);
+}
+}
+
+.item4 {
+animation-name: ani4;
+animation-duration: 6s;
+animation-fill-mode: both;
+animation-iteration-count: 1;
+animation-timing-function: ease-in-out;
+}
+
+
+@keyframes ani4 {
+from {
+-webkit-transform: translate3d(0, 100%, 0);
+transform: translate3d(0, 100%, 0);
+opacity: 0;
+}
+
+20%, 80% {
+opacity: 1;
+-webkit-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0);
+}
+
+to {
+opacity: 0;
+-webkit-transform: translate3d(0, 100%, 0);
+transform: translate3d(0, 100%, 0);
+}
+}
