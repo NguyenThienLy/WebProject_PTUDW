@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./animate.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<style>
+		.carousel-inner > .carousel-item > img {
+			height: 30rem;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<div style="width: 100%;">
+		<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel" data-pause=false>
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+				<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-interval="5000">
+					
+					<img id="img1" src="http://www.pbs.org/wnet/nature/files/2018/07/SuperCats-SeriesSell-Thumb-MM.jpg" class="d-block w-100 animated fadeIn fast">
+					
+					
+					<div class="carousel-caption text-left" style="margin-bottom: 300px;">
+						<h5 class="text-uppercase item3">nơi an tâm mua sắm</h5>
+						<p class="item3">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<button type="button" class="btn btn-primary item4">Xem ngay</button>
+					</div>
+				</div>
+				<div class="carousel-item" data-interval="5000">
+					<img id="img2" src="https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg" class="d-block w-100 animated slideInDown fast">
+					<div class="carousel-caption text-left" style="margin-bottom: 50px;">
+						<h5 class="text-uppercase item3" style="">ăn ngon mỗi ngày</h5>
+						<p class="item3" style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<button type="button" class="btn btn-primary item4">Xem ngay</button>
+					</div>
+				</div>
+				<div class="carousel-item" data-interval="5000">
+					<img id="img3" src="https://www.hd-wallpapersdownload.com/script/new-wallpaper/desktop-free-nature-hd-wallpaper-download.jpg" class="d-block w-100 animated slideInDown fast">
+					<div class="carousel-caption text-left" style="margin-bottom: 200px;">
+						<h5 class="text-uppercase item3" style="">tổ ấm xanh</h5>
+						<p class="item3" style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<button type="button" class="btn btn-primary item4">Xem ngay</button>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		let id = 0;
+		$('#carouselExampleCaptions').on('slide.bs.carousel', function (ev) {
+			id = $(this).find('.active').index();
+			changeEffect();
+		});
+
+		let arrEffect = ['slideInDown', 'slideInUp', 'fadeIn', 'pulse', 'zoomIn']
+
+		function changeEffect(){ 
+			let slider1 = document.getElementById("img1");
+			let slider2 = document.getElementById("img2");
+			let slider3 = document.getElementById("img3");
+			let arrSlider = [slider1, slider2, slider3];
+
+			for (let j = 0; j < arrSlider.length; j++) {
+				if(id == j) {
+					continue;
+				}
+				for(let i = 0; i < arrEffect.length; i++) {
+					if (arrSlider[j].classList.contains(arrEffect[i])) {
+						arrSlider[j].classList.remove(arrEffect[i]);
+						let number = getRndInteger(0, arrEffect.length - 1, i);
+						arrSlider[j].classList.add(arrEffect[number]);
+						break;
+					}
+				}
+			}
+		}
+
+		function getRndInteger(min, max, i) {
+			let random = Math.floor(Math.random() * (max - min + 1) ) + min;
+			while(random === i) {
+				random = Math.floor(Math.random() * (max - min + 1) ) + min;
+			}
+			return random;
+		}
+
+
+	</script>
+</body>
+</html>

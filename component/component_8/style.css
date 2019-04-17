@@ -1,0 +1,128 @@
+.carousel-caption h5 {
+	font-size: 50px;
+}
+
+/*.carousel-control-prev {
+	background-image: none;
+}
+
+.carousel-control-next {
+	background-image: none;
+}
+*/
+
+
+.item2 {
+	animation-name: ani2;
+	animation-duration: 5s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes ani2 {
+	from,
+	20%,
+	2%,
+	26%,
+	28%, 85% {
+		-webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(-50px, 0, 0);
+		transform: translate3d(-50px, 0, 0);
+	}
+
+	20% {
+		opacity: 1;
+		-webkit-transform: translate3d(20px, 0, 0);
+		transform: translate3d(20px, 0, 0);
+	}
+
+	23% {
+		-webkit-transform: translate3d(-7px, 0, 0);
+		transform: translate3d(-7px, 0, 0);
+	}
+
+	26% {
+		-webkit-transform: translate3d(3px, 0, 0);
+		transform: translate3d(3px, 0, 0);
+	}
+
+	28%, 85% {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	90% {
+		opacity: 1;
+		-webkit-transform: translate3d(10px, 0, 0);
+		transform: translate3d(10px, 0, 0);
+	}
+
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(-50px, 0, 0);
+		transform: translate3d(-50px, 0, 0);
+	}
+}
+
+.item3 {
+	animation-name: ani3;
+	animation-duration: 6s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes ani3 {
+	from {
+		opacity: 0;
+		-webkit-transform: translate3d(-50px, 0, 0);
+		transform: translate3d(-50px, 0, 0);
+	}
+
+	20%, 80% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(-50px, 0, 0);
+		transform: translate3d(-50px, 0, 0);
+	}
+}
+
+.item4 {
+	animation-name: ani4;
+	animation-duration: 6s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+}
+
+
+@keyframes ani4 {
+  from {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+
+  20%, 80% {
+  	opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
