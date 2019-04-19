@@ -334,6 +334,15 @@ html,body{
     }
 }
 
+table.Table-product{
+    font-size: 14px;
+    
+}
+
+div.testpadding{
+    padding: 100px;
+}
+
 
 
 
