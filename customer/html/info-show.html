@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hiển thị thông tin</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <link href="../css/customer-style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="d-flex ml-3">
+        <a class="navbar-brand" href="../html/index.html">
+          <img
+            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+            width="200"
+            height="60"
+            class="d-inline-block align-top"
+            alt=""
+          />
+        </a>
+
+        <form class="form-inline ml-3">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Tìm kiếm
+          </button>
+        </form>
+
+        <ul class="nav align-items-center ml-3">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Giới thiệu</a>
+          </li>
+          <li class="nav-item">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="false"
+                aria-expanded="false"
+              >
+                Sản phẩm
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Rau củ</a>
+                <a class="dropdown-item" href="#">Hoa quả</a>
+                <a class="dropdown-item" href="#">Hải sản</a>
+                <a class="dropdown-item" href="#">Các loại hạt</a>
+                <a class="dropdown-item" href="#">Thực phẩm tươi sống</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Tất cả</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tin tức</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Liên hệ</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mr-3 h-100 p-0 m-0">
+        <span style="font-size: 1em;">
+          <i class="fas fa-user-plus"></i>
+        </span>
+
+        <span
+          class="ml-3 dropdown-toggle h-100 pb-3 spanCart"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="font-size: 2em; color: #99cc00;"
+        >
+          <i class="fas fa-shopping-cart position-relative">
+            <div
+              class="component7 card mt-3"
+              style="font-family: 'Quicksand', sans-serif; border-color: #99cc00; border-radius: 10px;"
+            >
+              <div
+                style="max-height: 21rem; min-height: 6rem; overflow-y: auto;"
+                class="style-scrollbar mt-3"
+              >
+                <div>
+                  <div class="d-flex align-items-start pl-3 pr-3 pb-3">
+                    <div
+                      class="position-relative"
+                      style="width: 30%;"
+                      data-toggle="tooltip"
+                      title="Chanh tươi"
+                    >
+                      <a class="stretched-link" href="#"></a>
+                      <img
+                        src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                        class="w-100"
+                        alt=""
+                      />
+                    </div>
+
+                    <div style="width: 50%; margin-left: 5%;">
+                      <a
+                        href="#"
+                        class="title"
+                        style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                        data-toggle="tooltip"
+                        title="Chanh tươi"
+                        >Chanh tươi</a
+                      >
+
+                      <div style="font-size: 16px;">
+                        <span>30.000</span>
+                        <span><u>đ</u></span>
+                        &nbsp;
+                        <span style="color: #99cc00;">x</span>
+                        <span style="color: #99cc00;">1</span>
+                      </div>
+                    </div>
+                    <div style="width: 15%;" class="text-right">
+                      <button
+                        type="button"
+                        class="p-0 border-0"
+                        style="outline: none; background-color: transparent; font-size: 14px; color: #6D6B6A;"
+                        data-toggle="tooltip"
+                        title="Xóa"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <hr class="m-0 ml-2 mr-2" />
+                </div>
+                <div>
+                  <div class="d-flex align-items-start pl-3 pr-3 pt-3 pb-3">
+                    <div
+                      class="position-relative"
+                      style="width: 30%;"
+                      data-toggle="tooltip"
+                      title="Chanh tươi"
+                    >
+                      <a class="stretched-link" href="#"></a>
+                      <img
+                        src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                        class="w-100"
+                        alt=""
+                      />
+                    </div>
+
+                    <div style="width: 50%; margin-left: 5%;">
+                      <a
+                        href="#"
+                        class="title"
+                        style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                        data-toggle="tooltip"
+                        title="Chanh tươi"
+                        >Chanh tươi</a
+                      >
+
+                      <div style="font-size: 16px;">
+                        <span>30.000</span>
+                        <span><u>đ</u></span>
+                        &nbsp;
+                        <span style="color: #99cc00;">x</span>
+                        <span style="color: #99cc00;">1</span>
+                      </div>
+                    </div>
+                    <div style="width: 15%;" class="text-right">
+                      <button
+                        type="button"
+                        class="p-0 border-0"
+                        style="outline: none; background-color: transparent; font-size: 14px; color: #6D6B6A;"
+                        data-toggle="tooltip"
+                        title="Xóa"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <hr class="m-0 ml-2 mr-2" />
+                </div>
+                <div>
+                  <div class="d-flex align-items-start pl-3 pr-3 pt-3 pb-3">
+                    <div
+                      class="position-relative"
+                      style="width: 30%;"
+                      data-toggle="tooltip"
+                      title="Chanh tươi"
+                    >
+                      <a class="stretched-link" href="#"></a>
+                      <img
+                        src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                        class="w-100"
+                        alt=""
+                      />
+                    </div>
+
+                    <div style="width: 50%; margin-left: 5%;">
+                      <a
+                        href="#"
+                        class="title"
+                        style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                        data-toggle="tooltip"
+                        title="Chanh tươi"
+                        >Chanh tươi</a
+                      >
+
+                      <div style="font-size: 16px;">
+                        <span>30.000</span>
+                        <span><u>đ</u></span>
+                        &nbsp;
+                        <span style="color: #99cc00;">x</span>
+                        <span style="color: #99cc00;">1</span>
+                      </div>
+                    </div>
+                    <div style="width: 15%;" class="text-right">
+                      <button
+                        type="button"
+                        class="p-0 border-0"
+                        style="outline: none; background-color: transparent; font-size: 14px; color: #6D6B6A;"
+                        data-toggle="tooltip"
+                        title="Xóa"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <hr class="m-0 ml-2 mr-2" />
+                </div>
+                <div>
+                  <div class="d-flex align-items-start pl-3 pr-3 pt-3 pb-3">
+                    <div
+                      class="position-relative"
+                      style="width: 30%;"
+                      data-toggle="tooltip"
+                      title="Chanh tươi"
+                    >
+                      <a class="stretched-link" href="#"></a>
+                      <img
+                        src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                        class="w-100"
+                        alt=""
+                      />
+                    </div>
+
+                    <div style="width: 50%; margin-left: 5%;">
+                      <a
+                        href="#"
+                        class="title"
+                        style="text-decoration: none; transition: 200ms; font-size: 16px;"
+                        data-toggle="tooltip"
+                        title="Chanh tươi"
+                        >Chanh tươi</a
+                      >
+
+                      <div style="font-size: 16px;">
+                        <span>30.000</span>
+                        <span><u>đ</u></span>
+                        &nbsp;
+                        <span style="color: #99cc00;">x</span>
+                        <span style="color: #99cc00;">1</span>
+                      </div>
+                    </div>
+                    <div style="width: 15%;" class="text-right">
+                      <button
+                        type="button"
+                        class="p-0 border-0"
+                        style="outline: none; background-color: transparent; font-size: 14px; color: #6D6B6A;"
+                        data-toggle="tooltip"
+                        title="Xóa"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <hr class="m-0 ml-2 mr-2" />
+                </div>
+              </div>
+              <hr class="m-0 ml-2 mr-2" />
+              <div class="p-3" style="height: 7rem; font-size: 17px;">
+                <div class="d-flex justify-content-between">
+                  <div>Tổng cộng:</div>
+                  <div style="color: #99cc00;">
+                    <span>1.180.000</span>
+                    <span><u>đ</u></span>
+                  </div>
+                </div>
+                <!-- <a href="#" class="buttonPay mt-3 d-flex justify-content-center align-items-center rounded-pill"style="height: 2.4rem; cursor: pointer; font-size: 16px; text-decoration: none; color: #FFF; transition: 300ms;" >
+                Tiến hành thanh toán
+              </a> -->
+
+                <button
+                  type="button"
+                  class="ml-3 mt-3 d-block btn btn-outline-success btn-lg"
+                >
+                  Tiến hành thanh toán&ensp;<i class="fas fa-dollar-sign"></i>
+                </button>
+              </div>
+            </div>
+          </i>
+        </span>
+      </div>
+    </nav>
+    <!-- Header -->
+
+    <!-- category -->
+    <div class="container-fluid p-0">
+      <div
+        style="height: 12rem; background-size: cover; background-position: bottom; background-image: url('http://bizweb.dktcdn.net/100/350/980/themes/714097/assets/bg_breadcrumb.png?1553847975699');"
+      >
+        <div
+          class="text-dark w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+        >
+          <h1>Tin tức</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background: none!important;">
+              <li class="breadcrumb-item">
+                <a style="color:#6c757d;" href="./index.html">Trang chủ</a>
+              </li>
+              <li
+                class="breadcrumb-item active"
+                style="color:#6c757d;"
+                aria-current="page"
+              >
+                Tin tức
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- category -->
+
+    <!-- info -->
+    <div class="container mt-5">
+      <div
+        class="row d-flex align-items-center sort-header"
+        style="height: 5rem;"
+      >
+        <h3 class="text-success ml-3 m-0">Tất cả tin tức</h3>
+        <div class="d-flex align-items-center justify-content-end w-75">
+          <p class="m-0">Sắp xếp theo:</p>
+
+          <div class="form-check-inline ml-3">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio" />Tin
+              mới nhất
+            </label>
+          </div>
+          <div class="form-check-inline  ml-2">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio" />Tin
+              cũ nhất
+            </label>
+          </div>
+          <div class="form-check-inline ml-2">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio" />
+              Nhiều người đọc nhất
+            </label>
+          </div>
+
+          <div class="form-check-inline ml-2">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optradio" />
+              Ít người đọc nhất
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 col-sm-4 d-flex justify-content-center">
+          <div
+            class="component3 card"
+            style="width: 90%; height: 26rem; font-weight: bold; background-color: #f7f7f7; transition: 200ms; border: none;"
+          >
+            <div
+              style="height: 50%; width: 100%; background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913); background-repeat: no-repeat; background-size: cover; background-position: center; position: relative;"
+              class="card-img-top"
+              data-toggle="tooltip"
+              title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+            >
+              <a
+                href="#"
+                style="width: 100%; height: 100%; position: absolute; top:0; left:0; cursor: pointer;"
+              ></a>
+              <div
+                class="p-2"
+                style="font-size: 13px; width: 100%; color: #6D6B6A; display: flex; justify-content: center; position: absolute; top:83%; left:0; z-index: 0; background-color: rgba(250, 250, 250, .9);"
+              >
+                <div class="mr-3">
+                  <i class="far fa-calendar"></i>
+                  &nbsp
+                  <span style="color: #99cc00">27/03/2019</span>
+                </div>
+                <div>
+                  <span class="font-weight-normal">Đăng bởi: </span>
+                  <span style="color: #99cc00">Cool Team</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body" style="text-align: center;">
+              <a
+                href="#"
+                class="title card-title m-0"
+                style="text-decoration: none; font-size: 18px; font-weight: bold; transition: 200ms;"
+                >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+                đao</a
+              >
+              <p
+                class="mt-2 font-weight-normal"
+                style="font-size: 15px; color: #6D6B6A"
+              >
+                Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+                liên tiếp nên...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-end mt-5">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- info -->
+
+    <footer class="page-footer font-small blue mt-5">
+      <!-- Footer Links -->
+      <div class="container-fluid text-center text-md-left">
+        <!-- Grid row -->
+        <div class="row mt-2">
+          <hr class="clearfix w-100 d-md-none pb-3" />
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3">
+            <div class="footer-section">
+              <a href="#">
+                <img
+                  src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+                  alt="logo"
+                />
+              </a>
+
+              <ul class="list-unstyled mt-3">
+                <li class="m-2">
+                  <i class="fas fa-map-marker-alt m-2"></i>
+                  <a class="footerLink" href="#"
+                    >128/16/2c1 dường Âu Cơ, phường 14, quận 11, tp Hồ Chí
+                    Minh</a
+                  >
+                </li>
+                <li class="m-2">
+                  <i class="fas fa-phone m-2"></i>
+                  <a class="footerLink" href="#">0973-446-184</a>
+                </li>
+                <li class="m-2">
+                  <i class="fas fa-envelope m-2"></i>
+                  <a class="footerLink" href="#">ngochanh2703@gmail.com</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h5 class="text-uppercase">được chứng nhận</h5>
+              <div class="certificate">
+                <img
+                  src="https://vinmart.com/Content/themes/vinmart/assets/img/Layer 9.png"
+                />
+                <img
+                  src="https://vinmart.com/Content/themes/vinmart/assets/img/Layer 10.png"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3 border-left mt-5">
+            <!-- Links -->
+            <h6 class="text-uppercase">Cẩm nang sử dụng</h6>
+
+            <ul class="list-unstyled">
+              <li class="m-2">
+                <i class="fas fa-envelope m-2"></i>
+                <a class="footerLink" href="#">Giới thiệu</a>
+              </li>
+              <li class="m-2">
+                <i class="fab fa-product-hunt m-2"></i>
+                <a class="footerLink" href="#">Sản phẩm</a>
+              </li>
+              <li class="m-2">
+                <i class="far fa-newspaper m-2"></i>
+                <a class="footerLink" href="#">Tin tức</a>
+              </li>
+              <li class="m-2">
+                <i class="fas fa-info m-2"></i>
+                <a class="footerLink" href="#">Liên hệ</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3 border-left mt-5">
+            <!-- Links -->
+            <h6 class="text-uppercase">Tài khoản khách hàng</h6>
+
+            <ul class="list-unstyled">
+              <li class="m-2">
+                <i class="far fa-registered m-2"></i>
+                <a class="footerLink" href="#">Đăng kí</a>
+              </li>
+              <li class="m-2">
+                <i class="fas fa-sign-in-alt m-2"></i>
+                <a class="footerLink" href="#">Đăng nhập</a>
+              </li>
+              <li class="m-2">
+                <i class="fas fa-sign-out-alt m-2"></i>
+                <a class="footerLink" href="#">Đăng xuất</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xs-6 col-md-4 col-lg-3 border-left mt-5">
+            <!-- Links -->
+            <h6 class="text-uppercase">Kết nối với chúng tôi</h6>
+
+            <ul class="list-unstyled">
+              <li class="m-2">
+                <i class="fab fa-facebook-square m-2"></i>
+                <a class="footerLink" href="#">https://www.facebook.com</a>
+              </li>
+              <li class="m-2">
+                <i class="fab fa-twitter-square m-2"></i>
+                <a class="footerLink" href="#">https://www.twitter.com</a>
+              </li>
+              <li class="m-2">
+                <i class="fab fa-instagram m-2"></i>
+                <a class="footerLink" href="#">https://www.instagram.com</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+      <!-- Footer Links -->
+
+      <!-- Footer address -->
+
+      <div>
+        <br />
+        <p class="text-center">
+          Điện thoại: 02471066866. Email: cskh@vinmart.com.
+        </p>
+        <p class="text-center">
+          Mã số doanh nghiệp: 0104918404 do Sở Kế hoạch và Đầu tư TP. Hà Nội cấp
+          lần đầu ngày 20/09/2010. Đăng ký thay đổi lần thứ 35 do Sở kế hoạch
+          Đầu tư TP. Hồ Chí Minh ngày 04/04/2018.
+        </p>
+      </div>
+
+      <!-- Footer address -->
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // $(".dropdown-toggle").hover(function(){
+      // $(this).addClass("show");
+      // });
+    </script>
+  </body>
+</html>
