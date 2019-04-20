@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import css bootrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--end import css bootrap-->
+    <!-- import fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- end import fontawesome-->
+    <!--import my css-->
+    <link rel="stylesheet" type="text/css" href="./admin-style.css">
+    <!--end import my css-->
+    <!--import chosen css-->
+    <link rel="stylesheet" type="text/css" href="./chosen_v1.8.7/chosen.min.css">
+    <!--end import chosen css-->
+    <title>Document</title>
+</head>
+
+<body>
+    <!--Thẻ lớn nhất chứa cả trang web-->
+    <div class="container-fluid table h-100">
+        <!--Chia ra từng hàng-->
+        <div class="row table-row h-100">
+            <!--Thêm vào để text fixed-->
+            <div class="col-md-2 table-cell float-none align-top">
+
+            </div>
+            <!--End Thêm vào để text fixed-->
+
+
+            <!--slide menu-->
+            <div class="col-md-2 table-cell float-none align-top h-100 fixed-top" id="side-menu">
+                <h1>Trang quản trị</h1>
+                <ul>
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-home"></span>
+                            <span>Trang chủ</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-users"></span>
+                            <span>Khách hàng</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-chart-pie"></span>
+                            <span>Thống kê</span>
+                        </a>
+                    </li>
+
+                    <!--Menu sản phẩm-->
+                    <!--collape-->
+                    <li class="link">
+                        <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post" class="active">
+                            <span class="fas fa-tags"></span>
+                            <span>Sản phẩm</span>
+                            <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a>
+                    </li>
+
+                    <ul class="collapse" id="collapse-post">
+                        <li class="link">
+                            <a href="index.html">
+
+                                <span>Danh sách sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="link">
+                            <a href="index.html">
+
+                                <span>Thêm sản phẩm</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <li class="link">
+                        <a href="new-posts.html">
+                            <span class="fas fa-file-alt"></span>
+                            <span>Thêm bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="articles.html">
+                            <span class="fas fa-stream"></span>
+                            <span>Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-user"></span>
+                            <span>Nhân viên</span>
+                        </a>
+                    </li>
+
+                    <li class="link ads-button">
+                        <a href="index.html">
+                            <span class="fas fa-ad"></span>
+                            <span>Khuyến mãi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--End slide menu-->
+
+            <!--Nội dung-->
+            <!--Mặc định padding -15 của col-->
+            <div class="col-md-10 table-cell float-none align-top p-0">
+
+                <!--Header nội dung-->
+                <header id="nav-header">
+                    <!--mặc định bị padding-->
+                    <div class="row m-0">
+                        <div class="col-md-5 ">
+                            <input type="text" placeholder="Tìm kiếm..." id="header-search-field">
+                        </div>
+
+                        <div class="col-md-7">
+                            <ul>
+                                <li>Chào mừng đến trang quản trị bán hàng</li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fas fa-bell"></span>
+                                        <span class="badge badge-warning label-message">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fas fa-envelope"></span>
+                                        <span class="badge badge-warning label-message">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="logout">
+                                        <span class="fas fa-sign-out-alt"></span>
+                                        Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                </header>
+                <!--End header nội dung-->
+
+
+                <!--Nội dung trang index-->
+                <div id="dashboard-con">
+
+                    <div id="content">
+                        <header>
+                            <b>Danh sách đơn hàng</b>
+                            <hr>
+                        </header>
+
+                        <!--Thanh tìm kiếm sản phẩm-->
+                        <form class="form-inline mb-2">
+
+                            <div class="form-group mx-sm-2 mb-2">
+                                <input type="password" class="form-control" id="inputPassword2"
+                                    placeholder="Tên khách hàng">
+                            </div>
+
+                            <div class="form-group mx-sm-2 mb-2">
+                                <label class="mr-2">Từ</label>
+                                <!--Để tạm thẻ này sau này sửa thành date picker-->
+                                <select class="form-control custom-select">
+                                    <option>10/4/2019</option>                                  
+                                </select>
+                                <!--End Để tạm thẻ này sau này sửa thành date picker-->
+                            </div>
+
+                            <div class="form-group mx-sm-2 mb-2">
+                                <label class="mr-2">Đến</label>
+                                <!--Để tạm thẻ này sau này sửa thành date picker-->
+                                <select class="form-control custom-select">
+                                    <option>10/4/2019</option>                                  
+                                </select>
+                                <!--End Để tạm thẻ này sau này sửa thành date picker-->
+                            </div>
+
+                            <div class="form-group mx-sm-2 mb-2">
+                                <select class="form-control custom-select">
+                                    <option>Xem tất cả</option>
+                                    <option>Đã thanh toán</option>
+                                    <option>Chưa thanh toán</option>
+                                </select>
+
+                            </div>
+
+                            
+
+                            <button type="button" class="btn-sm btn-primary mb-2 mx-sm-2">
+                                <i class="fas fa-search"></i>Tìm kiếm
+                            </button>
+
+                        </form>
+                        <!--End thanh tìm kiếm sản phẩm-->
+
+
+                        <!--Table hiển thị sản phẩm-->
+                        <table class="table table-bordered Table-product">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Khách hàng</th>
+                                    <th>Thời gian</th>
+                                    <th>Hình thức</th>
+                                    <th>Trạng thái</th>
+                                    <th>Chi tiết</th>
+                                    <th>Tác vụ</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <!--Nội dung của một hàng-->
+                                <tr>
+                                    <td>KH120</td>
+                                    <td>Lê Tường Qui</td>
+                                    <td>
+                                        <p>14/04/2019</p>
+                                        <p>13:21:25</p>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-pill badge-success">Đặt hàng</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-light">Chưa thanh toán</span>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <span class="badge badge-danger">Xem chi tiết</span>
+                                        </button>
+                                    </td>
+
+                                    <td>
+                                        <button class="btn-sm btn-danger" type="button">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!--End nội dung của một hàng-->
+
+                                <!--Nội dung của một hàng-->
+                                <tr>
+                                    <td>KH120</td>
+                                    <td>qui021098@gmail.com</td>
+                                    <td>
+                                        <p>14/04/2019</p>
+                                        <p>13:21:25</p>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-pill badge-success">Đặt hàng</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-info">đang giao</span>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                                <span class="badge badge-danger">Xem chi tiết</span>
+                                        </button>
+                                    </td>
+                                
+                                    <td>
+                                        <button class="btn-sm btn-danger" type="button">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <!--End nội dung của một hàng-->
+
+
+                            </tbody>
+                        </table>
+                        <!--End Table hiển thị sản phẩm-->
+
+                        <!--Modal hiển thị thông tin chi tiết của đơn hàng-->
+                        <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Thông tin chi tiết đơn hàng&nbsp;</h5>
+                                        <h5 class="modal-title">KH120</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Khách hàng:</p>     
+                                                </div>
+                                                <div class="col-md-9">
+                                                    Lê Tường Qui
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Ngày đặt:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    14/04/2019 14:00
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Hình thức:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <span class="badge badge-pill badge-success">Đặt hàng</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Trạng thái:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <span class="badge badge-info">đang giao</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Tổng giá trị:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    200000đ
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <i>Thông tin chi tiết</i>
+                                            <div class="row">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Mã</th>
+                                                                <th scope="col">Sản phẩm</th>
+                                                                <th scope="col">Số lượng</th>
+                                                                <th scope="col">Tổng tiền</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td scope="row">CA1</td>
+                                                                <td>Cà chua sạch (20000đ)</td>
+                                                                <td>10</td>
+                                                                <td>200000đ</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row">CA1</td>
+                                                                <td>Cà chua sạch (20000đ)</td>
+                                                                <td>10</td>
+                                                                <td>200000đ</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row">CA1</td>
+                                                                <td>Cà chua sạch (20000đ)</td>
+                                                                <td>10</td>
+                                                                <td>200000đ</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                            <button type="button" class="btn-sm btn-outline-success">Duyệt</button>
+                                            <button type="button" class="btn-sm btn-outline-primary">Giao hàng</button>
+                                            <button type="button" class="btn-sm btn-outline-danger">Hủy đơn</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End modal hiển thị thông tin chi tiết của đơn hàng-->
+
+                        <hr class="m-2">
+
+                        <!--Thanh điều hướng trang-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav class="mr-4 float-right">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!--end Thanh điều hướng trang-->
+
+
+                    </div>
+                </div>
+                <!--End Nội dung trang index-->
+
+                <!--footer-->
+                <footer id="admin-footer">
+
+                    <div class="float-left"><b>Copyright</b>&copy; 2019</div>
+                    <div class="float-right">Trang admin</div>
+
+                </footer>
+                <!--end footer-->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--import script bootrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!--end import sript bootrap-->
+
+</body>
+
+</html>

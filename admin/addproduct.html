@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import css bootrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--end import css bootrap-->
+    <!-- import fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- end import fontawesome-->
+    <!--import my css-->
+    <link rel="stylesheet" type="text/css" href="./admin-style.css">
+    <!--end import my css-->
+    <!--import chosen css-->
+    <link rel="stylesheet" type="text/css" href="./chosen_v1.8.7/chosen.min.css">
+    <!--end import chosen css-->
+    <title>Document</title>
+</head>
+
+<body>
+    <!--Thẻ lớn nhất chứa cả trang web-->
+    <div class="container-fluid table h-100">
+        <!--Chia ra từng hàng-->
+        <div class="row table-row h-100">
+            <!--Thêm vào để text fixed-->
+            <div class="col-md-2 table-cell float-none align-top">
+
+            </div>
+            <!--End Thêm vào để text fixed-->
+
+
+            <!--slide menu-->
+            <div class="col-md-2 table-cell float-none align-top h-100 fixed-top" id="side-menu">
+                <h1>Trang quản trị</h1>
+                <ul>
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-home"></span>
+                            <span>Trang chủ</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-users"></span>
+                            <span>Khách hàng</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-chart-pie"></span>
+                            <span>Thống kê</span>
+                        </a>
+                    </li>
+
+                    <!--Menu sản phẩm-->
+                    <!--collape-->
+                    <li class="link">
+                        <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post" class="active">
+                            <span class="fas fa-tags"></span>
+                            <span>Sản phẩm</span>
+                            <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a>
+                    </li>
+
+                    <ul class="collapse" id="collapse-post">
+                        <li class="link">
+                            <a href="index.html">
+
+                                <span>Danh sách sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="link">
+                            <a href="index.html">
+
+                                <span>Thêm sản phẩm</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <li class="link">
+                        <a href="new-posts.html">
+                            <span class="fas fa-file-alt"></span>
+                            <span>Thêm bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="articles.html">
+                            <span class="fas fa-stream"></span>
+                            <span>Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-user"></span>
+                            <span>Nhân viên</span>
+                        </a>
+                    </li>
+
+                    <li class="link ads-button">
+                        <a href="index.html">
+                            <span class="fas fa-ad"></span>
+                            <span>Khuyến mãi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--End slide menu-->
+
+            <!--Nội dung-->
+            <!--Mặc định padding -15 của col-->
+            <div class="col-md-10 table-cell float-none align-top p-0">
+
+                <!--Header nội dung-->
+                <header id="nav-header">
+                    <!--mặc định bị padding-->
+                    <div class="row m-0">
+                        <div class="col-md-5 ">
+                            <input type="text" placeholder="Tìm kiếm..." id="header-search-field">
+                        </div>
+
+                        <div class="col-md-7">
+                            <ul>
+                                <li>Chào mừng đến trang quản trị bán hàng</li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fas fa-bell"></span>
+                                        <span class="badge badge-warning label-message">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fas fa-envelope"></span>
+                                        <span class="badge badge-warning label-message">3</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="logout">
+                                        <span class="fas fa-sign-out-alt"></span>
+                                        Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                </header>
+                <!--End header nội dung-->
+
+
+                <!--Nội dung trang index-->
+                <div id="dashboard-con">
+
+                    <!--Card chứa form nhập thông tin của sản phẩm-->
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <b>Thông tin sản phẩm</b>
+                        </div>
+                        <div class="card-body">
+
+                            <!--Form nhập thông tin-->
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-sm-2 align-self-center">
+                                        <label class="col-form-label "><b>Hình ảnh:</b></label>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                            style="width:200px;height:200px;">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"><b>Hình ảnh:</b></label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control-file">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="selectProductType" class="col-sm-2 col-form-label"><b>Danh
+                                            mục:</b></label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select my-1 mr-sm-2" id="selectProductType">
+                                            <option selected>Nước uống</option>
+                                            <option value="1">Rau quả tươi</option>
+                                            <option value="2">Thịt tươi</option>
+                                            <option value="3">Trái cây</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="selectProductSource" class="col-sm-2 col-form-label"><b>Nguồn
+                                            gốc:</b></label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select my-1 mr-sm-2" id="selectProductSource">
+                                            <option selected>Việt Nam</option>
+                                            <option value="1">Hoa Kỳ</option>
+                                            <option value="2">Trung Quốc</option>
+                                            <option value="3">Nhật bản</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="selectProductBrand" class="col-sm-2 col-form-label"><b>Thương
+                                            hiệu:</b></label>
+                                    <div class="col-sm-10">
+                                        <select class="custom-select my-1 mr-sm-2" id="selectProductBrand">
+                                            <option selected>Đang cập nhật</option>
+                                            <option value="1">Hoa anh đào</option>
+                                            <option value="2">Opanic</option>
+                                            <option value="3">Ohana</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputIDproduct" class="col-sm-2 col-form-label"><b>Mã sản
+                                            phẩm:</b></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputIDproduct" placeholder="SPT01">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Tên sản
+                                            phẩm:</b></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputnameProduct"
+                                            placeholder="nhập vào tên sản phâm">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPriceProduct" class="col-sm-2 col-form-label"><b>Giá sản
+                                            phẩm:</b></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputPriceProduct"
+                                            placeholder="Nhập vào giá sản phẩm">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPromotionProduct" class="col-sm-2 col-form-label"><b>Giảm
+                                            giá:</b></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputPromotionProduct"
+                                            placeholder="0">
+                                    </div>
+                                </div>
+                            </form>
+                            <!--End form nhập thông tin-->
+                        </div>
+                    </div>
+                    <!--End card chứa form nhập thông tin của sản phẩm-->
+
+                    <!--Card chứa form điền thông tin bài viêt-->
+                    <div class="card mt-3">
+
+                        <div class="card-header">
+                            <b>Thông tin bài viết</b>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label class="sr-only">Tiêu đề</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only">Tiêu đề</label>
+                                    <select class="form-control chosen-select" data-placeholder="Chọn" multiple>
+                                        <option>Cà chua</option>
+                                        <option>Trái cây</option>
+                                        <option>Rau tươi</option>
+                                        <option>thịt</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only">Tiêu đề</label>
+                                    <textarea class="form-control" name="contain"></textarea>
+                                </div>
+                                
+                                
+                                <div class="pl-2 pb-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                        <label class="form-check-label" for="inlineCheckbox1">Mới</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                        <label class="form-check-label" for="inlineCheckbox2">Nổi bật</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                        <label class="form-check-label" for="inlineCheckbox2">Hiển thị</label>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="button" class="btn btn-primary btn-sm">Lưu</button>
+                                    <button type="button" class="btn btn-primary btn-sm">Thoát</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <!--End Card chứa form điền thông tin bài viêt-->
+
+                </div>
+                <!--End Nội dung trang index-->
+
+                <!--footer-->
+                <footer id="admin-footer">
+
+                    <div class="float-left"><b>Copyright</b>&copy; 2019</div>
+                    <div class="float-right">Trang admin</div>
+
+                </footer>
+                <!--end footer-->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--import script bootrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!--end import sript bootrap-->
+
+    <!--import chosen jquery-->
+    <script src="./chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <!--end import chosen jquery-->
+    <!--change select-->
+    <script type="text/javascript">
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-result': { no_results_text: 'Không có gì để chọn' },
+            '.chosen-select-width': { width: "95%" }
+        }
+
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
+    <!--end change select-->
+    <!--import ckeditor-->
+    <script src="./ckeditor/ckeditor.js"></script>
+    <!--end import ckeditor-->
+    <!--change textarea-->
+    <script>
+        CKEDITOR.replace('contain');
+    </script>
+    <!--end change textarea-->
+</body>
+
+</html>

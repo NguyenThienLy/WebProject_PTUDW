@@ -1,0 +1,57 @@
+.mytext {
+	color: #EEE;
+	opacity: 0.5;
+}
+
+.component8:hover .overlay  {
+	background-color: rgba(0,0,0,.1);
+}
+
+.component8:hover .mytext  {
+	color: #FFF;
+	opacity: 1;
+}
+
+.item1 {
+	left: 17%;
+	bottom: 101%;  
+	transition: transform 300ms;
+}
+
+.component8:hover .item1 {
+	bottom: 50%;
+	transform: translateY(50%);
+}
+
+.item2 {
+	top: 16%;
+	left: 101%;
+	transition: transform 300ms;
+}
+
+.component8:hover .item2 {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.item3 {
+	bottom: 16%; 
+	right: 101%; 
+	transition: transform 300ms;
+}
+
+.component8:hover .item3 {
+	right: 50%;
+	transform: translateX(50%);
+}
+
+.item4 {
+	right: 17%;
+	top: 101%; 
+	transition: transform 300ms;
+}
+
+.component8:hover .item4 {
+	top: 50%;
+	transform: translateY(-50%);
+}
