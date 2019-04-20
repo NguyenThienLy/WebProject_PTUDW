@@ -343,6 +343,14 @@ div.testpadding{
     padding: 100px;
 }
 
+button.btn-modal{
+    height: 10px;
+}
+
+table{
+    font-size: 14px;
+}
+
 
 
 

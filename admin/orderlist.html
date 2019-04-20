@@ -161,7 +161,7 @@
 
                     <div id="content">
                         <header>
-                            <b>Danh sách sản phẩm</b>
+                            <b>Danh sách đơn hàng</b>
                             <hr>
                         </header>
 
@@ -170,51 +170,42 @@
 
                             <div class="form-group mx-sm-2 mb-2">
                                 <input type="password" class="form-control" id="inputPassword2"
-                                    placeholder="Tên sản phẩm">
+                                    placeholder="Tên khách hàng">
+                            </div>
+
+                            <div class="form-group mx-sm-2 mb-2">
+                                <label class="mr-2">Từ</label>
+                                <!--Để tạm thẻ này sau này sửa thành date picker-->
+                                <select class="form-control custom-select">
+                                    <option>10/4/2019</option>                                  
+                                </select>
+                                <!--End Để tạm thẻ này sau này sửa thành date picker-->
+                            </div>
+
+                            <div class="form-group mx-sm-2 mb-2">
+                                <label class="mr-2">Đến</label>
+                                <!--Để tạm thẻ này sau này sửa thành date picker-->
+                                <select class="form-control custom-select">
+                                    <option>10/4/2019</option>                                  
+                                </select>
+                                <!--End Để tạm thẻ này sau này sửa thành date picker-->
                             </div>
 
                             <div class="form-group mx-sm-2 mb-2">
                                 <select class="form-control custom-select">
-                                    <option value="" selected disabled>Danh mục</option>
-                                    <option>Rau quả</option>
-                                    <option>Thịt</option>
-                                    <option>Nước uống</option>
+                                    <option>Xem tất cả</option>
+                                    <option>Đã thanh toán</option>
+                                    <option>Chưa thanh toán</option>
                                 </select>
+
                             </div>
 
-                            <div class="form-group mx-sm-2 mb-2">
-                                <select class="form-control custom-select">
-                                    <option value="" selected disabled>Nguồn gốc</option>
-                                    <option>Việt Nam</option>
-                                    <option>Mỹ</option>
-                                    <option>Pháp</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group mx-sm-2 mb-2">
-                                <select class="form-control custom-select">
-                                    <option value="" selected disabled>Thương hiệu</option>
-                                    <option>Ohana</option>
-                                    <option>Sen việt</option>
-                                    <option>TH</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group mx-sm-2 mb-2">
-                                    <select class="form-control custom-select">                        
-                                        <option>Xem tất cả sản phẩm</option>
-                                        <option>Lọc</option>
-                                    </select>
-                                    
-                            </div>
+                            
 
                             <button type="button" class="btn-sm btn-primary mb-2 mx-sm-2">
                                 <i class="fas fa-search"></i>Tìm kiếm
                             </button>
 
-                            <button type="button" class="btn-sm btn-success mb-2 mx-sm-2">
-                                    <i class="fas fa-plus"></i>Thêm mới
-                            </button>
                         </form>
                         <!--End thanh tìm kiếm sản phẩm-->
 
@@ -223,108 +214,187 @@
                         <table class="table table-bordered Table-product">
                             <thead>
                                 <tr>
-                                    <th>Mã</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Danh mục</th>
-                                    <th>Nguồn gốc</th>
-                                    <th>Thương hiệu</th>
-                                    <th>Hình ảnh</th>
-                                    <th>Thông tin</th>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Khách hàng</th>
+                                    <th>Thời gian</th>
+                                    <th>Hình thức</th>
+                                    <th>Trạng thái</th>
+                                    <th>Chi tiết</th>
                                     <th>Tác vụ</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <!--Thông tin một sản phẩm-->
-                                <tr>
-                                    <td>H1</td>
-                                    <td>Cà chua</td>
-                                    <td>Rau quả tươi</td>
-                                    <td>Việt nam</td>
-                                    <td>Đang cập nhật</td>
-                                    <td>
-                                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                            style="width:120px;height:120px;">
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <span class="badge badge-success">Đang giảm giá</span>
-                                            <ul>
-                                                <li>Giá: 500000đ</li>
-                                                <li>Số lượng: 10</li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-sm btn-primary"><i
-                                                class="far fa-edit"></i>Sửa</button>
-                                        <button type="button" class="btn-sm btn-danger"><i
-                                                class="far fa-trash-alt"></i>Xóa</button>
-                                    </td>
-                                </tr>
-                                <!--End thông tin một sản phẩm-->
 
-                                <!--Thông tin một sản phẩm-->
+                                <!--Nội dung của một hàng-->
                                 <tr>
-                                    <td>H1</td>
-                                    <td>Cà chua</td>
-                                    <td>Rau quả tươi</td>
-                                    <td>Việt nam</td>
-                                    <td>Đang cập nhật</td>
+                                    <td>KH120</td>
+                                    <td>Lê Tường Qui</td>
                                     <td>
-                                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                            style="width:120px;height:120px;">
+                                        <p>14/04/2019</p>
+                                        <p>13:21:25</p>
                                     </td>
                                     <td>
-                                        <div>
-                                            <span class="badge badge-success">Đang giảm giá</span>
-                                            <ul>
-                                                <li>Giá: 500000đ</li>
-                                                <li>Số lượng: 10</li>
-                                            </ul>
-                                        </div>
+                                        <span class="badge badge-pill badge-success">Đặt hàng</span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn-sm btn-primary"><i
-                                                class="far fa-edit"></i>Sửa</button>
-                                        <button type="button" class="btn-sm btn-danger"><i
-                                                class="far fa-trash-alt"></i>Xóa</button>
+                                        <span class="badge badge-light">Chưa thanh toán</span>
                                     </td>
-                                </tr>
-                                <!--End thông tin một sản phẩm-->
+                                    <td>
+                                        <button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <span class="badge badge-danger">Xem chi tiết</span>
+                                        </button>
+                                    </td>
 
-                                <!--Thông tin một sản phẩm-->
-                                <tr>
-                                    <td>H1</td>
-                                    <td>Cà chua</td>
-                                    <td>Rau quả tươi</td>
-                                    <td>Việt nam</td>
-                                    <td>Đang cập nhật</td>
                                     <td>
-                                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                            style="width:120px;height:120px;">
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <span class="badge badge-success">Đang giảm giá</span>
-                                            <ul>
-                                                <li>Giá: 500000đ</li>
-                                                <li>Số lượng: 10</li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-sm btn-primary"><i
-                                                class="far fa-edit"></i>Sửa</button>
-                                        <button type="button" class="btn-sm btn-danger"><i
-                                                class="far fa-trash-alt"></i>Xóa</button>
+                                        <button class="btn-sm btn-danger" type="button">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </td>
                                 </tr>
-                                <!--End thông tin một sản phẩm-->
+
+                                <!--End nội dung của một hàng-->
+
+                                <!--Nội dung của một hàng-->
+                                <tr>
+                                    <td>KH120</td>
+                                    <td>qui021098@gmail.com</td>
+                                    <td>
+                                        <p>14/04/2019</p>
+                                        <p>13:21:25</p>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-pill badge-success">Đặt hàng</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-info">đang giao</span>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn-sm btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                                                <span class="badge badge-danger">Xem chi tiết</span>
+                                        </button>
+                                    </td>
+                                
+                                    <td>
+                                        <button class="btn-sm btn-danger" type="button">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <!--End nội dung của một hàng-->
+
 
                             </tbody>
                         </table>
                         <!--End Table hiển thị sản phẩm-->
+
+                        <!--Modal hiển thị thông tin chi tiết của đơn hàng-->
+                        <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Thông tin chi tiết đơn hàng&nbsp;</h5>
+                                        <h5 class="modal-title">KH120</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Khách hàng:</p>     
+                                                </div>
+                                                <div class="col-md-9">
+                                                    Lê Tường Qui
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Ngày đặt:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    14/04/2019 14:00
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Hình thức:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <span class="badge badge-pill badge-success">Đặt hàng</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Trạng thái:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <span class="badge badge-info">đang giao</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Tổng giá trị:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    200000đ
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <i>Thông tin chi tiết</i>
+                                            <div class="row">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Mã</th>
+                                                                <th scope="col">Sản phẩm</th>
+                                                                <th scope="col">Số lượng</th>
+                                                                <th scope="col">Tổng tiền</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td scope="row">CA1</td>
+                                                                <td>Cà chua sạch (20000đ)</td>
+                                                                <td>10</td>
+                                                                <td>200000đ</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row">CA1</td>
+                                                                <td>Cà chua sạch (20000đ)</td>
+                                                                <td>10</td>
+                                                                <td>200000đ</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row">CA1</td>
+                                                                <td>Cà chua sạch (20000đ)</td>
+                                                                <td>10</td>
+                                                                <td>200000đ</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                            <button type="button" class="btn-sm btn-outline-success">Duyệt</button>
+                                            <button type="button" class="btn-sm btn-outline-primary">Giao hàng</button>
+                                            <button type="button" class="btn-sm btn-outline-danger">Hủy đơn</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End modal hiển thị thông tin chi tiết của đơn hàng-->
 
                         <hr class="m-2">
 
