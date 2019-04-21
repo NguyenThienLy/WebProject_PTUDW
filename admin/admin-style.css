@@ -298,7 +298,7 @@ html,body{
 .report-content-con{
     margin-top: 20px;
     background-color: white; 
-    border-top: solid 4px #e7eaec;
+    border-radius: 4px;
     padding: 15px;
 
 }
@@ -307,11 +307,12 @@ html,body{
     background-color: #ffff;
     width: 100%;
     display: inline-block;
-    height: 2px;
+    height: 1px;
 }
 
 .report-content-con h6{
     color:#fff;
+    margin-left: 5px;
 }
 
 .report-content-con i{
