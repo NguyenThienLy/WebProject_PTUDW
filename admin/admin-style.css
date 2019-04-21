@@ -295,6 +295,40 @@ html,body{
     
 }
 
+.report-content-con{
+    margin-top: 20px;
+    background-color: white; 
+    border-top: solid 4px #e7eaec;
+    padding: 15px;
+
+}
+
+.report-content-con span{
+    background-color: #ffff;
+    width: 100%;
+    display: inline-block;
+    height: 2px;
+}
+
+.report-content-con h6{
+    color:#fff;
+}
+
+.report-content-con i{
+    color: #fff;
+}
+
+.report-content-con b{
+    color: #fff;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: center;
+}
+
+.report-view{
+    background-color: #1abc9c;
+}
+
 .text-link{
     color: #676a6c;
 }
@@ -343,9 +377,7 @@ div.testpadding{
     padding: 100px;
 }
 
-button.btn-modal{
-    height: 10px;
-}
+
 
 table{
     font-size: 14px;
