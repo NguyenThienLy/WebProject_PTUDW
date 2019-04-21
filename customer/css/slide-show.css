@@ -7,7 +7,7 @@
 font-size: 50px;
 }
 
-.item3 {
+.carousel .item3 {
 animation-name: ani3;
 animation-duration: 6s;
 animation-fill-mode: both;
@@ -35,7 +35,7 @@ transform: translate3d(-50px, 0, 0);
 }
 }
 
-.item4 {
+.carousel .item4 {
 animation-name: ani4;
 animation-duration: 6s;
 animation-fill-mode: both;
