@@ -1,0 +1,54 @@
+.login-register-modal .modal-body {
+	background-color: #F4F4F4; 
+	height: 600px;
+}
+
+.login-register-modal .modal-body .btn-close {
+	outline: none;
+	background-color: transparent; 
+	top: .2rem; 
+	right: .2rem;
+}
+
+.login-register-modal .modal-body .content-left {
+	width: 360px;
+	background-color: #FFF;
+}
+
+.login-register-modal .modal-body .content-left div {
+	height: 9rem;
+}
+
+.login-register-modal .modal-body .content-right {
+	width: calc(100% - 420px); 
+	height: calc(100% - 15px); 
+	margin: 15px; 
+	overflow: hidden; 
+	background-color: #FFF;
+}
+
+.login-register-modal .modal-body .content-right .nav-item {
+	cursor: pointer;
+}
+
+.login-register-modal .modal-body .content-right .nav-tabs .nav-item.show .nav-link, 
+.login-register-modal .modal-body .content-right .nav-tabs .nav-link.active {
+	color: dodgerblue;
+	border-bottom: 3px solid dodgerblue;
+}
+
+.login-register-modal .modal-body .content-right .nav-tabs .nav-link {
+	border: none;
+	border-bottom: 1px solid #dee2e6;
+	transition: 200ms;
+}
+
+.login-register-modal .modal-body .content-right .nav-tabs .nav-link:hover {
+	border-bottom: 3px solid dodgerblue;
+	color: dodgerblue;
+}
+
+.login-register-modal .modal-body .content-right .tab-content .tab-pane form {
+	font-size: .8rem;
+}
+

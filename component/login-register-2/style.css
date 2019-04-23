@@ -1,0 +1,37 @@
+body {
+	height: 100vh; 
+	background-image: url(http://genchi.info/images/orange-wallpaper-hd-33.jpg); 
+	background-position: center; 
+	background-repeat: no-repeat; 
+	background-size: cover;
+}
+
+.card {
+	width: 45rem; 
+	opacity: .9;
+}
+
+.card-body {
+	height: 25rem;
+}
+
+.content-left {
+	width: 360px; 
+	background-color: #FFF3CB;
+}
+
+.content-left div {
+	height: 8rem;
+}
+
+.content-left img {
+	height: calc(100% - 8rem);
+}
+
+.content-right {
+	width: calc(100% - 360px);
+}
+
+.content-right form {
+	font-size: .8rem;
+}

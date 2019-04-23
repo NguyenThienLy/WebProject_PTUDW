@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+		Launch demo modal
+	</button>
+
+	<div class="login-register-modal modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content position-relative">
+				<div class="modal-body p-0">
+					<div class="content-left float-left h-100 rounded-left pl-4 pr-2 pt-4 pb-2">
+						<div>
+							<h3 id="title" class="font-weight-normal">Đăng nhập</h3>
+							<p id="content">Đăng nhập để theo dõi đơn hàng, lưu 
+								danh sách sản phẩm yêu thích, nhận
+							nhiều ưu đãi hấp dẫn.</p>
+						</div>
+						
+						<img src="https://pipe.tikicdn.com/media/upload/2018/10/12/2a3acb91a35d45e1b4b7c96912a0c84a.png" alt="">
+					</div>
+
+					<div class="content-right float-left rounded">
+						<nav>
+							<div class="nav nav-tabs" id="nav-tab" role="tablist">
+								<p class="nav-item nav-link ml-3 active" id="nav-login-tab" data-toggle="tab" href="#nav-login" role="tab" aria-controls="nav-login" aria-selected="true">Đăng nhập</p>
+								<p class="nav-item nav-link ml-3" id="nav-signup-tab" data-toggle="tab" href="#nav-signup" role="tab" aria-controls="nav-signup" aria-selected="false">Đăng ký</p>
+							</div>
+						</nav>
+						<div class="tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active" id="nav-login" role="tabpanel" aria-labelledby="nav-login-tab">
+								<form class="p-4">
+									<div class="form-group row align-items-center">
+										<label for="txtEmail" class="col-sm-3 col-form-label">Email / SĐT</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control form-control-sm" placeholder="Nhập Email hoặc Số điện thoại" id="txtEmail">
+										</div>
+										
+									</div>
+									<div class="form-group row align-items-center">
+										<label for="txtPassword" class="col-sm-3 col-form-label">Mật khẩu</label>
+										<div class="col-sm-9">
+											<input type="password" class="form-control form-control-sm" placeholder="Nhập mật khẩu từ 6 đến 32 ký tự" id="txtPassword">
+										</div>
+										
+									</div>
+									<div class="d-flex">
+										<div class="col-sm-3"></div>
+										<button type="button" class="btn btn-warning col-sm-9">Đăng nhập</button>
+									</div>
+									
+								</form>
+							</div>
+							<div class="tab-pane fade" id="nav-signup" role="tabpanel" aria-labelledby="nav-signup-tab">
+								<form class="p-4">
+									<div class="form-group row align-items-center">
+										<label for="txtName" class="col-sm-3 col-form-label">Họ tên</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control form-control-sm" placeholder="Nhập họ tên" id="txtName">
+										</div>
+										
+									</div>
+									<div class="form-group row align-items-center">
+										<label for="txtPhone" class="col-sm-3 col-form-label">SĐT</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control form-control-sm" placeholder="Nhập số điện thoại" id="txtPhone">
+										</div>
+										
+									</div>
+									<div class="form-group row align-items-center">
+										<label for="txtEmail-signup" class="col-sm-3 col-form-label">Email</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control form-control-sm" placeholder="Nhập email" id="txtEmail-signup">
+										</div>
+									</div>
+									<div class="form-group row align-items-center">
+										<label for="txtPassword-signup" class="col-sm-3 col-form-label">Mật khẩu</label>
+										<div class="col-sm-9">
+											<input type="password" class="form-control form-control-sm" placeholder="Mật khẩu từ 6 đến 32 ký tự" id="txtPassword-signup">
+										</div>
+									</div>
+									<div class="form-group row align-items-center">
+										<label for="txtGender" class="col-sm-3 mr-3">Giới tính</label>
+										<div class="row col-sm-4">
+											<div class="custom-control custom-radio mr-3">
+												<input type="radio" id="cusRadMale" name="customRadio" class="custom-control-input">
+												<label class="custom-control-label" id="lblMale" for="cusRadMale">Nam</label>
+											</div>
+											<div class="custom-control custom-radio">
+												<input type="radio" id="cusRadFemale" name="customRadio" class="custom-control-input">
+												<label class="custom-control-label" id="lblFemale" for="cusRadFemale">Nữ</label>
+											</div>
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="col-sm-3"></div>
+										<button type="button" class="btn btn-warning col-sm-9">Đăng ký</button>
+									</div>
+								</form>
+							</div>
+						</div>
+
+					</div>
+					<button type="button" class="btn-close position-absolute border-0" data-dismiss="modal" aria-label="Close">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+
+	<script type="text/javascript">
+		$('p[data-toggle="tab"]').on('show.bs.tab', function (e) {
+  			var target = $(e.target).attr("href") // activated tab
+  			if(target === "#nav-login") {
+  				document.getElementById("title").innerText = "Đăng nhập";
+  				document.getElementById("content").innerText = "Đăng nhập để theo dõi đơn hàng, lưu danh sách sản phẩm yêu thích, nhận nhiều ưu đãi hấp dẫn.";
+  			} else if (target === "#nav-signup") {
+  				document.getElementById("title").innerText = "Đăng ký";
+  				document.getElementById("content").innerText = "Tạo tài khoản để theo dõi đơn hàng, lưu danh sách sản phẩm yêu thích, nhận nhiều ưu đãi hấp dẫn.";
+  			}
+  		});
+  	</script>
+  </body>
+  </html>
+
+
