@@ -32,6 +32,12 @@ body {
 	width: calc(100% - 360px);
 }
 
+.content-right > div {
+	text-align: center; 
+	font-size: 3rem; 
+	color: #ffc107;
+}
+
 .content-right form {
 	font-size: .8rem;
 }
