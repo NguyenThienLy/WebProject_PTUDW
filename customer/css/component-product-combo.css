@@ -1,0 +1,94 @@
+/* component product combo */
+
+.component-product-combo {
+    height: 22rem;
+    background-color: #f1f1f1;
+    border-color: #f4f4f4;
+    transition: 200ms;
+  }
+  
+  .component-product-combo .card-img-top {
+    height: 22rem;
+    cursor: pointer;
+  }
+  
+  .component-product-combo .card-img-top .overlay {
+    transition: 200ms;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .component-product-combo .card-img-top .image-product-1 {
+    width: 33.33%;
+  }
+
+  .component-product-combo .card-img-top .image-product-2 {
+    width: 33.33%;
+  }
+  
+  .component-product-combo .card-img-top .image-product-3 {
+    width: 33.34%;
+  }
+  
+  .component-product-combo .title {
+    color: #000;
+  }
+  
+  .component-product-combo .title:hover {
+    color: #99cc00;
+  }
+  
+  .component-product-combo .card-img-top .overlay > a {
+    opacity: 0;
+    background-color: #f2f2f2;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 200ms;
+    z-index: 1;
+    text-decoration: none;
+  }
+  
+  .component-product-combo .card-img-top .overlay > a i {
+    color: #000;
+  }
+  
+  .component-product-combo:hover .overlay > a {
+    opacity: 1;
+  }
+  
+  .component-product-combo .overlay > a:hover {
+    background-color: #99cc00;
+  }
+  
+  .component-product-combo .overlay > a:hover i {
+    color: #fff;
+  }
+  
+  .component-product-combo .card-body {
+    font-size: .9rem;
+  }
+  
+  .component-product-combo .card-body > a {
+    text-decoration: none;
+    transition: 200ms;
+  }
+  
+  .component-product-combo .card-body .price-sale span {
+    color: #99cc00;
+  }
+  
+  .component-product-combo .card-body .price-old del {
+    color: #6D6B6A;
+  }
+  
+  .component-product-combo:hover .overlay {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .component-product-combo:hover {
+    box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* component product combo */

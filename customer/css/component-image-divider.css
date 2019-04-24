@@ -1,0 +1,28 @@
+/* component image divider */
+.component-image-divider {
+    background-image: url('https://live.staticflickr.com/7273/6979472408_84266527a8_k.jpg') !important;
+    height: 20rem; 
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed; 
+}
+
+.component-image-divider .overlay {
+    transition: 200ms
+}
+
+.component-image-divider .overlay h1 > a {
+    text-decoration: none;
+    color: white;
+    transition: 200ms
+}
+
+.component-image-divider:hover .overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.component-image-divider h1 > a:hover {
+  color: #99cc00;
+  text-decoration: none;
+}
+/* component image divider */

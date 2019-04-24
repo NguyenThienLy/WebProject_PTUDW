@@ -1,0 +1,10 @@
+/* component filter product */
+.component-filter-product .list-group-item > a {
+  color: #666;
+  text-decoration: none;
+}
+
+.component-filter-product .list-group-item > label:active {
+  color: #99cc00;
+}
+/* component filter product */

@@ -1,0 +1,24 @@
+/* component image show */
+
+.component-image-show {
+  height: 30rem;
+}
+
+.component-image-show .large-img {
+  height: 24.4rem;
+  width: 24.4rem;
+}
+
+.component-image-show .card-product-margin {
+  cursor: pointer;
+  margin: 0.625rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  padding: 0.75rem;
+}
+
+.component-image-show .card-product-margin:hover {
+  border: solid 1px #99cc00;
+}
+
+/* component image show */

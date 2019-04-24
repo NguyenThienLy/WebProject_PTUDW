@@ -1,0 +1,66 @@
+/* component info-small */
+
+.component-info-small {
+  height: 26rem;
+  background-color: #f7f7f7;
+  transition: 200ms;
+}
+
+.component-info-big {
+  height: 53.5rem;
+}
+
+.component-info-small .card-img-top {
+  background-image: url(https://bizweb.dktcdn.net/thumb/1024x1024/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.component-info-small .card-img-top > a {
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.component-info-small .card-img-top .info-info {
+  font-size: 0.9rem;
+  color: #6d6b6a;
+  top: 83%;
+  left: 0;
+  z-index: 0;
+  background-color: rgba(250, 250, 250, 0.9);
+}
+
+.component-info-big .card-img-top .info-info {
+  top: 92%;
+}
+
+.component-info-small .card-img-top .info-info .posted {
+  color: #99cc00;
+}
+
+.component-info-small .card-body > a {
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: bold;
+  transition: 200ms;
+}
+
+.component-info-small .card-body > p {
+  font-size: 1rem;
+  color: #6d6b6a;
+}
+
+.component-info-small .title {
+  color: #000;
+}
+
+.component-info-small .title:hover {
+  color: #99cc00;
+}
+
+.component-info-small:hover {
+  box-shadow: 4px 14px 15px rgba(0, 0, 0, 0.1);
+}
+/* component info-small */

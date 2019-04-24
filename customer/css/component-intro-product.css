@@ -1,0 +1,68 @@
+/* component intro-product */
+.component-intro-product {
+    height: 21rem; 
+    background-repeat: no-repeat; 
+    background-position: right; 
+    background-size: 50%;
+  }
+  
+.component-intro-product-1 {
+    background-color: #59cca6;  
+     background-image: url(//bizweb.dktcdn.net/thumb/grande/100/350/980/themes/714097/assets/col_1.png);
+  }
+  
+  .component-intro-product-2 {
+    background-color: #91ad41;
+    background-image: url(//bizweb.dktcdn.net/thumb/grande/100/350/980/themes/714097/assets/col_2.png);
+  }
+  
+  .component-intro-product-3 {
+    background-color:#e3b375;
+    background-image: url(//bizweb.dktcdn.net/thumb/grande/100/350/980/themes/714097/assets/col_3.png);
+  }
+  
+  .component-intro-product-4 {
+    background-color: #ef7f94;
+    background-image: url(//bizweb.dktcdn.net/thumb/grande/100/350/980/themes/714097/assets/col_4.png);
+  }
+  
+  .component-intro-product .title h5:hover {
+    color: #99cc00;
+  }
+  
+  .component-intro-product:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+   
+   
+  .component-intro-product .overlay > a {
+    opacity: 0;
+    background-color: #f2f2f2;
+  }
+  
+  .component-intro-product .overlay {
+    transition: 200ms !important;
+  }
+   
+  .component-intro-product .overlay > a i {
+    color: #666;
+  }
+  
+  .component-intro-product .card-body {
+    font-size: 0.9rem !important;
+  }
+  
+  .component-intro-product .card-body h5 {
+    transition: 200ms;
+  }
+  
+  .component-intro-product .card-body h5 {
+    transition: 200ms;
+  }
+  
+  .component-intro-product .card-body .btn {
+    font-size: 0.8rem; 
+    transition: 200ms;
+  }
+  
+ /* component intro-product */

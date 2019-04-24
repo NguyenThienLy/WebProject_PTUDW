@@ -1,0 +1,89 @@
+/* about us */
+.component-about-us {
+    overflow: hidden;
+    height: 12rem; 
+    background-image: url(http://www.backgroundppt.com/wp-content/uploads/2019/01/citrus-fruit-1-1024x576.jpg);
+     background-repeat: no-repeat; 
+    background-size: cover;
+     background-position: center;
+  
+  }
+  
+  .component-about-us:hover > .overlay {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 200ms;
+  }
+  
+  .component-about-us:hover .mytext {
+    color: #fff;
+    opacity: 1;
+  }
+  
+  .component-about-us .item1 {
+    left: 17%;
+    bottom: 101%;
+    transition: transform 300ms;
+    border: 1px solid #FFF;
+     height: 10rem; 
+     width: 0;
+  }
+  
+  .component-about-us:hover .item1 {
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+  
+  .component-about-us .item2 {
+    top: 16%;
+    left: 101%;
+    transition: transform 300ms;
+    border: 1px solid #FFF; 
+    width: 16rem;
+  }
+  
+  .component-about-us:hover .item2 {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .component-about-us .item3 {
+    bottom: 16%;
+    right: 101%;
+    transition: transform 300ms;
+    border: 1px solid #FFF; 
+    width: 16rem;
+  }
+  
+  .component-about-us:hover .item3 {
+    right: 50%;
+    transform: translateX(50%);
+  }
+  
+  .component-about-us .item4 {
+    right: 17%;
+    top: 101%;
+    transition: transform 300ms;
+    border: 1px solid #FFF; 
+    height: 10rem; 
+    width: 0;
+  }
+  
+  .component-about-us:hover .item4 {
+    top: 50%;
+    transform: translateY(-50%);
+  } 
+  
+  .component-about-us  .overlay  p {
+    top:50%; 
+    left: 50%; 
+    font-size: 2rem;
+    width: 12rem; 
+    transform: translate(-50%, -50%);
+  }
+
+  .component-about-us .mytext {
+    color: #eee;
+    opacity: 0.5;
+  }
+  
+  /* about us */

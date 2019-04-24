@@ -2,358 +2,87 @@ body {
   color: #666;
   font-family: "Quicksand", sans-serif;
 }
- 
+
+#span-show-cart {
+  font-size: 2em; 
+  color: #99cc00;
+}
+
 .text-success {
   color: #99cc00 !important;
 }
- 
-.btn-outline-success 
-{
-  color: #99cc00 !important;
-  border:1px solid #99cc00 !important;
+
+.btn-success {
+  color: white;
+  background-color:#99cc00;
+  border-color: white;
 }
- 
-.btn-outline-success:hover
-{
-  color: #fff !important;
-  border:1px solid #fff !important;
-  background-color: #99cc00 !important;
-}
- 
-.carousel-inner > .carousel-item > img {
-  height: 30rem;
-  margin: auto;
-}
- 
-.item-image:hover {
-  transform: scale(1.1);
-}
- 
-footer {
-  background-color: #f7f7f7;
-  border: 1px solid #d8d8d8;
-  padding-left: 50px;
-  font-size: 0.875rem;
-}
- 
-div > div > div > h3 > a:hover {
-  color: greenyellow !important;
-}
- 
- 
-div.Listproduct-display {
-  margin: 10px;
-}
- 
-div.imagecontainer {
-  display: flex;
-  height: 480px;
-  width: 527px;
-}
- 
-img.large-img {
-  height: 391px;
-  width: 391px;
-}
- 
-div.card-product-margin {
-  cursor: pointer;
-  margin: 10px;
-  height: 72px;
-  width: 72px;
-  padding: 12px;
-}
- 
-div.card-product-margin:hover {
-  border: solid 1px #99cc00;
-}
- 
-.img-zoom-lens {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  /*set txhe size of the lens:*/
-  transform: translate(75%, 0%);
-  width: 3rem;
-  height: 3rem;
-  background-color: rgba(255, 255, 255, 0.5);
-}
- 
-.qui-inline-text {
-  display: inline-block;
-}
- 
-.carousel-inner > .carousel-item > img {
-  height: 30rem;
-  margin: auto;
-}
- 
-.item-image:hover {
-  transform: scale(1.1);
-}
- 
-a.footerLink {
-  color: black;
-}
- 
-footer {
-  background-color: #f7f7f7;
-  border: 1px solid #d8d8d8;
-  padding-left: 50px;
-  font-size: 0.875rem;
-}
- 
-div > div > div > h1 > a:hover {
-  color: #99cc00 !important;
-}
- 
-.component1:hover .overlay {
-  background-color: rgba(0, 0, 0, 0.3);
-}
- 
-.image-divider:hover .overlay {
-  background-color: rgba(0, 0, 0, 0.3);
-}
- 
-.title {
+
+.btn-success:hover {
+  background-color:rgb(194, 228, 139);
+  border-color: white;
   color: #666;
 }
- 
-.title:hover {
-  color: #99cc00;
-}
- 
-.overlay > a {
-  opacity: 0;
-  background-color: #f2f2f2;
-}
- 
-.overlay > a i {
-  color: #666;
-}
- 
-.component2:hover .overlay > a {
-  opacity: 1;
-}
- 
-.overlay > a:hover {
-  background-color: #99cc00;
-}
- 
-.overlay > a:hover i {
-  color: #fff;
-}
- 
-.component2:hover .overlay {
-  background-color: rgba(255, 255, 255, 0.5);
-}
- 
-.component2:hover {
-  box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.2);
-}
- 
-.component3:hover {
-  box-shadow: 4px 14px 15px rgba(0, 0, 0, 0.1);
-}
- 
-.dropdown-toggle::after {
-    display:none;
-}
- 
-.pagination>.page-item>.page-link {
-  color: #99cc00;
-}
- 
-.component4 .title {
-	color: #6D6B6A;
-}
- 
-.component4 .title:hover {
-	color: #99cc00;
-}
- 
-.component4 input[type=number]::-webkit-inner-spin-button, 
-.component4 input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
- 
-input[type=number] {
-  -moz-appearance:textfield;
-}
- 
-.component5 .checked {
-	color: orange;
-}
- 
-.component6 .title {
-	color: #000;
-}
- 
-.component6 .title:hover {
-	color: #99cc00;
-}
- 
-.component6 .overlay > a {
-	opacity: 0;
-	background-color: #f2f2f2;
-}
- 
-.component6 .overlay > a i {
-	color: #000;
-}
- 
-.component6:hover .overlay > a {
-	opacity: 1;
-}
- 
-.component6 .overlay > a:hover {
-	background-color: #99cc00;
-}
- 
-.component6 .overlay > a:hover i {
-	color: #FFF;
-}
- 
-.component6:hover .overlay  {
-	background-color: rgba(255,255,255,.5);
-}
- 
-.component6:hover {
-	box-shadow: 1px 10px 15px rgba(0,0,0,.2);
-}
- 
-.component7 {
-  width: 20rem;
-  height: auto;
-  display: none;
-  z-index: 2;
-  right: 0;
-  position: absolute;
-}
- 
-.component7:hover .component7{
-  display: block;
-}
- 
-.spanCart:hover .component7{
-  display: block;
-}
- 
-.component7 .title {
-  color: #6D6B6A;
-}
- 
-.component7 .title:hover {
-	color: #99cc00;
-}
- 
- 
-.component7 .style-scrollbar::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);
-	background-color: #F5F5F5;
-}
- 
-.component7 .style-scrollbar::-webkit-scrollbar
-{
-	width: 4px;
-	background-color: #F5F5F5;
-}
- 
-.component7 .style-scrollbar::-webkit-scrollbar-thumb
-{
-	background-color: #99cc00;
-}
- 
-.input-group-text:hover 
-{
-  color: #99cc00;
-}
- 
-.sort-header 
-{
+
+.btn-outline-success {
+  color: #99cc00 !important;
   border: 1px solid #99cc00 !important;
 }
- 
-.badge-success
-{
-  background-color: #99cc00;
+
+.btn-outline-success:hover {
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  background-color: #99cc00 !important;
 }
- 
-.list-group-item>a 
-{
-  color: #666;
-  text-decoration: none;
+
+.carousel-inner > .carousel-item > img {
+  height: 30rem;
+  margin: auto;
 }
- 
-.list-group-item>label:active
-{
+
+.item-image:hover {
+  transform: scale(1.1);
+}
+
+footer {
+  background-color: #f7f7f7;
+  border: 1px solid #d8d8d8;
+  padding-left: 3rem;
+  font-size: 0.875rem;
+}
+
+footer .footerLink {
+  color: black !important;
+}
+
+.item-image:hover {
+  transform: scale(1.1);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.pagination > .page-item > .page-link {
   color: #99cc00;
 }
- 
-input:checked 
-{
-  background-color: #2196F3;
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-.mytext {
-	color: #EEE;
-	opacity: 0.5;
+.input-group-text:hover {
+  color: #99cc00;
 }
 
-.component8 {
-  overflow: hidden;
+.sort-header {
+  border: 1px solid #99cc00 !important;
 }
 
-.component8:hover .overlay  {
-	background-color: rgba(0,0,0,.1);
+.badge-success {
+  background-color: #99cc00;
 }
 
-.component8:hover .mytext  {
-	color: #FFF;
-	opacity: 1;
-}
-
-.component8 .item1 {
-	left: 17%;
-	bottom: 101%;  
-	transition: transform 300ms;
-}
-
-.component8:hover .item1 {
-	bottom: 50%;
-	transform: translateY(50%);
-}
-
-.component8 .item2 {
-	top: 16%;
-	left: 101%;
-	transition: transform 300ms;
-}
-
-.component8:hover .item2 {
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.component8 .item3 {
-	bottom: 16%; 
-	right: 101%; 
-	transition: transform 300ms;
-}
-
-.component8:hover .item3 {
-	right: 50%;
-	transform: translateX(50%);
-}
-
-.component8 .item4 {
-	right: 17%;
-	top: 101%; 
-	transition: transform 300ms;
-}
-
-.component8:hover .item4 {
-	top: 50%;
-	transform: translateY(-50%);
+input:checked {
+  background-color: #2196f3;
 }

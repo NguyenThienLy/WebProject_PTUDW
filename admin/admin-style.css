@@ -1,7 +1,7 @@
-html,body{
-    font-family: "open sans","Helvetica Neue",Arial, Helvetica, sans-serif;
+html, body {
+    color: #666;
+    font-family: "Quicksand", sans-serif;
     background-color: #f3f3f4;
-    color: #676a6c;
     height: 100%;
 }
 
@@ -77,7 +77,6 @@ html,body{
     border-left: solid 4px #1ab394;
     background-color: #293846;
 }
-
 
 
 #side-menu 
