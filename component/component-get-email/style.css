@@ -1,0 +1,21 @@
+.component-get-email {
+	background-color: #f7f7f7;
+}
+
+.component-get-email i {
+	font-size: 2.5rem; 
+	color: #007bff;
+}
+
+.component-get-email p {
+	font-size: .8rem;
+}
+
+.component-get-email form input {
+	font-size: .8rem; 
+	width: 18rem;
+}
+
+.component-get-email form button {
+	font-size: .8rem;
+}

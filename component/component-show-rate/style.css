@@ -1,0 +1,134 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+.component-show-rate {
+	border: 1px solid #f4f4f4;
+}
+
+.component-show-rate .content-left,
+.component-show-rate .content-center  {
+	border-right: 1px solid #f4f4f4;
+}
+
+.component-show-rate .content-left .avg-rate {
+	font-size: 2rem; 
+	color: red;
+}
+
+.component-show-rate .content-left .star-rate {
+	font-size: 1rem; 
+	color: #6D6B6A;
+}
+
+.component-show-rate .content-left .star-rate .checked {
+	color: orange;
+}
+
+.component-show-rate .content-left .review {
+	font-size: .8rem; 
+	color: #848484;
+}
+
+.component-show-rate .content-center .star-percent {
+	font-size: .8rem;
+	width: 60%;
+}
+
+.component-show-rate .content-center .star-percent .progress {
+	height: .5rem; 
+	width: 70%;
+}
+
+.component-show-rate .content-center .star-percent .percent {
+	color: #848484;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-1 {
+	width: 76%;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-2 {
+	width: 6%;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-3 {
+	width: 9%;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-4 {
+	width: 7%; 
+	background-color: #c8c8c8;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-5 {
+	width: 2%; 
+	background-color: #c8c8c8;
+}
+
+.component-show-rate .content-right > p {
+	font-size: .8rem;
+}
+
+.component-show-rate .content-right > button {
+	font-size: .8rem; 
+	width: 85%;
+}
+
+.collapse-show-rate .comment {
+	border-left: 1px solid #f4f4f4; 
+	border-right: 1px solid #f4f4f4; 
+	border-bottom: 1px solid #f4f4f4;
+}
+
+.collapse-show-rate .comment form textarea {
+	resize: none;
+	font-size: .9rem;
+}
+
+.collapse-show-rate .comment button {
+	font-size: .8rem; 
+	width: 12rem; 
+	right: 20px; 
+	bottom: 20px;
+}
+
+.collapse-show-rate .comment .rate {
+	height: 46px;
+	padding: 0 10px;
+}
+
+.collapse-show-rate .comment .rate:not(:checked) > input {
+	position: absolute;
+	top:-9999px;
+}
+
+.collapse-show-rate .comment .rate:not(:checked) > label {
+	float: right;
+	width: 1em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 30px;
+	color: #ccc;
+}
+
+.collapse-show-rate .comment .rate:not(:checked) > label:before {
+	font-family: FontAwesome;
+	content: '\f005';
+}
+
+.collapse-show-rate .comment .rate > input:checked ~ label {
+	color: #ffc700;    
+}
+
+.collapse-show-rate .comment .rate:not(:checked) > label:hover,
+.collapse-show-rate .comment .rate:not(:checked) > label:hover ~ label {
+	color: #deb217;  
+}
+
+.collapse-show-rate .comment .rate > input:checked + label:hover,
+.collapse-show-rate .comment .rate > input:checked + label:hover ~ label,
+.collapse-show-rate .comment .rate > input:checked ~ label:hover,
+.collapse-show-rate .comment .rate > input:checked ~ label:hover ~ label,
+.collapse-show-rate .comment .rate > label:hover ~ input:checked ~ label {
+	color: #c59b08;
+}
