@@ -24,11 +24,8 @@
     />
      <!-- end google font -->
     <!--import my css-->
-    <link rel="stylesheet" type="text/css" href="./admin-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin-style.css">
     <!--end import my css-->
-    <!--import chosen css-->
-    <link rel="stylesheet" type="text/css" href="./chosen_v1.8.7/chosen.min.css">
-    <!--end import chosen css-->
     <title>Document</title>
 </head>
 
@@ -63,23 +60,36 @@
                     </li>
 
                     <li class="link">
-                        <a href="index.html">
+                        <a href="report.html">
                             <span class="fas fa-chart-pie"></span>
                             <span>Thống kê</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="order-list.html">
+                            <span class="fas fa-shopping-cart"></span>
+                            <span>Đơn hàng</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
                     <!--Menu sản phẩm-->
                     <!--collape-->
                     <li class="link">
-                        <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post" class="active">
+                        <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                                <span class="fas fa-tags"></span>
+                                <span>Sản phẩm</span>
+                                <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a> -->
+                        <a href="products.html" class="active">
                             <span class="fas fa-tags"></span>
                             <span>Sản phẩm</span>
                             <span class="badge badge-warning label-message float-right mr-1">20</span>
-                        </a>
+                        </a>  
                     </li>
 
-                    <ul class="collapse" id="collapse-post">
+                    <!-- <ul class="collapse" id="collapse-post">
                         <li class="link">
                             <a href="index.html">
 
@@ -89,16 +99,22 @@
                         <li class="link">
                             <a href="index.html">
 
-                                <span>Thêm sản phẩm</span>
+                                <span>Sản phẩm</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
+
+                    <li class="link">
+                        <a href="add-product.html">
+                            <span class="fas fa-plus-circle"></span>
+                            <span>Thêm mới</span>
+                        </a>
+                    </li>
 
                     <li class="link">
                         <a href="new-posts.html">
                             <span class="fas fa-file-alt"></span>
                             <span>Thêm bài viết</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
@@ -106,6 +122,14 @@
                         <a href="articles.html">
                             <span class="fas fa-stream"></span>
                             <span>Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="comments.html">
+                            <span class="fas fa-comment"></span>
+                            <span>Quản lý bình luận</span>
                             <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
@@ -265,11 +289,10 @@
                                             </ul>
                                         </div>
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn-sm btn-primary"><i
-                                                class="far fa-edit"></i>Sửa</button>
-                                        <button type="button" class="btn-sm btn-danger"><i
-                                                class="far fa-trash-alt"></i>Xóa</button>
+                                    <td align="center">
+                                        <button type="button" class="btn-sm btn-primary">
+                                                Sửa</button>
+                                        <button type="button" class="btn-sm btn-danger">Xóa</button>
                                     </td>
                                 </tr>
                                 <!--End thông tin một sản phẩm-->
@@ -294,11 +317,9 @@
                                             </ul>
                                         </div>
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn-sm btn-primary"><i
-                                                class="far fa-edit"></i>Sửa</button>
-                                        <button type="button" class="btn-sm btn-danger"><i
-                                                class="far fa-trash-alt"></i>Xóa</button>
+                                    <td align="center">
+                                        <button type="button" class="btn-sm btn-primary">Sửa</button>
+                                        <button type="button" class="btn-sm btn-danger">Xóa</button>
                                     </td>
                                 </tr>
                                 <!--End thông tin một sản phẩm-->
@@ -323,11 +344,9 @@
                                             </ul>
                                         </div>
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn-sm btn-primary"><i
-                                                class="far fa-edit"></i>Sửa</button>
-                                        <button type="button" class="btn-sm btn-danger"><i
-                                                class="far fa-trash-alt"></i>Xóa</button>
+                                    <td align="center">
+                                        <button type="button" class="btn-sm btn-primary">Sửa</button>
+                                        <button type="button" class="btn-sm btn-danger">Xóa</button>
                                     </td>
                                 </tr>
                                 <!--End thông tin một sản phẩm-->

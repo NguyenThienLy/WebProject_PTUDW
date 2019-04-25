@@ -14,11 +14,18 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- end import fontawesome-->
     <!--import my css-->
-    <link rel="stylesheet" type="text/css" href="./admin-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin-style.css">
     <!--end import my css-->
-    <!--import chosen css-->
-    <link rel="stylesheet" type="text/css" href="./chosen_v1.8.7/chosen.min.css">
-    <!--end import chosen css-->
+    <!-- google font -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
+    rel="stylesheet"
+    />
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+     <!-- google font -->
     <title>Document</title>
 </head>
 
@@ -53,23 +60,36 @@
                     </li>
 
                     <li class="link">
-                        <a href="index.html">
+                        <a href="report.html">
                             <span class="fas fa-chart-pie"></span>
                             <span>Thống kê</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="order-list.html">
+                            <span class="fas fa-shopping-cart"></span>
+                            <span>Đơn hàng</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
                     <!--Menu sản phẩm-->
                     <!--collape-->
                     <li class="link">
-                        <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                        <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                                <span class="fas fa-tags"></span>
+                                <span>Sản phẩm</span>
+                                <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a> -->
+                        <a href="products.html">
                             <span class="fas fa-tags"></span>
                             <span>Sản phẩm</span>
                             <span class="badge badge-warning label-message float-right mr-1">20</span>
                         </a>
                     </li>
 
-                    <ul class="collapse" id="collapse-post">
+                    <!-- <ul class="collapse" id="collapse-post">
                         <li class="link">
                             <a href="index.html">
 
@@ -82,13 +102,19 @@
                                 <span>Sản phẩm</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
+
+                    <li class="link">
+                        <a href="add-product.html">
+                            <span class="fas fa-plus-circle"></span>
+                            <span>Thêm mới</span>
+                        </a>
+                    </li>
 
                     <li class="link">
                         <a href="new-posts.html">
                             <span class="fas fa-file-alt"></span>
                             <span>Thêm bài viết</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
@@ -96,6 +122,14 @@
                         <a href="articles.html">
                             <span class="fas fa-stream"></span>
                             <span>Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="comments.html">
+                            <span class="fas fa-comment"></span>
+                            <span>Quản lý bình luận</span>
                             <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
@@ -253,14 +287,14 @@
                                             <td><a href="#" class="badge badge-secondary badge-light">
                                                     Chưa thanh toán
                                                 </a></td>
-                                            <td>
+                                            <td align="center">
                                                 <a class="btn btn-primary btn-sm" href="#" role="button">
                                                     Xem
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="#" role="button">
                                                     Duyệt
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-danger btn-sm" href="#" role="button">
                                                     Xóa
                                                 </a>
                                             </td>
@@ -276,19 +310,16 @@
                                             <td><a href="#" class="badge badge-secondary badge-light">
                                                     Chưa thanh toán
                                                 </a></td>
-                                            <td>
-                                                <div class="mx-auto">
-                                                        <a class="btn btn-primary btn-sm" href="#" role="button">
-                                                                Xem
-                                                            </a>
-                                                            <a class="btn btn-primary btn-sm" href="#" role="button">
-                                                                Duyệt
-                                                            </a>
-                                                            <a class="btn btn-primary btn-sm" href="#" role="button">
-                                                                Xóa
-                                                            </a>
-                                                </div>
-                                                
+                                            <td align="center">
+                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                    Xem
+                                                </a>
+                                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                                    Duyệt
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                                    Xóa
+                                                </a>
                                             </td>
                                         </tr>
                                         <!--End Nội dung một hàng-->
@@ -302,14 +333,14 @@
                                             <td><a href="#" class="badge badge-secondary badge-info">
                                                     Đã thanh toán
                                                 </a></td>
-                                            <td>
+                                            <td align="center">
                                                 <a class="btn btn-primary btn-sm" href="#" role="button">
                                                     Xem
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="#" role="button">
                                                     Duyệt
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-danger btn-sm" href="#" role="button">
                                                     Xóa
                                                 </a>
                                             </td>
@@ -322,8 +353,8 @@
                                 </table>
 
                                 <div class="clearfix">
-                                        <a href="#" class="float-right text-link">Xem tất cả đơn hàng</a>
-                                    </div>
+                                    <a href="order-list.html" class="float-right text-link">Xem tất cả đơn hàng</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -358,14 +389,14 @@
                                             <td>Bài đăng đầu</td>
                                             <td>20</td>
                                             <td>Hom nay</td>
-                                            <td>
+                                            <td align="center">
                                                 <a class="btn btn-primary btn-sm" href="#" role="button">
                                                     Xem
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="#" role="button">
                                                     Sửa
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-danger btn-sm" href="#" role="button">
                                                     Xóa
                                                 </a>
                                             </td>
@@ -375,14 +406,14 @@
                                             <td>Bài đăng đầu</td>
                                             <td>20</td>
                                             <td>Hom nay</td>
-                                            <td>
+                                            <td align="center">
                                                 <a class="btn btn-primary btn-sm" href="#" role="button">
                                                     Xem
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="#" role="button">
                                                     Sửa
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-danger btn-sm" href="#" role="button">
                                                     Xóa
                                                 </a>
                                             </td>
@@ -392,14 +423,14 @@
                                             <td>Bài đăng đầu</td>
                                             <td>20</td>
                                             <td>Hom nay</td>
-                                            <td>
+                                            <td align="center">
                                                 <a class="btn btn-primary btn-sm" href="#" role="button">
                                                     Xem
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="#" role="button">
                                                     Sửa
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-danger btn-sm" href="#" role="button">
                                                     Xóa
                                                 </a>
                                             </td>
@@ -409,14 +440,14 @@
                                             <td>Bài đăng đầu</td>
                                             <td>20</td>
                                             <td>Hom nay</td>
-                                            <td>
+                                            <td align="center">
                                                 <a class="btn btn-primary btn-sm" href="#" role="button">
                                                     Xem
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="#" role="button">
                                                     Sửa
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-danger btn-sm" href="#" role="button">
                                                     Xóa
                                                 </a>
                                             </td>
@@ -424,7 +455,7 @@
                                     </tbody>
                                 </table>
                                 <div class="clearfix">
-                                    <a href="#" class="float-right text-link">Xem tất cả bài viết</a>
+                                    <a href="articles.html" class="float-right text-link">Xem tất cả bài viết</a>
                                 </div>
 
 
@@ -458,12 +489,8 @@
 
 
                                 <div class="clearfix">
-                                    <a href="#" class="float-right text-link">Xem tất cả bình luận</a>
+                                    <a href="comments.html" class="float-right text-link">Xem tất cả bình luận</a>
                                 </div>
-
-
-
-
                             </div>
                         </div>
                         <!--End Nội dung bình luân bên phải-->
@@ -500,9 +527,6 @@
         crossorigin="anonymous"></script>
     <!--end import sript bootrap-->
 
-    <!--import chosen jquery-->
-    <script src="./chosen_v1.8.7/chosen.jquery.min.js"></script>
-    <!--end import chosen jquery-->
 </body>
 
 </html>
