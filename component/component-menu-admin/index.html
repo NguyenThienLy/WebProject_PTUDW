@@ -14,20 +14,8 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- end import fontawesome-->
     <!--import my css-->
-    <link rel="stylesheet" type="text/css" href="../css/admin-style.css">
+    <link rel="stylesheet" type="text/css" href="./component-menu-admin.css">
     <!--end import my css-->
-    <!--import css chung-->
-    <link rel="stylesheet" type="text/css" href="../css/content-5-page.css">
-    <!--End import css chung-->
-    <!--import page css-->
-    <link rel="stylesheet" type="text/css" href="../css/new-posts.css">
-    <!--End import page css-->
-    <!--import chosen css-->
-    <link rel="stylesheet" type="text/css" href="../chosen_v1.8.7/chosen.min.css">
-    <!--end import chosen css-->
-    <!--import menu component-->
-    <link rel="stylesheet" type="text/css" href="../css/component-menu-admin.css">
-    <!--end import menu component-->
     <!-- google font -->
     <link
     href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
@@ -46,19 +34,13 @@
     <div class="container-fluid table h-100">
         <!--Chia ra từng hàng-->
         <div class="row table-row h-100">
-            <!--Thêm vào để text fixed-->
-            <div class="col-md-2 table-cell float-none align-top">
-
-            </div>
-            <!--End Thêm vào để text fixed-->
-
-
+            
             <!--slide menu-->
             <div class="col-md-2 table-cell float-none align-top h-100 fixed-top" id="side-menu">
                 <h1>Trang quản trị</h1>
                 <ul>
                     <li class="link">
-                        <a href="index.html">
+                        <a href="index.html" class="active">
                             <span class="fas fa-home"></span>
                             <span>Trang chủ</span>
                         </a>
@@ -98,7 +80,7 @@
                             <span class="fas fa-tags"></span>
                             <span>Sản phẩm</span>
                             <span class="badge badge-warning label-message float-right mr-1">20</span>
-                        </a>  
+                        </a>
                     </li>
 
                     <!-- <ul class="collapse" id="collapse-post">
@@ -124,7 +106,7 @@
                     </li>
 
                     <li class="link">
-                        <a href="new-posts.html" class="active">
+                        <a href="new-posts.html">
                             <span class="fas fa-file-alt"></span>
                             <span>Thêm bài viết</span>
                         </a>
@@ -163,95 +145,6 @@
             </div>
             <!--End slide menu-->
 
-            <!--Nội dung-->
-            <!--Mặc định padding -15 của col-->
-            <div class="col-md-10 col-sm-11 table-cell float-none align-top p-0">
-
-                <header id="nav-header">
-                    <!--mặc định bị padding-->
-                    <div class="row m-0">
-                        <div class="col-md-5 ">
-                            <input type="text" placeholder="Tìm kiếm..." id="header-search-field">
-                        </div>
-
-                        <div class="col-md-7">
-                            <ul>
-                                <li>Chào mừng đến trang quản trị bán hàng</li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fas fa-bell"></span>
-                                        <span class="badge badge-warning label-message">3</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fas fa-envelope"></span>
-                                        <span class="badge badge-warning label-message">3</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="logout">
-                                        <span class="fas fa-sign-out-alt"></span>
-                                        Đăng xuất
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                </header>
-
-                <div id="content">
-                    <header>
-                        <h2 class="page_title">Tạo bài viết mới</h2>
-                    </header>
-                    <div class="content-inner">
-                        <div class="form-wrapper">
-                            <form>
-                                <div class="form-group">
-                                    <label class="sr-only">Tiêu đề</label>
-                                    <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="sr-only">Tiêu đề</label>
-                                    <select class="form-control chosen-select" data-placeholder="Chọn" multiple>
-                                        <option>Cà chua</option>
-                                        <option>Trái cây</option>
-                                        <option>Rau tươi</option>
-                                        <option>thịt</option>
-                                    </select>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="sr-only">Tiêu đề</label>
-                                    <textarea class="form-control" name="contain">
-
-                                    </textarea>
-                                </div>
-
-                                <div class="checkbox">
-                                    <label class="ml-1">
-                                        <input type="checkbox"> Đăng khi bấm chọn
-                                    </label>
-                                </div>
-
-                                <div class="clearfix">
-                                    <button type="button" class="btn btn-primary float-right">Xác nhận</button>
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <footer id="admin-footer">
-
-                    <div class="float-left"><b>Copyright</b>&copy; 2019</div>
-                    <div class="float-right">Trang admin</div>
-
-                </footer>
-
-            </div>
         </div>
     </div>
     </div>
@@ -267,32 +160,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <!--end import sript bootrap-->
-    <!--import chosen jquery-->
-    <script src="../chosen_v1.8.7/chosen.jquery.min.js"></script>
-    <!--end import chosen jquery-->
-    <!--change select-->
-    <script type="text/javascript">
-        var config = {
-            '.chosen-select': {},
-            '.chosen-select-deselect': { allow_single_deselect: true },
-            '.chosen-select-no-single': { disable_search_threshold: 10 },
-            '.chosen-select-no-result': { no_results_text: 'Không có gì để chọn' },
-            '.chosen-select-width': { width: "95%" }
-        }
 
-        for (var selector in config) {
-            $(selector).chosen(config[selector]);
-        }
-    </script>
-    <!--end change select-->
-    <!--import ckeditor-->
-    <script src="../ckeditor/ckeditor.js"></script>
-    <!--end import ckeditor-->
-    <!--change textarea-->
-    <script>
-        CKEDITOR.replace('contain');
-    </script>
-    <!--end change textarea-->
 </body>
 
 </html>
