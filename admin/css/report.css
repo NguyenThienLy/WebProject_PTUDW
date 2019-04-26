@@ -1,0 +1,53 @@
+.admin-content-con{
+    margin-top: 1.25rem;
+    background-color: white; 
+    border-top: solid 4px #e7eaec;
+    padding: 0.9375rem;
+}
+
+.admin-content-con header{
+    margin-bottom: 1.25rem;
+    border-bottom: 1px #eee solid;
+    padding-bottom: 0.625rem;
+}
+
+.admin-content-con h5{
+    margin: 0rem;
+    padding-top: 0.1875rem;
+    
+}
+
+.report-content-con{
+    margin-top: 1.25rem;
+    background-color: white; 
+    border-radius: 4px;
+    padding: 0.9375rem;
+
+}
+
+.report-content-con span{
+    background-color: #ffff;
+    width: 100%;
+    display: inline-block;
+    height: 0.0625rem;
+}
+
+.report-content-con h6{
+    color:#fff;
+    margin-left: 0.3125rem;
+}
+
+.report-content-con i{
+    color: #fff;
+}
+
+.report-content-con b{
+    color: #fff;
+    margin-top: 0.4375rem;
+    margin-bottom: 0.4375rem;
+    text-align: center;
+}
+
+.report-view{
+    background-color: #1abc9c;
+}
