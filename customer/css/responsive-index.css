@@ -1,0 +1,248 @@
+@media only screen and (max-width: 1024px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 25% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 21rem;
+    } 
+}
+
+@media only screen and (max-width: 980px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 50% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 15.5rem;
+    } 
+}
+
+@media only screen and (max-width: 800px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 50% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 16rem;
+    } 
+}
+
+@media only screen and (max-width: 780px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 50% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 16.5rem;
+    } 
+}
+
+@media only screen and (max-width: 768px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 50% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 17rem;
+    } 
+}
+
+@media only screen and (max-width: 720px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 50% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 17.5rem;
+    } 
+}
+
+@media only screen and (max-width: 640px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 50% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 18rem;
+    } 
+}
+
+@media only screen and (max-width: 600px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 50%;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 18rem;
+    } 
+}
+
+@media only screen and (max-width: 568px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 13.5rem;
+    }
+
+}
+
+@media only screen and (max-width: 563px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 13.5rem;
+    }
+
+}
+
+@media only screen and (max-width: 549px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 13.5rem;
+    }
+
+}
+
+@media only screen and (max-width: 534px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 13.5rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100% !important;
+        height: 14rem;
+    }
+
+    .component-product-simple {
+        width: 50%;
+        height: 30rem;
+        margin-bottom: 2rem;
+    } 
+}
+
+@media only screen and (max-width: 480px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100% !important;
+        height: 14rem;
+    }
+
+    .component-product-simple {
+        width: 50%;
+        height: 30rem;
+        margin-bottom: 2rem;
+    } 
+}
+
+@media only screen and (max-width: 412px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100%;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 17rem;
+    }
+
+    .component-product-simple {
+        height: 30rem;
+        margin-bottom: 2rem;
+    } 
+}
+
+@media only screen and (max-width: 360px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 18rem;
+    }
+
+    .component-product-simple {
+        height: 30rem;
+        margin-bottom: 2rem;
+    } 
+}
+
+@media only screen and (max-width: 338px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 18rem;
+    }
+
+    .component-product-simple {
+        height: 30rem;
+        margin-bottom: 2rem;
+    } 
+}
+
+@media only screen and (max-width: 330px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100%;
+        height: 18rem;
+    }
+
+    .component-product-simple {
+        height: 30rem;
+        margin-bottom: 2rem;
+    } 
+}
+
+@media only screen and (max-width: 320px) {
+    .responsive-intro-product .col-lg-3 {
+        width: 100% ;
+    }
+
+    .component-intro-product {
+        width: 100% !important;
+        height: 17rem;
+    }
+}
+
+
+
+
+
