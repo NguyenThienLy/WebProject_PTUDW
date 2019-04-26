@@ -13,6 +13,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- end import fontawesome-->
+    <!--import my css-->
+    <link rel="stylesheet" type="text/css" href="../css/admin-style.css">
+    <!--end import my css-->
+    <!--import css chung-->
+    <link rel="stylesheet" type="text/css" href="../css/content-5-page.css">
+    <!--End import css chung-->
+    <!--import page css-->
+    <link rel="stylesheet" type="text/css" href="../css/new-posts.css">
+    <!--End import page css-->
+    <!--import chosen css-->
+    <link rel="stylesheet" type="text/css" href="../chosen_v1.8.7/chosen.min.css">
+    <!--end import chosen css-->
+    <!--import menu component-->
+    <link rel="stylesheet" type="text/css" href="../css/component-menu-admin.css">
+    <!--end import menu component-->
     <!-- google font -->
     <link
     href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
@@ -23,12 +38,6 @@
     href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
      <!-- google font -->
-    <!--import my css-->
-    <link rel="stylesheet" type="text/css" href="./admin-style.css">
-    <!--end import my css-->
-    <!--import chosen css-->
-    <link rel="stylesheet" type="text/css" href="./chosen_v1.8.7/chosen.min.css">
-    <!--end import chosen css-->
     <title>Document</title>
 </head>
 
@@ -63,23 +72,36 @@
                     </li>
 
                     <li class="link">
-                        <a href="index.html">
+                        <a href="report.html">
                             <span class="fas fa-chart-pie"></span>
                             <span>Thống kê</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="order-list.html">
+                            <span class="fas fa-shopping-cart"></span>
+                            <span>Đơn hàng</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
                     <!--Menu sản phẩm-->
                     <!--collape-->
                     <li class="link">
-                        <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post" class="active">
+                        <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                                <span class="fas fa-tags"></span>
+                                <span>Sản phẩm</span>
+                                <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a> -->
+                        <a href="products.html">
                             <span class="fas fa-tags"></span>
                             <span>Sản phẩm</span>
                             <span class="badge badge-warning label-message float-right mr-1">20</span>
-                        </a>
+                        </a>  
                     </li>
 
-                    <ul class="collapse" id="collapse-post">
+                    <!-- <ul class="collapse" id="collapse-post">
                         <li class="link">
                             <a href="index.html">
 
@@ -89,16 +111,22 @@
                         <li class="link">
                             <a href="index.html">
 
-                                <span>Thêm sản phẩm</span>
+                                <span>Sản phẩm</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
 
                     <li class="link">
-                        <a href="new-posts.html">
+                        <a href="add-product.html">
+                            <span class="fas fa-plus-circle"></span>
+                            <span>Thêm mới</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="new-posts.html" class="active">
                             <span class="fas fa-file-alt"></span>
                             <span>Thêm bài viết</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
@@ -106,6 +134,14 @@
                         <a href="articles.html">
                             <span class="fas fa-stream"></span>
                             <span>Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="comments.html">
+                            <span class="fas fa-comment"></span>
+                            <span>Quản lý bình luận</span>
                             <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
@@ -129,9 +165,8 @@
 
             <!--Nội dung-->
             <!--Mặc định padding -15 của col-->
-            <div class="col-md-10 table-cell float-none align-top p-0">
+            <div class="col-md-10 col-sm-11 table-cell float-none align-top p-0">
 
-                <!--Header nội dung-->
                 <header id="nav-header">
                     <!--mặc định bị padding-->
                     <div class="row m-0">
@@ -163,146 +198,59 @@
                             </ul>
                         </div>
                 </header>
-                <!--End header nội dung-->
 
-
-                <!--Nội dung trang index-->
-                <div id="dashboard-con">
-
-                    <!--Hàng chứa nội dung lượt tương tác trong ngày-->
-
-                    <div class="row">
-
-                        <div class="col-md-4">
-
-                            <!--Thẻ chứa lượt view trong ngày-->
-                            <div class="report-content-con report-view">
-                                <div>
-                                    <i class="fas fa-eye"></i>
-                                    <h6 class="d-inline">Lượt xem trong ngày</h6>
+                <div id="content">
+                    <header>
+                        <h2 class="page_title">Tạo bài viết mới</h2>
+                    </header>
+                    <div class="content-inner">
+                        <div class="form-wrapper">
+                            <form>
+                                <div class="form-group">
+                                    <label class="sr-only">Tiêu đề</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
                                 </div>
-                                
-                                <div class="d-flex flex-column mt-1">
-                                    <span></span>
-                                    <b>40</b>
-                                    <span></span>
+
+                                <div class="form-group">
+                                    <label class="sr-only">Tiêu đề</label>
+                                    <select class="form-control chosen-select" data-placeholder="Chọn" multiple>
+                                        <option>Cà chua</option>
+                                        <option>Trái cây</option>
+                                        <option>Rau tươi</option>
+                                        <option>thịt</option>
+                                    </select>
+
                                 </div>
-                            </div>
-                            <!--End Thẻ chứa lượt view trong ngày-->
 
-                        </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Tiêu đề</label>
+                                    <textarea class="form-control" name="contain">
 
-                        <div class="col-md-4">
-                        
-                            <!--Thẻ chứa lượt view trong ngày-->
-                            <div class="report-content-con report-view">
-                                <div>
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <h6 class="d-inline">Lượt mua trong ngày</h6>
+                                    </textarea>
                                 </div>
-                        
-                                <div class="d-flex flex-column mt-1">
-                                    <span></span>
-                                    <b>60</b>
-                                    <span></span>
+
+                                <div class="checkbox">
+                                    <label class="ml-1">
+                                        <input type="checkbox"> Đăng khi bấm chọn
+                                    </label>
                                 </div>
-                            </div>
-                            <!--End Thẻ chứa lượt view trong ngày-->
-                        
-                        </div>
-                        
-                        <div class="col-md-4">
-                        
-                            <!--Thẻ chứa lượt view trong ngày-->
-                            <div class="report-content-con report-view">
-                                <div>
-                                    <i class="fas fa-money-check-alt"></i>
-                                    <h6 class="d-inline">Doanh thu trong ngày</h6>
+
+                                <div class="clearfix">
+                                    <button type="button" class="btn btn-primary float-right">Xác nhận</button>
+
                                 </div>
-                        
-                                <div class="d-flex flex-column mt-1">
-                                    <span></span>
-                                    <b>5.000.000đ</b>
-                                    <span></span>
-                                </div>
-                            </div>
-                            <!--End Thẻ chứa lượt view trong ngày-->
-                        
-                        </div>
-                        
-                    </div>
-
-                    <!--End hàng chứa nội dung lượt tương tác trong ngày-->
-
-                    <!--Hàng 1-->
-                    <div class="row">     
-                        <div class="col-md-7">
-                            <!--Biểu đồ thể hiện lượng người vào thăm website-->
-                            <div class="admin-content-con">
-
-                                <canvas id="accessTimesLineChart">
-
-                                </canvas>
-
-                            </div>
-                            <!--End Biểu đồ thể hiện lượng người vào thăm website-->
-                        </div>
-
-                        <div class="col-md-5">
-                            <!--Biểu đồ thể hiện top sản phẩm bán chạy-->
-                            <div class="admin-content-con">
-                            
-                                <canvas id="TopProductBarChart">
-                            
-                                </canvas>
-                            
-                            </div>
-                            <!--End Biểu đồ thể hiện top sản phẩm bán chạy-->
+                            </form>
                         </div>
                     </div>
-                    <!--End hàng 1-->
-
-                    <!--Hàng 2-->
-                    <div class="row">
-                    
-                        <!--align-self-center-->
-                        <div class="col-md-5">
-                            <!--Biểu đồ thể hiện cấu trúc hàng của người bán-->
-                            <div class="admin-content-con">
-                    
-                                <canvas id="structureProductChart">
-                    
-                                </canvas>
-                    
-                            </div>
-                            <!--End Biểu đồ thể hiện cấu trúc hàng của người bán-->
-                        </div>
-                    
-                        <div class="col-md-7">
-                            <!--Biểu đồ thể hiện doanh thu theo ngày-->
-                            <div class="admin-content-con">
-                    
-                                <canvas id="revenueLineChart">
-                    
-                                </canvas>
-                    
-                            </div>
-                            <!--End Biểu đồ thể hiện doanh thu theo ngày-->
-                        </div>
-                    </div>
-
-                    <!--End hàng 2-->
                 </div>
-                <!--End Nội dung trang index-->
 
-                <!--footer-->
                 <footer id="admin-footer">
 
                     <div class="float-left"><b>Copyright</b>&copy; 2019</div>
                     <div class="float-right">Trang admin</div>
 
                 </footer>
-                <!--end footer-->
+
             </div>
         </div>
     </div>
@@ -318,16 +266,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <!--end import script bootrap-->
+    <!--end import sript bootrap-->
+    <!--import chosen jquery-->
+    <script src="../chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <!--end import chosen jquery-->
+    <!--change select-->
+    <script type="text/javascript">
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-result': { no_results_text: 'Không có gì để chọn' },
+            '.chosen-select-width': { width: "95%" }
+        }
 
-    <!--Import chart.js-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <!--End chart.js-->
-
-    <!--Import my chart script-->
-    <script src="./reportchartscript.js"></script>
-    <!--End import my chart script-->
-
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
+    <!--end change select-->
+    <!--import ckeditor-->
+    <script src="../ckeditor/ckeditor.js"></script>
+    <!--end import ckeditor-->
+    <!--change textarea-->
+    <script>
+        CKEDITOR.replace('contain');
+    </script>
+    <!--end change textarea-->
 </body>
 
 </html>

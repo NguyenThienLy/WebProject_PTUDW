@@ -1,0 +1,18 @@
+.admin-content-con{
+    margin-top: 1.25rem;
+    background-color: white; 
+    border-top: solid 4px #e7eaec;
+    padding: 0.9375rem;
+}
+
+.admin-content-con header{
+    margin-bottom: 1.25rem;
+    border-bottom: 1px #eee solid;
+    padding-bottom: 0.625rem;
+}
+
+.admin-content-con h5{
+    margin: 0rem;
+    padding-top: 0.1875rem;
+    
+}

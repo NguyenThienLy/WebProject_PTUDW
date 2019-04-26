@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import css bootrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--end import css bootrap-->
+    <!-- import fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- end import fontawesome-->
+    <!--import my css-->
+    <link rel="stylesheet" type="text/css" href="./component-menu-admin.css">
+    <!--end import my css-->
+    <!-- google font -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
+    rel="stylesheet"
+    />
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+     <!-- google font -->
+    <title>Document</title>
+</head>
+
+<body>
+    <!--Thẻ lớn nhất chứa cả trang web-->
+    <div class="container-fluid table h-100">
+        <!--Chia ra từng hàng-->
+        <div class="row table-row h-100">
+            
+            <!--slide menu-->
+            <div class="col-md-2 table-cell float-none align-top h-100 fixed-top" id="side-menu">
+                <h1>Trang quản trị</h1>
+                <ul>
+                    <li class="link">
+                        <a href="index.html" class="active">
+                            <span class="fas fa-home"></span>
+                            <span>Trang chủ</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-users"></span>
+                            <span>Khách hàng</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="report.html">
+                            <span class="fas fa-chart-pie"></span>
+                            <span>Thống kê</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="order-list.html">
+                            <span class="fas fa-shopping-cart"></span>
+                            <span>Đơn hàng</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <!--Menu sản phẩm-->
+                    <!--collape-->
+                    <li class="link">
+                        <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                                <span class="fas fa-tags"></span>
+                                <span>Sản phẩm</span>
+                                <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a> -->
+                        <a href="products.html">
+                            <span class="fas fa-tags"></span>
+                            <span>Sản phẩm</span>
+                            <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a>
+                    </li>
+
+                    <!-- <ul class="collapse" id="collapse-post">
+                        <li class="link">
+                            <a href="index.html">
+
+                                <span>Danh sách sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="link">
+                            <a href="index.html">
+
+                                <span>Sản phẩm</span>
+                            </a>
+                        </li>
+                    </ul> -->
+
+                    <li class="link">
+                        <a href="add-product.html">
+                            <span class="fas fa-plus-circle"></span>
+                            <span>Thêm mới</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="new-posts.html">
+                            <span class="fas fa-file-alt"></span>
+                            <span>Thêm bài viết</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="articles.html">
+                            <span class="fas fa-stream"></span>
+                            <span>Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="comments.html">
+                            <span class="fas fa-comment"></span>
+                            <span>Quản lý bình luận</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="index.html">
+                            <span class="fas fa-user"></span>
+                            <span>Nhân viên</span>
+                        </a>
+                    </li>
+
+                    <li class="link ads-button">
+                        <a href="index.html">
+                            <span class="fas fa-ad"></span>
+                            <span>Khuyến mãi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--End slide menu-->
+
+        </div>
+    </div>
+    </div>
+
+    <!--import script bootrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!--end import sript bootrap-->
+
+</body>
+
+</html>

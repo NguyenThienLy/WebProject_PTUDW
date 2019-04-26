@@ -14,8 +14,24 @@
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- end import fontawesome-->
     <!--import my css-->
-    <link rel="stylesheet" type="text/css" href="./admin-style.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin-style.css">
     <!--end import my css-->
+    <!--import css chung-->
+    <link rel="stylesheet" type="text/css" href="../css/content-5-page.css">
+    <!--End import css chung-->
+    <!--Import page css-->
+    <link rel="stylesheet" type="text/css" href="../css/comments.css">
+    <!--End import page css-->
+    <!--Import component comment-->
+    <link rel="stylesheet" type="text/css" href="../css/component-comment.css">
+    <!--End Import component comment-->
+    <!--import menu component-->
+    <link rel="stylesheet" type="text/css" href="../css/component-menu-admin.css">
+    <!--end import menu component-->
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <!-- google font -->
     <title>Document</title>
 </head>
 
@@ -29,6 +45,7 @@
 
             </div>
             <!--End Thêm vào để text fixed-->
+
 
             <!--slide menu-->
             <div class="col-md-2 table-cell float-none align-top h-100 fixed-top" id="side-menu">
@@ -49,23 +66,36 @@
                     </li>
 
                     <li class="link">
-                        <a href="index.html">
+                        <a href="report.html">
                             <span class="fas fa-chart-pie"></span>
                             <span>Thống kê</span>
+                        </a>
+                    </li>
+
+                    <li class="link">
+                        <a href="order-list.html">
+                            <span class="fas fa-shopping-cart"></span>
+                            <span>Đơn hàng</span>
+                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
                     <!--Menu sản phẩm-->
                     <!--collape-->
                     <li class="link">
-                        <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                        <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                                <span class="fas fa-tags"></span>
+                                <span>Sản phẩm</span>
+                                <span class="badge badge-warning label-message float-right mr-1">20</span>
+                        </a> -->
+                        <a href="products.html">
                             <span class="fas fa-tags"></span>
                             <span>Sản phẩm</span>
                             <span class="badge badge-warning label-message float-right mr-1">20</span>
                         </a>
                     </li>
 
-                    <ul class="collapse" id="collapse-post">
+                    <!-- <ul class="collapse" id="collapse-post">
                         <li class="link">
                             <a href="index.html">
 
@@ -78,13 +108,19 @@
                                 <span>Sản phẩm</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
+
+                    <li class="link">
+                        <a href="add-product.html">
+                            <span class="fas fa-plus-circle"></span>
+                            <span>Thêm mới</span>
+                        </a>
+                    </li>
 
                     <li class="link">
                         <a href="new-posts.html">
                             <span class="fas fa-file-alt"></span>
                             <span>Thêm bài viết</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
                         </a>
                     </li>
 
@@ -180,204 +216,134 @@
                         <!--end thanh tìm kiếm-->
 
                         <!--Hàng chứa nội dung bình luận-->
-
                         <div class="row row-comments">
-                            <div class="col-md-1 col-sm-2">
-                                <img class="rounded-circle img-avatar" src="./images/user_avatar.png">
-                            </div>
-
-                            <div class="col-md-11 col-sm-10">
-                                <div class="row">
-                                    <div class="col-md-9 col-sm-10">
-                                        <b>Lê Tường Qui</b>
-                                        <b>đã bình luận ở bài đăng</b>
-                                        <b>Cà chua sạch...</b>
-                                        <br>
-                                        <small>Hôm nay 4:10 pm - 12/04/2019</small>
+                            <div class="component-comment card d-flex flex-row align-items-stretch p-4 border-0">
+                                <div class="content-left">
+                                    <div class="img-avatar">
+                                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                            class="w-100 rounded-circle" alt="" />
                                     </div>
 
-                                    <div class="col-md-3 col-sm-2">
-                                        <div class="clearfix">
-                                            <div class="float-right">
-                                                Hôm nay
-                                            </div>
+                                    <p class="mt-3 mb-0 text-center font-weight-bold full-name">
+                                        Trần Khánh Linh
+                                    </p>
+
+                                    <p class="mt-0 text-center time-post-cmt">
+                                        một ngày trước
+                                    </p>
+                                </div>
+
+                                <div class="content-right">
+                                    <div class="d-inline-block mr-2 rate-star">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+
+                                    <span class="rate-text">Hài lòng</span>
+
+                                    <div class="prove-buy">
+                                        <i class="fas fa-check-circle mr-1"></i>
+                                        <span>Đã mua sản phẩm</span>
+                                    </div>
+
+                                    <p class="mt-2 mb-2 main-content">
+                                        Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
+                                        hơn vào bản thân mình hơn là những gì người khác nghĩ về
+                                        mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
+                                        trung hơn vào bản thân mình hơn là những gì người khác nghĩ
+                                        về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
+                                        tập trung hơn vào bản thân mình hơn là những gì người khác
+                                        nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
+                                        để tập trung hơn vào bản thân mình hơn là những gì người
+                                        khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
+                                        mình để tập trung hơn vào bản thân mình hơn là những gì
+                                        người khác nghĩ về mình.
+                                    </p>
+
+                                    <div class="clearfix">
+                                        <div class="float-right mt-2 pr-2">
+                                            <a class="btn btn-default btn-sm btn-hidden-comment" href="#" role="button">
+                                                <span class="fas fa-eye-slash">&nbsp;Ẩn</span>
+                                            </a>
+                                            <a class="btn btn-sm btn-delete-comment" href="#" role="button">
+                                                <span class="fas fa-times">&nbsp;Xóa</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!--Nội dung bình luận-->
-                                <div class="card card-body bg-light">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum dolore quibusdam
-                                    harum odio doloribus sequi ut quas aspernatur minima commodi odit deleniti
-                                    veritatis, veniam placeat voluptatum dicta. Saepe, fuga tempore.
-                                </div>
-                                <!--End Nội dung bình luận-->
-
-                                <div class="clearfix">
-                                    <div class="float-right mt-2 pr-2">
-                                        <a class="btn btn-default btn-sm btn-hidden-comment" href="#" role="button">
-                                            <span class="fas fa-eye-slash">&nbsp;Ẩn</span>
-                                        </a>
-                                        <a class="btn btn-sm btn-delete-comment" href="#" role="button">
-                                            <span class="fas fa-times">&nbsp;Xóa</span>
-                                        </a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
-                        <!--end Hàng chứa nội dung bình luận-->
+                        <!--End hàng chứa nội dung bình luận-->
 
                         <!--Hàng chứa nội dung bình luận-->
-
                         <div class="row row-comments">
-                            <div class="col-md-1 col-sm-2">
-                                <img class="rounded-circle img-avatar" src="./images/user_avatar.png">
-                            </div>
-
-                            <div class="col-md-11 col-sm-10">
-                                <div class="row">
-                                    <div class="col-md-9 col-sm-10">
-                                        <b>Lê Tường Qui</b>
-                                        <b>đã bình luận ở bài đăng</b>
-                                        <b>Cà chua sạch...</b>
-                                        <br>
-                                        <small>Hôm nay 4:10 pm - 12/04/2019</small>
+                            <div class="component-comment card d-flex flex-row align-items-stretch p-4 border-0">
+                                <div class="content-left">
+                                    <div class="img-avatar">
+                                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                            class="w-100 rounded-circle" alt="" />
                                     </div>
 
-                                    <div class="col-md-3 col-sm-2">
-                                        <div class="clearfix">
-                                            <div class="float-right">
-                                                Hôm nay
-                                            </div>
+                                    <p class="mt-3 mb-0 text-center font-weight-bold full-name">
+                                        Trần Khánh Linh
+                                    </p>
+
+                                    <p class="mt-0 text-center time-post-cmt">
+                                        một ngày trước
+                                    </p>
+                                </div>
+
+                                <div class="content-right">
+                                    <div class="d-inline-block mr-2 rate-star">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+
+                                    <span class="rate-text">Hài lòng</span>
+
+                                    <div class="prove-buy">
+                                        <i class="fas fa-check-circle mr-1"></i>
+                                        <span>Đã mua sản phẩm</span>
+                                    </div>
+
+                                    <p class="mt-2 mb-2 main-content">
+                                        Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
+                                        hơn vào bản thân mình hơn là những gì người khác nghĩ về
+                                        mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
+                                        trung hơn vào bản thân mình hơn là những gì người khác nghĩ
+                                        về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
+                                        tập trung hơn vào bản thân mình hơn là những gì người khác
+                                        nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
+                                        để tập trung hơn vào bản thân mình hơn là những gì người
+                                        khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
+                                        mình để tập trung hơn vào bản thân mình hơn là những gì
+                                        người khác nghĩ về mình.
+                                    </p>
+
+                                    <div class="clearfix">
+                                        <div class="float-right mt-2 pr-2">
+                                            <a class="btn btn-default btn-sm btn-hidden-comment" href="#" role="button">
+                                                <span class="fas fa-eye-slash">&nbsp;Ẩn</span>
+                                            </a>
+                                            <a class="btn btn-sm btn-delete-comment" href="#" role="button">
+                                                <span class="fas fa-times">&nbsp;Xóa</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!--Nội dung bình luận-->
-                                <div class="card card-body bg-light">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum dolore quibusdam
-                                    harum odio doloribus sequi ut quas aspernatur minima commodi odit deleniti
-                                    veritatis, veniam placeat voluptatum dicta. Saepe, fuga tempore.
-                                </div>
-                                <!--End Nội dung bình luận-->
-
-                                <div class="clearfix">
-                                    <div class="float-right mt-2 pr-2">
-                                        <a class="btn btn-default btn-sm btn-hidden-comment" href="#" role="button">
-                                            <span class="fas fa-eye-slash">&nbsp;Ẩn</span>
-                                        </a>
-                                        <a class="btn btn-sm btn-delete-comment" href="#" role="button">
-                                            <span class="fas fa-times">&nbsp;Xóa</span>
-                                        </a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
-                        <!--end Hàng chứa nội dung bình luận-->
+                        <!--End hàng chứa nội dung bình luận-->
 
-                        <!--Hàng chứa nội dung bình luận-->
 
-                        <div class="row row-comments">
-                            <div class="col-md-1 col-sm-2">
-                                <img class="rounded-circle img-avatar" src="./images/user_avatar.png">
-                            </div>
-
-                            <div class="col-md-11 col-sm-10">
-                                <div class="row">
-                                    <div class="col-md-9 col-sm-10">
-                                        <b>Lê Tường Qui</b>
-                                        <b>đã bình luận ở bài đăng</b>
-                                        <b>Cà chua sạch...</b>
-                                        <br>
-                                        <small>Hôm nay 4:10 pm - 12/04/2019</small>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-2">
-                                        <div class="clearfix">
-                                            <div class="float-right">
-                                                Hôm nay
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--Nội dung bình luận-->
-                                <div class="card card-body bg-light">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum dolore quibusdam
-                                    harum odio doloribus sequi ut quas aspernatur minima commodi odit deleniti
-                                    veritatis, veniam placeat voluptatum dicta. Saepe, fuga tempore.
-                                </div>
-                                <!--End Nội dung bình luận-->
-
-                                <div class="clearfix">
-                                    <div class="float-right mt-2 pr-2">
-                                        <a class="btn btn-default btn-sm btn-hidden-comment" href="#" role="button">
-                                            <span class="fas fa-eye-slash">&nbsp;Ẩn</span>
-                                        </a>
-                                        <a class="btn btn-sm btn-delete-comment" href="#" role="button">
-                                            <span class="fas fa-times">&nbsp;Xóa</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!--end Hàng chứa nội dung bình luận-->
-
-                        <!--Hàng chứa nội dung bình luận-->
-
-                        <div class="row row-comments">
-                            <div class="col-md-1 col-sm-2">
-                                <img class="rounded-circle img-avatar" src="./images/user_avatar.png">
-                            </div>
-
-                            <div class="col-md-11 col-sm-10">
-                                <div class="row">
-                                    <div class="col-md-9 col-sm-10">
-                                        <b>Lê Tường Qui</b>
-                                        <b>đã bình luận ở bài đăng</b>
-                                        <b>Cà chua sạch...</b>
-                                        <br>
-                                        <small>Hôm nay 4:10 pm - 12/04/2019</small>
-                                    </div>
-
-                                    <div class="col-md-3 col-sm-2">
-                                        <div class="clearfix">
-                                            <div class="float-right">
-                                                Hôm nay
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--Nội dung bình luận-->
-                                <div class="card card-body bg-light">
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum dolore quibusdam
-                                    harum odio doloribus sequi ut quas aspernatur minima commodi odit deleniti
-                                    veritatis, veniam placeat voluptatum dicta. Saepe, fuga tempore.
-                                </div>
-                                <!--End Nội dung bình luận-->
-
-                                <div class="clearfix">
-                                    <div class="float-right mt-2 pr-2">
-                                        <a class="btn btn-default btn-sm btn-hidden-comment" href="#" role="button">
-                                            <span class="fas fa-eye-slash">&nbsp;Ẩn</span>
-                                        </a>
-                                        <a class="btn btn-sm btn-delete-comment" href="#" role="button">
-                                            <span class="fas fa-times">&nbsp;Xóa</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!--end Hàng chứa nội dung bình luận-->
 
                         <hr>
 

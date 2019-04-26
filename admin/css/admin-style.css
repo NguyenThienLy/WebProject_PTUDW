@@ -1,0 +1,88 @@
+html, body {
+    color: #666;
+    font-family: "Quicksand", sans-serif;
+    background-color: #f3f3f4;
+    height: 100%;
+}
+
+#nav-header{
+    background-color: #fff;
+    border-bottom: 1px solid #e7eaec;
+    padding: 0;
+}
+
+
+#nav-header ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #676a6c;
+    float: right;
+}
+
+#nav-header ul li{
+    float: left;
+    margin-left: 0.9375rem;
+    padding: 1.0625rem 0.3125rem;
+}
+
+#nav-header ul .fas{
+    color: #676a6c;
+}
+
+#nav-header ul a{
+    text-decoration: none;
+}
+
+.label-message{
+    background-color: #1ab394;
+}
+
+#nav-header .logout:hover{
+    color: red;
+}
+
+#nav-header #header-search-field{
+    padding-top: 1.0625rem;
+    vertical-align:center;
+    border: none;
+    width: 18.75rem;
+    outline: none;
+}
+
+#nav-header .fixed-width{
+    width: 2.1875rem;
+}
+
+#nav-header ul .badge{
+    position: absolute;
+    margin-top: -0.625rem;
+    margin-left: -0.3125rem;
+}
+
+#admin-footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0rem;
+    background-color: #fff;
+    padding: 0.625rem;
+    font-size: 0.75rem;
+    color: #676a6c;
+}
+
+/*Thêm important để overight thuộc tính của chosen */
+.chosen-container, .chosen-container-multi{
+   width: 100% !important;
+}
+
+#dashboard-con{
+    padding-bottom: 6.25rem;
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+}
+
+
+
+
+
+
