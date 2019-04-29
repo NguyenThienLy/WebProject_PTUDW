@@ -47,10 +47,6 @@
   color: #666;
 }
 
-.component-intro-product .card-body {
-  font-size: 0.9rem !important;
-}
-
 .component-intro-product .card-body h5 {
   transition: 200ms;
 }
@@ -60,7 +56,6 @@
 }
 
 .component-intro-product .card-body .btn {
-  font-size: 0.8rem;
   transition: 200ms;
 }
 /* component intro-product */

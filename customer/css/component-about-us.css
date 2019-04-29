@@ -3,10 +3,9 @@
     overflow: hidden;
     height: 12rem; 
     background-image: url(http://www.backgroundppt.com/wp-content/uploads/2019/01/citrus-fruit-1-1024x576.jpg);
-     background-repeat: no-repeat; 
+    background-repeat: no-repeat; 
     background-size: cover;
-     background-position: center;
-  
+    background-position: center;
   }
   
   .component-about-us:hover > .overlay {
@@ -38,7 +37,7 @@
     left: 101%;
     transition: transform 300ms;
     border: 1px solid #FFF; 
-    width: 16rem;
+    width: 12rem;
   }
   
   .component-about-us:hover .item2 {
@@ -51,7 +50,7 @@
     right: 101%;
     transition: transform 300ms;
     border: 1px solid #FFF; 
-    width: 16rem;
+    width: 12rem;
   }
   
   .component-about-us:hover .item3 {

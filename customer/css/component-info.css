@@ -7,7 +7,7 @@
 }
 
 .component-info-big {
-  height: 53.5rem;
+  height: 20rem;
 }
 
 .component-info-small .card-img-top {
@@ -42,18 +42,19 @@
 
 .component-info-small .card-body > a {
   text-decoration: none;
-  font-size: 1.15rem;
   font-weight: bold;
   transition: 200ms;
+  font-size: 0.8rem;
 }
 
 .component-info-small .card-body > p {
-  font-size: 1rem;
   color: #6d6b6a;
+  font-size: 0.8rem;
 }
 
 .component-info-small .title {
   color: #000;
+  font-size: 0.8rem;
 }
 
 .component-info-small .title:hover {

@@ -1,7 +1,12 @@
 body {
   color: #666;
   font-family: "Quicksand", sans-serif;
+  width: 100% !important;
 }
+
+html { 
+  font-size: 16px !important;
+} 
 
 #span-show-cart {
   font-size: 2em; 

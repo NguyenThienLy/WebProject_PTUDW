@@ -32,6 +32,7 @@
   
   .component-product-combo .title {
     color: #000;
+    font-size: 0.8rem;
   }
   
   .component-product-combo .title:hover {
@@ -44,7 +45,6 @@
     width: 2rem;
     height: 2rem;
     cursor: pointer;
-    font-size: 0.8rem;
     transition: 200ms;
     z-index: 1;
     text-decoration: none;
@@ -66,10 +66,6 @@
     color: #fff;
   }
   
-  .component-product-combo .card-body {
-    font-size: .9rem;
-  }
-  
   .component-product-combo .card-body > a {
     text-decoration: none;
     transition: 200ms;
@@ -77,10 +73,12 @@
   
   .component-product-combo .card-body .price-sale span {
     color: #99cc00;
+    font-size: 0.8rem;
   }
   
   .component-product-combo .card-body .price-old del {
     color: #6D6B6A;
+    font-size: 0.8rem;
   }
   
   .component-product-combo:hover .overlay {
