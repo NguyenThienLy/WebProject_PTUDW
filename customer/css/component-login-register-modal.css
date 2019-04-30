@@ -1,6 +1,6 @@
 .component-login-register-modal .modal-body {
 	background-color: #F4F4F4; 
-	height: 600px;
+	height: 37.5rem;
 }
 
 .component-login-register-modal .modal-body .btn-close {
@@ -11,7 +11,7 @@
 }
 
 .component-login-register-modal .modal-body .content-left {
-	width: 360px;
+	width: 22.5rem;
 	background-color:rgb(194, 228, 139);
 }
 
@@ -20,9 +20,9 @@
 }
 
 .component-login-register-modal .modal-body .content-right {
-	width: calc(100% - 420px); 
-	height: calc(100% - 15px); 
-	margin: 15px; 
+	width: calc(100% - 26.25rem); 
+	height: calc(100% - 1rem); 
+	margin: 1rem; 
 	overflow: hidden; 
 	background-color: #FFF;
 }
@@ -33,23 +33,23 @@
 
 .component-login-register-modal .modal-body .content-right .nav-tabs .nav-item.show .nav-link, 
 .component-login-register-modal .modal-body .content-right .nav-tabs .nav-link.active {
-	color: dodgerblue;
-	border-bottom: 3px solid dodgerblue;
+	color: #99cc00;
+	border-bottom: 0.1875rem solid #99cc00;
 }
 
 .component-login-register-modal .modal-body .content-right .nav-tabs .nav-link {
 	border: none;
-	border-bottom: 1px solid #dee2e6;
+	border-bottom: 0.0625rem solid #dee2e6;
 	transition: 200ms;
 }
 
 .component-login-register-modal .modal-body .content-right .nav-tabs .nav-link:hover {
-	border-bottom: 3px solid dodgerblue;
-	color: dodgerblue;
+	border-bottom: 0.1875rem solid #99cc00;
+	color: #99cc00;
 }
 
 .component-login-register-modal .modal-body .content-right .tab-content .tab-pane form {
-	font-size: .8rem;
+	font-size: 1em;
 }
 
 

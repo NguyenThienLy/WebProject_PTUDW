@@ -1,5 +1,5 @@
 let id = 0;
-$('#carouselExampleCaptions').on('slide.bs.carousel', function (ev) {
+$('#carousel-promotion').on('slide.bs.carousel', function (ev) {
     id = $(this).find('.active').index();
     changeEffect();
 });

@@ -14,6 +14,17 @@
     top: 86% !important;
   }
   /* info */
+
+  /*component info detail*/
+  .component-info-detail > div {
+    width: 80%;
+  }
+
+  .component-info-detail .image-note > div {
+    height: 5%;  
+    top: 95%; 
+  }
+  /*component info detail*/
 }
 
 /* Từ lg nhảy sang xl */
@@ -33,6 +44,17 @@
     top: 86% !important;
   }
   /* info */
+
+  /*component info detail*/
+  .component-info-detail > div {
+    width: 80%;
+  }
+
+  .component-info-detail .image-note > div {
+    height: 5%;  
+    top: 95%; 
+  }
+  /*component info detail*/
 }
 
 /* Từ md nhảy sang lg */
@@ -52,6 +74,17 @@
     top: 86% !important;
   }
   /* info */
+
+  /*component info detail*/
+  .component-info-detail > div {
+    width: 100%;
+  }
+
+  .component-info-detail .image-note > div {
+    height: 5%;  
+    top: 95%; 
+  }
+  /*component info detail*/
 }
 
 /* Từ sm nhảy sang md */
@@ -71,6 +104,17 @@
     top: 86% !important;
   }
   /* info */
+  
+  /*component info detail*/
+  .component-info-detail > div {
+    width: 100%;
+  }
+
+  .component-info-detail .image-note > div {
+    height: 10%;  
+    top: 90%; 
+  }
+  /*component info detail*/
 }
 
 /* Từ xm nhảy sang sm */
@@ -90,4 +134,15 @@
     top: 86% !important;
   }
   /* info */
+
+  /*component info detail*/
+  .component-info-detail > div {
+    width: 100%;
+  }
+
+  .component-info-detail .image-note > div {
+    height: 12%;  
+    top: 88%; 
+  }
+  /*component info detail*/
 }

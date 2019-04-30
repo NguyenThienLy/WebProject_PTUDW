@@ -1,65 +1,80 @@
-.carousel-inner > .carousel-item > img {
-    height: 30rem;
-    margin: auto;
+.header-carousel .carousel-indicators > li {
+	background-color: #AAA;
 }
 
-.carousel-caption h5 {
-font-size: 50px;
+.header-carousel .carousel-inner .carousel-item > img {
+	height: 30rem;
+	margin: auto;
 }
 
-.carousel .item3 {
-animation-name: ani3;
-animation-duration: 6s;
-animation-fill-mode: both;
-animation-iteration-count: 1;
-animation-timing-function: ease-in-out;
-}
-
-@keyframes ani3 {
-from {
-opacity: 0;
--webkit-transform: translate3d(-50px, 0, 0);
-transform: translate3d(-50px, 0, 0);
-}
-
-20%, 80% {
-opacity: 1;
--webkit-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0);
-}
-
-to {
-opacity: 0;
--webkit-transform: translate3d(-50px, 0, 0);
-transform: translate3d(-50px, 0, 0);
-}
-}
-
-.carousel .item4 {
-animation-name: ani4;
-animation-duration: 6s;
-animation-fill-mode: both;
-animation-iteration-count: 1;
-animation-timing-function: ease-in-out;
+.header-carousel .carousel-inner .carousel-item .carousel-caption {
+	color: #99cc00;
 }
 
 
-@keyframes ani4 {
-from {
--webkit-transform: translate3d(0, 100%, 0);
-transform: translate3d(0, 100%, 0);
-opacity: 0;
+.header-carousel .carousel-inner .carousel-item:nth-child(1) .carousel-caption {
+	bottom: 60%;
 }
 
-20%, 80% {
-opacity: 1;
--webkit-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0);
+.header-carousel .carousel-inner .carousel-item:nth-child(2) .carousel-caption,
+.header-carousel .carousel-inner .carousel-item:nth-child(3) .carousel-caption {
+	bottom: 4%;
+	left: 20%;
 }
 
-to {
-opacity: 0;
--webkit-transform: translate3d(0, 100%, 0);
-transform: translate3d(0, 100%, 0);
+.header-carousel .carousel .item1 {
+	animation-name: ani1;
+	animation-duration: 6s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
 }
+
+@keyframes ani1 {
+	from {
+		opacity: 0;
+		-webkit-transform: translate3d(-50px, 0, 0);
+		transform: translate3d(-50px, 0, 0);
+	}
+
+	20%, 80% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(-50px, 0, 0);
+		transform: translate3d(-50px, 0, 0);
+	}
+}
+
+.header-carousel .carousel .item2 {
+	animation-name: ani2;
+	animation-duration: 6s;
+	animation-fill-mode: both;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+}
+
+
+@keyframes ani2 {
+	from {
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+		opacity: 0;
+	}
+
+	20%, 80% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+	}
 }

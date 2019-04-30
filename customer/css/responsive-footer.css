@@ -1,0 +1,199 @@
+/* trên extra lg*/
+@media only screen and (max-width: 2000px) {
+	.component-get-email > div i {
+		/*font-size: 3em;*/
+	}
+
+	.component-get-email > div .title {
+		/*font-size: 1.5em;*/
+	}
+
+	.component-get-email > div .content, 
+	.component-get-email div:nth-child(1) form input, 
+	.component-get-email div:nth-child(1) form button, 
+	.component-get-email .form-get-email input,
+	.component-get-email .form-get-email button {
+		/*font-size: 1.2em;*/
+	}
+
+	.component-get-email div:nth-child(1) form {
+		display: block;
+	}
+
+	.component-get-email .form-get-email {
+		display: none;
+	}
+
+	.component-footer .row .column-footer-2, .component-footer .row .column-footer-3, 
+	.component-footer .row .column-footer-4 {
+		display: block;
+	} 
+
+	.component-footer .accordion {
+		display: none;
+	}
+
+	.component-footer {
+		/*font-size: 1.2em;*/
+	}
+}
+
+/* Từ lg nhảy sang extra lg*/
+@media only screen and (max-width: 1200px) {  
+	.component-get-email > div i {
+		/*font-size: 2.5em;*/
+	}
+
+	.component-get-email > div .title {
+		/*font-size: 1.2em;*/
+	}
+
+	.component-get-email > div .content, 
+	.component-get-email div:nth-child(1) form input, 
+	.component-get-email div:nth-child(1) form button, 
+	.component-get-email .form-get-email input,
+	.component-get-email .form-get-email button {
+		/*font-size: 0.9em;*/
+	}
+
+	.component-get-email div:nth-child(1) form {
+		display: block;
+	}
+
+	.component-get-email .form-get-email {
+		display: none;
+	}
+
+	.component-footer .row .column-footer-2, .component-footer .row .column-footer-3, 
+	.component-footer .row .column-footer-4 {
+		display: block;
+	} 
+
+	.component-footer .accordion {
+		display: none;
+	}
+
+	.component-footer {
+		/*font-size: 0.9em;*/
+	}
+}
+
+/* Từ md nhảy sang lg */
+@media only screen and (max-width: 992px) {
+	.component-get-email > div i {
+		/*font-size: 2.5em;*/
+	}
+
+	.component-get-email > div .title {
+		/*font-size: 1.3em;*/
+	}
+
+	.component-get-email > div .content, 
+	.component-get-email div:nth-child(1) form input, 
+	.component-get-email div:nth-child(1) form button, 
+	.component-get-email .form-get-email input,
+	.component-get-email .form-get-email button {
+		/*font-size: 1em;*/
+	}
+
+	.component-get-email div:nth-child(1) form {
+		display: block;
+	}
+
+	.component-get-email .form-get-email {
+		display: none;
+	}
+
+	.component-footer .row .column-footer-2, .component-footer .row .column-footer-3, 
+	.component-footer .row .column-footer-4 {
+		display: none;
+	} 
+
+	.component-footer .accordion {
+		display: block;
+	}
+
+	.component-footer {
+		/*font-size: 1em;*/
+	}
+}
+
+/* Từ sm nhảy sang md*/
+@media only screen and (max-width: 768px) {
+	.component-get-email > div i {
+		/*font-size: 3em;*/
+	}
+
+	.component-get-email > div .title {
+		/*font-size: 1.3em;*/
+	}
+
+	.component-get-email > div .content, 
+	.component-get-email div:nth-child(1) form input, 
+	.component-get-email div:nth-child(1) form button, 
+	.component-get-email .form-get-email input,
+	.component-get-email .form-get-email button {
+		/*font-size: 1em;*/
+	}
+
+	.component-get-email div:nth-child(1) form {
+		display: none;
+	}
+
+	.component-get-email .form-get-email {
+		display: inherit;
+	}
+
+	.component-footer .row .column-footer-2, .component-footer .row .column-footer-3, 
+	.component-footer .row .column-footer-4 {
+		display: none;
+	} 
+
+	.component-footer .accordion {
+		display: block;
+	}
+
+	.component-footer {
+		/*font-size: 1em;*/
+	}
+}
+
+/* Từ extra sm nhảy sang sm */
+@media only screen and (max-width: 576px) {
+	.component-get-email > div i {
+		/*font-size: 3em;*/
+	}
+
+	.component-get-email > div .title {
+		/*font-size: 1.3em;*/
+	}
+
+	.component-get-email > div .content, 
+	.component-get-email div:nth-child(1) form input, 
+	.component-get-email div:nth-child(1) form button, 
+	.component-get-email .form-get-email input,
+	.component-get-email .form-get-email button {
+		/*font-size: 1em;*/
+	}
+
+	.component-get-email div:nth-child(1) form {
+		display: none;
+	}
+
+	.component-get-email .form-get-email {
+		display: inherit;
+	}
+
+	.component-footer .row .column-footer-2, .component-footer .row .column-footer-3, 
+	.component-footer .row .column-footer-4 {
+		display: none;
+	} 
+
+	.component-footer .accordion {
+		display: block;
+	}
+
+	.component-footer {
+		/*font-size: 1em;*/
+	}
+}

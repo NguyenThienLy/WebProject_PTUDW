@@ -1,0 +1,52 @@
+.component-footer {
+	font-size: 1rem;
+}
+
+.component-footer .row .column-footer-1 .logo-footer {
+	background-image: url('https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466');
+	background-repeat: no-repeat;
+	background-size: contain; 
+	height: 4rem;
+}
+
+
+.component-footer .row .column-footer-2 > p, .component-footer .row .column-footer-3 > p,
+.component-footer .row .column-footer-4 > p {
+	margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.component-footer .row .column-footer-2 ul, .component-footer .row .column-footer-3 ul,
+.component-footer .row .column-footer-4 ul {
+	margin-top: 2rem;
+} 
+
+.component-footer .accordion {
+	display: none;
+}
+
+.component-footer .accordion .card {
+	background-color: transparent;
+}
+
+.component-footer .accordion .footer-accordion-header-1 button, 
+.component-footer .accordion .footer-accordion-header-2 button,
+.component-footer .accordion .footer-accordion-header-3 button {
+	color: #666;
+}
+
+.component-footer .accordion .footer-accordion-header-1 i, 
+.component-footer .accordion .footer-accordion-header-2 i,
+.component-footer .accordion .footer-accordion-header-3 i {
+	transition: 500ms;
+}
+
+.component-footer .accordion .transform-down {
+	transform: translateY(-2px) rotate(-90deg);
+}
+
+.component-footer .accordion .transform-left {
+	transform: translateY(2px) rotate(0deg);
+}
+

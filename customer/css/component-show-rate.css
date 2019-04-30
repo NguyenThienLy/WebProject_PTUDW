@@ -9,6 +9,11 @@
 	border-right: 1px solid #f4f4f4;
 }
 
+.component-show-rate .content-left > p:nth-child(1),  
+.component-show-rate .content-right > p:nth-child(1){
+	display: block;
+}
+
 .component-show-rate .content-left .avg-rate {
 	font-size: 2rem; 
 	color: red;
@@ -24,17 +29,18 @@
 }
 
 .component-show-rate .content-left .review {
-	font-size: .8rem; 
+	font-size: 0.8rem; 
 	color: #848484;
 }
 
 .component-show-rate .content-center .star-percent {
 	font-size: .8rem;
+	width: 60%;
 }
 
 .component-show-rate .content-center .star-percent .progress {
 	height: .5rem; 
-	width: 45%;
+	width: 70%;
 }
 
 .component-show-rate .content-center .star-percent .percent {
@@ -68,26 +74,13 @@
 }
 
 .component-show-rate .content-right > button {
-	font-size: .8rem; 
-	width: 85%;
+	font-size: 1rem;
 }
 
 .collapse-show-rate .comment {
 	border-left: 1px solid #f4f4f4; 
 	border-right: 1px solid #f4f4f4; 
 	border-bottom: 1px solid #f4f4f4;
-}
-
-.collapse-show-rate .comment form textarea {
-	resize: none;
-	font-size: .9rem;
-}
-
-.collapse-show-rate .comment button {
-	font-size: .8rem; 
-	width: 12rem; 
-	right: 20px; 
-	bottom: 20px;
 }
 
 .collapse-show-rate .comment .rate {
@@ -102,11 +95,12 @@
 
 .collapse-show-rate .comment .rate:not(:checked) > label {
 	float: right;
-	width: 1em;
+	margin-right: 0.3rem;
+	margin-bottom: 0;
 	overflow: hidden;
 	white-space: nowrap;
 	cursor: pointer;
-	font-size: 30px;
+	font-size: 1.5rem;
 	color: #ccc;
 }
 
@@ -130,4 +124,19 @@
 .collapse-show-rate .comment .rate > input:checked ~ label:hover ~ label,
 .collapse-show-rate .comment .rate > label:hover ~ input:checked ~ label {
 	color: #c59b08;
+}
+
+.collapse-show-rate .comment > form textarea {
+	resize: none;
+	font-size: 0.9rem;
+}
+
+.collapse-show-rate .comment > form input {
+	font-size: 0.9rem;
+} 
+
+.collapse-show-rate .comment > button {
+	font-size: 1rem; 
+	margin-left: 70%;
+	width: 30%;
 }

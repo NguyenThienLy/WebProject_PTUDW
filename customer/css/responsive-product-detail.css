@@ -32,6 +32,129 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+  /*-------------------------------------------------------------------------------*/
+
+  /*component product detail*/
+  .component-product-detail > nav, .component-product-detail > .tab-content {
+    display: block;
+  }
+
+  .component-product-detail .accordion {
+    display: none;
+  }
+  /*component product detail*/
+  
+  /*component show rate*/
+  .component-show-rate .content-left > p:nth-child(1),  
+  .component-show-rate .content-right > p:nth-child(1){
+    display: block;
+  }
+
+  .component-show-rate .content-left .avg-rate {
+    /*font-size: 2rem;*/
+  }
+
+  .component-show-rate .content-left .star-rate {
+    /*font-size: 1.2rem;*/
+  }
+
+  .component-show-rate .content-left .review {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-show-rate .content-center .star-percent {
+    /*font-size: 0.9rem;*/
+    width: 60%;
+  }
+
+  .component-show-rate .content-center  {
+    border-right: 1px solid #f4f4f4;
+  }
+
+  .component-show-rate .content-right > p {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-show-rate .content-right > button {
+    /*font-size: 1.2rem;*/
+  }
+
+  .collapse-show-rate .comment > form textarea {
+    /*font-size: 1rem;*/
+  }
+
+  .collapse-show-rate .comment > form input {
+    /*font-size: 1rem;*/
+  } 
+
+  .collapse-show-rate .comment > button {
+    /*font-size: 1.2rem;*/
+  }
+  /*component show rate*/
+
+  /*component comment*/
+  .component-comment .content-left {
+    display: block;
+  }
+
+  .component-comment .content-top {
+    display: none !important;
+  }
+
+  .component-comment .content-left .time-post-comment {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-comment .content-top .time-post-comment {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .rate-star {
+    /*font-size: 1.2rem;*/
+  }
+
+  .component-comment .content-right .rate-text {
+    /*font-size: 1.3rem;*/
+  }
+
+  .component-comment .content-right .prove-buy {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .main-content {
+    /*font-size: 1.2rem;*/
+  }
+
+  .component-comment .content-right .interactive-customer {
+    width: 70%;
+  }
+
+  .component-comment .content-right .interactive-customer > a,
+  .component-comment .content-right .interactive-customer > span, 
+  .component-comment .content-right .interactive-customer > button {
+    /*font-size: 1rem; */
+  }
+  /*component comment*/
+  
+  /*product detail intro*/
+  .product-detail-intro .product-detail-intro-right {
+    padding-top: 0;
+    padding-left: 2rem;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart {
+    text-align: left;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > div {
+    justify-content: flex-start;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > button {
+    width: auto;
+  }
+  /*product detail intro*/
 }
 
 /* Từ lg nhảy sang xl */
@@ -69,6 +192,128 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+  /*-------------------------------------------------------------------------------*/
+  /*component product detail*/
+  .component-product-detail > nav, .component-product-detail > .tab-content {
+    display: block;
+  }
+
+  .component-product-detail .accordion {
+    display: none;
+  }
+  /*component product detail*/
+
+  /*component show rate*/
+  .component-show-rate .content-left > p:nth-child(1),  
+  .component-show-rate .content-right > p:nth-child(1){
+    display: block;
+  }
+
+  .component-show-rate .content-left .avg-rate {
+    /*font-size: 2rem;*/
+  }
+
+  .component-show-rate .content-left .star-rate {
+    /*font-size: 1rem;*/
+  }
+
+  .component-show-rate .content-left .review {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-show-rate .content-center .star-percent {
+    /*font-size: 0.8rem;*/
+    width: 60%;
+  }
+
+  .component-show-rate .content-center  {
+    border-right: 1px solid #f4f4f4;
+  }
+
+  .component-show-rate .content-right > p {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-show-rate .content-right > button {
+    /*font-size: 1rem;*/
+  }
+
+  .collapse-show-rate .comment > form textarea {
+    /*font-size: 0.9rem;*/
+  }
+
+  .collapse-show-rate .comment > form input {
+    /*font-size: 0.9rem;*/
+  } 
+
+  .collapse-show-rate .comment > button {
+    /*font-size: 1rem;*/
+  }
+  /*component show rate*/
+  
+  /*component comment*/
+  .component-comment .content-left {
+    display: block;
+  }
+
+  .component-comment .content-top {
+    display: none !important;
+  }
+
+  .component-comment .content-left .time-post-comment {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-comment .content-top .time-post-comment {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .rate-star {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .rate-text {
+    /*font-size: 1.2rem;*/
+  }
+
+  .component-comment .content-right .prove-buy {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .main-content {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .interactive-customer {
+    width: 70%;
+  }
+
+  .component-comment .content-right .interactive-customer > a,
+  .component-comment .content-right .interactive-customer > span, 
+  .component-comment .content-right .interactive-customer > button {
+    /*font-size: 0.9rem; */
+  }
+  /*component comment*/
+  
+  /*product detail intro*/
+  .product-detail-intro .product-detail-intro-right {
+    padding-top: 0;
+    padding-left: 2rem;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart {
+    text-align: left;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > div {
+    justify-content: flex-start;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > button {
+    width: auto;
+  }
+  /*product detail intro*/
 }
 
 /* Từ md nhảy sang lg */
@@ -106,6 +351,128 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+  /*-------------------------------------------------------------------------------*/
+  /*component product detail*/
+  .component-product-detail > nav, .component-product-detail > .tab-content {
+    display: block;
+  }
+
+  .component-product-detail .accordion {
+    display: none;
+  }
+  /*component product detail*/
+  
+  /*component show rate*/
+  .component-show-rate .content-left > p:nth-child(1),  
+  .component-show-rate .content-right > p:nth-child(1){
+    display: none;
+  }
+
+  .component-show-rate .content-left .avg-rate {
+    /*font-size: 2rem;*/
+  }
+
+  .component-show-rate .content-left .star-rate {
+    /*font-size: 1rem;*/
+  }
+
+  .component-show-rate .content-left .review {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-show-rate .content-center .star-percent {
+    /*font-size: 0.8rem;*/
+    width: 90%;
+  }
+
+  .component-show-rate .content-center  {
+    border-right: 1px solid #f4f4f4;
+  }
+
+  .component-show-rate .content-right > p {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-show-rate .content-right > button {
+    /*font-size: 1rem;*/
+  }
+
+  .collapse-show-rate .comment > form textarea {
+    /*font-size: 0.9rem;*/
+  }
+
+  .collapse-show-rate .comment > form input {
+    /*font-size: 0.9rem;*/
+  } 
+
+  .collapse-show-rate .comment > button {
+    /*font-size: 1rem;*/
+  }
+  /*component show rate*/
+
+  /*component comment*/
+  .component-comment .content-left {
+    display: block;
+  }
+
+  .component-comment .content-top {
+    display: none !important;
+  }
+
+  .component-comment .content-left .time-post-comment {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-comment .content-top .time-post-comment {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .rate-star {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .rate-text {
+    /*font-size: 1.2rem;*/
+  }
+
+  .component-comment .content-right .prove-buy {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .main-content {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .interactive-customer {
+    width: 100%;
+  }
+
+  .component-comment .content-right .interactive-customer > a,
+  .component-comment .content-right .interactive-customer > span, 
+  .component-comment .content-right .interactive-customer > button {
+    /*font-size: 0.9rem; */
+  }
+  /*component comment*/
+  
+  /*product detail intro*/
+  .product-detail-intro .product-detail-intro-right {
+    padding-top: 3rem;
+    padding-left: 0;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart {
+    text-align: left;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > div {
+    justify-content: flex-start;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > button {
+    width: auto;
+  }
+  /*product detail intro*/
 }
 
 /* Từ sm nhảy sang md */
@@ -147,6 +514,128 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+  /*-------------------------------------------------------------------------------*/
+  /*component product detail*/
+  .component-product-detail > nav, .component-product-detail > .tab-content {
+    display: none;
+  }
+
+  .component-product-detail .accordion {
+    display: block;
+  }
+  /*component product detail*/
+
+  /*component show rate*/
+  .component-show-rate .content-left > p:nth-child(1),  
+  .component-show-rate .content-right > p:nth-child(1){
+    display: none;
+  }
+
+  .component-show-rate .content-left .avg-rate {
+    /*font-size: 2rem;*/
+  }
+
+  .component-show-rate .content-left .star-rate {
+    /*font-size: 1rem;*/
+  }
+
+  .component-show-rate .content-left .review {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-show-rate .content-center .star-percent {
+    /*font-size: .8rem;*/
+    width: 90%;
+  }
+
+  .component-show-rate .content-center  {
+    border-right: none;
+  }
+
+  .component-show-rate .content-right > p {
+    /*font-size: .8rem;*/
+  }
+
+  .component-show-rate .content-right > button {
+    /*font-size: 1rem;*/
+  }
+
+  .collapse-show-rate .comment > form textarea {
+    /*font-size: 0.9rem;*/
+  }
+
+  .collapse-show-rate .comment > form input {
+    /*font-size: 0.9rem;*/
+  } 
+
+  .collapse-show-rate .comment > button {
+    /*font-size: 1rem;*/
+  }
+  /*component show rate*/
+  
+  /*component comment*/
+  .component-comment .content-left {
+    display: none;
+  }
+
+  .component-comment .content-top {
+    display: block !important;
+  }
+
+  .component-comment .content-left .time-post-comment {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-comment .content-top .time-post-comment {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .rate-star {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .rate-text {
+    /*font-size: 1.2rem;*/
+  }
+
+  .component-comment .content-right .prove-buy {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .main-content {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .interactive-customer {
+    width: 100%;
+  }
+
+  .component-comment .content-right .interactive-customer > a,
+  .component-comment .content-right .interactive-customer > span, 
+  .component-comment .content-right .interactive-customer > button {
+    /*font-size: 0.9rem; */
+  }
+  /*component comment*/
+
+  /*product detail intro*/
+  .product-detail-intro .product-detail-intro-right {
+    padding-top: 3rem;
+    padding-left: 0;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart {
+    text-align: center;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > div {
+    justify-content: center;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > button {
+    width: 100%;
+  }
+  /*product detail intro*/
 }
 
 /* Từ xm nhảy sang sm */
@@ -192,4 +681,126 @@
     margin-left: 0.4rem !important;
   }
   /* product combo */
+
+  /*-------------------------------------------------------------------------------*/
+  /*component product detail*/
+  .component-product-detail > nav, .component-product-detail > .tab-content {
+    display: none;
+  }
+
+  .component-product-detail .accordion {
+    display: block;
+  }
+  /*component product detail*/
+  
+  /*component show rate*/
+  .component-show-rate .content-left > p:nth-child(1),  
+  .component-show-rate .content-right > p:nth-child(1){
+    display: none;
+  }
+
+  .component-show-rate .content-left .avg-rate {
+    /*font-size: 2rem;*/
+  }
+
+  .component-show-rate .content-left .star-rate {
+    /*font-size: 1rem;*/
+  }
+
+  .component-show-rate .content-left .review {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-show-rate .content-center .star-percent {
+    /*font-size: .8rem;*/
+    width: 90%;
+  }
+
+  .component-show-rate .content-center  {
+    border-right: none;
+  }
+
+  .component-show-rate .content-right > p {
+    /*font-size: .8rem;*/
+  }
+
+  .component-show-rate .content-right > button {
+    /*font-size: 1rem;*/
+  }
+
+  .collapse-show-rate .comment > form textarea {
+    /*font-size: 0.9rem;*/
+  }
+
+  .collapse-show-rate .comment > form input {
+    /*font-size: 0.9rem;*/
+  } 
+
+  .collapse-show-rate .comment > button {
+    /*font-size: 1rem;*/
+  }
+  /*component show rate*/
+
+  /*component comment*/
+  .component-comment .content-left {
+    display: none;
+  }
+
+  .component-comment .content-top {
+    display: block !important;
+  }
+
+  .component-comment .content-left .time-post-comment {
+    /*font-size: 0.8rem;*/
+  }
+
+  .component-comment .content-top .time-post-comment {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .rate-star {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .rate-text {
+    /*font-size: 1.2rem;*/
+  }
+
+  .component-comment .content-right .prove-buy {
+    /*font-size: 0.9rem;*/
+  }
+
+  .component-comment .content-right .main-content {
+    /*font-size: 1rem;*/
+  }
+
+  .component-comment .content-right .interactive-customer {
+    width: 100%;
+  }
+
+  .component-comment .content-right .interactive-customer > a,
+  .component-comment .content-right .interactive-customer > span, 
+  .component-comment .content-right .interactive-customer > button {
+    /*font-size: 0.9rem; */
+  }
+  /*component comment*/
+
+  /*product detail intro*/
+  .product-detail-intro .product-detail-intro-right {
+    padding-top: 3rem;
+    padding-left: 0;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart {
+    text-align: center;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > div {
+    justify-content: center;
+  }
+
+  .product-detail-intro .product-detail-intro-right .add-to-cart > button {
+    width: 100%;
+  }
+  /*product detail intro*/
 }
