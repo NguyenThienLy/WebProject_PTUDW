@@ -32,18 +32,6 @@
     margin-bottom: 1rem;
   }
   /* product combo */
-
-  /* info */
-  .component-info-small {
-    height: 28rem;
-    width: 100% !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
 }
 
 /* Từ lg nhảy sang xl */
@@ -81,18 +69,6 @@
     margin-bottom: 1rem;
   }
   /* product combo */
-
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
 }
 
 /* Từ md nhảy sang lg */
@@ -130,18 +106,6 @@
     margin-bottom: 1rem;
   }
   /* product combo */
-
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
 }
 
 /* Từ sm nhảy sang md */
@@ -183,18 +147,6 @@
     margin-bottom: 1rem;
   }
   /* product combo */
-
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
 }
 
 /* Từ xm nhảy sang sm */
@@ -240,16 +192,4 @@
     margin-left: 0.4rem !important;
   }
   /* product combo */
-
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
 }

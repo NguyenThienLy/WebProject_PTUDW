@@ -19,7 +19,7 @@
 
 .component-product-simple .title {
   color: #000;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .component-product-simple .title:hover {
@@ -75,16 +75,16 @@
 
 .component-product-simple .card-body .price-sale span {
   color: #99cc00;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .component-product-simple .card-body .price-sale u {
   color: #99cc00;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .component-product-simple .card-body .price-old del {
   color: #6d6b6a;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 /* component product-simple */

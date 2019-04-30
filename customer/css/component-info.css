@@ -24,7 +24,7 @@
 }
 
 .component-info-small .card-img-top .info-info {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #6d6b6a;
   top: 83%;
   left: 0;
@@ -44,17 +44,17 @@
   text-decoration: none;
   font-weight: bold;
   transition: 200ms;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
 }
 
 .component-info-small .card-body > p {
   color: #6d6b6a;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .component-info-small .title {
   color: #000;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .component-info-small .title:hover {

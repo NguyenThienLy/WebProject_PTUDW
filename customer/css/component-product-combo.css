@@ -32,7 +32,7 @@
   
   .component-product-combo .title {
     color: #000;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   
   .component-product-combo .title:hover {
@@ -73,12 +73,12 @@
   
   .component-product-combo .card-body .price-sale span {
     color: #99cc00;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   
   .component-product-combo .card-body .price-old del {
     color: #6D6B6A;
-    font-size: 0.8rem;
+    font-size: 0.9em;
   }
   
   .component-product-combo:hover .overlay {

@@ -1,0 +1,93 @@
+@media only screen and (max-width: 2000px) {
+  html {
+    font-size: 16px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 28rem;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ lg nhảy sang xl */
+@media only screen and (max-width: 1200px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ md nhảy sang lg */
+@media only screen and (max-width: 992px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ sm nhảy sang md */
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ xm nhảy sang sm */
+@media only screen and (max-width: 576px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
