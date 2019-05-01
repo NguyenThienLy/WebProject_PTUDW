@@ -101,6 +101,9 @@ html, body {
     color: #fff;
 }
 
+.pagination > .page-item > .page-link {
+  color: #99cc00;
+}
 
 
 

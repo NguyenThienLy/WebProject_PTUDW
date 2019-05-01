@@ -1,61 +1,47 @@
 /* component comment */
+.component-comment .checked {
+  color: orange;
+}
 
-.component-comment {
-    border-radius: 1rem;
-  }
-  
-  .component-comment .content-left {
-    width: 15%;
-  }
-  
-  .component-comment .content-left .img-avatar {
-    padding: 0 2rem 0 2rem;
-  }
-  
-  .component-comment .content-left .full-name {
-    font-size: 1.1rem;
-  }
-  
-  .component-comment .content-left .time-post-cmt {
-    font-size: 0.8rem;
-  }
-  
-  .component-comment .content-right {
-    width: 85%;
-     margin-left: 5%;
-  }
-  
-  .component-comment .content-right .rate-star {
-    font-size: 1rem;
-     color: #6D6B6A;
-  }
-  
-  .component-comment .content-right .rate-text {
-    font-size: 1.3rem;
-  }
-  
-  .component-comment .content-right .prove-buy {
-    font-size: 0.9rem; 
-    color: #99cc00;
-  }
-  
-  .component-comment .content-right .main-content {
-    font-size: 1rem;
-  }
-  
-  .component-comment .content-right .interactive-customer > span {
-    font-size: 0.8rem; 
-  }
+.component-comment .content-left {
+  display: block;
+}
 
-  .component-comment .content-right .interactive-customer a {
-    font-size: 0.8rem; 
-  }
-  
-  .component-comment .content-right .interactive-customer > button {
-    font-size: 0.8rem; 
-  }
-  
-  .component-comment .checked {
-    color: orange;
-  }
-  /* component comment */
+.component-comment .content-top {
+  display: none;
+}
+
+.component-comment .content-left img {
+ border: 1px solid #f4f4f4;
+}
+
+.component-comment .content-left .img-avatar {
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+.component-comment .content-left .time-post-comment {
+  font-size: 0.8rem;
+}
+
+.component-comment .content-top .time-post-comment {
+  font-size: 0.9rem;
+}
+
+.component-comment .content-right .rate-star {
+  font-size: 1rem;
+  color: #6D6B6A;
+}
+
+.component-comment .content-right .rate-text {
+  font-size: 1.2rem;
+}
+
+.component-comment .content-right .prove-buy {
+  font-size: 0.9rem; 
+  color: #99cc00;
+}
+
+.component-comment .content-right .main-content {
+  font-size: 1rem;
+}
+/* component comment */

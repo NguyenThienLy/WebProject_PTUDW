@@ -1,33 +1,103 @@
 @media only screen and (max-width: 2000px) {
-    html {
-      font-size: 16px !important;
-    }
+  html {
+    font-size: 16px !important;
+  }
+
+  /*component comment*/
+  .component-comment .content-left {
+    display: block;
+  }
+
+  .component-comment .content-left .img-avatar {
+    padding: 0 1.8rem 0 1.8rem;
+  }
+
+  .component-comment .content-top {
+    display: none;
+  }
+  /*component comment*/
 }
 
 /* Từ lg nhảy sang xl */
-@media only screen and (max-width: 1200px) {
-    html {
-      font-size: 15px !important;
-    }
+@media only screen and (max-width: 1199px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /*component comment*/
+  .component-comment .content-left {
+    display: block;
+  }
+
+  .component-comment .content-left .img-avatar {
+    padding: 0 1.5rem 0 1.5rem;
+  }
+
+  .component-comment .content-top {
+    display: none;
+  }
+  /*component comment*/
 }
 
 /* Từ md nhảy sang lg */
-@media only screen and (max-width: 992px) {
-    html {
-      font-size: 15px !important;
-    }
+@media only screen and (max-width: 991px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /*component comment*/
+  .component-comment .content-left {
+    display: block;
+  }
+
+  .component-comment .content-left .img-avatar {
+    padding: 0 2.5rem 0 2.5rem;
+  }
+
+  .component-comment .content-top {
+    display: none;
+  }
+  /*component comment*/
 }
 
 /* Từ sm nhảy sang md */
-@media only screen and (max-width: 768px) {
-    html {
-      font-size: 14px !important;
-    }
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 14px !important;
+  }
+  
+  /*component comment*/
+  .component-comment .content-left {
+    display: none;
+  }
+
+  .component-comment .content-left .img-avatar {
+    padding: 0 1rem 0 1rem;
+  }
+
+  .component-comment .content-top {
+    display: block;
+  }
+  /*component comment*/
 }
 
 /* Từ xm nhảy sang sm */
-@media only screen and (max-width: 576px) {
-    html {
-      font-size: 14px !important;
-    }
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  /*component comment*/
+  .component-comment .content-left {
+    display: none;
+  }
+
+  .component-comment .content-left .img-avatar {
+    padding: 0 1rem 0 1rem;
+  }
+
+  .component-comment .content-top {
+    display: block;
+  }
+  /*component comment*/
 }
