@@ -81,6 +81,27 @@ html, body {
     margin-right: 0.9375rem;
 }
 
+.navbar-default{
+    background-color: #fff;
+}
+
+.navbar-default .navbar-toggler{
+    border-color: #1ab394;
+}
+
+.navbar-default .navbar-toggler span{
+    color: #1ab394;
+}
+
+.navbar-default .navbar-toggler:hover{
+    background-color: #1ab394;
+}
+
+.navbar-default .navbar-toggler:hover span{
+    color: #fff;
+}
+
+
 
 
 

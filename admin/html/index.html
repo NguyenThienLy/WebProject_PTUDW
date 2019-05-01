@@ -22,6 +22,12 @@
     <!--import page css-->
     <link rel="stylesheet" type="text/css" href="../css/report.css">
     <!--End import page css-->
+    <!--import reponsive-->
+    <link rel="stylesheet" type="text/css" href="../css/reponsive-index.css">
+    <!--End import reponsive-->
+    <!--import reponsive-->
+    <link rel="stylesheet" type="text/css" href="../css/reponsive-report.css">
+    <!--End import reponsive-->
     <!--import menu component-->
     <link rel="stylesheet" type="text/css" href="../css/component-menu-admin.css">
     <!--end import menu component-->
@@ -40,160 +46,166 @@
     <div class="container-fluid table h-100">
         <!--Chia ra từng hàng-->
         <div class="row table-row h-100">
-            <!--Thêm vào để text fixed-->
-            <div class="col-md-2 table-cell float-none align-top">
-
-            </div>
-            <!--End Thêm vào để text fixed-->
-
-
-            <!--slide menu-->
-            <div class="col-md-2 table-cell float-none align-top h-100 fixed-top" id="side-menu">
-                <h1>Trang quản trị</h1>
-                <ul>
-                    <li class="link">
-                        <a href="index.html" class="active">
-                            <span class="fas fa-home"></span>
-                            <span>Trang chủ</span>
-                        </a>
-                    </li>
-
-                    <li class="link">
-                        <a href="index.html">
-                            <span class="fas fa-users"></span>
-                            <span>Khách hàng</span>
-                        </a>
-                    </li>
-
-                    <li class="link">
-                        <a href="report.html">
-                            <span class="fas fa-chart-pie"></span>
-                            <span>Thống kê</span>
-                        </a>
-                    </li>
-
-                    <li class="link">
-                        <a href="order-list.html">
-                            <span class="fas fa-shopping-cart"></span>
-                            <span>Đơn hàng</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
-                        </a>
-                    </li>
-
-                    <!--Menu sản phẩm-->
-                    <!--collape-->
-                    <li class="link">
-                        <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
-                                <span class="fas fa-tags"></span>
-                                <span>Sản phẩm</span>
-                                <span class="badge badge-warning label-message float-right mr-1">20</span>
-                        </a> -->
-                        <a href="products.html">
-                            <span class="fas fa-tags"></span>
-                            <span>Sản phẩm</span>
-                            <span class="badge badge-warning label-message float-right mr-1">20</span>
-                        </a>
-                    </li>
-
-                    <!-- <ul class="collapse" id="collapse-post">
-                        <li class="link">
-                            <a href="index.html">
-
-                                <span>Danh sách sản phẩm</span>
-                            </a>
-                        </li>
-                        <li class="link">
-                            <a href="index.html">
-
-                                <span>Sản phẩm</span>
-                            </a>
-                        </li>
-                    </ul> -->
-
-                    <li class="link">
-                        <a href="add-product.html">
-                            <span class="fas fa-plus-circle"></span>
-                            <span>Thêm mới</span>
-                        </a>
-                    </li>
-
-                    <li class="link">
-                        <a href="new-posts.html">
-                            <span class="fas fa-file-alt"></span>
-                            <span>Thêm bài viết</span>
-                        </a>
-                    </li>
-
-                    <li class="link">
-                        <a href="articles.html">
-                            <span class="fas fa-stream"></span>
-                            <span>Danh sách bài viết</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
-                        </a>
-                    </li>
-
-                    <li class="link">
-                        <a href="comments.html">
-                            <span class="fas fa-comment"></span>
-                            <span>Quản lý bình luận</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
-                        </a>
-                    </li>
-
-                    <li class="link">
-                        <a href="index.html">
-                            <span class="fas fa-user"></span>
-                            <span>Nhân viên</span>
-                        </a>
-                    </li>
-
-                    <li class="link ads-button">
-                        <a href="index.html">
-                            <span class="fas fa-ad"></span>
-                            <span>Khuyến mãi</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!--End slide menu-->
-
-            <!--Nội dung-->
-            <!--Mặc định padding -15 của col-->
-            <div class="col-md-10 table-cell float-none align-top p-0">
-
-                <!--Header nội dung-->
-                <header id="nav-header">
-                    <!--mặc định bị padding-->
-                    <div class="row m-0">
-                        <div class="col-md-5 ">
-                            <input type="text" placeholder="Tìm kiếm..." id="header-search-field">
-                        </div>
-
-                        <div class="col-md-7">
-                            <ul>
-                                <li>Chào mừng đến trang quản trị bán hàng</li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fas fa-bell"></span>
-                                        <span class="badge badge-warning label-message">3</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fas fa-envelope"></span>
-                                        <span class="badge badge-warning label-message">3</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="logout">
-                                        <span class="fas fa-sign-out-alt"></span>
-                                        Đăng xuất
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                </header>
-                <!--End header nội dung-->
+             <!--Thêm vào để text fixed-->
+             <div class="col-2 col-sm-1 col-md-1 col-lg-2 col-xl-2 table-cell float-none align-top
+             d-none d-sm-none d-md-block d-lg-block d-xl-block" id="side-menu-temp">
+ 
+             </div>
+             <!--End Thêm vào để text fixed-->
+ 
+ 
+             <!--slide menu-->
+             <div class="col-2 col-sm-1 col-md-1 col-lg-2 col-xl-2 table-cell float-none align-top h-100 fixed-top
+             d-none d-sm-none d-md-block d-lg-block d-xl-block" id="side-menu">
+                 <h1 class="d-none d-sm-none d-md-none d-lg-block d-xl-block">Trang quản trị</h1>
+                 <ul>
+                     <li class="link">
+                         <a href="index.html" class="active">
+                             <span class="fas fa-home"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Trang chủ</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link">
+                         <a href="index.html">
+                             <span class="fas fa-users"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Khách hàng</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link">
+                         <a href="report.html">
+                             <span class="fas fa-chart-pie"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Thống kê</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link">
+                         <a href="order-list.html">
+                             <span class="fas fa-shopping-cart"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Đơn hàng</span>
+                             <span class="badge badge-warning  float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                         </a>
+                     </li>
+ 
+                     <!--Menu sản phẩm-->
+                     <!--collape-->
+                     <li class="link">
+                         <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
+                                 <span class="fas fa-tags"></span>
+                                 <span>Sản phẩm</span>
+                                 <span class="badge badge-warning label-message float-right mr-1">20</span>
+                         </a> -->
+                         <a href="products.html">
+                             <span class="fas fa-tags"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Sản phẩm</span>
+                             <span class="badge badge-warning label-message float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">20</span>
+                         </a>
+                     </li>
+ 
+                     <!-- <ul class="collapse" id="collapse-post">
+                         <li class="link">
+                             <a href="index.html">
+ 
+                                 <span>Danh sách sản phẩm</span>
+                             </a>
+                         </li>
+                         <li class="link">
+                             <a href="index.html">
+ 
+                                 <span>Sản phẩm</span>
+                             </a>
+                         </li>
+                     </ul> -->
+ 
+                     <li class="link">
+                         <a href="add-product.html">
+                             <span class="fas fa-plus-circle"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Thêm mới</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link">
+                         <a href="new-posts.html">
+                             <span class="fas fa-file-alt"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Thêm bài viết</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link">
+                         <a href="articles.html">
+                             <span class="fas fa-stream"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Danh sách bài viết</span>
+                             <span class="badge badge-warning  float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link">
+                         <a href="comments.html">
+                             <span class="fas fa-comment"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Quản lý bình luận</span>
+                             <span class="badge badge-warning  float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link">
+                         <a href="index.html">
+                             <span class="fas fa-user"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Nhân viên</span>
+                         </a>
+                     </li>
+ 
+                     <li class="link ads-button">
+                         <a href="index.html">
+                             <span class="fas fa-ad"></span>
+                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Khuyến mãi</span>
+                         </a>
+                     </li>
+                 </ul>
+             </div>
+             <!--End slide menu-->
+ 
+             <!--Nội dung-->
+             <!--Mặc định padding -15 của col-->
+             <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-10 table-cell float-none align-top p-0" id="col-content">
+ 
+                 <header id="nav-header">
+                     <!--mặc định bị padding-->
+                     <div class="row m-0">
+                         <div class="col-2 col-sm-1 col-md-5 d-flex align-items-center">
+                             <nav class="navbar-default d-block d-sm-block d-md-none d-lg-none d-xl-none d-none">
+                                 <button class="navbar-toggler collapsed" type="button" data-toggle="offcanvas" data-target="#side-menu">
+                                     <span class="fas fa-bars"></span>
+                                 </button>
+                             </nav>
+                             <input class="d-none d-sm-none d-md-none d-lg-block d-xl-block" type="text" placeholder="Tìm kiếm..."
+                                 id="header-search-field">
+                         </div>
+ 
+                         <div class="col-10 col-sm-11 col-md-7">
+                             <ul>
+                                 <li class="d-none d-sm-none d-md-none d-lg-block d-xl-block">Chào mừng đến trang quản trị bán hàng</li>
+                                 <li>
+                                     <a href="#">
+                                         <span class="fas fa-bell"></span>
+                                         <span class="badge badge-warning label-message">3</span>
+                                     </a>
+                                 </li>
+                                 <li>
+                                     <a href="#">
+                                         <span class="fas fa-envelope"></span>
+                                         <span class="badge badge-warning label-message">3</span>
+                                     </a>
+                                 </li>
+                                 <li>
+                                     <a href="#" class="logout">
+                                         <span class="fas fa-sign-out-alt"></span>
+                                         Đăng xuất
+                                     </a>
+                                 </li>
+                             </ul>
+                         </div>
+                 </header>
 
 
                 <!--Nội dung trang index-->
@@ -664,6 +676,9 @@
     <!--Import my chart script-->
     <script src="../js/reportchartscript.js"></script>
     <!--End import my chart script-->
+    <!--import nav-bar-side-menu script-->
+    <script src="../js/nav-bar-side-menu.js"></script>
+    <!--End import nav-bar-side-menu script-->
 
 </body>
 

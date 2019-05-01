@@ -16,6 +16,9 @@
     <!--import my css-->
     <link rel="stylesheet" type="text/css" href="../css/admin-style.css">
     <!--end import my css-->
+    <!--import reponsive-->
+    <link rel="stylesheet" type="text/css" href="../css/reponsive-add-product.css">
+    <!--End import reponsive-->
     <!--import chosen css-->
     <link rel="stylesheet" type="text/css" href="../chosen_v1.8.7/chosen.min.css">
     <!--end import chosen css-->
@@ -41,42 +44,44 @@
         <!--Chia ra từng hàng-->
         <div class="row table-row h-100">
             <!--Thêm vào để text fixed-->
-            <div class="col-md-2 table-cell float-none align-top">
+            <div class="col-2 col-sm-1 col-md-1 col-lg-2 col-xl-2 table-cell float-none align-top
+            d-none d-sm-none d-md-block d-lg-block d-xl-block" id="side-menu-temp">
 
             </div>
             <!--End Thêm vào để text fixed-->
 
 
             <!--slide menu-->
-            <div class="col-md-2 table-cell float-none align-top h-100 fixed-top" id="side-menu">
-                <h1>Trang quản trị</h1>
+            <div class="col-2 col-sm-1 col-md-1 col-lg-2 col-xl-2 table-cell float-none align-top h-100 fixed-top
+            d-none d-sm-none d-md-block d-lg-block d-xl-block" id="side-menu">
+                <h1 class="d-none d-sm-none d-md-none d-lg-block d-xl-block">Trang quản trị</h1>
                 <ul>
                     <li class="link">
                         <a href="index.html">
                             <span class="fas fa-home"></span>
-                            <span>Trang chủ</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Trang chủ</span>
                         </a>
                     </li>
 
                     <li class="link">
                         <a href="index.html">
                             <span class="fas fa-users"></span>
-                            <span>Khách hàng</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Khách hàng</span>
                         </a>
                     </li>
 
                     <li class="link">
                         <a href="report.html">
                             <span class="fas fa-chart-pie"></span>
-                            <span>Thống kê</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Thống kê</span>
                         </a>
                     </li>
 
                     <li class="link">
                         <a href="order-list.html">
                             <span class="fas fa-shopping-cart"></span>
-                            <span>Đơn hàng</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Đơn hàng</span>
+                            <span class="badge badge-warning  float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
                         </a>
                     </li>
 
@@ -90,9 +95,9 @@
                         </a> -->
                         <a href="products.html">
                             <span class="fas fa-tags"></span>
-                            <span>Sản phẩm</span>
-                            <span class="badge badge-warning label-message float-right mr-1">20</span>
-                        </a>  
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Sản phẩm</span>
+                            <span class="badge badge-warning label-message float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">20</span>
+                        </a>
                     </li>
 
                     <!-- <ul class="collapse" id="collapse-post">
@@ -113,44 +118,44 @@
                     <li class="link">
                         <a href="add-product.html" class="active">
                             <span class="fas fa-plus-circle"></span>
-                            <span>Thêm mới</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Thêm mới</span>
                         </a>
                     </li>
 
                     <li class="link">
                         <a href="new-posts.html">
                             <span class="fas fa-file-alt"></span>
-                            <span>Thêm bài viết</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Thêm bài viết</span>
                         </a>
                     </li>
 
                     <li class="link">
                         <a href="articles.html">
                             <span class="fas fa-stream"></span>
-                            <span>Danh sách bài viết</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Danh sách bài viết</span>
+                            <span class="badge badge-warning  float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
                         </a>
                     </li>
 
                     <li class="link">
                         <a href="comments.html">
                             <span class="fas fa-comment"></span>
-                            <span>Quản lý bình luận</span>
-                            <span class="badge badge-warning  float-right mr-1">40</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Quản lý bình luận</span>
+                            <span class="badge badge-warning  float-right mr-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
                         </a>
                     </li>
 
                     <li class="link">
                         <a href="index.html">
                             <span class="fas fa-user"></span>
-                            <span>Nhân viên</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Nhân viên</span>
                         </a>
                     </li>
 
                     <li class="link ads-button">
                         <a href="index.html">
                             <span class="fas fa-ad"></span>
-                            <span>Khuyến mãi</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline">Khuyến mãi</span>
                         </a>
                     </li>
                 </ul>
@@ -159,19 +164,24 @@
 
             <!--Nội dung-->
             <!--Mặc định padding -15 của col-->
-            <div class="col-md-10 table-cell float-none align-top p-0">
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-10 table-cell float-none align-top p-0" id="col-content">
 
-                <!--Header nội dung-->
                 <header id="nav-header">
                     <!--mặc định bị padding-->
                     <div class="row m-0">
-                        <div class="col-md-5 ">
-                            <input type="text" placeholder="Tìm kiếm..." id="header-search-field">
+                        <div class="col-2 col-sm-1 col-md-5 d-flex align-items-center">
+                            <nav class="navbar-default d-block d-sm-block d-md-none d-lg-none d-xl-none d-none">
+                                <button class="navbar-toggler collapsed" type="button" data-toggle="offcanvas" data-target="#side-menu">
+                                    <span class="fas fa-bars"></span>
+                                </button>
+                            </nav>
+                            <input class="d-none d-sm-none d-md-none d-lg-block d-xl-block" type="text" placeholder="Tìm kiếm..."
+                                id="header-search-field">
                         </div>
 
-                        <div class="col-md-7">
+                        <div class="col-10 col-sm-11 col-md-7">
                             <ul>
-                                <li>Chào mừng đến trang quản trị bán hàng</li>
+                                <li class="d-none d-sm-none d-md-none d-lg-block d-xl-block">Chào mừng đến trang quản trị bán hàng</li>
                                 <li>
                                     <a href="#">
                                         <span class="fas fa-bell"></span>
@@ -193,7 +203,6 @@
                             </ul>
                         </div>
                 </header>
-                <!--End header nội dung-->
 
 
                 <!--Nội dung trang index-->
@@ -410,6 +419,9 @@
         CKEDITOR.replace('contain');
     </script>
     <!--end change textarea-->
+    <!--import nav-bar-side-menu script-->
+    <script src="../js/nav-bar-side-menu.js"></script>
+    <!--End import nav-bar-side-menu script-->
 </body>
 
 </html>
