@@ -1,0 +1,35 @@
+/* component go up */
+.component-go-up {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  z-index: 1;
+}
+.component-go-up .btn-go-up {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 3px solid rgb(167, 230, 108);
+}
+
+.component-go-up .btn-go-up .icon-go-up {
+  height: 2rem;
+  width: 2rem;
+  position: absolute;
+  animation: amimationGoup 2s infinite linear;
+}
+
+@keyframes amimationGoup {
+  0% {
+    bottom: -1rem;
+  }
+  100% {
+    bottom: 100%;
+  }
+}
+/* component go up */

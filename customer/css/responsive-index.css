@@ -13,7 +13,11 @@
   /* about us */
   .component-about-us {
     width: 15.5rem !important;
-    height: 13rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
   }
   /* about us */
 
@@ -23,13 +27,31 @@
     width: 100% !important;
     margin-bottom: 1rem;
   }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
   /* product simple */
+
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
 
   /* product combo */
   .component-product-combo {
     height: 22rem;
     width: 100% !important;
     margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 1rem !important;
   }
   /* product combo */
 
@@ -62,7 +84,11 @@
   /* about us */
   .component-about-us {
     width: 15.5rem !important;
-    height: 13rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
   }
   /* about us */
 
@@ -72,13 +98,31 @@
     width: 12rem !important;
     margin-bottom: 1rem;
   }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
   /* product simple */
+
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
 
   /* product combo */
   .component-product-combo {
     height: 22rem;
     width: 16rem !important;
     margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 1rem !important;
   }
   /* product combo */
 
@@ -111,23 +155,45 @@
   /* about us */
   .component-about-us {
     width: 15.5rem !important;
-    height: 13rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
   }
   /* about us */
 
   /* product simple */
   .component-product-simple {
     height: 18rem;
-    width: 12rem !important;
+    width: 13rem !important;
     margin-bottom: 1rem;
   }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 0.8rem !important;
+  }
   /* product simple */
+
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
 
   /* product combo */
   .component-product-combo {
     height: 23rem;
     width: 16rem !important;
     margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.8rem !important;
   }
   /* product combo */
 
@@ -160,7 +226,11 @@
   /* about us */
   .component-about-us {
     width: 15.5rem !important;
-    height: 13rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
   }
   /* about us */
 
@@ -176,11 +246,25 @@
   }
   /* product simple */
 
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
+
   /* product combo */
   .component-product-combo {
     height: 22rem;
     width: 16rem !important;
     margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.4rem !important;
   }
   /* product combo */
 
@@ -213,7 +297,11 @@
   /* about us */
   .component-about-us {
     width: 15.5rem !important;
-    height: 13rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
   }
   /* about us */
 
@@ -229,6 +317,16 @@
   }
   /* product simple */
 
+  /* component-tag-product-type */
+  .component-tag-product-type button {
+    display: none;
+  }
+
+  .component-tag-product-type .form-control {
+    display: block;
+  }
+  /* component-tag-product-type */
+
   /* product combo */
   .component-product-combo {
     height: 20rem;
@@ -236,7 +334,7 @@
     margin-bottom: 1rem;
   }
 
-  .component-product-simple .card-body .price-old del {
+  .component-product-combo .card-body .price-old del {
     margin-left: 0.4rem !important;
   }
   /* product combo */

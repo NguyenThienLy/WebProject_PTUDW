@@ -2220,7 +2220,6 @@ crossorigin="anonymous"
   // sidebar menu 
   $("#dropdown-icon").click(function() {
     $('.transform').toggleClass('transform-active');
-
     if ($('.transform').hasClass('transform-active')) {
      $('#dropdown-icon').removeClass("transform-left");
      $('#dropdown-icon').addClass("transform-down");
@@ -2229,21 +2228,17 @@ crossorigin="anonymous"
     $('#dropdown-icon').addClass("transform-left");
   }
 });
-
   $('.open-sidebar').click(function(e){
     e.stopPropagation();
     $('.side-bar').toggleClass('show-menu');
   });
-
   $('#mySidenav').click(function(e){
     e.stopPropagation();
   });
-
   $('body,html').click(function(e){
    $('.side-bar').removeClass('show-menu');
  });
   // sidebar menu 
-
   // update_margin_top_breadcrumb_div
   function update_margin_top_breadcrumb_div(){
     var win = $(this); //this = window
@@ -2253,18 +2248,14 @@ crossorigin="anonymous"
    } else {
     $(".breadcrumb-div").css("margin-top", 0);
   }
-
   let image_product_large_width = $('.image-product-large').width();
   $('.image-product-large').css("height", image_product_large_width);
-
   let image_product_small_width = $('.image-product-small').width();
   $('.image-product-small-container').css("height", image_product_small_width);
 }
-
 $(window).on('resize', update_margin_top_breadcrumb_div);
 $(document).ready(update_margin_top_breadcrumb_div);
   // update_margin_top_breadcrumb_div
-
   // footer accordion
   $('.footer-accordion-header-1').click(function(e){
     if ($('.footer-accordion-header-icon-1').hasClass('transform-left')) {
@@ -2275,7 +2266,6 @@ $(document).ready(update_margin_top_breadcrumb_div);
     $('.footer-accordion-header-icon-1').addClass("transform-left");
   }
 });
-
   $('.footer-accordion-header-2').click(function(e){
     if ($('.footer-accordion-header-icon-2').hasClass('transform-left')) {
      $('.footer-accordion-header-icon-2').removeClass("transform-left");
@@ -2285,7 +2275,6 @@ $(document).ready(update_margin_top_breadcrumb_div);
     $('.footer-accordion-header-icon-2').addClass("transform-left");
   }
 });
-
   $('.footer-accordion-header-3').click(function(e){
     if ($('.footer-accordion-header-icon-3').hasClass('transform-left')) {
      $('.footer-accordion-header-icon-3').removeClass("transform-left");

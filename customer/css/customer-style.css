@@ -9,7 +9,6 @@ html {
 } 
 
 #span-show-cart {
-  /*font-size: 2em; */
   color: #99cc00;
 }
 
@@ -40,18 +39,12 @@ html {
   background-color: #99cc00 !important;
 }
 
-.carousel-inner > .carousel-item > img {
-  height: 30rem;
-  margin: auto;
-}
-
 .item-image:hover {
   transform: scale(1.1);
 }
 
 footer {
   background-color: #f7f7f7;
-  /*border: 1px solid #d8d8d8;*/
   padding-left: 3rem;
   font-size: 0.875rem;
 }
@@ -74,10 +67,6 @@ input[type="number"] {
 
 .input-group-text:hover {
   color: #99cc00;
-}
-
-.sort-header {
-  border: 1px solid #99cc00 !important;
 }
 
 .badge-success {

@@ -32,6 +32,30 @@
     display: none;
   }
   /* sort header */
+
+  /* product simple */
+  .component-product-simple {
+    height: 22rem;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product simple */
+
+  /* product combo */
+  .component-product-combo {
+    height: 22rem;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product combo */
 }
 
 /* Từ lg nhảy sang xl */
@@ -69,6 +93,30 @@
     display: none;
   }
   /* sort header */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 12rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product simple */
+
+  /* product combo */
+  .component-product-combo {
+    height: 22rem;
+    width: 16rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product combo */
 }
 
 /* Từ md nhảy sang lg */
@@ -106,6 +154,30 @@
     display: none;
   }
   /* sort header */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 13rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 0.8rem !important;
+  }
+  /* product simple */
+
+  /* product combo */
+  .component-product-combo {
+    height: 23rem;
+    width: 16rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.8rem !important;
+  }
+  /* product combo */
 }
 
 /* Từ sm nhảy sang md */
@@ -143,6 +215,30 @@
     display: block;
   }
   /* sort header */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 13rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product simple */
+
+  /* product combo */
+  .component-product-combo {
+    height: 22rem;
+    width: 16rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product combo */
 }
 
 /* Từ xm nhảy sang sm */
@@ -180,4 +276,28 @@
     display: block;
   }
   /* sort header */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 12rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product simple */
+
+  /* product combo */
+  .component-product-combo {
+    height: 20rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product combo */
 }

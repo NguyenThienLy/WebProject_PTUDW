@@ -32,6 +32,24 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+   /* cart quantity */
+   .component-cart-quantity .content-left {
+    background-size: 100% 100%;
+  }
+
+  .component-cart-quantity .content-right .product-info {
+    width: 60%;
+  }
+
+  .component-cart-quantity .content-right .product-quantity {
+    width: 20%;
+  }
+
+  .component-cart-quantity .content-right .product-general {
+    width: 20%;
+  }
+   /* cart quantity */
 }
 
 /* Từ lg nhảy sang xl */
@@ -69,6 +87,24 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+   /* cart quantity */
+   .component-cart-quantity .content-left {
+    background-size: 100% 100%;
+  }
+
+  .component-cart-quantity .content-right .product-info {
+    width: 60%;
+  }
+
+  .component-cart-quantity .content-right .product-quantity {
+    width: 20%;
+  }
+
+  .component-cart-quantity .content-right .product-general {
+    width: 20%;
+  }
+   /* cart quantity */
 }
 
 /* Từ md nhảy sang lg */
@@ -106,6 +142,24 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+   /* cart quantity */
+   .component-cart-quantity .content-left {
+    background-size: 100% 75%;
+  }
+
+  .component-cart-quantity .content-right .product-info {
+    width: 60%;
+  }
+
+  .component-cart-quantity .content-right .product-quantity {
+    width: 20%;
+  }
+
+  .component-cart-quantity .content-right .product-general {
+    width: 20%;
+  }
+   /* cart quantity */
 }
 
 /* Từ sm nhảy sang md */
@@ -147,6 +201,24 @@
     margin-bottom: 1rem;
   }
   /* product combo */
+
+  /* cart quantity */
+  .component-cart-quantity .content-left {
+    background-size: 100% 60%;
+  }
+
+  .component-cart-quantity .content-right .product-info {
+    width: 50%;
+  }
+
+  .component-cart-quantity .content-right .product-quantity {
+    width: 30%;
+  }
+
+  .component-cart-quantity .content-right .product-general {
+    width: 20%;
+  }
+   /* cart quantity */
 }
 
 /* Từ xm nhảy sang sm */
@@ -192,4 +264,22 @@
     margin-left: 0.4rem !important;
   }
   /* product combo */
+
+  /* cart quantity */
+  .component-cart-quantity .content-left {
+    background-size: 100% 60%;
+  }
+
+  .component-cart-quantity .content-right .product-info {
+    width: 40%;
+  }
+
+  .component-cart-quantity .content-right .product-quantity {
+    width: 30%;
+  }
+
+  .component-cart-quantity .content-right .product-general {
+    width: 40%;
+  }
+   /* cart quantity */
 }
