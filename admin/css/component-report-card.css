@@ -1,6 +1,5 @@
 .report-content-con{
     margin-top: 1.25rem;
-    background-color: white; 
     border-radius: 4px;
     padding: 0.9375rem;
 
@@ -31,4 +30,18 @@
 
 .report-view{
     background-color: #1abc9c;
+}
+
+.report-content-con-small {
+    margin-top: 1.25rem;
+    border-radius: 0.25rem;
+    padding: 0.9375rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-content-con-small h6 {
+    margin-bottom: 0;
 }
