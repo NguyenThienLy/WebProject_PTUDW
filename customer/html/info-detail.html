@@ -37,6 +37,9 @@
     <link href="../css/component-header.css" rel="stylesheet" />
     <link href="../css/component-footer.css" rel="stylesheet" />
     <link href="../css/component-go-up.css" rel="stylesheet" />
+    <link href="../css/component-user-account-modal.css" rel="stylesheet" />
+    <link href="../css/component-quantity-product.css" rel="stylesheet" />
+    <link href="../css/component-avatar-user.css" rel="stylesheet" />
     <link href="../css/responsive-info-detail.css" rel="stylesheet" />
     <link href="../css/responsive-header.css" rel="stylesheet" />
     <link href="../css/responsive-footer.css" rel="stylesheet" />
@@ -441,6 +444,12 @@
 
           <div class="spanCart btn pl-2 pr-2 ml-1" id="span-show-cart">
             <i class="fas fa-shopping-cart position-relative">
+              <div
+                class="component-quantity-product position-absolute bg-danger"
+              >
+                <p class="quantity w-100 h-100 m-0 p-0">4</p>
+              </div>
+
               <div class="component-show-fast-cart card position-absolute mt-3">
                 <div class="style-scrollbar mt-3">
                   <div class="component-show-fast-cart-items">
@@ -652,6 +661,297 @@
                 </div>
               </div>
             </i>
+          </div>
+
+          <a
+            class="btn pl-2 pr-2 ml-1"
+            data-toggle="modal"
+            data-target="#header-user-modal"
+          >
+            <div class="component-avatar-user"></div>
+          </a>
+
+          <div
+            class="component-user-account-modal modal fade"
+            id="header-user-acount-modal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="header-user-modal-label"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-xl" role="document">
+              <div class="modal-content position-relative">
+                <div class="modal-body p-0">
+                  <div
+                    class="content-left float-left h-100 rounded-left pl-4 pr-2 pt-4 pb-2"
+                  >
+                    <div>
+                      <h3
+                        id="header-user-modal-title"
+                        class="font-weight-normal"
+                      >
+                        Thông tin tài khoản
+                      </h3>
+                      <p id="header-user-modal-content">
+                        Quí khách cần đảm bảo cung cấp thông tin một cách chính
+                        xác để chúng tôi có thể liên hệ và tương tác một các tốt
+                        nhất.
+                      </p>
+                    </div>
+
+                    <img
+                      src="https://pipe.tikicdn.com/media/upload/2018/10/12/2a3acb91a35d45e1b4b7c96912a0c84a.png"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="content-right float-left rounded">
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <p
+                          class="nav-item nav-link ml-3 active"
+                          id="header-login-modal-nav-tab"
+                          data-toggle="tab"
+                          href="#header-login-modal-nav"
+                          role="tab"
+                          aria-controls="header-login-modal-nav"
+                          aria-selected="true"
+                        >
+                          Đăng nhập
+                        </p>
+                        <p
+                          class="nav-item nav-link ml-3"
+                          id="header-register-modal-nav-tab"
+                          data-toggle="tab"
+                          href="#header-register-modal-nav"
+                          role="tab"
+                          aria-controls="header-register-modal-nav"
+                          aria-selected="false"
+                        >
+                          Đăng ký
+                        </p>
+                      </div>
+                    </nav>
+
+                    <div class="tab-content" id="nav-tabContent">
+                      <div
+                        class="tab-pane fade show active"
+                        id="header-login-modal-nav"
+                        role="tabpanel"
+                        aria-labelledby="header-login-modal-nav-tab"
+                      >
+                        <form class="p-4">
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-login-modal-email"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Email / SĐT</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập Email hoặc Số điện thoại"
+                                id="header-login-modal-email"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-login-modal-password"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Mật khẩu</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="password"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập mật khẩu từ 6 đến 32 ký tự"
+                                id="header-login-modal-password"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="d-flex">
+                            <div
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                            ></div>
+                            <button
+                              type="button"
+                              class="btn btn-success col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"
+                            >
+                              Đăng nhập
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="header-register-modal-nav"
+                        role="tabpanel"
+                        aria-labelledby="header-register-modal-nav-tab"
+                      >
+                        <form class="p-4">
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-name"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Họ tên</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập họ tên"
+                                id="header-register-modal-name"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-phone"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >SĐT</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập số điện thoại"
+                                id="header-register-modal-phone"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-email"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Email</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập email"
+                                id="header-register-modal-email"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-password"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Mật khẩu</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="password"
+                                class="form-control form-control-sm"
+                                placeholder="Mật khẩu từ 6 đến 32 ký tự"
+                                id="header-register-modal-password"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Giới tính</label
+                            >
+
+                            <div
+                              class="row col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0 ml-0 mr-0"
+                            >
+                              <div class="custom-control custom-radio mr-3">
+                                <input
+                                  type="radio"
+                                  id="header-register-modal-gender-male"
+                                  name="customRadio"
+                                  class="custom-control-input"
+                                />
+                                <label
+                                  class="custom-control-label"
+                                  id="lblMale"
+                                  for="header-register-modal-gender-male"
+                                  >Nam</label
+                                >
+                              </div>
+
+                              <div class="custom-control custom-radio">
+                                <input
+                                  type="radio"
+                                  id="header-register-modal-gender-female"
+                                  name="customRadio"
+                                  class="custom-control-input"
+                                />
+                                <label
+                                  class="custom-control-label"
+                                  id="lblFemale"
+                                  for="header-register-modal-gender-female"
+                                  >Nữ</label
+                                >
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="d-flex">
+                            <div
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                            ></div>
+                            <button
+                              type="button"
+                              class="btn btn-success col-sm-9"
+                            >
+                              Đăng ký
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn-close position-absolute border-0"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

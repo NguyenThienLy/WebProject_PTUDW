@@ -33,6 +33,9 @@
   <link href="../css/component-header.css" rel="stylesheet" />
   <link href="../css/component-footer.css" rel="stylesheet" />
   <link href="../css/component-go-up.css" rel="stylesheet" />
+  <link href="../css/component-user-account-modal.css" rel="stylesheet" />
+  <link href="../css/component-quantity-product.css" rel="stylesheet" />
+  <link href="../css/component-avatar-user.css" rel="stylesheet" />
   <link href="../css/responsive-product-detail.css" rel="stylesheet" />
   <link href="../css/responsive-header.css" rel="stylesheet" />
   <link href="../css/responsive-footer.css" rel="stylesheet" />
@@ -107,25 +110,25 @@
           <a class="nav-link" href="#">Liên hệ</a>
         </li>
       </ul>
-    </div>
-
-    <form class="col-sm-4 col-md-5 col-lg-3 col-xl-3 p-0 pl-2 align-items-center">
-      <div class="form-group row align-items-center m-0">
-        <div class="col-8 col-sm-8 col-md-8 col-lg-7 col-xl-7 p-0 pr-2">
-         <input
-         class="form-control"
-         type="search"
-         placeholder="Tên sản phẩm"
-         aria-label="Tên sản phẩm"/>
-       </div>
-
-       <div class="col-4 col-sm-4 col-md-4 col-lg-5 col-xl-5 p-0">
-        <button class="btn btn-outline-success" type="submit">
-          Tìm kiếm
-        </button>
       </div>
-    </div>
-  </form>
+
+      <form class="col-sm-4 col-md-5 col-lg-3 col-xl-3 p-0 pl-2 align-items-center">
+        <div class="form-group row align-items-center m-0">
+          <div class="col-8 col-sm-8 col-md-8 col-lg-7 col-xl-7 p-0 pr-2">
+          <input
+          class="form-control"
+          type="search"
+          placeholder="Tên sản phẩm"
+          aria-label="Tên sản phẩm"/>
+        </div>
+
+        <div class="col-4 col-sm-4 col-md-4 col-lg-5 col-xl-5 p-0">
+          <button class="btn btn-outline-success" type="submit">
+            Tìm kiếm
+          </button>
+        </div>
+      </div>
+      </form>
 
   <div class="menu-icons d-flex align-items-center justify-content-end col-5 col-sm-6 col-md-3 col-lg-2 col-xl-2">
     <a class="btn pl-2 pr-2 ml-1" data-toggle="modal" data-target="#header-user-modal">
@@ -344,202 +347,516 @@ aria-label="Close">
 </div>
 
 <div class="spanCart btn pl-2 pr-2 ml-1" id="span-show-cart">
-  <i class="fas fa-shopping-cart position-relative">
-    <div class="component-show-fast-cart card position-absolute mt-3">
-      <div class="style-scrollbar mt-3">
-        <div class="component-show-fast-cart-items">
-          <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-            <div
-            class="position-relative product-image"
-            data-toggle="tooltip"
-            title="Chanh tươi">
-            <a class="stretched-link" href="#"></a>
-            <img
-            src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-            class="w-100"
-            alt=""/>
+    <i class="fas fa-shopping-cart position-relative">
+      <div class="component-quantity-product position-absolute bg-danger">
+        <p class="quantity w-100 h-100 m-0 p-0">4</p>
+      </div>
+
+      <div class="component-show-fast-cart card position-absolute mt-3">
+        <div class="style-scrollbar mt-3">
+          <div class="component-show-fast-cart-items">
+            <div class="d-flex align-items-start pl-3 pr-3 pb-3">
+              <div
+                class="position-relative product-image"
+                data-toggle="tooltip"
+                title="Chanh tươi"
+              >
+                <a class="stretched-link" href="#"></a>
+                <img
+                  src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                  class="w-100"
+                  alt=""
+                />
+              </div>
+
+              <div class="product-info text-left">
+                <a
+                  href="#"
+                  class="title text-decoration-none"
+                  data-toggle="tooltip"
+                  title="Chanh tươi"
+                  >Chanh tươi</a
+                >
+
+                <div class="price mt-2">
+                  <span>30.000</span>
+                  <span><u>đ</u></span>
+                  &nbsp;
+                  <span>x</span>
+                  <span>1</span>
+                </div>
+              </div>
+
+              <div class="product-delete text-right">
+                <button
+                  type="button"
+                  class="p-0 border-0"
+                  data-toggle="tooltip"
+                  title="Xóa"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <hr class="m-0 ml-2 mr-2" />
           </div>
 
-          <div class="product-info text-left">
-            <a
-            href="#"
-            class="title text-decoration-none"
-            data-toggle="tooltip"
-            title="Chanh tươi"
-            >Chanh tươi</a>
+          <div class="component-show-fast-cart-items">
+            <div class="d-flex align-items-start pl-3 pr-3 pb-3">
+              <div
+                class="position-relative product-image"
+                data-toggle="tooltip"
+                title="Chanh tươi"
+              >
+                <a class="stretched-link" href="#"></a>
+                <img
+                  src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                  class="w-100"
+                  alt=""
+                />
+              </div>
 
-            <div class="price mt-2">
-              <span>30.000</span>
+              <div class="product-info text-left">
+                <a
+                  href="#"
+                  class="title text-decoration-none"
+                  data-toggle="tooltip"
+                  title="Chanh tươi"
+                  >Chanh tươi</a
+                >
+
+                <div class="price mt-2">
+                  <span>30.000</span>
+                  <span><u>đ</u></span>
+                  &nbsp;
+                  <span>x</span>
+                  <span>1</span>
+                </div>
+              </div>
+
+              <div class="product-delete text-right">
+                <button
+                  type="button"
+                  class="p-0 border-0"
+                  data-toggle="tooltip"
+                  title="Xóa"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <hr class="m-0 ml-2 mr-2" />
+          </div>
+
+          <div class="component-show-fast-cart-items">
+            <div class="d-flex align-items-start pl-3 pr-3 pb-3">
+              <div
+                class="position-relative product-image"
+                data-toggle="tooltip"
+                title="Chanh tươi"
+              >
+                <a class="stretched-link" href="#"></a>
+                <img
+                  src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                  class="w-100"
+                  alt=""
+                />
+              </div>
+
+              <div class="product-info text-left">
+                <a
+                  href="#"
+                  class="title text-decoration-none"
+                  data-toggle="tooltip"
+                  title="Chanh tươi"
+                  >Chanh tươi</a
+                >
+
+                <div class="price mt-2">
+                  <span>30.000</span>
+                  <span><u>đ</u></span>
+                  &nbsp;
+                  <span>x</span>
+                  <span>1</span>
+                </div>
+              </div>
+
+              <div class="product-delete text-right">
+                <button
+                  type="button"
+                  class="p-0 border-0"
+                  data-toggle="tooltip"
+                  title="Xóa"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <hr class="m-0 ml-2 mr-2" />
+          </div>
+
+          <div class="component-show-fast-cart-items">
+            <div class="d-flex align-items-start pl-3 pr-3 pb-3">
+              <div
+                class="position-relative product-image"
+                data-toggle="tooltip"
+                title="Chanh tươi"
+              >
+                <a class="stretched-link" href="#"></a>
+                <img
+                  src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                  class="w-100"
+                  alt=""
+                />
+              </div>
+
+              <div class="product-info text-left">
+                <a
+                  href="#"
+                  class="title text-decoration-none"
+                  data-toggle="tooltip"
+                  title="Chanh tươi"
+                  >Chanh tươi</a
+                >
+
+                <div class="price mt-2">
+                  <span>30.000</span>
+                  <span><u>đ</u></span>
+                  &nbsp;
+                  <span>x</span>
+                  <span>1</span>
+                </div>
+              </div>
+
+              <div class="product-delete text-right">
+                <button
+                  type="button"
+                  class="p-0 border-0"
+                  data-toggle="tooltip"
+                  title="Xóa"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <hr class="m-0 ml-2 mr-2" />
+          </div>
+        </div>
+
+        <hr class="m-0 ml-2 mr-2" />
+
+        <div class="p-3 sum-price">
+          <div class="d-flex justify-content-between">
+            <div class="sum-text">Tổng cộng:</div>
+            <div class="price">
+              <span>1.180.000</span>
               <span><u>đ</u></span>
-              &nbsp;
-              <span>x</span>
-              <span>1</span>
             </div>
           </div>
 
-          <div class="product-delete text-right">
-            <button
+          <a
+            href="#"
+            class="btn btn-outline-success mt-3 d-flex justify-content-center align-items-center font-weight-bold text-decoration-none p-2"
+          >
+            Tiến hành thanh toán&ensp;<i class="fas fa-dollar-sign"></i>
+          </a>
+        </div>
+      </div>
+    </i>
+  </div>
+
+  <a
+    class="btn pl-2 pr-2 ml-1"
+    data-toggle="modal"
+    data-target="#header-user-modal"
+  >
+    <div class="component-avatar-user"></div>
+  </a>
+
+  <div
+    class="component-user-account-modal modal fade"
+    id="header-user-acount-modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="header-user-modal-label"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content position-relative">
+        <div class="modal-body p-0">
+          <div
+            class="content-left float-left h-100 rounded-left pl-4 pr-2 pt-4 pb-2"
+          >
+            <div>
+              <h3
+                id="header-user-modal-title"
+                class="font-weight-normal"
+              >
+                Thông tin tài khoản
+              </h3>
+              <p id="header-user-modal-content">
+                Quí khách cần đảm bảo cung cấp thông tin một cách chính
+                xác để chúng tôi có thể liên hệ và tương tác một các tốt
+                nhất.
+              </p>
+            </div>
+
+            <img
+              src="https://pipe.tikicdn.com/media/upload/2018/10/12/2a3acb91a35d45e1b4b7c96912a0c84a.png"
+              alt=""
+            />
+          </div>
+
+          <div class="content-right float-left rounded">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <p
+                  class="nav-item nav-link ml-3 active"
+                  id="header-login-modal-nav-tab"
+                  data-toggle="tab"
+                  href="#header-login-modal-nav"
+                  role="tab"
+                  aria-controls="header-login-modal-nav"
+                  aria-selected="true"
+                >
+                  Đăng nhập
+                </p>
+                <p
+                  class="nav-item nav-link ml-3"
+                  id="header-register-modal-nav-tab"
+                  data-toggle="tab"
+                  href="#header-register-modal-nav"
+                  role="tab"
+                  aria-controls="header-register-modal-nav"
+                  aria-selected="false"
+                >
+                  Đăng ký
+                </p>
+              </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="header-login-modal-nav"
+                role="tabpanel"
+                aria-labelledby="header-login-modal-nav-tab"
+              >
+                <form class="p-4">
+                  <div
+                    class="form-group row align-items-center ml-0 mr-0"
+                  >
+                    <label
+                      for="header-login-modal-email"
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                      >Email / SĐT</label
+                    >
+                    <div
+                      class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                    >
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        placeholder="Nhập Email hoặc Số điện thoại"
+                        id="header-login-modal-email"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group row align-items-center ml-0 mr-0"
+                  >
+                    <label
+                      for="header-login-modal-password"
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                      >Mật khẩu</label
+                    >
+                    <div
+                      class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                    >
+                      <input
+                        type="password"
+                        class="form-control form-control-sm"
+                        placeholder="Nhập mật khẩu từ 6 đến 32 ký tự"
+                        id="header-login-modal-password"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="d-flex">
+                    <div
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                    ></div>
+                    <button
+                      type="button"
+                      class="btn btn-success col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"
+                    >
+                      Đăng nhập
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="header-register-modal-nav"
+                role="tabpanel"
+                aria-labelledby="header-register-modal-nav-tab"
+              >
+                <form class="p-4">
+                  <div
+                    class="form-group row align-items-center ml-0 mr-0"
+                  >
+                    <label
+                      for="header-register-modal-name"
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                      >Họ tên</label
+                    >
+                    <div
+                      class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                    >
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        placeholder="Nhập họ tên"
+                        id="header-register-modal-name"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group row align-items-center ml-0 mr-0"
+                  >
+                    <label
+                      for="header-register-modal-phone"
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                      >SĐT</label
+                    >
+                    <div
+                      class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                    >
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        placeholder="Nhập số điện thoại"
+                        id="header-register-modal-phone"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group row align-items-center ml-0 mr-0"
+                  >
+                    <label
+                      for="header-register-modal-email"
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                      >Email</label
+                    >
+                    <div
+                      class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                    >
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        placeholder="Nhập email"
+                        id="header-register-modal-email"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group row align-items-center ml-0 mr-0"
+                  >
+                    <label
+                      for="header-register-modal-password"
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                      >Mật khẩu</label
+                    >
+                    <div
+                      class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                    >
+                      <input
+                        type="password"
+                        class="form-control form-control-sm"
+                        placeholder="Mật khẩu từ 6 đến 32 ký tự"
+                        id="header-register-modal-password"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group row align-items-center ml-0 mr-0"
+                  >
+                    <label
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                      >Giới tính</label
+                    >
+
+                    <div
+                      class="row col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0 ml-0 mr-0"
+                    >
+                      <div class="custom-control custom-radio mr-3">
+                        <input
+                          type="radio"
+                          id="header-register-modal-gender-male"
+                          name="customRadio"
+                          class="custom-control-input"
+                        />
+                        <label
+                          class="custom-control-label"
+                          id="lblMale"
+                          for="header-register-modal-gender-male"
+                          >Nam</label
+                        >
+                      </div>
+
+                      <div class="custom-control custom-radio">
+                        <input
+                          type="radio"
+                          id="header-register-modal-gender-female"
+                          name="customRadio"
+                          class="custom-control-input"
+                        />
+                        <label
+                          class="custom-control-label"
+                          id="lblFemale"
+                          for="header-register-modal-gender-female"
+                          >Nữ</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex">
+                    <div
+                      class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                    ></div>
+                    <button
+                      type="button"
+                      class="btn btn-success col-sm-9"
+                    >
+                      Đăng ký
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <button
             type="button"
-            class="p-0 border-0"
-            data-toggle="tooltip"
-            title="Xóa">
+            class="btn-close position-absolute border-0"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
             <i class="fas fa-times"></i>
           </button>
         </div>
       </div>
-      <hr class="m-0 ml-2 mr-2" />
-    </div>
-
-    <div class="component-show-fast-cart-items">
-      <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-        <div
-        class="position-relative product-image"
-        data-toggle="tooltip"
-        title="Chanh tươi">
-        <a class="stretched-link" href="#"></a>
-        <img
-        src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-        class="w-100"
-        alt=""/>
-      </div>
-
-      <div class="product-info text-left">
-        <a
-        href="#"
-        class="title text-decoration-none"
-        data-toggle="tooltip"
-        title="Chanh tươi"
-        >Chanh tươi</a>
-
-        <div class="price mt-2">
-          <span>30.000</span>
-          <span><u>đ</u></span>
-          &nbsp;
-          <span>x</span>
-          <span>1</span>
-        </div>
-      </div>
-
-      <div class="product-delete text-right">
-        <button
-        type="button"
-        class="p-0 border-0"
-        data-toggle="tooltip"
-        title="Xóa">
-        <i class="fas fa-times"></i>
-      </button>
     </div>
   </div>
-  <hr class="m-0 ml-2 mr-2" />
 </div>
-
-<div class="component-show-fast-cart-items">
-  <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-    <div
-    class="position-relative product-image"
-    data-toggle="tooltip"
-    title="Chanh tươi">
-    <a class="stretched-link" href="#"></a>
-    <img
-    src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-    class="w-100"
-    alt=""/>
-  </div>
-
-  <div class="product-info text-left">
-    <a
-    href="#"
-    class="title text-decoration-none"
-    data-toggle="tooltip"
-    title="Chanh tươi"
-    >Chanh tươi</a>
-
-    <div class="price mt-2">
-      <span>30.000</span>
-      <span><u>đ</u></span>
-      &nbsp;
-      <span>x</span>
-      <span>1</span>
-    </div>
-  </div>
-
-  <div class="product-delete text-right">
-    <button
-    type="button"
-    class="p-0 border-0"
-    data-toggle="tooltip"
-    title="Xóa">
-    <i class="fas fa-times"></i>
-  </button>
-</div>
-</div>
-<hr class="m-0 ml-2 mr-2" />
-</div>
-
-<div class="component-show-fast-cart-items">
-  <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-    <div
-    class="position-relative product-image"
-    data-toggle="tooltip"
-    title="Chanh tươi">
-    <a class="stretched-link" href="#"></a>
-    <img
-    src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-    class="w-100"
-    alt=""/>
-  </div>
-
-  <div class="product-info text-left">
-    <a
-    href="#"
-    class="title text-decoration-none"
-    data-toggle="tooltip"
-    title="Chanh tươi"
-    >Chanh tươi</a>
-
-    <div class="price mt-2">
-      <span>30.000</span>
-      <span><u>đ</u></span>
-      &nbsp;
-      <span>x</span>
-      <span>1</span>
-    </div>
-  </div>
-
-  <div class="product-delete text-right">
-    <button
-    type="button"
-    class="p-0 border-0"
-    data-toggle="tooltip"
-    title="Xóa">
-    <i class="fas fa-times"></i>
-  </button>
-</div>
-</div>
-<hr class="m-0 ml-2 mr-2" />
-</div>
-</div>
-
-<hr class="m-0 ml-2 mr-2" />
-
-<div class="p-3 sum-price">
-  <div class="d-flex justify-content-between">
-    <div class="sum-text">Tổng cộng:</div>
-    <div class="price">
-      <span>1.180.000</span>
-      <span><u>đ</u></span>
-    </div>
-  </div>
-
-  <a href="#" class="btn btn-outline-success mt-3 d-flex justify-content-center align-items-center font-weight-bold text-decoration-none p-2">
-    Tiến hành thanh toán&ensp;<i class="fas fa-dollar-sign"></i>
-  </a>
-</div>
-</div>
-</i>
-</div>
-</div>
-</nav>
+  </nav>
 
 <form class="form-inline text-center col-12 p-0">
   <input

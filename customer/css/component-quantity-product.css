@@ -1,0 +1,15 @@
+.component-quantity-product {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 1.4rem;
+    width: 1.4rem;
+    left: 75%;
+    top: -50%;
+    border-radius: 50%;
+}
+
+.component-quantity-product .quantity {
+    color: white;
+    font-size: 1rem;
+}
