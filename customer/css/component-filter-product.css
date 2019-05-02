@@ -1,4 +1,28 @@
 /* component filter product */
+.component-filter-product .side-filter {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	background-color: #def794;
+	overflow-x: hidden;
+	transition: 0.3s;
+}
+
+.component-filter-product .ip-search {
+  width: 15rem !important;
+}
+
+.component-filter-product .btn-search {
+  width: 6rem !important;
+}
+
+.component-filter-product .show-filter {
+	width: 18rem;
+}
+
 .component-filter-product .list-group-item > a {
   color: #666;
   text-decoration: none;
@@ -6,5 +30,24 @@
 
 .component-filter-product .list-group-item > label:active {
   color: #99cc00;
+}
+
+.component-filter-product .style-scrollbar {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.component-filter-product .style-scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+}
+
+.component-filter-product .style-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  background-color: #f5f5f5;
+}
+
+.component-filter-product .style-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #99cc00;
 }
 /* component filter product */

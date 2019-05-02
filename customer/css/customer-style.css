@@ -76,3 +76,12 @@ input[type="number"] {
 input:checked {
   background-color: #2196f3;
 }
+
+.bg-over-lay {
+  display: none;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 3 !important;
+  position: fixed;
+}

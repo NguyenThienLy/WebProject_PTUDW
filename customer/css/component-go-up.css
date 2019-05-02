@@ -6,8 +6,8 @@
   z-index: 1;
 }
 .component-go-up .btn-go-up {
-  height: 4rem;
-  width: 4rem;
+  height: 3rem;
+  width: 3rem;
   border-radius: 50%;
   position: relative;
   display: flex;
@@ -18,8 +18,6 @@
 }
 
 .component-go-up .btn-go-up .icon-go-up {
-  height: 2rem;
-  width: 2rem;
   position: absolute;
   animation: amimationGoup 2s infinite linear;
 }

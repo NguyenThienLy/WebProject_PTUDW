@@ -31,7 +31,11 @@
     <link href="../css/component-header.css" rel="stylesheet" />
     <link href="../css/component-footer.css" rel="stylesheet" />
     <link href="../css/component-sort-header.css" rel="stylesheet" />
+    <link href="../css/component-filter-product.css" rel="stylesheet" />
+    <link href="../css/component-open-filter.css" rel="stylesheet" />
     <link href="../css/component-go-up.css" rel="stylesheet" />
+    <link href="../css/component-user-account-modal.css" rel="stylesheet" />
+    <link href="../css/component-avatar-user.css" rel="stylesheet" />
     <link href="../css/responsive-header.css" rel="stylesheet" />
     <link href="../css/responsive-footer.css" rel="stylesheet" />
     <link href="../css/responsive-product-show.css" rel="stylesheet" />
@@ -39,6 +43,8 @@
   </head>
 
   <body>
+    <div class="bg-over-lay"></div>
+
     <!-- Header -->
     <div class="component-sidebar-menu">
       <div id="mySidenav" class="side-bar">
@@ -647,6 +653,296 @@
               </div>
             </i>
           </div>
+
+          <a
+            class="btn pl-2 pr-2 ml-1"
+            data-toggle="modal"
+            data-target="#header-user-modal"
+          >
+            <div class="component-avatar-user"></div>
+          </a>
+
+          <div
+            class="component-user-account-modal modal fade"
+            id="header-user-acount-modal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="header-user-modal-label"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-xl" role="document">
+              <div class="modal-content position-relative">
+                <div class="modal-body p-0">
+                  <div
+                    class="content-left float-left h-100 rounded-left pl-4 pr-2 pt-4 pb-2"
+                  >
+                    <div>
+                      <h3
+                        id="header-user-modal-title"
+                        class="font-weight-normal"
+                      >
+                        Thông tin tài khoản
+                      </h3>
+                      <p id="header-user-modal-content">
+                        Quí khách cần đảm bảo cung cấp thông tin một cách chính xác để chúng tôi có thể liên hệ
+                        và tương tác một các tốt nhất.
+                      </p>
+                    </div>
+
+                    <img
+                      src="https://pipe.tikicdn.com/media/upload/2018/10/12/2a3acb91a35d45e1b4b7c96912a0c84a.png"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="content-right float-left rounded">
+                    <nav>
+                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <p
+                          class="nav-item nav-link ml-3 active"
+                          id="header-login-modal-nav-tab"
+                          data-toggle="tab"
+                          href="#header-login-modal-nav"
+                          role="tab"
+                          aria-controls="header-login-modal-nav"
+                          aria-selected="true"
+                        >
+                          Đăng nhập
+                        </p>
+                        <p
+                          class="nav-item nav-link ml-3"
+                          id="header-register-modal-nav-tab"
+                          data-toggle="tab"
+                          href="#header-register-modal-nav"
+                          role="tab"
+                          aria-controls="header-register-modal-nav"
+                          aria-selected="false"
+                        >
+                          Đăng ký
+                        </p>
+                      </div>
+                    </nav>
+
+                    <div class="tab-content" id="nav-tabContent">
+                      <div
+                        class="tab-pane fade show active"
+                        id="header-login-modal-nav"
+                        role="tabpanel"
+                        aria-labelledby="header-login-modal-nav-tab"
+                      >
+                        <form class="p-4">
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-login-modal-email"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Email / SĐT</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập Email hoặc Số điện thoại"
+                                id="header-login-modal-email"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-login-modal-password"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Mật khẩu</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="password"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập mật khẩu từ 6 đến 32 ký tự"
+                                id="header-login-modal-password"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="d-flex">
+                            <div
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                            ></div>
+                            <button
+                              type="button"
+                              class="btn btn-success col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"
+                            >
+                              Đăng nhập
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div
+                        class="tab-pane fade"
+                        id="header-register-modal-nav"
+                        role="tabpanel"
+                        aria-labelledby="header-register-modal-nav-tab"
+                      >
+                        <form class="p-4">
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-name"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Họ tên</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập họ tên"
+                                id="header-register-modal-name"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-phone"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >SĐT</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập số điện thoại"
+                                id="header-register-modal-phone"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-email"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Email</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                placeholder="Nhập email"
+                                id="header-register-modal-email"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              for="header-register-modal-password"
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Mật khẩu</label
+                            >
+                            <div
+                              class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+                            >
+                              <input
+                                type="password"
+                                class="form-control form-control-sm"
+                                placeholder="Mật khẩu từ 6 đến 32 ký tự"
+                                id="header-register-modal-password"
+                              />
+                            </div>
+                          </div>
+
+                          <div
+                            class="form-group row align-items-center ml-0 mr-0"
+                          >
+                            <label
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                              >Giới tính</label
+                            >
+
+                            <div
+                              class="row col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0 ml-0 mr-0"
+                            >
+                              <div class="custom-control custom-radio mr-3">
+                                <input
+                                  type="radio"
+                                  id="header-register-modal-gender-male"
+                                  name="customRadio"
+                                  class="custom-control-input"
+                                />
+                                <label
+                                  class="custom-control-label"
+                                  id="lblMale"
+                                  for="header-register-modal-gender-male"
+                                  >Nam</label
+                                >
+                              </div>
+
+                              <div class="custom-control custom-radio">
+                                <input
+                                  type="radio"
+                                  id="header-register-modal-gender-female"
+                                  name="customRadio"
+                                  class="custom-control-input"
+                                />
+                                <label
+                                  class="custom-control-label"
+                                  id="lblFemale"
+                                  for="header-register-modal-gender-female"
+                                  >Nữ</label
+                                >
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="d-flex">
+                            <div
+                              class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+                            ></div>
+                            <button
+                              type="button"
+                              class="btn btn-success col-sm-9"
+                            >
+                              Đăng ký
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn-close position-absolute border-0"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -684,6 +980,304 @@
       </div>
     </div>
     <!-- Breadcrumb header -->
+
+    <!-- open / close fillter -->
+    <div class="component-open-filter">
+      <button type="button" class="btn btn-success btn-open-filter">
+        <i class="fas fa-sort-amount-up fa-2x icon-open-filter mr-2"></i>
+        <p class="text-open-filter">Bộ lọc</p>
+      </button>
+    </div>
+
+    <div class="component-filter-product">
+      <div id="mySideFilter" class="side-filter">
+        <div class="w-100 h-100 style-scrollbar">
+          <form
+            class="form-inline text-center d-flex align-items-center justify-content-center"
+          >
+            <input
+              class="form-control m-2 ip-search"
+              type="search"
+              placeholder="Tìm kiếm trong bộ lọc"
+              aria-label="Tìm kiếm trong bộ lọc"
+            />
+            <button
+              class="btn btn-outline-success m-2 btn-search"
+              type="submit"
+            >
+              Tìm kiếm
+            </button>
+          </form>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <h5>Danh mục sản phẩm</h5>
+            </li>
+            <li
+              class="list-group-item d-flex list-group-item-action justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Rau củ
+                <span class="badge ml-1  badge-success badge-pill">20</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Hoa quả
+                <span class="badge ml-1  badge-success badge-pill">18</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Hải sản
+                <span class="badge ml-1  badge-success badge-pill">13</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Các loại hạt
+                <span class="badge ml-1  badge-success badge-pill">20</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Thực phẩm tươi sống
+                <span class="badge ml-1  badge-success badge-pill">20</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                combo
+                <span class="badge ml-1  badge-success badge-pill">59</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Tất cả
+                <span class="badge ml-1  badge-success badge-pill">66</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="list-group mt-3">
+            <li class="list-group-item"><h5>Nhà cung cấp</h5></li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Bio Bio Baby
+                <span class="badge ml-1  badge-success badge-pill">14</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Bio Lady và Bio Mama
+                <span class="badge ml-1  badge-success badge-pill">32</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Tanamera
+                <span class="badge ml-1  badge-success badge-pill">16</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Apple Monkey
+                <span class="badge ml-1  badge-success badge-pill">14</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Bentley Organic
+                <span class="badge ml-1  badge-success badge-pill">3</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Zao organic make up
+                <span class="badge ml-1  badge-success badge-pill">11</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Tất cả
+                <span class="badge ml-1  badge-success badge-pill">23</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="list-group mt-3">
+            <li class="list-group-item"><h5>Giá</h5></li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Giá dưới 100.000đ
+                <span class="badge ml-1  badge-success badge-pill">89</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                100.000đ - 200.000đ
+                <span class="badge ml-1  badge-success badge-pill">66</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                200.000đ - 300.000đ
+                <span class="badge ml-1  badge-success badge-pill">35</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                300.000đ - 500.000đ
+                <span class="badge ml-1  badge-success badge-pill">21</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                500.000đ - 1.000.000đ
+                <span class="badge ml-1  badge-success badge-pill">15</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Giá trên 1.000.000đ
+                <span class="badge ml-1  badge-success badge-pill">11</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+            <li
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                Tất cả
+                <span class="badge ml-1  badge-success badge-pill">150</span>
+              </div>
+
+              <div class="checkbox m-0">
+                <label class="m-0"><input type="checkbox" value=""/></label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- open / close fillter -->
 
     <!-- go up -->
     <div class="component-go-up">
@@ -2016,89 +2610,10 @@
     ></script>
     <script src="../js/login-admin.js"></script>
     <script src="../js/go-up.js"></script>
-    <script type="text/javascript">
-      // sidebar menu
-      $("#dropdown-icon").click(function() {
-        $(".transform").toggleClass("transform-active");
-
-        if ($(".transform").hasClass("transform-active")) {
-          $("#dropdown-icon").removeClass("transform-left");
-          $("#dropdown-icon").addClass("transform-down");
-        } else {
-          $("#dropdown-icon").removeClass("transform-down");
-          $("#dropdown-icon").addClass("transform-left");
-        }
-      });
-
-      $(".open-sidebar").click(function(e) {
-        e.stopPropagation();
-        $(".side-bar").toggleClass("show-menu");
-      });
-
-      $("#mySidenav").click(function(e) {
-        e.stopPropagation();
-      });
-
-      $("body,html").click(function(e) {
-        $(".side-bar").removeClass("show-menu");
-      });
-      // sidebar menu
-
-      // update_margin_top_breadcrumb_div
-      function update_margin_top_breadcrumb_div() {
-        var win = $(this); //this = window
-        if (win.outerWidth() <= 991) {
-          var result = $(".component-header").height();
-          $(".breadcrumb-div").css("margin-top", result + 16);
-        } else {
-          $(".breadcrumb-div").css("margin-top", 0);
-        }
-
-        let image_product_large_width = $(".image-product-large").width();
-        $(".image-product-large").css("height", image_product_large_width);
-
-        let image_product_small_width = $(".image-product-small").width();
-        $(".image-product-small-container").css(
-          "height",
-          image_product_small_width
-        );
-      }
-
-      $(window).on("resize", update_margin_top_breadcrumb_div);
-      $(document).ready(update_margin_top_breadcrumb_div);
-      // update_margin_top_breadcrumb_div
-
-      // footer accordion
-      $(".footer-accordion-header-1").click(function(e) {
-        if ($(".footer-accordion-header-icon-1").hasClass("transform-left")) {
-          $(".footer-accordion-header-icon-1").removeClass("transform-left");
-          $(".footer-accordion-header-icon-1").addClass("transform-down");
-        } else {
-          $(".footer-accordion-header-icon-1").removeClass("transform-down");
-          $(".footer-accordion-header-icon-1").addClass("transform-left");
-        }
-      });
-
-      $(".footer-accordion-header-2").click(function(e) {
-        if ($(".footer-accordion-header-icon-2").hasClass("transform-left")) {
-          $(".footer-accordion-header-icon-2").removeClass("transform-left");
-          $(".footer-accordion-header-icon-2").addClass("transform-down");
-        } else {
-          $(".footer-accordion-header-icon-2").removeClass("transform-down");
-          $(".footer-accordion-header-icon-2").addClass("transform-left");
-        }
-      });
-
-      $(".footer-accordion-header-3").click(function(e) {
-        if ($(".footer-accordion-header-icon-3").hasClass("transform-left")) {
-          $(".footer-accordion-header-icon-3").removeClass("transform-left");
-          $(".footer-accordion-header-icon-3").addClass("transform-down");
-        } else {
-          $(".footer-accordion-header-icon-3").removeClass("transform-down");
-          $(".footer-accordion-header-icon-3").addClass("transform-left");
-        }
-      });
-      // footer accordion
-    </script>
+    <script src="../js/open-close-filter.js"></script>
+    <script src="../js/open-close-sidebar-menu.js"></script>
+    <script src="../js/footer-accordion.js"></script>
+    <script src="../js/breadcrump-margin.js"></script>
+    <script src="../js/user-account-modal.js"></script>
   </body>
 </html>

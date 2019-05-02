@@ -56,6 +56,16 @@
     margin-left: 1rem !important;
   }
   /* product combo */
+
+  /* open filter */
+  .component-open-filter .btn-open-filter {
+    width: 7.5rem !important;
+  }
+
+  .component-open-filter .btn-open-filter .text-open-filter {
+    display: block;
+  }
+  /* open filter */
 }
 
 /* Từ lg nhảy sang xl */
@@ -117,6 +127,16 @@
     margin-left: 1rem !important;
   }
   /* product combo */
+
+  /* open filter */
+  .component-open-filter .btn-open-filter {
+    width: 3rem !important;
+  }
+
+  .component-open-filter .btn-open-filter .text-open-filter {
+    display: none;
+  }
+  /* open filter */
 }
 
 /* Từ md nhảy sang lg */
@@ -178,6 +198,16 @@
     margin-left: 0.8rem !important;
   }
   /* product combo */
+
+  /* open filter */
+  .component-open-filter .btn-open-filter {
+    width: 3rem !important;
+  }
+
+  .component-open-filter .btn-open-filter .text-open-filter {
+    display: none;
+  }
+  /* open filter */
 }
 
 /* Từ sm nhảy sang md */
@@ -239,6 +269,16 @@
     margin-left: 0.4rem !important;
   }
   /* product combo */
+
+  /* open filter */
+  .component-open-filter .btn-open-filter {
+    width: 3rem !important;
+  }
+
+  .component-open-filter .btn-open-filter .text-open-filter {
+    display: none;
+  }
+  /* open filter */
 }
 
 /* Từ xm nhảy sang sm */
@@ -300,4 +340,14 @@
     margin-left: 0.4rem !important;
   }
   /* product combo */
+
+  /* open filter */
+  .component-open-filter .btn-open-filter {
+    width: 3rem !important;
+  }
+
+  .component-open-filter .btn-open-filter .text-open-filter {
+    display: none;
+  }
+  /* open filter */
 }
