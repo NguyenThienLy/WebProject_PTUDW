@@ -1,8 +1,8 @@
 /* component go up */
 .component-go-up {
   position: fixed;
-  bottom: 1%;
-  right: 1%;
+  bottom: 3%;
+  right: 2%;
   z-index: 1;
 }
 .component-go-up .btn-go-up {
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 3px solid rgb(167, 230, 108);
+  box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4)
 }
 
 .component-go-up .btn-go-up .icon-go-up {

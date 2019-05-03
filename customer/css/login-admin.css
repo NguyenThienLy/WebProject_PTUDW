@@ -7,16 +7,17 @@ body {
 }
 
 .card {
-	width: 45rem; 
+	width: 75%; 
+	height: 60%;
 	opacity: .9;
 }
 
 .card-body {
-	height: 25rem;
+	height: 100%;
 }
 
 .content-left {
-	width: 360px; 
+	width: 40%; 
 	background-color: rgb(194, 228, 139);
 }
 
@@ -26,10 +27,11 @@ body {
 
 .content-left img {
 	height: calc(100% - 8rem);
+	width: 100%;
 }
 
 .content-right {
-	width: calc(100% - 360px);
+	width: 60%;
 }
 
 .content-right > div {
@@ -39,17 +41,5 @@ body {
 }
 
 .content-right form {
-	font-size: .8rem;
-}
-
-.btn-success {
-    color: white;
-    background-color:#99cc00;
-    border-color: white;
-}
-
-.btn-success:hover {
-    background-color:rgb(194, 228, 139);
-    border-color: white;
-    color: #666;
+	font-size: 1rem;
 }

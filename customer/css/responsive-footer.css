@@ -39,7 +39,7 @@
 }
 
 /* Từ lg nhảy sang extra lg*/
-@media only screen and (max-width: 1200px) {  
+@media only screen and (max-width: 1199px) {  
 	.component-get-email > div i {
 		/*font-size: 2.5em;*/
 	}
@@ -79,7 +79,7 @@
 }
 
 /* Từ md nhảy sang lg */
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
 	.component-get-email > div i {
 		/*font-size: 2.5em;*/
 	}
@@ -119,7 +119,7 @@
 }
 
 /* Từ sm nhảy sang md*/
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
 	.component-get-email > div i {
 		/*font-size: 3em;*/
 	}
@@ -159,7 +159,7 @@
 }
 
 /* Từ extra sm nhảy sang sm */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 575px) {
 	.component-get-email > div i {
 		/*font-size: 3em;*/
 	}

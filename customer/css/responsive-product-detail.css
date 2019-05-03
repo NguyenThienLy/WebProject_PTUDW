@@ -158,7 +158,7 @@
 }
 
 /* Từ lg nhảy sang xl */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1199px) {
   html {
     font-size: 15px !important;
   }
@@ -317,7 +317,7 @@
 }
 
 /* Từ md nhảy sang lg */
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   html {
     font-size: 15px !important;
   }
@@ -476,7 +476,7 @@
 }
 
 /* Từ sm nhảy sang md */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   html {
     font-size: 14px !important;
   }
@@ -639,7 +639,7 @@
 }
 
 /* Từ xm nhảy sang sm */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 575px) {
   html {
     font-size: 14px !important;
   }

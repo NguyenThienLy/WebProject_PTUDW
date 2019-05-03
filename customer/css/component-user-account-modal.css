@@ -1,4 +1,4 @@
-.modal-backdrop {
+/*.modal-backdrop {
   position: fixed;
   z-index: 0;
   top: 0;
@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   background-color: #000000;
-}
+}*/
 
 .component-user-account-modal .modal-body {
   background-color: #f4f4f4;
@@ -77,5 +77,5 @@
   .tab-content
   .tab-pane
   form {
-  font-size: 1em;
+  font-size: 1rem;
 }

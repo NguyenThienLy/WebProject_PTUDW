@@ -1,23 +1,23 @@
 /* component go up */
 .component-open-filter {
-    position: fixed;
-    bottom: 50%;
-    right: 0%;
-    z-index: 1;
-  }
-  .component-open-filter .btn-open-filter {
-    height: 3rem;
-    width: 7.5rem;
-    border-radius: 5%;
-    display: flex;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 3px solid rgb(167, 230, 108);
-  }
+  position: fixed;
+  bottom: 50%;
+  right: 0%;
+  z-index: 1;
+}
 
-  .component-open-filter .btn-open-filter .text-open-filter {
-    margin: 0;
-    font-size: 1rem;
-  }
-  /* component go up */
-  
+.component-open-filter .btn-open-filter {
+  height: 3rem;
+  width: 7.5rem;
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4);
+}
+
+.component-open-filter .btn-open-filter .text-open-filter {
+  margin: 0;
+  font-size: 1rem;
+}
+/* component go up */

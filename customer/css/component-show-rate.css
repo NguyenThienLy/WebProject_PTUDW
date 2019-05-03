@@ -1,4 +1,4 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
 
 .component-show-rate {
 	border: 1px solid #f4f4f4;
@@ -20,7 +20,7 @@
 }
 
 .component-show-rate .content-left .star-rate {
-	font-size: 1rem; 
+	font-size: 1.3rem; 
 	color: #6D6B6A;
 }
 
@@ -84,11 +84,45 @@
 }
 
 .collapse-show-rate .comment .rate {
-	height: 46px;
-	padding: 0 10px;
+	height: auto;
+	padding: 0 0.5rem;
 }
 
-.collapse-show-rate .comment .rate:not(:checked) > input {
+.collapse-show-rate .comment .rate > input[type="radio"] {
+	float: right;
+	position: relative;
+	-webkit-appearance: none;
+	width: 1.4rem;
+	height: 1.4rem;
+	outline: none;
+	margin-right: 0.2rem;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:before {
+	content: '\f005';
+	font-family: FontAwesome;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 1.4rem;
+	transform: translate(-50%, -50%);
+	color: #c8c8c8;
+	transition: 200ms;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:checked {
+	background-color: #fff;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:checked:before {
+	color: orange;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:checked ~ input[type="radio"]:before {
+	color: orange;
+}
+
+/*.collapse-show-rate .comment .rate:not(:checked) > input {
 	position: absolute;
 	top:-9999px;
 }
@@ -124,7 +158,7 @@
 .collapse-show-rate .comment .rate > input:checked ~ label:hover ~ label,
 .collapse-show-rate .comment .rate > label:hover ~ input:checked ~ label {
 	color: #c59b08;
-}
+}*/
 
 .collapse-show-rate .comment > form textarea {
 	resize: none;

@@ -1,4 +1,4 @@
-.modal-backdrop {
+/*.modal-backdrop {
   position: fixed;
   z-index: 0;
   top: 0;
@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   background-color: #000000;
-}
+}*/
 
 .component-login-register-modal .modal-body {
 	background-color: #F4F4F4; 
@@ -27,6 +27,10 @@
 
 .component-login-register-modal .modal-body .content-left div {
 	height: 9rem;
+}
+
+.component-login-register-modal .modal-body .content-left img {
+	width: 100%;
 }
 
 .component-login-register-modal .modal-body .content-right {
@@ -59,7 +63,7 @@
 }
 
 .component-login-register-modal .modal-body .content-right .tab-content .tab-pane form {
-	font-size: 1em;
+	font-size: 1rem;
 }
 
 

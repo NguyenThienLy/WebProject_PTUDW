@@ -1,5 +1,10 @@
 /* trên extra lg*/
 @media only screen and (max-width: 2000px) {
+	.component-header nav {
+		padding-top: 0.4rem;
+		padding-bottom: 0;
+	}
+
 	.component-header nav .open-sidebar {
 		display: none;
 	}
@@ -41,6 +46,18 @@
 		width: 22.5rem;
 	}
 
+	.component-user-account-modal .modal-body .content-left {
+		width: 22.5rem;
+	}
+
+	.component-header {
+		z-index: 2;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+
 	.breadcrumb-header .breadcrumb-div > p {	
 		/*font-size: 2.7rem;*/
 	}
@@ -52,7 +69,12 @@
 }
 
 /* Từ lg nhảy sang extra lg*/
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1199px) {
+	.component-header nav {
+		padding-top: 0.1rem;
+		padding-bottom: 0;
+	}
+
 	.component-header nav .open-sidebar {
 		display: none;
 	}
@@ -93,6 +115,18 @@
 	.component-login-register-modal .modal-body .content-left {
 		width: 22.5rem;
 	}
+
+	.component-user-account-modal .modal-body .content-left {
+		width: 22.5rem;
+	}
+
+	.component-header {
+		z-index: 2;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
 	
 	.breadcrumb-header .breadcrumb-div > p {	
 		/*font-size: 2.4rem;*/
@@ -105,7 +139,12 @@
 }
 
 /* Từ md nhảy sang lg */
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
+	.component-header nav {
+		padding-top: 0.7rem;
+		padding-bottom: 0.2rem;
+	}
+
 	.component-header nav .open-sidebar {
 		display: block;
 	}
@@ -153,6 +192,16 @@
 		width: calc(100% - 3.75rem);
 	}
 
+	.component-user-account-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-user-account-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
 	.component-header {
 		z-index: 2;
 		overflow: hidden;
@@ -172,7 +221,16 @@
 }
 
 /* Từ sm nhảy sang md*/
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
+	.component-header nav {
+		padding-top: 0.7rem;
+		padding-bottom: 0.2rem;
+	}
+
+	.component-header > form {
+		padding-bottom: 0.5rem;
+	}
+
 	.component-header nav .open-sidebar {
 		display: block;
 	}
@@ -220,6 +278,16 @@
 		width: calc(100% - 3.75rem);
 	}
 
+	.component-user-account-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-user-account-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
 	.component-header {
 		z-index: 2;
 		overflow: hidden;
@@ -239,7 +307,16 @@
 }
 
 /* Từ extra sm nhảy sang sm */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 575px) {
+	.component-header nav {
+		padding-top: 0.7rem;
+		padding-bottom: 0.2rem;
+	}
+
+	.component-header > form {
+		padding-bottom: 0.5rem;
+	}
+	
 	.component-header nav .open-sidebar {
 		display: block;
 	}
@@ -284,6 +361,16 @@
 	}
 
 	.component-login-register-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
+	.component-user-account-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-user-account-modal .modal-body .content-right {
 		width: calc(100% - 3.75rem);
 	}
 

@@ -1,11 +1,11 @@
 .component-quantity-product {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     height: 1.4rem;
     width: 1.4rem;
     left: 75%;
-    top: -50%;
+    top: -60%;
     border-radius: 50%;
 }
 
