@@ -72,7 +72,7 @@ function CreatePieChart(context,arrLabel,arrData){
             datasets: [{
                 //Cấu hình hiển thị cho biểu đồ
                 label: 'Lượt mua',
-                backgroundColor: ['#e74c3c','#2980b9','#27ae60','#f1c40f'],
+                backgroundColor: ['#e74c3c','#2980b9','#568a28','#f1c40f'],
                 borderColor: '#fff',
                 borderWidth: 1,
                 weight:20,
@@ -109,8 +109,8 @@ function CreateBarChart(context,arrLabel,arrData){
             datasets: [{
                 //Cấu hình hiển thị cho biểu đồ
                 label: 'Lượt mua',
-                backgroundColor: 'rgba(26, 188, 156, 1)',
-                borderColor: 'rgba(52, 152, 219, 1)',
+                backgroundColor: 'rgba(86, 138, 40, 1)',
+                borderColor: 'rgba(153, 204, 0, 1)',
                 borderWidth: 2,
                 borderSkipped: true,
         
@@ -152,8 +152,8 @@ function CreateLineChart(context,arrLabel,arrData,stringLabel) {
                 //Cấu hình hiển thị cho biểu đồ
                 label: stringLabel,
                 fill:false,
-                backgroundColor: 'rgba(255, 255, 255,0.4)',
-                borderColor: 'rgba(75, 192, 192,1)',
+                backgroundColor: 'rgba(86, 138, 40, 1)',
+                borderColor: 'rgba(153, 204, 0, 1)',
                 pointBorderWidth: 2,
                 lineTension: 0.1,
                 spanGaps: false,

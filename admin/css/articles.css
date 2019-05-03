@@ -1,21 +1,5 @@
-.btn-search{
-    background-color: #1ab394;
-    border: 1px solid #1ab394;
-    height: 1.9375rem;
-}
-
-.btn-search:hover{
-    background-color: #1cc394;
-    border: 1px solid #1cc394;
-}
-
-.btn-search:focus{
-    background-color: #1cc394;
-    border: 1px solid #1cc394;
-}
-
 .search-field{
-    height: 1.9375rem;
+    /*height: 1.9375rem;*/
     border: 1px #e7eaec solid;
 }
 
@@ -23,7 +7,7 @@
     margin-bottom: 1.875rem;
 }
 
-.btn-view{
+/*.btn-view{
     background-color: #e5e5ee;
     color: #676a6c;
     border: 1px #eee solid;
@@ -33,7 +17,7 @@
     background-color: #f3f3f4;
     color: #676a6c;
     border: 1px #eee solid;
-}
+}*/
 
 .article-row{
     border-bottom: 1px solid #eee;
@@ -57,10 +41,10 @@
 }
 
 .page_title{
-    font-size: 0.875rem;
+    /*font-size: 0.875rem;
     font-weight: bold;
     padding: 0rem 0rem 0rem 1.25rem;
-    margin: 0rem;
+    margin: 0rem;*/
 }
 
 /*padding để tránh bị đụng khi thu nhỏ màn hình*/

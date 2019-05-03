@@ -1,21 +1,3 @@
-.btn-search{
-    color: #fff;
-    background-color: #1ab394;
-    border-color: #1ab394;
-    /*height: 1.9375rem;*/
-}
-
-.btn-search:hover{
-    color: #fff;
-    background-color: #1cc394;
-    border-color: #1cc394;
-}
-
-.btn-search:focus{
-    background-color: #1cc394;
-    border-color: #1cc394;
-}
-
 .search-field{
     /*height: 1.9375rem;*/
     border: 1px #e7eaec solid;
@@ -26,27 +8,27 @@
 }
 
 .btn-delete-comment{
-    background-color: #e74c3c;
+    /*background-color: #e74c3c;
     border-color: #e74c3c;
-    color: white;
+    color: white;*/
 }
 
 .btn-delete-comment:hover{
-    background-color: #d45648;
+    /*background-color: #d45648;
     border-color: #f13924;
-    color: white;
+    color: white;*/
 }
 
 .btn-hidden-comment{
-    background-color: #2980b9;
+    /*background-color: #2980b9;
     border-color: white;
-    color: white;
+    color: white;*/
 }
 
 .btn-hidden-comment:hover{
-    background-color: #2d8ac9;
+    /*background-color: #2d8ac9;
     border-color:white;
-    color: white;
+    color: white;*/
 }
 
 .row-comments{
