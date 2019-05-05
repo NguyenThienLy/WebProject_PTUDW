@@ -4,6 +4,7 @@
   height: 26rem;
   background-color: #f7f7f7;
   transition: 200ms;
+  margin-bottom: 1.5rem;
 }
 
 .component-info-big {

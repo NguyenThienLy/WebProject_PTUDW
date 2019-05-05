@@ -25,4 +25,9 @@ $("body,html").click(function(e) {
   $(".side-bar").removeClass("show-menu");
   $(".bg-over-lay").css("display", "none");
 });
+
+$(window).on('resize', function() {
+  $(".side-bar").removeClass("show-menu");
+  $(".bg-over-lay").css("display", "none");
+});
 // sidebar menu

@@ -19,6 +19,49 @@
 	display: block;
 }
 
+.component-header nav .menu-items .nav-link {
+	color: #99cc00;
+}
+
+.component-header nav .menu-items .nav-link:hover {
+	color: #64990a;
+	font-weight: bold;
+}
+
+.component-header nav .menu-items .header-button-product {
+	cursor: default;
+}
+
+.component-header nav .menu-items .header-button-product:hover .header-button-product-content {
+	display: block;
+}
+
+.component-header nav .menu-items .header-button-product-content:hover .header-button-product-content {
+	display: block;
+}
+
+.header-button-product-content {
+	background-color: #FFF;
+	position: fixed; 
+	/*top: 3.5rem; */
+	/*right: 38rem;*/
+	display: none;
+	border-color: #99cc00;
+	border-radius: 0.3rem;
+	font-family: "Quicksand", sans-serif;
+}
+
+.component-header nav .menu-items .header-button-product-content .dropdown-item {
+	color: #666;
+	border-radius: 0.2rem;
+}
+
+.component-header nav .menu-items .header-button-product-content .dropdown-item:active {
+	color: #fff;
+	text-decoration: none;
+	background-color: #99cc00;
+}
+
 .component-header nav .menu-icons {
 	padding-right: 1rem;
 	padding-left: 0;

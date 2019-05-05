@@ -1,6 +1,20 @@
 /* component show fast cart */
+/*.component-show-fast-cart-container {
+  position: fixed; 
+  top: 2.75rem; 
+  right: 5rem;
+}*/
+
+/*.component-show-fast-cart-container:hover .component-show-fast-cart {
+  display: block;
+}*/
+
 .component-show-fast-cart:hover .component-show-fast-cart {
   display: block;
+}
+
+.spanCart > i > a {
+  cursor: pointer;
 }
 
 .spanCart:hover .component-show-fast-cart {
@@ -11,8 +25,9 @@
   width: 20rem;
   display: none;
   z-index: 2;
-  right: 0;
-  top: 1.4rem;
+  position: fixed; 
+  /*top: 2.75rem; */
+  right: 5rem;
   border-color: #99cc00;
   border-radius: 0.3rem;
   font-family: "Quicksand", sans-serif;
@@ -22,6 +37,10 @@
   max-height: 21rem;
   min-height: 6rem;
   overflow-y: auto;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items {
+  cursor: default;
 }
 
 .component-show-fast-cart .component-show-fast-cart-items .product-image {
@@ -87,7 +106,7 @@
 }
 
 .component-show-fast-cart .sum-price > a {
-  cursor: pointer; 
+  /*cursor: pointer; */
   font-size: 1.2rem;
   transition: 300ms;
 }

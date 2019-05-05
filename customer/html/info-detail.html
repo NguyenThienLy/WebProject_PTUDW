@@ -48,79 +48,95 @@
 </head>
 
 <body>
+  <div class="bg-over-lay"></div>
+  
   <!-- Header -->
   <div class="component-sidebar-menu">
     <div id="mySidenav" class="side-bar">
-      <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
       <div class="top-menu"><span class="logo"></span></div>
       <ul class="main-menu">
         <li><a href="#">Giới thiệu</a></li>
-        <li><a href="#">Đăng nhập</a></li>
-        <li class="level0">
-          <a href="#">Sản phẩm</a>
-          <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
-          <ul class="dropdown-container transform">
-            <li><a href="#">Rau củ</a></li>
-            <li><a href="#">Hoa quả</a></li>
-            <li><a href="#">Các loại hạt</a></li>
-          </ul>
-        </li>
+        <li><a href="" data-toggle="modal"
+          data-target="#header-user-modal">Đăng nhập</a></li>
+          <li class="level0">
+            <a href="product-show.html">Sản phẩm</a>
+            <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
+            <ul class="dropdown-container transform">
+              <li><a href="#">Rau củ</a></li>
+              <li><a href="#">Hoa quả</a></li>
+              <li><a href="#">Các loại hạt</a></li>
+            </ul>
+          </li>
 
-        <li><a href="#">Tin tức</a></li>
-        <li><a href="#">Liên hệ</a></li>
-      </ul>
+          <li><a href="info-show.html">Tin tức</a></li>
+          <li><a href="#">Liên hệ</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
 
-  <nav class="component-header bg-light row m-0">
-    <nav class="navbar navbar-light bg-light row col-12 m-0 pl-0 pr-0">
-      <div class="col-7 col-sm-5 col-md-3 col-lg-7 col-xl-7 p-0 m-0 row">
-        <a
-        href="javascript:void(0);"
-        class="open-sidebar position-relative p-0 col-4 col-sm-4 col-md-4 col-lg-3"
-        ><i class="fas fa-bars position-absolute"></i
-          ></a>
-
+    <nav class="component-header bg-light row m-0">
+      <nav class="navbar navbar-light bg-light row col-12 m-0 pl-0 pr-0">
+        <div class="col-7 col-sm-5 col-md-3 col-lg-7 col-xl-7 p-0 m-0 row">
           <a
-          class="navbar-brand d-flex align-items-center m-0 col-8 col-sm-8 col-md-8 col-lg-4 col-xl-3"
-          href="../html/index.html"
-          >
-          <img
-          src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
-          alt=""
-          />
-        </a>
+          href="javascript:void(0);"
+          class="open-sidebar position-relative p-0 col-4 col-sm-4 col-md-4 col-lg-3"
+          ><i class="fas fa-bars position-absolute"></i
+            ></a>
 
-        <ul
-        class="menu-items p-0 nav align-items-center justify-content-center col-sm-8 col-md-8 col-lg-8 col-xl-9"
-        >
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Giới thiệu</a>
-        </li>
-        <li class="nav-item">
-          <div class="btn-group">
-            <button
-            type="button"
-            class="btn btn-outline-primary dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+            <a
+            class="navbar-brand d-flex align-items-center m-0 col-8 col-sm-8 col-md-8 col-lg-4 col-xl-3"
+            href="../html/index.html"
             >
-            Sản phẩm
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Rau củ</a>
-            <a class="dropdown-item" href="#">Hoa quả</a>
-            <a class="dropdown-item" href="#">Hải sản</a>
-            <a class="dropdown-item" href="#">Các loại hạt</a>
-            <a class="dropdown-item" href="#">Thực phẩm tươi sống</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Tất cả</a>
-          </div>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Tin tức</a>
+            <img
+            src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
+            alt=""
+            />
+          </a>
+
+          <ul
+          class="menu-items p-0 nav align-items-center justify-content-center col-sm-8 col-md-8 col-lg-8 col-xl-9"
+          >
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Giới thiệu</a>
+          </li>
+          <li class="nav-item">
+            <!-- <div class="btn-group">
+              <button
+              type="button"
+              class="btn btn-outline-primary dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >
+              Sản phẩm
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Rau củ</a>
+              <a class="dropdown-item" href="#">Hoa quả</a>
+              <a class="dropdown-item" href="#">Hải sản</a>
+              <a class="dropdown-item" href="#">Các loại hạt</a>
+              <a class="dropdown-item" href="#">Thực phẩm tươi sống</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Tất cả</a>
+            </div>
+          </div> -->
+          <div class="">
+            <div class="header-button-product nav-link position-relative">
+              Sản phẩm
+              <div class="card header-button-product-content">
+               <a class="dropdown-item" href="#">Rau củ</a>
+               <a class="dropdown-item" href="#">Hoa quả</a>
+               <a class="dropdown-item" href="#">Hải sản</a>
+               <a class="dropdown-item" href="#">Các loại hạt</a>
+               <a class="dropdown-item" href="#">Thực phẩm tươi sống</a>
+               <div class="dropdown-divider"></div>
+               <a class="dropdown-item" href="#">Tất cả</a>
+             </div>
+           </div>
+         </div>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="info-show.html">Tin tức</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Liên hệ</a>
@@ -446,14 +462,61 @@ aria-label="Close"
 
 <div class="spanCart btn pl-2 pr-2 ml-1 mr-1" id="span-show-cart">
   <i class="fas fa-shopping-cart position-relative">
-    <div
-    class="component-quantity-product position-absolute bg-danger"
-    >
-    <p class="quantity m-0">4</p>
-  </div>
+    <a href="cart-detail.html" class="stretched-link"></a>
+    <div class="component-quantity-product position-absolute bg-danger">
+      <p class="quantity m-0">4</p>
+    </div>
 
-  <div class="component-show-fast-cart card position-absolute mt-3">
-    <div class="style-scrollbar mt-3">
+    <!-- <div class="component-show-fast-cart-container"> -->
+      <div class="component-show-fast-cart card mt-3">
+        <div class="style-scrollbar mt-3">
+          <div class="component-show-fast-cart-items">
+            <div class="d-flex align-items-start pl-3 pr-3 pb-3">
+              <div
+              class="position-relative product-image"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+              >
+              <a class="stretched-link" href="product-detail.html"></a>
+              <img
+              src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+              class="w-100"
+              alt=""
+              />
+            </div>
+
+            <div class="product-info text-left">
+              <a
+              href="product-detail.html"
+              class="title text-decoration-none"
+              data-toggle="tooltip"
+              title="Chanh tươi"
+              >Chanh tươi</a
+              >
+
+              <div class="price mt-2">
+                <span>30.000</span>
+                <span><u>đ</u></span>
+                &nbsp;
+                <span>x</span>
+                <span>1</span>
+              </div>
+            </div>
+
+            <div class="product-delete text-right">
+              <button
+              type="button"
+              class="p-0 border-0"
+              data-toggle="tooltip"
+              title="Xóa"
+              >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <hr class="m-0 ml-2 mr-2" />
+      </div>
+
       <div class="component-show-fast-cart-items">
         <div class="d-flex align-items-start pl-3 pr-3 pb-3">
           <div
@@ -461,7 +524,7 @@ aria-label="Close"
           data-toggle="tooltip"
           title="Chanh tươi"
           >
-          <a class="stretched-link" href="#"></a>
+          <a class="stretched-link" href="product-detail.html"></a>
           <img
           src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
           class="w-100"
@@ -471,7 +534,7 @@ aria-label="Close"
 
         <div class="product-info text-left">
           <a
-          href="#"
+          href="product-detail.html"
           class="title text-decoration-none"
           data-toggle="tooltip"
           title="Chanh tươi"
@@ -508,7 +571,7 @@ aria-label="Close"
       data-toggle="tooltip"
       title="Chanh tươi"
       >
-      <a class="stretched-link" href="#"></a>
+      <a class="stretched-link" href="product-detail.html"></a>
       <img
       src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
       class="w-100"
@@ -518,7 +581,7 @@ aria-label="Close"
 
     <div class="product-info text-left">
       <a
-      href="#"
+      href="product-detail.html"
       class="title text-decoration-none"
       data-toggle="tooltip"
       title="Chanh tươi"
@@ -555,7 +618,7 @@ aria-label="Close"
     data-toggle="tooltip"
     title="Chanh tươi"
     >
-    <a class="stretched-link" href="#"></a>
+    <a class="stretched-link" href="product-detail.html"></a>
     <img
     src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
     class="w-100"
@@ -565,54 +628,7 @@ aria-label="Close"
 
   <div class="product-info text-left">
     <a
-    href="#"
-    class="title text-decoration-none"
-    data-toggle="tooltip"
-    title="Chanh tươi"
-    >Chanh tươi</a
-    >
-
-    <div class="price mt-2">
-      <span>30.000</span>
-      <span><u>đ</u></span>
-      &nbsp;
-      <span>x</span>
-      <span>1</span>
-    </div>
-  </div>
-
-  <div class="product-delete text-right">
-    <button
-    type="button"
-    class="p-0 border-0"
-    data-toggle="tooltip"
-    title="Xóa"
-    >
-    <i class="fas fa-times"></i>
-  </button>
-</div>
-</div>
-<hr class="m-0 ml-2 mr-2" />
-</div>
-
-<div class="component-show-fast-cart-items">
-  <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-    <div
-    class="position-relative product-image"
-    data-toggle="tooltip"
-    title="Chanh tươi"
-    >
-    <a class="stretched-link" href="#"></a>
-    <img
-    src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-    class="w-100"
-    alt=""
-    />
-  </div>
-
-  <div class="product-info text-left">
-    <a
-    href="#"
+    href="product-detail.html"
     class="title text-decoration-none"
     data-toggle="tooltip"
     title="Chanh tươi"
@@ -655,23 +671,48 @@ aria-label="Close"
   </div>
 
   <a
-  href="#"
+  href="cart-detail.html"
   class="btn btn-outline-success mt-3 d-flex justify-content-center align-items-center font-weight-bold text-decoration-none p-2"
   >
   Tiến hành thanh toán&ensp;<i class="fas fa-dollar-sign"></i>
 </a>
 </div>
 </div>
+<!-- </div> -->
 </i>
 </div>
 
-<a
+<!-- <div class="component-avatar-user-contain btn-group pt-0 pl-2 pr-2 ml-1 pb-1">
+  <button
+  class="btn dropdown-toggle p-0 position-relative"
+  data-toggle="dropdown"
+  aria-haspopup="true"
+  aria-expanded="false"
+  >
+  <div class="component-avatar-user"></div>
+</button>
+<div class="dropdown-menu">
+  <a class="dropdown-item" href="" data-toggle="modal" data-target="#header-avatar-modal">Tài khoản của tôi</a>
+  <a class="dropdown-item" href="#">Đăng xuất</a>
+</div>
+</div> -->
+
+<div class="pt-0 pl-2 pr-2 ml-1 pb-1">
+  <div class="component-avatar-user position-relative">
+    <div class="card component-avatar-user-content">
+      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài khoản của tôi</a>
+      <a class="dropdown-item" href="#">Đăng xuất</a>
+    </div>
+  </div>
+</div>
+
+<!-- <a
 class="btn pt-0 pl-2 pr-2 ml-1"
 data-toggle="modal"
 data-target="#header-avatar-modal"
 >
 <div class="component-avatar-user"></div>
-</a>
+</a> -->
 
 <!-- component user account modal -->
 <!-- <div
@@ -987,7 +1028,7 @@ aria-label="Close"
         <a href="./index.html">Trang chủ</a>
       </li>
       <li class="breadcrumb-item">
-        <a href="#">Tin tức</a>
+        <a href="info-show.html">Tin tức</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">
         Rau tăng giá mạnh
@@ -1208,7 +1249,7 @@ aria-label="Close"
   <div class="row justify-content-center">
     <img
     src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
-    width="60"
+    width="80"
     height="30"
     alt=""
     />
@@ -1219,51 +1260,12 @@ aria-label="Close"
     class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
     >
     <div class="component-info-small card font-weight-bold border-0">
-      <div
-      class="card-img-top h-50 w-100 position-relative"
-      data-toggle="tooltip"
-      title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
-      >
-      <a class="w-100 h-100 position-absolute" href="#"></a>
-      <div
-      class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
-      >
-      <div class="mr-3">
-        <i class="far fa-calendar"></i>
-        &nbsp
-        <span>27/03/2019</span>
-      </div>
-      <div>
-        <span class="font-weight-normal posted">Đăng bởi: </span>
-        <span>Cool Team</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="h-50 card-body text-center">
-    <a href="#" class="title card-title m-0"
-    >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
-    đao</a
-    >
-    <p class="mt-2 font-weight-normal">
-      Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
-      liên tiếp nên nguồn cung rau xanh cho các chợ bắt đầu khan hiếm,
-      giá tăng mạnh...
-    </p>
-  </div>
-</div>
-</div>
-
-<div
-class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
->
-<div class="component-info-small card font-weight-bold border-0">
   <div
   class="card-img-top h-50 w-100 position-relative"
   data-toggle="tooltip"
   title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
   >
-  <a class="w-100 h-100 position-absolute" href="#"></a>
+  <a class="stretched-link" href="info-detail.html"></a>
   <div
   class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
   >
@@ -1280,7 +1282,7 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
 </div>
 
 <div class="h-50 card-body text-center">
-  <a href="#" class="title card-title m-0"
+  <a href="info-detail.html" class="title card-title m-0"
   >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
   đao</a
   >
@@ -1302,7 +1304,7 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
   data-toggle="tooltip"
   title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
   >
-  <a class="w-100 h-100 position-absolute" href="#"></a>
+  <a class="stretched-link" href="info-detail.html"></a>
   <div
   class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
   >
@@ -1319,7 +1321,46 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
 </div>
 
 <div class="h-50 card-body text-center">
-  <a href="#" class="title card-title m-0"
+  <a href="info-detail.html" class="title card-title m-0"
+  >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
+  đao</a
+  >
+  <p class="mt-2 font-weight-normal">
+    Khoảng gần một tuần nay, do ảnh hưởng của những cơn mưa kéo dài
+    liên tiếp nên nguồn cung rau xanh cho các chợ bắt đầu khan hiếm,
+    giá tăng mạnh...
+  </p>
+</div>
+</div>
+</div>
+
+<div
+class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
+>
+<div class="component-info-small card font-weight-bold border-0">
+  <div
+  class="card-img-top h-50 w-100 position-relative"
+  data-toggle="tooltip"
+  title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+  >
+  <a class="stretched-link" href="info-detail.html"></a>
+  <div
+  class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
+  >
+  <div class="mr-3">
+    <i class="far fa-calendar"></i>
+    &nbsp
+    <span>27/03/2019</span>
+  </div>
+  <div>
+    <span class="font-weight-normal posted">Đăng bởi: </span>
+    <span>Cool Team</span>
+  </div>
+</div>
+</div>
+
+<div class="h-50 card-body text-center">
+  <a href="info-detail.html" class="title card-title m-0"
   >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
   đao</a
   >
@@ -1346,7 +1387,7 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
 <div class="row justify-content-center">
   <img
   src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
-  width="60"
+  width="80"
   height="30"
   alt=""
   />
@@ -1357,29 +1398,29 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
   class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
   >
   <div class="component-info-small card font-weight-bold border-0">
-    <div
-    class="card-img-top h-50 w-100 position-relative"
-    data-toggle="tooltip"
-    title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
-    >
-    <a class="w-100 h-100 position-absolute" href="#"></a>
-    <div
-    class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
-    >
-    <div class="mr-3">
-      <i class="far fa-calendar"></i>
-      &nbsp
-      <span>27/03/2019</span>
-    </div>
-    <div>
-      <span class="font-weight-normal posted">Đăng bởi: </span>
-      <span>Cool Team</span>
-    </div>
+  <div
+  class="card-img-top h-50 w-100 position-relative"
+  data-toggle="tooltip"
+  title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
+  >
+  <a class="stretched-link" href="info-detail.html"></a>
+  <div
+  class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
+  >
+  <div class="mr-3">
+    <i class="far fa-calendar"></i>
+    &nbsp
+    <span>27/03/2019</span>
   </div>
+  <div>
+    <span class="font-weight-normal posted">Đăng bởi: </span>
+    <span>Cool Team</span>
+  </div>
+</div>
 </div>
 
 <div class="h-50 card-body text-center">
-  <a href="#" class="title card-title m-0"
+  <a href="info-detail.html" class="title card-title m-0"
   >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
   đao</a
   >
@@ -1401,7 +1442,7 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
   data-toggle="tooltip"
   title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
   >
-  <a class="w-100 h-100 position-absolute" href="#"></a>
+  <a class="stretched-link" href="info-detail.html"></a>
   <div
   class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
   >
@@ -1418,7 +1459,7 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
 </div>
 
 <div class="h-50 card-body text-center">
-  <a href="#" class="title card-title m-0"
+  <a href="info-detail.html" class="title card-title m-0"
   >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
   đao</a
   >
@@ -1440,7 +1481,7 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
   data-toggle="tooltip"
   title="Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao đao"
   >
-  <a class="w-100 h-100 position-absolute" href="#"></a>
+  <a class="stretched-link" href="info-detail.html"></a>
   <div
   class="p-2 w-100 d-flex justify-content-center position-absolute info-info"
   >
@@ -1457,7 +1498,7 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
 </div>
 
 <div class="h-50 card-body text-center">
-  <a href="#" class="title card-title m-0"
+  <a href="info-detail.html" class="title card-title m-0"
   >Rau xanh tăng giá mạnh vì trời mưa, người dân nội thành lao
   đao</a
   >
@@ -1571,11 +1612,11 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
       </li>
       <li class="mb-3">
         <i class="fab fa-product-hunt mr-2"></i>
-        <a class="footerLink" href="#">Sản phẩm</a>
+        <a class="footerLink" href="product-show.html">Sản phẩm</a>
       </li>
       <li class="mb-3">
         <i class="far fa-newspaper mr-2"></i>
-        <a class="footerLink" href="#">Tin tức</a>
+        <a class="footerLink" href="info-show.html">Tin tức</a>
       </li>
       <li class="mb-3">
         <i class="fas fa-info mr-2"></i>
@@ -1594,11 +1635,13 @@ class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center"
   <ul class="list-unstyled text-left">
     <li class="mb-3">
       <i class="far fa-registered mr-2"></i>
-      <a class="footerLink" href="#">Đăng kí</a>
+      <a class="footerLink" href="" data-toggle="modal"
+data-target="#header-user-modal">Đăng kí</a>
     </li>
     <li class="mb-3">
       <i class="fas fa-sign-in-alt mr-2"></i>
-      <a class="footerLink" href="#">Đăng nhập</a>
+      <a class="footerLink" href="" data-toggle="modal"
+data-target="#header-user-modal">Đăng nhập</a>
     </li>
     <li class="mb-3">
       <i class="fas fa-sign-out-alt mr-2"></i>
@@ -1617,15 +1660,15 @@ class="column-footer-4 col-4 col-xs-4 col-md-4 col-lg-3 col-xl-3 pt-4"
 <ul class="list-unstyled text-left">
   <li class="mb-3">
     <i class="fab fa-facebook-square mr-2"></i>
-    <a class="footerLink" href="#">https://www.facebook.com</a>
+    <a class="footerLink" href="https://www.facebook.com">https://www.facebook.com</a>
   </li>
   <li class="mb-3">
     <i class="fab fa-twitter-square mr-2"></i>
-    <a class="footerLink" href="#">https://www.twitter.com</a>
+    <a class="footerLink" href="https://www.twitter.com">https://www.twitter.com</a>
   </li>
   <li class="mb-3">
     <i class="fab fa-instagram mr-2"></i>
-    <a class="footerLink" href="#">https://www.instagram.com</a>
+    <a class="footerLink" href="https://www.instagram.com">https://www.instagram.com</a>
   </li>
 </ul>
 </div>
@@ -1671,11 +1714,11 @@ data-parent="#footer-accordion"
     </li>
     <li class="mb-3">
       <i class="fab fa-product-hunt mr-2"></i>
-      <a class="footerLink" href="#">Sản phẩm</a>
+      <a class="footerLink" href="product-show.html">Sản phẩm</a>
     </li>
     <li class="mb-3">
       <i class="far fa-newspaper mr-2"></i>
-      <a class="footerLink" href="#">Tin tức</a>
+      <a class="footerLink" href="info-show.html">Tin tức</a>
     </li>
     <li class="mb-3">
       <i class="fas fa-info mr-2"></i>
@@ -1717,11 +1760,13 @@ data-parent="#footer-accordion"
   <ul class="list-unstyled text-left">
     <li class="mb-3">
       <i class="far fa-registered mr-2"></i>
-      <a class="footerLink" href="#">Đăng kí</a>
+      <a class="footerLink" href="" data-toggle="modal"
+data-target="#header-user-modal">Đăng kí</a>
     </li>
     <li class="mb-3">
       <i class="fas fa-sign-in-alt mr-2"></i>
-      <a class="footerLink" href="#">Đăng nhập</a>
+      <a class="footerLink" href="" data-toggle="modal"
+data-target="#header-user-modal">Đăng nhập</a>
     </li>
     <li class="mb-3">
       <i class="fas fa-sign-out-alt mr-2"></i>
@@ -1763,17 +1808,17 @@ data-parent="#footer-accordion"
   <ul class="list-unstyled text-left">
     <li class="mb-3">
       <i class="fab fa-facebook-square mr-2"></i>
-      <a class="footerLink" href="#"
+      <a class="footerLink" href="https://www.facebook.com"
       >https://www.facebook.com</a
       >
     </li>
     <li class="mb-3">
       <i class="fab fa-twitter-square mr-2"></i>
-      <a class="footerLink" href="#">https://www.twitter.com</a>
+      <a class="footerLink" href="https://www.twitter.com">https://www.twitter.com</a>
     </li>
     <li class="mb-3">
       <i class="fab fa-instagram mr-2"></i>
-      <a class="footerLink" href="#"
+      <a class="footerLink" href="https://www.instagram.com"
       >https://www.instagram.com</a
       >
     </li>
@@ -2170,19 +2215,13 @@ aria-hidden="true"
     class="form-group row align-items-center ml-0 mr-0"
     >
     <label
-    for="header-info-modal-email"
-    class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
-    >Email / SĐT</label
+    class="col-4 col-form-label"
+    >Họ tên:</label
     >
     <div
-    class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+    class="col-8 p-0"
     >
-    <input
-    type="text"
-    class="form-control form-control-sm"
-    placeholder="Nhập Email hoặc Số điện thoại"
-    id="header-info-modal-email"
-    />
+    Trần Khánh Linh
   </div>
 </div>
 
@@ -2190,32 +2229,80 @@ aria-hidden="true"
 class="form-group row align-items-center ml-0 mr-0"
 >
 <label
-for="header-info-modal-password"
-class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
->Mật khẩu</label
+class="col-4 col-form-label"
+>SĐT:</label
 >
 <div
-class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+class="col-8 p-0"
 >
-<input
-type="password"
-class="form-control form-control-sm"
-placeholder="Nhập mật khẩu từ 6 đến 32 ký tự"
-id="header-info-modal-password"
-/>
+01298937282
 </div>
 </div>
 
-<div class="d-flex">
-  <div
-  class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
-  ></div>
-  <button
-  type="button"
-  class="btn btn-success col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"
+<div
+class="form-group row align-items-center ml-0 mr-0"
+>
+<label
+class="col-4 col-form-label"
+>Email:</label
+>
+<div
+class="col-8 p-0"
+>
+trankhanhlinh98@gmail.com
+</div>
+</div>
+
+<div
+class="form-group row align-items-center ml-0 mr-0"
+>
+<label
+class="col-4 col-form-label"
+>Giới tính:</label
+>
+
+<div
+class="row col-8 p-0 ml-0 mr-0"
+>
+<div class="custom-control custom-radio mr-3">
+  <input
+  type="radio"
+  name="customRadio"
+  class="custom-control-input"
+  disabled />
+  <label
+  class="custom-control-label"
+  >Nam</label
   >
-  Đăng nhập
-</button>
+</div>
+
+<div class="custom-control custom-radio">
+  <input
+  type="radio"
+  name="customRadio"
+  class="custom-control-input"
+  checked
+  disabled />
+  <label
+  class="custom-control-label"
+  >Nữ</label
+  >
+</div>
+</div>
+</div>
+
+<div
+class="form-group row align-items-center ml-0 mr-0"
+>
+<label
+class="col-4 col-form-label"
+>Ảnh đại diện:</label
+>
+<div
+class="col-8 p-0"
+>
+<img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg" class="user-avatar">
+</div>
 </div>
 </form>
 </div>
@@ -2232,13 +2319,14 @@ aria-labelledby="header-edit-info-modal-nav-tab"
   >
   <label
   for="header-edit-info-modal-name"
-  class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+  class="col-4 col-form-label"
   >Họ tên</label
   >
   <div
-  class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+  class="col-8 p-0"
   >
   <input
+  value="Trần Khánh Linh"
   type="text"
   class="form-control form-control-sm"
   placeholder="Nhập họ tên"
@@ -2252,13 +2340,14 @@ class="form-group row align-items-center ml-0 mr-0"
 >
 <label
 for="header-edit-info-modal-phone"
-class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+class="col-4 col-form-label"
 >SĐT</label
 >
 <div
-class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+class="col-8 p-0"
 >
 <input
+value="0192987388"
 type="text"
 class="form-control form-control-sm"
 placeholder="Nhập số điện thoại"
@@ -2272,13 +2361,14 @@ class="form-group row align-items-center ml-0 mr-0"
 >
 <label
 for="header-edit-info-modal-email"
-class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+class="col-4 col-form-label"
 >Email</label
 >
 <div
-class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+class="col-8 p-0"
 >
 <input
+value="trankhanhlinh98@gmail.com"
 type="text"
 class="form-control form-control-sm"
 placeholder="Nhập email"
@@ -2292,13 +2382,14 @@ class="form-group row align-items-center ml-0 mr-0"
 >
 <label
 for="header-edit-info-modal-password"
-class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+class="col-4 col-form-label"
 >Mật khẩu</label
 >
 <div
-class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0"
+class="col-8 p-0"
 >
 <input
+value="0908987879"
 type="password"
 class="form-control form-control-sm"
 placeholder="Mật khẩu từ 6 đến 32 ký tự"
@@ -2311,12 +2402,12 @@ id="header-edit-info-modal-password"
 class="form-group row align-items-center ml-0 mr-0"
 >
 <label
-class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+class="col-4 col-form-label"
 >Giới tính</label
 >
 
 <div
-class="row col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0 ml-0 mr-0"
+class="row col-8 p-0 ml-0 mr-0"
 >
 <div class="custom-control custom-radio mr-3">
   <input
@@ -2339,6 +2430,7 @@ class="row col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0 ml-0 mr-0"
   id="header-edit-info-modal-gender-female"
   name="customRadio"
   class="custom-control-input"
+  checked
   />
   <label
   class="custom-control-label"
@@ -2352,11 +2444,43 @@ class="row col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0 ml-0 mr-0"
 
 <div class="d-flex">
   <div
-  class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"
+  class="col-4 col-form-label"
+  ></div>
+  <div
+  class="col-8 p-0"
+  >
+  <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg" class="edit-user-avatar">
+</div>
+</div>
+
+<div
+class="form-group row align-items-end ml-0 mr-0"
+>
+<label
+for="header-edit-info-modal-avatar"
+class="col-4 col-form-label pb-0"
+>Ảnh đại diện</label
+>
+<!-- <div
+class="custom-file col-8 p-0"
+>
+  <input type="file" class="custom-file-input " id="customFile">
+  <label class="custom-file-label" for="customFile">Choose file</label>
+</div> -->
+<div
+class="col-8 p-0"
+>
+<input type="file" id="header-edit-info-modal-avatar" class="form-control-file form-control-sm p-0">
+</div>
+</div>
+
+<div class="d-flex mt-2">
+  <div
+  class="col-4 col-form-label"
   ></div>
   <button
   type="button"
-  class="btn btn-success col-sm-9"
+  class="btn btn-success col-8"
   >
   Lưu
 </button>
@@ -2402,5 +2526,6 @@ crossorigin="anonymous"
 <script src="../js/open-close-sidebar-menu.js"></script>
 <script src="../js/footer-accordion.js"></script>
 <script src="../js/breadcrumb-margin.js"></script>
+<script src="../js/component-header-hover-content-top.js"></script>
 </body>
 </html>

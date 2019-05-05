@@ -211,6 +211,11 @@ html, body {
     border-color: #99cc00;
 }
 
+.form-control:focus {
+    border-color: #99cc00;
+    box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.3);
+}
+
 .table > tbody {
     font-size: 0.9rem;
 }

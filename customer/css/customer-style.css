@@ -112,6 +112,11 @@ input:checked {
   background-color: #2196f3;
 }
 
+.form-control:focus {
+    border-color: #99cc00;
+    box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.3);
+}
+
 .bg-over-lay {
  position: fixed;
  overflow: hidden;

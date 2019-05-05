@@ -10,7 +10,7 @@
 
 .component-user-account-modal .modal-body {
   background-color: #f4f4f4;
-  height: 37.5rem;
+  height: 39rem;
 }
 
 .component-user-account-modal .modal-body .btn-close {
@@ -78,4 +78,14 @@
   .tab-pane
   form {
   font-size: 1rem;
+}
+
+.component-user-account-modal .modal-body .content-right .user-avatar {
+  height: 12rem;
+  width: 12rem;
+}
+
+.component-user-account-modal .modal-body .content-right .edit-user-avatar {
+  height: 8rem;
+  width: 8rem;
 }
