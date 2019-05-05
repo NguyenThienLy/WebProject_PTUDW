@@ -135,7 +135,6 @@ function CreateBarChart(context,arrLabel,arrData){
     });
 }
 
-
 //Hàm tạo biểu đồ đường thằng
 function CreateLineChart(context,arrLabel,arrData,stringLabel) {
     //Truyền Biến trên vào trong context
