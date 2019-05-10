@@ -3,18 +3,6 @@
     font-size: 16px !important;
   }
 
-  /* info */
-  .component-info-small {
-    height: 28rem;
-    width: 100% !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
-
   /* sort header */
   .component-sort-header {
     height: 5rem !important;
@@ -73,18 +61,6 @@
   html {
     font-size: 15px !important;
   }
-
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
 
   /* sort header */
   .component-sort-header {
@@ -145,18 +121,6 @@
     font-size: 15px !important;
   }
 
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
-
   /* sort header */
   .component-sort-header {
     height: 5rem !important;
@@ -216,18 +180,6 @@
     font-size: 14px !important;
   }
 
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
-
   /* sort header */
   .component-sort-header {
     height: 7rem !important;
@@ -286,18 +238,6 @@
   html {
     font-size: 14px !important;
   }
-
-  /* info */
-  .component-info-small {
-    height: 30rem;
-    width: 18rem !important;
-    margin-bottom: 1rem;
-  }
-
-  .component-info-small .card-img-top .info-info {
-    top: 86% !important;
-  }
-  /* info */
 
   /* sort header */
   .component-sort-header {

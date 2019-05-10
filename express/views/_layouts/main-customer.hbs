@@ -95,21 +95,33 @@
 </head>
 
 <body>
+    <div class="bg-over-lay"></div>
 
     <div class="component-sidebar-menu">
         <div id="mySidenav" class="side-bar">
             <div class="top-menu"><span class="logo"></span></div>
             <ul class="main-menu">
                 <li><a href="#">Giới thiệu</a></li>
-                <li><a href="" data-toggle="modal" data-target="#header-user-modal">Đăng nhập</a></li>
-                <li class="level0">
+                <li><a href="" id="side-bar-open-header-user-modal" data-toggle="modal"
+                        data-target="#header-user-modal">Đăng nhập</a></li>
+                <li class="position-relative">
                     <a href="product-show.html">Sản phẩm</a>
                     <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
+
                     <ul class="dropdown-container transform">
-                        <li><a href="product-show.html">Rau củ</a></li>
+                        <li class="position-relative">
+                            <a href="product-show.html">Rau củ</a>
+                            <i id="sub-dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
+                            <ul class="dropdown-container list-unstyled sub-transform">
+                                <li><a href="product-show.html">Rau củ 1</a> </li>
+                                <li><a href="product-show.html">Rau củ 2</a></li>
+                                <li><a href="product-show.html">Rau củ 3</a></li>
+                            </ul>
+                        </li>
                         <li><a href="product-show.html">Hoa quả</a></li>
                         <li><a href="product-show.html">Các loại hạt</a></li>
                     </ul>
+
                 </li>
 
                 <li><a href="info-show.html">Tin tức</a></li>
@@ -138,7 +150,7 @@
                     </li>
                     <li class="nav-item">
 
-                        <div class="">
+                        {{!-- <div class="">
                             <div class="header-button-product nav-link position-relative">
                                 Sản phẩm
                                 <div class="card header-button-product-content">
@@ -151,7 +163,49 @@
                                     <a class="dropdown-item" href="product-show.html">Tất cả</a>
                                 </div>
                             </div>
+                        </div> --}}
+
+                        <div class="">
+                            <div class="header-button-product nav-link position-relative">
+                                Sản phẩm
+                                <div class="card header-button-product-content">
+                                    <div class="dropdown-item position-relative">
+                                        <a href="product-show.html"
+                                            class="stretched-link d-flex align-items-center justify-content-between">
+                                            Rau củ
+                                            <i class="fas fa-angle-right"></i>
+                                        </a>
+                                        <div class="card sub-dropdown-item">
+                                            <a class="dropdown-item" href="product-show.html">Rau củ 1</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau củ 2</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau củ 3</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau củ 4</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau củ 5</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item position-relative">
+                                        <a href="product-show.html"
+                                            class="stretched-link d-flex align-items-center justify-content-between">
+                                            Hoa quả
+                                            <i class="fas fa-angle-right"></i>
+                                        </a>
+                                        <div class="card sub-dropdown-item">
+                                            <a class="dropdown-item" href="product-show.html">Hoa quả 1</a>
+                                            <a class="dropdown-item" href="product-show.html">Hoa quả 2</a>
+                                            <a class="dropdown-item" href="product-show.html">Hoa quả 3</a>
+                                            <a class="dropdown-item" href="product-show.html">Hoa quả 4</a>
+                                            <a class="dropdown-item" href="product-show.html">Hoa quả 5</a>
+                                        </div>
+                                    </div>
+                                    <a class="dropdown-item" href="product-show.html">Hải sản</a>
+                                    <a class="dropdown-item" href="product-show.html">Các loại hạt</a>
+                                    <a class="dropdown-item" href="product-show.html">Thực phẩm tươi sống</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="product-show.html">Tất cả</a>
+                                </div>
+                            </div>
                         </div>
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="info-show.html">Tin tức</a>
@@ -530,8 +584,7 @@
                             </div>
                         </div>
 
-                        <div id="footer-collapse1" class="collapse" aria-labelledby="footer-heading1"
-                            data-parent="#footer-accordion">
+                        <div id="footer-collapse1" class="collapse" aria-labelledby="footer-heading1">
                             <div>
                                 <ul class="list-unstyled text-left">
                                     <li class="mb-3">
@@ -568,8 +621,7 @@
                             </div>
                         </div>
 
-                        <div id="footer-collapse2" class="collapse" aria-labelledby="footer-heading2"
-                            data-parent="#footer-accordion">
+                        <div id="footer-collapse2" class="collapse" aria-labelledby="footer-heading2">
                             <div>
                                 <ul class="list-unstyled text-left">
                                     <li class="mb-3">
@@ -604,8 +656,7 @@
                             </div>
                         </div>
 
-                        <div id="footer-collapse3" class="collapse" aria-labelledby="footer-heading3"
-                            data-parent="#footer-accordion">
+                        <div id="footer-collapse3" class="collapse" aria-labelledby="footer-heading3">
                             <div>
                                 <ul class="list-unstyled text-left">
                                     <li class="mb-3">

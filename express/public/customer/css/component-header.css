@@ -51,12 +51,40 @@
 	font-family: "Quicksand", sans-serif;
 }
 
+.header-button-product-content .dropdown-item:hover > .sub-dropdown-item {
+	display: block;
+}
+
+.header-button-product-content .sub-dropdown-item:hover .sub-dropdown-item {
+	display: block;
+}
+
+.header-button-product-content .dropdown-item > .sub-dropdown-item {
+	background-color: #FFF;
+	position: absolute; 
+	top: 0;
+  	left: 100%;
+  	margin-top: -1px;
+	display: none;
+	border-color: #99cc00;
+	border-radius: 0.3rem;
+	font-family: "Quicksand", sans-serif;
+	z-index: 3;
+}
+
+.header-button-product-content .dropdown-item > a {
+	text-decoration: none;
+	color: #666;
+    border-radius: 0.2rem;
+}
+
 .component-header nav .menu-items .header-button-product-content .dropdown-item {
 	color: #666;
 	border-radius: 0.2rem;
 }
 
-.component-header nav .menu-items .header-button-product-content .dropdown-item:active {
+.component-header nav .menu-items .header-button-product-content .dropdown-item:active,
+.header-button-product-content .dropdown-item > a:active {
 	color: #fff;
 	text-decoration: none;
 	background-color: #99cc00;

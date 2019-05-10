@@ -1,11 +1,11 @@
 /* about us */
 .component-about-us {
-  height: 20rem;
+  height: 20rem !important;
 }
 
 .component-about-us .content-top {
   overflow: hidden;
-  height: 12rem;
+  height: 12rem !important;
   background-image: url(http://www.backgroundppt.com/wp-content/uploads/2019/01/citrus-fruit-1-1024x576.jpg);
   background-repeat: no-repeat;
   background-size: cover;

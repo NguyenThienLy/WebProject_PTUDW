@@ -14,7 +14,7 @@ var customerCartRoute = require('./routes/customer.cart.route');
 var adminIndexRoute = require('./routes/admin.index.route');
 var adminProductRoute = require('./routes/admin.product.route');
 var adminInfoRoute = require('./routes/admin.info.route');
-var adminCustomerRoute = require('./routes/admin.index.route');
+var adminCustomerRoute = require('./routes/admin.customer.route');
 var adminOrderRoute = require('./routes/admin.order.route');
 var adminCommentRoute = require('./routes/admin.comment.route');
 

@@ -5,6 +5,10 @@ html, body {
     height: 100%;
 }
 
+#col-content {
+    height: 100vh;
+}
+
 .nav-header {
     height: 4rem;
     font-size: 1.1rem;
@@ -100,6 +104,12 @@ html, body {
     width: 2.1875rem;
 }*/
 
+#dashboard-con{
+    /* margin-bottom: 6.25rem; */
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+}
+
 #admin-footer{
         position: absolute;
         width: 100%;
@@ -114,12 +124,6 @@ html, body {
 /*Thêm important để overight thuộc tính của chosen */
 .chosen-container, .chosen-container-multi{
      width: 100% !important;
-}
-
-#dashboard-con{
-    padding-bottom: 6.25rem;
-    margin-left: 0.9375rem;
-    margin-right: 0.9375rem;
 }
 
 /*.navbar-default .navbar-toggler:hover{
@@ -206,7 +210,7 @@ html, body {
 
 .btn-outline-success:not(:disabled):not(.disabled):active, 
 .show>.btn-outline-success.dropdown-toggle {
-    color: #99cc00;
+    color: #FFF;
     background-color: #99cc00;
     border-color: #99cc00;
 }

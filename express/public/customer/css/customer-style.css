@@ -55,7 +55,7 @@ html {
 
 .btn-outline-success:not(:disabled):not(.disabled):active, 
 .show>.btn-outline-success.dropdown-toggle {
-  color: #99cc00;
+  color: #FFF;
   background-color: #99cc00;
   border-color: #99cc00;
 }
