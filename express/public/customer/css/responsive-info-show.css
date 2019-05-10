@@ -1,0 +1,178 @@
+@media only screen and (max-width: 2000px) {
+  html {
+    font-size: 16px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 28rem;
+    width: 100% !important;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+
+  /* sort header */
+  .component-sort-header {
+    height: 5rem !important;
+  }
+
+  .component-sort-header .content-right .sort-type {
+    width: 6rem;
+  }
+
+  .component-sort-header .content-right .form-check-inline {
+    display: block;
+  }
+
+  .component-sort-header .content-right .form-control {
+    display: none;
+  }
+  /* sort header */
+}
+
+/* Từ lg nhảy sang xl */
+@media only screen and (max-width: 1199px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+
+  /* sort header */
+  .component-sort-header {
+    height: 5rem !important;
+  }
+
+  .component-sort-header .content-right .sort-type {
+    width: 6rem;
+  }
+
+  .component-sort-header .content-right .form-check-inline {
+    display: block;
+  }
+
+  .component-sort-header .content-right .form-control {
+    display: none;
+  }
+  /* sort header */
+}
+
+/* Từ md nhảy sang lg */
+@media only screen and (max-width: 991px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+
+  /* sort header */
+  .component-sort-header {
+    height: 5rem !important;
+  }
+
+  .component-sort-header .content-right .sort-type {
+    width: 6rem;
+  }
+
+  .component-sort-header .content-right .form-check-inline {
+    display: block;
+  }
+
+  .component-sort-header .content-right .form-control {
+    display: none;
+  }
+  /* sort header */
+}
+
+/* Từ sm nhảy sang md */
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+
+  /* sort header */
+  .component-sort-header {
+    height: 7rem !important;
+  }
+
+  .component-sort-header .content-right .sort-type {
+    width: 6rem;
+  }
+
+  .component-sort-header .content-right .form-check-inline {
+    display: none;
+  }
+
+  .component-sort-header .content-right .form-control {
+    display: block;
+  }
+  /* sort header */
+}
+
+/* Từ xm nhảy sang sm */
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+
+  /* sort header */
+  .component-sort-header {
+    height: 7rem !important;
+  }
+
+  .component-sort-header .content-right .sort-type {
+    width: 6rem;
+  }
+
+  .component-sort-header .content-right .form-check-inline {
+    display: none;
+  }
+
+  .component-sort-header .content-right .form-control {
+    display: block;
+  }
+  /* sort header */
+}

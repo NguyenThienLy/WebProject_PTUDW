@@ -1,0 +1,47 @@
+.report-content-con{
+    margin-top: 1.25rem;
+    border-radius: 4px;
+    padding: 0.9375rem;
+
+}
+
+.report-content-con span{
+    background-color: #ffff;
+    width: 100%;
+    display: inline-block;
+    height: 0.0625rem;
+}
+
+.report-content-con h6{
+    color:#fff;
+    margin-left: 0.3125rem;
+}
+
+.report-content-con i{
+    color: #fff;
+}
+
+.report-content-con b{
+    color: #fff;
+    margin-top: 0.4375rem;
+    margin-bottom: 0.4375rem;
+    text-align: center;
+}
+
+.report-view{
+    background-color: #99cc00;
+}
+
+.report-content-con-small {
+    margin-top: 1.25rem;
+    border-radius: 0.25rem;
+    padding: 0.9375rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-content-con-small h6 {
+    margin-bottom: 0;
+}

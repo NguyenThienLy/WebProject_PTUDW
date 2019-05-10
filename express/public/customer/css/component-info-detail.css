@@ -1,0 +1,27 @@
+.component-info-detail p {
+	text-align: justify;
+}
+
+.component-info-detail > div {
+	width: 80%;
+}
+
+.component-info-detail .info-note > div {
+	font-size: 0.9rem; 
+	color: #6D6B6A; 
+}
+
+.component-info-detail .info-note .info-author, 
+.component-info-detail .info-note .info-date {
+	color: #99cc00;
+}
+
+.component-info-detail .image-note > div {
+	height: 5%; 
+	color: #6D6B6A;
+	top: 95%; 
+	left: 0;
+	z-index: 0; 
+	background-color: rgba(250, 250, 250, .9);
+}
+

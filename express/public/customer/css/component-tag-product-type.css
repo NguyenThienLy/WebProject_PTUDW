@@ -1,0 +1,10 @@
+/* component-tag-product-type */
+.component-tag-product-type button {
+    display: block;
+}
+
+.component-tag-product-type .form-control {
+    display: none;
+    width: 75%;
+}
+/* component-tag-product-type */

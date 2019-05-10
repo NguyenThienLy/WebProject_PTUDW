@@ -1,0 +1,353 @@
+@media only screen and (max-width: 2000px) {
+  html {
+    font-size: 16px !important;
+  }
+
+  /* intro product */
+  .component-intro-product {
+    width: 100%;
+    height: 20rem !important;
+  }
+  /* intro product */
+
+  /* about us */
+  .component-about-us {
+    width: 15.5rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
+  }
+  /* about us */
+
+  /* product simple */
+  .component-product-simple {
+    height: 22rem;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product simple */
+
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
+
+  /* product combo */
+  .component-product-combo {
+    height: 22rem;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product combo */
+
+  /* info */
+  .component-info-small {
+    height: 28rem;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ lg nhảy sang xl */
+@media only screen and (max-width: 1199px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /* intro product */
+  .component-intro-product {
+    width: 100%;
+    height: 22rem !important;
+  }
+  /* intro product */
+
+  /* about us */
+  .component-about-us {
+    width: 15.5rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
+  }
+  /* about us */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 12rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product simple */
+
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
+
+  /* product combo */
+  .component-product-combo {
+    height: 22rem;
+    width: 16rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 1rem !important;
+  }
+  /* product combo */
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ md nhảy sang lg */
+@media only screen and (max-width: 991px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  /* intro product */
+  .component-intro-product {
+    width: 100%;
+    height: 18rem !important;
+  }
+  /* intro product */
+
+  /* about us */
+  .component-about-us {
+    width: 15.5rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
+  }
+  /* about us */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 13rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 0.8rem !important;
+  }
+  /* product simple */
+
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
+
+  /* product combo */
+  .component-product-combo {
+    height: 23rem;
+    width: 16rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.8rem !important;
+  }
+  /* product combo */
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ sm nhảy sang md */
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  /* intro product */
+  .component-intro-product {
+    width: 100%;
+    height: 18rem !important;
+  }
+  /* intro product */
+
+  /* about us */
+  .component-about-us {
+    width: 15.5rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
+  }
+  /* about us */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 13rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product simple */
+
+   /* component-tag-product-type */
+   .component-tag-product-type button {
+    display: block;
+  }
+
+  .component-tag-product-type .form-control {
+    display: none;
+  }
+  /* component-tag-product-type */
+
+  /* product combo */
+  .component-product-combo {
+    height: 22rem;
+    width: 16rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product combo */
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}
+
+/* Từ xm nhảy sang sm */
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  /* intro product */
+  .component-intro-product {
+    width: 100%;
+    height: 16.5rem !important;
+  }
+  /* intro product */
+
+  /* about us */
+  .component-about-us {
+    width: 15.5rem !important;
+    height: 20;
+  }
+
+  .component-about-us .content-top {
+    height: 12rem !important;
+  }
+  /* about us */
+
+  /* product simple */
+  .component-product-simple {
+    height: 18rem;
+    width: 12rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-simple .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product simple */
+
+  /* component-tag-product-type */
+  .component-tag-product-type button {
+    display: none;
+  }
+
+  .component-tag-product-type .form-control {
+    display: block;
+  }
+  /* component-tag-product-type */
+
+  /* product combo */
+  .component-product-combo {
+    height: 20rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-product-combo .card-body .price-old del {
+    margin-left: 0.4rem !important;
+  }
+  /* product combo */
+
+  /* info */
+  .component-info-small {
+    height: 30rem;
+    width: 18rem !important;
+    margin-bottom: 1rem;
+  }
+
+  .component-info-small .card-img-top .info-info {
+    top: 86% !important;
+  }
+  /* info */
+}

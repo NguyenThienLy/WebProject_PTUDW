@@ -1,0 +1,129 @@
+body {
+  color: #666;
+  font-family: "Quicksand", sans-serif;
+  width: 100% !important;
+}
+
+html { 
+  font-size: 16px !important;
+} 
+
+#span-show-cart {
+  color: #99cc00;
+}
+
+.text-success {
+  color: #99cc00 !important;
+}
+
+.btn-success {
+  color: #fff;
+  background-color:#99cc00;
+  border-color: #99cc00;
+}
+
+.btn-success:hover {
+  background-color: #8dbc00;
+  border-color: #8dbc00;
+  color: #fff;
+}
+
+.btn-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+.btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
+  color: #fff;
+  background-color: #99cc00;
+  border-color: #99cc00;
+}
+
+.btn-outline-success {
+  color: #99cc00;
+  border-color: #99cc00;
+}
+
+.btn-outline-success:hover {
+  color: #fff;
+  border-color: #99cc00;
+  background-color: #99cc00;
+}
+
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, 
+.show>.btn-outline-success.dropdown-toggle {
+  color: #99cc00;
+  background-color: #99cc00;
+  border-color: #99cc00;
+}
+
+.badge-success {
+  color: #FFF;
+  background-color: #99cc00;
+  border-color: #99cc00;
+}
+
+.item-image:hover {
+  transform: scale(1.1);
+}
+
+footer {
+  background-color: #f7f7f7;
+  padding-left: 3rem;
+  font-size: 0.875rem;
+}
+
+footer .footerLink {
+  color: black !important;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.pagination > .page-item > .page-link {
+  font-size: 0.9rem;
+  color: #99cc00;
+  border-color: #99cc00;
+}
+
+.pagination > .page-item:hover .page-link {
+  color: #fff;
+  border-color: #99cc00;
+  background-color: #99cc00;
+}
+
+.pagination > .page-item .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input-group-text:hover {
+  color: #99cc00;
+}
+
+input:checked {
+  background-color: #2196f3;
+}
+
+.form-control:focus {
+    border-color: #99cc00;
+    box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.3);
+}
+
+.bg-over-lay {
+ position: fixed;
+ overflow: hidden;
+ display: none;
+ top: 0;
+ height: 100%;
+ width: 100%;
+ background-color: rgba(0,0,0,0.3);
+ z-index: 3;
+}

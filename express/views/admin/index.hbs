@@ -1,0 +1,511 @@
+<!--Nội dung trang index-->
+<div class="dashboard-con" id="dashboard-con">
+    <!--Row hiển thị biểu đồ-->
+    <!--Hàng chứa nội dung lượt tương tác trong ngày-->
+
+    <div class="row">
+
+        <div class="col-12 col-sm-4">
+
+            <!--Thẻ chứa lượt view trong ngày-->
+            <div class="report-content-con report-view">
+                <div>
+                    <i class="fas fa-eye"></i>
+                    <h6 class="d-inline">Lượt xem trong ngày</h6>
+                </div>
+
+                <div class="d-flex flex-column mt-1">
+                    <span></span>
+                    <b>40</b>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="report-content-con-small report-view">
+                <div class="d-flex align-items-start">
+                    <h6><i class="fas fa-eye mr-2"></i></h6>
+                    <h6 class="mr-2">Lượt xem trong ngày</h6>
+                </div>
+
+                <div class="badge badge-light">
+                    <h6>40</h6>
+                </div>
+            </div>
+            <!--End Thẻ chứa lượt view trong ngày-->
+
+        </div>
+
+        <div class="col-12 col-sm-4">
+
+            <!--Thẻ chứa lượt view trong ngày-->
+            <div class="report-content-con report-view">
+                <div>
+                    <i class="fas fa-shopping-cart"></i>
+                    <h6 class="d-inline">Lượt mua trong ngày</h6>
+                </div>
+
+                <div class="d-flex flex-column mt-1">
+                    <span></span>
+                    <b>60</b>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="report-content-con-small report-view">
+                <div class="d-flex align-items-start">
+                    <h6><i class="fas fa-shopping-cart mr-2"></i></h6>
+                    <h6 class="mr-2">Lượt mua trong ngày</h6>
+                </div>
+
+                <div class="badge badge-light">
+                    <h6>60</h6>
+                </div>
+            </div>
+            <!--End Thẻ chứa lượt view trong ngày-->
+
+        </div>
+
+        <div class="col-12 col-sm-4">
+
+            <!--Thẻ chứa lượt view trong ngày-->
+            <div class="report-content-con report-view">
+                <div>
+                    <i class="fas fa-money-check-alt"></i>
+                    <h6 class="d-inline">Doanh thu trong ngày</h6>
+                </div>
+
+                <div class="d-flex flex-column mt-1">
+                    <span></span>
+                    <b>5.000.000đ</b>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="report-content-con-small report-view">
+                <div class="d-flex align-items-start">
+                    <h6><i class="fas fa-money-check-alt mr-2"></i></h6>
+                    <h6 class="mr-2">Doanh thu trong ngày</h6>
+                </div>
+
+                <div class="badge badge-light">
+                    <h6>5.000.000&nbsp;<u>đ</u></h6>
+                </div>
+            </div>
+            <!--End Thẻ chứa lượt view trong ngày-->
+
+        </div>
+
+    </div>
+
+    <!--End hàng chứa nội dung lượt tương tác trong ngày-->
+    <!--Hàng 1-->
+    <div class="row">
+        <div class="col-12 col-md-7">
+            <!--Biểu đồ thể hiện lượng người vào thăm website-->
+            <div class="admin-content-con">
+
+                <canvas id="accessTimesLineChart">
+
+                </canvas>
+
+            </div>
+            <!--End Biểu đồ thể hiện lượng người vào thăm website-->
+        </div>
+
+        <div class="col-12 col-md-5">
+            <!--Biểu đồ thể hiện top sản phẩm bán chạy-->
+            <div class="admin-content-con">
+
+                <canvas id="TopProductBarChart">
+
+                </canvas>
+
+            </div>
+            <!--End Biểu đồ thể hiện top sản phẩm bán chạy-->
+        </div>
+    </div>
+    <!--End hàng 1-->
+
+    <!--Hàng 2-->
+    <div class="row">
+
+        <!--align-self-center-->
+        <div class="col-12 col-md-5">
+            <!--Biểu đồ thể hiện cấu trúc hàng của người bán-->
+            <div class="admin-content-con">
+
+                <canvas id="structureProductChart">
+
+                </canvas>
+
+            </div>
+            <!--End Biểu đồ thể hiện cấu trúc hàng của người bán-->
+        </div>
+
+        <div class="col-12 col-md-7">
+            <!--Biểu đồ thể hiện doanh thu theo ngày-->
+            <div class="admin-content-con">
+
+                <canvas id="revenueLineChart">
+
+                </canvas>
+
+            </div>
+            <!--End Biểu đồ thể hiện doanh thu theo ngày-->
+        </div>
+    </div>
+    <!--End row hiển thị biểu đồ-->
+
+
+    <!--Row 1-->
+    <div class="row">
+        <div class="col-12">
+            <div class="admin-content-con">
+                <header>
+                    <h5>Danh sách khách hàng</h5>
+                </header>
+
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên</th>
+                            <th>Tài khoản</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
+                            <th class="text-center">#</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Lê Tường Qui</td>
+                            <td>qui021098@gmail.com</td>
+                            <td></td>
+                            <td>13/4/2019</td>
+                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Lê Tường Qui</td>
+                            <td>qui021098@gmail.com</td>
+                            <td></td>
+                            <td>13/4/2019</td>
+                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Lê Tường Qui</td>
+                            <td>qui021098@gmail.com</td>
+                            <td></td>
+                            <td>13/4/2019</td>
+                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Lê Tường Qui</td>
+                            <td>qui021098@gmail.com</td>
+                            <td></td>
+                            <td>13/4/2019</td>
+                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Lê Tường Qui</td>
+                            <td>qui021098@gmail.com</td>
+                            <td></td>
+                            <td>13/4/2019</td>
+                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>Lê Tường Qui</td>
+                            <td>qui021098@gmail.com</td>
+                            <td></td>
+                            <td>13/4/2019</td>
+                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>Lê Tường Qui</td>
+                            <td>qui021098@gmail.com</td>
+                            <td></td>
+                            <td>13/4/2019</td>
+                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--End row 1-->
+
+    <!--Trạng thái đơn hàng-->
+    <div class="row">
+        <div class="col-12">
+            <div class="admin-content-con">
+                <header>
+                    <h5>Đơn hàng vừa nhận</h5>
+                </header>
+
+                <table class="table table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Thời gian</th>
+                            <th>Tài khoản</th>
+                            <th>Số tiền</th>
+                            <th class="text-center">Trạng thái</th>
+                            <th class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <!--Nội dung một hàng-->
+                        <tr>
+                            <td>1</td>
+                            <td>13/4/2019</td>
+                            <td>qui021098@gmail.com</td>
+                            <td>23.000.000đ</td>
+                            <td align="center"><a href="#" class="badge badge-light">
+                                    Chưa thanh toán
+                                </a></td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                    Xem
+                                </a>
+                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                    Duyệt
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                        <!--End Nội dung một hàng-->
+
+                        <!--Nội dung một hàng-->
+                        <tr>
+                            <td>2</td>
+                            <td>13/4/2019</td>
+                            <td>qui021098@gmail.com</td>
+                            <td>23.000.000đ</td>
+                            <td align="center"><a href="#" class="badge badge-light">
+                                    Chưa thanh toán
+                                </a></td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                    Xem
+                                </a>
+                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                    Duyệt
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                        <!--End Nội dung một hàng-->
+
+                        <!--Nội dung một hàng-->
+                        <tr>
+                            <td>3</td>
+                            <td>13/4/2019</td>
+                            <td>qui021098@gmail.com</td>
+                            <td>23.000.000đ</td>
+                            <td align="center"><a href="#" class="badge badge-info">
+                                    Đã thanh toán
+                                </a></td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                    Xem
+                                </a>
+                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                    Duyệt
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                        <!--End Nội dung một hàng-->
+
+
+
+                    </tbody>
+                </table>
+
+                <div class="clearfix">
+                    <a href="order-list.html" class="float-right text-link">Xem tất cả đơn hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Trạng thái đơn hàng-->
+
+    <!--Row 2-->
+    <div class="row">
+
+        <!--Danh sách bài đăng bên trái-->
+        <div class="col-12 col-md-6">
+            <div class="admin-content-con">
+                <header class="d-flex align-items-center justify-content-between">
+                    <h5>Nội dung</h5>
+                    <a class="btn btn-sm btn-primary" href="#" role="button">
+                        Tạo mới nội dung
+                    </a>
+                </header>
+
+                <table class="table table-responsive-xl">
+                    <thead>
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <th>Tương tác</th>
+                            <th>Ngày đăng</th>
+                            <th style="text-align:center">Tác vụ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Bài đăng đầu</td>
+                            <td>20</td>
+                            <td>Hôm nay</td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                    Xem
+                                </a>
+                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                    Sửa
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Bài đăng đầu</td>
+                            <td>20</td>
+                            <td>Hom nay</td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                    Xem
+                                </a>
+                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                    Sửa
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Bài đăng đầu</td>
+                            <td>20</td>
+                            <td>Hôm nay</td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                    Xem
+                                </a>
+                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                    Sửa
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Bài đăng đầu</td>
+                            <td>20</td>
+                            <td>Hôm nay</td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                    Xem
+                                </a>
+                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                    Sửa
+                                </a>
+                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                    Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="clearfix">
+                    <a href="articles.html" class="float-right text-link">Xem tất cả bài viết</a>
+                </div>
+
+
+            </div>
+        </div>
+        <!--End Danh sách bài đăng bên trái-->
+
+        <!--Nội dung bình luân bên phải-->
+        <div class="col-12 col-md-6">
+
+            <div class="admin-content-con">
+                <header>
+                    <h5>Bình luận</h5>
+                </header>
+                <!--Nội dung bình luận-->
+                <div class="comment-header-dash clearfix">
+                    <div class="comment-name-dash float-left">
+                        Lê Tường Qui
+                    </div>
+                    <div class="day-dash float-right">2 ngày trước</div>
+                </div>
+                <p class="comment-dash">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo aperiam quae cum,
+                    magni suscipit nesciunt repellendus sunt accusantium esse quaerat aliquam numquam
+                    in. Quas dignissimos asperiores reiciendis obcaecati incidunt nam.
+                </p>
+                <!-- <small class="comment-date-dash">Hôm nay 13/4/2019 </small> -->
+                <hr>
+                <!--End nội dung bình luận-->
+
+
+                <div class="clearfix">
+                    <a href="comments.html" class="float-right text-link">Xem tất cả bình luận</a>
+                </div>
+            </div>
+        </div>
+        <!--End Nội dung bình luân bên phải-->
+    </div>
+    <!--End row 2-->
+
+</div>
+<!--End Nội dung trang index-->

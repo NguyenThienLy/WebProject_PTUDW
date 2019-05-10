@@ -1,0 +1,133 @@
+/* .component-header {
+   z-index: 2 !important;
+   position: fixed;
+   width: 100%;
+   margin-bottom: 20rem !important;
+} */
+
+.component-header nav .menu-items a, .component-header nav .menu-items button, 
+.component-header nav > form button, .component-header nav > form input {
+	font-size: 1rem;
+}
+
+.component-header nav .navbar-brand img {
+	width: inherit;
+	height: inherit;
+}
+
+.component-header nav .menu-items .nav-item {
+	display: block;
+}
+
+.component-header nav .menu-items .nav-link {
+	color: #99cc00;
+}
+
+.component-header nav .menu-items .nav-link:hover {
+	color: #64990a;
+	font-weight: bold;
+}
+
+.component-header nav .menu-items .header-button-product {
+	cursor: default;
+}
+
+.component-header nav .menu-items .header-button-product:hover .header-button-product-content {
+	display: block;
+}
+
+.component-header nav .menu-items .header-button-product-content:hover .header-button-product-content {
+	display: block;
+}
+
+.header-button-product-content {
+	background-color: #FFF;
+	position: fixed; 
+	/*top: 3.5rem; */
+	/*right: 38rem;*/
+	display: none;
+	border-color: #99cc00;
+	border-radius: 0.3rem;
+	font-family: "Quicksand", sans-serif;
+}
+
+.component-header nav .menu-items .header-button-product-content .dropdown-item {
+	color: #666;
+	border-radius: 0.2rem;
+}
+
+.component-header nav .menu-items .header-button-product-content .dropdown-item:active {
+	color: #fff;
+	text-decoration: none;
+	background-color: #99cc00;
+}
+
+.component-header nav .menu-icons {
+	padding-right: 1rem;
+	padding-left: 0;
+}
+
+.component-header nav .menu-icons > .btn > i {
+	font-size: 1.5rem;
+}
+
+.component-header nav .menu-icons .btn {
+	cursor: pointer;
+}
+
+.component-header nav .open-sidebar {
+	display: none;
+	font-size: 1.8rem; 
+	cursor: pointer;
+	text-decoration: none;
+	color: #99cc00;
+}
+
+.component-header nav .open-sidebar i {
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%);
+}
+
+.component-header nav > form {
+	display: block;
+}
+
+.component-header nav .btn-search {
+	display: none;
+}
+
+.component-header > form {
+	display: none;
+}
+
+.component-header > form input {
+	font-size: 1rem;
+	width: 60% !important;
+	display: inline-block;
+}
+
+.component-header > form button {
+	font-size: 1rem;
+}
+
+.breadcrumb-header .breadcrumb-div {
+	background-size: cover; 
+	background-position: bottom; 
+	background-image: url('http://bizweb.dktcdn.net/100/350/980/themes/714097/assets/bg_breadcrumb.png?1553847975699');
+}
+
+.breadcrumb-header .breadcrumb-div > p {
+	line-height: 1.2;
+	font-weight: 500;
+	font-size: 2.5rem;
+}
+
+.breadcrumb-header .breadcrumb {
+	background: none!important;
+}
+
+.breadcrumb-header .breadcrumb .breadcrumb-item a {
+	color:#6c757d;
+}
+

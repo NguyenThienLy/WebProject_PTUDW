@@ -1,0 +1,286 @@
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+    <div id="content">
+        <header>
+            <h5 class="mb-0">Danh sách đơn hàng</h5>
+        </header>
+
+        <div class="content-inner">
+            <!--Thanh tìm kiếm sản phẩm-->
+            <form class="form row ml-0 mr-0 mb-4">
+                <div class="form-row col-7 col-sm-9 col-lg-10 p-0 ml-0 mr-0">
+                    <div class="form-group col-12 col-md-4 col-lg-3 mt-2 mb-0 pl-0">
+                        <input type="password" class="form-control form-control-sm" id="inputPassword2"
+                            placeholder="Tên khách hàng" />
+                    </div>
+
+                    <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-0 mt-2 d-flex">
+                        <label class="col-form-label col-form-label-sm mr-2">Từ</label>
+                        <!--Để tạm thẻ này sau này sửa thành date picker-->
+                        <select class="custom-select custom-select-sm">
+                            <option>10/4/2019</option>
+                        </select>
+                        <!--End Để tạm thẻ này sau này sửa thành date picker-->
+                    </div>
+
+                    <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-0 mt-2 d-flex">
+                        <label class="col-form-label col-form-label-sm mr-2">Đến</label>
+                        <!--Để tạm thẻ này sau này sửa thành date picker-->
+                        <select class="custom-select custom-select-sm">
+                            <option>10/4/2019</option>
+                        </select>
+                        <!--End Để tạm thẻ này sau này sửa thành date picker-->
+                    </div>
+
+                    <div class="form-group col-12 col-sm-12 col-md-4 col-lg-3 mb-0 mt-2 pl-0">
+                        <select class="custom-select custom-select-sm">
+                            <option>Xem tất cả</option>
+                            <option>Đã thanh toán</option>
+                            <option>Chưa thanh toán</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5 col-sm-3 col-lg-2 pr-0 mt-2">
+                    <button type="button" class="btn btn-sm btn-success w-100">
+                        <i class="fas fa-search"></i>&ensp;Tìm kiếm
+                    </button>
+                </div>
+            </form>
+            <!--End thanh tìm kiếm sản phẩm-->
+
+            <!--Table hiển thị sản phẩm-->
+            <table class="table table-responsive-xl mb-4">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Khách hàng</th>
+                        <th>Thời gian</th>
+                        <th class="text-center">Hình thức</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Chi tiết</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>KH120</td>
+                        <td>Lê Tường Qui</td>
+                        <td>
+                            <span>14/04/2019&nbsp;</span>
+                            <span>13:21:25</span>
+                        </td>
+                        <td align="center">
+                            <span class="badge badge-pill badge-warning">Đặt hàng</span>
+                        </td>
+                        <td align="center">
+                            <span class="badge badge-light">Chưa thanh toán</span>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                                Xem chi tiết
+                            </button>
+                        </td>
+
+                        <td align="center">
+                            <button class="btn btn-sm btn-danger" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!--End nội dung của một hàng-->
+
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>KH120</td>
+                        <td>qui021098@gmail.com</td>
+                        <td>
+                            <span>14/04/2019&nbsp;</span>
+                            <span>13:21:25</span>
+                        </td>
+                        <td align="center">
+                            <span class="badge badge-pill badge-warning">Đặt hàng</span>
+                        </td>
+                        <td align="center">
+                            <span class="badge badge-info">đang giao</span>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                                Xem chi tiết
+                            </button>
+                        </td>
+
+                        <td align="center">
+                            <button class="btn btn-sm btn-danger" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!--End nội dung của một hàng-->
+                </tbody>
+            </table>
+            <!--End Table hiển thị sản phẩm-->
+
+            <!--Modal hiển thị thông tin chi tiết của đơn hàng-->
+            <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                Thông tin chi tiết đơn hàng&nbsp;
+                            </h5>
+                            <h5 class="modal-title">KH120</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Khách hàng:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        Lê Tường Qui
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Ngày đặt:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        14/04/2019 14:00
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Hình thức:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        <span class="badge badge-pill badge-warning">Đặt hàng</span>
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Trạng thái:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        <span class="badge badge-info">đang giao</span>
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Tổng giá trị:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        200.000&nbsp;đ
+                                    </div>
+                                </div>
+                                <br />
+                                <h5>Thông tin chi tiết</h5>
+                                <div class="row ml-0 mr-0">
+                                    <table class="table table-responsive-sm">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Mã</th>
+                                                <th scope="col">Sản phẩm</th>
+                                                <th scope="col">Số lượng</th>
+                                                <th scope="col">Tổng tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">CA1</td>
+                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
+                                                <td>10</td>
+                                                <td>200.000&nbsp;đ</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">CA1</td>
+                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
+                                                <td>10</td>
+                                                <td>200.000&nbsp;đ</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">CA1</td>
+                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
+                                                <td>10</td>
+                                                <td>200.000&nbsp;đ</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-outline-success">
+                                Duyệt
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                Giao hàng
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-info">
+                                Hoàn tất đơn hàng
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger">
+                                Hủy đơn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End modal hiển thị thông tin chi tiết của đơn hàng-->
+
+            <hr />
+
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->

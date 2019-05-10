@@ -1,0 +1,91 @@
+/*.modal-backdrop {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+}*/
+
+.component-user-account-modal .modal-body {
+  background-color: #f4f4f4;
+  height: 39rem;
+}
+
+.component-user-account-modal .modal-body .btn-close {
+  outline: none;
+  background-color: transparent;
+  top: 0.2rem;
+  right: 0.2rem;
+}
+
+.component-user-account-modal .modal-body .content-left {
+  width: 22.5rem;
+  background-color: rgb(194, 228, 139);
+}
+
+.component-user-account-modal .modal-body .content-left div {
+  height: 9rem;
+}
+
+.component-user-account-modal .modal-body .content-right {
+  width: calc(100% - 26.25rem);
+  height: calc(100% - 1rem);
+  margin: 1rem;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.component-user-account-modal .modal-body .content-right .nav-item {
+  cursor: pointer;
+}
+
+.component-user-account-modal
+  .modal-body
+  .content-right
+  .nav-tabs
+  .nav-item.show
+  .nav-link,
+.component-user-account-modal
+  .modal-body
+  .content-right
+  .nav-tabs
+  .nav-link.active {
+  color: #99cc00;
+  border-bottom: 0.1875rem solid #99cc00;
+}
+
+.component-user-account-modal .modal-body .content-right .nav-tabs .nav-link {
+  border: none;
+  border-bottom: 0.0625rem solid #dee2e6;
+  transition: 200ms;
+}
+
+.component-user-account-modal
+  .modal-body
+  .content-right
+  .nav-tabs
+  .nav-link:hover {
+  border-bottom: 0.1875rem solid #99cc00;
+  color: #99cc00;
+}
+
+.component-user-account-modal
+  .modal-body
+  .content-right
+  .tab-content
+  .tab-pane
+  form {
+  font-size: 1rem;
+}
+
+.component-user-account-modal .modal-body .content-right .user-avatar {
+  height: 12rem;
+  width: 12rem;
+}
+
+.component-user-account-modal .modal-body .content-right .edit-user-avatar {
+  height: 8rem;
+  width: 8rem;
+}

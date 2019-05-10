@@ -1,0 +1,235 @@
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+    <div id="content">
+        <header>
+            <h5 class="mb-0">Danh sách khách hàng</h5>
+        </header>
+
+        <div class="content-inner">
+            <!--Thanh tìm kiếm-->
+            <div class="row search-row ml-0 mr-0">
+                <div class="col-md-12 p-0">
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control search-field" id="search" placeholder="Tên khách hàng"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button">
+                                Tìm kiếm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end thanh tìm kiếm-->
+
+            <!--Table hiển thị sản phẩm-->
+            <table class="table table-responsive-xl mb-4">
+                <thead>
+                    <tr>
+                        <th>Mã khách hàng</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Thời gian đăng ký</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>KH120</td>
+                        <td>Trần Khánh Linh</td>
+                        <td>trankhanhlinh98@gmail.com</td>
+                        <td>123345677</td>
+                        <td>
+                            <span>14/04/2019&nbsp;</span>
+                            <span>13:21:25</span>
+                        </td>
+                        <td align="center">
+                            <button class="btn btn-sm btn-danger" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>KH120</td>
+                        <td>Trần Khánh Linh</td>
+                        <td>trankhanhlinh98@gmail.com</td>
+                        <td>123345677</td>
+                        <td>
+                            <span>14/04/2019&nbsp;</span>
+                            <span>13:21:25</span>
+                        </td>
+                        <td align="center">
+                            <button class="btn btn-sm btn-danger" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+                </tbody>
+            </table>
+            <!--End Table hiển thị sản phẩm-->
+
+            <!--Modal hiển thị thông tin chi tiết của đơn hàng-->
+            <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                Thông tin chi tiết đơn hàng&nbsp;
+                            </h5>
+                            <h5 class="modal-title">KH120</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Khách hàng:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        Lê Tường Qui
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Ngày đặt:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        14/04/2019 14:00
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Hình thức:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        <span class="badge badge-pill badge-warning">Đặt hàng</span>
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Trạng thái:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        <span class="badge badge-info">đang giao</span>
+                                    </div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Tổng giá trị:</p>
+                                    </div>
+                                    <div class="col-9">
+                                        200.000&nbsp;đ
+                                    </div>
+                                </div>
+                                <br />
+                                <h5>Thông tin chi tiết</h5>
+                                <div class="row ml-0 mr-0">
+                                    <table class="table table-responsive-sm">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Mã</th>
+                                                <th scope="col">Sản phẩm</th>
+                                                <th scope="col">Số lượng</th>
+                                                <th scope="col">Tổng tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">CA1</td>
+                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
+                                                <td>10</td>
+                                                <td>200.000&nbsp;đ</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">CA1</td>
+                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
+                                                <td>10</td>
+                                                <td>200.000&nbsp;đ</td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row">CA1</td>
+                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
+                                                <td>10</td>
+                                                <td>200.000&nbsp;đ</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-outline-success">
+                                Duyệt
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">
+                                Giao hàng
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-info">
+                                Hoàn tất đơn hàng
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-danger">
+                                Hủy đơn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End modal hiển thị thông tin chi tiết của đơn hàng-->
+
+            <hr />
+
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->

@@ -1,0 +1,47 @@
+/* component comment */
+.component-comment .checked {
+  color: orange;
+}
+
+.component-comment .content-left {
+  display: block;
+}
+
+.component-comment .content-top {
+  display: none;
+}
+
+.component-comment .content-left img {
+ border: 1px solid #f4f4f4;
+}
+
+.component-comment .content-left .img-avatar {
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+.component-comment .content-left .time-post-comment {
+  font-size: 0.8rem;
+}
+
+.component-comment .content-top .time-post-comment {
+  font-size: 0.9rem;
+}
+
+.component-comment .content-right .rate-star {
+  font-size: 1rem;
+  color: #6D6B6A;
+}
+
+.component-comment .content-right .rate-text {
+  font-size: 1.2rem;
+}
+
+.component-comment .content-right .prove-buy {
+  font-size: 0.9rem; 
+  color: #99cc00;
+}
+
+.component-comment .content-right .main-content {
+  font-size: 1rem;
+}
+/* component comment */

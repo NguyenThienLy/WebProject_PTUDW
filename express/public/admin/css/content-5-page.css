@@ -1,0 +1,14 @@
+#content{
+    margin: 1.25rem;
+    background: #fff;
+    border-top: 4px #e7eaec solid;
+}
+
+#content header{
+    border-bottom: 1px #f3f3f4 solid;
+    padding: 0.625rem;
+}
+
+.content-inner{
+    padding:1.25rem; 
+}

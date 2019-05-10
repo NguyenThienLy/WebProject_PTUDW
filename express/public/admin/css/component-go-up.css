@@ -1,0 +1,33 @@
+/* component go up */
+.component-go-up {
+  position: fixed;
+  bottom: 3%;
+  right: 2%;
+  z-index: 1;
+}
+.component-go-up .btn-go-up {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4)
+}
+
+.component-go-up .btn-go-up .icon-go-up {
+  position: absolute;
+  animation: amimationGoup 2s infinite linear;
+}
+
+@keyframes amimationGoup {
+  0% {
+    bottom: -1rem;
+  }
+  100% {
+    bottom: 100%;
+  }
+}
+/* component go up */

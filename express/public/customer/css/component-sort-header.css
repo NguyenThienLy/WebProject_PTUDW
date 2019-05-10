@@ -1,0 +1,19 @@
+/* component sort header */
+
+.component-sort-header {
+    border: 1px solid #99cc00;
+    height: 10rem !important;
+}
+
+.component-sort-header .content-right .sort-type {
+    width: 6rem;
+}
+
+.component-sort-header .content-right .form-check-inline {
+    display: block;
+  }
+
+  .component-sort-header .content-right .form-control {
+    display: none;
+  }
+/* component sort header */

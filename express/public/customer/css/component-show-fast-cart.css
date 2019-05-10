@@ -1,0 +1,127 @@
+/* component show fast cart */
+/*.component-show-fast-cart-container {
+  position: fixed; 
+  top: 2.75rem; 
+  right: 5rem;
+}*/
+
+/*.component-show-fast-cart-container:hover .component-show-fast-cart {
+  display: block;
+}*/
+
+.component-show-fast-cart:hover .component-show-fast-cart {
+  display: block;
+}
+
+.spanCart > i > a {
+  cursor: pointer;
+}
+
+.spanCart:hover .component-show-fast-cart {
+  display: block;
+}
+
+.component-show-fast-cart {
+  width: 20rem;
+  display: none;
+  z-index: 2;
+  position: fixed; 
+  /*top: 2.75rem; */
+  right: 5rem;
+  border-color: #99cc00;
+  border-radius: 0.3rem;
+  font-family: "Quicksand", sans-serif;
+}
+
+.component-show-fast-cart .style-scrollbar {
+  max-height: 21rem;
+  min-height: 6rem;
+  overflow-y: auto;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items {
+  cursor: default;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-image {
+  width: 30%;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-info {
+  width: 50%;
+  margin-left: 5%;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-info .title {
+  color: #6c757d;
+  transition: 200ms;
+  font-size: 1rem;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-info .title:hover {
+  color: #99cc00;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-info .price {
+  font-size: 1rem;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-info .price > span:nth-child(1),
+.component-show-fast-cart .component-show-fast-cart-items .product-info .price > span:nth-child(2) {
+  color: #6c757d;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-info .price > span:nth-child(3),
+.component-show-fast-cart .component-show-fast-cart-items .product-info .price > span:nth-child(4) {
+  color: #99cc00;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-delete {
+  width: 15%;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-delete > button {
+  outline: none;
+  background-color: transparent;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.component-show-fast-cart .component-show-fast-cart-items .product-delete > button:hover {
+  color: #99cc00;
+}
+
+.component-show-fast-cart .sum-price {
+  overflow: hidden;
+  height: 7rem; 
+  font-size: 1.2rem;
+}
+
+.component-show-fast-cart .sum-price .sum-text {
+  color: #6c757d;
+}
+
+.component-show-fast-cart .sum-price .price {
+  color: #99cc00;
+}
+
+.component-show-fast-cart .sum-price > a {
+  /*cursor: pointer; */
+  font-size: 1.2rem;
+  transition: 300ms;
+}
+
+.component-show-fast-cart .style-scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5;
+}
+
+.component-show-fast-cart .style-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  background-color: #f5f5f5;
+}
+
+.component-show-fast-cart .style-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #99cc00;
+}
+/* component show fast cart */

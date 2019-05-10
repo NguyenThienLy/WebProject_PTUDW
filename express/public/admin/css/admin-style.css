@@ -1,0 +1,246 @@
+html, body {
+    color: #666 !important;
+    font-family: "Quicksand", sans-serif;
+    background-color: #f3f3f4;
+    height: 100%;
+}
+
+.nav-header {
+    height: 4rem;
+    font-size: 1.1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #e7eaec;
+    padding: 0;
+}
+
+.nav-header .content-left .header-search-field {
+        /*padding-top: 1.0625rem;*/
+        /*vertical-align: center;*/
+        border: none;
+        border-bottom: 1px solid rgba(102, 102, 102, 0.5);
+        width: 100%;
+        outline: none;
+}
+
+.nav-header .content-left .header-search-field:focus {
+        border-bottom: 2px solid #99cc00;
+}
+
+.nav-header .navbar-default {
+    /*background-color: #fff;*/
+}
+
+.nav-header .navbar-default .navbar-toggler{
+    /*border-color: #1ab394;*/
+    outline: none;
+}
+
+.nav-header .navbar-default .navbar-toggler span{
+    color: #99cc00;
+}
+
+.nav-header .content-right a {
+    position: relative;
+    text-decoration: none;
+    color: #666;
+}
+
+.nav-header .fas {
+    font-size: 1.3rem;
+}
+
+.nav-header .content-right .label-message {
+    position: absolute;
+    top: -0.7rem;
+    left: 1rem;
+}
+
+.nav-header .content-right .logout:hover, .nav-header .content-right a:hover {
+    color: #99cc00;
+}
+
+/*#nav-header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    }*/
+
+/*.nav-header ul li {
+    float: left;
+    margin-left: 0.9375rem;
+    padding: 1.0625rem 0.3125rem;
+}
+
+.nav-header ul li a {
+    position: relative;
+    text-decoration: none;
+    color: #666;
+}
+
+.nav-header ul li .fas {
+    color: #666;
+}
+
+.nav-header ul li .label-message{
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+}
+
+.nav-header ul li .logout {
+    font-weight: bold;
+}
+
+.nav-header ul li .logout:hover{
+    color: #99cc00;
+}*/
+
+
+/*#nav-header .fixed-width{
+    width: 2.1875rem;
+}*/
+
+#admin-footer{
+        position: absolute;
+        width: 100%;
+        bottom: 0rem;
+        left: 0;
+        background-color: #fff;
+        padding: 0.625rem;
+        font-size: 0.75rem;
+        /*color: #676a6c;*/
+}
+
+/*Thêm important để overight thuộc tính của chosen */
+.chosen-container, .chosen-container-multi{
+     width: 100% !important;
+}
+
+#dashboard-con{
+    padding-bottom: 6.25rem;
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+}
+
+/*.navbar-default .navbar-toggler:hover{
+    background-color: #1ab394;
+}
+
+.navbar-default .navbar-toggler:hover span{
+    color: #fff;
+    }*/
+
+.pagination > .page-item > .page-link {
+      font-size: 0.9rem;
+      color: #99cc00;
+      border-color: #99cc00;
+}
+
+.pagination > .page-item:hover .page-link {
+  color: #fff;
+  border-color: #99cc00;
+  background-color: #99cc00;
+}
+
+.pagination > .page-item .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+.nav-header .badge-success {
+      color: #111;
+      background-color: #99cc00;
+      border-color: #99cc00;
+}
+
+.badge-success {
+      color: #FFF;
+      background-color: #99cc00;
+      border-color: #99cc00;
+}
+
+.badge-pill, .badge-secondary, .badge-warning, 
+.badge-light, .badge-danger, .badge-info {
+    padding: 0.4rem 0.6rem;
+}
+
+.text-success {
+  color: #99cc00 !important;
+}
+
+.btn-success {
+  color: #fff;
+  background-color:#99cc00;
+  border-color: #99cc00;
+}
+
+.btn-success:hover {
+  background-color: #8dbc00;
+  border-color: #8dbc00;
+  color: #fff;
+}
+
+.btn-success:focus {
+    box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+.btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
+    color: #fff;
+    background-color: #99cc00;
+    border-color: #99cc00;
+}
+
+.btn-outline-success {
+  color: #99cc00;
+  border-color: #99cc00;
+}
+
+.btn-outline-success:hover {
+  color: #fff;
+  border-color: #99cc00;
+  background-color: #99cc00;
+}
+
+.btn-outline-success:focus {
+    box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, 
+.show>.btn-outline-success.dropdown-toggle {
+    color: #99cc00;
+    background-color: #99cc00;
+    border-color: #99cc00;
+}
+
+.form-control:focus {
+    border-color: #99cc00;
+    box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.3);
+}
+
+.table > tbody {
+    font-size: 0.9rem;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+.table > thead, .table > tbody {
+  white-space: nowrap;
+}
+
+.table {
+    max-height: 25rem;
+}
+
+/*p {
+  text-align: justify;
+}*/
+
+/*#col-content {
+  height: 100vh;
+}*/
+
+
+
+
+

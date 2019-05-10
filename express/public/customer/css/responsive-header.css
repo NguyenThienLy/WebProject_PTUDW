@@ -1,0 +1,394 @@
+/* trên extra lg*/
+@media only screen and (max-width: 2000px) {
+	.component-header nav {
+		padding-top: 0.4rem;
+		padding-bottom: 0;
+	}
+
+	.component-header nav .open-sidebar {
+		display: none;
+	}
+
+	.component-header nav .menu-items .nav-item {
+		display: block;
+	}
+
+	.component-header nav > form {
+		display: block;
+	}
+
+	.component-header > form {
+		display: none;
+	}
+
+	.component-header nav .menu-icons {
+		padding-right: 2rem;
+	}
+
+	.component-header nav .menu-icons > .btn > i {
+		/*font-size: 1.6em;*/
+	}
+
+	.component-header nav .menu-items a, .component-header nav .menu-items button, 
+	.component-header nav > form button, .component-header nav > form input {
+		/*font-size: 1.2em;*/
+	}
+
+	.component-header nav .open-sidebar {
+		/*font-size: 2em;*/
+	}
+
+	.spanCart:hover .component-show-fast-cart {
+		display: block;
+	}
+
+	.component-login-register-modal .modal-body .content-left {
+		width: 22.5rem;
+	}
+
+	.component-user-account-modal .modal-body .content-left {
+		width: 22.5rem;
+	}
+
+	.component-header {
+		z-index: 2;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+
+	.breadcrumb-header .breadcrumb-div > p {	
+		/*font-size: 2.7rem;*/
+	}
+
+	.breadcrumb-header .breadcrumb .breadcrumb-item a, 
+	.breadcrumb-header .breadcrumb .breadcrumb-item {
+		/*font-size: 1.2rem;*/
+	}
+}
+
+/* Từ lg nhảy sang extra lg*/
+@media only screen and (max-width: 1199px) {
+	.component-header nav {
+		padding-top: 0.1rem;
+		padding-bottom: 0;
+	}
+
+	.component-header nav .open-sidebar {
+		display: none;
+	}
+
+	.component-header nav .menu-items .nav-item {
+		display: block;
+	}
+
+	.component-header nav > form {
+		display: block;
+	}
+
+	.component-header > form {
+		display: none;
+	}
+
+	.component-header nav .menu-icons {
+		padding-right: 1.8rem;
+	}
+
+	.component-header nav .menu-icons > .btn > i {
+		/*font-size: 1.4em;*/
+	}
+
+	.component-header nav .menu-items a, .component-header nav .menu-items button, 
+	.component-header nav > form button, .component-header nav > form input { 
+		/*font-size: 0.9em;*/
+	}
+
+	.component-header nav .open-sidebar {
+		/*font-size: 2em;*/
+	}
+
+	.spanCart:hover .component-show-fast-cart {
+		display: block;
+	}
+
+	.component-login-register-modal .modal-body .content-left {
+		width: 22.5rem;
+	}
+
+	.component-user-account-modal .modal-body .content-left {
+		width: 22.5rem;
+	}
+
+	.component-header {
+		z-index: 2;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+	
+	.breadcrumb-header .breadcrumb-div > p {	
+		/*font-size: 2.4rem;*/
+	}
+
+	.breadcrumb-header .breadcrumb .breadcrumb-item a, 
+	.breadcrumb-header .breadcrumb .breadcrumb-item {
+		/*font-size: 0.9rem;*/
+	}
+}
+
+/* Từ md nhảy sang lg */
+@media only screen and (max-width: 991px) {
+	.component-header nav {
+		padding-top: 0.7rem;
+		padding-bottom: 0.2rem;
+	}
+
+	.component-header nav .open-sidebar {
+		display: block;
+	}
+
+	.component-header nav .menu-items .nav-item {
+		display: none;
+	}
+
+	.component-header nav > form {
+		display: block;
+	}
+
+	.component-header > form {
+		display: none;
+	}
+
+	.component-header nav .menu-icons {
+		padding-right: 1.4rem;
+	}
+
+	.component-header nav .menu-icons > .btn > i {
+		/*font-size: 1.4em;*/
+	}
+
+	.component-header nav .menu-items a, .component-header nav .menu-items button, 
+	.component-header nav > form button, .component-header nav > form input {
+		/*font-size: 1em;*/
+	}
+
+	.component-header nav .open-sidebar {
+		/*font-size: 2em;*/
+	}
+
+	.spanCart:hover .component-show-fast-cart {
+		display: none;
+	}
+
+	.component-login-register-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-login-register-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
+	.component-user-account-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-user-account-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
+	.component-header {
+		z-index: 2;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+
+	.breadcrumb-header .breadcrumb-div > p {	
+		/*font-size: 2.5rem;*/
+	}
+
+	.breadcrumb-header .breadcrumb .breadcrumb-item a, 
+	.breadcrumb-header .breadcrumb .breadcrumb-item {
+		/*font-size: 1rem;*/
+	}
+}
+
+/* Từ sm nhảy sang md*/
+@media only screen and (max-width: 767px) {
+	.component-header nav {
+		padding-top: 0.7rem;
+		padding-bottom: 0.2rem;
+	}
+
+	.component-header > form {
+		padding-bottom: 0.5rem;
+	}
+
+	.component-header nav .open-sidebar {
+		display: block;
+	}
+
+	.component-header nav .menu-items .nav-item {
+		display: none;
+	}
+
+	.component-header nav > form {
+		display: none;
+	}
+
+	.component-header > form {
+		display: block;
+	}
+
+	.component-header nav .menu-icons {
+		padding-right: 1.5rem;
+	}
+
+	.component-header nav .menu-icons > .btn > i {
+		/*font-size: 1.5em;*/
+	}
+
+	.component-header nav .menu-items a, .component-header nav .menu-items button, 
+	.component-header nav > form button, .component-header nav > form input {
+		/*font-size: 1em;*/
+	}
+
+	.component-header nav .open-sidebar {
+		/*font-size: 2em;*/
+	}
+
+	.spanCart:hover .component-show-fast-cart {
+		display: none;
+	}
+
+	.component-login-register-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-login-register-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
+	.component-user-account-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-user-account-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
+	.component-header {
+		z-index: 2;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+
+	.breadcrumb-header .breadcrumb-div > p {	
+		/*font-size: 2.5rem;*/
+	}
+
+	.breadcrumb-header .breadcrumb .breadcrumb-item a, 
+	.breadcrumb-header .breadcrumb .breadcrumb-item {
+		/*font-size: 1rem;*/
+	}
+}
+
+/* Từ extra sm nhảy sang sm */
+@media only screen and (max-width: 575px) {
+	.component-header nav {
+		padding-top: 0.7rem;
+		padding-bottom: 0.2rem;
+	}
+
+	.component-header > form {
+		padding-bottom: 0.5rem;
+	}
+	
+	.component-header nav .open-sidebar {
+		display: block;
+	}
+
+	.component-header nav .menu-items .nav-item {
+		display: none;
+	}
+
+	.component-header nav > form {
+		display: none;
+	}
+
+	.component-header > form {
+		display: block;
+	}
+
+	.component-header nav .menu-icons {
+		padding-right: 1.5rem;
+	}
+
+	.component-header nav .menu-icons > .btn > i {
+		/*font-size: 1.6em;*/
+	}
+
+	.component-header nav .menu-items a, .component-header nav .menu-items button, 
+	.component-header nav > form button, .component-header nav > form input {
+		/*font-size: 1em;*/
+	}
+	
+	.component-header nav .open-sidebar {
+		/*font-size: 2em;*/
+	}
+
+	.spanCart:hover .component-show-fast-cart {
+		display: none;
+	}
+
+	.component-login-register-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-login-register-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
+	.component-user-account-modal .modal-body .content-left {
+		padding: 0 !important;
+		overflow: hidden;
+		width: 0;
+	}
+
+	.component-user-account-modal .modal-body .content-right {
+		width: calc(100% - 3.75rem);
+	}
+
+	.component-header {
+		z-index: 2;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		width: 100%;
+	}
+
+	.breadcrumb-header .breadcrumb-div > p {	
+		/*font-size: 2.5rem;*/
+	}
+
+	.breadcrumb-header .breadcrumb .breadcrumb-item a, 
+	.breadcrumb-header .breadcrumb .breadcrumb-item {
+		/*font-size: 1rem;*/
+	}
+}
+

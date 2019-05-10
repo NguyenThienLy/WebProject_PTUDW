@@ -1,0 +1,99 @@
+@media only screen and (max-width: 2000px) {
+  html {
+    font-size: 16px !important;
+  }
+
+  .card {
+    width: 65%; 
+    height: 65%;
+  }
+
+  .card-body .content-left {
+    width: 40%;
+  }
+}
+
+/* Từ lg nhảy sang xl */
+@media only screen and (max-width: 1199px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  .card {
+    width: 75%; 
+    height: 60%;
+  }
+
+  .card-body .content-left {
+    width: 40%;
+  }
+}
+
+/* Từ md nhảy sang lg */
+@media only screen and (max-width: 991px) {
+  html {
+    font-size: 15px !important;
+  }
+
+  .card {
+    width: 60%; 
+    height: 50%;
+  }
+
+  .card-body .content-left {
+    padding: 0 !important;
+    overflow: hidden;
+    width: 0;
+  }
+
+  .card-body .content-right {
+    width: 100%;
+    padding: 2rem 2rem !important;
+  }
+}
+
+/* Từ sm nhảy sang md */
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  .card {
+    width: 55%; 
+    height: 60%;
+  }
+
+  .card-body .content-left {
+    padding: 0 !important;
+    overflow: hidden;
+    width: 0;
+  }
+
+  .card-body .content-right {
+    width: 100%;
+    padding: 2rem 3rem !important;
+  }
+}
+
+/* Từ xm nhảy sang sm */
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 14px !important;
+  }
+
+  .card {
+    width: 55%; 
+    height: 60%;
+  }
+
+  .card-body .content-left {
+    padding: 0 !important;
+    overflow: hidden;
+    width: 0;
+  }
+
+  .card-body .content-right {
+    width: 100%;
+    padding: 2rem 3rem !important;
+  }
+}

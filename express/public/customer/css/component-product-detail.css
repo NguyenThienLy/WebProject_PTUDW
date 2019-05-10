@@ -1,0 +1,38 @@
+.component-product-detail p {
+	text-align: justify;
+}
+
+.component-product-detail > nav, .component-product-detail > .tab-content {
+	display: block;
+}
+
+.component-product-detail .accordion {
+	display: none;
+}
+
+.component-product-detail .accordion .product-detail-accordion-header-1,
+.component-product-detail .accordion .product-detail-accordion-header-2 {
+	border-radius: 0.5rem;
+	border: 1px solid #99cc00;
+}
+
+.component-product-detail > nav .nav-item {
+	cursor: pointer;
+}
+
+.component-product-detail > nav .nav-tabs .nav-item.show .nav-link, 
+.component-product-detail > nav .nav-tabs .nav-link.active {
+	color: #99cc00;
+	border-bottom: 3px solid #99cc00;
+}
+
+.component-product-detail > nav .nav-tabs .nav-link {
+	border: none;
+	border-bottom: 1px solid #dee2e6;
+	transition: 200ms;
+}
+
+.component-product-detail > nav .nav-tabs .nav-link:hover {
+	border-bottom: 3px solid #99cc00;
+	color: #99cc00;
+}

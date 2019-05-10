@@ -1,0 +1,32 @@
+.component-slide-trademark img {
+  width: 8rem;
+  height: 8rem;
+}
+
+.component-slide-trademark .slick-dots {
+    /*margin-top: 1rem;*/
+  text-align: center;
+  padding: 0;
+}
+
+.component-slide-trademark button {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+  background-color: #ccc;
+  border: none;
+  outline: none;
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+}
+
+.component-slide-trademark li {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.component-slide-trademark .slick-active button {
+  background-color: #99cc00;
+}

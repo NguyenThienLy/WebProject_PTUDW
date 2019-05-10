@@ -1,0 +1,45 @@
+body {
+	height: 100vh; 
+	background-image: url(https://live.staticflickr.com/3755/33382978692_a5638efc1e_k.jpg); 
+	background-position: center; 
+	background-repeat: no-repeat; 
+	background-size: cover;
+}
+
+.card {
+	width: 75%; 
+	height: 60%;
+	opacity: .9;
+}
+
+.card-body {
+	height: 100%;
+}
+
+.content-left {
+	width: 40%; 
+	background-color: rgb(194, 228, 139);
+}
+
+.content-left div {
+	height: 8rem;
+}
+
+.content-left img {
+	height: calc(100% - 8rem);
+	width: 100%;
+}
+
+.content-right {
+	width: 60%;
+}
+
+.content-right > div {
+	text-align: center; 
+	font-size: 3rem; 
+	color: #99cc00;
+}
+
+.content-right form {
+	font-size: 1rem;
+}

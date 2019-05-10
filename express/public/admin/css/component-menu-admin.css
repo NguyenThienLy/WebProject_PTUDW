@@ -1,0 +1,106 @@
+#side-menu {
+    background-color: #def794;
+    padding: 0rem;
+    padding-top: 2rem;
+}
+
+#side-menu .top-menu {
+    overflow: hidden;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+#side-menu .top-menu .logo {
+    display: block;
+    height: 3rem;
+    background-image: url(//bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553847975699);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    margin-left: 0;
+}
+
+/*#side-menu h4 {
+    text-align: center;
+    margin: 0.5rem 0;
+}*/
+
+#side-menu ul {
+
+    list-style: none;
+    padding: 1rem 0 0 0;
+    margin: 0;
+}
+
+#side-menu ul li > a {
+
+    position: relative;
+    padding: 0.5rem 0.6rem 0.5rem 1rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #111;
+    display: block;
+    transition: 0.1s;
+}
+
+#side-menu ul li .badge {
+    position: absolute;
+    right: 0.6rem;
+    top: 0.8rem;
+    text-align: center;
+}
+
+#side-menu ul li .fas {
+    /*margin-right: 0.375rem;*/
+}
+
+#side-menu ul li:hover {
+    /*background-color: rgba(156, 197, 33, 0.8);*/
+}
+ 
+#side-menu ul li:hover > a {
+    color: #568a28;
+    transform: scale(1.02);
+}
+
+
+/*#side-menu a.active{
+    color: #fff;
+    background-color: #293846;
+}*/
+
+#side-menu .ads-button{
+    background-color: rgba(156, 197, 33, 0.7);
+}
+
+#side-menu .ads-button a{
+    color: #568a28;
+}
+
+#side-menu .ads-button a:hover{
+    color: #fff;
+    font-weight: bold;
+}
+
+/*#side-menu .collapse li {
+    padding-left: 1.25rem;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.625rem;
+}
+
+#side-menu .collapse a {
+    color: #9fb1c2;
+    font-size: 0.75rem;
+    padding: 0rem 0.625rem;
+    text-decoration: none;
+    display: block;
+}
+
+#side-menu .collapse a:hover{
+    color: #fff;
+}
+
+#side-menu .collapse{
+    border-left: solid 4px #1ab394;
+    background-color: #293846;
+}*/

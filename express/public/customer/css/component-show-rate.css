@@ -1,0 +1,176 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+
+.component-show-rate {
+	border: 1px solid #f4f4f4;
+}
+
+.component-show-rate .content-left,
+.component-show-rate .content-center  {
+	border-right: 1px solid #f4f4f4;
+}
+
+.component-show-rate .content-left > p:nth-child(1),  
+.component-show-rate .content-right > p:nth-child(1){
+	display: block;
+}
+
+.component-show-rate .content-left .avg-rate {
+	font-size: 2rem; 
+	color: red;
+}
+
+.component-show-rate .content-left .star-rate {
+	font-size: 1.3rem; 
+	color: #6D6B6A;
+}
+
+.component-show-rate .content-left .star-rate .checked {
+	color: orange;
+}
+
+.component-show-rate .content-left .review {
+	font-size: 0.8rem; 
+	color: #848484;
+}
+
+.component-show-rate .content-center .star-percent {
+	font-size: .8rem;
+	width: 60%;
+}
+
+.component-show-rate .content-center .star-percent .progress {
+	height: .5rem; 
+	width: 70%;
+}
+
+.component-show-rate .content-center .star-percent .percent {
+	color: #848484;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-1 {
+	width: 76%;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-2 {
+	width: 6%;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-3 {
+	width: 9%;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-4 {
+	width: 7%; 
+	background-color: #c8c8c8;
+}
+
+.component-show-rate .content-center .star-percent .progress .progress-bar-5 {
+	width: 2%; 
+	background-color: #c8c8c8;
+}
+
+.component-show-rate .content-right > p {
+	font-size: .8rem;
+}
+
+.component-show-rate .content-right > button {
+	font-size: 1rem;
+}
+
+.collapse-show-rate .comment {
+	border-left: 1px solid #f4f4f4; 
+	border-right: 1px solid #f4f4f4; 
+	border-bottom: 1px solid #f4f4f4;
+}
+
+.collapse-show-rate .comment .rate {
+	height: auto;
+	padding: 0 0.5rem;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"] {
+	float: right;
+	position: relative;
+	-webkit-appearance: none;
+	width: 1.4rem;
+	height: 1.4rem;
+	outline: none;
+	margin-right: 0.2rem;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:before {
+	content: '\f005';
+	font-family: FontAwesome;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 1.4rem;
+	transform: translate(-50%, -50%);
+	color: #c8c8c8;
+	transition: 200ms;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:checked {
+	background-color: #fff;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:checked:before {
+	color: orange;
+}
+
+.collapse-show-rate .comment .rate > input[type="radio"]:checked ~ input[type="radio"]:before {
+	color: orange;
+}
+
+/*.collapse-show-rate .comment .rate:not(:checked) > input {
+	position: absolute;
+	top:-9999px;
+}
+
+.collapse-show-rate .comment .rate:not(:checked) > label {
+	float: right;
+	margin-right: 0.3rem;
+	margin-bottom: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 1.5rem;
+	color: #ccc;
+}
+
+.collapse-show-rate .comment .rate:not(:checked) > label:before {
+	font-family: FontAwesome;
+	content: '\f005';
+}
+
+.collapse-show-rate .comment .rate > input:checked ~ label {
+	color: #ffc700;    
+}
+
+.collapse-show-rate .comment .rate:not(:checked) > label:hover,
+.collapse-show-rate .comment .rate:not(:checked) > label:hover ~ label {
+	color: #deb217;  
+}
+
+.collapse-show-rate .comment .rate > input:checked + label:hover,
+.collapse-show-rate .comment .rate > input:checked + label:hover ~ label,
+.collapse-show-rate .comment .rate > input:checked ~ label:hover,
+.collapse-show-rate .comment .rate > input:checked ~ label:hover ~ label,
+.collapse-show-rate .comment .rate > label:hover ~ input:checked ~ label {
+	color: #c59b08;
+}*/
+
+.collapse-show-rate .comment > form textarea {
+	resize: none;
+	font-size: 0.9rem;
+}
+
+.collapse-show-rate .comment > form input {
+	font-size: 0.9rem;
+} 
+
+.collapse-show-rate .comment > button {
+	font-size: 1rem; 
+	margin-left: 70%;
+	width: 30%;
+}

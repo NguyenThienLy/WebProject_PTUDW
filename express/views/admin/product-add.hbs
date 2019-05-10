@@ -1,0 +1,151 @@
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+
+    <!--Card chứa form nhập thông tin của sản phẩm-->
+    <div class="card mt-3">
+        <div class="card-header">
+            <h5 class="mb-0">Thông tin sản phẩm</h5>
+        </div>
+        <div class="card-body">
+
+            <!--Form nhập thông tin-->
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-2"></div>
+
+                    <div class="col-sm-10">
+                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg" class="add-product-image">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"><b>Hình ảnh</b></label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control-file">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="selectProductType" class="col-sm-2 col-form-label"><b>Danh mục</b></label>
+                    <div class="col-sm-10">
+                        <select class="custom-select my-1 mr-sm-2" id="selectProductType">
+                            <option selected>Nước uống</option>
+                            <option value="1">Rau quả tươi</option>
+                            <option value="2">Thịt tươi</option>
+                            <option value="3">Trái cây</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="selectProductSource" class="col-sm-2 col-form-label"><b>Nguồn gốc</b></label>
+                    <div class="col-sm-10">
+                        <select class="custom-select my-1 mr-sm-2" id="selectProductSource">
+                            <option selected>Việt Nam</option>
+                            <option value="1">Hoa Kỳ</option>
+                            <option value="2">Trung Quốc</option>
+                            <option value="3">Nhật bản</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="selectProductBrand" class="col-sm-2 col-form-label"><b>Thương hiệu</b></label>
+                    <div class="col-sm-10">
+                        <select class="custom-select my-1 mr-sm-2" id="selectProductBrand">
+                            <option selected>Đang cập nhật</option>
+                            <option value="1">Hoa anh đào</option>
+                            <option value="2">Opanic</option>
+                            <option value="3">Ohana</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputIDproduct" class="col-sm-2 col-form-label"><b>Mã sản phẩm</b></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputIDproduct" placeholder="SPT01">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Tên sản phẩm</b></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputnameProduct"
+                            placeholder="nhập vào tên sản phâm">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPriceProduct" class="col-sm-2 col-form-label"><b>Giá sản phẩm</b></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPriceProduct"
+                            placeholder="Nhập vào giá sản phẩm">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPromotionProduct" class="col-sm-2 col-form-label"><b>Giảm giá</b></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputPromotionProduct" placeholder="0">
+                    </div>
+                </div>
+            </form>
+            <!--End form nhập thông tin-->
+        </div>
+    </div>
+    <!--End card chứa form nhập thông tin của sản phẩm-->
+
+    <!--Card chứa form điền thông tin bài viêt-->
+    <div class="card mt-3">
+
+        <div class="card-header">
+            <h5 class="mb-0">Thông tin bài viết</h5>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label class="sr-only">Tiêu đề</label>
+                    <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only">Tag</label>
+                    <select class="chosen-select" data-placeholder="Chọn tag" multiple>
+                        <option>Cà chua</option>
+                        <option>Trái cây</option>
+                        <option>Rau tươi</option>
+                        <option>Thịt</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only">Nội dung</label>
+                    <textarea class="form-control" name="contain"></textarea>
+                </div>
+
+
+                <div class="pl-2 pb-2">
+                    <div class="custom-control custom-control-inline custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="custom-control-label" for="inlineCheckbox1">Mới</label>
+                    </div>
+                    <div class="custom-control custom-control-inline custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="custom-control-label" for="inlineCheckbox2">Nổi bật</label>
+                    </div>
+                    <div class="custom-control custom-control-inline custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="custom-control-label" for="inlineCheckbox3">Hiển thị</label>
+                    </div>
+                </div>
+
+                <div class="float-right">
+                    <button type="button" class="btn btn-success mr-2">Đăng</button>
+                    <button type="button" class="btn btn-danger">Hủy</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!--End Card chứa form điền thông tin bài viêt-->
+    
+</div>
+<!--End Nội dung trang index-->
