@@ -34,7 +34,7 @@ body {
 	width: 60%;
 }
 
-.content-right > div {
+.content-right .icon-user {
 	text-align: center; 
 	font-size: 3rem; 
 	color: #99cc00;

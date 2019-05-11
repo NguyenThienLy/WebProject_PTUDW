@@ -18,13 +18,13 @@ var adminCustomerRoute = require('./routes/admin.customer.route');
 var adminOrderRoute = require('./routes/admin.order.route');
 var adminCommentRoute = require('./routes/admin.comment.route');
 
-//  var authRoute = require('./routes/auth.route');
+var authRoute = require('./routes/auth.route');
 //  var cartRoute = require('./routes/cart.route')
 
 // var apiProductRoute = require('./api/routes/product.route');
 // var apiUserRoute = require('./api/routes/user.route')
 
-// var authMiddleware = require('./middlewares/auth.middleware');
+var authMiddleware = require('./middlewares/auth.middleware');
 // var sessionMiddleware = require('./middlewares/session.middleware');
 
 var port = 3000;
@@ -35,7 +35,7 @@ app.use(morgan('dev'));
 app.use(express.static('public'));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
-//app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(cookieParser(process.env.SESSION_SECRET));
 //app.use(sessionMiddleware);
 
 app.engine('hbs', exphbs({
@@ -48,12 +48,12 @@ app.use('/customer/product', customerProductRoute);
 app.use('/customer/info', customerInfoRoute);
 app.use('/customer/cart', customerCartRoute);
 
-app.use('/admin/index', adminIndexRoute);
-app.use('/admin/product', adminProductRoute);
-app.use('/admin/info', adminInfoRoute);
-app.use('/admin/customer', adminCustomerRoute);
-app.use('/admin/order', adminOrderRoute);
-app.use('/admin/comment', adminCommentRoute);
+app.use('/admin/index', authMiddleware.requireAuth, adminIndexRoute);
+app.use('/admin/product', authMiddleware.requireAuth, adminProductRoute);
+app.use('/admin/info', authMiddleware.requireAuth, adminInfoRoute);
+app.use('/admin/customer', authMiddleware.requireAuth, adminCustomerRoute);
+app.use('/admin/order', authMiddleware.requireAuth, adminOrderRoute);
+app.use('/admin/comment', authMiddleware.requireAuth, adminCommentRoute);
 
 // app.get('/',function( req, res) {
 // 	res.render('login');
@@ -65,7 +65,7 @@ app.use('/admin/comment', adminCommentRoute);
 
 // app.use('/users', authMiddleware.requireAuth, userRoute);
 // app.use('/products', productRoute);
-// app.use('/auth', authRoute);
+app.use('/admin/auth', authRoute);
 // app.use('/cart', cartRoute);
 // app.use('/api/products',apiProductRoute);
 // app.use('/api/users',apiUserRoute);

@@ -17,7 +17,7 @@
   />
 
   <link href="../../admin/css/login-admin.css" rel="stylesheet" />
-  <link href="../../admin/css/customer-style.css" rel="stylesheet" />
+  <link href="../../admin/css/admin-style.css" rel="stylesheet" />
   <link href="../../admin/css/responsive-login-admin.css" rel="stylesheet" />
 </head>
 
@@ -44,8 +44,15 @@
     <div
     class="content-right float-left h-100 rounded-right pr-4 pl-3 pt-2 pb-2"
     >
-    <div class="mb-3"><i class="far fa-user"></i></div>
-    <form>
+    <div class="icon-user mb-3"><i class="far fa-user"></i></div>
+
+    {{#each this.errors}}
+    <div class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+    {{/each}}
+
+    <form action="/admin/auth/login", method="POST">
       <div class="form-group row align-items-center ml-0 mr-0">
         <label for="txtEmail" class="col-12 col-md-3 col-form-label pl-0"
         >Email / SĐT</label
@@ -56,6 +63,8 @@
           class="form-control form-control-sm"
           placeholder="Nhập Email hoặc Số điện thoại"
           id="txtEmail"
+          name="NAME"
+          value= {{this.values}} ? "{{{this.values.NAME}}}" : ""
           />
         </div>
       </div>
@@ -69,14 +78,16 @@
           class="form-control form-control-sm"
           placeholder="Nhập mật khẩu từ 6 đến 32 ký tự"
           id="txtPassword"
+          name="PASSWORD"
+          value= {{this.values}} ? "{{{this.values.PASSWORD}}}" : ""
           />
         </div>
       </div>
       <div class="d-flex mt-4">
         <div class="col-0 col-md-3 d-none d-md-block"></div>
-        <a href="index.html" role="button" class="btn btn-success col-12 col-md-9">
+        <button type="submit" class="btn btn-success col-12 col-md-9">
           Đăng nhập
-        </a>
+        </button>
       </div>
     </form>
   </div>
