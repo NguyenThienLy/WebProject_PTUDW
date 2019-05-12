@@ -18,7 +18,7 @@ var adminCustomerRoute = require('./routes/admin.customer.route');
 var adminOrderRoute = require('./routes/admin.order.route');
 var adminCommentRoute = require('./routes/admin.comment.route');
 
-var authRoute = require('./routes/auth.route');
+var authRoute = require('./routes/admin.auth.route');
 //  var cartRoute = require('./routes/cart.route')
 
 // var apiProductRoute = require('./api/routes/product.route');

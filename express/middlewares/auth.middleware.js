@@ -1,4 +1,4 @@
-var adminModel = require('../models/admin.model');
+var adminModel = require('../models/admin.auth.model');
 
 module.exports.requireAuth = async function(req, res, next) {
 	// Kiểm tra giá trị cookie
