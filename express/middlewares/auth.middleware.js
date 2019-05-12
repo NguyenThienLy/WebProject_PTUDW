@@ -1,18 +1,36 @@
-var db = require('../db');
+var adminModel = require('../models/admin.model');
 
-module.exports.requireAuth = function(req, res, next) {
-	if (!req.signedCookies.userId) {
-		res.redirect('/auth/login');
-	}
-
-	var user = db.get('users').find({ id: req.signedCookies.userId}).value();
-
-	if (!user) {
-		res.redirect('/auth/login');
+module.exports.requireAuth = async function(req, res, next) {
+	// Kiểm tra giá trị cookie
+	if(!req.signedCookies.adminId) {
+		res.redirect('/admin/auth/login');
 		return;
 	}
 
-	res.locals.user = user;
+	// Lấy dữ liệu từ bảng admin
+	var admins = adminModel.all();
 
-	next();
+	// Duyệt admins tìm acc admin có id trùng với giá trị cookie đã lưu
+	admins.then(rows => {
+		var admin = 
+		rows.find((value, index, array) => {
+			if(value.ID == req.signedCookies.adminId) {
+				return value;
+			} else {
+				return null;
+			}
+		});
+
+		// Nếu không tìm thấy acc, chuyển sang trang login
+		if(!admin) {
+			res.redirect('/admin/auth/login');
+			return;
+		}
+		
+		// Chuyển sang trang được yêu cầu
+		next();
+
+	}).catch(err => {
+		console.log(err);
+	});
 };
