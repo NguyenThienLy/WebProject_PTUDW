@@ -32,10 +32,10 @@ module.exports.postLogin = function(req, res, next) {
     // 	console.log(hash);
     //   });
 
-	// Lấy dữ liệu từ bảng admin
+    // Lấy dữ liệu từ bảng admin
     var admins = adminModel.all();
 
-	// Duyệt admins để tìm acc admin trùng acc ng dùng nhập
+    // Duyệt admins để tìm acc admin trùng acc ng dùng nhập
     admins
       .then(rows => {
         var admin = rows.find((value, index, array) => {
@@ -46,7 +46,7 @@ module.exports.postLogin = function(req, res, next) {
           }
         });
 
-		// Nếu không tìm thấy acc admin trùng khớp
+        // Nếu không tìm thấy acc admin trùng khớp
         if (!admin) {
           res.render("admin/login-admin", {
             errors: [{ error: "Admin does not exist!" }],
@@ -54,8 +54,8 @@ module.exports.postLogin = function(req, res, next) {
           });
           return;
         }
-		
-    // Kiểm tra mật khẩu
+
+        // Kiểm tra mật khẩu
         var hash = admin.PASSWORD;
         console.log(password);
         console.log(hash);
@@ -67,21 +67,19 @@ module.exports.postLogin = function(req, res, next) {
             });
             return;
           }
-		
-		  // Thiết lập giá trị cookie = admin.ID
+
+          // Thiết lập giá trị cookie = admin.ID
           res.cookie("adminId", admin.ID, {
             signed: true
           });
 
-		  // Chuyển đến trang index
+          // Chuyển đến trang index
           res.redirect("/admin/index");
-		});
-		
+        });
       })
       .catch(err => {
         console.log(err);
-	  });
-	  
+      });
   } catch (error) {
     next(error);
   }
