@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-var adminModel = require("../models/admin.model");
+var adminModel = require("../models/admin.auth.model");
 
 module.exports.login = function(req, res) {
   res.render("admin/login-admin");
@@ -55,8 +55,10 @@ module.exports.postLogin = function(req, res, next) {
           return;
         }
 		
-		// Kiểm tra mật khẩu
+    // Kiểm tra mật khẩu
         var hash = admin.PASSWORD;
+        console.log(password);
+        console.log(hash);
         bcrypt.compare(password, hash, function(err, res_bcrypt) {
           if (res_bcrypt == false) {
             res.render("admin/login-admin", {
