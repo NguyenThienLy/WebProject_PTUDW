@@ -35,7 +35,6 @@ module.exports.postLogin = function(req, res, next) {
     // Lấy dữ liệu từ bảng admin
     var admins = adminModel.all();
 
-
     // Duyệt admins để tìm acc admin trùng acc ng dùng nhập
     admins
       .then(rows => {
@@ -55,7 +54,7 @@ module.exports.postLogin = function(req, res, next) {
         //   });
         //   return;
         // }
- 
+      
         // // Kiểm tra mật khẩu
         // var hash = admin.PASSWORD;
         // console.log(password);
@@ -68,23 +67,19 @@ module.exports.postLogin = function(req, res, next) {
         //     });
         //     return;
         //   }
- 
-        //   console.log("haha");
- 
         //   // Thiết lập giá trị cookie = admin.ID
         //   res.cookie("adminId", admin.ID, {
         //     signed: true
         //   });
- 
         //   // Chuyển đến trang index
         //   res.redirect("/admin/index");
         // });
- 
+
         // Thiết lập giá trị cookie = admin.ID
         res.cookie("adminId", admin.ID, {
           signed: true
         });
- 
+
         // Chuyển đến trang index
         res.redirect("/admin/index");
       })
