@@ -31,12 +31,11 @@ module.exports.postLogin = function(req, res, next) {
  
     // 	console.log(hash);
     //   });
- 
+
     // Lấy dữ liệu từ bảng admin
     var admins = adminModel.all();
- 
-    console.log();
- 
+
+
     // Duyệt admins để tìm acc admin trùng acc ng dùng nhập
     admins
       .then(rows => {
@@ -47,7 +46,7 @@ module.exports.postLogin = function(req, res, next) {
             return null;
           }
         });
- 
+
         // // Nếu không tìm thấy acc admin trùng khớp
         // if (!admin) {
         //   res.render("admin/login-admin", {
