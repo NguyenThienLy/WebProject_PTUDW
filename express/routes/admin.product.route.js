@@ -8,8 +8,14 @@ var express = require('express');
 
 var router = express.Router();
 
+//Xử lý get để render UI
 router.get('/product-show', controller.productShow);
 
 router.get('/product-add', controller.productAdd);
+
+//Xử lý post để thêm dữ liệu vào cơ sở dữ liệu
+
+router.post('/product-add',controller.productAddNew);
+
 
 module.exports = router;

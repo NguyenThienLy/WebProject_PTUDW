@@ -20,9 +20,18 @@
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
                         <select class="custom-select custom-select-sm">
                             <option value="" selected disabled>Danh mục</option>
-                            <option>Rau quả</option>
-                            <option>Thịt</option>
-                            <option>Nước uống</option>
+                            {{#each this.categorylv1s}}
+                             <option>{{NAME}}</option>
+                             {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
+                        <select class="custom-select custom-select-sm">
+                            <option value="" selected disabled>Loại sản phẩm</option>
+                            {{#each this.categorylv2s}}
+                             <option>{{NAME}}</option>
+                             {{/each}}
                         </select>
                     </div>
 
@@ -38,9 +47,10 @@
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
                         <select class="custom-select custom-select-sm">
                             <option value="" selected disabled>Thương hiệu</option>
-                            <option>Ohana</option>
-                            <option>Sen việt</option>
-                            <option>TH</option>
+                            <!--Vòng lặp để lấy ra danh sách nhãn hiệu -->
+                             {{#each this.brands}}
+                             <option>{{NAME}}</option>
+                             {{/each}}
                         </select>
                     </div>
 
@@ -77,22 +87,24 @@
                 </thead>
 
                 <tbody>
-                    <!--Thông tin một sản phẩm-->
+                    <!--Vòng lặp để in ra sản phẩm -->
+                    {{#each this.products}}
                     <tr>
-                        <td>H1</td>
-                        <td>Cà chua</td>
-                        <td>Rau quả tươi</td>
+                        <td>{{ID}}</td>
+                        <td>{{NAME}}</td>
+                        <td>{{CATEGORYNAME}}</td>
                         <td>Việt nam</td>
-                        <td>Đang cập nhật</td>
+                        <td>{{BRANDNAME}}</td>
                         <td align="center">
-                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                class="show-product-image">
+                            <img src={{LINK}} class="show-product-image">
                         </td>
                         <td>
                             <div>
-                                <div class="badge badge-warning mb-1">Đang giảm giá</div>
-                                <div>Giá:&nbsp;<span>500.000</span>đ</div>
-                                <div>Số lượng:&nbsp;<span>10</span></div>
+                                {{#if SALE}}
+                                    <div class="badge badge-warning mb-1">Đang giảm giá</div>
+                                {{/if}}
+                                <div>Giá:&nbsp;<span>{{PRICE}}</span>đ</div>
+                                <div>Số lượng:&nbsp;<span>{{INVENTORY}}</span></div>
                             </div>
                         </td>
                         <td align="center">
@@ -100,58 +112,8 @@
                             <button type="button" class="btn btn-sm btn-danger">Xóa</button>
                         </td>
                     </tr>
-                    <!--End thông tin một sản phẩm-->
-
-                    <!--Thông tin một sản phẩm-->
-                    <tr>
-                        <td>H1</td>
-                        <td>Cà chua</td>
-                        <td>Rau quả tươi</td>
-                        <td>Việt nam</td>
-                        <td>Đang cập nhật</td>
-                        <td align="center">
-                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                class="show-product-image">
-                        </td>
-                        <td>
-                            <div>
-                                <div class="badge badge-warning mb-1">Đang giảm giá</div>
-                                <div>Giá:&nbsp;<span>500.000</span>đ</div>
-                                <div>Số lượng:&nbsp;<span>10</span></div>
-                            </div>
-                        </td>
-                        <td align="center">
-                            <button type="button" class="btn btn-sm btn-primary">Sửa</button>
-                            <button type="button" class="btn btn-sm btn-danger">Xóa</button>
-                        </td>
-                    </tr>
-                    <!--End thông tin một sản phẩm-->
-
-                    <!--Thông tin một sản phẩm-->
-                    <tr>
-                        <td>H1</td>
-                        <td>Cà chua</td>
-                        <td>Rau quả tươi</td>
-                        <td>Việt nam</td>
-                        <td>Đang cập nhật</td>
-                        <td align="center">
-                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                class="show-product-image">
-                        </td>
-                        <td>
-                            <div>
-                                <div class="badge badge-warning mb-1">Đang giảm giá</div>
-                                <div>Giá:&nbsp;<span>500.000</span>đ</div>
-                                <div>Số lượng:&nbsp;<span>10</span></div>
-                            </div>
-                        </td>
-                        <td align="center">
-                            <button type="button" class="btn btn-sm btn-primary">Sửa</button>
-                            <button type="button" class="btn btn-sm btn-danger">Xóa</button>
-                        </td>
-                    </tr>
-                    <!--End thông tin một sản phẩm-->
-
+                    {{/each}}
+                
                 </tbody>
             </table>
             <!--End Table hiển thị sản phẩm-->
