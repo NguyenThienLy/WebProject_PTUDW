@@ -304,41 +304,32 @@
     <div class="row justify-content-center mt-3">
         <div
             class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-center component-tag-product-type">
-            <button type="button" class="btn btn-outline-success ml-2">
-                Rau củ
-            </button>
 
+            {{!-- load doanh mục cấp 1 --}}
+            {{#each this.categories}}
             <button type="button" class="btn btn-outline-success ml-2">
-                Hoa quả
+                {{NAME}}
             </button>
+            {{/each}}
+            {{!-- load doanh mục cấp 1 --}}
 
-            <button type="button" class="btn btn-outline-success ml-2">
-                Các loại hạt
-            </button>
-
-            <button type="button" class="btn btn-outline-success ml-2">
-                Thực phẩm tươi sống
-            </button>
-
-            <button type="button" class="btn btn-outline-success ml-2">
-                gia vị
-            </button>
-
+            {{!-- load doanh mục cấp 1 khi resposive --}}
             <select class="form-control">
-                <option>Tất cả</option>
-                <option>Rau củ</option>
-                <option>Hoa quả</option>
-                <option>Các loại hạt</option>
-                <option>Thực phẩm tươi sống</option>
-                <option>Gia vị</option>
+                {{#each this.categories}}
+                <option>{{NAME}}</option>
+                {{/each}}
             </select>
+            {{!-- load doanh mục cấp 1 khi resposive --}}
         </div>
     </div>
 
     <div class="row mt-5">
+        {{!-- load sản phẩm sale nhiều nhất --}}
+        {{#each this.products}}
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
             <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
+                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi"
+                    style="background-image: url({{LINK}});">
                     <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
                     <div class="overlay h-100 d-flex justify-content-center align-items-end">
                         <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
@@ -354,15 +345,15 @@
                 </div>
 
                 <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
+                    <a href="product-detail.html" class="title card-title m-0">{{NAME}}</a>
                     <div class="mt-1 d-flex justify-content-center">
                         <div class="price-sale">
-                            <span>30.000</span>
+                            <span>100.000</span>
                             <span><u>đ</u></span>
                         </div>
                         <div class="price-old">
                             <del class="ml-3">
-                                45.000
+                                {{PRICE}}
                                 <span><u>đ</u></span>
                             </del>
                         </div>
@@ -370,251 +361,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
-            <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
-                    <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
-                    <div class="overlay h-100 d-flex justify-content-center align-items-end">
-                        <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
-                    <div class="mt-1 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>30.000</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-3">
-                                45.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
-            <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
-                    <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
-                    <div class="overlay h-100 d-flex justify-content-center align-items-end">
-                        <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
-                    <div class="mt-1 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>30.000</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-3">
-                                45.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
-            <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
-                    <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
-                    <div class="overlay h-100 d-flex justify-content-center align-items-end">
-                        <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
-                    <div class="mt-1 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>30.000</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-3">
-                                45.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
-            <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
-                    <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
-                    <div class="overlay h-100 d-flex justify-content-center align-items-end">
-                        <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
-                    <div class="mt-1 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>30.000</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-3">
-                                45.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
-            <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
-                    <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
-                    <div class="overlay h-100 d-flex justify-content-center align-items-end">
-                        <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
-                    <div class="mt-1 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>30.000</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-3">
-                                45.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
-            <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
-                    <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
-                    <div class="overlay h-100 d-flex justify-content-center align-items-end">
-                        <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
-                    <div class="mt-1 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>30.000</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-3">
-                                45.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
-            <div class="component-product-simple card w-100">
-                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="Chanh tươi">
-                    <a class="w-100 h-100 position-absolute" href="product-detail.html"></a>
-                    <div class="overlay h-100 d-flex justify-content-center align-items-end">
-                        <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">Chanh tươi</a>
-                    <div class="mt-1 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>30.000</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-3">
-                                45.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{/each}}
+        {{!-- load sản phẩm sale nhiều nhất --}}
     </div>
 
     <div class="row justify-content-center mt-3">
