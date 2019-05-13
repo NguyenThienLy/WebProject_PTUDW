@@ -6,25 +6,24 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 
-var customerIndexRoute = require('./routes/customer.index.route');
-var customerProductRoute = require('./routes/customer.product.route');
-var customerInfoRoute = require('./routes/customer.info.route');
-var customerCartRoute = require('./routes/customer.cart.route');
+var customerIndexRoute = require('./routes/customer/index.route');
+var customerProductRoute = require('./routes/customer/product.route');
+var customerInfoRoute = require('./routes/customer/info.route');
+var customerCartRoute = require('./routes/customer/cart.route');
 
-var adminIndexRoute = require('./routes/admin.index.route');
-var adminProductRoute = require('./routes/admin.product.route');
-var adminInfoRoute = require('./routes/admin.info.route');
-var adminCustomerRoute = require('./routes/admin.customer.route');
-var adminOrderRoute = require('./routes/admin.order.route');
-var adminCommentRoute = require('./routes/admin.comment.route');
-
-var authRoute = require('./routes/admin.auth.route');
+var adminIndexRoute = require('./routes/admin/index.route');
+var adminProductRoute = require('./routes/admin/product.route');
+var adminInfoRoute = require('./routes/admin/info.route');
+var adminCustomerRoute = require('./routes/admin/customer.route');
+var adminOrderRoute = require('./routes/admin/order.route');
+var adminCommentRoute = require('./routes/admin/comment.route');
+var adminAuthRoute = require('./routes/admin/auth.route');
 //  var cartRoute = require('./routes/cart.route')
 
 // var apiProductRoute = require('./api/routes/product.route');
 // var apiUserRoute = require('./api/routes/user.route')
 
-var authMiddleware = require('./middlewares/auth.middleware');
+var adminAuthMiddleware = require('./middlewares/admin/auth.middleware');
 // var sessionMiddleware = require('./middlewares/session.middleware');
 
 var port = 3000;
@@ -48,12 +47,13 @@ app.use('/customer/product', customerProductRoute);
 app.use('/customer/info', customerInfoRoute);
 app.use('/customer/cart', customerCartRoute);
 
-app.use('/admin/index', authMiddleware.requireAuth, adminIndexRoute);
-app.use('/admin/product', authMiddleware.requireAuth, adminProductRoute);
-app.use('/admin/info', authMiddleware.requireAuth, adminInfoRoute);
-app.use('/admin/customer', authMiddleware.requireAuth, adminCustomerRoute);
-app.use('/admin/order', authMiddleware.requireAuth, adminOrderRoute);
-app.use('/admin/comment', authMiddleware.requireAuth, adminCommentRoute);
+app.use('/admin/index', adminAuthMiddleware.requireAuth, adminIndexRoute);
+app.use('/admin/product', adminAuthMiddleware.requireAuth, adminProductRoute);
+app.use('/admin/info', adminAuthMiddleware.requireAuth, adminInfoRoute);
+app.use('/admin/customer', adminAuthMiddleware.requireAuth, adminCustomerRoute);
+app.use('/admin/order', adminAuthMiddleware.requireAuth, adminOrderRoute);
+app.use('/admin/comment', adminAuthMiddleware.requireAuth, adminCommentRoute);
+app.use('/admin/auth', adminAuthRoute);
 
 // app.get('/',function( req, res) {
 // 	res.render('login');
@@ -65,7 +65,7 @@ app.use('/admin/comment', authMiddleware.requireAuth, adminCommentRoute);
 
 // app.use('/users', authMiddleware.requireAuth, userRoute);
 // app.use('/products', productRoute);
-app.use('/admin/auth', authRoute);
+//app.use('/admin/auth', authRoute);
 // app.use('/cart', cartRoute);
 // app.use('/api/products',apiProductRoute);
 // app.use('/api/users',apiUserRoute);

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-var adminModel = require("../models/admin.auth.model");
+var adminModel = require("../../models/admin.model");
  
 module.exports.login = function(req, res) {
   res.render("admin/login-admin");
@@ -22,7 +22,7 @@ module.exports.postLogin = function(req, res, next) {
     // 		PASSWORD: hash
     // 	}
  
-    // 	adminModel.add(entity)
+    // 	adminModel.addAdmin(entity)
     // 	.then(id => {
     // 		console.log(id);
     // 	}).catch(err => {
@@ -33,7 +33,7 @@ module.exports.postLogin = function(req, res, next) {
     //   });
 
     // Lấy dữ liệu từ bảng admin
-    var admins = adminModel.all();
+    var admins = adminModel.allAdmin();
 
     // Duyệt admins để tìm acc admin trùng acc ng dùng nhập
     admins

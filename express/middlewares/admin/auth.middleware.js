@@ -1,4 +1,4 @@
-var adminModel = require('../models/admin.auth.model');
+var adminModel = require('../../models/admin.model');
 
 module.exports.requireAuth = async function(req, res, next) {
 	// Kiểm tra giá trị cookie
@@ -8,7 +8,7 @@ module.exports.requireAuth = async function(req, res, next) {
 	}
 
 	// Lấy dữ liệu từ bảng admin
-	var admins = adminModel.all();
+	var admins = adminModel.allAdmin();
 
 	// Duyệt admins tìm acc admin có id trùng với giá trị cookie đã lưu
 	admins.then(rows => {
