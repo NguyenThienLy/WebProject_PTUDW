@@ -1,19 +1,19 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var adminModel = require("../models/admin.auth.model");
-
+ 
 module.exports.login = function(req, res) {
   res.render("admin/login-admin");
-
+ 
   // Xóa giá trị cookie khi logout
   res.cookie("adminId", "");
 };
-
+ 
 module.exports.postLogin = function(req, res, next) {
   try {
     var username = req.body.NAME;
     var password = req.body.PASSWORD;
-
+ 
     // Đăng kí tài khoản với mật khẩu mã hóa bằng bcrypt
     // bcrypt.hash(password, saltRounds, function(err, hash) {
     // 	// Store hash in your password DB.
@@ -21,21 +21,19 @@ module.exports.postLogin = function(req, res, next) {
     // 		NAME: username,
     // 		PASSWORD: hash
     // 	}
-
+ 
     // 	adminModel.add(entity)
     // 	.then(id => {
     // 		console.log(id);
     // 	}).catch(err => {
     // 		console.log(err);
     // 	});
-
+ 
     // 	console.log(hash);
     //   });
 
     // Lấy dữ liệu từ bảng admin
     var admins = adminModel.all();
-
-    console.log();
 
     // Duyệt admins để tìm acc admin trùng acc ng dùng nhập
     admins
@@ -56,7 +54,7 @@ module.exports.postLogin = function(req, res, next) {
         //   });
         //   return;
         // }
-
+      
         // // Kiểm tra mật khẩu
         // var hash = admin.PASSWORD;
         // console.log(password);
@@ -69,14 +67,10 @@ module.exports.postLogin = function(req, res, next) {
         //     });
         //     return;
         //   }
-
-        //   console.log("haha");
-
         //   // Thiết lập giá trị cookie = admin.ID
         //   res.cookie("adminId", admin.ID, {
         //     signed: true
         //   });
-
         //   // Chuyển đến trang index
         //   res.redirect("/admin/index");
         // });
