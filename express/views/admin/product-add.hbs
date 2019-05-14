@@ -2,35 +2,33 @@
 <div id="dashboard-con">
 
     <!--Card chứa form nhập thông tin của sản phẩm-->
-    <div class="card mt-3">
-        <div class="card-header">
-            <h5 class="mb-0">Thông tin sản phẩm</h5>
-        </div>
-        <div class="card-body">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">Thông tin sản phẩm</h5>
+            </div>
+            <div class="card-body">
 
-            <!--Form nhập thông tin-->
-            <form method="POST">
+                <!--Form nhập thông tin-->
+
                 <div class="form-group row">
                     <div class="col-sm-2"></div>
-
-                    <div class="col-sm-10">
-                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg" class="add-product-image">
-                    </div>
+                    <div id="preview"></div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label"><b>Hình ảnh</b></label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control-file">
+                        <input name="IMAGE" id="browse" type="file" onchange="previewFiles()" multiple>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="selectProductType" class="col-sm-2 col-form-label"><b>Danh mục</b></label>
                     <div class="col-sm-10">
-                        <select class="custom-select my-1 mr-sm-2" id="selectProductType">
+                        <select name="CATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
                             {{#each this.categorylv1s}}
-                             <option>{{NAME}}</option>
-                             {{/each}}
+                            <option value="{{ID}}">{{NAME}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
@@ -38,10 +36,10 @@
                 <div class="form-group row">
                     <label for="selectProductType" class="col-sm-2 col-form-label"><b>Loại sản phẩm</b></label>
                     <div class="col-sm-10">
-                        <select name="CATEGORYNAME" class="custom-select my-1 mr-sm-2" id="selectProductType">
+                        <select name="SUBCATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
                             {{#each this.categorylv2s}}
-                             <option>{{NAME}}</option>
-                             {{/each}}
+                            <option value="{{ID}}">{{NAME}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
@@ -51,9 +49,11 @@
                     <div class="col-sm-10">
                         <select name="ORIGIN" class="custom-select my-1 mr-sm-2" id="selectProductSource">
                             <option selected>Việt Nam</option>
-                            <option value="1">Hoa Kỳ</option>
-                            <option value="2">Trung Quốc</option>
-                            <option value="3">Nhật bản</option>
+                            <option value="Mỹ">Mỹ</option>
+                            <option value="Trung Quốc">Trung Quốc</option>
+                            <option value="Nhật bản">Nhật bản</option>
+                            <option value="Úc">Úc</option>
+                            <option value="New Zealand">New Zealand</option>
                         </select>
                     </div>
                 </div>
@@ -61,10 +61,10 @@
                 <div class="form-group row">
                     <label for="selectProductBrand" class="col-sm-2 col-form-label"><b>Thương hiệu</b></label>
                     <div class="col-sm-10">
-                        <select name="BRANDNAME" class="custom-select my-1 mr-sm-2" id="selectProductBrand">
+                        <select name="BRANDID" class="custom-select my-1 mr-sm-2" id="selectProductBrand">
                             {{#each this.brands}}
-                             <option>{{NAME}}</option>
-                             {{/each}}
+                            <option value="{{ID}}">{{NAME}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
@@ -82,6 +82,22 @@
                             placeholder="nhập vào tên sản phâm">
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Trọng lượng sản phẩm</b></label>
+                    <div class="col-sm-10">
+                        <input name="KILOGRAM" type="text" class="form-control" id="inputnameProduct"
+                            placeholder="nhập vào trọng lượng 1 sản phẩm">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Số lượng</b></label>
+                    <div class="col-sm-10">
+                        <input name="INVENTORY" type="text" class="form-control" id="inputnameProduct"
+                            placeholder="nhập vào số lượng sản phẩm">
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="inputPriceProduct" class="col-sm-2 col-form-label"><b>Giá sản phẩm</b></label>
                     <div class="col-sm-10">
@@ -96,35 +112,25 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <!--End form nhập thông tin-->
+                <!--End form nhập thông tin-->
+            </div>
         </div>
-    </div>
-    <!--End card chứa form nhập thông tin của sản phẩm-->
+        <!--End card chứa form nhập thông tin của sản phẩm-->
 
-    <!--Card chứa form điền thông tin bài viêt-->
-    <div class="card mt-3">
+        <!--Card chứa form điền thông tin bài viêt-->
+        <div class="card mt-3">
 
-        <div class="card-header">
-            <h5 class="mb-0">Thông tin bài viết</h5>
-        </div>
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <label class="sr-only">Tiêu đề</label>
-                    <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
-                </div>
-
+            <div class="card-header">
+                <h5 class="mb-0">Mô tả sản phẩm</h5>
+            </div>
+            <div class="card-body">
                 <div class="form-group">
                     <label class="sr-only">Tag</label>
-                    <select class="chosen-select" data-placeholder="Chọn tag" multiple>
-                        <option>Cà chua</option>
-                        <option>Trái cây</option>
-                        <option>Rau tươi</option>
-                        <option>Thịt</option>
+                    <select name="TAG" class="chosen-select" data-placeholder="Chọn tag" multiple>
+                        {{#each this.tags}}
+                        <option value="{{ID}}">{{NAME}}</option>
+                        {{/each}}
                     </select>
-
                 </div>
 
                 <div class="form-group">
@@ -149,14 +155,14 @@
                 </div>
 
                 <div class="float-right">
-                    <button type="button" class="btn btn-success mr-2">Đăng</button>
+                    <button type="submit" class="btn btn-success mr-2">Đăng</button>
                     <button type="button" class="btn btn-danger">Hủy</button>
                 </div>
-            </form>
-
+            </div>
         </div>
-    </div>
-    <!--End Card chứa form điền thông tin bài viêt-->
-    
+        <!--End Card chứa form điền thông tin bài viêt-->
+    </form>
+
+
 </div>
 <!--End Nội dung trang index-->
