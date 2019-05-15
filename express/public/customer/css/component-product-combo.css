@@ -1,7 +1,6 @@
 /* component product combo */
-
 .component-product-combo {
-    height: 22rem;
+    height: 20rem;
     background-color: #f1f1f1;
     border-color: #f4f4f4;
     transition: 200ms;
@@ -10,6 +9,15 @@
   .component-product-combo .card-img-top {
     height: 22rem;
     cursor: pointer;
+  }
+
+  .component-product-combo .card-img-top #sale-image {
+    background-image: url('https://frontend.tikicdn.com/_new-next/static/img/icons/product/deal-tag.png');
+    color: white;
+    height: 1.8rem;
+    width: 2.3rem;
+    background-size: 100% 100%;
+    font-size: 0.8rem;
   }
   
   .component-product-combo .card-img-top .overlay {
@@ -32,7 +40,7 @@
   
   .component-product-combo .title {
     color: #000;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .component-product-combo .title:hover {
@@ -73,12 +81,12 @@
   
   .component-product-combo .card-body .price-sale span {
     color: #99cc00;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   
   .component-product-combo .card-body .price-old del {
     color: #6D6B6A;
-    font-size: 0.9em;
+    font-size: 0.8rem;
   }
   
   .component-product-combo:hover .overlay {

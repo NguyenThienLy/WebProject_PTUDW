@@ -9,28 +9,33 @@
 }
 
 .component-product-simple .card-img-top {
-  height: 16rem;
-  background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center;
   cursor: pointer;
 }
 
-.component-product-simple .title {
-  color: #000;
-  font-size: 1rem;
+
+.component-product-simple .card-img-top #sale-image {
+  background-image: url('https://frontend.tikicdn.com/_new-next/static/img/icons/product/deal-tag.png');
+  color: white;
+  height: 1.8rem;
+  width: 2.3rem;
+  background-size: 100% 100%;
+  font-size: 0.8rem;
 }
 
-.component-product-simple .title:hover {
-  color: #99cc00;
-}
-
-.component-product-simple .overlay {
+.component-product-simple .card-img-top .overlay {
   transition: 200ms !important;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.component-product-simple .overlay > a {
+.component-product-simple .card-img-top .overlay > a {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: 200ms;
+  z-index: 1;
+  text-decoration: none;
   opacity: 0;
   background-color: #f2f2f2;
 }
@@ -55,36 +60,33 @@
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.component-product-simple .card-img-top .overlay a {
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  transition: 200ms;
-  z-index: 0;
-  text-decoration: none;
-}
-
 .component-product-simple:hover {
   box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-.component-product-simple .card-body > a {
+.component-product-simple .card-body .title {
+  color: #000;
+  font-size: 0.9rem;
   text-decoration: none;
   transition: 200ms;
 }
 
+.component-product-simple .card-body .title:hover {
+  color: #99cc00;
+}
+
 .component-product-simple .card-body .price-sale span {
   color: #99cc00;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .component-product-simple .card-body .price-sale u {
   color: #99cc00;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .component-product-simple .card-body .price-old del {
-  color: #6d6b6a;
-  font-size: 0.9rem;
+  color: #666;
+  font-size: 0.8rem;
 }
 /* component product-simple */
