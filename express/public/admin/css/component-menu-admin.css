@@ -46,7 +46,7 @@
 #side-menu ul li .badge {
     position: absolute;
     right: 0.6rem;
-    top: 0.8rem;
+    top: 0.6rem;
     text-align: center;
 }
 
@@ -74,7 +74,7 @@
 }
 
 #side-menu .ads-button a{
-    color: #568a28;
+    color: #FFF;
 }
 
 #side-menu .ads-button a:hover{

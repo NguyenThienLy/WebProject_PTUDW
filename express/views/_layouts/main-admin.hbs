@@ -16,37 +16,37 @@
     <!-- end import google font -->
 
     <!-- import chosen -->
-    <link rel="stylesheet" type="text/css" href="../../admin/chosen_v1.8.7/chosen.min.css">
+    <link rel="stylesheet" type="text/css" href="/admin/chosen_v1.8.7/chosen.min.css">
     <!-- end import chosen -->
 
     {{!-- css all page --}}
-    <link href="../../admin/css/admin-style.css" rel="stylesheet" />
-    <link href="../../admin/css/comments.css" rel="stylesheet" />
-    <link href="../../admin/css/component-comment.css" rel="stylesheet" />
-    <link href="../../admin/css/component-menu-admin.css" rel="stylesheet" />
-    <link href="../../admin/css/component-report-card.css" rel="stylesheet" />
-    <link href="../../admin/css/component-go-up.css" rel="stylesheet" />
-    <link href="../../admin/css/content-5-page.css" rel="stylesheet" />
+    <link href="/admin/css/admin-style.css" rel="stylesheet" />
+    <link href="/admin/css/comments.css" rel="stylesheet" />
+    <link href="/admin/css/component-comment.css" rel="stylesheet" />
+    <link href="/admin/css/component-menu-admin.css" rel="stylesheet" />
+    <link href="/admin/css/component-report-card.css" rel="stylesheet" />
+    <link href="/admin/css/component-go-up.css" rel="stylesheet" />
+    <link href="/admin/css/content-5-page.css" rel="stylesheet" />
     {{!-- css all page --}}
 
     {{!-- css page --}}
-    <link href="../../admin/css/index.css" rel="stylesheet" />
-    <link href="../../admin/css/info-add.css" rel="stylesheet" />
-    <link href="../../admin/css/orde-list.css" rel="stylesheet" />
-    <link href="../../admin/css/product-show.css" rel="stylesheet" />
-    <link href="../../admin/css/report.css" rel="stylesheet" />
+    <link href="/admin/css/index.css" rel="stylesheet" />
+    <link href="/admin/css/info-add.css" rel="stylesheet" />
+    <link href="/admin/css/order-list.css" rel="stylesheet" />
+    <link href="/admin/css/product-show.css" rel="stylesheet" />
+    <link href="/admin/css/report.css" rel="stylesheet" />
     {{!-- css page --}}
 
     {{!-- responsive --}}
-    <link href="../../admin/css/responsive-comments.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-customer.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-index.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-info-add.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-info-show.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-order-list.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-product-add.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-product-show.css" rel="stylesheet" />
-    <link href="../../admin/css/responsive-report.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-comments.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-customer.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-index.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-info-add.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-info-show.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-order-list.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-product-add.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-product-show.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-report.css" rel="stylesheet" />
     {{!-- responsive --}}
 </head>
 
@@ -60,9 +60,9 @@
     <!-- go up -->
 
     <!--Thẻ lớn nhất chứa cả trang web-->
-    <div class="container-fluid table h-100">
+    <div class="container-fluid h-100">
         <!--Chia ra từng hàng-->
-        <div class="row table-row h-100">
+        <div class="row h-100">
             <!--Thêm vào để text fixed-->
             <div class="col-2 col-sm-1 col-md-1 col-lg-2 col-xl-2 table-cell float-none align-top
      d-none d-sm-none d-md-block d-lg-block d-xl-block" id="side-menu-temp">
@@ -76,119 +76,192 @@
                 <div class="top-menu d-none d-lg-block"><span class="logo"></span></div>
                 <!-- <h4 class="d-none d-sm-none d-md-none d-lg-block d-xl-block">Trang quản trị</h4> -->
                 <ul>
+                    {{#if sidebar.0.active}}
                     <li class="link ads-button">
-                        <a href="index.html">
+                        <a href="/admin/index">
                             <span class="fas fa-home"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Trang chủ</span>
                         </a>
                     </li>
-
+                    {{else}}
                     <li class="link">
-                        <a href="customer.html">
-                            <span class="fas fa-users"></span>
-                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Khách hàng</span>
+                        <a href="/admin/index">
+                            <span class="fas fa-home"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Trang chủ</span>
                         </a>
                     </li>
+                    {{/if}}
 
+                    {{#if sidebar.1.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/customer">
+                            <span class="fas fa-users"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Khách hàng</span>
+                            <span
+                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.1.quantity}}</span>
+                        </a>
+                    </li>
+                    {{else}}
                     <li class="link">
-                        <a href="report.html">
+                        <a href="/admin/customer">
+                            <span class="fas fa-users"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Khách hàng</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.1.quantity}}</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.2.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/report">
                             <span class="fas fa-chart-pie"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thống kê</span>
                         </a>
                     </li>
-
+                    {{else}}
                     <li class="link">
-                        <a href="order-list.html">
+                        <a href="/admin/report">
+                            <span class="fas fa-chart-pie"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thống kê</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.3.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/order">
                             <span class="fas fa-shopping-cart"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Đơn hàng</span>
                             <span
-                                class="badge badge-success d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
                         </a>
                     </li>
-
-                    <!--Menu sản phẩm-->
-                    <!--collape-->
+                    {{else}}
                     <li class="link">
-                        <!-- <a href="#collapse-post" data-toggle="collapse" aria-controls="collapse-post">
-                                 <span class="fas fa-tags"></span>
-                                 <span>Sản phẩm</span>
-                                 <span class="badge badge-warning label-message float-right mr-1">20</span>
-                               </a> -->
-                        <a href="products.html">
+                        <a href="/admin/order">
+                            <span class="fas fa-shopping-cart"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Đơn hàng</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.4.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/product/product-show">
                             <span class="fas fa-tags"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Sản phẩm</span>
                             <span
-                                class="badge badge-success d-none d-sm-none d-md-none d-lg-inline d-xl-inline">20</span>
+                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">20</span>
                         </a>
                     </li>
-
-                    <!-- <ul class="collapse" id="collapse-post">
-                         <li class="link">
-                             <a href="index.html">
- 
-                                 <span>Danh sách sản phẩm</span>
-                             </a>
-                         </li>
-                         <li class="link">
-                             <a href="index.html">
- 
-                                 <span>Sản phẩm</span>
-                             </a>
-                         </li>
-                       </ul> -->
-
+                    {{else}}
                     <li class="link">
-                        <a href="add-product.html">
+                        <a href="/admin/product/product-show">
+                            <span class="fas fa-tags"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Sản phẩm</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">20</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.5.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/product/product-add">
                             <span class="fas fa-plus-circle"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm mới</span>
                         </a>
                     </li>
-
+                    {{else}}
                     <li class="link">
-                        <a href="new-posts.html">
+                        <a href="/admin/product/product-add">
+                            <span class="fas fa-plus-circle"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm mới</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.6.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/info/info-add">
                             <span class="fas fa-file-alt"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm bài viết</span>
                         </a>
                     </li>
-
+                    {{else}}
                     <li class="link">
-                        <a href="articles.html">
+                        <a href="/admin/info/info-add">
+                            <span class="fas fa-file-alt"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm bài viết</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.7.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/info/info-show">
                             <span class="fas fa-stream"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bài viết</span>
                             <span
-                                class="badge badge-success d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
                         </a>
                     </li>
-
+                    {{else}}
                     <li class="link">
-                        <a href="comments.html">
+                        <a href="/admin/info/info-show">
+                            <span class="fas fa-stream"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bài viết</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.8.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/comment/product-comment">
                             <span class="fas fa-comment"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bình luận</span>
                             <span
-                                class="badge badge-success d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.8.quantity}}</span>
                         </a>
                     </li>
+                    {{else}}
+                    <li class="link">
+                        <a href="/admin/comment/product-comment">
+                            <span class="fas fa-comment"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bình luận</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.8.quantity}}</span>
+                        </a>
+                    </li>
+                    {{/if}}
 
-                    <!-- <li class="link">
-                       <a href="index.html">
-                           <span class="fas fa-user"></span>
-                           <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Nhân viên</span>
-                       </a>
-                     </li> -->
-
+                    {{#if sidebar.9.active}}
+                    <li class="link ads-button">
+                        <a href="404-not-found.html">
+                            <span class="fas fa-ad"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Khuyến mãi</span>
+                        </a>
+                    </li>
+                    {{else}}
                     <li class="link">
                         <a href="404-not-found.html">
                             <span class="fas fa-ad"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Khuyến mãi</span>
                         </a>
                     </li>
+                    {{/if}}
                 </ul>
             </div>
             <!--End slide menu-->
 
             <!--Nội dung-->
             <!--Mặc định padding -15 của col-->
-            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-10 table-cell float-none align-top p-0"
+            <div class="col-12 col-sm-12 col-md-11 col-lg-10 col-xl-10 table-cell float-none align-top pl-0 pr-0 pt-0"
                 id="col-content">
 
                 <header class="nav-header row m-0 sticky-top">
@@ -230,16 +303,19 @@
                 {{{body}}}
 
                 <!--footer-->
-                {{!-- <footer id="admin-footer">
+                <footer id="admin-footer" class="d-flex justify-content-between align-items-center w-100 position-absolute">
 
-                    <div class="float-left"><b>Copyright</b>&copy; 2019</div>
-                    <div class="float-right">Trang admin</div>
+                    <div><b>Copyright</b>&copy; 2019</div>
+                    <div>Trang admin</div>
 
-                </footer> --}}
+                </footer>
                 <!--end footer-->
             </div>
+
         </div>
+
     </div>
+
     <!--Thẻ lớn nhất chứa cả trang web-->
 
     {{!-- import bootstrap --}}
@@ -259,13 +335,13 @@
     {{!-- end import chart --}}
 
     {{!-- inmport my js i--}}
-    <script src="../../admin/js/404-not-found.js"></script>
-    <script src="../../admin/js/go-up.js"></script>
-    <script src="../../admin/js/nav-bar-side-menu.js"></script>
-    <script src="../../admin/js/report-chart-script.js"></script>
-    <script src="../../admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
-    <script src="../../admin/js/chosen-select.js"></script>
-    <script src="../../admin/ckeditor/ckeditor.js"></script>
+    <script src="/admin/js/404-not-found.js"></script>
+    <script src="/admin/js/go-up.js"></script>
+    <script src="/admin/js/nav-bar-side-menu.js"></script>
+    <script src="/admin/js/report-chart-script.js"></script>
+    <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
+    <script src="/admin/js/chosen-select.js"></script>
+    <script src="/admin/ckeditor/ckeditor.js"></script>
     <script>
         CKEDITOR.replace("contain");
     </script>

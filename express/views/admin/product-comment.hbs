@@ -1,0 +1,101 @@
+<div id="content" class="mb-5">
+    <header class="clearfix">
+        <h5 class="page_title mb-0">Tất cả bình luận</h5>
+    </header>
+
+    <div class="content-inner">
+        <!--Thanh tìm kiếm-->
+        <div class="row search-row ml-0 mr-0">
+            <div class="col-md-12 p-0">
+                <div class="input-group input-group-sm mb-3">
+                    <input type="text" class="form-control search-field" id="search" placeholder="Tên sản phẩm"
+                        aria-label="Tên sản phẩm" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="button">
+                            Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end thanh tìm kiếm-->
+
+        <!--Table hiển thị sản phẩm-->
+        <table class="table table-responsive-xl mb-4">
+            <thead>
+                <tr>
+                    <th class="text-center">Mã SP</th>
+                    <th>Tên SP</th>
+                    <th>Danh mục</th>
+                    <th>Danh mục con</th>
+                    <th class="text-center">Hình ảnh</th>
+                    <th class="text-center">Số lượt bình luận</th>
+                    <th class="text-center">Tác vụ</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each this.products}}
+                <!--Thông tin một sản phẩm-->
+                <tr>
+                    <td align="center">{{ID}}</td>
+                    <td>{{NAME}}</td>
+                    <td>{{CATNAME}}</td>
+                    <td>{{SUBCATNAME}}</td>
+                    <td align="center">
+                        <img src="{{IMAGE}}"
+                            class="show-product-image">
+                    </td>
+                    <td align="center">{{COMMENT_QUANTITY}}</td>
+                    <td align="center">
+                        <a name="" id="" class="btn btn-sm btn-primary" href="/admin/comment/product-comment/{{ID}}" role="button">Xem
+                            bình luận</a>
+                    </td>
+                </tr>
+                <!--End thông tin một sản phẩm-->
+                {{/each}}
+
+
+            </tbody>
+        </table>
+        <!--End Table hiển thị sản phẩm-->
+
+        <hr />
+
+        <!--Thanh điều hướng trang-->
+        <div class="row justify-content-center">
+            <!-- <div class="col-md-12"> -->
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">5</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- </div> -->
+        </div>
+        <!--end Thanh điều hướng trang-->
+    </div>
+</div>

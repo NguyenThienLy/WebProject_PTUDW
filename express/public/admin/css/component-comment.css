@@ -13,6 +13,7 @@
 
 .component-comment .content-left img {
  border: 1px solid #f4f4f4;
+ object-fit: cover;
 }
 
 .component-comment .content-left .img-avatar {
@@ -42,6 +43,7 @@
 }
 
 .component-comment .content-right .main-content {
+  min-height: 35%;
   font-size: 1rem;
 }
 /* component comment */

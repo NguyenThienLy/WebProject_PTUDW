@@ -6,6 +6,6 @@ module.exports.allAdmin = () => {
 };
 
 // hàm thêm một admin vào csdl
-module.exports.addAdmin = entity => {
-  return db.add("admin", entity);
+module.exports.addAdmin = admin => {
+  return db.add("admin", admin);
 };

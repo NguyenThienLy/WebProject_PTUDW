@@ -1,0 +1,161 @@
+<!--Nội dung trang index-->
+             <div class="dashboard-con" id="dashboard-con">
+
+                <!--Hàng chứa nội dung lượt tương tác trong ngày-->
+
+                <div class="row">
+
+                    <div class="col-12 col-sm-4">
+
+                        <!--Thẻ chứa lượt view trong ngày-->
+                        <div class="report-content-con report-view">
+                            <div>
+                                <i class="fas fa-eye"></i>
+                                <h6 class="d-inline">Lượt xem trong ngày</h6>
+                            </div>
+
+                            <div class="d-flex flex-column mt-1">
+                                <span></span>
+                                <b>40</b>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="report-content-con-small report-view">
+                            <div class="d-flex align-items-start">
+                                <h6><i class="fas fa-eye mr-2"></i></h6>
+                                <h6 class="mr-2">Lượt xem trong ngày</h6>
+                            </div>
+
+                            <div class="badge badge-light">
+                                <h6>40</h6>
+                            </div>
+                        </div>
+                        <!--End Thẻ chứa lượt view trong ngày-->
+
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+
+                        <!--Thẻ chứa lượt view trong ngày-->
+                        <div class="report-content-con report-view">
+                            <div>
+                                <i class="fas fa-shopping-cart"></i>
+                                <h6 class="d-inline">Lượt mua trong ngày</h6>
+                            </div>
+
+                            <div class="d-flex flex-column mt-1">
+                                <span></span>
+                                <b>60</b>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="report-content-con-small report-view">
+                            <div class="d-flex align-items-start">
+                                <h6><i class="fas fa-shopping-cart mr-2"></i></h6>
+                                <h6 class="mr-2">Lượt mua trong ngày</h6>
+                            </div>
+
+                            <div class="badge badge-light">
+                                <h6>60</h6>
+                            </div>
+                        </div>
+                        <!--End Thẻ chứa lượt view trong ngày-->
+
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+
+                        <!--Thẻ chứa lượt view trong ngày-->
+                        <div class="report-content-con report-view">
+                            <div>
+                                <i class="fas fa-money-check-alt"></i>
+                                <h6 class="d-inline">Doanh thu trong ngày</h6>
+                            </div>
+
+                            <div class="d-flex flex-column mt-1">
+                                <span></span>
+                                <b>5.000.000đ</b>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <div class="report-content-con-small report-view">
+                            <div class="d-flex align-items-start">
+                                <h6><i class="fas fa-money-check-alt mr-2"></i></h6>
+                                <h6 class="mr-2">Doanh thu trong ngày</h6>
+                            </div>
+
+                            <div class="badge badge-light">
+                                <h6>5.000.000&nbsp;<u>đ</u></h6>
+                            </div>
+                        </div>
+                        <!--End Thẻ chứa lượt view trong ngày-->
+
+                    </div>
+
+                </div>
+
+                <!--End hàng chứa nội dung lượt tương tác trong ngày-->
+
+                <!--Hàng 1-->
+                <div class="row">     
+                    <div class="col-md-7">
+                        <!--Biểu đồ thể hiện lượng người vào thăm website-->
+                        <div class="admin-content-con">
+
+                            <canvas id="accessTimesLineChart">
+
+                            </canvas>
+
+                        </div>
+                        <!--End Biểu đồ thể hiện lượng người vào thăm website-->
+                    </div>
+
+                    <div class="col-md-5">
+                        <!--Biểu đồ thể hiện top sản phẩm bán chạy-->
+                        <div class="admin-content-con">
+
+                            <canvas id="TopProductBarChart">
+
+                            </canvas>
+                            
+                        </div>
+                        <!--End Biểu đồ thể hiện top sản phẩm bán chạy-->
+                    </div>
+                </div>
+                <!--End hàng 1-->
+
+                <!--Hàng 2-->
+                <div class="row">
+
+                    <!--align-self-center-->
+                    <div class="col-md-5">
+                        <!--Biểu đồ thể hiện cấu trúc hàng của người bán-->
+                        <div class="admin-content-con">
+
+                            <canvas id="structureProductChart">
+
+                            </canvas>
+
+                        </div>
+                        <!--End Biểu đồ thể hiện cấu trúc hàng của người bán-->
+                    </div>
+                    
+                    <div class="col-md-7">
+                        <!--Biểu đồ thể hiện doanh thu theo ngày-->
+                        <div class="admin-content-con">
+
+                            <canvas id="revenueLineChart">
+
+                            </canvas>
+
+                        </div>
+                        <!--End Biểu đồ thể hiện doanh thu theo ngày-->
+                    </div>
+                </div>
+
+                <!--End hàng 2-->
+            </div>
+            <!--End Nội dung trang index-->
