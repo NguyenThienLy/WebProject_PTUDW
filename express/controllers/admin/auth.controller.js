@@ -38,7 +38,9 @@ module.exports.postLogin = function(req, res, next) {
     // Duyệt admins để tìm acc admin trùng acc ng dùng nhập
     admins
       .then(rows => {
+        console.log(rows);
         var admin = rows.find((value, index, array) => {
+
           if (value.USERNAME == username) {
             return value;
           } else {
@@ -68,7 +70,11 @@ module.exports.postLogin = function(req, res, next) {
         });
 
         // Thiết lập giá trị cookie = admin.ID
-        res.cookie("adminId", admin.ID, {
+        // res.cookie("adminId", admin.ID, {
+        //   signed: true
+        // });
+
+        res.cookie("adminId", 1, {
           signed: true
         });
 

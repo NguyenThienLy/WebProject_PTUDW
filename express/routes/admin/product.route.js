@@ -1,10 +1,42 @@
 var express = require('express');
-// var multer = require('multer');
+//Hỗ trợ nhận về POST kiểu multipart
+var multer = require('multer');
+var path = require('path');
 
  var controller = require('../../controllers/admin/product.controller');
 // var validate = require('../validate/user.validate');
 
-// var upload = multer({ dest: './public/uploads/' });
+//Tạo Địa chỉ để lưu ảnh
+var storage = multer.diskStorage({
+    destination:'./public/uploads/',
+    //Tên ảnh sau khi được tải lên
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now()
+            + path.extname(file.originalname));
+    }
+});
+
+//Gán thuộc tính cho multer 
+var upload = multer({
+    storage: storage,
+    limits: { fileSize: 100000000 },
+    fileFilter:(req,file,cb)=>{
+        checkFileType(file,cb);
+    }
+});
+
+//Hàm kiểm tra loại file up lên
+function checkFileType(file,cb){
+    const filetypes = /jpeg|jpg|png/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype  = filetypes.test(file.mimetype);
+
+    if(mimetype && extname){
+        return cb(null,true);
+    }else{
+        cb('Error: Images Only!');
+    }
+}
 
 var router = express.Router();
 
@@ -14,8 +46,10 @@ router.get('/product-show', controller.productShow);
 router.get('/product-add', controller.productAdd);
 
 //Xử lý post để thêm dữ liệu vào cơ sở dữ liệu
+//router.post('/product-add',controller.productAddNew);
 
-router.post('/product-add',controller.productAddNew);
+//Xử lý post nhận về ảnh và dữ liệu
+router.post('/product-add',upload.array('IMAGE'),controller.productAddNew);
 
 
 module.exports = router;
