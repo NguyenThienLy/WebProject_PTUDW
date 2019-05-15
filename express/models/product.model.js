@@ -17,10 +17,25 @@ module.exports.addProduct = product => {
 	 return db.add('product',product);
 };
 
+// // Hàm trả về 8 sản phẩm sale nhiều nhất trong index customer
+// module.exports.top8ProductForIndex = () => {
+//   return db.load(`SELECT ID, FORMAT(PRICE, 0) AS PRICE, SALE, NAME, IMAGE,
+// 									FORMAT((CASE
+// 											WHEN SALE > 0 THEN (PRICE - PRICE * (SALE / 100))
+// 											ELSE PRICE
+// 									END), 0) AS SALEPRICE
+// 									FROM product
+// 									ORDER BY SALE DESC;`);
+// };
+
 // Hàm trả về 8 sản phẩm sale nhiều nhất trong index customer
 module.exports.top8ProductForIndex = () => {
-  return db.load(`SELECT * FROM product INNER JOIN product_image 
-					ON product.ID = product_image.PRODUCTID
-					ORDER BY SALE DESC
-					LIMIT 8`);
+  return db.load(`SELECT ID, FORMAT(PRICE, 0) AS PRICE, SALE, NAME, IMAGE,
+									FORMAT((CASE
+											WHEN SALE > 0 THEN (PRICE - PRICE * (SALE / 100))
+											ELSE PRICE
+									END), 0) AS SALEPRICE
+									FROM product
+									ORDER BY SALE DESC
+									LIMIT 8;`);
 };
