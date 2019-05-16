@@ -35,6 +35,8 @@ module.exports.productShow = function(req, res) {
     dataBrands.then(brands => {
       dataCategoryLv1.then(categorylv1 => {
         dataCategoryLv2.then(categorylv2 => {
+          res.locals.sidebar[4].active = true;
+
           //Truyền vào trong UI
           res.render("admin/product-show", {
             layout: "main-admin.hbs",
@@ -125,6 +127,7 @@ module.exports.productAdd = function(req, res) {
     dataCategoryLv1.then(categorylv1 => {
       dataCategoryLv2.then(categorylv2 => {
         tags.then(tags =>{
+           res.locals.sidebar[5].active = true;
             //Truyền vào trong UI
             res.render("admin/product-add", {
               layout: "main-admin.hbs",

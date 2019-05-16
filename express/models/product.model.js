@@ -39,3 +39,15 @@ module.exports.top8ProductForIndex = () => {
 									ORDER BY SALE DESC
 									LIMIT 8;`);
 };
+
+// Hàm trả về tất cả sản phẩm cùng số lượng bình luận của mỗi sản phẩm
+module.exports.allProductWithCommentQuantity = () => {
+  return db.load(
+    `SELECT PRODUCT.ID, PRODUCT.NAME, PRODUCT.IMAGE, CATEGORY.NAME AS CATNAME, 
+						SUB_CATEGORY.NAME AS SUBCATNAME, count(COMMENT.ID) AS COMMENT_QUANTITY
+		FROM ((product PRODUCT LEFT JOIN comment COMMENT ON PRODUCT.ID = COMMENT.PRODUCTID) 
+					JOIN category CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID) 
+					JOIN sub_category SUB_CATEGORY ON PRODUCT.SUBCATEGORYID = SUB_CATEGORY.ID
+		GROUP BY PRODUCT.ID, PRODUCT.NAME, PRODUCT.IMAGE, CATEGORY.NAME, SUB_CATEGORY.NAME`
+  );
+};
