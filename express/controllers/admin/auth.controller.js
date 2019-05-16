@@ -4,7 +4,7 @@ var adminModel = require("../../models/admin.model");
 
 module.exports.login = function(req, res) {
   res.render("admin/login-admin");
-
+ 
   // Xóa giá trị cookie khi logout
   res.cookie("adminId", "");
 };
@@ -31,10 +31,10 @@ module.exports.postLogin = async function(req, res, next) {
 
     // 	console.log(hash);
     //   });
-
+ 
     // Lấy dữ liệu từ bảng admin
     var admins = await adminModel.allAdmin();
-
+    
     var admin = admins.find((value, index, array) => {
       if (value.USERNAME === username) {
         return value;
