@@ -19,7 +19,6 @@ var adminReportRoute = require("./routes/admin/report.route");
 var adminOrderRoute = require("./routes/admin/order.route");
 var adminCommentRoute = require("./routes/admin/comment.route");
 var adminAuthRoute = require("./routes/admin/auth.route");
-//  var cartRoute = require('./routes/cart.route')
 
 // var apiProductRoute = require('./api/routes/product.route');
 // var apiUserRoute = require('./api/routes/user.route')
@@ -27,6 +26,9 @@ var adminAuthRoute = require("./routes/admin/auth.route");
 var adminAuthMiddleware = require("./middlewares/admin/auth.middleware");
 var adminSidebarActiveMiddleware = require("./middlewares/admin/sidebar/active.middleware");
 var adminSidebarQuantityBadgeMiddleware = require("./middlewares/admin/sidebar/quantity_badge.middleware");
+
+
+var customerCategoryMiddleware = require("./middlewares/customer/category.middleware");
 // var sessionMiddleware = require('./middlewares/session.middleware');
 
 var format_money = require("./helpers/format_money");
@@ -58,9 +60,19 @@ app.set("view engine", "hbs");
 
 app.use("/admin/auth", adminAuthRoute);
 
+/* admin */
+// Mdw kiểm tra admin
 app.use(adminAuthMiddleware.requireAuth);
+// Mdw sidebar
 app.use(adminSidebarActiveMiddleware);
 app.use(adminSidebarQuantityBadgeMiddleware);
+/* admin */
+
+/* customer */
+
+// Mdw hiển thị category
+app.use(customerCategoryMiddleware);
+/* customer */
 
 app.use("/customer/index", customerIndexRoute);
 app.use("/customer/product", customerProductRoute);

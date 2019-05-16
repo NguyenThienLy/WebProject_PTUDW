@@ -197,9 +197,9 @@
                                             <a class="dropdown-item" href="product-show.html">Hoa quả 5</a>
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="product-show.html">Hải sản</a>
-                                    <a class="dropdown-item" href="product-show.html">Các loại hạt</a>
-                                    <a class="dropdown-item" href="product-show.html">Thực phẩm tươi sống</a>
+                                    {{#each lcCategories}}
+                                    <a class="dropdown-item" href="product-show.html">{{NAME}}</a>
+                                    {{/each}}
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="product-show.html">Tất cả</a>
                                 </div>
@@ -396,8 +396,6 @@
                         <!-- </div> -->
                     </i>
                 </div>
-
-
 
                 <div class="pt-0 pl-2 pr-2 ml-1 pb-1">
                     <div class="component-avatar-user position-relative">

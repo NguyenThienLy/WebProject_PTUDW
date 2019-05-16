@@ -1,6 +1,5 @@
 <!--Nội dung trang index-->
 <div id="dashboard-con">
-
     <!--Card chứa form nhập thông tin của sản phẩm-->
     <form method="POST" enctype="multipart/form-data">
         <div class="card mt-3">
@@ -26,7 +25,7 @@
                     <label for="selectProductType" class="col-sm-2 col-form-label"><b>Danh mục</b></label>
                     <div class="col-sm-10">
                         <select name="CATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
-                            {{#each this.categorylv1s}}
+                            {{#each this.categories}}
                             <option value="{{ID}}">{{NAME}}</option>
                             {{/each}}
                         </select>
@@ -37,7 +36,7 @@
                     <label for="selectProductType" class="col-sm-2 col-form-label"><b>Loại sản phẩm</b></label>
                     <div class="col-sm-10">
                         <select name="SUBCATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
-                            {{#each this.categorylv2s}}
+                            {{#each this.subCategories}}
                             <option value="{{ID}}">{{NAME}}</option>
                             {{/each}}
                         </select>
@@ -162,7 +161,5 @@
         </div>
         <!--End Card chứa form điền thông tin bài viêt-->
     </form>
-
-
 </div>
 <!--End Nội dung trang index-->

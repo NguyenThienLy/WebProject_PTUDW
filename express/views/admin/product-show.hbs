@@ -20,7 +20,7 @@
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
                         <select class="custom-select custom-select-sm">
                             <option value="" selected disabled>Danh mục</option>
-                            {{#each this.categorylv1s}}
+                            {{#each this.categories}}
                              <option>{{NAME}}</option>
                              {{/each}}
                         </select>
@@ -29,7 +29,7 @@
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
                         <select class="custom-select custom-select-sm">
                             <option value="" selected disabled>Loại sản phẩm</option>
-                            {{#each this.categorylv2s}}
+                            {{#each this.subCategories}}
                              <option>{{NAME}}</option>
                              {{/each}}
                         </select>
