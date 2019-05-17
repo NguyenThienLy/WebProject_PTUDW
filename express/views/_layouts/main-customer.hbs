@@ -169,10 +169,11 @@
                             <div class="header-button-product nav-link position-relative">
                                 Sản phẩm
                                 <div class="card header-button-product-content">
+                                    {{#each lcCategories}}
                                     <div class="dropdown-item position-relative">
                                         <a href="product-show.html"
                                             class="stretched-link d-flex align-items-center justify-content-between">
-                                            Rau củ
+                                            {{NAME}}
                                             <i class="fas fa-angle-right"></i>
                                         </a>
                                         <div class="card sub-dropdown-item">
@@ -183,23 +184,8 @@
                                             <a class="dropdown-item" href="product-show.html">Rau củ 5</a>
                                         </div>
                                     </div>
-                                    <div class="dropdown-item position-relative">
-                                        <a href="product-show.html"
-                                            class="stretched-link d-flex align-items-center justify-content-between">
-                                            Hoa quả
-                                            <i class="fas fa-angle-right"></i>
-                                        </a>
-                                        <div class="card sub-dropdown-item">
-                                            <a class="dropdown-item" href="product-show.html">Hoa quả 1</a>
-                                            <a class="dropdown-item" href="product-show.html">Hoa quả 2</a>
-                                            <a class="dropdown-item" href="product-show.html">Hoa quả 3</a>
-                                            <a class="dropdown-item" href="product-show.html">Hoa quả 4</a>
-                                            <a class="dropdown-item" href="product-show.html">Hoa quả 5</a>
-                                        </div>
-                                    </div>
-                                    {{#each lcCategories}}
-                                    <a class="dropdown-item" href="product-show.html">{{NAME}}</a>
                                     {{/each}}
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="product-show.html">Tất cả</a>
                                 </div>

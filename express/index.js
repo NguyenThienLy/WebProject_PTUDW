@@ -27,7 +27,6 @@ var adminAuthMiddleware = require("./middlewares/admin/auth.middleware");
 var adminSidebarActiveMiddleware = require("./middlewares/admin/sidebar/active.middleware");
 var adminSidebarQuantityBadgeMiddleware = require("./middlewares/admin/sidebar/quantity_badge.middleware");
 
-
 var customerCategoryMiddleware = require("./middlewares/customer/category.middleware");
 // var sessionMiddleware = require('./middlewares/session.middleware');
 
@@ -61,31 +60,73 @@ app.set("view engine", "hbs");
 app.use("/admin/auth", adminAuthRoute);
 
 /* admin */
-// Mdw kiểm tra admin
-app.use(adminAuthMiddleware.requireAuth);
+// // Mdw kiểm tra admin
+// app.use(adminAuthMiddleware.requireAuth);
 // Mdw sidebar
-app.use(adminSidebarActiveMiddleware);
-app.use(adminSidebarQuantityBadgeMiddleware);
+// app.use(adminSidebarActiveMiddleware);
+// app.use(adminSidebarQuantityBadgeMiddleware);
 /* admin */
 
 /* customer */
 
-// Mdw hiển thị category
-app.use(customerCategoryMiddleware);
+// // Mdw hiển thị category
+// app.use(customerCategoryMiddleware);
 /* customer */
 
-app.use("/customer/index", customerIndexRoute);
-app.use("/customer/product", customerProductRoute);
-app.use("/customer/info", customerInfoRoute);
-app.use("/customer/cart", customerCartRoute);
+app.use("/customer/index", customerCategoryMiddleware, customerIndexRoute);
+app.use("/customer/product", customerCategoryMiddleware, customerProductRoute);
+app.use("/customer/info", customerCategoryMiddleware, customerInfoRoute);
+app.use("/customer/cart", customerCategoryMiddleware, customerCartRoute);
 
-app.use("/admin/index", adminIndexRoute);
-app.use("/admin/product", adminProductRoute);
-app.use("/admin/info", adminInfoRoute);
-app.use("/admin/customer", adminCustomerRoute);
-app.use("/admin/report", adminReportRoute);
-app.use("/admin/order", adminOrderRoute);
-app.use("/admin/comment", adminCommentRoute);
+app.use(
+  "/admin/index",
+  adminAuthMiddleware.requireAuth,
+  adminSidebarActiveMiddleware,
+  adminSidebarQuantityBadgeMiddleware,
+  adminIndexRoute
+);
+app.use(
+  "/admin/product",
+  adminAuthMiddleware.requireAuth,
+  adminSidebarActiveMiddleware,
+  adminSidebarQuantityBadgeMiddleware,
+  adminProductRoute
+);
+app.use(
+  "/admin/info",
+  adminAuthMiddleware.requireAuth,
+  adminSidebarActiveMiddleware,
+  adminSidebarQuantityBadgeMiddleware,
+  adminInfoRoute
+);
+app.use(
+  "/admin/customer",
+  adminAuthMiddleware.requireAuth,
+  adminSidebarActiveMiddleware,
+  adminSidebarQuantityBadgeMiddleware,
+  adminCustomerRoute
+);
+app.use(
+  "/admin/report",
+  adminAuthMiddleware.requireAuth,
+  adminSidebarActiveMiddleware,
+  adminSidebarQuantityBadgeMiddleware,
+  adminReportRoute
+);
+app.use(
+  "/admin/order",
+  adminAuthMiddleware.requireAuth,
+  adminSidebarActiveMiddleware,
+  adminSidebarQuantityBadgeMiddleware,
+  adminOrderRoute
+);
+app.use(
+  "/admin/comment",
+  adminAuthMiddleware.requireAuth,
+  adminSidebarActiveMiddleware,
+  adminSidebarQuantityBadgeMiddleware,
+  adminCommentRoute
+);
 
 // app.get('/',function( req, res) {
 // 	res.render('login');
