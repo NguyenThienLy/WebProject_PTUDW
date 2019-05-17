@@ -150,38 +150,25 @@
                     </li>
                     <li class="nav-item">
 
-                        {{!-- <div class="">
-                            <div class="header-button-product nav-link position-relative">
-                                Sản phẩm
-                                <div class="card header-button-product-content">
-                                    <a class="dropdown-item" href="product-show.html">Rau củ</a>
-                                    <a class="dropdown-item" href="product-show.html">Hoa quả</a>
-                                    <a class="dropdown-item" href="product-show.html">Hải sản</a>
-                                    <a class="dropdown-item" href="product-show.html">Các loại hạt</a>
-                                    <a class="dropdown-item" href="product-show.html">Thực phẩm tươi sống</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="product-show.html">Tất cả</a>
-                                </div>
-                            </div>
-                        </div> --}}
-
                         <div class="">
                             <div class="header-button-product nav-link position-relative">
                                 Sản phẩm
                                 <div class="card header-button-product-content">
                                     {{#each lcCategories}}
-                                    <div class="dropdown-item position-relative">
+                                    <div class="dropdown-item position-relative pr-2">
                                         <a href="product-show.html"
                                             class="stretched-link d-flex align-items-center justify-content-between">
                                             {{NAME}}
-                                            <i class="fas fa-angle-right"></i>
+                                            <span
+                                                class="badge badge-success p-1">{{QUANTITY}}</span>
+                                            <i class="fas fa-angle-right ml-3"></i>
                                         </a>
                                         <div class="card sub-dropdown-item">
-                                            <a class="dropdown-item" href="product-show.html">Rau củ 1</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau củ 2</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau củ 3</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau củ 4</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau củ 5</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
+                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
                                         </div>
                                     </div>
                                     {{/each}}
