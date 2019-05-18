@@ -54,21 +54,15 @@ module.exports.productShow = function(req, res) {
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
 module.exports.productAddNew = function(req, res) {
   //Lấy ra đường dẫn của file ảnh up lên
-  //var pathImage = '\\'+req.file.path.split('\\').slice(1).join('\\');
   var pathImages = req.files;
-
   //Tạo mảng lưu link hình sản phẩm nhận về từ post
   var arrImage = [];
 
-  pathImages.forEach(element => {
-    var pathImages =
-      "\\" +
-      element.path
-        .split("\\")
-        .slice(1)
-        .join("\\");
-    arrImage.push(pathImages);
-  });
+  for(i = 1 ;i<6;i++){
+      var splitPathImage = "\\" + pathImages[`img_${i}`][0].path.split("\\").slice(1).join("\\");
+      arrImage.push(splitPathImage);
+      console.log(splitPathImage);
+  }
 
   //End Tạo mảng lưu link hình sản phẩm nhận về từ post
 
@@ -109,6 +103,7 @@ module.exports.productAddNew = function(req, res) {
 
   //Trả về màn hình tất cả sản phẩm
   res.redirect("product-show");
+
 };
 
 //Thêm dữ liệu vào trang productadd
