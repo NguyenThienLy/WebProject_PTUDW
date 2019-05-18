@@ -10,16 +10,94 @@
 
                 <!--Form nhập thông tin-->
 
-                <div class="form-group row">
+                {{!-- <div class="form-group row">
                     <div class="col-sm-2"></div>
                     <div id="preview"></div>
-                </div>
+                </div> --}}
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label"><b>Hình ảnh</b></label>
-                    <div class="col-sm-10">
-                        <input name="IMAGE" id="browse" type="file" onchange="previewFiles()" multiple>
+                    {{!--UI chọn ảnh và thêm ảnh --}}
+                    <div class="col-12 row d-flex justify-content-center">
+                        <div class="col-4 mx-auto-top-bottom">
+                            <div class="card mx-auto">
+                                <img id="avatar_product" class="card-img" src="/uploads/IMG_NOTFOUND.jpg"
+                                    alt="Card image">
+                                <div
+                                    class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                    <h6 class="card-title d-block">Hình đại diện</h6>
+                                    <div>
+                                        <input type="button" id="get_file" value="Đổi ảnh"
+                                            class="btn btn-primary btn-sm">
+                                        <input type="button" id="remove_file" value="Xóa ảnh"
+                                            class="btn btn-secondary btn-sm">
+                                        <input type="file" id="my_file" class="d-none">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card">
+                                        <img id="avatar_product" class="card-img" src="/uploads/IMG_NOTFOUND.jpg" alt="Card image">
+                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                            <h6 class="card-title d-block">Hình đại diện</h6>
+                                            <div>
+                                                <input type="button" id="get_file" value="Đổi ảnh" class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="file" id="my_file" class="d-none">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card">
+                                        <img id="avatar_product" class="card-img" src="/uploads/IMG_NOTFOUND.jpg" alt="Card image">
+                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                            <h6 class="card-title d-block">Hình đại diện</h6>
+                                            <div>
+                                                <input type="button" id="get_file" value="Đổi ảnh" class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="file" id="my_file" class="d-none">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                 <div class="col-6">
+                                    <div class="card">
+                                        <img id="avatar_product" class="card-img" src="/uploads/IMG_NOTFOUND.jpg" alt="Card image">
+                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                            <h6 class="card-title d-block">Hình đại diện</h6>
+                                            <div>
+                                                <input type="button" id="get_file" value="Đổi ảnh" class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="file" id="my_file" class="d-none">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card">
+                                        <img id="avatar_product" class="card-img" src="/uploads/IMG_NOTFOUND.jpg" alt="Card image">
+                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                            <h6 class="card-title d-block">Hình đại diện</h6>
+                                            <div>
+                                                <input type="button" id="get_file" value="Đổi ảnh" class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="file" id="my_file" class="d-none">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    {{!--End UI chọn ảnh và thêm ảnh --}}
                 </div>
+                
 
                 <div class="form-group row">
                     <label for="selectProductType" class="col-sm-2 col-form-label"><b>Danh mục</b></label>
@@ -83,7 +161,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Trọng lượng sản phẩm</b></label>
+                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Trọng lượng sản
+                            phẩm</b></label>
                     <div class="col-sm-10">
                         <input name="KILOGRAM" type="text" class="form-control" id="inputnameProduct"
                             placeholder="nhập vào trọng lượng 1 sản phẩm">

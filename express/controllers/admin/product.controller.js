@@ -40,7 +40,6 @@ module.exports.productShow = function(req, res) {
     dataSubCategories
   ]).then(values => {
     res.locals.sidebar[4].active = true;
-
     //Truyền vào trong UI
     res.render("admin/product-show", {
       layout: "main-admin.hbs",
@@ -121,7 +120,10 @@ module.exports.productAdd = function(req, res) {
   //Lấy dữ liệu từ tag
   var dataTags = tagModel.allTag();
 
-  Promise.all([dataCategories, dataSubCategories, dataTags]).then(values => {
+   // Lấy dữ liệu nhãn hiệu
+   var dataBrands = brandModel.allBrand();
+
+  Promise.all([dataCategories, dataSubCategories, dataTags,dataBrands]).then(values => {
     res.locals.sidebar[5].active = true;
 
     //Truyền vào trong UI
@@ -129,7 +131,8 @@ module.exports.productAdd = function(req, res) {
       layout: "main-admin.hbs",
       categories: values[0],
       subCategories: values[1],
-      tags: values[2]
+      tags: values[2],
+      brands: values[3]
     });
   });
 };
