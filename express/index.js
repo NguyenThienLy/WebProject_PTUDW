@@ -32,6 +32,7 @@ var customerCategoryMiddleware = require("./middlewares/customer/category.middle
 
 var format_money = require("./helpers/format_money");
 var comment_stars = require("./helpers/comment_stars");
+var select_selected = require("./helpers/select_selected");
 
 var port = 3000;
 
@@ -50,7 +51,8 @@ const hbs = exphbs.create({
   // create custom helpers
   helpers: {
     format_money: format_money,
-    comment_stars: comment_stars
+    comment_stars: comment_stars,
+    select_selected: select_selected
   }
 });
 
