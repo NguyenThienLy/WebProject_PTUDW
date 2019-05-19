@@ -2,20 +2,45 @@
 var db = require("../utils/db");
 
 //Hàm trả về tất cả các tag trên database
-module.exports.allTag = ()=>{
-    return db.load(`SELECT * FROM tag`);
-}
+module.exports.allTag = () => {
+  return db.load(`SELECT * FROM tag`);
+};
 
 //Hàm thêm vào danh sách tag cho product | input: ID sản phẩm, mảng tag
-module.exports.addTagForProduct = (productID,tags)=>{
-    tags.forEach(element => {
-        //Tạo entity 
-        var entity = {
-            PRODUCTID:productID,
-            TAGID:element
-        };
+module.exports.addTagForProduct = (productID, tags) => {
+  tags.forEach(element => {
+    //Tạo entity
+    var entity = {
+      PRODUCTID: productID,
+      TAGID: element
+    };
 
-        //gọi hàm insert
-        db.add('product_tag',entity);
+    //gọi hàm insert
+    db.add("product_tag", entity);
+  });
+};
+
+//Hàm thêm vào danh sách tag cho news | input: ID news, mảng tag
+module.exports.addTagForNews = (newsID, tags) => {
+  if (tags.constructor === Array) {
+    tags.forEach(tag => {
+      //Tạo entity
+      var entity = {
+        NEWSID: newsID,
+        TAGID: tag
+      };
+
+      //gọi hàm insert
+      db.add("news_tag", entity);
     });
-}
+  } else {
+    //Tạo entity
+    var entity = {
+      NEWSID: newsID,
+      TAGID: tags
+    };
+
+    //gọi hàm insert
+    db.add("news_tag", entity);
+  }
+};
