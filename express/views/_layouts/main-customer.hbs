@@ -101,19 +101,41 @@
                                 Sản phẩm
                                 <div class="card header-button-product-content">
                                     {{#each lcCategories}}
-                                    <div class="dropdown-item position-relative pr-2">
+                                    {{!-- Nếu category ko có sản phẩm nào --}}
+                                    {{#if QUANTITYCAT}}
+                                    <div class="dropdown-item position-relative pr-3">
                                         <a href="product-show.html"
                                             class="stretched-link d-flex align-items-center justify-content-between">
-                                            {{NAME}}
-                                            <span class="badge badge-success p-1">{{QUANTITY}}</span>
+                                            {{NAMECAT}} &emsp;
+                                            <span class="badge badge-success">{{QUANTITYCAT}}</span>
                                             <i class="fas fa-angle-right ml-3"></i>
                                         </a>
                                         <div class="card sub-dropdown-item">
+                                            {{!-- Nếu category ko có sản phẩm nào --}}
+                                            {{#if QUANTITYCAT}}
                                             {{#each SUB}}
-                                            <a class="dropdown-item" href="product-show.html">{{NAME}}</a>
+                                            {{#if QUANTITYSUB}}
+                                            <a class="dropdown-item" href="product-show.html">{{NAMESUB}}&emsp;
+                                                <span class="badge badge-success">{{QUANTITYSUB}}</span>
+                                            </a>
+                                            {{else}}
+                                            <a class="dropdown-item disabled" href="product-show.html">{{NAMESUB}}
+                                            </a>
+                                            {{/if}}
                                             {{/each}}
+                                            {{/if}}
+                                            {{!-- Nếu category ko có sản phẩm nào --}}
                                         </div>
                                     </div>
+                                    {{else}}
+                                    <div class="disabled dropdown-item pr-3">
+                                        <a href="product-show.html"
+                                            class="disabled">
+                                            {{NAMECAT}}
+                                        </a>
+                                    </div>
+                                    {{/if}}
+                                    {{!-- Nếu category ko có sản phẩm nào --}}
                                     {{/each}}
 
                                     <div class="dropdown-divider"></div>
@@ -983,7 +1005,7 @@ class="custom-file col-8 p-0"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-     {{{_sections.js}}}  
+    {{{_sections.js}}}
 
     {{!-- js all page --}}
     <script src="/customer/js/login-register-modal.js"></script>

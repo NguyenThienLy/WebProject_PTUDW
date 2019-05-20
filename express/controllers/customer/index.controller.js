@@ -14,7 +14,8 @@ var formatStringHelper = require("../../helpers/format_string_hide.helper");
 // Gọi convertToDateHelper
 var convertToDateHelper = require("../../helpers/convert_to_date.helper");
 
-module.exports.indexShow = function(req, res) {
+module.exports.indexShow = function(req, res, next) {
+  try {
   var dataProducts = productModel.top8ProductForIndex();
   var dataProductsCombo = productComboModel.top6ProductComboForIndex();
   var dataCategories = categoryModel.allCategory();
@@ -43,8 +44,9 @@ module.exports.indexShow = function(req, res) {
           formatPrice: formatPriceHelper
         }
       });
-    })
-    .catch(err => {
-      console.log(err);
     });
+  }
+  catch (error) {
+    next(error);
+  };
 };
