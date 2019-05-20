@@ -34,11 +34,14 @@
                                 <div class="col-6 mx-auto-top-bottom">
                                     <div class="card mx-auto">
                                         <img id="image_2" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
-                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                        <div
+                                            class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 1</h6>
                                             <div>
-                                                <input type="button" id="get_image_file_2" value="Đổi ảnh" class="btn btn-primary btn-sm">
-                                                <input type="button" id="remove_file_2" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="button" id="get_image_file_2" value="Đổi ảnh"
+                                                    class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file_2" value="Xóa ảnh"
+                                                    class="btn btn-secondary btn-sm">
                                                 <input type="file" id="image_file_2" class="d-none" name="img_2">
                                             </div>
                                         </div>
@@ -47,11 +50,14 @@
                                 <div class="col-6 mx-auto-top-bottom">
                                     <div class="card mx-auto">
                                         <img id="image_3" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
-                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                        <div
+                                            class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 2</h6>
                                             <div>
-                                                <input type="button" id="get_image_file_3" value="Đổi ảnh" class="btn btn-primary btn-sm">
-                                                <input type="button" id="remove_file_3" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="button" id="get_image_file_3" value="Đổi ảnh"
+                                                    class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file_3" value="Xóa ảnh"
+                                                    class="btn btn-secondary btn-sm">
                                                 <input type="file" id="image_file_3" class="d-none" name="img_3">
                                             </div>
                                         </div>
@@ -60,14 +66,17 @@
                             </div>
 
                             <div class="row mt-2">
-                                 <div class="col-6 mx-auto-top-bottom">
+                                <div class="col-6 mx-auto-top-bottom">
                                     <div class="card mx-auto">
                                         <img id="image_4" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
-                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                        <div
+                                            class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 3</h6>
                                             <div>
-                                                <input type="button" id="get_image_file_4" value="Đổi ảnh" class="btn btn-primary btn-sm">
-                                                <input type="button" id="remove_file_4" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="button" id="get_image_file_4" value="Đổi ảnh"
+                                                    class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file_4" value="Xóa ảnh"
+                                                    class="btn btn-secondary btn-sm">
                                                 <input type="file" id="image_file_4" class="d-none" name="img_4">
                                             </div>
                                         </div>
@@ -76,11 +85,14 @@
                                 <div class="col-6 mx-auto-top-bottom">
                                     <div class="card mx-auto">
                                         <img id="image_5" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
-                                        <div class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                        <div
+                                            class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 4</h6>
                                             <div>
-                                                <input type="button" id="get_image_file_5" value="Đổi ảnh" class="btn btn-primary btn-sm">
-                                                <input type="button" id="remove_file_5" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                                <input type="button" id="get_image_file_5" value="Đổi ảnh"
+                                                    class="btn btn-primary btn-sm">
+                                                <input type="button" id="remove_file_5" value="Xóa ảnh"
+                                                    class="btn btn-secondary btn-sm">
                                                 <input type="file" id="image_file_5" class="d-none" name="img_5">
                                             </div>
                                         </div>
@@ -91,98 +103,88 @@
                     </div>
                     {{!--End UI chọn ảnh và thêm ảnh --}}
                 </div>
-                
+
 
                 <div class="form-group row">
-                    <label for="selectProductType" class="col-sm-2 col-form-label"><b>Danh mục</b></label>
-                    <div class="col-sm-10">
-                        <select name="CATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
-                            {{#each this.categories}}
-                            <option value="{{ID}}">{{NAME}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
-                <div class="form-group row">
-                    <label for="selectProductType" class="col-sm-2 col-form-label"><b>Loại sản phẩm</b></label>
-                    <div class="col-sm-10">
+                        <label for="inputIDproduct" class="mt-2"><b>Mã sản phẩm</b></label>
+                        <div>
+                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01">
+                        </div>
+
+                        <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
+                        <div>
+                            <input name="NAME" type="text" class="form-control" id="inputnameProduct"
+                                placeholder="nhập vào tên sản phâm">
+                        </div>
+
+                        <label for="selectProductType" class="mt-2"><b>Loại sản phẩm</b></label>
                         <select name="SUBCATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
                             {{#each this.subCategories}}
                             <option value="{{ID}}">{{NAME}}</option>
                             {{/each}}
                         </select>
-                    </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="selectProductSource" class="col-sm-2 col-form-label"><b>Nguồn gốc</b></label>
-                    <div class="col-sm-10">
-                        <select name="ORIGIN" class="custom-select my-1 mr-sm-2" id="selectProductSource">
-                            <option selected>Việt Nam</option>
-                            <option value="Mỹ">Mỹ</option>
-                            <option value="Trung Quốc">Trung Quốc</option>
-                            <option value="Nhật bản">Nhật bản</option>
-                            <option value="Úc">Úc</option>
-                            <option value="New Zealand">New Zealand</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="selectProductBrand" class="col-sm-2 col-form-label"><b>Thương hiệu</b></label>
-                    <div class="col-sm-10">
-                        <select name="BRANDID" class="custom-select my-1 mr-sm-2" id="selectProductBrand">
-                            {{#each this.brands}}
+                        <label for="selectProductType" class="mt-2"><b>Danh mục</b></label>
+                        <select name="CATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
+                            {{#each this.categories}}
                             <option value="{{ID}}">{{NAME}}</option>
                             {{/each}}
                         </select>
+
+                        <label for="selectProductSource" class="mt-2"><b>Nguồn gốc</b></label>
+                        <div>
+                            <select name="ORIGIN" class="custom-select my-1 mr-sm-2" id="selectProductSource">
+                                <option selected>Việt Nam</option>
+                                <option value="Mỹ">Mỹ</option>
+                                <option value="Trung Quốc">Trung Quốc</option>
+                                <option value="Nhật bản">Nhật bản</option>
+                                <option value="Úc">Úc</option>
+                                <option value="New Zealand">New Zealand</option>
+                            </select>
+                        </div>
+
+                        <label for="selectProductBrand" class="mt-2"><b>Thương hiệu</b></label>
+                        <div>
+                            <select name="BRANDID" class="custom-select my-1 mr-sm-2" id="selectProductBrand">
+                                {{#each this.brands}}
+                                <option value="{{ID}}">{{NAME}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <label for="inputnameProduct" class="mt-2"><b>Trọng lượng sản
+                                phẩm</b></label>
+                        <div>
+                            <input name="KILOGRAM" type="text" class="form-control" id="inputnameProduct"
+                                placeholder="nhập vào trọng lượng 1 sản phẩm">
+                        </div>
+
+                        <label for="inputnameProduct" class="mt-2"><b>Số lượng</b></label>
+                        <div>
+                            <input name="INVENTORY" type="text" class="form-control" id="inputnameProduct"
+                                placeholder="nhập vào số lượng sản phẩm">
+                        </div>
+
+                        <label for="inputPriceProduct" class="mt-2"><b>Giá sản phẩm</b></label>
+                        <div>
+                            <input name="PRICE" type="text" class="form-control" id="inputPriceProduct"
+                                placeholder="Nhập vào giá sản phẩm">
+                        </div>
+
+                        <label for="inputPromotionProduct" class="mt-2"><b>Giảm giá</b></label>
+                        <div>
+                            <input name="SALE" type="text" class="form-control" id="inputPromotionProduct"
+                                placeholder="0">
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="form-group row">
-                    <label for="inputIDproduct" class="col-sm-2 col-form-label"><b>Mã sản phẩm</b></label>
-                    <div class="col-sm-10">
-                        <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Tên sản phẩm</b></label>
-                    <div class="col-sm-10">
-                        <input name="NAME" type="text" class="form-control" id="inputnameProduct"
-                            placeholder="nhập vào tên sản phâm">
-                    </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Trọng lượng sản
-                            phẩm</b></label>
-                    <div class="col-sm-10">
-                        <input name="KILOGRAM" type="text" class="form-control" id="inputnameProduct"
-                            placeholder="nhập vào trọng lượng 1 sản phẩm">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputnameProduct" class="col-sm-2 col-form-label"><b>Số lượng</b></label>
-                    <div class="col-sm-10">
-                        <input name="INVENTORY" type="text" class="form-control" id="inputnameProduct"
-                            placeholder="nhập vào số lượng sản phẩm">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPriceProduct" class="col-sm-2 col-form-label"><b>Giá sản phẩm</b></label>
-                    <div class="col-sm-10">
-                        <input name="PRICE" type="text" class="form-control" id="inputPriceProduct"
-                            placeholder="Nhập vào giá sản phẩm">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPromotionProduct" class="col-sm-2 col-form-label"><b>Giảm giá</b></label>
-                    <div class="col-sm-10">
-                        <input name="SALE" type="text" class="form-control" id="inputPromotionProduct" placeholder="0">
-                    </div>
-                </div>
 
                 <!--End form nhập thông tin-->
             </div>
