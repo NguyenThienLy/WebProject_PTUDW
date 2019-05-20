@@ -243,3 +243,8 @@ body {
 .table {
   /* max-height: 25rem; */
 }
+
+.mx-auto-top-bottom{
+  margin-top: auto;
+  margin-bottom: auto;
+}

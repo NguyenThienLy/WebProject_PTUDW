@@ -23,7 +23,13 @@ var upload = multer({
     fileFilter:(req,file,cb)=>{
         checkFileType(file,cb);
     }
-});
+}).fields([
+    {name:'img_1'},
+    {name:'img_2'},
+    {name:'img_3'},
+    {name:'img_4'},
+    {name:'img_5'},
+]);
 
 //Hàm kiểm tra loại file up lên
 function checkFileType(file,cb){
@@ -49,7 +55,7 @@ router.get('/product-add', controller.productAdd);
 //router.post('/product-add',controller.productAddNew);
 
 //Xử lý post nhận về ảnh và dữ liệu
-router.post('/product-add',upload.array('IMAGE'),controller.productAddNew);
+router.post('/product-add',upload,controller.productAddNew);
 
 
 module.exports = router;

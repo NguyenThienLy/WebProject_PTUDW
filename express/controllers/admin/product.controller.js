@@ -20,7 +20,7 @@ var productImageModel = require("../../models/product_image.model");
 var productInfoHistoryModel = require("../../models/product_info_history");
 
 // Thêm dữ liệu vào trang product
-module.exports.productShow = function(req, res) {
+module.exports.productShow = function(req, res,next) {
   // Lấy dữ liệu nhãn hiệu
   var dataBrands = brandModel.allBrand();
 
@@ -40,7 +40,6 @@ module.exports.productShow = function(req, res) {
     dataSubCategories
   ]).then(values => {
     res.locals.sidebar[4].active = true;
-
     //Truyền vào trong UI
     res.render("admin/product-show", {
       layout: "main-admin.hbs",
@@ -49,27 +48,21 @@ module.exports.productShow = function(req, res) {
       categories: values[2],
       subCategories: values[3]
     });
-  });
+  }).catch(next);
 };
 
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
-module.exports.productAddNew = function(req, res) {
+module.exports.productAddNew = function(req, res,next) {
   //Lấy ra đường dẫn của file ảnh up lên
-  //var pathImage = '\\'+req.file.path.split('\\').slice(1).join('\\');
   var pathImages = req.files;
-
   //Tạo mảng lưu link hình sản phẩm nhận về từ post
   var arrImage = [];
 
-  pathImages.forEach(element => {
-    var pathImages =
-      "\\" +
-      element.path
-        .split("\\")
-        .slice(1)
-        .join("\\");
-    arrImage.push(pathImages);
-  });
+  for(i = 1 ;i<6;i++){
+      var splitPathImage = "\\" + pathImages[`img_${i}`][0].path.split("\\").slice(1).join("\\");
+      arrImage.push(splitPathImage);
+      console.log(splitPathImage);
+  }
 
   //End Tạo mảng lưu link hình sản phẩm nhận về từ post
 
@@ -94,7 +87,7 @@ module.exports.productAddNew = function(req, res) {
     INVENTORY: req.body.INVENTORY
   };
 
-  //Gọi hàm thêm vào sản phẩm từ model
+  // //Gọi hàm thêm vào sản phẩm từ model
   var insertProduct = productModel.addProduct(entity);
 
   //Gọi hàm thêm vào danh sách hình, tag, product_info_hitory từ model | lưu ý chỉ gọi khi insert thành công
@@ -105,15 +98,16 @@ module.exports.productAddNew = function(req, res) {
     tagModel.addTagForProduct(productID, req.body.TAG);
     //Thêm vào lịch sử
     productInfoHistoryModel.addCreatedHistory(productID, "Tạo", "Tạo mới");
-  });
+  }).catch(next);
   //Thông báo thêm sản phẩm mới thành công
 
   //Trả về màn hình tất cả sản phẩm
   res.redirect("product-show");
+
 };
 
 //Thêm dữ liệu vào trang productadd
-module.exports.productAdd = function(req, res) {
+module.exports.productAdd = function(req, res,next) {
   //Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
   //Lấy dữ liệu sub category
@@ -121,7 +115,10 @@ module.exports.productAdd = function(req, res) {
   //Lấy dữ liệu từ tag
   var dataTags = tagModel.allTag();
 
-  Promise.all([dataCategories, dataSubCategories, dataTags]).then(values => {
+   // Lấy dữ liệu nhãn hiệu
+   var dataBrands = brandModel.allBrand();
+
+  Promise.all([dataCategories, dataSubCategories, dataTags,dataBrands]).then(values => {
     res.locals.sidebar[5].active = true;
 
     //Truyền vào trong UI
@@ -129,7 +126,8 @@ module.exports.productAdd = function(req, res) {
       layout: "main-admin.hbs",
       categories: values[0],
       subCategories: values[1],
-      tags: values[2]
+      tags: values[2],
+      brands: values[3]
     });
-  });
+  }).catch(next);
 };
