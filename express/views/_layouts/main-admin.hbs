@@ -303,7 +303,8 @@
                 {{{body}}}
 
                 <!--footer-->
-                <footer id="admin-footer" class="d-flex justify-content-between align-items-center w-100 position-absolute">
+                <footer id="admin-footer"
+                    class="d-flex justify-content-between align-items-center w-100 position-absolute">
 
                     <div><b>Copyright</b>&copy; 2019</div>
                     <div>Trang admin</div>
@@ -341,7 +342,7 @@
     <script src="/admin/js/report-chart-script.js"></script>
     <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
     <script src="/admin/js/chosen-select.js"></script>
-    <script src="/admin/ckeditor/ckeditor.js"></script>
+    {{!-- <script src="/admin/ckeditor/ckeditor.js"></script> --}}
     <script src="/admin/js/preview-image.js"></script>
     {{!--Xử lý thêm ảnh --}}
     <script src="/admin/js/preview-image-jquery.js"></script>
@@ -351,8 +352,11 @@
     </script>
     {{!--Xử lý dữ liệu từ UI--}}
     <script src="/admin/js/validate-UI-addproduct.js"></script>
-    {{!-- inmport my js --}}
 
+    {{!-- inmport my js --}}
+    <script src="/ckeditor5-build-classic/build/ckeditor.js"></script>
+    <script src="/admin/js/ckeditor5-classicEditor.js"></script>
+   
 </body>
 
 </html>

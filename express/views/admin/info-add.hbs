@@ -4,25 +4,48 @@
     </header>
     <div class="content-inner">
         <div class="form-wrapper">
-            <form>
+            {{#each this.errors}}
+            <div class="alert alert-danger" role="alert">
+                {{this}}
+            </div>
+            {{/each}}
+
+            <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label class="sr-only">Tiêu đề</label>
-                    <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề" />
+                    <label><b>Tiêu đề</b></label>
+                    <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết"
+                        {{#if this.values}} value="{{this.values.TITLE}}" {{else}} value="" {{/if}} />
                 </div>
 
                 <div class="form-group">
-                    <label class="sr-only">Tag</label>
-                    <select class="chosen-select" data-placeholder="Chọn tag" multiple>
-                        <option>Cà chua</option>
-                        <option>Trái cây</option>
-                        <option>Rau tươi</option>
-                        <option>Thịt</option>
+                    <label><b>Tag</b></label>
+                    <select class="chosen-select" name="TAG" data-placeholder="Chọn tag" multiple>
+                        {{#each this.tags}}
+                        {{{selectSelected ID NAME ../this.values.TAG}}}
+                        {{/each}}
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="sr-only">Nội dung</label>
-                    <textarea class="form-control" name="contain"> </textarea>
+                    <label><b>Hình ảnh</b></label>
+                    <div>
+                        <input name="IMAGE" type="file">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><b>Nội dung tóm tắt</b></label>
+                    <div>
+                        <textarea name="SHORTCONTENT" cols="60" rows="5"
+                            placeholder="Nhập nội dung tóm tắt bài viết">{{#if this.values}} {{this.values.SHORTCONTENT}} {{else}} {{/if}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><b>Nội dung</b></label>
+                    <div>
+                        <textarea class="form-control" name="CONTENT" id="my_editor"></textarea>
+                    </div>
                 </div>
 
                 <div class="custom-control custom-control-inline custom-checkbox">
@@ -31,7 +54,7 @@
                 </div>
 
                 <div class="clearfix">
-                    <button type="button" class="btn btn-success float-right">
+                    <button type="submit" id="submit" class="btn btn-success float-right">
                         Xác nhận
                     </button>
                 </div>

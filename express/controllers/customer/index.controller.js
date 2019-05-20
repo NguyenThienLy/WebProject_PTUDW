@@ -7,6 +7,13 @@ var categoryModel = require("../../models/category.model");
 // Gọi newsModel
 var newsModel = require("../../models/news.model");
 
+// Gọi formaPriceHelper
+var formatPriceHelper = require("../../helpers/format_price.helper");
+// Gọi formatStringHelper
+var formatStringHelper = require("../../helpers/format_string_hide.helper");
+// Gọi convertToDateHelper
+var convertToDateHelper = require("../../helpers/convert_to_date.helper");
+
 module.exports.indexShow = function(req, res) {
   var dataProducts = productModel.top8ProductForIndex();
   var dataProductsCombo = productComboModel.top6ProductComboForIndex();
@@ -23,33 +30,17 @@ module.exports.indexShow = function(req, res) {
         news: values[3],
         helpers: {
           // Hàm chuyển đổi qua kiểu ngày
-          convertToDate: function(value) {
-            return value.toLocaleDateString();
-          },
+          convertToDate: convertToDateHelper,
           // Hàm định dạng title của product simple lấy 36 kí tự
-          formatTitleProductSimple: function(value) {
-            if (value.length > 36) return value.substr(0, 36) + "...";
-
-            return value;
-          },
+          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
           // Hàm định dạng title của product combo lấy 52 kí tự
-          formatTitleProductCombo: function(value) {
-            if (value.length > 52) return value.substr(0, 52) + "...";
-
-            return value;
-          },
+          formatTitleProductCombo:  formatStringHelper.formatTitleProductCombo,
           // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: function(value) {
-            if (value.length > 85) return value.substr(0, 85) + "...";
-
-            return value;
-          },
+          formatTitleInfo:  formatStringHelper.formatTitleInfo,
           // Hàm định dạng short content của info lấy 320 kí tự
-          formatShortContentInfo: function(value) {
-            if (value.length > 320) return value.substr(0, 320) + "...";
-
-            return value;
-          }
+          formatShortContentInfo: formatStringHelper.formatShortContentInfo,
+          // Hàm định dạng lại price dấu cách giữa ba kí tự
+          formatPrice: formatPriceHelper
         }
       });
     })

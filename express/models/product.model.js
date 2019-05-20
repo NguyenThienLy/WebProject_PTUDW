@@ -30,11 +30,11 @@ module.exports.addProduct = product => {
 
 // Hàm trả về 8 sản phẩm sale nhiều nhất trong index customer
 module.exports.top8ProductForIndex = () => {
-  return db.load(`SELECT ID, FORMAT(PRICE, 0) AS PRICE, SALE, NAME, IMAGE,
-									FORMAT((CASE
+  return db.load(`SELECT ID, PRICE, SALE, NAME, IMAGE,
+									(CASE
 											WHEN SALE > 0 THEN (PRICE - PRICE * (SALE / 100))
 											ELSE PRICE
-									END), 0) AS SALEPRICE
+									END) AS SALEPRICE
 									FROM product
 									ORDER BY SALE DESC
 									LIMIT 8;`);

@@ -2,6 +2,7 @@ require("dotenv").config();
 
 var express = require("express");
 var exphbs = require("express-handlebars");
+var express_handlebars_sections = require('express-handlebars-sections');
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var morgan = require("morgan");
@@ -30,9 +31,6 @@ var adminSidebarQuantityBadgeMiddleware = require("./middlewares/admin/sidebar/q
 var customerCategoryMiddleware = require("./middlewares/customer/category.middleware");
 // var sessionMiddleware = require('./middlewares/session.middleware');
 
-var format_money = require("./helpers/format_money");
-var comment_stars = require("./helpers/comment_stars");
-
 var port = 3000;
 
 var app = express();
@@ -45,14 +43,9 @@ app.use(cookieParser(process.env.SESSION_SECRET));
 //app.use(sessionMiddleware);
 
 const hbs = exphbs.create({
-  layoutsDir: "views/_layouts",
-
-  // create custom helpers
-  helpers: {
-    format_money: format_money,
-    comment_stars: comment_stars
-  }
+  layoutsDir: "views/_layouts"
 });
+express_handlebars_sections(hbs);  
 
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
