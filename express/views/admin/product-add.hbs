@@ -7,7 +7,11 @@
                 <h5 class="mb-0">Thông tin sản phẩm</h5>
             </div>
             <div class="card-body">
-
+                {{!--Mô tả lỗi khi không nhập thông tin --}}
+                <div id="alert-image" class="alert alert-warning" role="alert">
+                    Vui lòng nhập vào đủ số lượng ảnh
+                </div>
+                {{!--End Mô tả lỗi khi không nhập thông tin --}}
                 <!--Form nhập thông tin-->
                 <div class="form-group row">
                     {{!--UI chọn ảnh và thêm ảnh --}}
@@ -23,7 +27,7 @@
                                             class="btn btn-primary btn-sm">
                                         <input type="button" id="remove_file_1" value="Xóa ảnh"
                                             class="btn btn-secondary btn-sm">
-                                        <input type="file" id="image_file_1" class="d-none" name="img_1">
+                                        <input type="file" id="image_file_1" class="d-none" name="img_1" required>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +46,7 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_2" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_2" class="d-none" name="img_2">
+                                                <input type="file" id="image_file_2" class="d-none" name="img_2" required>
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +62,7 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_3" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_3" class="d-none" name="img_3">
+                                                <input type="file" id="image_file_3" class="d-none" name="img_3" required>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +81,7 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_4" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_4" class="d-none" name="img_4">
+                                                <input type="file" id="image_file_4" class="d-none" name="img_4" required>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +97,7 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_5" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_5" class="d-none" name="img_5">
+                                                <input type="file" id="image_file_5" class="d-none" name="img_5" required>
                                             </div>
                                         </div>
                                     </div>
@@ -110,24 +114,24 @@
 
                         <label for="inputIDproduct" class="mt-2"><b>Mã sản phẩm</b></label>
                         <div>
-                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01">
+                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01" readonly>
                         </div>
 
                         <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
                         <div>
                             <input name="NAME" type="text" class="form-control" id="inputnameProduct"
-                                placeholder="nhập vào tên sản phâm">
+                                placeholder="nhập vào tên sản phâm" required>
                         </div>
 
                         <label for="selectProductType" class="mt-2"><b>Loại sản phẩm</b></label>
-                        <select name="SUBCATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
+                        <select name="SUBCATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType" required>
                             {{#each this.subCategories}}
                             <option value="{{ID}}">{{NAME}}</option>
                             {{/each}}
                         </select>
 
                         <label for="selectProductType" class="mt-2"><b>Danh mục</b></label>
-                        <select name="CATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType">
+                        <select name="CATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType" required>
                             {{#each this.categories}}
                             <option value="{{ID}}">{{NAME}}</option>
                             {{/each}}
@@ -135,7 +139,7 @@
 
                         <label for="selectProductSource" class="mt-2"><b>Nguồn gốc</b></label>
                         <div>
-                            <select name="ORIGIN" class="custom-select my-1 mr-sm-2" id="selectProductSource">
+                            <select name="ORIGIN" class="custom-select my-1 mr-sm-2" id="selectProductSource" required>
                                 <option selected>Việt Nam</option>
                                 <option value="Mỹ">Mỹ</option>
                                 <option value="Trung Quốc">Trung Quốc</option>
@@ -147,7 +151,7 @@
 
                         <label for="selectProductBrand" class="mt-2"><b>Thương hiệu</b></label>
                         <div>
-                            <select name="BRANDID" class="custom-select my-1 mr-sm-2" id="selectProductBrand">
+                            <select name="BRANDID" class="custom-select my-1 mr-sm-2" id="selectProductBrand" required>
                                 {{#each this.brands}}
                                 <option value="{{ID}}">{{NAME}}</option>
                                 {{/each}}
@@ -160,25 +164,25 @@
                                 phẩm</b></label>
                         <div>
                             <input name="KILOGRAM" type="text" class="form-control" id="inputnameProduct"
-                                placeholder="nhập vào trọng lượng 1 sản phẩm">
+                                placeholder="nhập vào trọng lượng 1 sản phẩm" required>
                         </div>
 
                         <label for="inputnameProduct" class="mt-2"><b>Số lượng</b></label>
                         <div>
                             <input name="INVENTORY" type="text" class="form-control" id="inputnameProduct"
-                                placeholder="nhập vào số lượng sản phẩm">
+                                placeholder="nhập vào số lượng sản phẩm" required>
                         </div>
 
                         <label for="inputPriceProduct" class="mt-2"><b>Giá sản phẩm</b></label>
                         <div>
                             <input name="PRICE" type="text" class="form-control" id="inputPriceProduct"
-                                placeholder="Nhập vào giá sản phẩm">
+                                placeholder="Nhập vào giá sản phẩm" required>
                         </div>
 
                         <label for="inputPromotionProduct" class="mt-2"><b>Giảm giá</b></label>
                         <div>
                             <input name="SALE" type="text" class="form-control" id="inputPromotionProduct"
-                                placeholder="0">
+                                placeholder="0" required>
                         </div>
                     </div>
 
@@ -200,7 +204,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label class="sr-only">Tag</label>
-                    <select name="TAG" class="chosen-select" data-placeholder="Chọn tag" multiple>
+                    <select name="TAG" class="chosen-select" data-placeholder="Chọn tag" multiple required>
                         {{#each this.tags}}
                         <option value="{{ID}}">{{NAME}}</option>
                         {{/each}}
@@ -208,8 +212,13 @@
                 </div>
 
                 <div class="form-group">
+                    {{!--Mô tả lỗi khi không nhập thông tin --}}
+                    <div id="alert-content" class="alert alert-warning" role="alert">
+                        Vui lòng nhập vào mô tả sản phẩm
+                    </div>
+                    {{!--End Mô tả lỗi khi không nhập thông tin --}}
                     <label class="sr-only">Nội dung</label>
-                    <textarea class="form-control" name="contain"></textarea>
+                    <textarea id="text-content" class="form-control" name="contain"></textarea>
                 </div>
 
 
@@ -229,7 +238,7 @@
                 </div>
 
                 <div class="float-right">
-                    <button type="submit" class="btn btn-success mr-2">Đăng</button>
+                    <button id="btn-submit-form" type="submit" class="btn btn-success mr-2">Đăng</button>
                     <button type="button" class="btn btn-danger">Hủy</button>
                 </div>
             </div>

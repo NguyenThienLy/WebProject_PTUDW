@@ -88,21 +88,21 @@ module.exports.productAddNew = function(req, res) {
   };
 
   //Gọi hàm thêm vào sản phẩm từ model
-  var insertProduct = productModel.addProduct(entity);
+  //var insertProduct = productModel.addProduct(entity);
 
   //Gọi hàm thêm vào danh sách hình, tag, product_info_hitory từ model | lưu ý chỉ gọi khi insert thành công
-  insertProduct.then(productID => {
-    //Thêm hình ảnh
-    productImageModel.addImagesForProduct(productID, arrImage);
-    //Thêm vào tag
-    tagModel.addTagForProduct(productID, req.body.TAG);
-    //Thêm vào lịch sử
-    productInfoHistoryModel.addCreatedHistory(productID, "Tạo", "Tạo mới");
-  });
+  // insertProduct.then(productID => {
+  //   //Thêm hình ảnh
+  //   productImageModel.addImagesForProduct(productID, arrImage);
+  //   //Thêm vào tag
+  //   tagModel.addTagForProduct(productID, req.body.TAG);
+  //   //Thêm vào lịch sử
+  //   productInfoHistoryModel.addCreatedHistory(productID, "Tạo", "Tạo mới");
+  // });
   //Thông báo thêm sản phẩm mới thành công
 
   //Trả về màn hình tất cả sản phẩm
-  res.redirect("product-show");
+  //res.redirect("product-show");
 
 };
 

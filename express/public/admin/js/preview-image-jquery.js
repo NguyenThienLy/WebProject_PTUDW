@@ -93,7 +93,7 @@ function filePreview(input,id) {
 }
 
 $("#selectProductType").change(()=>{
-    alert($("#selectProductType").val());
+   // alert($("#selectProductType").val());
     
 });
 
