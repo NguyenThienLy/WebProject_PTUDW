@@ -1,7 +1,7 @@
 <!--Nội dung trang index-->
 <div id="dashboard-con">
     <!--Card chứa form nhập thông tin của sản phẩm-->
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" id="add-product-form">
         <div class="card mt-3">
             <div class="card-header">
                 <h5 class="mb-0">Thông tin sản phẩm</h5>
@@ -46,7 +46,8 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_2" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_2" class="d-none" name="img_2" required>
+                                                <input type="file" id="image_file_2" class="d-none" name="img_2"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +63,8 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_3" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_3" class="d-none" name="img_3" required>
+                                                <input type="file" id="image_file_3" class="d-none" name="img_3"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -81,7 +83,8 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_4" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_4" class="d-none" name="img_4" required>
+                                                <input type="file" id="image_file_4" class="d-none" name="img_4"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +100,8 @@
                                                     class="btn btn-primary btn-sm">
                                                 <input type="button" id="remove_file_5" value="Xóa ảnh"
                                                     class="btn btn-secondary btn-sm">
-                                                <input type="file" id="image_file_5" class="d-none" name="img_5" required>
+                                                <input type="file" id="image_file_5" class="d-none" name="img_5"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +118,8 @@
 
                         <label for="inputIDproduct" class="mt-2"><b>Mã sản phẩm</b></label>
                         <div>
-                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01" readonly>
+                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01"
+                                readonly>
                         </div>
 
                         <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
@@ -163,27 +168,32 @@
                         <label for="inputnameProduct" class="mt-2"><b>Trọng lượng sản
                                 phẩm</b></label>
                         <div>
-                            <input name="KILOGRAM" type="text" class="form-control" id="inputnameProduct"
+                            <input type="number" name="KILOGRAM" type="text" class="form-control" id="inputnameProduct"
                                 placeholder="nhập vào trọng lượng 1 sản phẩm" required>
                         </div>
 
                         <label for="inputnameProduct" class="mt-2"><b>Số lượng</b></label>
                         <div>
-                            <input name="INVENTORY" type="text" class="form-control" id="inputnameProduct"
+                            <input type="number" name="INVENTORY" type="text" class="form-control" id="inputnameProduct"
                                 placeholder="nhập vào số lượng sản phẩm" required>
                         </div>
 
                         <label for="inputPriceProduct" class="mt-2"><b>Giá sản phẩm</b></label>
                         <div>
-                            <input name="PRICE" type="text" class="form-control" id="inputPriceProduct"
+                            <input type="number" name="PRICE" type="text" class="form-control" id="inputPriceProduct"
                                 placeholder="Nhập vào giá sản phẩm" required>
                         </div>
-
                         <label for="inputPromotionProduct" class="mt-2"><b>Giảm giá</b></label>
                         <div>
-                            <input name="SALE" type="text" class="form-control" id="inputPromotionProduct"
+                            <input type="number" name="SALE" type="text" class="form-control" id="inputPromotionProduct"
                                 placeholder="0" required>
                         </div>
+
+                        {{!--Mô tả lỗi khi không nhập thông tin --}}
+                        <div  id="alert-number" class="alert alert-warning mt-2" role="alert">
+                            Vui lòng nhập vào các giá trị hợp lệ
+                        </div>
+                        {{!--End Mô tả lỗi khi không nhập thông tin --}}
                     </div>
 
                 </div>
