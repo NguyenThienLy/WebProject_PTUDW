@@ -1,3 +1,15 @@
+{{#section 'css'}}
+<title>Thêm thông tin hữu ích</title>
+
+{{!-- info add page --}}
+<link href="/admin/css/info-add.css" rel="stylesheet" />
+{{!-- info add page --}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-info-add.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
 <div id="content" class="mb-5">
     <header>
         <h5 class="page_title mb-0">Tạo bài viết mới</h5>
@@ -62,3 +74,16 @@
         </div>
     </div>
 </div>
+
+{{#section 'js'}}
+<script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
+<script src="/admin/js/chosen-select.js"></script>
+{{!-- 
+<script>
+    CKEDITOR.replace("contain");
+</script> --}}
+
+{{!-- inmport my js --}}
+<script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
+<script src="/admin/js/ckeditor5-classicEditor.js"></script>
+{{/section}}

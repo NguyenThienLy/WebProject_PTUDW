@@ -1,3 +1,15 @@
+{{#section 'css'}}
+<title>Trang chủ admin</title>
+
+{{!-- index page --}}
+<link href="/admin/css/index.css" rel="stylesheet" />
+{{!-- index page --}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-index.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
 <!--Nội dung trang index-->
 <div class="dashboard-con" id="dashboard-con">
     <!--Row hiển thị biểu đồ-->
@@ -509,3 +521,11 @@
 
 </div>
 <!--End Nội dung trang index-->
+
+{{#section 'js'}}
+{{!-- import chart --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+{{!-- end import chart --}}
+
+<script src="/admin/js/report-chart-script.js"></script>
+{{/section}}

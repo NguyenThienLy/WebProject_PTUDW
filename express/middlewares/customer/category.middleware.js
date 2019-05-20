@@ -1,26 +1,26 @@
-var exphbs = require("express-handlebars");
-
 // Gọi categoryModel
 var categoryModel = require("../../models/category.model");
-// Gọi subCategoryModel
-var subCategoryModel = require("../../models/sub_category.model");
+// // Gọi subCategoryModel
+// var subCategoryModel = require("../../models/sub_category.model");
 
 // Load lên các giá trị của catogory và sub category
 module.exports = (req, res, next) => {
   var dataCategories = categoryModel.allWithDetailQuantity();
 
   dataCategories
-  .then(categories => {
-    
-    //category.SUB = subCategories;
-    //res.locals.lcCategories = categories;
+    .then(categories => {
 
-    // console.log(subCategories);
-    // console.log(categories);
+     
+      //category.SUB = subCategories;
+      //res.locals.lcCategories = categories;
 
-    next();
-  })
-  .catch(err => {
-    console.log(err);
-  });
+      console.log(categories);
+      // console.log(subCategories);
+     // console.log(myArray);
+
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

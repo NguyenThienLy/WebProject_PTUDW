@@ -1,3 +1,11 @@
+{{#section 'css'}}
+<title>Thêm sản phẩm</title>
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-order-list.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
 <!--Nội dung trang index-->
 <div id="dashboard-con">
     <!--Card chứa form nhập thông tin của sản phẩm-->
@@ -190,7 +198,7 @@
                         </div>
 
                         {{!--Mô tả lỗi khi không nhập thông tin --}}
-                        <div  id="alert-number" class="alert alert-warning mt-2" role="alert">
+                        <div id="alert-number" class="alert alert-warning mt-2" role="alert">
                             Vui lòng nhập vào các giá trị hợp lệ
                         </div>
                         {{!--End Mô tả lỗi khi không nhập thông tin --}}
@@ -229,7 +237,7 @@
                     {{!--End Mô tả lỗi khi không nhập thông tin --}}
                     <label class="sr-only">Nội dung</label>
 
-                    <textarea id="text-content" class="form-control" name="contain"></textarea>
+                    <textarea id="my_editor" class="form-control" name="contain"></textarea>
 
                 </div>
 
@@ -259,3 +267,23 @@
     </form>
 </div>
 <!--End Nội dung trang index-->
+
+
+{{#section 'js'}}
+<script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
+<script src="/admin/js/chosen-select.js"></script>
+
+{{!-- <script>
+    CKEDITOR.replace("contain");
+</script> --}}
+
+{{!-- inmport my js --}}
+<script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
+<script src="/admin/js/ckeditor5-classicEditor.js"></script>
+
+{{!--Xử lý thêm ảnh --}}
+<script src="/admin/js/preview-image-jquery.js"></script>
+
+{{!--Xử lý dữ liệu từ UI--}}
+<script src="/admin/js/validate-UI-addproduct.js"></script>
+{{/section}}

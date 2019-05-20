@@ -22,28 +22,21 @@
     {{!-- css all page --}}
     <link href="/admin/css/admin-style.css" rel="stylesheet" />
     <link href="/admin/css/comments.css" rel="stylesheet" />
-    <link href="/admin/css/component-comment.css" rel="stylesheet" />
     <link href="/admin/css/component-menu-admin.css" rel="stylesheet" />
     <link href="/admin/css/component-report-card.css" rel="stylesheet" />
     <link href="/admin/css/component-go-up.css" rel="stylesheet" />
     <link href="/admin/css/content-5-page.css" rel="stylesheet" />
     {{!-- css all page --}}
 
+    
+    {{{_sections.css}}}
+
     {{!-- css page --}}
-    <link href="/admin/css/index.css" rel="stylesheet" />
-    <link href="/admin/css/info-add.css" rel="stylesheet" />
-    <link href="/admin/css/order-list.css" rel="stylesheet" />
     <link href="/admin/css/product-show.css" rel="stylesheet" />
     <link href="/admin/css/report.css" rel="stylesheet" />
     {{!-- css page --}}
 
     {{!-- responsive --}}
-    <link href="/admin/css/responsive-comments.css" rel="stylesheet" />
-    <link href="/admin/css/responsive-customer.css" rel="stylesheet" />
-    <link href="/admin/css/responsive-index.css" rel="stylesheet" />
-    <link href="/admin/css/responsive-info-add.css" rel="stylesheet" />
-    <link href="/admin/css/responsive-info-show.css" rel="stylesheet" />
-    <link href="/admin/css/responsive-order-list.css" rel="stylesheet" />
     <link href="/admin/css/responsive-product-add.css" rel="stylesheet" />
     <link href="/admin/css/responsive-product-show.css" rel="stylesheet" />
     <link href="/admin/css/responsive-report.css" rel="stylesheet" />
@@ -331,32 +324,20 @@
         crossorigin="anonymous"></script>
     {{!-- end import bootstrap --}}
 
-    {{!-- import chart --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    {{!-- end import chart --}}
+    {{{_sections.js}}}
 
+  
     {{!-- inmport my js i--}}
     <script src="/admin/js/404-not-found.js"></script>
     <script src="/admin/js/go-up.js"></script>
     <script src="/admin/js/nav-bar-side-menu.js"></script>
-    <script src="/admin/js/report-chart-script.js"></script>
-    <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
-    <script src="/admin/js/chosen-select.js"></script>
-    {{!-- <script src="/admin/ckeditor/ckeditor.js"></script> --}}
     <script src="/admin/js/preview-image.js"></script>
     {{!--Xử lý thêm ảnh --}}
     <script src="/admin/js/preview-image-jquery.js"></script>
 
-    <script>
-        CKEDITOR.replace("contain");
-    </script>
     {{!--Xử lý dữ liệu từ UI--}}
     <script src="/admin/js/validate-UI-addproduct.js"></script>
 
-    {{!-- inmport my js --}}
-    <script src="/ckeditor5-build-classic/build/ckeditor.js"></script>
-    <script src="/admin/js/ckeditor5-classicEditor.js"></script>
-   
 </body>
 
 </html>
