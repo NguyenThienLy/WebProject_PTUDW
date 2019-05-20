@@ -2,25 +2,36 @@ var newsModel = require("../../models/news.model");
 var tagModel = require("../../models/tag.model");
 var newsInfoHistoryModel = require("../../models/news_info_history.model");
 
+var selectSelectedHelper = require("../../helpers/select_selected.helper");
+
 module.exports.infoShow = function(req, res) {
   res.locals.sidebar[7].active = true;
 
   res.render("admin/info-show", { layout: "main-admin.hbs" });
 };
 
-module.exports.infoAdd = async function(req, res) {
-  res.locals.sidebar[6].active = true;
-
+module.exports.infoAdd = function(req, res) {
   //Lấy dữ liệu từ tag
-  var dataTags = await tagModel.allTag();
+  var dataTags = tagModel.allTag();
 
-  res.render("admin/info-add", {
-    layout: "main-admin.hbs",
-    tags: dataTags
-  });
+  dataTags
+    .then(tags => {
+      res.locals.sidebar[6].active = true;
+
+      res.render("admin/info-add", {
+        layout: "main-admin.hbs",
+        tags: tags,
+        helpers: {
+          selectSelected: selectSelectedHelper
+        }
+      });
+    })
+    .catch(err => {
+      next(err);
+    });
 };
 
-module.exports.postInfoAdd = async function(req, res) {
+module.exports.postInfoAdd = function(req, res) {
   res.locals.sidebar[6].active = true;
 
   req.body.IMAGE = req.file.path
@@ -33,17 +44,32 @@ module.exports.postInfoAdd = async function(req, res) {
     IMAGE: req.body.IMAGE,
     TITLE: req.body.TITLE,
     SHORTCONTENT: req.body.SHORTCONTENT,
-    CONTENT: req.body.CONTENT,
+    CONTENT: req.body.CONTENT
   };
 
-  // Thêm vào news 
-  var new_news = await newsModel.addNews(news);
+  // Thêm vào news
+  var addNews = newsModel.addNews(news);
 
-  //Thêm vào tag
-  await tagModel.addTagForNews(new_news, req.body.TAG);
+  addNews
+    .then(newNews => {
+      //Thêm vào tag
+      var addTagForNews = tagModel.addTagForNews(newNews, req.body.TAG);
+      //Thêm vào lịch sử
+      var addCreatedHistory = newsInfoHistoryModel.addCreatedHistory(
+        newNews,
+        "Thêm",
+        "Thêm mới"
+      );
 
-  //Thêm vào lịch sử
-  await newsInfoHistoryModel.addCreatedHistory(new_news, "Thêm", "Thêm mới");
-
-  res.redirect("/admin/info/info-add");
+      Promise.all([addTagForNews, addCreatedHistory])
+        .then(values => {
+          res.redirect("/admin/info/info-add");
+        })
+        .catch(err => {
+          next(err);
+        });
+    })
+    .catch(err => {
+      next(err);
+    });
 };
