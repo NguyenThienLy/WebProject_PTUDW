@@ -31,10 +31,6 @@ var adminSidebarQuantityBadgeMiddleware = require("./middlewares/admin/sidebar/q
 var customerCategoryMiddleware = require("./middlewares/customer/category.middleware");
 // var sessionMiddleware = require('./middlewares/session.middleware');
 
-var format_money = require("./helpers/format_money");
-var comment_stars = require("./helpers/comment_stars");
-var select_selected = require("./helpers/select_selected");
-
 var port = 3000;
 
 var app = express();
@@ -47,14 +43,7 @@ app.use(cookieParser(process.env.SESSION_SECRET));
 //app.use(sessionMiddleware);
 
 const hbs = exphbs.create({
-  layoutsDir: "views/_layouts",
-
-  // create custom helpers
-  helpers: {
-    format_money: format_money,
-    comment_stars: comment_stars,
-    select_selected: select_selected
-  }
+  layoutsDir: "views/_layouts"
 });
 express_handlebars_sections(hbs);  
 
