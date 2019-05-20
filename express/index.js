@@ -2,6 +2,7 @@ require("dotenv").config();
 
 var express = require("express");
 var exphbs = require("express-handlebars");
+var express_handlebars_sections = require('express-handlebars-sections');
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var morgan = require("morgan");
@@ -55,6 +56,7 @@ const hbs = exphbs.create({
     select_selected: select_selected
   }
 });
+express_handlebars_sections(hbs);  
 
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");

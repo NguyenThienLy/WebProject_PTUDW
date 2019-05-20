@@ -3,8 +3,6 @@
 
 <head>
     <meta charset='utf-8'>
-    <title>Home</title>
-
     <!-- import slick -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.5/slick.min.css" />
     <!-- import slick -->
@@ -34,64 +32,12 @@
     <link href="/customer/css/component-quantity-product.css" rel="stylesheet" />
     {{!-- css all page --}}
 
-    {{!-- home page --}}
-    <link href="/customer/css/component-intro-product.css" rel="stylesheet" />
-    <link href="/customer/css/component-product-simple.css" rel="stylesheet" />
-    <link href="/customer/css/component-info.css" rel="stylesheet" />
-    <link href="/customer/css/component-product-combo.css" rel="stylesheet" />
-    <link href="/customer/css/component-about-us.css" rel="stylesheet" />
-    <link href="/customer/css/component-tag-product-type.css" rel="stylesheet" />
-    <link href="/customer/css/component-slide-trademark.css" rel="stylesheet" />
-    <link href="/customer/css/component-user-account-modal.css" rel="stylesheet" />
-    {{!-- home page --}}
-
-    {{!-- product detail page --}}
-    <link href="/customer/css/component-show-rate.css" rel="stylesheet" />
-    <link href="/customer/css/component-comment.css" rel="stylesheet" />
-    <link href="/customer/css/component-product-simple.css" rel="stylesheet" />
-    <link href="/customer/css/component-image-show.css" rel="stylesheet" />
-    <link href="/customer/css/component-show-rate.css" rel="stylesheet" />
-    <link href="/customer/css/component-product-detail.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-product-detail.css" rel="stylesheet" />
-    {{!-- product detail page --}}
-
-    {{!-- product show page --}}
-    <link href="/customer/css/component-product-simple.css" rel="stylesheet" />
-    <link href="/customer/css/component-product-combo.css" rel="stylesheet" />
-    <link href="/customer/css/component-filter-product.css" rel="stylesheet" />
-    <link href="/customer/css/component-sort-header.css" rel="stylesheet" />
-    <link href="/customer/css/component-filter-product.css" rel="stylesheet" />
-    <link href="/customer/css/component-open-filter.css" rel="stylesheet" />
-    {{!-- product show page --}}
-
-    {{!-- info detail page --}}
-    <link href="/customer/css/component-info.css" rel="stylesheet" />
-    <link href="/customer/css/component-product-combo.css" rel="stylesheet" />
-    <link href="/customer/css/component-info-detail.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-info-detail.css" rel="stylesheet" />
-    {{!-- info detail page --}}
-
-    {{!-- info show page --}}
-    <link href="/customer/css/component-info.css" rel="stylesheet" />
-    <link href="/customer/css/component-sort-header.css" rel="stylesheet" />
-    {{!-- info show page --}}
-
-    {{!-- cart detail page --}}
-    <link href="/customer/css/component-cart-quantity.css" rel="stylesheet" />
-    <link href="/customer/css/component-product-simple.css" rel="stylesheet" />
-    <link href="/customer/css/component-quantity-product.css" rel="stylesheet" />
-    {{!-- cart detail page --}}
-
     {{!-- responsive --}}
     <link href="/customer/css/responsive-header.css" rel="stylesheet" />
     <link href="/customer/css/responsive-footer.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-index.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-product-detail.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-product-show.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-info-detail.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-info-show.css" rel="stylesheet" />
-    <link href="/customer/css/responsive-cart-detail.css" rel="stylesheet" />
     {{!-- responsive --}}
+
+    {{{_sections.css}}}
 </head>
 
 <body>
@@ -159,16 +105,13 @@
                                         <a href="product-show.html"
                                             class="stretched-link d-flex align-items-center justify-content-between">
                                             {{NAME}}
-                                            <span
-                                                class="badge badge-success p-1">{{QUANTITY}}</span>
+                                            <span class="badge badge-success p-1">{{QUANTITY}}</span>
                                             <i class="fas fa-angle-right ml-3"></i>
                                         </a>
                                         <div class="card sub-dropdown-item">
-                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
-                                            <a class="dropdown-item" href="product-show.html">Rau cu 1</a>
+                                            {{#each SUB}}
+                                            <a class="dropdown-item" href="product-show.html">{{NAME}}</a>
+                                            {{/each}}
                                         </div>
                                     </div>
                                     {{/each}}
@@ -1040,22 +983,16 @@ class="custom-file col-8 p-0"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="slick/slick.min.js"></script>
-    <script src="/customer/js/slide-show.js"></script>
+     {{{_sections.js}}}  
+
+    {{!-- js all page --}}
     <script src="/customer/js/login-register-modal.js"></script>
     <script src="/customer/js/user-account-modal.js"></script>
     <script src="/customer/js/go-up.js"></script>
     <script src="/customer/js/open-close-sidebar-menu.js"></script>
     <script src="/customer/js/footer-accordion.js"></script>
-    <script src="/customer/js/carousel-margin.js"></script>
-    <script src="/customer/js/slide-trademark.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.5/slick.min.js"></script>
-    <script src="/customer/js/slide-trademark.js"></script>
     <script src="/customer/js/component-header-hover-content-top.js"></script>
-    <script src="/customer/js/breadcrumb-margin.js"></script>
-    <script src="/customer/js/image-product-detail.js"></script>
-    <script src="/customer/js/cart-detail.js"></script>
-    <script src="/customer/js/open-close-filter.js"></script>
+    {{!-- js all page --}}
 </body>
 
 </html>
