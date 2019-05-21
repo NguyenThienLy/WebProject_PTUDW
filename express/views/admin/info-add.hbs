@@ -40,9 +40,26 @@
 
                 <div class="form-group">
                     <label><b>Hình ảnh</b></label>
-                    <div>
+                    {{!-- <div>
                         <input name="IMAGE" type="file">
+                    </div> --}}
+                    <div class="row ml-0 mr-0">
+                        <div class="col-4 p-0">
+                            <div class="card mx-auto">
+                                <img id="image_1" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
+                                <div
+                                    class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
+                                    <h6 class="card-title d-block">Hình đại diện</h6>
+                                    <div>
+                                        <input type="button" id="get_image_file_1" value="Đổi ảnh" class="btn btn-primary btn-sm">
+                                        <input type="button" id="remove_file_1" value="Xóa ảnh" class="btn btn-secondary btn-sm">
+                                        <input type="file" id="image_file_1" class="d-none" name="image_info" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="form-group">
@@ -83,4 +100,7 @@
 {{!-- inmport my js --}}
 <script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
 <script src="/admin/js/ckeditor5-classicEditor.js"></script>
+
+{{!--Xử lý thêm ảnh --}}
+<script src="/admin/js/preview-image-jquery.js"></script>
 {{/section}}
