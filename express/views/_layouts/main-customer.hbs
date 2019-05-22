@@ -84,7 +84,7 @@
                         class="fas fa-bars position-absolute"></i></a>
 
                 <a class="navbar-brand d-flex align-items-center m-0 col-8 col-sm-8 col-md-8 col-lg-4 col-xl-3"
-                    href="../html/index.html">
+                    href="/customer/index">
                     <img src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466"
                         alt="" />
                 </a>
@@ -104,7 +104,7 @@
                                     {{!-- Nếu category ko có sản phẩm nào --}}
                                     {{#if QUANTITYCAT}}
                                     <div class="dropdown-item position-relative pr-3">
-                                        <a href="product-show.html"
+                                        <a href="/customer/product/product-show/{{IDCAT}}"
                                             class="stretched-link d-flex align-items-center justify-content-between">
                                             {{NAMECAT}} &emsp;
                                             <span class="badge badge-success">{{QUANTITYCAT}}</span>
@@ -115,11 +115,11 @@
                                             {{#if QUANTITYCAT}}
                                             {{#each SUB}}
                                             {{#if QUANTITYSUB}}
-                                            <a class="dropdown-item" href="product-show.html">{{NAMESUB}}&emsp;
+                                            <a class="dropdown-item" href="/customer/product/product-show/{{IDCAT}}/{{IDSUB}}">{{NAMESUB}}&emsp;
                                                 <span class="badge badge-success">{{QUANTITYSUB}}</span>
                                             </a>
                                             {{else}}
-                                            <a class="dropdown-item disabled" href="product-show.html">{{NAMESUB}}
+                                            <a class="dropdown-item disabled" href="javascript:void(0);">{{NAMESUB}}
                                             </a>
                                             {{/if}}
                                             {{/each}}
@@ -129,7 +129,7 @@
                                     </div>
                                     {{else}}
                                     <div class="disabled dropdown-item pr-3">
-                                        <a href="product-show.html"
+                                        <a href="javascript:void(0);"
                                             class="disabled">
                                             {{NAMECAT}}
                                         </a>
@@ -139,7 +139,7 @@
                                     {{/each}}
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="product-show.html">Tất cả</a>
+                                    <a class="dropdown-item" href="/customer/product/product-show">Tất cả</a>
                                 </div>
                             </div>
                         </div>
@@ -179,36 +179,37 @@
                     <i class="fas fa-shopping-cart position-relative">
                         <a href="cart-detail.html" class="stretched-link"></a>
                         <div class="component-quantity-product position-absolute bg-danger">
-                            <p class="quantity m-0">4</p>
+                            <p class="quantity m-0">{{quantityProduct}}</p>
                         </div>
 
                         <!-- <div class="component-show-fast-cart-container"> -->
                         <div class="component-show-fast-cart card mt-3">
                             <div class="style-scrollbar mt-3">
+                                {{#each cartProducts}}
                                 <div class="component-show-fast-cart-items">
-                                    <div class="d-flex align-items-start pl-3 pr-3 pb-3">
+                                    <div class="d-flex align-items-center pl-3 pr-3 pb-3">
                                         <div class="position-relative product-image" data-toggle="tooltip"
-                                            title="Chanh tươi">
-                                            <a class="stretched-link" href="product-detail.html"></a>
-                                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                            title="{{NAME}}">
+                                            <a class="stretched-link" href="/customer/product/product-detail"></a>
+                                            <img src="{{IMAGE}}"
                                                 class="w-100" alt="" />
                                         </div>
 
                                         <div class="product-info text-left">
-                                            <a href="product-detail.html" class="title text-decoration-none"
-                                                data-toggle="tooltip" title="Chanh tươi">Chanh tươi</a>
+                                            <a href="/customer/product/product-detail" class="title text-decoration-none"
+                                                data-toggle="tooltip" title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
                                             <div class="price mt-2">
-                                                <span>30.000</span>
+                                                <span>{{formatPrice SALEPRICE}}</span>
                                                 <span><u>đ</u></span>
                                                 &nbsp;
                                                 <span>x</span>
-                                                <span>1</span>
+                                                <span>{{QUANTITY_RS}}</span>
                                             </div>
                                         </div>
 
                                         <div class="product-delete text-right">
-                                            <button type="button" class="p-0 border-0" data-toggle="tooltip"
+                                            <button href="#" class="p-0 border-0" data-toggle="tooltip"
                                                 title="Xóa">
                                                 <i class="fas fa-times"></i>
                                             </button>
@@ -216,102 +217,7 @@
                                     </div>
                                     <hr class="m-0 ml-2 mr-2" />
                                 </div>
-
-                                <div class="component-show-fast-cart-items">
-                                    <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-                                        <div class="position-relative product-image" data-toggle="tooltip"
-                                            title="Chanh tươi">
-                                            <a class="stretched-link" href="product-detail.html"></a>
-                                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                                class="w-100" alt="" />
-                                        </div>
-
-                                        <div class="product-info text-left">
-                                            <a href="product-detail.html" class="title text-decoration-none"
-                                                data-toggle="tooltip" title="Chanh tươi">Chanh tươi</a>
-
-                                            <div class="price mt-2">
-                                                <span>30.000</span>
-                                                <span><u>đ</u></span>
-                                                &nbsp;
-                                                <span>x</span>
-                                                <span>1</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="product-delete text-right">
-                                            <button type="button" class="p-0 border-0" data-toggle="tooltip"
-                                                title="Xóa">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <hr class="m-0 ml-2 mr-2" />
-                                </div>
-
-                                <div class="component-show-fast-cart-items">
-                                    <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-                                        <div class="position-relative product-image" data-toggle="tooltip"
-                                            title="Chanh tươi">
-                                            <a class="stretched-link" href="product-detail.html"></a>
-                                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                                class="w-100" alt="" />
-                                        </div>
-
-                                        <div class="product-info text-left">
-                                            <a href="product-detail.html" class="title text-decoration-none"
-                                                data-toggle="tooltip" title="Chanh tươi">Chanh tươi</a>
-
-                                            <div class="price mt-2">
-                                                <span>30.000</span>
-                                                <span><u>đ</u></span>
-                                                &nbsp;
-                                                <span>x</span>
-                                                <span>1</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="product-delete text-right">
-                                            <button type="button" class="p-0 border-0" data-toggle="tooltip"
-                                                title="Xóa">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <hr class="m-0 ml-2 mr-2" />
-                                </div>
-
-                                <div class="component-show-fast-cart-items">
-                                    <div class="d-flex align-items-start pl-3 pr-3 pb-3">
-                                        <div class="position-relative product-image" data-toggle="tooltip"
-                                            title="Chanh tươi">
-                                            <a class="stretched-link" href="product-detail.html"></a>
-                                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                                class="w-100" alt="" />
-                                        </div>
-
-                                        <div class="product-info text-left">
-                                            <a href="product-detail.html" class="title text-decoration-none"
-                                                data-toggle="tooltip" title="Chanh tươi">Chanh tươi</a>
-
-                                            <div class="price mt-2">
-                                                <span>30.000</span>
-                                                <span><u>đ</u></span>
-                                                &nbsp;
-                                                <span>x</span>
-                                                <span>1</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="product-delete text-right">
-                                            <button type="button" class="p-0 border-0" data-toggle="tooltip"
-                                                title="Xóa">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <hr class="m-0 ml-2 mr-2" />
-                                </div>
+                                {{/each}}
                             </div>
 
                             <hr class="m-0 ml-2 mr-2" />

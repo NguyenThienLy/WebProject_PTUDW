@@ -12,4 +12,12 @@ router.get('/product-detail', controller.productDetail);
 
 router.get('/product-show', controller.productShow);
 
+router.get('/product-show/:idCat', controller.productShowFollowIdCat);
+
+router.get('/product-show/:idCat/:idSub', controller.productShowFollowIdSub);
+
+router.get('/add-product/:id', controller.addProductToSession);
+
+router.get('/add-product-combo/:id', controller.addProductComboToSession);
+
 module.exports = router;

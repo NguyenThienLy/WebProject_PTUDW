@@ -25,3 +25,10 @@ module.exports.formatShortContentInfo = function(value) {
 
     return value;
 };
+
+// Hàm định dạng title của product simple khi ở fastcart lấy 25 kí tự
+module.exports.formatTitleProductForFastCart = function(value) {
+    if (value.length > 25) return value.substr(0, 25) + "...";
+
+    return value;
+};

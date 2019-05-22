@@ -80,14 +80,14 @@
   width: 15%;
 }
 
-.component-show-fast-cart .component-show-fast-cart-items .product-delete > button {
+.component-show-fast-cart .component-show-fast-cart-items .product-delete > a {
   outline: none;
   background-color: transparent;
   font-size: 0.8rem;
   color: #6c757d;
 }
 
-.component-show-fast-cart .component-show-fast-cart-items .product-delete > button:hover {
+.component-show-fast-cart .component-show-fast-cart-items .product-delete > a:hover {
   color: #99cc00;
 }
 

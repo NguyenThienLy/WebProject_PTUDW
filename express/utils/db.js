@@ -49,5 +49,71 @@ module.exports = {
         connection.end();
       });
     });
+  },
+
+  update: (tableName, idField, entity) => {
+    return new Promise((resolve, reject) => {
+
+      var id = entity[idField];
+      delete entity[idField];
+
+      var sql = `update ${tableName} set ? where ${idField} = ?`;
+
+      var connection = CreateConnection();
+      connection.connect();
+ 
+      connection.query(sql, [entity, id], (error, value) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(value.changedRows);
+        }
+        connection.end();
+      });
+    });
+  },
+
+  update3Primarykey: (tableName, idField1, idField2, idField3, entity) => {
+    return new Promise((resolve, reject) => {
+
+      var id1 = entity[idField1];
+      var id2 = entity[idField2];
+      var id3 = entity[idField3];
+      delete entity[idField1];
+      delete entity[idField2];
+      delete entity[idField3];
+
+      var sql = `update ${tableName} set ? where ${idField1} = ? AND ${idField2} = ? AND ${idField3} = ?`;
+
+      var connection = CreateConnection();
+      connection.connect();
+
+      connection.query(sql, [entity, id1, id2, id3], (error, value) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(value.changedRows);
+        }
+        connection.end();
+      });
+    });
+  },
+
+  delete: (tableName, idField, id) => {
+    return new Promise((resolve, reject) => {
+      var sql = `delete from ${tableName} where ${idField} = ?`;
+
+      var connection = createConnection();
+      connection.connect();
+
+      connection.query(sql, id, (error, value) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(value.affectedRows);
+        }
+        connection.end();
+      });
+    });
   }
 };

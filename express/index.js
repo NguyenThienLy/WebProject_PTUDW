@@ -2,7 +2,7 @@ require("dotenv").config();
 
 var express = require("express");
 var exphbs = require("express-handlebars");
-var express_handlebars_sections = require('express-handlebars-sections');
+var express_handlebars_sections = require("express-handlebars-sections");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var morgan = require("morgan");
@@ -27,9 +27,9 @@ var adminAuthRoute = require("./routes/admin/auth.route");
 var adminAuthMiddleware = require("./middlewares/admin/auth.middleware");
 var adminSidebarActiveMiddleware = require("./middlewares/admin/sidebar/active.middleware");
 var adminSidebarQuantityBadgeMiddleware = require("./middlewares/admin/sidebar/quantity_badge.middleware");
-
 var customerCategoryMiddleware = require("./middlewares/customer/category.middleware");
-// var sessionMiddleware = require('./middlewares/session.middleware');
+var sessionMiddleware = require("./middlewares/customer/session.middleware");
+var showFastCartMiddleware = require("./middlewares/customer/show_fast_cart.middleware")
 
 var port = 3000;
 
@@ -42,10 +42,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 //app.use(sessionMiddleware);
 
+// Gọi formatStringHelper
+var formatStringHelper = require("./helpers/format_string_hide.helper");
+// Gọi formatPrice
+var formatPriceHelper =  require("./helpers/format_price.helper");
+
 const hbs = exphbs.create({
-  layoutsDir: "views/_layouts"
+  layoutsDir: "views/_layouts",
+  // Hàm định dạng title của product khi ở fast cart
+  helpers: {
+    formatTitleProductForFastCart: formatStringHelper.formatTitleProductForFastCart,
+    formatPrice: formatPriceHelper
+  }
 });
-express_handlebars_sections(hbs);  
+express_handlebars_sections(hbs);
 
 app.engine("hbs", hbs.engine);
 app.set("view engine", "hbs");
@@ -66,10 +76,34 @@ app.use("/admin/auth", adminAuthRoute);
 // app.use(customerCategoryMiddleware);
 /* customer */
 
-app.use("/customer/index", customerCategoryMiddleware, customerIndexRoute);
-app.use("/customer/product", customerCategoryMiddleware, customerProductRoute);
-app.use("/customer/info", customerCategoryMiddleware, customerInfoRoute);
-app.use("/customer/cart", customerCategoryMiddleware, customerCartRoute);
+app.use(
+  "/customer/index",
+  sessionMiddleware,
+  customerCategoryMiddleware,
+  showFastCartMiddleware,
+  customerIndexRoute
+);
+app.use(
+  "/customer/product",
+  sessionMiddleware,
+  customerCategoryMiddleware,
+  showFastCartMiddleware,
+  customerProductRoute,
+);
+app.use(
+  "/customer/info",
+  sessionMiddleware,
+  customerCategoryMiddleware,
+  showFastCartMiddleware,
+  customerInfoRoute
+);
+app.use(
+  "/customer/cart",
+  sessionMiddleware,
+  customerCategoryMiddleware,
+  showFastCartMiddleware,
+  customerCartRoute
+);
 
 app.use(
   "/admin/index",
