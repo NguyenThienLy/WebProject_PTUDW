@@ -12,12 +12,22 @@ router.get('/product-detail', controller.productDetail);
 
 router.get('/product-show', controller.productShow);
 
+// Hiển thị danh sách sản phẩm simple theo id cat
 router.get('/product-show/:idCat', controller.productShowFollowIdCat);
 
-router.get('/product-show/:idCat/:idSub', controller.productShowFollowIdSub);
+// Hiển thị danh sách sản phẩm simple theo id cat và id sub
+router.get('/product-show/:idCat/:idSub', controller.productShowFollowIdCatAndIdSub);
 
-router.get('/add-product/:id', controller.addProductToSession);
+// Thêm sản phẩm vào giỏ hàng theo id cat
+router.get('/add-product/:idCat/:idProSimple', controller.addProductFollowIdCatToSession);
 
-router.get('/add-product-combo/:id', controller.addProductComboToSession);
+// Thêm sản phẩm vào giỏ hàng theo id cat và id sub
+router.get('/add-product/:idCat/:idSub/:idProSimple', controller.addProductFollowIdCatAndIdSubToSession);
+
+// Thêm sản phẩm combo vào giỏ hàng theo id cat
+router.get('/add-product-combo/:idCat/:idSub/:idProCombo', controller.addProductComboFollowIdCatToSession);
+
+// Thêm sản phẩm combo vào giỏ hàng theo id cat và id sub
+router.get('/add-product-combo/:idCat/:idSub/:idProCombo', controller.addProductComboFollowIdCatAndIdSubToSession);
 
 module.exports = router;

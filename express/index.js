@@ -30,6 +30,7 @@ var adminSidebarQuantityBadgeMiddleware = require("./middlewares/admin/sidebar/q
 var customerCategoryMiddleware = require("./middlewares/customer/category.middleware");
 var sessionMiddleware = require("./middlewares/customer/session.middleware");
 var showFastCartMiddleware = require("./middlewares/customer/show_fast_cart.middleware")
+//var getIdCatIdSubMiddleware = require("./middlewares/customer/get_idSub_idCat.middleware")
 
 var port = 3000;
 
@@ -88,6 +89,7 @@ app.use(
   sessionMiddleware,
   customerCategoryMiddleware,
   showFastCartMiddleware,
+ // getIdCatIdSubMiddleware,
   customerProductRoute,
 );
 app.use(

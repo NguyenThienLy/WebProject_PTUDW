@@ -127,3 +127,12 @@ input:checked {
  background-color: rgba(0,0,0,0.3);
  z-index: 3;
 }
+
+.category-choosing {
+  background: #DEF794 !important;
+}
+
+.category-choosing:hover {
+  background: #DEF794 !important;
+}
+

@@ -10,8 +10,8 @@ var router = express.Router();
 
 router.get('/', controller.indexShow);
 
-router.get('/add-product/:id', controller.addProductToSession);
+router.get('/add-product/:idProductSimple', controller.addProductToSession);
 
-router.get('/add-product-combo/:id', controller.addProductComboToSession);
+router.get('/add-product-combo/:idProductCombo', controller.addProductComboToSession);
 
 module.exports = router;

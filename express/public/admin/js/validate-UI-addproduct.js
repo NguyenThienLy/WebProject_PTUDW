@@ -14,6 +14,8 @@ $("#add-product-form").on("submit", function () {
 
 $("#btn-submit-form").on("click", function () {
 
+    
+    
     if (validateTextArea() == true && validateImages() == true) {
 
     } else {
@@ -54,10 +56,7 @@ function validateImages() {
 //Hàm kiểm tra các trường đã được thêm đầy đủ vào UI hay chưa | Chỉ kiểm tra đối với area và hình ảnh
 function validateTextArea() {
 
-    //Lấy ra text từ người dùng
-    var content = $("iframe").contents().find("body").text();
-
-    if (content == "") {
+    if ($(".ck-content").last().html()=='<p><br data-cke-filler="true"></p>') {
         //Thông báo lỗi cho người dùng
         $('#alert-content').show("slow");
         

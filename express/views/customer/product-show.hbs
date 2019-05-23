@@ -372,7 +372,7 @@
     </div>
 
     <div class="row mt-5">
-        {{!-- load sản phẩm simple sale nhiều nhất --}}
+        {{!-- load sản phẩm simple theo thời gian đăng sớm nhất --}}
         {{#each this.products}}
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
             <div class="component-product-simple card w-100">
@@ -389,12 +389,12 @@
 
                     <img src={{IMAGE}} class="rounded-top w-100 h-100" alt="">
                     <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
-                        <a href="/customer/index/add-product/{{ID}}"
-                            class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                        <a href={{#if SUBCATEGORYID}}"/customer/product/add-product/{{CATEGORYID}}/{{SUBCATEGORYID}}/{{ID}}"{{else}}"/customer/product/add-product/{{CATEGORYID}}/{{ID}}"{{/if}}
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Mua ngay">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
-                        <a href="/customer/product/product-detail"
+                        <a href="/customer/product/product-detail/{{ID}}"
                             class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Xem nhanh">
                             <i class="fas fa-search"></i>
@@ -403,7 +403,8 @@
                 </div>
 
                 <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
+                    <a href="customer/product/product-detail/{{ID}}"
+                        class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
                     <div class="mt-1 d-flex justify-content-center">
                         <div class="price-sale">
                             <span>{{formatPrice SALEPRICE}}</span>
@@ -426,7 +427,7 @@
             </div>
         </div>
         {{/each}}
-        {{!-- load sản phẩm simple sale nhiều nhất --}}
+        {{!-- load sản phẩm simple theo thời gian đăng sớm nhất --}}
     </div>
 
     <div class="row justify-content-center mt-5">

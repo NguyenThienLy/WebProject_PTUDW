@@ -47,10 +47,10 @@ module.exports.indexShow = function(req, res, next) {
   }
 };
 
-module.exports.addProductToSession = function(req, res) {
+module.exports.addProductToSession = function(req, res, next) {
   try {
     // Lấy ID của product simple
-    var productId = req.params.id;
+    var productId = req.params.idProductSimple;
     // Lấy ID của product combo
     var sessionId = req.signedCookies.sessionId;
 
@@ -91,10 +91,10 @@ module.exports.addProductToSession = function(req, res) {
   }
 };
 
-module.exports.addProductComboToSession = function(req, res) {
+module.exports.addProductComboToSession = function(req, res, next) {
   try {
     // Lấy ID của product simple
-    var productComboId = req.params.id;
+    var productComboId = req.params.idProductCombo;
     // Lấy ID của product combo
     var sessionId = req.signedCookies.sessionId;
 

@@ -19,13 +19,39 @@ module.exports.addProduct = product => {
 
 // Hàm trả về 8 sản phẩm sắp xếp theo ngày đăng, theo id cat
 module.exports.top8ProductFollowIdCat = (idCat) => {
+  return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+									(CASE
+											WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+											ELSE pro.PRICE
+									END) AS SALEPRICE
+									FROM product AS pro 
+									WHERE pro.CATEGORYID = ${idCat}
+									ORDER BY CREATED
+									LIMIT 8;`);
+};
+
+// Hàm trả về 8 sản phẩm sắp xếp theo ngày đăng, theo id cat và id sub
+module.exports.top8ProductFollowIdCatAndIdSub = (idCat, idSub) => {
+  return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+									(CASE
+											WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+											ELSE pro.PRICE
+									END) AS SALEPRICE
+									FROM product AS pro
+									WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub}
+									ORDER BY CREATED
+									LIMIT 8;`);
+};
+
+// Hàm trả về 8 sản phẩm sắp xếp theo ngày đăng
+module.exports.top8ProductAscCreated = () => {
   return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE,
 									(CASE
 											WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
 											ELSE pro.PRICE
 									END) AS SALEPRICE
 									FROM product AS pro JOIN category cat 
-									ON pro.CATEGORYID = cat.ID AND cat.ID = ${idCat}
+									ON pro.CATEGORYID = cat.ID
 									ORDER BY CREATED
 									LIMIT 8;`);
 };

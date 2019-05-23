@@ -26,9 +26,9 @@
   left: 17%;
   bottom: 101%;
   transition: transform 300ms;
-  border: 1px solid #fff;
   height: 10rem;
-  width: 0;
+  width: 1px;
+  background: #fff;
 }
 
 .component-about-us .content-top:hover .item1 {
@@ -40,8 +40,8 @@
   top: 16%;
   left: 101%;
   transition: transform 300ms;
-  border: 1px solid #fff;
-  width: 12rem;
+  width: 1px;
+  background: #fff;
 }
 
 .component-about-us .content-top:hover .item2 {
@@ -53,8 +53,8 @@
   bottom: 16%;
   right: 101%;
   transition: transform 300ms;
-  border: 1px solid #fff;
-  width: 12rem;
+  width: 1px;
+  background: #fff;
 }
 
 .component-about-us .content-top:hover .item3 {
@@ -66,9 +66,9 @@
   right: 17%;
   top: 101%;
   transition: transform 300ms;
-  border: 1px solid #fff;
+  width: 1px;
+  background: #fff;
   height: 10rem;
-  width: 0;
 }
 
 .component-about-us .content-top:hover .item4 {

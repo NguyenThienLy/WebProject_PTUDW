@@ -4,6 +4,10 @@
 {{!-- responsive --}}
 <link href="/admin/css/responsive-product-add.css" rel="stylesheet" />
 {{!-- responsive --}}
+
+{{!--css --}}
+<link href="/admin/css/product-add.css" rel="stylesheet" />
+{{!--css --}}
 {{/section}}
 
 <!--Nội dung trang index-->
@@ -24,9 +28,9 @@
                 <div class="form-group row">
                     {{!--UI chọn ảnh và thêm ảnh --}}
                     <div class="col-12 row d-flex justify-content-center">
-                        <div class="col-4 mx-auto-top-bottom">
-                            <div class="card mx-auto">
-                                <img id="image_1" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto-top-bottom">
+                            <div class="card mx-auto main-img-product-add">
+                                <img id="image_1" class="card-img w-100 h-100" src="/uploads/IMG_NOTFOUND.jpg">
                                 <div
                                     class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                     <h6 class="card-title d-block">Hình đại diện</h6>
@@ -41,11 +45,11 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                             <div class="row">
-                                <div class="col-6 mx-auto-top-bottom">
-                                    <div class="card mx-auto">
-                                        <img id="image_2" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto-top-bottom">
+                                    <div class="card mx-auto small-img-product-add">
+                                        <img id="image_2" class="card-img w-100 h-100" src="/uploads/IMG_NOTFOUND.jpg">
                                         <div
                                             class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 1</h6>
@@ -60,9 +64,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 mx-auto-top-bottom">
-                                    <div class="card mx-auto">
-                                        <img id="image_3" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto-top-bottom">
+                                    <div class="card mx-auto small-img-product-add">
+                                        <img id="image_3" class="card-img w-100 h-100" src="/uploads/IMG_NOTFOUND.jpg">
                                         <div
                                             class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 2</h6>
@@ -80,9 +84,9 @@
                             </div>
 
                             <div class="row mt-2">
-                                <div class="col-6 mx-auto-top-bottom">
-                                    <div class="card mx-auto">
-                                        <img id="image_4" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto-top-bottom">
+                                    <div class="card mx-auto small-img-product-add">
+                                        <img id="image_4" class="card-img w-100 h-100" src="/uploads/IMG_NOTFOUND.jpg">
                                         <div
                                             class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 3</h6>
@@ -97,9 +101,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 mx-auto-top-bottom">
-                                    <div class="card mx-auto">
-                                        <img id="image_5" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto-top-bottom">
+                                    <div class="card mx-auto small-img-product-add">
+                                        <img id="image_5" class="card-img w-100 h-100" src="/uploads/IMG_NOTFOUND.jpg">
                                         <div
                                             class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                             <h6 class="card-title d-block">Hình 4</h6>
@@ -136,40 +140,61 @@
                                 placeholder="nhập vào tên sản phâm" required>
                         </div>
 
-                        <label for="selectProductType" class="mt-2"><b>Loại sản phẩm</b></label>
-                        <select name="SUBCATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType" required>
-                            {{#each this.subCategories}}
-                            <option value="{{ID}}">{{NAME}}</option>
-                            {{/each}}
-                        </select>
 
-                        <label for="selectProductType" class="mt-2"><b>Danh mục</b></label>
-                        <select name="CATEGORYID" class="custom-select my-1 mr-sm-2" id="selectProductType" required>
-                            {{#each this.categories}}
-                            <option value="{{ID}}">{{NAME}}</option>
-                            {{/each}}
-                        </select>
 
-                        <label for="selectProductSource" class="mt-2"><b>Nguồn gốc</b></label>
-                        <div>
-                            <select name="ORIGIN" class="custom-select my-1 mr-sm-2" id="selectProductSource" required>
-                                <option selected>Việt Nam</option>
-                                <option value="Mỹ">Mỹ</option>
-                                <option value="Trung Quốc">Trung Quốc</option>
-                                <option value="Nhật bản">Nhật bản</option>
-                                <option value="Úc">Úc</option>
-                                <option value="New Zealand">New Zealand</option>
-                            </select>
+
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="selectProductSource" class="mt-2"><b>Nguồn gốc</b></label>
+                                <div>
+                                    <select name="ORIGIN" class="custom-select mr-2" id="selectProductSource"
+                                        required>
+                                        <option selected>Việt Nam</option>
+                                        <option value="Mỹ">Mỹ</option>
+                                        <option value="Trung Quốc">Trung Quốc</option>
+                                        <option value="Nhật bản">Nhật bản</option>
+                                        <option value="Úc">Úc</option>
+                                        <option value="New Zealand">New Zealand</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="selectProductBrand" class="mt-2"><b>Thương hiệu</b></label>
+                                <div>
+                                    <select name="BRANDID" class="custom-select mr-2" id="selectProductBrand"
+                                        required>
+                                        {{#each this.brands}}
+                                        <option value="{{ID}}">{{NAME}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
 
-                        <label for="selectProductBrand" class="mt-2"><b>Thương hiệu</b></label>
-                        <div>
-                            <select name="BRANDID" class="custom-select my-1 mr-sm-2" id="selectProductBrand" required>
-                                {{#each this.brands}}
-                                <option value="{{ID}}">{{NAME}}</option>
-                                {{/each}}
-                            </select>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="selectProductType" class="mt-2"><b>Danh mục</b></label>
+                                <select name="CATEGORYID" class="custom-select mr-2" id="selectProductType"
+                                    required>
+                                    {{#each this.categories}}
+                                    <option value="{{ID}}">{{NAME}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="selectProductType" class="mt-2"><b>Loại sản phẩm</b></label>
+                                <select name="SUBCATEGORYID" class="custom-select mr-2" id="selectProductType"
+                                    required>
+                                    {{#each this.subCategories}}
+                                    <option value="{{ID}}">{{NAME}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
                         </div>
+
+
                     </div>
 
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
