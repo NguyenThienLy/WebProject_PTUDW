@@ -25,10 +25,14 @@ module.exports.productShow = function(req, res, next) {
     // // Lấy id của category
     // var idCat = req.params.idCat;
 
-    Promise.all([productModel.top8ProductAscCreated()]).then(values => {
+    Promise.all([
+      productModel.top8ProductAscCreated(),
+      productComboModel.top6ProductComboAscCreated()
+    ]).then(values => {
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         products: values[0],
+        productsCombo: values[1],
         helpers: {
           // Hàm chuyển đổi qua kiểu ngày
           convertToDate: convertToDateHelper,
@@ -55,9 +59,17 @@ module.exports.productShowFollowIdCat = function(req, res, next) {
     // Lấy id của category
     var idCat = req.params.idCat;
 
-    Promise.all([productModel.top8ProductFollowIdCat(idCat)]).then(values => {
-      // Gán sub = 0 để hiển thị đang chọn cat
+    Promise.all([
+      productModel.top8ProductFollowIdCat(idCat),
+      productComboModel.top6ProductComboFollowIdCat(idCat)
+    ]).then(values => {
+      // Gán sub = 0 để hiển thị đang chọn category, lấy id này thể hiện ở đường dẫn
       for (product of values[0]) {
+        product.SUBCATEGORYID = 0;
+      }
+
+      // Gán sub = 0 để hiển thị đang chọn category, lấy id này thể hiện ở đường dẫn
+      for (productCombo of values[1]) {
         product.SUBCATEGORYID = 0;
       }
 
@@ -69,6 +81,7 @@ module.exports.productShowFollowIdCat = function(req, res, next) {
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         products: values[0],
+        productsCombo: values[1],
         idCategory: idCat,
         idSubCategory: 0,
         helpers: {
@@ -100,9 +113,9 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res) {
     var idSub = req.params.idSub;
 
     Promise.all([
-      productModel.top8ProductFollowIdCatAndIdSub(idCat, idSub)
+      productModel.top8ProductFollowIdCatAndIdSub(idCat, idSub),
+      productComboModel.top6ProductComboFollowIdCatAndIdSub(idCat, idSub)
     ]).then(values => {
-
       // console.log(res.locals.lcCategories);
       // id cat và id sub đang được chọn
       for (category of res.locals.lcCategories) {
@@ -121,6 +134,7 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res) {
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         products: values[0],
+        productsCombo: values[1],
         helpers: {
           // Hàm chuyển đổi qua kiểu ngày
           convertToDate: convertToDateHelper,
@@ -248,8 +262,8 @@ module.exports.addProductComboFollowIdCatToSession = function(req, res, next) {
   try {
     // Lấy ID của category
     var idCat = req.params.idCat;
-    // Lấy ID của product simple
-    var productComboId = req.params.id;
+    // Lấy ID của product combo
+    var productComboId = req.params.idProCombo;
     // Lấy ID signed cookies combo
     var sessionId = req.signedCookies.sessionId;
 
@@ -278,7 +292,7 @@ module.exports.addProductComboFollowIdCatToSession = function(req, res, next) {
         // Tăng số lượng sản phẩm  trong giỏ hàng
       } else {
         // Tăng quantity lên 1 đơn vị
-        session_cart.QUANTITY = sessionCarts[index].QUANTITY++;
+        session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
 
         sessionCartModel.update3PrimaryKey(session_cart).then(result => {
           console.log(result);
@@ -302,16 +316,16 @@ module.exports.addProductComboFollowIdCatAndIdSubToSession = function(
     var idCat = req.params.idCat;
     // Lấy ID của sub category
     var idSub = req.params.idSub;
-    // Lấy ID của product simple
-    var productId = req.params.idProSimple;
+    // Lấy ID của product combo
+    var productComboId = req.params.idProCombo;
     // Lấy ID signed cookies combo
     var sessionId = req.signedCookies.sessionId;
 
     // Đối tượng session cart dành cho product
     var session_cart = {
       ID: sessionId,
-      PRODUCT_ID: productId,
-      PRODUCT_COMBO_ID: 0,
+      PRODUCT_ID: 0,
+      PRODUCT_COMBO_ID: productComboId,
       QUANTITY: 1,
       IS_LOGIN: 0
     };

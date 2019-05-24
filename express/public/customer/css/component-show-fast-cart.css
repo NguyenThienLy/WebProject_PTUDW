@@ -47,6 +47,10 @@
   width: 30%;
 }
 
+.component-show-fast-cart .component-show-fast-cart-items .product-image .image-combo{
+  width: 33%;
+}
+
 .component-show-fast-cart .component-show-fast-cart-items .product-info {
   width: 50%;
   margin-left: 5%;

@@ -372,12 +372,12 @@
     </div>
 
     <div class="row mt-5">
-        {{!-- load sản phẩm simple theo thời gian đăng sớm nhất --}}
+        {{!-- load sản phẩm simple theo các giá trị của filter --}}
         {{#each this.products}}
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
             <div class="component-product-simple card w-100">
                 <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="{{NAME}}">
-                    <a class="stretched-link" href="/customer/product/product-detail"></a>
+                    <a class="stretched-link" href="/customer/product/product-detail/product-simple/{{ID}}"></a>
 
                     {{!-- Nếu có giảm giá mới hiện ra --}}
                     {{#if SALE}}
@@ -394,7 +394,7 @@
                             data-toggle="tooltip" title="Mua ngay">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
-                        <a href="/customer/product/product-detail/{{ID}}"
+                        <a href="/customer/product/product-detail/product-simple/{{ID}}"
                             class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Xem nhanh">
                             <i class="fas fa-search"></i>
@@ -403,7 +403,7 @@
                 </div>
 
                 <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="customer/product/product-detail/{{ID}}"
+                    <a href="customer/product/product-detail/product-simple/{{ID}}"
                         class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
                     <div class="mt-1 d-flex justify-content-center">
                         <div class="price-sale">
@@ -427,7 +427,7 @@
             </div>
         </div>
         {{/each}}
-        {{!-- load sản phẩm simple theo thời gian đăng sớm nhất --}}
+        {{!-- load sản phẩm simple theo các giá trị của filter --}}
     </div>
 
     <div class="row justify-content-center mt-5">
@@ -453,26 +453,33 @@
     </div>
 
     <div class="row mt-5">
+        {{!-- Load sản phẩm combo theo các giá trị của filter  --}}
+        {{#each this.productsCombo}}
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
             <div class="component-product-combo card font-weight-bold w-100">
-                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
-                    title="Baby combo - combo rau hữu cơ Nhật cho bé">
+                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip" title="{{NAME}}">
                     <div class="position-relative d-flex h-100">
-                        <a href="product-detail.html" class="stretched-link"></a>
-                        <img class="image-product-1"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/13.jpg?v=1553634599460" alt="" />
-                        <img class="image-product-2"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/38f5a71fcbd96417784fa367c87816.jpg?v=1553634593250"
-                            alt="" />
-                        <img class="image-product-3"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/16.jpg?v=1553634590390" alt="" />
+                        <a href="customer/product/product-detail/product-combo/{{ID}}" class="stretched-link"></a>
+
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+                        {{#if SALE}}
+                        <div id="sale-image" class="position-absolute d-flex justify-content-center ml-2">
+                            -{{SALE}}%
+                        </div>
+                        {{/if}}
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+
+                        <img class="image-product-1" src={{IMAGE1}} alt="" />
+                        <img class="image-product-2" src={{IMAGE2}} alt="" />
+                        <img class="image-product-3" src={{IMAGE3}} alt="" />
                     </div>
                     <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a href="#" class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                        <a href={{#if SUBCATEGORYID}}"/customer/product/add-product-combo/{{CATEGORYID}}/{{SUBCATEGORYID}}/{{ID}}"{{else}}"/customer/product/add-product/{{CATEGORYID}}/{{ID}}"{{/if}}
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Mua ngay">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
-                        <a href="product-detail.html"
+                        <a href="customer/product/product-detail/product-combo/{{ID}}"
                             class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Xem nhanh">
                             <i class="fas fa-search"></i>
@@ -481,253 +488,33 @@
                 </div>
 
                 <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0" data-toggle="tooltip"
-                        title="Baby combo - combo rau hữu cơ Nhật cho bé">Baby combo - combo rau hữu cơ Nhật cho bé</a>
+                    <a href="customer/product/product-detail/product-combo/{{ID}}" class="title card-title m-0" data-toggle="tooltip"
+                        title="Baby combo - combo rau hữu cơ Nhật cho bé">{{formatTitleProductCombo NAME}}</a>
                     <div class="m-0 d-flex justify-content-center">
                         <div class="price-sale">
-                            <span>123.500</span>
+                            <span>{{formatPrice SALEPRICE}}</span>
                             <span><u>đ</u></span>
                         </div>
+
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+                        {{#if SALE}}
                         <div class="price-old">
                             <del class="ml-2">
-                                135.000
+                                {{formatPrice PRICE}}
                                 <span><u>đ</u></span>
                             </del>
                         </div>
+                        {{/if}}
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+
                     </div>
                 </div>
             </div>
         </div>
+        {{/each}}
+        {{!-- load sản phẩm combo theo các giá trị của filter--}}
 
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
-            <div class="component-product-combo card font-weight-bold w-100">
-                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
-                    title="Baby combo - combo rau hữu cơ Nhật cho bé">
-                    <div class="position-relative d-flex h-100">
-                        <a href="product-detail.html" class="stretched-link"></a>
-                        <img class="image-product-1"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/13.jpg?v=1553634599460" alt="" />
-                        <img class="image-product-2"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/38f5a71fcbd96417784fa367c87816.jpg?v=1553634593250"
-                            alt="" />
-                        <img class="image-product-3"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/16.jpg?v=1553634590390" alt="" />
-                    </div>
-                    <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a href="#" class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0" data-toggle="tooltip"
-                        title="Baby combo - combo rau hữu cơ Nhật cho bé">Baby combo - combo rau hữu cơ Nhật cho bé</a>
-                    <div class="m-0 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>123.500</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-2">
-                                135.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
-            <div class="component-product-combo card font-weight-bold w-100">
-                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
-                    title="Baby combo - combo rau hữu cơ Nhật cho bé">
-                    <div class="position-relative d-flex h-100">
-                        <a href="product-detail.html" class="stretched-link"></a>
-                        <img class="image-product-1"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/13.jpg?v=1553634599460" alt="" />
-                        <img class="image-product-2"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/38f5a71fcbd96417784fa367c87816.jpg?v=1553634593250"
-                            alt="" />
-                        <img class="image-product-3"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/16.jpg?v=1553634590390" alt="" />
-                    </div>
-                    <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a href="#" class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0" data-toggle="tooltip"
-                        title="Baby combo - combo rau hữu cơ Nhật cho bé">Baby combo - combo rau hữu cơ Nhật cho bé</a>
-                    <div class="m-0 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>123.500</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-2">
-                                135.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
-            <div class="component-product-combo card font-weight-bold w-100">
-                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
-                    title="Baby combo - combo rau hữu cơ Nhật cho bé">
-                    <div class="position-relative d-flex h-100">
-                        <a href="product-detail.html" class="stretched-link"></a>
-                        <img class="image-product-1"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/13.jpg?v=1553634599460" alt="" />
-                        <img class="image-product-2"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/38f5a71fcbd96417784fa367c87816.jpg?v=1553634593250"
-                            alt="" />
-                        <img class="image-product-3"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/16.jpg?v=1553634590390" alt="" />
-                    </div>
-                    <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a href="#" class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0" data-toggle="tooltip"
-                        title="Baby combo - combo rau hữu cơ Nhật cho bé">Baby combo - combo rau hữu cơ Nhật cho bé</a>
-                    <div class="m-0 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>123.500</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-2">
-                                135.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
-            <div class="component-product-combo card font-weight-bold w-100">
-                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
-                    title="Baby combo - combo rau hữu cơ Nhật cho bé">
-                    <div class="position-relative d-flex h-100">
-                        <a href="product-detail.html" class="stretched-link"></a>
-                        <img class="image-product-1"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/13.jpg?v=1553634599460" alt="" />
-                        <img class="image-product-2"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/38f5a71fcbd96417784fa367c87816.jpg?v=1553634593250"
-                            alt="" />
-                        <img class="image-product-3"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/16.jpg?v=1553634590390" alt="" />
-                    </div>
-                    <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a href="#" class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0" data-toggle="tooltip"
-                        title="Baby combo - combo rau hữu cơ Nhật cho bé">Baby combo - combo rau hữu cơ Nhật cho bé</a>
-                    <div class="m-0 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>123.500</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-2">
-                                135.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
-            <div class="component-product-combo card font-weight-bold w-100">
-                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
-                    title="Baby combo - combo rau hữu cơ Nhật cho bé">
-                    <div class="position-relative d-flex h-100">
-                        <a href="product-detail.html" class="stretched-link"></a>
-                        <img class="image-product-1"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/13.jpg?v=1553634599460" alt="" />
-                        <img class="image-product-2"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/38f5a71fcbd96417784fa367c87816.jpg?v=1553634593250"
-                            alt="" />
-                        <img class="image-product-3"
-                            src="//bizweb.dktcdn.net/thumb/large/100/350/980/products/16.jpg?v=1553634590390" alt="" />
-                    </div>
-                    <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a href="#" class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Mua ngay">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                        <a href="product-detail.html"
-                            class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                            data-toggle="tooltip" title="Xem nhanh">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="product-detail.html" class="title card-title m-0" data-toggle="tooltip"
-                        title="Baby combo - combo rau hữu cơ Nhật cho bé">Baby combo - combo rau hữu cơ Nhật cho bé</a>
-                    <div class="m-0 d-flex justify-content-center">
-                        <div class="price-sale">
-                            <span>123.500</span>
-                            <span><u>đ</u></span>
-                        </div>
-                        <div class="price-old">
-                            <del class="ml-2">
-                                135.000
-                                <span><u>đ</u></span>
-                            </del>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="row justify-content-center mt-5">
