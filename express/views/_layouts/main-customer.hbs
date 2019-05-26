@@ -140,14 +140,14 @@
                                     {{!-- Nếu category ko có sản phẩm nào --}}
                                     {{/each}}
 
-                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectCombo}}category-choosing{{/if}}"
+                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectComboCategory}}category-choosing{{/if}}"
                                         href="/customer/product/product-combo-show">Combo
                                         <span
                                             class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductCombo}}</span>
                                     </a>
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectAll}}category-choosing{{/if}}"
+                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectAllCategory}}category-choosing{{/if}}"
                                         href="/customer/product/product-all-show">Tất cả
                                         <span
                                             class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductAll}}</span>

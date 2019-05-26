@@ -10,6 +10,9 @@ var newsModel = require("../../models/news.model");
 var sessionCartModel = require("../../models/session_cart.model");
 // Gọi sessionCartModel
 var sessionCartModel = require("../../models/session_cart.model");
+// Gọi brandModel
+var brandModel = require("../../models/brand.model");
+
 
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
@@ -23,6 +26,16 @@ var typeSortArray = [
   { checked: false, name: "Giá tăng dần", value: 2 },
   { checked: false, name: "Giá giảm dần", value: 3 }
 ];
+
+// Mảng giá filter của product show
+var priceFilterArray = [
+  { checked: false, name: "Giá dưới 100,000đ", value: 1 },
+  { checked: false, name: "100,000đ - 200,000đ", value: 2 },
+  { checked: false, name: "200,000đ - 300,000đ", value: 3 },
+  { checked: false, name: "300,000đ - 500,000đ", value: 4 },
+  { checked: false, name: "500,000đ - 1,000,000đ", value: 5 },
+  { checked: false, name: "Giá trên 1.000.000đ", value: 6 },
+]
 
 function funcTypeSort(req) {
   // Loại sắp xếp
@@ -60,7 +73,8 @@ module.exports.productAllShow = function(req, res, next) {
 
     Promise.all([
       productModel.topNProductAscCreated(typeSort, 8),
-      productComboModel.topNProductComboAscCreated(typeSort, 6)
+      productComboModel.topNProductComboAscCreated(typeSort, 6),
+      brandModel.allBrandWithDetail()
     ]).then(values => {
       // Đang hiện tất cả
       for (product of values[0]) {
@@ -78,10 +92,15 @@ module.exports.productAllShow = function(req, res, next) {
         layout: "main-customer.hbs",
         products: values[0],
         productsCombo: values[1],
-        isSelectAll: true,
+        brands: values[2],
+        isSelectAllCategory: true,
+        isSelectAllSort: true,
+        isSelectAllBrand: true, 
+        isSelectAllPrice: true,
         isShowSimple: true,
         isShowCombo: true,
         typeSorts: typeSortArray,
+        priceFilters: priceFilterArray,
         helpers: {
           // Hàm định dạng title của product simple lấy 36 kí tự
           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
@@ -104,7 +123,8 @@ module.exports.productComboShow = function(req, res, next) {
     // Hàm dùng để xử lí các kiểu sắp xếp sản phẩm
     var typeSort = funcTypeSort(req);
 
-    Promise.all([productComboModel.topNProductComboAscCreated(typeSort, 12)]).then(
+    Promise.all([productComboModel.topNProductComboAscCreated(typeSort, 12),
+                brandModel.allBrandWithDetail()]).then(
       values => {
         // Không phải đang hiện tất cả
         for (productCombo of values[0]) {
@@ -114,9 +134,15 @@ module.exports.productComboShow = function(req, res, next) {
         res.render("customer/product-show", {
           layout: "main-customer.hbs",
           productsCombo: values[0],
+          brands: values[1],
           isShowSimple: false,
           isShowCombo: true,
-          isSelectCombo: true,
+          isSelectComboCategory: true,
+          isSelectComboSort: true,
+          isSelectAllBrand: true, 
+          isSelectAllPrice: true,
+          typeSorts: typeSortArray,
+          priceFilters: priceFilterArray,
           helpers: {
             // Hàm định dạng title của product combo lấy 52 kí tự
             formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
@@ -143,7 +169,8 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
     //console.log(typeSortValue);
 
     Promise.all([
-      productModel.topNProductFollowIdCatAndIdSub(idCat, idSub, typeSort, 16)
+      productModel.topNProductFollowIdCatAndIdSub(idCat, idSub, typeSort, 16),
+      brandModel.allBrandWithDetail()
     ]).then(values => {
       // Cài đặt các thuộc tính hỗ trợ
       for (product of values[0]) {
@@ -166,12 +193,16 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         products: values[0],
+        brands: values[1],
         isShowSimple: true,
         isShowCombo: false,
-        isSelectSimple: true,
+        isSelectSimpleSort: true,
+        isSelectAllBrand: true, 
+        isSelectAllPrice: true,
         idCategory: idCat,
         idSubCategory: idSub,
         typeSorts: typeSortArray,
+        priceFilters: priceFilterArray,
         helpers: {
           // Hàm định dạng title của product simple lấy 36 kí tự
           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple
