@@ -8,14 +8,20 @@ module.exports = function(req, res, next) {
 
   Promise.all([
     sessionCartModel.quantityFollowID(sessionId),
-    sessionCartModel.allRowDetailFollowID(sessionId)
+    sessionCartModel.allRowProductSimpleFollowID(sessionId),
+    sessionCartModel.allRowProductComboFollowID(sessionId)
   ]).then(values => {
     // Nếu giỏ hàng trống gán giỏ hàng bằng 0.
-    if (values[0][0].QUANTITY == null) 
-      values[0][0].QUANTITY;
-      
-    res.locals.quantityProduct = values[0][0].QUANTITY;
-    res.locals.cartProducts = values[1];
+    if (values[0][0].QUANTITY == null) {
+      res.locals.quantityProduct = 0;
+    }
+    else {
+      res.locals.quantityProduct = values[0][0].QUANTITY;
+      // Gán các mặt hàng của sản phâm simple
+      res.locals.cartProducts = values[1];
+      // Gán các mặt hàng của sản phẩm combo
+      res.locals.cartProductsCombo = values[2];
+    }  
 
     next();
   });

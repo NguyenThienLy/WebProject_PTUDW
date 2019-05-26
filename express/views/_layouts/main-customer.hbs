@@ -103,11 +103,12 @@
                                     {{#each lcCategories}}
                                     {{!-- Nếu category ko có sản phẩm nào --}}
                                     {{#if QUANTITYCAT}}
-                                    <div class="dropdown-item position-relative pr-3 {{#if isChoose}}category-choosing{{/if}}">
-                                        <a href="/customer/product/product-show/{{IDCAT}}"
+                                    <div
+                                        class="dropdown-item position-relative pr-3 {{#if isChoose}}category-choosing{{/if}}">
+                                        <a href="/customer/product/product-show/{{IDCAT}}/0"
                                             class="stretched-link d-flex align-items-center justify-content-between">
-                                            {{NAMECAT}} &emsp;
-                                            <span class="badge badge-success">{{QUANTITYCAT}}</span>
+                                            {{NAMECAT}}
+                                            <span class="badge ml-1 badge-success badge-pill">{{QUANTITYCAT}}</span>
                                             <i class="fas fa-angle-right ml-3"></i>
                                         </a>
                                         <div class="card sub-dropdown-item">
@@ -115,8 +116,10 @@
                                             {{#if QUANTITYCAT}}
                                             {{#each SUB}}
                                             {{#if QUANTITYSUB}}
-                                            <a class="dropdown-item {{#if isChoose}}category-choosing{{/if}}" href="/customer/product/product-show/{{IDCAT}}/{{IDSUB}}">{{NAMESUB}}&emsp;
-                                                <span class="badge badge-success">{{QUANTITYSUB}}</span>
+                                            <a class="dropdown-item {{#if isChoose}}category-choosing{{/if}}"
+                                                href="/customer/product/product-show/{{IDCAT}}/{{IDSUB}}">{{NAMESUB}}
+                                                <span
+                                                    class="badge ml-1 badge-success badge-pill">{{QUANTITYSUB}}</span>
                                             </a>
                                             {{else}}
                                             <a class="dropdown-item disabled" href="javascript:void(0);">{{NAMESUB}}
@@ -129,8 +132,7 @@
                                     </div>
                                     {{else}}
                                     <div class="disabled dropdown-item pr-3">
-                                        <a href="javascript:void(0);"
-                                            class="disabled">
+                                        <a href="javascript:void(0);" class="disabled">
                                             {{NAMECAT}}
                                         </a>
                                     </div>
@@ -138,8 +140,18 @@
                                     {{!-- Nếu category ko có sản phẩm nào --}}
                                     {{/each}}
 
+                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectCombo}}category-choosing{{/if}}"
+                                        href="/customer/product/product-combo-show">Combo
+                                        <span
+                                            class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductCombo}}</span>
+                                    </a>
+
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/customer/product/product-show">Tất cả</a>
+                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectAll}}category-choosing{{/if}}"
+                                        href="/customer/product/product-all-show">Tất cả
+                                        <span
+                                            class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductAll}}</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -182,36 +194,37 @@
                             <p class="quantity m-0">{{quantityProduct}}</p>
                         </div>
 
-                        <!-- <div class="component-show-fast-cart-container"> -->
+                        <!-- Không có sản phẩm trong giỏ thì không hiên danh sách sản phẩm -->
+                        {{#if quantityProduct}}
                         <div class="component-show-fast-cart card mt-3">
                             <div class="style-scrollbar mt-3">
-                                {{#if quantityProduct}}
+                                {{!-- Các mặt hàng đã chọn của product simple --}}
                                 {{#each cartProducts}}
                                 <div class="component-show-fast-cart-items">
                                     <div class="d-flex align-items-center pl-3 pr-3 pb-3">
                                         <div class="position-relative product-image" data-toggle="tooltip"
                                             title="{{NAME}}">
-                                            <a class="stretched-link" href="/customer/product/product-detail"></a>
-                                            <img src="{{IMAGE}}"
-                                                class="w-100" alt="" />
+                                            <a class="stretched-link"
+                                                href="/customer/product/product-detail/product-simple/{{ID}}"></a>
+                                            <img src="{{IMAGE}}" class="w-100" alt="" />
                                         </div>
 
                                         <div class="product-info text-left">
-                                            <a href="/customer/product/product-detail" class="title text-decoration-none"
-                                                data-toggle="tooltip" title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
+                                            <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                                                class="title text-decoration-none" data-toggle="tooltip"
+                                                title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
                                             <div class="price mt-2">
                                                 <span>{{formatPrice SALEPRICE}}</span>
                                                 <span><u>đ</u></span>
                                                 &nbsp;
                                                 <span>x</span>
-                                                <span>{{QUANTITY_RS}}</span>
+                                                <span>{{QUANTITY_PRO}}</span>
                                             </div>
                                         </div>
 
                                         <div class="product-delete text-right">
-                                            <button href="#" class="p-0 border-0" data-toggle="tooltip"
-                                                title="Xóa">
+                                            <button href="#" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
@@ -219,7 +232,46 @@
                                     <hr class="m-0 ml-2 mr-2" />
                                 </div>
                                 {{/each}}
-                                {{/if}}
+                                {{!-- Các mặt hàng đã chọn của product combo --}}
+
+                                {{!-- Các mặt hàng đã chọn của product combo --}}
+                                {{#each cartProductsCombo}}
+                                <div class="component-show-fast-cart-items">
+                                    <div class="d-flex align-items-center pl-3 pr-3 pb-3">
+                                        <div class="position-relative product-image pt-3 pb-3" data-toggle="tooltip"
+                                            title="{{NAME}}">
+                                            <a class="stretched-link"
+                                                href="/customer/product/product-detail/product-combo/{{ID}}"></a>
+                                            <img src="{{IMAGE1}}" class="image-combo" alt="" />
+                                            <img src="{{IMAGE2}}" class="image-combo" alt="" />
+                                            <img src="{{IMAGE3}}" class="image-combo" alt="" />
+                                        </div>
+
+                                        <div class="product-info text-left">
+                                            <a href="/customer/product/product-detail/product-combo/{{ID}}"
+                                                class="title text-decoration-none" data-toggle="tooltip"
+                                                title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
+
+                                            <div class="price mt-2">
+                                                <span>{{formatPrice SALEPRICE}}</span>
+                                                <span><u>đ</u></span>
+                                                &nbsp;
+                                                <span>x</span>
+                                                <span>{{QUANTITY_PRO}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="product-delete text-right">
+                                            <button href="#" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr class="m-0 ml-2 mr-2" />
+                                </div>
+                                {{/each}}
+                                {{!-- Các mặt hàng đã chọn của product combo --}}
+
                             </div>
 
                             <hr class="m-0 ml-2 mr-2" />
@@ -233,13 +285,14 @@
                                     </div>
                                 </div>
 
-                                <a href="cart-detail.html"
+                                <a href="/customer/cart/cart-detail"
                                     class="btn btn-outline-success mt-3 d-flex justify-content-center align-items-center font-weight-bold text-decoration-none p-2">
                                     Tiến hành thanh toán&ensp;<i class="fas fa-dollar-sign"></i>
                                 </a>
                             </div>
                         </div>
-                        <!-- </div> -->
+                        {{/if}}
+                        <!-- Không có sản phẩm trong giỏ thì không hiên danh sách sản phẩm -->
                     </i>
                 </div>
 

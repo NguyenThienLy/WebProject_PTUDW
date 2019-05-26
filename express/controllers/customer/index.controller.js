@@ -121,7 +121,7 @@ module.exports.addProductComboToSession = function(req, res, next) {
         });
       } else {
         // Tăng quantity lên 1 đơn vị
-        session_cart.QUANTITY = sessionCarts[index].QUANTITY++;
+        session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
 
         sessionCartModel.update3PrimaryKey(session_cart).then(result => {
           console.log(result);
