@@ -16,86 +16,77 @@ var formatStringHelper = require("../../helpers/format_string_hide.helper");
 // Gọi convertToDateHelper
 var convertToDateHelper = require("../../helpers/convert_to_date.helper");
 
+// Mảng sort của product show
+var typeSortArray = [
+  { checked: false, name: "Hàng mới nhất", value: 0 },
+  { checked: false, name: "Hàng cũ nhất", value: 1 },
+  { checked: false, name: "Giá tăng dần", value: 2 },
+  { checked: false, name: "Giá giảm dần", value: 3 }
+];
+
+function funcTypeSort(req) {
+  // Loại sắp xếp
+  // 1 sản phẩm mới nhất
+  // 2 sản phẩm cũ nhất
+  // 3 sản phẩm giá tăng dần
+  // 4 sản phẩm giá giảm dần
+  var typeSort = 0;
+
+  typeSort = +req.body.radioSortProductShow;
+
+  // Nếu không phải là các trường hợp sort thì gán mặc định bằng 0
+  if (isNaN(typeSort) == true) typeSort = 0;
+
+  // Phục hồi checked = false
+  for (type of typeSortArray) type.checked = false;
+  // Gán radio đó dược checked
+  typeSortArray[typeSort].checked = true;
+
+  return typeSort;
+}
+
 module.exports.productDetail = function(req, res) {
   res.render("customer/product-detail", { layout: "main-customer.hbs" });
 };
 
-module.exports.productShow = function(req, res, next) {
+// Hàm hiển thị product simple và product combo
+module.exports.productAllShow = function(req, res, next) {
   try {
     // // Lấy id của category
     // var idCat = req.params.idCat;
 
-    Promise.all([
-      productModel.top8ProductAscCreated(),
-      productComboModel.top6ProductComboAscCreated()
-    ]).then(values => {
-      res.render("customer/product-show", {
-        layout: "main-customer.hbs",
-        products: values[0],
-        productsCombo: values[1],
-        helpers: {
-          // Hàm chuyển đổi qua kiểu ngày
-          convertToDate: convertToDateHelper,
-          // Hàm định dạng title của product simple lấy 36 kí tự
-          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
-          // Hàm định dạng title của product combo lấy 52 kí tự
-          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
-          // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo,
-          // Hàm định dạng short content của info lấy 320 kí tự
-          formatShortContentInfo: formatStringHelper.formatShortContentInfo
-          // Hàm định dạng title của product khi ở fast cart
-        }
-      });
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// Hàm hiển thị product theo id category
-module.exports.productShowFollowIdCat = function(req, res, next) {
-  try {
-    // Lấy id của category
-    var idCat = req.params.idCat;
+    // Hàm dùng để xử lí các kiểu sắp xếp sản phẩm
+    var typeSort = funcTypeSort(req);
 
     Promise.all([
-      productModel.top8ProductFollowIdCat(idCat),
-      productComboModel.top6ProductComboFollowIdCat(idCat)
+      productModel.topNProductAscCreated(typeSort, 8),
+      productComboModel.topNProductComboAscCreated(typeSort, 6)
     ]).then(values => {
-      // Gán sub = 0 để hiển thị đang chọn category, lấy id này thể hiện ở đường dẫn
+      // Đang hiện tất cả
       for (product of values[0]) {
+        product.isSelectAll = true;
+        product.CATEGORYID = 0;
         product.SUBCATEGORYID = 0;
       }
 
-      // Gán sub = 0 để hiển thị đang chọn category, lấy id này thể hiện ở đường dẫn
+      // Đang hiện tất cả
       for (productCombo of values[1]) {
-        product.SUBCATEGORYID = 0;
-      }
-
-      // id cat đang được chọn
-      for (category of res.locals.lcCategories) {
-        if (category.IDCAT === +idCat) category.isChoose = true;
+        productCombo.isSelectAll = true;
       }
 
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         products: values[0],
         productsCombo: values[1],
-        idCategory: idCat,
-        idSubCategory: 0,
+        isSelectAll: true,
+        isShowSimple: true,
+        isShowCombo: true,
+        typeSorts: typeSortArray,
         helpers: {
-          // Hàm chuyển đổi qua kiểu ngày
-          convertToDate: convertToDateHelper,
           // Hàm định dạng title của product simple lấy 36 kí tự
           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
           // Hàm định dạng title của product combo lấy 52 kí tự
-          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
-          // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo,
-          // Hàm định dạng short content của info lấy 320 kí tự
-          formatShortContentInfo: formatStringHelper.formatShortContentInfo
-          // Hàm định dạng title của product khi ở fast cart
+          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
         }
       });
     });
@@ -104,19 +95,62 @@ module.exports.productShowFollowIdCat = function(req, res, next) {
   }
 };
 
-// Hàm hiển thị product theo id sub category
-module.exports.productShowFollowIdCatAndIdSub = function(req, res) {
+// Hàm hiển thị product compo
+module.exports.productComboShow = function(req, res, next) {
+  try {
+    // // Lấy id của category
+    // var idCat = req.params.idCat;
+
+    // Hàm dùng để xử lí các kiểu sắp xếp sản phẩm
+    var typeSort = funcTypeSort(req);
+
+    Promise.all([productComboModel.topNProductComboAscCreated(typeSort, 12)]).then(
+      values => {
+        // Không phải đang hiện tất cả
+        for (productCombo of values[0]) {
+          productCombo.isSelectAll = false;
+        }
+
+        res.render("customer/product-show", {
+          layout: "main-customer.hbs",
+          productsCombo: values[0],
+          isShowSimple: false,
+          isShowCombo: true,
+          isSelectCombo: true,
+          helpers: {
+            // Hàm định dạng title của product combo lấy 52 kí tự
+            formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
+          }
+        });
+      }
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Hàm hiển thị product theo id category và id sub category
+module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
   try {
     // Lấy id của category
-    var idCat = req.params.idCat;
+    var idCat = +req.params.idCat;
     // Lấy id của sub category
-    var idSub = req.params.idSub;
+    var idSub = +req.params.idSub;
+
+    // Hàm dùng để xử lí các kiểu sắp xếp sản phẩm
+    var typeSort = funcTypeSort(req);
+
+    //console.log(typeSortValue);
 
     Promise.all([
-      productModel.top8ProductFollowIdCatAndIdSub(idCat, idSub),
-      productComboModel.top6ProductComboFollowIdCatAndIdSub(idCat, idSub)
+      productModel.topNProductFollowIdCatAndIdSub(idCat, idSub, typeSort, 16)
     ]).then(values => {
-      // console.log(res.locals.lcCategories);
+      // Cài đặt các thuộc tính hỗ trợ
+      for (product of values[0]) {
+        product.SUBCATEGORYID = idSub;
+        product.isSelectAll = false;
+      }
+
       // id cat và id sub đang được chọn
       for (category of res.locals.lcCategories) {
         // Gán cho id category
@@ -129,73 +163,20 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res) {
         }
       }
 
-      console.log(res.locals.lcCategories);
-
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         products: values[0],
-        productsCombo: values[1],
+        isShowSimple: true,
+        isShowCombo: false,
+        isSelectSimple: true,
+        idCategory: idCat,
+        idSubCategory: idSub,
+        typeSorts: typeSortArray,
         helpers: {
-          // Hàm chuyển đổi qua kiểu ngày
-          convertToDate: convertToDateHelper,
           // Hàm định dạng title của product simple lấy 36 kí tự
-          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
-          // Hàm định dạng title của product combo lấy 52 kí tự
-          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
-          // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo,
-          // Hàm định dạng short content của info lấy 320 kí tự
-          formatShortContentInfo: formatStringHelper.formatShortContentInfo
-          // Hàm định dạng title của product khi ở fast cart
+          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple
         }
       });
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// Hàm thêm sản phẩm simple vào session cart
-module.exports.addProductFollowIdCatToSession = function(req, res, next) {
-  try {
-    // Lấy ID của category
-    var idCat = req.params.idCat;
-    // Lấy ID của product simple
-    var productId = req.params.idProSimple;
-    // Lấy ID signed cookies combo
-    var sessionId = req.signedCookies.sessionId;
-
-    // Đối tượng session cart danh cho product
-    var session_cart = {
-      ID: sessionId,
-      PRODUCT_ID: productId,
-      PRODUCT_COMBO_ID: 0,
-      QUANTITY: 1,
-      IS_LOGIN: 0
-    };
-
-    sessionCartModel.allRowFollowID(sessionId).then(sessionCarts => {
-      // var isFind = false;
-      var index = sessionCarts.findIndex(
-        sessionCart =>
-          sessionCart.PRODUCT_COMBO_ID == session_cart.PRODUCT_COMBO_ID &&
-          sessionCart.PRODUCT_ID == session_cart.PRODUCT_ID &&
-          sessionCart.ID == session_cart.ID
-      );
-
-      if (index === -1) {
-        sessionCartModel.addSessionCart(session_cart).then(result => {
-          res.redirect("/customer/product/product-show/" + idCat);
-        });
-      } else {
-        // Tăng quantity lên 1 đơn vị
-        session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
-
-        sessionCartModel.update3PrimaryKey(session_cart).then(result => {
-          console.log(result);
-          res.redirect("/customer/product/product-show/" + idCat);
-        });
-      }
     });
   } catch (error) {
     next(error);
@@ -210,9 +191,11 @@ module.exports.addProductFollowIdCatAndIdSubToSession = function(
 ) {
   try {
     // Lấy ID của category
-    var idCat = req.params.idCat;
+    var idCat = +req.params.idCat;
     // Lấy ID của sub category
-    var idSub = req.params.idSub;
+    var idSub = +req.params.idSub;
+    // Lấy isSelectAll
+    var isSelectAll = req.params.isSelectAll;
     // Lấy ID của product simple
     var productId = req.params.idProSimple;
     // Lấy ID signed cookies combo
@@ -239,7 +222,17 @@ module.exports.addProductFollowIdCatAndIdSubToSession = function(
       // Thêm mới sản phẩm trong giỏ hàng
       if (index === -1) {
         sessionCartModel.addSessionCart(session_cart).then(result => {
-          res.redirect("/customer/product/product-show/" + idCat + "/" + idSub);
+          // Nếu đang show toàn bộ thì chuyển lại về trang show toàn bộ
+          if (isSelectAll) res.redirect("/customer/product/product-all-show");
+          // Nếu đang show simple thì chuyển lại về trang show simple theo id cat và id sub
+          else {
+            if (idSub === 0)
+              res.redirect("/customer/product/product-show/" + idCat);
+            else
+              res.redirect(
+                "/customer/product/product-show/" + idCat + "/" + idSub
+              );
+          }
         });
         // Tăng số lượng sản phẩm trong giỏ hàng
       } else {
@@ -247,8 +240,17 @@ module.exports.addProductFollowIdCatAndIdSubToSession = function(
         session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
 
         sessionCartModel.update3PrimaryKey(session_cart).then(result => {
-          console.log(result);
-          res.redirect("/customer/product/product-show/" + idCat + "/" + idSub);
+          // Nếu đang show toàn bộ thì chuyển lại về trang show toàn bộ
+          if (isSelectAll) res.redirect("/customer/product/product-all-show");
+          // Nếu đang show simple thì chuyển lại về trang show simple theo id cat và id sub
+          else {
+            if (idSub === 0)
+              res.redirect("/customer/product/product-show/" + idCat);
+            else
+              res.redirect(
+                "/customer/product/product-show/" + idCat + "/" + idSub
+              );
+          }
         });
       }
     });
@@ -258,10 +260,10 @@ module.exports.addProductFollowIdCatAndIdSubToSession = function(
 };
 
 // Hàm thêm sản phẩm combo vào session cart
-module.exports.addProductComboFollowIdCatToSession = function(req, res, next) {
+module.exports.addProductComboToSession = function(req, res, next) {
   try {
-    // Lấy ID của category
-    var idCat = req.params.idCat;
+    // Lấy isSelectAll
+    var isSelectAll = req.params.isSelectAll;
     // Lấy ID của product combo
     var productComboId = req.params.idProCombo;
     // Lấy ID signed cookies combo
@@ -287,7 +289,11 @@ module.exports.addProductComboFollowIdCatToSession = function(req, res, next) {
       // Thêm mới sản phẩm vào giỏ hàng
       if (index === -1) {
         sessionCartModel.addSessionCart(session_cart).then(result => {
-          res.redirect("/customer/product/product-show/" + idCat);
+          // Nếu đang show toàn bộ thì chuyển lại về trang show toàn bộ
+          // Nếu đang show combo thì chuyển lại về trang show combo
+          if (isSelectAll === true)
+            res.redirect("/customer/product/product-all-show");
+          else res.redirect("/customer/product/product-combo-show");
         });
         // Tăng số lượng sản phẩm  trong giỏ hàng
       } else {
@@ -295,63 +301,11 @@ module.exports.addProductComboFollowIdCatToSession = function(req, res, next) {
         session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
 
         sessionCartModel.update3PrimaryKey(session_cart).then(result => {
-          console.log(result);
-          res.redirect("/customer/product/product-show/" + idCat);
-        });
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// Hàm thêm sản phẩm combo vào session cart
-module.exports.addProductComboFollowIdCatAndIdSubToSession = function(
-  req,
-  res,
-  next
-) {
-  try {
-    // Lấy ID của category
-    var idCat = req.params.idCat;
-    // Lấy ID của sub category
-    var idSub = req.params.idSub;
-    // Lấy ID của product combo
-    var productComboId = req.params.idProCombo;
-    // Lấy ID signed cookies combo
-    var sessionId = req.signedCookies.sessionId;
-
-    // Đối tượng session cart dành cho product
-    var session_cart = {
-      ID: sessionId,
-      PRODUCT_ID: 0,
-      PRODUCT_COMBO_ID: productComboId,
-      QUANTITY: 1,
-      IS_LOGIN: 0
-    };
-
-    sessionCartModel.allRowFollowID(sessionId).then(sessionCarts => {
-      // var isFind = false;
-      var index = sessionCarts.findIndex(
-        sessionCart =>
-          sessionCart.PRODUCT_COMBO_ID == session_cart.PRODUCT_COMBO_ID &&
-          sessionCart.PRODUCT_ID == session_cart.PRODUCT_ID &&
-          sessionCart.ID == session_cart.ID
-      );
-
-      // Thêm mới sản phẩm trong giỏ hàng
-      if (index === -1) {
-        sessionCartModel.addSessionCart(session_cart).then(result => {
-          res.redirect("/customer/product/product-show/" + idCat + "/" + idSub);
-        });
-        // Tăng số lượng sản phẩm trong giỏ hàng
-      } else {
-        // Tăng quantity lên 1 đơn vị
-        session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
-
-        sessionCartModel.update3PrimaryKey(session_cart).then(result => {
-          console.log(result);
-          res.redirect("/customer/product/product-show/" + idCat + "/" + idSub);
+          // Nếu đang show toàn bộ thì chuyển lại về trang show toàn bộ
+          // Nếu đang show combo thì chuyển lại về trang show combo
+          if (isSelectAll == true)
+            res.redirect("/customer/product/product-all-show");
+          else res.redirect("/customer/product/product-combo-show");
         });
       }
     });

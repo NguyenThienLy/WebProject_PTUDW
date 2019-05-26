@@ -105,10 +105,10 @@
                                     {{#if QUANTITYCAT}}
                                     <div
                                         class="dropdown-item position-relative pr-3 {{#if isChoose}}category-choosing{{/if}}">
-                                        <a href="/customer/product/product-show/{{IDCAT}}"
+                                        <a href="/customer/product/product-show/{{IDCAT}}/0"
                                             class="stretched-link d-flex align-items-center justify-content-between">
-                                            {{NAMECAT}} &emsp;
-                                            <span class="badge badge-success">{{QUANTITYCAT}}</span>
+                                            {{NAMECAT}}
+                                            <span class="badge ml-1 badge-success badge-pill">{{QUANTITYCAT}}</span>
                                             <i class="fas fa-angle-right ml-3"></i>
                                         </a>
                                         <div class="card sub-dropdown-item">
@@ -117,8 +117,9 @@
                                             {{#each SUB}}
                                             {{#if QUANTITYSUB}}
                                             <a class="dropdown-item {{#if isChoose}}category-choosing{{/if}}"
-                                                href="/customer/product/product-show/{{IDCAT}}/{{IDSUB}}">{{NAMESUB}}&emsp;
-                                                <span class="badge badge-success">{{QUANTITYSUB}}</span>
+                                                href="/customer/product/product-show/{{IDCAT}}/{{IDSUB}}">{{NAMESUB}}
+                                                <span
+                                                    class="badge ml-1 badge-success badge-pill">{{QUANTITYSUB}}</span>
                                             </a>
                                             {{else}}
                                             <a class="dropdown-item disabled" href="javascript:void(0);">{{NAMESUB}}
@@ -139,8 +140,18 @@
                                     {{!-- Nếu category ko có sản phẩm nào --}}
                                     {{/each}}
 
+                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectCombo}}category-choosing{{/if}}"
+                                        href="/customer/product/product-combo-show">Combo
+                                        <span
+                                            class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductCombo}}</span>
+                                    </a>
+
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/customer/product/product-show">Tất cả</a>
+                                    <a class="dropdown-item d-flex align-items-center mb-1 {{#if isSelectAll}}category-choosing{{/if}}"
+                                        href="/customer/product/product-all-show">Tất cả
+                                        <span
+                                            class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductAll}}</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
