@@ -13,11 +13,10 @@ var sessionCartModel = require("../../models/session_cart.model");
 // Gọi brandModel
 var brandModel = require("../../models/brand.model");
 
-
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
-// Gọi convertToDateHelper
-var convertToDateHelper = require("../../helpers/convert_to_date.helper");
+
+var typeSort = 0;
 
 // Mảng sort của product show
 var typeSortArray = [
@@ -34,8 +33,8 @@ var priceFilterArray = [
   { checked: false, name: "200,000đ - 300,000đ", value: 3 },
   { checked: false, name: "300,000đ - 500,000đ", value: 4 },
   { checked: false, name: "500,000đ - 1,000,000đ", value: 5 },
-  { checked: false, name: "Giá trên 1.000.000đ", value: 6 },
-]
+  { checked: false, name: "Giá trên 1.000.000đ", value: 6 }
+];
 
 function funcTypeSort(req) {
   // Loại sắp xếp
@@ -69,7 +68,7 @@ module.exports.productAllShow = function(req, res, next) {
     // var idCat = req.params.idCat;
 
     // Hàm dùng để xử lí các kiểu sắp xếp sản phẩm
-    var typeSort = funcTypeSort(req);
+    typeSort = funcTypeSort(req);
 
     Promise.all([
       productModel.topNProductAscCreated(typeSort, 8),
@@ -95,7 +94,7 @@ module.exports.productAllShow = function(req, res, next) {
         brands: values[2],
         isSelectAllCategory: true,
         isSelectAllSort: true,
-        isSelectAllBrand: true, 
+        isSelectAllBrand: true,
         isSelectAllPrice: true,
         isShowSimple: true,
         isShowCombo: true,
@@ -121,35 +120,35 @@ module.exports.productComboShow = function(req, res, next) {
     // var idCat = req.params.idCat;
 
     // Hàm dùng để xử lí các kiểu sắp xếp sản phẩm
-    var typeSort = funcTypeSort(req);
+    typeSort = funcTypeSort(req);
 
-    Promise.all([productComboModel.topNProductComboAscCreated(typeSort, 12),
-                brandModel.allBrandWithDetail()]).then(
-      values => {
-        // Không phải đang hiện tất cả
-        for (productCombo of values[0]) {
-          productCombo.isSelectAll = false;
-        }
-
-        res.render("customer/product-show", {
-          layout: "main-customer.hbs",
-          productsCombo: values[0],
-          brands: values[1],
-          isShowSimple: false,
-          isShowCombo: true,
-          isSelectComboCategory: true,
-          isSelectComboSort: true,
-          isSelectAllBrand: true, 
-          isSelectAllPrice: true,
-          typeSorts: typeSortArray,
-          priceFilters: priceFilterArray,
-          helpers: {
-            // Hàm định dạng title của product combo lấy 52 kí tự
-            formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
-          }
-        });
+    Promise.all([
+      productComboModel.topNProductComboAscCreated(typeSort, 12),
+      brandModel.allBrandWithDetail()
+    ]).then(values => {
+      // Không phải đang hiện tất cả
+      for (productCombo of values[0]) {
+        productCombo.isSelectAll = false;
       }
-    );
+
+      res.render("customer/product-show", {
+        layout: "main-customer.hbs",
+        productsCombo: values[0],
+        brands: values[1],
+        isShowSimple: false,
+        isShowCombo: true,
+        isSelectComboCategory: true,
+        isSelectComboSort: true,
+        isSelectAllBrand: true,
+        isSelectAllPrice: true,
+        typeSorts: typeSortArray,
+        priceFilters: priceFilterArray,
+        helpers: {
+          // Hàm định dạng title của product combo lấy 52 kí tự
+          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
+        }
+      });
+    });
   } catch (error) {
     next(error);
   }
@@ -164,9 +163,7 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
     var idSub = +req.params.idSub;
 
     // Hàm dùng để xử lí các kiểu sắp xếp sản phẩm
-    var typeSort = funcTypeSort(req);
-
-    //console.log(typeSortValue);
+    typeSort = funcTypeSort(req);
 
     Promise.all([
       productModel.topNProductFollowIdCatAndIdSub(idCat, idSub, typeSort, 16),
@@ -197,7 +194,7 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
         isShowSimple: true,
         isShowCombo: false,
         isSelectSimpleSort: true,
-        isSelectAllBrand: true, 
+        isSelectAllBrand: true,
         isSelectAllPrice: true,
         idCategory: idCat,
         idSubCategory: idSub,
