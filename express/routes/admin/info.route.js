@@ -45,6 +45,6 @@ router.get('/info-show', controller.infoShow);
 
 router.get('/info-add', controller.infoAdd);
 
-router.post('/info-add', upload.single('image_info'), infoValidate.postInfoAdd, controller.postInfoAdd);
+router.post('/info-add', upload.single('image_info'), controller.postInfoAdd);
 
 module.exports = router;

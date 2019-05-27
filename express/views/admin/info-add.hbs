@@ -22,7 +22,7 @@
             </div>
             {{/each}}
 
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" id="frmInfoAdd">
                 <div class="form-group">
                     <label><b>Tiêu đề</b></label>
                     <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết"
@@ -31,9 +31,9 @@
 
                 <div class="form-group">
                     <label><b>Tag</b></label>
-                    <select class="chosen-select" name="TAG" data-placeholder="Chọn tag" multiple>
+                    <select class="form-control chosen-select" name="TAG" data-placeholder="Chọn tag" multiple>
                         {{#each this.tags}}
-                        {{{selectSelected ID NAME ../this.values.TAG}}}
+                        <option value="{{ID}}">{{NAME}}</option>
                         {{/each}}
                     </select>
                 </div>
@@ -51,9 +51,12 @@
                                     class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
                                     <h6 class="card-title d-block">Hình đại diện</h6>
                                     <div>
-                                        <input type="button" id="get_image_file_1" value="Đổi ảnh" class="btn btn-primary btn-sm">
-                                        <input type="button" id="remove_file_1" value="Xóa ảnh" class="btn btn-secondary btn-sm">
-                                        <input type="file" id="image_file_1" class="d-none" name="image_info" required>
+                                        <input type="button" id="get_image_file_1" value="Đổi ảnh"
+                                            class="btn btn-primary btn-sm">
+                                        <input type="button" id="remove_file_1" value="Xóa ảnh"
+                                            class="btn btn-secondary btn-sm">
+                                        <input type="file" id="image_file_1" class="form-control d-none"
+                                            name="image_info">
                                     </div>
                                 </div>
                             </div>
@@ -65,8 +68,8 @@
                 <div class="form-group">
                     <label><b>Nội dung tóm tắt</b></label>
                     <div>
-                        <textarea name="SHORTCONTENT" cols="60" rows="5"
-                            placeholder="Nhập nội dung tóm tắt bài viết">{{#if this.values}} {{this.values.SHORTCONTENT}} {{else}} {{/if}}</textarea>
+                        <textarea name="SHORTCONTENT" cols="60" rows="5" class="form-control"
+                            placeholder="Nhập nội dung tóm tắt bài viết">{{#if this.values}} {{this.values.SHORTCONTENT}} {{else}}{{/if}}</textarea>
                     </div>
                 </div>
 
@@ -96,11 +99,13 @@
 <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
 <script src="/admin/js/chosen-select.js"></script>
 
-
 {{!-- inmport my js --}}
 <script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
 <script src="/admin/js/ckeditor5-classicEditor.js"></script>
 
 {{!--Xử lý thêm ảnh --}}
 <script src="/admin/js/preview-image-jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="/admin/js/validate-UI-info-add.js"></script>
 {{/section}}
