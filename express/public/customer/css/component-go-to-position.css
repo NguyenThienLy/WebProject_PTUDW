@@ -1,0 +1,45 @@
+.component-go-to-position {
+    margin-left: 1rem;
+    border-radius: 10px 10px 10px 10px;
+    width: 2.5rem;
+    height: 12rem;
+    z-index: 2;
+    position: fixed;
+    left: 0%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.component-go-to-position .item1 {
+    opacity : 0.3;
+    filter: alpha(opacity=30);
+    height: 3rem;
+    background-color: rgb(60, 231, 60);
+    border-radius: 10px 10px 0 0
+}
+
+.component-go-to-position .item2 {
+    opacity : 0.3;
+    filter: alpha(opacity=30);
+    height: 3rem;
+    background-color: rgb(223, 83, 83);
+}
+
+.component-go-to-position .item3 {
+    opacity : 0.3;
+    filter: alpha(opacity=30);
+    height: 3rem;
+    background-color: rgb(69, 69, 228);
+}
+
+.component-go-to-position .item4 {
+    opacity : 0.3;
+    filter: alpha(opacity=30);
+    height: 3rem;
+    background-color: rgb(203, 230, 55);
+    border-radius: 0 0 10px 10px
+}
+
+.component-go-to-position span {
+    color: white;
+}

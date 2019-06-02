@@ -10,12 +10,38 @@
 <link href="/customer/css/component-tag-product-type.css" rel="stylesheet" />
 <link href="/customer/css/component-slide-trademark.css" rel="stylesheet" />
 <link href="/customer/css/component-user-account-modal.css" rel="stylesheet" />
+<link href="/customer/css/component-go-to-position.css" rel="stylesheet" />
 {{!-- home page --}}
 
 {{!-- responsive --}}
 <link href="/customer/css/responsive-index.css" rel="stylesheet" />
 {{!-- responsive --}}
 {{/section}}
+
+{{!-- movie to the position --}}
+<div class="component-go-to-position">
+    <div class="d-flex align-items-center justify-content-center item1" id="div-item-1">
+        <span id="sp-item-1">
+            <i class="far fa-building fa-2x"></i>
+        </span>
+    </div>
+    <div class="d-flex align-items-center justify-content-center item2" id="div-item-2">
+        <span id="sp-item-2">
+            <i class="fas fa-apple-alt fa-2x"></i>
+        </span>
+    </div>
+    <div class="d-flex align-items-center justify-content-center item3" id="div-item-3">
+        <span id="sp-item-3">
+            <i class="fas fa-lemon fa-2x"></i>
+        </span>
+    </div>
+    <div class="d-flex align-items-center justify-content-center item4" id="div-item-4">
+        <span id="sp-item-4">
+            <i class="far fa-newspaper fa-2x"></i>
+        </span>
+    </div>
+</div>
+{{!-- movie to the position --}}
 
 <!-- carousel header -->
 <div class="header-carousel w-100">
@@ -360,7 +386,8 @@
 
                     <img src={{IMAGE}} class="rounded-top w-100 h-100" alt="">
                     <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
-                        <a href="/customer/index/add-product/{{ID}}" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                        <a href="/customer/index/add-product/{{ID}}"
+                            class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Mua ngay">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
@@ -373,7 +400,8 @@
                 </div>
 
                 <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                    <a href="/customer/product/product-detail/{{ID}}" class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
+                    <a href="/customer/product/product-detail/{{ID}}"
+                        class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
                     <div class="mt-1 d-flex justify-content-center">
                         <div class="price-sale">
                             <span>{{formatPrice SALEPRICE}}</span>
@@ -454,7 +482,8 @@
                         <img class="image-product-3" src={{IMAGE3}} alt="" />
                     </div>
                     <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a href="/customer/index/add-product-combo/{{ID}}" class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                        <a href="/customer/index/add-product-combo/{{ID}}"
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Mua ngay">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
@@ -644,8 +673,8 @@
 
 {{#section 'js'}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.5/slick.min.js"></script>
-<script src="slick/slick.min.js"></script>
 <script src="/customer/js/slide-show.js"></script>
 <script src="/customer/js/carousel-margin.js"></script>
 <script src="/customer/js/slide-trademark.js"></script>
+<script src="/customer/js/go-to-position.js"></script>
 {{/section}}

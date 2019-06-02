@@ -16,7 +16,16 @@ var brandModel = require("../../models/brand.model");
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
 
+// Loại sắp xếp
 var typeSort = 0;
+// Danh mục bộ lọc
+var catFilter = 0;
+// Danh mục con bộ lọc
+var subFilter = 0;
+// Thương hiệu bộ lọc
+var brandFilter = 0;
+// Khoảng giá bộ lọc
+var priceFilter = 0;
 
 // Mảng sort của product show
 var typeSortArray = [
@@ -46,8 +55,22 @@ function funcTypeSort(req) {
 
   typeSort = +req.body.radioSortProductShow;
 
-  // Nếu không phải là các trường hợp sort thì gán mặc định bằng 0
+  catFilter = +req.body.checkboxCategory;
+  subFilter = +req.body.checkboxSubCategory;
+
+  brandFilter = +req.body.checkboxBrand;
+  priceFilter = +req.body.checkboxPrice;
+
+  // Nếu typeSort là NaN thì gán mặc định bằng 0
   if (isNaN(typeSort) == true) typeSort = 0;
+  // Nếu catFilter là NaN thì gán mặc định bằng 0
+  if (isNaN(catFilter) == true) catFilter = 0;
+  // Nếu subFilter là NaN thì gán mặc định bằng 0
+  if (isNaN(subFilter) == true) subFilter = 0;
+  // Nếu brandFilter là NaN thì gán mặc định bằng 0
+  if (isNaN(brandFilter) == true) brandFilter = 0;
+  // Nếu priceFilter là NaN thì gán mặc định bằng 0
+  if (isNaN(priceFilter) == true) priceFilter = 0;
 
   // Phục hồi checked = false
   for (type of typeSortArray) type.checked = false;
