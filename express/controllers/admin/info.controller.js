@@ -34,10 +34,10 @@ module.exports.infoAdd = function(req, res) {
 module.exports.postInfoAdd = function(req, res) {
   res.locals.sidebar[6].active = true;
 
-  req.body.IMAGE = "/" + req.file.path
+  req.body.IMAGE = "\\" + req.file.path
     .split("\\")
     .slice(1)
-    .join("/");
+    .join("\\");
 
   //Tạo đối tượng để thêm vào cơ sở dữ liệu
   var news = {

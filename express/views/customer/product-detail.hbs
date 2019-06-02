@@ -52,27 +52,27 @@
 
             <div class="image-product-small-container d-flex">
                 <div class="image-product-small mr-2">
-                    <img class="w-100 h-100" id="image-product-small-index-0"
+                    <img class="w-100 h-100" onload="compress(event, this)" id="image-product-small-index-0"
                         src="https://img.infonet.vn/Uploaded/hoainam/2018_06_04/vaithieu.png" />
                 </div>
 
                 <div class="image-product-small mr-2">
-                    <img id="image-product-small-index-1" class="w-100 h-100"
+                    <img id="image-product-small-index-1" onload="compress(event, this)" class="w-100 h-100"
                         src="http://image.baotayninh.vn/fckeditor/upload/2018/20180629/images/qua_vai.jpg" />
                 </div>
 
                 <div class="image-product-small mr-2">
-                    <img id="image-product-small-index-2" class="w-100 h-100"
+                    <img id="image-product-small-index-2" onload="compress(event, this)" class="w-100 h-100"
                         src="https://img.infonet.vn/Uploaded/hoainam/2018_06_04/vaithieu.png" />
                 </div>
 
                 <div class="image-product-small mr-2">
-                    <img id="image-product-small-index-3" class="w-100 h-100"
+                    <img id="image-product-small-index-3" onload="compress(event, this)" class="w-100 h-100"
                         src="http://laodong.com.vn/Uploaded/phamthuhien/2016_06_06/1_BBLR.jpg" />
                 </div>
 
                 <div class="image-product-small">
-                    <img class="w-100 h-100" id="image-product-small-index-4"
+                    <img class="w-100 h-100" onload="compress(event, this)" id="image-product-small-index-4"
                         src="http://phunuvietnam.vn/media/news/ad5f12b9539cca684ffefa884c430e4d/vai.jpg" />
                 </div>
             </div>
@@ -1138,4 +1138,5 @@
 {{#section 'js'}}
 <script src="/customer/js/image-product-detail.js"></script>
 <script src="/customer/js/breadcrumb-margin.js"></script>
+<script src="/all/js/compress-image.js"></script>
 {{/section}}

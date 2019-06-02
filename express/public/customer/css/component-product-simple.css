@@ -12,6 +12,9 @@
   cursor: pointer;
 }
 
+.component-product-simple .card-img-top > img {
+  object-fit: fill;
+}
 
 .component-product-simple .card-img-top #sale-image {
   background-image: url('https://frontend.tikicdn.com/_new-next/static/img/icons/product/deal-tag.png');

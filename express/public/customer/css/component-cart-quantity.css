@@ -8,11 +8,11 @@
   
   .component-cart-quantity .content-left {
     width: 10%;
-    background-image: url(https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg);
-    background-repeat: no-repeat;
     cursor: pointer;
-    background-size: 100% 100%;
-    background-position: center;
+  }
+
+  .component-cart-quantity .content-left > img {
+    object-fit: cover;
   }
   
   .component-cart-quantity .content-right {

@@ -384,7 +384,7 @@
                     {{/if}}
                     {{!-- Nếu có giảm giá mới hiện ra --}}
 
-                    <img src={{IMAGE}} class="rounded-top w-100 h-100" alt="">
+                    <img src={{IMAGE}} onload="compress(event, this)" class="rounded-top w-100 h-100" alt="">
                     <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
                         <a href="/customer/index/add-product/{{ID}}"
                             class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
@@ -477,9 +477,9 @@
                         {{/if}}
                         {{!-- Nếu đang giảm giá mới hiện ra --}}
 
-                        <img class="image-product-1" src={{IMAGE1}} alt="" />
-                        <img class="image-product-2" src={{IMAGE2}} alt="" />
-                        <img class="image-product-3" src={{IMAGE3}} alt="" />
+                        <img class="image-product-1" onload="compress(event, this)" src={{IMAGE1}} alt="" />
+                        <img class="image-product-2" onload="compress(event, this)" src={{IMAGE2}} alt="" />
+                        <img class="image-product-3" onload="compress(event, this)" src={{IMAGE3}} alt="" />
                     </div>
                     <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
                         <a href="/customer/index/add-product-combo/{{ID}}"
@@ -589,7 +589,7 @@
             <div class="component-info-small card font-weight-bold border-0">
                 <div class="card-img-top h-50 w-100 position-relative" data-toggle="tooltip" title="{{TITLE}}">
                     <a class="stretched-link" href="info-detail.html"></a>
-                    <img src={{IMAGE}} class="w-100 h-100" alt="">
+                    <img src={{IMAGE}} onload="compress(event, this)" class="w-100 h-100" alt="">
                     <div class="p-2 w-100 d-flex justify-content-center position-absolute info-info">
                         <div class="mr-3">
                             <i class="far fa-calendar"></i>
@@ -677,4 +677,5 @@
 <script src="/customer/js/carousel-margin.js"></script>
 <script src="/customer/js/slide-trademark.js"></script>
 <script src="/customer/js/go-to-position.js"></script>
+<script src="/all/js/compress-image.js"></script>
 {{/section}}

@@ -26,6 +26,10 @@
     left: 0;
   }
   
+  .component-product-combo .card-img-top > img {
+    object-fit: fill;
+  }
+
   .component-product-combo .card-img-top .image-product-1 {
     width: 33.33%;
   }

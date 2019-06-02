@@ -268,7 +268,7 @@
                         {{/if}}
                         {{!-- Nếu có giảm giá mới hiện ra --}}
 
-                        <img src={{IMAGE}} class="rounded-top w-100 h-100" alt="">
+                        <img src={{IMAGE}} onload="compress(event, this)" class="rounded-top w-100 h-100" alt="">
                         <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
                             <a href="/customer/product/add-product/{{isSelectAll}}/{{CATEGORYID}}/{{SUBCATEGORYID}}/{{ID}}"
                                 class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
@@ -355,9 +355,9 @@
                             {{/if}}
                             {{!-- Nếu đang giảm giá mới hiện ra --}}
 
-                            <img class="image-product-1" src={{IMAGE1}} alt="" />
-                            <img class="image-product-2" src={{IMAGE2}} alt="" />
-                            <img class="image-product-3" src={{IMAGE3}} alt="" />
+                            <img class="image-product-1" onload="compress(event, this)" src={{IMAGE1}} alt="" />
+                            <img class="image-product-2" onload="compress(event, this)" src={{IMAGE2}} alt="" />
+                            <img class="image-product-3" onload="compress(event, this)" src={{IMAGE3}} alt="" />
                         </div>
                         <div
                             class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
@@ -438,4 +438,5 @@
 <script src="/customer/js/breadcrumb-margin.js"></script>
 <script src="/customer/js/frm-product-show-submit.js"></script>
 <script src="/customer/js/control-checkbox-filter.js"></script>
+<script src="/all/js/compress-image.js"></script>
 {{/section}}

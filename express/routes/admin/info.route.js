@@ -9,7 +9,7 @@ var infoValidate = require('../../validate/info.validate');
 
 //Tạo Địa chỉ để lưu ảnh
 var storage = multer.diskStorage({
-    destination: '././public/uploads/',
+    destination: '././public/uploads/image_info/',
     //Tên ảnh sau khi được tải lên
     filename: (req, file, cb) => {
         cb(null, file.fieldname + '-' + Date.now()
