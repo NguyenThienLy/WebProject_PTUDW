@@ -84,7 +84,7 @@
 
 
             <!--Table hiển thị sản phẩm-->
-            <table class="table table-responsive-xl mb-4">
+            <table class="table table-responsive mb-4">
                 <thead>
                     <tr>
                         <th>Mã</th>
@@ -108,7 +108,7 @@
                         <td>Việt nam</td>
                         <td>{{BRANDNAME}}</td>
                         <td align="center">
-                            <img src={{IMAGE}} class="show-product-image">
+                            <img src={{IMAGE}} id="productSimple{{ID}}" class="show-product-image">
                         </td>
                         <td>
                             <div>
@@ -170,3 +170,7 @@
     </div>
 </div>
 <!--Nội dung trang index-->
+
+{{#section 'js'}}
+<script src="/all/js/compress-image.js"></script>
+{{/section}}

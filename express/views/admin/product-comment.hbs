@@ -1,3 +1,15 @@
+{{#section 'css'}}
+<title>Quản lí bình luận</title>
+
+{{!-- product show page --}}
+<link href="/admin/css/product-show.css" rel="stylesheet" />
+{{!-- product show page --}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-product-show.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
 <div id="content" class="mb-5">
     <header class="clearfix">
         <h5 class="page_title mb-0">Tất cả bình luận</h5>
@@ -43,7 +55,7 @@
                     <td>{{CATNAME}}</td>
                     <td>{{SUBCATNAME}}</td>
                     <td align="center">
-                        <img src="{{IMAGE}}"
+                        <img src="{{IMAGE}}" id="productSimple{{ID}}"
                             class="show-product-image">
                     </td>
                     <td align="center">{{COMMENT_QUANTITY}}</td>
@@ -99,3 +111,7 @@
         <!--end Thanh điều hướng trang-->
     </div>
 </div>
+
+{{#section 'js'}}
+<script src="/all/js/compress-image.js"></script>
+{{/section}}

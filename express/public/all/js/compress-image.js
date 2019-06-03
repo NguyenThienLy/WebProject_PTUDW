@@ -1,8 +1,8 @@
-var my = "";
-function compress(e, oldimage) {
-  var dataUrl = oldimage.src;
-  if (dataUrl !== my) {
-      console.log("hiiiii");
+$("img").on("load", function() {
+  var id = this.id;
+  if (id !== "") {
+    var dataUrl = $("#" + id).attr("src");
+
     var imageType,
       oldWidth,
       oldHeight,
@@ -26,8 +26,8 @@ function compress(e, oldimage) {
     var image = new Image();
     image.src = dataUrl;
 
-    oldWidth = oldimage.width;
-    oldHeight = oldimage.height;
+    oldWidth = this.width;
+    oldHeight = this.height;
     newWidth = oldWidth;
     newHeight = oldHeight;
 
@@ -40,8 +40,8 @@ function compress(e, oldimage) {
     // Draw the downscaled image on the canvas and return the new data URL.
     ctx.drawImage(image, 0, 0, newWidth, newHeight);
     newDataUrl = canvas.toDataURL(imageType, imageArguments);
-    my = newDataUrl;
-    oldimage.onload = null;
-    oldimage.src = newDataUrl;
+    $("#" + id).off("load");
+    console.log(id);
+    $("#" + id).attr("src", newDataUrl);
   }
-}
+});

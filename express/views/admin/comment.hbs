@@ -39,7 +39,7 @@
             <div class="component-comment row w-100 ml-0 mr-0 mt-3">
                 <div class="content-left col-2 col-md-3 col-lg-2 pr-0">
                     <div class="img-avatar">
-                        <img src="{{IMAGE}}" class="w-100 h-100 rounded-circle" alt="" />
+                        <img src="{{IMAGE}}" id="avatar{{ID}}" class="w-100 h-100 rounded-circle" alt="" />
                     </div>
 
                     <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
@@ -142,3 +142,7 @@
         <!--end Thanh điều hướng trang-->
     </div>
 </div>
+
+{{#section 'js'}}
+<script src="/all/js/compress-image.js"></script>
+{{/section}}
