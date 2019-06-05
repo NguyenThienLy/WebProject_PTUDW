@@ -38,7 +38,7 @@ module.exports.indexShow = function(req, res, next) {
           // Hàm định dạng title của info lấy 85 kí tự
           formatTitleInfo: formatStringHelper.formatTitleInfo,
           // Hàm định dạng short content của info lấy 320 kí tự
-          formatShortContentInfo: formatStringHelper.formatShortContentInfo,
+          formatShortContentInfo: formatStringHelper.formatShortContentInfo
         }
       });
     });

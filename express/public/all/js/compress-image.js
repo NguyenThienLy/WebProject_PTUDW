@@ -1,5 +1,6 @@
 $("img").on("load", function() {
-  var id = this.id;
+  var id = $(this).attr("id");
+console.log("hello");
   if (id !== "") {
     var dataUrl = $("#" + id).attr("src");
 

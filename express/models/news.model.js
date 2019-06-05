@@ -1,12 +1,45 @@
 // Lấy database
 var db = require("../utils/db");
 
-// Hàm trả về 8 sản phẩm sale nhiều nhất trong index customer
+// Hàm trả về 3 thông tin hữu ích mới nhất
 module.exports.top3PopularNewsIndexForIndex = () => {
   return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
 									FROM news
                   ORDER BY CREATED DESC
                   LIMIT 3;`);
+};
+
+// Hàm trả về 3 thông tin hữu ích mới nhất
+module.exports.topNNewsFollowTypeSort = (typeSort, N) => {
+  switch (typeSort) {
+    // Hàng mới nhất
+    case 0:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+                      FROM news
+                      ORDER BY CREATED DESC
+                      LIMIT ${N};`);
+
+    // Hàng cũ nhất
+    case 1:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+                      FROM news
+                      ORDER BY CREATED ASC
+                      LIMIT ${N};`);
+
+    // Giá tăng dần
+    case 2:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+                      FROM news
+                      ORDER BY CREATED DESC
+                      LIMIT ${N};`);
+
+    // Giá giảm dần
+    default:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+                      FROM news
+                      ORDER BY CREATED ASC
+                      LIMIT ${N};`);
+  }
 };
 
 // hàm thêm một info vào csdl

@@ -132,7 +132,15 @@ input:checked {
   background: #DEF794 !important;
 }
 
+.sub-category-choosing {
+  background: rgb(246, 255, 219) !important;
+}
+
 .category-choosing:hover {
   background: #DEF794 !important;
+}
+
+.sub-category-choosing:hover {
+  background: rgb(246, 255, 219) !important;
 }
 

@@ -183,55 +183,384 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
   }
 };
 
-// Hàm trả về 8 sản phẩm sắp xếp theo typeSort
-module.exports.topNProductAscCreated = (typeSort, N) => {
+// Mảng giá filter của product show
+var priceFilterArray = [
+  { checked: false, minPrice: 0, maxPrice: 100000000 },
+  { checked: false, minPrice: 0, maxPrice: 100000 },
+  { checked: false, minPrice: 100000, maxPrice: 200000 },
+  { checked: false, minPrice: 200000, maxPrice: 300000 },
+  { checked: false, minPrice: 300000, maxPrice: 500000 },
+  { checked: false, minPrice: 500000, maxPrice: 1000000 },
+  { checked: false, minPrice: 1000000, maxPrice: 100000000 }
+];
+
+function returnStringFollowTypeSortAndBrandAndPrice(
+  typeSort,
+  brandFilter,
+  priceFilter
+) {
   switch (typeSort) {
     // Hàng mới nhất
     case 0:
-      return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
-											(CASE
-													WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
-													ELSE pro.PRICE
-											END) AS SALEPRICE
-											FROM product AS pro 
-											ORDER BY CREATED DESC
-											LIMIT ${N};`);
+      if (brandFilter == 0) {
+        if (priceFilter == 0) {
+          return `ORDER BY CREATED DESC`;
+        } else {
+          return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE
+					AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+					ORDER BY CREATED DESC`;
+        }
+      } else {
+        if (priceFilter == 0) {
+          return `WHERE pro.BRANDID = ${brandFilter}
+					ORDER BY CREATED DESC`;
+        } else {
+          return `WHERE pro.BRANDID = ${brandFilter} AND
+					${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+					 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+					ORDER BY CREATED DESC`;
+        }
+      }
 
     // Hàng cũ nhất
     case 1:
-      return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
-											(CASE
-													WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
-													ELSE pro.PRICE
-											END) AS SALEPRICE
-											FROM product AS pro 
-											ORDER BY CREATED ASC
-											LIMIT ${N};`);
+      if (brandFilter == 0) {
+        if (priceFilter == 0) {
+          return `ORDER BY CREATED ASC`;
+        } else {
+          return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE
+					AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+					ORDER BY CREATED ASC`;
+        }
+      } else {
+        if (priceFilter == 0) {
+          return `WHERE pro.BRANDID = ${brandFilter}
+					ORDER BY CREATED ASC`;
+        } else {
+          return `WHERE pro.BRANDID = ${brandFilter} AND
+					${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+					 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+					ORDER BY CREATED ASC`;
+        }
+      }
 
     // Giá tăng dần
     case 2:
-      return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
-											(CASE
-													WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
-													ELSE pro.PRICE
-											END) AS SALEPRICE
-											FROM product AS pro 
-						
-											ORDER BY PRICE ASC
-											LIMIT ${N};`);
+      if (brandFilter == 0) {
+        if (priceFilter == 0) {
+          return `ORDER BY PRICE ASC`;
+        } else {
+          return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE
+					AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+					ORDER BY PRICE ASC`;
+        }
+      } else {
+        if (priceFilter == 0) {
+          return `WHERE pro.BRANDID = ${brandFilter}
+										ORDER BY PRICE ASC`;
+        } else {
+          return `	WHERE pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE ASC`;
+        }
+      }
 
     // Giá giảm dần
     default:
-      return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
-											(CASE
-													WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
-													ELSE pro.PRICE
-											END) AS SALEPRICE
-											FROM product AS pro 
-										
-											ORDER BY PRICE DESC
-											LIMIT ${N};`);
+      if (brandFilter == 0) {
+        if (priceFilter == 0) {
+          return `ORDER BY PRICE DESC`;
+        } else {
+          return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE
+						AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+        }
+      } else {
+        if (priceFilter == 0) {
+          return `WHERE pro.BRANDID = ${brandFilter}
+						ORDER BY PRICE DESC`;
+        } else {
+          return `WHERE pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+        }
+      }
   }
+}
+
+// Hàm trả về N sản phẩm sắp xếp theo typeSort, brand và price
+module.exports.topNProductFollowTypeSortAndBrandAndPrice = (
+  typeSort,
+  brandFilter,
+  priceFilter,
+  N
+) => {
+  var stringValues = returnStringFollowTypeSortAndBrandAndPrice(
+    typeSort,
+    brandFilter,
+    priceFilter
+  );
+
+  return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+									(CASE
+											WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+											ELSE pro.PRICE
+									END) AS SALEPRICE
+									FROM product AS pro 
+									${stringValues}
+									LIMIT ${N};`);
+};
+
+function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
+	typeSort,
+  idCat,
+  idSub,
+  brandFilter,
+  priceFilter
+) {
+	
+  if (idSub == 0) {
+    switch (typeSort) {
+      // Hàng mới nhất
+      case 0:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.CATEGORYID = ${idCat}
+						ORDER BY CREATED DESC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED DESC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.BRANDID = ${brandFilter} AND
+						pro.CATEGORYID = ${idCat}
+						ORDER BY CREATED DESC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED DESC`;
+          }
+        }
+
+      // Hàng cũ nhất
+      case 1:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.CATEGORYID = ${idCat}
+						ORDER BY CREATED ASC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND 
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED ASC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.CATEGORYID = ${idCat} AND
+						pro.BRANDID = ${brandFilter}
+						ORDER BY CREATED ASC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND 
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED ASC`;
+          }
+        }
+
+      // Giá tăng dần
+      case 2:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.CATEGORYID = ${idCat}
+						ORDER BY PRICE ASC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND 
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE ASC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.CATEGORYID = ${idCat} AND  
+						pro.BRANDID = ${brandFilter}
+						ORDER BY PRICE ASC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND 
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE ASC`;
+          }
+        }
+
+      // Giá giảm dần
+      default:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.CATEGORYID = ${idCat}
+						ORDER BY PRICE DESC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND 
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.CATEGORYID = ${idCat} AND 
+						pro.BRANDID = ${brandFilter}
+						ORDER BY PRICE DESC`;
+          } else {
+            return `WHERE pro.CATEGORYID = ${idCat} AND
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+          }
+        }
+    }
+  } else {
+    switch (typeSort) {
+      // Hàng mới nhất
+      case 0:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub}
+						ORDER BY CREATED DESC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED DESC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND 
+						pro.BRANDID = ${brandFilter}
+						ORDER BY CREATED DESC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED DESC`;
+          }
+        }
+
+      // Hàng cũ nhất
+      case 1:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub}
+						ORDER BY CREATED ASC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND 
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED ASC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND
+						pro.BRANDID = ${brandFilter}
+						ORDER BY CREATED ASC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND 
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED ASC`;
+          }
+        }
+
+      // Giá tăng dần
+      case 2:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub}
+						ORDER BY PRICE ASC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND 
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE ASC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND  
+						pro.BRANDID = ${brandFilter}
+						ORDER BY PRICE ASC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND 
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE ASC`;
+          }
+        }
+
+      // Giá giảm dần
+      default:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub}
+						ORDER BY PRICE DESC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND 
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND 
+						pro.BRANDID = ${brandFilter}
+						ORDER BY PRICE DESC`;
+          } else {
+            return `WHERE pro.SUBCATEGORYID = ${idSub} AND
+						pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+          }
+        }
+    }
+  }
+}
+
+// Hàm trả về N sản phẩm sắp xếp theo typeSort, brand và price
+module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
+  typeSort,
+  idCat,
+  idSub,
+  brandFilter,
+  priceFilter,
+  N
+) => {
+  var stringValues = returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
+    typeSort,
+    idCat,
+    idSub,
+    brandFilter,
+    priceFilter
+  );
+
+  return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+	(CASE
+			WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+			ELSE pro.PRICE
+	END) AS SALEPRICE
+	FROM product AS pro 
+	${stringValues}
+	LIMIT ${N};`);
 };
 
 // Hàm trả về 8 sản phẩm sale nhiều nhất trong index customer

@@ -23,16 +23,19 @@ router.get(
 );
 
 // Đưa thông tin từ sort lên product-all-show
-router.post("/product-all-show", controller.productAllShow);
+router.post("/product-filter", controller.applyPostValuesFilter);
+
+// router.post("/product-all-show", controller.applyPostValuesFilter);
+
+// router.post("/product-combo-show", controller.applyPostValuesFilter);
+
+// router.post("/product-show", controller.applyPostValuesFilter);
 
 // Đưa thông tin từ sort lên product-all-show
-router.post("/product-combo-show", controller.productComboShow);
+router.get("/product-filter", controller.applyGetValuesFilter);
 
-// Đưa thông tin từ sort lên product-all-show
-router.post(
-  "/product-show/:idCat/:idSub",
-  controller.productShowFollowIdCatAndIdSub
-);
+// Reset thông tin từ sort lên product-all-show
+router.post("/product-filter", controller.cancelPostValuesFilter);
 
 // Thêm sản phẩm vào giỏ hàng theo id cat và id sub
 router.get(

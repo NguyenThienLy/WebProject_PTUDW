@@ -22,7 +22,14 @@ module.exports.top6ProductComboForIndex = () => {
 };
 
 // Hàm trả về 6 sản phẩm combo sắp xếp theo typeSort
-module.exports.topNProductComboAscCreated = (typeSort, N) => {
+module.exports.topNProductComboFollowFilter = (
+  typeSort,
+  catFilter,
+  subFilter,
+  brandFilter,
+  priceFilter,
+  N
+) => {
   switch (typeSort) {
     // Hàng mới nhất
     case 0:
@@ -86,19 +93,82 @@ module.exports.topNProductComboAscCreated = (typeSort, N) => {
   }
 };
 
-// // Hàm trả về 6 sản phẩm sắp xếp theo ngày đăng, theo id cat và id sub
-// module.exports.top6ProductComboFollowIdCatAndIdSub = (idCat, idSub) => {
-//   return db.load(`SELECT pro_cb.ID, pro_cb.PRICE, pro_cb.SALE, pro_cb.NAME, 
-                  // pro_1.ID AS PROID1, pro_2.ID AS PROID2, pro_3.ID AS PROID3, 
-                  // pro_1.IMAGE AS IMAGE1, pro_2.IMAGE AS IMAGE2, pro_3.IMAGE AS IMAGE3,
-//                 (CASE
-//                         WHEN pro_cb.SALE > 0 THEN (pro_cb.PRICE - pro_cb.PRICE * (pro_cb.SALE / 100))
-//                         ELSE pro_cb.PRICE
-//                 END) AS SALEPRICE
-//                 FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
-//                 ON pro_cb.CATEGORYID = ${idCat} AND pro_cb.SUBCATEGORYID = ${idSub} AND pro_cb.PRODUCTID1 = pro_1.ID  
-//                 AND pro_cb.PRODUCTID2 = pro_2.ID AND
-//                 pro_cb.PRODUCTID3 = pro_3.ID
-//                 ORDER BY pro_cb.CREATED
-//                 LIMIT 6;`);
-// };
+// Mảng giá filter của product show
+var priceFilterArray = [
+  { checked: false, minPrice: 0, maxPrice: 100000000 },
+  { checked: false, minPrice: 0, maxPrice: 100000 },
+  { checked: false, minPrice: 100000, maxPrice: 200000 },
+  { checked: false, minPrice: 200000, maxPrice: 300000 },
+  { checked: false, minPrice: 300000, maxPrice: 500000 },
+  { checked: false, minPrice: 500000, maxPrice: 1000000 },
+  { checked: false, minPrice: 1000000, maxPrice: 100000000 }
+];
+
+function returnStringFollowTypeSortAndPrice(
+  typeSort,
+  priceFilter
+) {
+  switch (typeSort) {
+    // Hàng mới nhất
+    case 0:
+      if (priceFilter == 0) {
+        return `ORDER BY pro_cb.CREATED DESC`;
+      } else {
+        return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro_cb.PRICE
+        AND pro_cb.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+        ORDER BY pro_cb.CREATED DESC`;
+      }
+
+    // Hàng cũ nhất
+    case 1:
+      if (priceFilter == 0) {
+        return `ORDER BY pro_cb.CREATED ASC`;
+      } else {
+        return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro_cb.PRICE
+        AND pro_cb.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+        ORDER BY pro_cb.CREATED ASC`;
+      }
+
+    // Giá tăng dần
+    case 2:
+      if (priceFilter == 0) {
+        return `ORDER BY pro_cb.PRICE ASC`;
+      } else {
+        return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro_cb.PRICE
+        AND pro_cb.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+        ORDER BY pro_cb.PRICE ASC`;
+      }
+
+    // Giá giảm dần
+    default:
+      if (priceFilter == 0) {
+        return `ORDER BY pro_cb.PRICE DESC`;
+      } else {
+        return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro_cb.PRICE
+        AND pro_cb.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+        ORDER BY pro_cb.PRICE DESC`;
+      }
+  }
+}
+
+// Hàm trả về N sản phẩm sắp xếp theo typeSort, brand và price
+module.exports.topNProductComboFollowTypeSortAndPrice = (
+  typeSort,
+  priceFilter,
+  N
+) => {
+  var stringValues = returnStringFollowTypeSortAndPrice(typeSort, priceFilter);
+
+  return db.load(`SELECT pro_cb.ID, pro_cb.PRICE, pro_cb.SALE, pro_cb.NAME, 
+          pro_1.ID AS PROID1, pro_2.ID AS PROID2, pro_3.ID AS PROID3, 
+          pro_1.IMAGE AS IMAGE1, pro_2.IMAGE AS IMAGE2, pro_3.IMAGE AS IMAGE3,
+          (CASE
+                  WHEN pro_cb.SALE > 0 THEN (pro_cb.PRICE - pro_cb.PRICE * (pro_cb.SALE / 100))
+                  ELSE pro_cb.PRICE
+          END) AS SALEPRICE
+          FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
+          ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
+          pro_cb.PRODUCTID3 = pro_3.ID
+          ${stringValues}
+          LIMIT ${N};`);
+};

@@ -10,6 +10,10 @@ var router = express.Router();
 
 router.get('/info-detail', controller.infoDetail);
 
+// Hiển thị tất cả thông tin
 router.get('/info-show', controller.infoShow);
+
+// Đưa thông tin từ sort lên info-show
+router.post("/post-value-filter", controller.handlePostValueFilter);
 
 module.exports = router;
