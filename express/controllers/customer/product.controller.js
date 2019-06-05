@@ -416,8 +416,6 @@ module.exports.applyPostValuesFilter = function(req, res, next) {
           productCombo.isSelectAll = true;
         }
 
-        console.log(brandFilter);
-
         if (brandFilter > 0) {
           isSelectAllBrands = false;
           // Đang hiện thị tại brand nào
@@ -464,6 +462,14 @@ module.exports.applyPostValuesFilter = function(req, res, next) {
           productCombo.isSelectAll = false;
         }
 
+        if (brandFilter > 0) {
+          isSelectAllBrands = false;
+          // Đang hiện thị tại brand nào
+          values[1][brandFilter - 1].selected = true;
+        } else {
+          isSelectAllBrands = true;
+        }
+
         res.render("customer/product-show", {
           layout: "main-customer.hbs",
           productsCombo: values[0],
@@ -472,8 +478,8 @@ module.exports.applyPostValuesFilter = function(req, res, next) {
           isShowCombo: true,
           isSelectComboCategory: true,
           isSelectComboSort: true,
-          isSelectAllBrand: true,
-          isSelectAllPrice: true,
+          isSelectAllBrand: isSelectAllBrands,
+          isSelectAllPrice: isSelectAllPrices,
           typeSorts: typeSortArray,
           priceFilters: priceFilterArray,
           helpers: {
