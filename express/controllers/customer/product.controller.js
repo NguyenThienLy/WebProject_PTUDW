@@ -515,7 +515,7 @@ module.exports.applyPostValuesFilter = function(req, res, next) {
         if (brandFilter > 0) {
           isSelectAllBrands = false;
           // Đang hiện thị tại brand nào
-          values[2][brandFilter - 1].selected = true;
+          values[1][brandFilter - 1].selected = true;
         } else {
           isSelectAllBrands = true;
         }
