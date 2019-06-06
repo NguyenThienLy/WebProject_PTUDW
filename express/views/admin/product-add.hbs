@@ -91,7 +91,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="selectProductType" class="mt-2"><b>Loại sản phẩm</b></label>
-                                <select name="SUBCATEGORYID" class="custom-select mr-2" id="selectProductType">
+                                <select name="SUBCATEGORYID" class="custom-select mr-2" id="SubCategory">
                                     {{#each this.subCategories}}
                                     <option value="{{ID}}">{{NAME}}</option>
                                     {{/each}}
@@ -217,4 +217,5 @@
 {{!--Xử lý thêm ảnh bằng file input--}}
 <script src="/admin/js/product-add-file-input.js"></script>
 {{!--Xử lý thêm ảnh bằng file input--}}
+<script src="/admin/js/product-add-Category-Change.js"></script>
 {{/section}}

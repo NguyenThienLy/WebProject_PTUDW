@@ -130,3 +130,14 @@ module.exports.productAdd = function(req, res,next) {
     });
   }).catch(next);
 };
+
+module.exports.SubCategory = function(req, res,next) {
+  
+  //Lấy dữ liệu sub category
+  var dataSubCategories = subCategoryModel.allSubCategory(req.body.CategoryID);
+  //Lấy dữ liệu từ tag
+
+  Promise.all([dataSubCategories]).then(values => {
+    res.json(JSON.stringify(values[0]));
+  }).catch(next);
+};
