@@ -1,5 +1,8 @@
 {{#section 'css'}}
-<title>Thêm sản phẩm</title>
+{{!--css input file--}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+{{!--css input file--}}
 
 {{!-- responsive --}}
 <link href="/admin/css/responsive-product-add.css" rel="stylesheet" />
@@ -10,6 +13,8 @@
 {{!--css --}}
 {{/section}}
 
+<title>Thêm sản phẩm</title>
+
 <!--Nội dung trang index-->
 <div id="dashboard-con">
     <!--Card chứa form nhập thông tin của sản phẩm-->
@@ -19,14 +24,25 @@
                 <h5 class="mb-0">Thông tin sản phẩm</h5>
             </div>
             <div class="card-body">
-                {{!--Mô tả lỗi khi không nhập thông tin --}}
-                <div id="alert-image" class="alert alert-warning" role="alert">
-                    Vui lòng nhập vào đủ số lượng ảnh
+                <div class="card shadow">
+                    <h4 class="card-header">
+                        Upload
+                    </h4>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div>
+                                <input id="list-image" name="fuMain" type="file" multiple>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {{!--End Mô tả lỗi khi không nhập thông tin --}}
-                <!--Form nhập thông tin-->
-                <div class="form-group row">
-                    {{!--UI chọn ảnh và thêm ảnh --}}
+                
+                {{!-- <div id="alert-image" class="alert alert-warning" role="alert">
+                    Vui lòng nhập vào đủ số lượng ảnh
+                </div> --}}
+                
+                {{!-- <div class="form-group row">
+                    
                     <div class="col-12 row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mx-auto-top-bottom">
                             <div class="card mx-auto main-img-product-add">
@@ -121,8 +137,8 @@
                             </div>
                         </div>
                     </div>
-                    {{!--End UI chọn ảnh và thêm ảnh --}}
-                </div>
+                   
+                </div> --}}
 
 
                 <div class="form-group row">
@@ -148,8 +164,7 @@
                             <div class="col-6">
                                 <label for="selectProductSource" class="mt-2"><b>Nguồn gốc</b></label>
                                 <div>
-                                    <select name="ORIGIN" class="custom-select mr-2" id="selectProductSource"
-                                        required>
+                                    <select name="ORIGIN" class="custom-select mr-2" id="selectProductSource" required>
                                         <option selected>Việt Nam</option>
                                         <option value="Mỹ">Mỹ</option>
                                         <option value="Trung Quốc">Trung Quốc</option>
@@ -162,8 +177,7 @@
                             <div class="col-6">
                                 <label for="selectProductBrand" class="mt-2"><b>Thương hiệu</b></label>
                                 <div>
-                                    <select name="BRANDID" class="custom-select mr-2" id="selectProductBrand"
-                                        required>
+                                    <select name="BRANDID" class="custom-select mr-2" id="selectProductBrand" required>
                                         {{#each this.brands}}
                                         <option value="{{ID}}">{{NAME}}</option>
                                         {{/each}}
@@ -176,8 +190,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <label for="selectProductType" class="mt-2"><b>Danh mục</b></label>
-                                <select name="CATEGORYID" class="custom-select mr-2" id="selectProductType"
-                                    required>
+                                <select name="CATEGORYID" class="custom-select mr-2" id="selectProductType" required>
                                     {{#each this.categories}}
                                     <option value="{{ID}}">{{NAME}}</option>
                                     {{/each}}
@@ -185,8 +198,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="selectProductType" class="mt-2"><b>Loại sản phẩm</b></label>
-                                <select name="SUBCATEGORYID" class="custom-select mr-2" id="selectProductType"
-                                    required>
+                                <select name="SUBCATEGORYID" class="custom-select mr-2" id="selectProductType" required>
                                     {{#each this.subCategories}}
                                     <option value="{{ID}}">{{NAME}}</option>
                                     {{/each}}
@@ -298,17 +310,27 @@
 <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
 <script src="/admin/js/chosen-select.js"></script>
 
-{{!-- <script>
-    CKEDITOR.replace("contain");
-</script> --}}
-
 {{!-- inmport my js --}}
-<script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
-<script src="/admin/js/ckeditor5-classicEditor.js"></script>
+{{!-- <script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
+<script src="/admin/js/ckeditor5-classicEditor.js"></script> --}}
+{{!--Xu ly Editor --}}
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=nxw3p5ckcu5jx187f8q2w3ysytehc7mdor1gcic8zu1iq5pv"></script>
+<script src="/admin/js/tinymce-Editor.js"></script>
+{{!--Xu ly Editor --}}
 
 {{!--Xử lý thêm ảnh --}}
-<script src="/admin/js/preview-image-jquery.js"></script>
+{{!-- <script src="/admin/js/preview-image-jquery.js"></script> --}}
 
 {{!--Xử lý dữ liệu từ UI--}}
 <script src="/admin/js/validate-UI-addproduct.js"></script>
+
+{{!--input file --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+{{!--input file --}}
+
+{{!--Xử lý thêm ảnh bằng file input--}}
+<script src="/admin/js/product-add-file-input.js"></script>
+{{!--Xử lý thêm ảnh bằng file input--}}
 {{/section}}

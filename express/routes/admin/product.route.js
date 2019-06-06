@@ -55,7 +55,7 @@ router.get('/product-add', controller.productAdd);
 //router.post('/product-add',controller.productAddNew);
 
 //Xử lý post nhận về ảnh và dữ liệu
-router.post('/product-add',upload,controller.productAddNew);
+//router.post('/product-add',upload,controller.productAddNew);
 
 
 module.exports = router;
