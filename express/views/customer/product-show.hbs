@@ -60,8 +60,9 @@
                 </div>
                 {{!-- header --}}
 
+                {{#if isShowSimple}}         
                 {{!-- category --}}
-                <ul class="list-group" id="ulCategoriesFilter">
+                <ul class="list-group" id="ulCategoriesFilter">        
                     <li class="list-group-item">
                         <h5>Danh mục sản phẩm</h5>
                     </li>
@@ -124,19 +125,6 @@
                     </ul>
                     {{/each}}
 
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{#if isSelectComboCategory}}category-choosing{{/if}}"
-                        id="idcat-1">
-                        <div class="d-flex justify-content-between align-items-center">
-                            Combo
-                            <span class="badge ml-1  badge-success badge-pill">{{lcSumQuantityProductCombo}}</span>
-                        </div>
-
-                        <div class="checkbox m-0">
-                            <label class="m-0"><input id="idcat-1" name="checkboxCategory" type="checkbox"
-                                    {{#if isSelectComboCategory}}checked="" {{/if}} value="-1" /></label>
-                        </div>
-                    </li>
-
                     <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{#if isSelectAllCategory}}category-choosing{{/if}}"
                         id="idcat0">
                         <div class="d-flex justify-content-between align-items-center">
@@ -187,7 +175,8 @@
                         </div>
                     </li>
                 </ul>
-                {{!-- price --}}
+                {{!-- brand --}}
+                {{/if}}   
 
                 {{!-- price --}}
                 <ul class="list-group mt-3" id="ulPricesFilter">
