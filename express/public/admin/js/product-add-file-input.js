@@ -1,7 +1,7 @@
 $(function () {
-    $('#list-image').fileinput({
+    $('#product-image').fileinput({
       theme: 'fa',
-      dropZoneEnabled: false,
+      dropZoneEnabled: true,
       allowedFileExtensions: ['png', 'jpg', 'gif'],
       uploadUrl: '/uploads/input-file-upload',
       uploadAsync: false,

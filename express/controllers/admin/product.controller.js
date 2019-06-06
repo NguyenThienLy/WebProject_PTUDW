@@ -54,55 +54,54 @@ module.exports.productShow = function(req, res,next) {
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
 module.exports.productAddNew = function(req, res,next) {
   //Lấy ra đường dẫn của file ảnh up lên
-  var pathImages = req.files;
+  pathImages = req.files;
   //Tạo mảng lưu link hình sản phẩm nhận về từ post
   var arrImage = [];
+  
+  pathImages.forEach(element => {
+    var splitPathImage = "\\" + element.path.split("\\").slice(1).join("\\");
+    arrImage.push(splitPathImage);
+  });
+  // //End Tạo mảng lưu link hình sản phẩm nhận về từ post
 
-  for(i = 1 ;i<6;i++){
-      var splitPathImage = "\\" + pathImages[`img_${i}`][0].path.split("\\").slice(1).join("\\");
-      arrImage.push(splitPathImage);
-      console.log(splitPathImage);
-  }
+  // //Lấy ra ảnh làm hình đại diện
+  // var imageAvatar = arrImage[0];
 
-  //End Tạo mảng lưu link hình sản phẩm nhận về từ post
+  // //Tạo đối tượng để thêm vào cơ sở dữ liệu
+  // var entity = {
+  //   IMAGE: imageAvatar,
+  //   CATEGORYID: req.body.CATEGORYID,
+  //   SUBCATEGORYID: req.body.SUBCATEGORYID,
+  //   NAME: req.body.NAME,
+  //   BRANDID: req.body.BRANDID,
+  //   STATUS: 1,
+  //   RATE: 0,
+  //   PRICE: req.body.PRICE,
+  //   ORIGIN: req.body.ORIGIN,
+  //   KILOGRAM: req.body.KILOGRAM,
+  //   SALE: req.body.SALE,
+  //   VIPSALE: 0,
+  //   DESCRIPTION: req.body.contain,
+  //   INVENTORY: req.body.INVENTORY
+  // };
 
-  //Lấy ra ảnh làm hình đại diện
-  var imageAvatar = arrImage[0];
+  // // //Gọi hàm thêm vào sản phẩm từ model
+  // var insertProduct = productModel.addProduct(entity);
 
-  //Tạo đối tượng để thêm vào cơ sở dữ liệu
-  var entity = {
-    IMAGE: imageAvatar,
-    CATEGORYID: req.body.CATEGORYID,
-    SUBCATEGORYID: req.body.SUBCATEGORYID,
-    NAME: req.body.NAME,
-    BRANDID: req.body.BRANDID,
-    STATUS: 1,
-    RATE: 0,
-    PRICE: req.body.PRICE,
-    ORIGIN: req.body.ORIGIN,
-    KILOGRAM: req.body.KILOGRAM,
-    SALE: req.body.SALE,
-    VIPSALE: 0,
-    DESCRIPTION: req.body.contain,
-    INVENTORY: req.body.INVENTORY
-  };
+  // //Gọi hàm thêm vào danh sách hình, tag, product_info_hitory từ model | lưu ý chỉ gọi khi insert thành công
+  // insertProduct.then(productID => {
+  //   //Thêm hình ảnh
+  //   productImageModel.addImagesForProduct(productID, arrImage);
+  //   //Thêm vào tag
+  //   tagModel.addTagForProduct(productID, req.body.TAG);
+  //   //Thêm vào lịch sử
+  //   productInfoHistoryModel.addCreatedHistory(productID, "Tạo", "Tạo mới");
+  // }).catch(next);
+  // //Thông báo thêm sản phẩm mới thành công
 
-  // //Gọi hàm thêm vào sản phẩm từ model
-  var insertProduct = productModel.addProduct(entity);
-
-  //Gọi hàm thêm vào danh sách hình, tag, product_info_hitory từ model | lưu ý chỉ gọi khi insert thành công
-  insertProduct.then(productID => {
-    //Thêm hình ảnh
-    productImageModel.addImagesForProduct(productID, arrImage);
-    //Thêm vào tag
-    tagModel.addTagForProduct(productID, req.body.TAG);
-    //Thêm vào lịch sử
-    productInfoHistoryModel.addCreatedHistory(productID, "Tạo", "Tạo mới");
-  }).catch(next);
-  //Thông báo thêm sản phẩm mới thành công
-
-  //Trả về màn hình tất cả sản phẩm
-  res.redirect("product-show");
+  // //Trả về màn hình tất cả sản phẩm
+  //res.redirect("product-show");
+  res.end('up thah cong');
 
 };
 
