@@ -8,7 +8,7 @@ var path = require('path');
 
 //Tạo Địa chỉ để lưu ảnh
 var storage = multer.diskStorage({
-    destination:'./public/uploads/image_product/',
+    destination:'./public/uploads/input-file-upload',
     //Tên ảnh sau khi được tải lên
     filename: (req, file, cb) => {
         cb(null, file.fieldname + '-' + Date.now()
@@ -19,17 +19,17 @@ var storage = multer.diskStorage({
 //Gán thuộc tính cho multer 
 var upload = multer({
     storage: storage,
-    limits: { fileSize: 100000000 },
-    fileFilter:(req,file,cb)=>{
-        checkFileType(file,cb);
-    }
-}).fields([
-    {name:'img_1'},
-    {name:'img_2'},
-    {name:'img_3'},
-    {name:'img_4'},
-    {name:'img_5'},
-]);
+    limits: { fileSize: 100000000 }
+});
+
+// //Gán thuộc tính cho multer 
+// var upload = multer({
+//     storage: storage,
+//     limits: { fileSize: 100000000 },
+//     fileFilter:(req,file,cb)=>{
+//         checkFileType(file,cb);
+//     }
+// });
 
 //Hàm kiểm tra loại file up lên
 function checkFileType(file,cb){
@@ -55,7 +55,9 @@ router.get('/product-add', controller.productAdd);
 //router.post('/product-add',controller.productAddNew);
 
 //Xử lý post nhận về ảnh và dữ liệu
-router.post('/product-add',upload,controller.productAddNew);
+router.post('/product-add',upload.array('PRODUCT_IMAGE'),controller.productAddNew);
+
+router.post('/load-subcategory',controller.SubCategory);
 
 
 module.exports = router;

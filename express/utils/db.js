@@ -7,6 +7,13 @@ var CreateConnection = () => {
     password: "e046ApP13p",
     database: "CpQZk1ZFm6"
   });
+  // return mysql.createConnection({
+  //   host: "localhost",
+  //   user: "root",
+  //   port: "3306",
+  //   password: "",
+  //   database: "CpQZk1ZFm6"
+  // });
 };
 
 module.exports = {

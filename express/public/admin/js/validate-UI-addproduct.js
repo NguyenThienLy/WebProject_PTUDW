@@ -1,69 +1,132 @@
+// jQuery.validator.addMethod("ckeditor", function(value, element) { 
+//     var textData = myEditor.getData();
+//     if(textData.length > 0) return true;
+//     return false;
+// });
 
-
-//Đóng thông báo lỗi lần đầu chạy
-$('#alert-content').hide("fast");
-$('#alert-image').hide("fast");
-$('#alert-number').hide("fast");
-
-
-//Kiểm tra dữ liệu từ ô nhập liệu trước khi submit
-$("#add-product-form").on("submit", function () {
-    return validateTextArea() && validateNumber();
+jQuery.validator.addMethod("comparisonSALE", function (value, element) {
+    var pcompra = $("#inputPromotionProduct").val();
+    if(pcompra >=0 && pcompra <=100){
+        return true;
+    }
+    return false;
 });
 
-
-$("#btn-submit-form").on("click", function () {
-
-    
-    
-    if (validateTextArea() == true && validateImages() == true) {
-
-    } else {
-
+jQuery.validator.addMethod("comparisonKILOGAM", function (value, element) {
+    var pcompra = $("#inputKLGProduct").val();
+    if(pcompra >0){
+        return true;
     }
+    return false;
 });
 
-
-//Hàm kiểm tra số lượng nhập đúng loại
-function validateNumber() {
-    if ($('input[name=KILOGRAM]').val() <= 0 || $('input[name=INVENTORY]').val() <= 0 ||
-        $('input[name=PRICE]').val() <= 0 || $('input[name=SALE]').val() < 0 || $('input[name=SALE]').val() > 100
-        ) {
-        $('#alert-number').show("slow");
-        // Number.isInteger($('input[name=INVENTORY]').val()) == false
-        
-        return false;
-    } else {
-        $('#alert-number').hide("fast");
+jQuery.validator.addMethod("comparisonINVENTORY", function (value, element) {
+    var pcompra = $("#inputINVENTORY").val();
+    if(pcompra >0){
         return true;
     }
-}
+    return false;
+});
 
-//Hàm kiểm tra số lượng hình đã đủ hay chưa
-function validateImages() {
-    if ($("#image_file_1").val() == '' || $("#image_file_2").val() == '' ||
-        $("#image_file_3").val() == '' || $("#image_file_4").val() == '' || $("#image_file_5").val() == '') {
-        $('#alert-image').show("slow");
-        
-        return false;
-    }
-    else {
-        $('#alert-image').hide("fast");
+jQuery.validator.addMethod("comparisonRPICE", function (value, element) {
+    var pcompra = $("#inputPriceProduct").val();
+    if(pcompra >0){
         return true;
     }
-}
+    return false;
+});
 
-//Hàm kiểm tra các trường đã được thêm đầy đủ vào UI hay chưa | Chỉ kiểm tra đối với area và hình ảnh
-function validateTextArea() {
-
-    if ($(".ck-content").last().html()=='<p><br data-cke-filler="true"></p>') {
-        //Thông báo lỗi cho người dùng
-        $('#alert-content').show("slow");
-        
-        return false;
-    } else {
-        //Đóng thông báo lỗi
-        $('#alert-content').hide("fast");
+jQuery.validator.addMethod("comparisonIMAGE", function (value, element) {
+    var pcompra = $("#product-image")[0].files.length;
+    if(pcompra ==5){
         return true;
     }
-}
+    return false;
+});
+
+$("#add-product-form").validate({
+    ignore: [],
+    rules: {
+      NAME: {
+        required: true
+      },
+      ORIGIN: {
+        required: true
+      },
+      BRANDID: {
+        required: true
+      },
+      CATEGORYID: {
+        required: true
+      },
+      SUBCATEGORYID: {
+        required: true
+      },
+      KILOGRAM: {
+        required: true,
+        number:true,
+        comparisonKILOGAM:true
+      },
+      INVENTORY: {
+        required: true,
+        number:true,
+        comparisonINVENTORY:true
+      },
+      PRICE: {
+        required: true,
+        number:true,
+        comparisonRPICE:true,
+      },
+      SALE: {
+        required: true,
+        number:true,
+        comparisonSALE:true
+      },
+      TAG: {
+        required: true
+      },
+    },
+    messages: {
+          NAME: {
+            required: "Vui lòng nhập tên"
+          },
+          ORIGIN: {
+            required: "Vui lòng chọn xuất sứ"
+          },
+          BRANDID: {
+            required: "Vui lòng chọn thương hiệu"
+          },
+          CATEGORYID: {
+            required: "Vui lòng chọn loại"
+          },
+          SUBCATEGORYID: {
+            required: "Vui lòng chọn loại"
+          },
+          KILOGRAM: {
+            required: "Vui lòng nhập vào cân nặng của 1 sản phẩm",
+            number: "Vui lòng nhập vào giá trị hợp lệ",
+            comparisonKILOGAM:"Vui lòng nhập giá trị lớn hơn 0"
+          },
+          INVENTORY: {
+            required: "Vui lòng nhập vào số lượng",
+            number: "Vui lòng nhập vào giá trị hợp lệ",
+            comparisonINVENTORY:"Vui lòng nhập giá trị lớn hơn 0"
+          },
+          PRICE: {
+            required: "Vui lòng nhập vào giá của sản phẩm",
+            number: "Vui lòng nhập vào giá trị hợp lệ",
+            comparisonRPICE:"Vui lòng nhập giá trị lớn hơn 0"
+          },
+          SALE: {
+            required: "Vui lòng nhập vào phần trăm nếu không có hãy nhập 0",
+            number: "Vui lòng nhập vào giá trị hợp lệ",
+            comparisonSALE:"Nhập giá trị từ 0 đến 100"
+          },
+          TAG: {
+            required: "Vui lòng chọn tag"
+          }
+    },
+    errorElement: "small",
+    errorClass: "form-text text-danger is-invalid",
+    validClass: "is-valid"
+  });
