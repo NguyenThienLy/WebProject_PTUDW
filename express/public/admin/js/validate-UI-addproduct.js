@@ -85,10 +85,6 @@ $("#add-product-form").validate({
       TAG: {
         required: true
       },
-      PRODUCT_IMAGE:{
-          required:true,
-          comparisonIMAGE: true
-      },
     },
     messages: {
           NAME: {
@@ -128,11 +124,7 @@ $("#add-product-form").validate({
           },
           TAG: {
             required: "Vui lòng chọn tag"
-          },
-          PRODUCT_IMAGE:{   
-            required:"Vui lòng chọn hình ảnh",
-            comparisonIMAGE: "Vui lòng chọn đúng 5 hình"
-          },
+          }
     },
     errorElement: "small",
     errorClass: "form-text text-danger is-invalid",
