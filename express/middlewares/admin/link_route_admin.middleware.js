@@ -8,10 +8,13 @@ var adminCommentRoute = require("../../routes/admin/comment.route");
 var adminAuthRoute = require("../../routes/admin/auth.route");
 
 var adminAuthMiddleware = require("./auth.middleware");
+var authLocal = require("../all/auth-locals.middleware");
 var adminSidebarActiveMiddleware = require("./sidebar/active.middleware");
 var adminSidebarQuantityBadgeMiddleware = require("./sidebar/quantity_badge.middleware");
 
 module.exports = function(app) {
+  app.use(authLocal);
+
   app.use("/admin/auth", adminAuthRoute);
 
   app.use(

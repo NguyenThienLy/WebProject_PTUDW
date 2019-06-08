@@ -147,3 +147,8 @@ module.exports.removeProductInCart = function(req, res, next) {
       });
   }
 };
+
+module.exports.cartOrder = function(req, res) {
+  res.end("thanh toan");
+};
+
