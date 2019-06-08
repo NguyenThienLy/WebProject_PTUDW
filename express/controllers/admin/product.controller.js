@@ -70,19 +70,8 @@ module.exports.productShow = function (req, res, next) {
 
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
 module.exports.productAddNew = function (req, res, next) {
-  pathImages = req.files;
 
   let listFile = req.files;
-
-  // if (listFile) {
-  //   uploadImageToStorage(listFile, 12).then((success) => {
-  //     res.status(200).send({
-  //       status: 'success'
-  //     });
-  //   }).catch((error) => {
-  //     console.error(error);
-  //   });
-  // }
 
   // //Tạo đối tượng để thêm vào cơ sở dữ liệu
   var entity = {
@@ -100,7 +89,7 @@ module.exports.productAddNew = function (req, res, next) {
     VIPSALE: 0,
     DESCRIPTION: req.body.contain,
     INVENTORY: req.body.INVENTORY,
-    CREATED:'2019-05-21'
+    CREATED: '2019-05-21'
   };
 
   // // //Gọi hàm thêm vào sản phẩm từ model
@@ -108,26 +97,31 @@ module.exports.productAddNew = function (req, res, next) {
 
   // //Gọi hàm thêm vào danh sách hình, tag, product_info_hitory từ model | lưu ý chỉ gọi khi insert thành công
   insertProduct.then(productID => {
-    //Thêm hình ảnh
-    // productImageModel.addImagesForProduct(productID, arrImage);
+    //Thêm hình ảnh cho sản phẩm
     // //Thêm vào tag
-    // tagModel.addTagForProduct(productID, req.body.TAG);
+    tagModel.addTagForProduct(productID, req.body.TAG);
     // //Thêm vào lịch sử
-    // productInfoHistoryModel.addCreatedHistory(productID, "Tạo", "Tạo mới");
-  }).catch(next);
-  // //Thông báo thêm sản phẩm mới thành công
+    productInfoHistoryModel.addCreatedHistory(productID, "Tạo", "Tạo mới");
+    if (listFile) {
+      uploadImageToStorage(listFile, productID, entity).then(arrImage => {
+        res.redirect("product-show");
+      }).catch((error) => {
+        console.error(error);
+      });
+    }
 
-  // //Trả về màn hình tất cả sản phẩm
-  res.redirect("product-show");
+  }).catch(next);
 
 };
 
-const uploadImageToStorage = (listFile, ProductID) => {
+const uploadImageToStorage = (listFile, ProductID, productInfo) => {
   return new Promise((resolve, reject) => {
     if (!listFile) {
       reject('No image file');
     }
     else {
+      var arrImage = [];
+      var count = 0;
       listFile.forEach(file => {
         //Đổi tên hình
         let gcsname = Date.now() + file.originalname;
@@ -148,13 +142,27 @@ const uploadImageToStorage = (listFile, ProductID) => {
         blobStream.on('finish', () => {
           fileUpload.cloudStorageObject = gcsname;
           fileUpload.makePublic().then(() => {
+            //Lấy ra url ảnh
             var url = getPublicUrl(gcsname, ProductID);
-            //Cập nhật lại ảnh đại diện
-            console.log(getPublicUrl(gcsname, ProductID));
+            arrImage.push(url);
+            if (count == 0) {
+              productInfo.IMAGE = url;
+              productInfo.ID = ProductID;
+              //Cập nhật lại thông tin ảnh đại diện của sản phẩm
+              productModel.updateProduct(productInfo);
+            }
+            count++;
+            console.log('length     ;;;', listFile.length);
+            console.log('count:     ;;', count);
+            if (count == listFile.length) {
+              productImageModel.addImagesForProduct(ProductID,arrImage);
+              resolve(arrImage);
+            }
           });
         });
 
         blobStream.end(file.buffer);
+
       });
     }
   });

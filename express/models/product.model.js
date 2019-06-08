@@ -25,8 +25,9 @@ module.exports.addProduct = product => {
 };
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
-module.exports.updateAvatarProduct = (productID,linkImage)=>{
-    
+module.exports.updateProduct = product=>{
+    console.log(product);
+    db.update('product','ID',product);
 };
 
 //Hàm trả về thời gian hiện tại

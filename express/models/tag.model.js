@@ -8,16 +8,29 @@ module.exports.allTag = () => {
 
 //Hàm thêm vào danh sách tag cho product | input: ID sản phẩm, mảng tag
 module.exports.addTagForProduct = (productID, tags) => {
-  tags.forEach(element => {
+
+  if (tags.constructor === Array) {
+    tags.forEach(element => {
+      //Tạo entity
+      var entity = {
+        PRODUCTID: productID,
+        TAGID: element
+      };
+
+      //gọi hàm insert
+      db.add("product_tag", entity);
+    });
+  } else {
     //Tạo entity
     var entity = {
       PRODUCTID: productID,
-      TAGID: element
+      TAGID: tags
     };
 
     //gọi hàm insert
     db.add("product_tag", entity);
-  });
+  }
+
 };
 
 //Hàm thêm vào danh sách tag cho news | input: ID news, mảng tag

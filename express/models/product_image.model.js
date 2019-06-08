@@ -6,6 +6,7 @@ module.exports.addImagesForProduct = (productID,images)=>{
     //Duyệt mảng và insert
     images.forEach(element => {
         //tạo entity
+        
         var entity = {
             LINK:element,
             PRODUCTID:productID
