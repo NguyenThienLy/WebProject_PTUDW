@@ -14,8 +14,16 @@ var CreateConnection = () => {
     user: "root",
     port: "3306",
     password: "",
-    database: "CpQZk1ZFm6"
+    database: "new_organic"
   });
+
+  // return mysql.createConnection({
+  //   host: "remotemysql.com",
+  //   user: "CpQZk1ZFm6",
+  //   port: "3306",
+  //   password: "e046ApP13p",
+  //   database: "CpQZk1ZFm6"
+  // });
 };
 
 module.exports = {

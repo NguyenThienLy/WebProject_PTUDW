@@ -37,12 +37,9 @@ $(document).ready(function() {
   });
 
   // Remove product simple in cart
-  $("#containProductSimpleInCart button").on("click", function() {
+  $("#containProductSimpleInCart").delegate("button","click", function() {
     var $idQuantityCart = $(this).attr("id-quantity-cart");
     var $id = $(this).attr("id");
-
-    alert($idQuantityCart);
-    
 
     $.post(
       "/customer/cart/remove-product-in-cart",
@@ -57,7 +54,7 @@ $(document).ready(function() {
   });
 
   // Remove product combo in cart
-  $("#containProductComboInCart button").on("click", function() {
+  $("#containProductComboInCart").delegate("button","click", function() {
     var $idQuantityCart = $(this).attr("id-quantity-cart");
     var $id = $(this).attr("id");
 
