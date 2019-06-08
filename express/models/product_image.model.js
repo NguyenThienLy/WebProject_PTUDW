@@ -6,6 +6,7 @@ module.exports.addImagesForProduct = (productID,images)=>{
     //Duyệt mảng và insert
     images.forEach(element => {
         //tạo entity
+        
         var entity = {
             LINK:element,
             PRODUCTID:productID
@@ -13,4 +14,8 @@ module.exports.addImagesForProduct = (productID,images)=>{
         //Thêm vào database
         db.add('product_image',entity);
     });
+}
+
+module.exports.deleteProductImage= productID=>{
+    return db.delete('product_image','PRODUCTID',productID);
 }

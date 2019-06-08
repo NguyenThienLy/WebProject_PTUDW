@@ -20,8 +20,38 @@ module.exports.allProduct = () => {
 
 // Hàm thêm vào sản phẩm mới
 module.exports.addProduct = product => {
+  product.CREATED = getDateNow();
   return db.add("product", product);
 };
+
+//Hàm cập nhật ảnh đại diện cho sản phẩm
+module.exports.updateProduct = product=>{
+    console.log(product);
+    return db.update('product','ID',product);
+};
+
+//Hàm xóa 1 sản phẩm
+module.exports.deleteProduct = productID=>{
+  return db.delete('product','ID',productID);
+}
+
+//Hàm trả về thời gian hiện tại
+function getDateNow() {
+  var today = new Date();
+  var dd = today.getDate();
+
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+  return today;
+}
 
 // Hàm trả về 8 sản phẩm sắp xếp theo typeSort, theo id cat
 module.exports.top8ProductFollowIdCatAndTypeSort = (idCat, typeSort) => {

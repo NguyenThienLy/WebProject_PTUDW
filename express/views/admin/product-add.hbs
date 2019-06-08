@@ -160,8 +160,6 @@
                     <textarea id="my_editor" class="form-control" name="contain"></textarea>
 
                 </div>
-
-
                 <div class="pl-2 pb-2">
                     <div class="custom-control custom-control-inline custom-checkbox">
                         <input class="custom-control-input" type="checkbox" id="inlineCheckbox1" value="option1">
@@ -190,6 +188,7 @@
 
 
 {{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
 <script src="/admin/js/chosen-select.js"></script>
 
@@ -205,10 +204,6 @@
 {{!--Xử lý thêm ảnh --}}
 {{!-- <script src="/admin/js/preview-image-jquery.js"></script> --}}
 
-{{!--Xử lý dữ liệu từ UI--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="/admin/js/validate-UI-addproduct.js"></script>
-
 {{!--input file --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
@@ -218,4 +213,7 @@
 <script src="/admin/js/product-add-file-input.js"></script>
 {{!--Xử lý thêm ảnh bằng file input--}}
 <script src="/admin/js/product-add-Category-Change.js"></script>
+
+{{!--Xử lý dữ liệu từ UI--}}
+<script src="/admin/js/validate-UI-addproduct.js"></script>
 {{/section}}

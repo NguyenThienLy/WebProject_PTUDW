@@ -14,6 +14,10 @@ module.exports.addCreatedHistory = (productID,ACTION,DETAIL) =>{
     db.add('product_info_history',entity);
 }
 
+module.exports.deleteProductHistory= productID=>{
+    return db.delete('product_info_history','PRODUCTID',productID);
+}
+
 //Hàm trả về thời gian hiện tại
 function getDateNow(){
     var today = new Date();
