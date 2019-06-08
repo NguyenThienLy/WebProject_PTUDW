@@ -6,6 +6,8 @@ var CreateConnection = () => {
   //   port: "3306",
   //   password: "e046ApP13p",
   //   database: "CpQZk1ZFm6"
+  //   password: "",
+  //   database: "new_organic"
   // });
   return mysql.createConnection({
     host: "localhost",
@@ -90,7 +92,7 @@ module.exports = {
       delete entity[idField2];
       delete entity[idField3];
 
-      var sql = `update ${tableName} set ? where ${idField1} = ? AND ${idField2} = ? AND ${idField3} = ?`;
+      var sql = `update ${tableName} set ? where ${idField1} = ? and ${idField2} = ? and ${idField3} = ?`;
 
       var connection = CreateConnection();
       connection.connect();
@@ -114,6 +116,28 @@ module.exports = {
       connection.connect();
 
       connection.query(sql, id, (error, value) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(value.affectedRows);
+        }
+        connection.end();
+      });
+    });
+  },
+
+  delete3PrimaryKey: (tableName, idField1, idField2, idField3, entity) => {
+    return new Promise((resolve, reject) => {
+      var id1 = entity[idField1];
+      var id2 = entity[idField2];
+      var id3 = entity[idField3];
+
+      var sql = `delete from ${tableName} where ${idField1} = ? and ${idField2} = ? and ${idField3} = ?`;
+     
+      var connection = CreateConnection();
+      connection.connect();
+
+      connection.query(sql, [id1, id2, id3], (error, value) => {
         if (error) {
           reject(error);
         } else {

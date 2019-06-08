@@ -282,7 +282,7 @@
                     Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
                 </a>
 
-                <a class="ml-5 d-block btn btn-outline-success btn-lg" href="#">
+                <a class="ml-5 d-block btn btn-outline-success btn-lg" id="btn-order" href="javascript:void(0);">
                     Tiến hành đặt hàng&ensp;<i class="fas fa-dollar-sign"></i>
                 </a>
             </div>
@@ -621,4 +621,16 @@
 <script src="/customer/js/cart-detail.js"></script>
 <script src="/customer/js/breadcrumb-margin.js"></script>
 <script src="/all/js/compress-image.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#btn-order').on('click', function (e) {
+            if("{{authUser}}") {
+                window.location.href = "/customer/cart/cart-order";
+            } else {
+                $('#header-user-modal').modal('show');
+            }
+            
+        });
+    });
+</script>
 {{/section}}
