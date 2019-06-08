@@ -109,9 +109,7 @@ module.exports.productAddNew = function (req, res, next) {
         console.error(error);
       });
     }
-
   }).catch(next);
-
 };
 
 const uploadImageToStorage = (listFile, ProductID, productInfo) => {
@@ -152,8 +150,6 @@ const uploadImageToStorage = (listFile, ProductID, productInfo) => {
               productModel.updateProduct(productInfo);
             }
             count++;
-            console.log('length     ;;;', listFile.length);
-            console.log('count:     ;;', count);
             if (count == listFile.length) {
               productImageModel.addImagesForProduct(ProductID,arrImage);
               resolve(arrImage);
