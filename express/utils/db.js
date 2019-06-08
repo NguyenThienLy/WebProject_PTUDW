@@ -1,19 +1,19 @@
 var CreateConnection = () => {
   var mysql = require("mysql");
-  return mysql.createConnection({
-    host: "remotemysql.com",
-    user: "CpQZk1ZFm6",
-    port: "3306",
-    password: "e046ApP13p",
-    database: "CpQZk1ZFm6"
-  });
   // return mysql.createConnection({
-  //   host: "localhost",
-  //   user: "root",
+  //   host: "remotemysql.com",
+  //   user: "CpQZk1ZFm6",
   //   port: "3306",
-  //   password: "",
+  //   password: "e046ApP13p",
   //   database: "CpQZk1ZFm6"
   // });
+  return mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    port: "3306",
+    password: "",
+    database: "CpQZk1ZFm6"
+  });
 };
 
 module.exports = {
