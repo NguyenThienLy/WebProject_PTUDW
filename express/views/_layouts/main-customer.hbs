@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.5/slick.min.css" />
     <!-- import slick -->
     <!-- import bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <!-- import bootstrap -->
 
     <!-- import google font -->
@@ -190,85 +189,89 @@
                     <i class="fas fa-shopping-cart position-relative">
                         <a href="cart-detail.html" class="stretched-link"></a>
                         <div class="component-quantity-product position-absolute bg-danger">
-                            <p class="quantity m-0">{{quantityProduct}}</p>
+                            <p id="pQuantityProduct" class="quantity m-0">{{quantityProduct}}</p>
                         </div>
 
-                        <!-- Không có sản phẩm trong giỏ thì không hiên danh sách sản phẩm -->
-                        {{#if quantityProduct}}
-                        <div class="component-show-fast-cart card mt-3">
-                            <div class="style-scrollbar mt-3">
+                        <div class="component-show-fast-cart card mt-3" id="parentContainQuantityProduct">
+                            <div class="style-scrollbar mt-3" id="containQuantityProduct">
                                 {{!-- Các mặt hàng đã chọn của product simple --}}
-                                {{#each cartProducts}}
-                                <div class="component-show-fast-cart-items">
-                                    <div class="d-flex align-items-center pl-3 pr-3 pb-3">
-                                        <div class="position-relative product-image" data-toggle="tooltip"
-                                            title="{{NAME}}">
-                                            <a class="stretched-link"
-                                                href="/customer/product/product-detail/product-simple/{{ID}}"></a>
-                                            <img src="{{IMAGE}}" id="productSimple{{ID}}" class="w-100" alt="" />
-                                        </div>
+                                <div id="containProductSimpleInCart">
+                                    {{#each cartProducts}}
+                                    <div class="component-show-fast-cart-items" id-quantity-cart="productSimple{{ID}}">
+                                        <div class="d-flex align-items-center pl-3 pr-3 pb-3">
+                                            <div class="position-relative product-image" data-toggle="tooltip"
+                                                title="{{NAME}}">
+                                                <a class="stretched-link"
+                                                    href="/customer/product/product-detail/product-simple/{{ID}}"></a>
+                                                <img src="{{IMAGE}}" class="w-100" alt="" />
+                                            </div>
 
-                                        <div class="product-info text-left">
-                                            <a href="/customer/product/product-detail/product-simple/{{ID}}"
-                                                class="title text-decoration-none" data-toggle="tooltip"
-                                                title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
+                                            <div class="product-info text-left">
+                                                <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                                                    class="title text-decoration-none" data-toggle="tooltip"
+                                                    title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
-                                            <div class="price mt-2">
-                                                <span>{{formatPrice SALEPRICE}}</span>
-                                                <span><u>đ</u></span>
-                                                &nbsp;
-                                                <span>x</span>
-                                                <span>{{QUANTITY_PRO}}</span>
+                                                <div class="price mt-2">
+                                                    <span>{{formatPrice SALEPRICE}}</span>
+                                                    <span><u>đ</u></span>
+                                                    &nbsp;
+                                                    <span>x</span>
+                                                    <span id="{{ID}}" id-quantity-cart="productSimple{{ID}}">{{QUANTITY_PRO}}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="product-delete text-right">
+                                                <button id={{ID}} id-quantity-cart="productSimple{{ID}}" class="p-0 border-0"
+                                                    data-toggle="tooltip" title="Xóa">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
                                             </div>
                                         </div>
-
-                                        <div class="product-delete text-right">
-                                            <button href="#" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
+                                        <hr class="m-0 ml-2 mr-2" />
                                     </div>
-                                    <hr class="m-0 ml-2 mr-2" />
+                                    {{/each}}
                                 </div>
-                                {{/each}}
-                                {{!-- Các mặt hàng đã chọn của product combo --}}
+                                {{!-- Các mặt hàng đã chọn của product simple --}}
 
                                 {{!-- Các mặt hàng đã chọn của product combo --}}
-                                {{#each cartProductsCombo}}
-                                <div class="component-show-fast-cart-items">
-                                    <div class="d-flex align-items-center pl-3 pr-3 pb-3">
-                                        <div class="position-relative product-image pt-3 pb-3" data-toggle="tooltip"
-                                            title="{{NAME}}">
-                                            <a class="stretched-link"
-                                                href="/customer/product/product-detail/product-combo/{{ID}}"></a>
-                                            <img src="{{IMAGE1}}" id="productCombo{{ID}}{{PROID1}}" class="image-combo" alt="" />
-                                            <img src="{{IMAGE2}}" id="productCombo{{ID}}{{PROID2}}" class="image-combo" alt="" />
-                                            <img src="{{IMAGE3}}" id="productCombo{{ID}}{{PROID3}}" class="image-combo" alt="" />
-                                        </div>
+                                <div id="containProductComboInCart">
+                                    {{#each cartProductsCombo}}
+                                    <div class="component-show-fast-cart-items" id-quantity-cart="productCombo{{ID}}">
+                                        <div class="d-flex align-items-center pl-3 pr-3 pb-3">
+                                            <div class="position-relative product-image pt-3 pb-3" data-toggle="tooltip"
+                                                title="{{NAME}}">
+                                                <a class="stretched-link"
+                                                    href="/customer/product/product-detail/product-combo/{{ID}}"></a>
+                                                <img src="{{IMAGE1}}" class="image-combo" alt="" />
+                                                <img src="{{IMAGE2}}" class="image-combo" alt="" />
+                                                <img src="{{IMAGE3}}" class="image-combo" alt="" />
+                                            </div>
 
-                                        <div class="product-info text-left">
-                                            <a href="/customer/product/product-detail/product-combo/{{ID}}"
-                                                class="title text-decoration-none" data-toggle="tooltip"
-                                                title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
+                                            <div class="product-info text-left">
+                                                <a href="/customer/product/product-detail/product-combo/{{ID}}"
+                                                    class="title text-decoration-none" data-toggle="tooltip"
+                                                    title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
-                                            <div class="price mt-2">
-                                                <span>{{formatPrice SALEPRICE}}</span>
-                                                <span><u>đ</u></span>
-                                                &nbsp;
-                                                <span>x</span>
-                                                <span>{{QUANTITY_PRO}}</span>
+                                                <div class="price mt-2">
+                                                    <span>{{formatPrice SALEPRICE}}</span>
+                                                    <span><u>đ</u></span>
+                                                    &nbsp;
+                                                    <span>x</span>
+                                                    <span id-quantity-cart="productCombo{{ID}}">{{QUANTITY_PRO}}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="product-delete text-right">
+                                                <button id={{ID}} id-quantity-cart="productCombo{{ID}}" class="p-0 border-0"
+                                                    data-toggle="tooltip" title="Xóa">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
                                             </div>
                                         </div>
-
-                                        <div class="product-delete text-right">
-                                            <button href="#" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
+                                        <hr class="m-0 ml-2 mr-2" />
                                     </div>
-                                    <hr class="m-0 ml-2 mr-2" />
+                                    {{/each}}
                                 </div>
-                                {{/each}}
                                 {{!-- Các mặt hàng đã chọn của product combo --}}
 
                             </div>
@@ -290,8 +293,6 @@
                                 </a>
                             </div>
                         </div>
-                        {{/if}}
-                        <!-- Không có sản phẩm trong giỏ thì không hiên danh sách sản phẩm -->
                     </i>
                 </div>
 
@@ -955,15 +956,9 @@ class="custom-file col-8 p-0"
     </div>
     <!-- component user account modal -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     {{{_sections.js}}}
 
@@ -974,6 +969,7 @@ class="custom-file col-8 p-0"
     <script src="/customer/js/open-close-sidebar-menu.js"></script>
     <script src="/customer/js/footer-accordion.js"></script>
     <script src="/customer/js/component-header-hover-content-top.js"></script>
+    <script src="/customer/js/handle-product-in-cart.js"></script>
     {{!-- js all page --}}
 </body>
 
