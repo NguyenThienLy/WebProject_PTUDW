@@ -15,7 +15,9 @@
 {{!-- responsive --}}
 {{/section}}
 
-<form method="POST" name="frmProductShow" action="/customer/product/product-filter">
+<form method="POST" name="frmProductShow" {{#if isSelectAllCategory}}action="/customer/product/product-all-show" {{/if}}
+    {{#if isSelectComboCategory}}action="/customer/product/product-combo-show" {{/if}}
+    {{#if isSelectSimpleCategory}}action="/customer/product/product-show/{{idCategory}}/{{idSubCategory}}" {{/if}}>
     <!-- Breadcrumb
     header -->
     <div class="breadcrumb-header container-fluid p-0">
@@ -60,14 +62,14 @@
                 </div>
                 {{!-- header --}}
 
-                {{#if isShowSimple}}         
+                {{#if isSelectAllCategory}}
                 {{!-- category --}}
-                <ul class="list-group" id="ulCategoriesFilter">        
+                <ul class="list-group" id="ulCategoriesFilter">
                     <li class="list-group-item">
                         <h5>Danh mục sản phẩm</h5>
                     </li>
 
-                    {{#each lcCategories}}
+                    {{#each categoriesFilter}}
 
                     {{!-- Nếu category ko có sản phẩm nào --}}
                     {{#if QUANTITYCAT}}
@@ -124,20 +126,6 @@
                         {{!-- Nếu category ko có sản phẩm nào --}}
                     </ul>
                     {{/each}}
-
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{#if isSelectAllCategory}}category-choosing{{/if}}"
-                        id="idcat0">
-                        <div class="d-flex justify-content-between align-items-center">
-                            Tất cả
-                            <span class="badge ml-1  badge-success badge-pill">{{lcSumQuantityProductAll}}</span>
-                        </div>
-
-                        <div class="checkbox m-0">
-                            <label class="m-0"><input id="idcat0" name="checkboxCategory" type="checkbox"
-                                    {{#if isSelectAllCategory}}checked="" {{/if}} value="0" /></label>
-                        </div>
-                    </li>
-
                 </ul>
                 {{!-- category --}}
 
@@ -156,27 +144,39 @@
                         </div>
 
                         <div class="checkbox m-0">
-                            <label class="m-0"><input id="brand{{ID}}" {{#if selected}}checked=""{{/if}} name="checkboxBrand" type="checkbox"
-                                    value="{{ID}}" /></label>
+                            <label class="m-0"><input id="brand{{ID}}" {{#if selected}}checked="" {{/if}}
+                                    name="checkboxBrand" type="checkbox" value="{{ID}}" /></label>
                         </div>
                     </li>
                     {{/each}}
+                </ul>
+                {{!-- brand --}}
+                {{/if}}
 
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{#if isSelectAllBrand}}category-choosing{{/if}}"
-                        id="brand0">
+                {{#if isSelectSimpleCategory}}
+                {{!-- brand --}}
+                <ul class="list-group mt-3" id="ulBrandsFilter">
+                    <li class="list-group-item">
+                        <h5>Nhà cung cấp</h5>
+                    </li>
+
+                    {{#each brands}}
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{#if selected}}category-choosing{{/if}}"
+                        id="brand{{ID}}">
                         <div class="d-flex justify-content-between align-items-center">
-                            Tất cả
-                            <span class="badge ml-1  badge-success badge-pill">{{lcSumQuantityProductAll}}</span>
+                            {{NAME}}
+                            <span class="badge ml-1  badge-success badge-pill">{{QUANTITY}}</span>
                         </div>
 
                         <div class="checkbox m-0">
-                            <label class="m-0"><input id="brand0" name="checkboxBrand"
-                                    {{#if isSelectAllBrand}}checked="" {{/if}} type="checkbox" value="0" /></label>
+                            <label class="m-0"><input id="brand{{ID}}" {{#if selected}}checked="" {{/if}}
+                                    name="checkboxBrand" type="checkbox" value="{{ID}}" /></label>
                         </div>
                     </li>
+                    {{/each}}
                 </ul>
                 {{!-- brand --}}
-                {{/if}}   
+                {{/if}}
 
                 {{!-- price --}}
                 <ul class="list-group mt-3" id="ulPricesFilter">
@@ -198,20 +198,6 @@
                         </div>
                     </li>
                     {{/each}}
-
-                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{#if isSelectAllPrice}}category-choosing{{/if}}"
-                        id="price0">
-                        <div class="d-flex justify-content-between align-items-center">
-                            Tất cả
-                            <span class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductAll}}</span>
-                        </div>
-
-                        <div class="checkbox m-0">
-                            <label class="m-0"><input id="price0" name="checkboxPrice"
-                                    {{#if isSelectAllPrice}}checked="" {{/if}} type="checkbox"
-                                    value="{{value}}" /></label>
-                        </div>
-                    </li>
                 </ul>
                 {{!-- price --}}
             </div>
@@ -255,12 +241,13 @@
 
         {{!-- product simple --}}
         {{#if isShowSimple}}
-        <div class="row mt-5">
+        <div class="row mt-5" id="containProductSimple">
             {{!-- load sản phẩm simple theo các giá trị của filter --}}
             {{#each this.products}}
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
                 <div class="component-product-simple card w-100">
-                    <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="{{NAME}}">
+                    <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip"
+                        id-product-to-cart="productSimple{{ID}}" title="{{NAME}}">
                         <a class="stretched-link" href="/customer/product/product-detail/product-simple/{{ID}}"></a>
 
                         {{!-- Nếu có giảm giá mới hiện ra --}}
@@ -271,9 +258,10 @@
                         {{/if}}
                         {{!-- Nếu có giảm giá mới hiện ra --}}
 
-                        <img src={{IMAGE}} class="rounded-top w-100 h-100" id="productSimple{{ID}}" alt="">
+                        <img src={{IMAGE}} class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}"
+                         alt="">
                         <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
-                            <a href="/customer/product/add-product/{{isSelectAll}}/{{CATEGORYID}}/{{SUBCATEGORYID}}/{{ID}}"
+                            <a id-product-to-cart="productSimple{{ID}}" id={{ID}}
                                 class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                                 data-toggle="tooltip" title="Mua ngay">
                                 <i class="fas fa-shopping-cart"></i>
@@ -292,7 +280,7 @@
                             class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
                         <div class="mt-1 d-flex justify-content-center">
                             <div class="price-sale">
-                                <span>{{formatPrice SALEPRICE}}</span>
+                                <span id-product-to-cart="productSimple{{ID}}">{{formatPrice SALEPRICE}}</span>
                                 <span><u>đ</u></span>
                             </div>
 
@@ -341,12 +329,13 @@
 
         {{!-- product combo --}}
         {{#if isShowCombo}}
-        <div class="row mt-5">
+        <div class="row mt-5" id="containProductCombo">
             {{!-- Load sản phẩm combo theo các giá trị của filter  --}}
             {{#each this.productsCombo}}
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
                 <div class="component-product-combo card font-weight-bold w-100">
-                    <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip" title="{{NAME}}">
+                    <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
+                        id-product-to-cart="productCombo{{ID}}" title="{{NAME}}">
                         <div class="position-relative d-flex h-100">
                             <a href="/customer/product/product-detail/product-combo/{{ID}}" class="stretched-link"></a>
 
@@ -358,13 +347,16 @@
                             {{/if}}
                             {{!-- Nếu đang giảm giá mới hiện ra --}}
 
-                            <img class="image-product-1" id="productCombo{{ID}}{{PROID1}}" src={{IMAGE1}} alt="" />
-                            <img class="image-product-2" id="productCombo{{ID}}{{PROID2}}" src={{IMAGE2}} alt="" />
-                            <img class="image-product-3" id="productCombo{{ID}}{{PROID3}}" src={{IMAGE3}} alt="" />
+                            <img id-product-to-cart-src-1="productCombo{{ID}}" class="image-product-1" 
+                                src={{IMAGE1}} alt="" />
+                            <img id-product-to-cart-src-2="productCombo{{ID}}" class="image-product-2" 
+                                src={{IMAGE2}} alt="" />
+                            <img id-product-to-cart-src-3="productCombo{{ID}}" class="image-product-3"
+                                src={{IMAGE3}} alt="" />
                         </div>
                         <div
                             class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                            <a href="/customer/product/add-product-combo/{{isSelectAll}}/{{ID}}"
+                            <a id-product-to-cart="productCombo{{ID}}" id={{ID}}
                                 class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                                 data-toggle="tooltip" title="Mua ngay">
                                 <i class="fas fa-shopping-cart"></i>
@@ -384,7 +376,7 @@
                             title="Baby combo - combo rau hữu cơ Nhật cho bé">{{formatTitleProductCombo NAME}}</a>
                         <div class="m-0 d-flex justify-content-center">
                             <div class="price-sale">
-                                <span>{{formatPrice SALEPRICE}}</span>
+                                <span id-product-to-cart="productCombo{{ID}}">{{formatPrice SALEPRICE}}</span>
                                 <span><u>đ</u></span>
                             </div>
 
@@ -441,5 +433,5 @@
 <script src="/customer/js/breadcrumb-margin.js"></script>
 <script src="/customer/js/frm-product-show-submit.js"></script>
 <script src="/customer/js/control-checkbox-filter.js"></script>
-<script src="/all/js/compress-image.js"></script>
+{{!-- <script src="/all/js/compress-image.js"></script> --}}
 {{/section}}

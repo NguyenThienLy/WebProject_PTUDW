@@ -54,3 +54,14 @@ module.exports.update3PrimaryKey = sesstionCart => {
     sesstionCart
   );
 };
+
+// Hàm xóa một dòng trên hàng theo session id, product id
+module.exports.deleteFollow3PrimaryKey = sesstionCart => {
+  return db.delete3PrimaryKey(
+    "session_cart",
+    "ID",
+    "PRODUCT_ID",
+    "PRODUCT_COMBO_ID",
+    sesstionCart
+  );
+};

@@ -23,30 +23,34 @@ router.get(
 );
 
 // Đưa thông tin từ sort lên product-all-show
-router.post("/product-filter", controller.applyPostValuesFilter);
+//router.post("/product-filter", controller.applyPostValuesFilter);
 
-// router.post("/product-all-show", controller.applyPostValuesFilter);
+router.post("/product-all-show", controller.applyPostForProductAllShow);
 
-// router.post("/product-combo-show", controller.applyPostValuesFilter);
+router.post("/product-combo-show", controller.applyPostForProductComboShow);
 
-// router.post("/product-show", controller.applyPostValuesFilter);
+router.post("/product-show/:idCat/:idSub", controller.applyPostForProductShow);
 
 // Đưa thông tin từ sort lên product-all-show
-router.get("/product-filter", controller.applyGetValuesFilter);
+//router.get("/product-filter", controller.applyGetValuesFilter);
 
-// Reset thông tin từ sort lên product-all-show
-router.post("/product-filter", controller.cancelPostValuesFilter);
+// // Reset thông tin từ sort lên product-all-show
+// router.post("/product-all-show", controller.cancelPostValuesFilter);
 
-// Thêm sản phẩm vào giỏ hàng theo id cat và id sub
-router.get(
-  "/add-product/:isSelectAll/:idCat/:idSub/:idProSimple",
-  controller.addProductFollowIdCatAndIdSubToSession
-);
+// router.post("/product-combo-show", controller.cancelPostValuesFilter);
 
-// Thêm sản phẩm combo vào giỏ hàng theo id cat và id sub
-router.get(
-  "/add-product-combo/:isSelectAll/:idProCombo",
-  controller.addProductComboToSession
-);
+// router.post("/product-show/:idCat/:idSub", controller.cancelPostValuesFilter);
+
+// // Thêm sản phẩm vào giỏ hàng theo id cat và id sub
+// router.get(
+//   "/add-product/:isSelectAll/:idCat/:idSub/:idProSimple",
+//   controller.addProductFollowIdCatAndIdSubToSession
+// );
+
+// // Thêm sản phẩm combo vào giỏ hàng theo id cat và id sub
+// router.get(
+//   "/add-product-combo/:isSelectAll/:idProCombo",
+//   controller.addProductComboToSession
+// );
 
 module.exports = router;
