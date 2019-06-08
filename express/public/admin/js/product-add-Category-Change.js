@@ -1,5 +1,6 @@
 $('#selectProductType').on('change', function () {
-    $.post("/admin/product/load-subcategory", { CategoryID: this.value }, function (data) {
+    var base_url = location.protocol +"//"+document.domain+":"+location.port;
+    $.post(base_url+"/admin/product/load-subcategory", { CategoryID: this.value }, function (data) {
         reloadSubCategory(JSON.parse(data));
     });
 })

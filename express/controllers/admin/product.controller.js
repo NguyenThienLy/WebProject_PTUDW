@@ -205,3 +205,14 @@ module.exports.SubCategory = function (req, res, next) {
     res.json(JSON.stringify(values[0]));
   }).catch(next);
 };
+
+//Xóa sản phẩm, xóa những sản phẩm không có trong combo
+module.exports.deleteProduct = (req,res,next)=>{
+    var id =req.body.ProductID;
+    tagModel.deleteProductTag(id);
+    // productImageModel.deleteProductImage(id);
+    // productInfoHistoryModel.deleteProductHistory(id);
+    // productModel.deleteProduct(id);
+    res.redirect("/");
+    
+}

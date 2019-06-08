@@ -27,8 +27,13 @@ module.exports.addProduct = product => {
 //Hàm cập nhật ảnh đại diện cho sản phẩm
 module.exports.updateProduct = product=>{
     console.log(product);
-    db.update('product','ID',product);
+    return db.update('product','ID',product);
 };
+
+//Hàm xóa 1 sản phẩm
+module.exports.deleteProduct = productID=>{
+  return db.delete('product','ID',productID);
+}
 
 //Hàm trả về thời gian hiện tại
 function getDateNow() {

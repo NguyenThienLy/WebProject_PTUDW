@@ -121,7 +121,7 @@
                         </td>
                         <td align="center">
                             <button type="button" class="btn btn-sm btn-primary">Sửa</button>
-                            <button type="button" class="btn btn-sm btn-danger">Xóa</button>
+                            <button type="button" class="btn btn-sm btn-danger post_delete" post_id="{{ID}}">Xóa</button>
                         </td>
                     </tr>
                     {{/each}}
@@ -173,4 +173,5 @@
 
 {{#section 'js'}}
 <script src="/all/js/compress-image.js"></script>
+<script src="/admin/js/product-show-delete-product.js"></script>
 {{/section}}

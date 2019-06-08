@@ -33,6 +33,10 @@ module.exports.addTagForProduct = (productID, tags) => {
 
 };
 
+module.exports.deleteProductTag= productID=>{
+  return db.delete('product_tag','PRODUCTID',productID);
+}
+
 //Hàm thêm vào danh sách tag cho news | input: ID news, mảng tag
 module.exports.addTagForNews = (newsID, tags) => {
   if (tags.constructor === Array) {

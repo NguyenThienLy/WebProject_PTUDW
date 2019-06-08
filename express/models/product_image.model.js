@@ -15,3 +15,7 @@ module.exports.addImagesForProduct = (productID,images)=>{
         db.add('product_image',entity);
     });
 }
+
+module.exports.deleteProductImage= productID=>{
+    return db.delete('product_image','PRODUCTID',productID);
+}

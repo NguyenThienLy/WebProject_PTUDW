@@ -26,4 +26,7 @@ router.post('/product-add',gcsMulter.array('PRODUCT_IMAGE'),controller.productAd
 //Post trả về subCategory theo id của category
 router.post('/load-subcategory', controller.SubCategory);
 
+//Xử lý xóa sản phẩm
+router.post('/product-show/delete',controller.deleteProduct);
+
 module.exports = router;
