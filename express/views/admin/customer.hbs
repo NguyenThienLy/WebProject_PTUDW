@@ -36,11 +36,11 @@
                     <tr>
                         <th class="text-center">Mã KH</th>
                         <th>Loại KH</th>
+                        <th>Tài khoản</th>
                         <th>Họ tên</th>
                         <th>Email</th>
-                        <th>Số điện thoại</th>
                         <th>Ngày sinh</th>
-                        <th>Tài khoản</th>
+                        <th>Ví tiền</th>
                         <th>Thời gian đăng ký</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
@@ -52,9 +52,9 @@
                     <tr>
                         <td align="center">{{ID}}</td>
                         <td>{{TYPE}}</td>
+                        <td>{{USERNAME}}</td>
                         <td>{{FULLNAME}}</td>
                         <td>{{EMAIL}}</td>
-                        <td>{{PHONE}}</td>
                         <td>{{BIRTHDATE}}</td>
                         <td> {{formatPrice CASH}} đ</td>
                         <td>
@@ -68,45 +68,6 @@
                     </tr>
                     <!--End nội dung của một hàng-->
                     {{/each}}
-                    {{!-- <!--Nội dung của một hàng-->
-                    <tr>
-                        <td>KH120</td>
-                        <td>Trần Khánh Linh</td>
-                        <td>trankhanhlinh98@gmail.com</td>
-                        <td>123345677</td>
-                        <td>16/10/1998</td>
-                        <td>200000</td>
-                        <td>
-                            <span>14/04/2019&nbsp;</span>
-                            <span>13:21:25</span>
-                        </td>
-                        <td align="center">
-                            <button class="btn btn-sm btn-danger" type="button">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!--End nội dung của một hàng-->
-
-                    <!--Nội dung của một hàng-->
-                    <tr>
-                        <td>KH120</td>
-                        <td>Trần Khánh Linh</td>
-                        <td>trankhanhlinh98@gmail.com</td>
-                        <td>123345677</td>
-                        <td>16/10/1998</td>
-                        <td>200000</td>
-                        <td>
-                            <span>14/04/2019&nbsp;</span>
-                            <span>13:21:25</span>
-                        </td>
-                        <td align="center">
-                            <button class="btn btn-sm btn-danger" type="button">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!--End nội dung của một hàng--> --}}
                 </tbody>
             </table>
             <!--End Table hiển thị sản phẩm-->

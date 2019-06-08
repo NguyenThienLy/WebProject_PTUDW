@@ -9,3 +9,8 @@ module.exports.allAdmin = () => {
 module.exports.addAdmin = admin => {
   return db.add("admin", admin);
 };
+
+module.exports.singleByUserName = userName => {
+  return db.load(`SELECT * FROM admin where USERNAME = '${userName}'`);
+};
+

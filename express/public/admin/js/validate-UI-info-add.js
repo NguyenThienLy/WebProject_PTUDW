@@ -42,12 +42,6 @@ $("#frmInfoAdd").validate({
     }
   },
   errorElement: "small",
-  errorClass: "form-text text-danger is-invalid",
+  errorClass: "help-block text-danger is-invalid",
   validClass: "is-valid"
-  //   highlight: function(element) {
-  //     $(element).addClass(is-invalid).removeClass(is-valid);
-  //   },
-  //   unhighlight: function(element) {
-  //     $(element).removeClass(is-valid).addClass(is-invalid);
-  //   },
 });
