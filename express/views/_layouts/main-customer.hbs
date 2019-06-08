@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
     <!-- end import google font -->
 
+    {{!-- datetime picker --}}
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
     {{!-- css all page --}}
     <link href="/customer/css/animate.css" rel="stylesheet" />
     <link href="/customer/css/customer-style.css" rel="stylesheet" />
@@ -182,13 +186,18 @@
 
             <div
                 class="menu-icons d-flex align-items-center justify-content-end col-5 col-sm-7 col-md-3 col-lg-2 col-xl-2">
-                <a class="btn pl-2 pr-2 ml-1" data-toggle="modal" data-target="#header-user-modal">
+                {{#if this.isAuthenticated}}
+
+                {{else}}
+                <a class="btn pl-2 pr-2 ml-1 d-block" id="modal-login-register" data-toggle="modal"
+                    data-target="#header-user-modal">
                     <i class="far fa-user"></i>
                 </a>
+                {{/if}}
 
                 <div class="spanCart btn pl-2 pr-2 ml-1 mr-1" id="span-show-cart">
                     <i class="fas fa-shopping-cart position-relative">
-                        <a href="cart-detail.html" class="stretched-link"></a>
+                        <a href="/customer/cart/cart-detail" class="stretched-link"></a>
                         <div class="component-quantity-product position-absolute bg-danger">
                             <p class="quantity m-0">{{quantityProduct}}</p>
                         </div>
@@ -241,9 +250,12 @@
                                             title="{{NAME}}">
                                             <a class="stretched-link"
                                                 href="/customer/product/product-detail/product-combo/{{ID}}"></a>
-                                            <img src="{{IMAGE1}}" id="productCombo{{ID}}{{PROID1}}" class="image-combo" alt="" />
-                                            <img src="{{IMAGE2}}" id="productCombo{{ID}}{{PROID2}}" class="image-combo" alt="" />
-                                            <img src="{{IMAGE3}}" id="productCombo{{ID}}{{PROID3}}" class="image-combo" alt="" />
+                                            <img src="{{IMAGE1}}" id="productCombo{{ID}}{{PROID1}}" class="image-combo"
+                                                alt="" />
+                                            <img src="{{IMAGE2}}" id="productCombo{{ID}}{{PROID2}}" class="image-combo"
+                                                alt="" />
+                                            <img src="{{IMAGE3}}" id="productCombo{{ID}}{{PROID3}}" class="image-combo"
+                                                alt="" />
                                         </div>
 
                                         <div class="product-info text-left">
@@ -295,15 +307,32 @@
                     </i>
                 </div>
 
-                <div class="pt-0 pl-2 pr-2 ml-1 pb-1">
+                <form id="frmLogout" action="/customer/auth/logout" method="POST"></form>
+                {{#if this.isAuthenticated}}
+                <div class="pt-0 pl-2 pr-2 ml-1 pb-1" id="my-account">
                     <div class="component-avatar-user position-relative">
+                        <img src="{{this.authUser.avatar}}" class="rounded-circle h-100 w-100" alt="">
                         <div class="card component-avatar-user-content">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
                                 khoản của tôi</a>
-                            <a class="dropdown-item" href="#">Đăng xuất</a>
+                            {{#if this.authUser.typeLogin}}
+                            <a href="javascript: $('#frmLogout').submit();" class="dropdown-item">
+                                <span class="fas fa-sign-out-alt"></span>
+                                &nbsp;Đăng xuất
+                            </a>
+                            {{else}}
+                            <a href="javascript:void(0);" id="btn-logout" class="dropdown-item">
+                                <span class="fas fa-sign-out-alt"></span>
+                                &nbsp;Đăng xuất
+                            </a>
+                            {{/if}}
+
                         </div>
                     </div>
                 </div>
+                {{else}}
+
+                {{/if}}
 
             </div>
         </nav>
@@ -639,15 +668,15 @@
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="header-login-modal-nav" role="tabpanel"
                                 aria-labelledby="header-login-modal-nav-tab">
-                                <form class="p-4">
+                                <form id="frmLogin" class="p-4">
                                     <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label for="header-login-modal-email"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Email /
-                                            SĐT</label>
+                                        <label for="header-login-modal-username"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Tài
+                                            khoản</label>
                                         <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
                                             <input type="text" class="form-control form-control-sm"
-                                                placeholder="Nhập Email hoặc Số điện thoại"
-                                                id="header-login-modal-email" />
+                                                placeholder="Nhập tên đăng nhập" id="header-login-modal-username"
+                                                name="USERNAME" />
                                         </div>
                                     </div>
 
@@ -658,48 +687,48 @@
                                         <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
                                             <input type="password" class="form-control form-control-sm"
                                                 placeholder="Nhập mật khẩu từ 6 đến 32 ký tự"
-                                                id="header-login-modal-password" />
+                                                id="header-login-modal-password" name="PASSWORD" />
                                         </div>
                                     </div>
 
                                     <div class="d-flex">
-                                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"></div>
-                                        <button type="button"
-                                            class="btn btn-success col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                        <div class="col-0 col-sm-3 d-none d-sm-block col-form-label"></div>
+                                        <button type="submit" class="btn btn-success col-12 col-sm-9">
                                             Đăng nhập
                                         </button>
+                                    </div>
+                                    <div class="d-flex mt-3">
+                                        <div class="col-0 col-sm-3 d-none d-sm-block col-form-label"></div>
+                                        <a href="/customer/auth/google" role="button"
+                                            class="btn btn-danger col-12 col-sm-4">
+                                            <i class="fab fa-google"></i>&ensp;Google
+                                        </a>
+                                        <div class="col-0 col-sm-1 d-none d-sm-block col-form-label"></div>
+                                        <a href="/customer/auth/facebook" role="button"
+                                            class="btn btn-primary col-12 col-sm-4 d-none d-sm-block">
+                                            <i class="fab fa-facebook-f"></i>&ensp;Facebook
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 d-sm-none">
+                                        <a href="/customer/auth/facebook" role="button"
+                                            class="btn btn-primary col-12 col-sm-9">
+                                            <i class="fab fa-facebook-f"></i>&ensp;Facebook
+                                        </a>
                                     </div>
                                 </form>
                             </div>
 
                             <div class="tab-pane fade" id="header-register-modal-nav" role="tabpanel"
                                 aria-labelledby="header-register-modal-nav-tab">
-                                <form class="p-4">
+                                <form id="frmRegister" class="p-4">
                                     <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label for="header-register-modal-name"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Họ
-                                            tên</label>
+                                        <label for="header-register-modal-username"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Tài
+                                            khoản</label>
                                         <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
                                             <input type="text" class="form-control form-control-sm"
-                                                placeholder="Nhập họ tên" id="header-register-modal-name" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label for="header-register-modal-phone"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">SĐT</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
-                                            <input type="text" class="form-control form-control-sm"
-                                                placeholder="Nhập số điện thoại" id="header-register-modal-phone" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label for="header-register-modal-email"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Email</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
-                                            <input type="text" class="form-control form-control-sm"
-                                                placeholder="Nhập email" id="header-register-modal-email" />
+                                                placeholder="Nhập tên đăng nhập" name="USERNAME"
+                                                id="header-register-modal-username" />
                                         </div>
                                     </div>
 
@@ -709,12 +738,55 @@
                                             khẩu</label>
                                         <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
                                             <input type="password" class="form-control form-control-sm"
-                                                placeholder="Mật khẩu từ 6 đến 32 ký tự"
+                                                placeholder="Mật khẩu từ 6 đến 32 ký tự" name="PASSWORD"
                                                 id="header-register-modal-password" />
                                         </div>
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-confirmPassword"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Xác nhận
+                                            mật
+                                            khẩu</label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="password" class="form-control form-control-sm"
+                                                placeholder="Nhập lại mật khẩu" name="CONFIRMPASSWORD"
+                                                id="header-register-modal-confirmPassword" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-name"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Họ
+                                            tên</label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="Nhập họ tên" name="FULLNAME"
+                                                id="header-register-modal-name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-email"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Email</label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="Nhập email" name="EMAIL"
+                                                id="header-register-modal-email" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-birthdate"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Ngày
+                                            sinh</label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="text" class="form-control form-control-sm" name="BIRTHDATE"
+                                                id="header-register-modal-birthdate" />
+                                        </div>
+                                    </div>
+
+                                    {{!-- <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Giới
                                             tính</label>
 
@@ -733,11 +805,11 @@
                                                     for="header-register-modal-gender-female">Nữ</label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="d-flex">
                                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"></div>
-                                        <button type="button" class="btn btn-success col-sm-9">
+                                        <button type="submit" class="btn btn-success col-sm-9">
                                             Đăng ký
                                         </button>
                                     </div>
@@ -955,9 +1027,7 @@ class="custom-file col-8 p-0"
     </div>
     <!-- component user account modal -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -974,6 +1044,13 @@ class="custom-file col-8 p-0"
     <script src="/customer/js/open-close-sidebar-menu.js"></script>
     <script src="/customer/js/footer-accordion.js"></script>
     <script src="/customer/js/component-header-hover-content-top.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="/customer/js/validate-UI-login.js"></script>
+    <script src="/customer/js/validate-UI-register.js"></script>
+    <script src="/customer/js/main-customer.js"></script>
     {{!-- js all page --}}
 </body>
 

@@ -2,12 +2,24 @@ var customerIndexRoute = require("../../routes/customer/index.route");
 var customerProductRoute = require("../../routes/customer/product.route");
 var customerInfoRoute = require("../../routes/customer/info.route");
 var customerCartRoute = require("../../routes/customer/cart.route");
+var customerAuthRoute = require("../../routes/customer/auth.route");
 
 var customerCategoryMiddleware = require("../../middlewares/customer/category.middleware");
 var customerSessionMiddleware = require("../../middlewares/customer/session.middleware");
 var customerShowFastCartMiddleware = require("../../middlewares/customer/show_fast_cart.middleware");
+var authLocal = require("../all/auth-locals.middleware");
 
 module.exports = function(app) {
+  app.use(authLocal);
+
+  app.use(
+    "/customer/auth",
+    customerSessionMiddleware,
+    customerCategoryMiddleware,
+    customerShowFastCartMiddleware,
+    customerAuthRoute
+  );
+
   app.use(
     "/customer/index",
     customerSessionMiddleware,

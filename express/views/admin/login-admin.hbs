@@ -31,25 +31,28 @@
       <div class="content-right float-left h-100 rounded-right pr-4 pl-3 pt-2 pb-2">
         <div class="icon-user mb-3"><i class="far fa-user"></i></div>
 
-        {{#each this.errors}}
-        <div class="alert alert-danger" role="alert">
-          {{error}}
+        {{#if this.err_message}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{err_message}}
         </div>
-        {{/each}}
+        {{/if}}
 
-        <form action="/admin/auth/login" , method="POST">
+        <form method="POST" id="frmLogin">
           <div class="form-group row align-items-center ml-0 mr-0">
-            <label for="txtEmail" class="col-12 col-md-3 col-form-label pl-0">Email / SĐT</label>
+            <label for="txtUsername" class="col-12 col-md-3 col-form-label pl-0">Tài khoản</label>
             <div class="col-12 col-md-9 p-0">
-              <input type="text" class="form-control form-control-sm" placeholder="Nhập Email hoặc Số điện thoại"
-                id="txtEmail" name="USERNAME" {{#if this.values}} value="{{this.values.USERNAME}}" {{else}} value="" {{/if}} />
+              <input type="text" class="form-control form-control-sm" placeholder="Nhập tên đăng nhập"
+                id="txtUsername" name="USERNAME" {{#if this.username}} value="{{this.username}}" {{else}} value="" {{/if}} />
             </div>
           </div>
           <div class="form-group row align-items-center ml-0 mr-0">
             <label for="txtPassword" class="col-12 col-md-3 col-form-label pl-0">Mật khẩu</label>
             <div class="col-12 col-md-9 p-0">
-              <input type="password" class="form-control form-control-sm" placeholder="Nhập mật khẩu từ 6 đến 32 ký tự"
-                id="txtPassword" name="PASSWORD" {{#if this.values}} value="{{this.values.PASSWORD}}" {{else}} value="" {{/if}} />
+              <input type="password" class="form-control form-control-sm" placeholder="Nhập mật khẩu từ 6 đến 32 kí tự"
+                id="txtPassword" name="PASSWORD" {{#if this.password}} value="{{this.password}}" {{else}} value="" {{/if}} />
             </div>
           </div>
           <div class="d-flex mt-4">
@@ -57,6 +60,21 @@
             <button type="submit" class="btn btn-success col-12 col-md-9">
               Đăng nhập
             </button>
+          </div>
+          <div class="d-flex mt-3">
+            <div class="col-0 col-md-3 d-none d-md-block"></div>
+            <a href="/admin/auth/google" role="button" class="btn btn-danger col-12 col-md-4">
+              <i class="fab fa-google"></i>&ensp;Google
+            </a>
+            <div class="col-0 col-md-1 d-none d-md-block"></div>
+            <a href="/admin/auth/facebook" role="button" class="btn btn-primary col-12 col-md-4 d-none d-md-block">
+              <i class="fab fa-facebook-f"></i>&ensp;Facebook
+            </a>
+          </div>
+          <div class="mt-2 d-md-none">
+            <a href="/admin/auth/facebook" role="button" class="btn btn-primary col-12 col-md-4">
+              <i class="fab fa-facebook-f"></i>&ensp;Facebook
+            </a>
           </div>
         </form>
       </div>
@@ -66,6 +84,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src="/admin/js/validate-UI-login.js"></script>
 </body>
 
 </html>
