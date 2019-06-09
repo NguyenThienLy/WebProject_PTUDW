@@ -2,10 +2,27 @@ $(document).ready(function() {
   // Kiểm tra xem có sản phẩm nào trong giỏ hàng không
   checkHaveProductInCart();
 
+  // // Add product simple in cart
+  // $("#containProductSimple div div a").on("click", function() {
+  //   var $idProductToCart = $(this).attr("id-product-to-cart");
+  //   var $id = $(this).attr("id-product");
+
+  //   $.post(
+  //     "/customer/cart/add-product-in-cart",
+  //     { productId: $id, isSimple: true },
+  //     function(data) {
+  //       if (data === "success") {
+  //         addProductSimpleToCart($idProductToCart, $id);
+  //         checkHaveProductInCart();
+  //       }
+  //     }
+  //   );
+  // });
+
   // Add product simple in cart
-  $("#containProductSimple div div a").on("click", function() {
+  $(document).on("click", "#containProductSimple div div #aAddProductSimple", function() {
     var $idProductToCart = $(this).attr("id-product-to-cart");
-    var $id = $(this).attr("id");
+    var $id = $(this).attr("id-product-simple");
 
     $.post(
       "/customer/cart/add-product-in-cart",
@@ -20,9 +37,9 @@ $(document).ready(function() {
   });
 
   // Add product combo in cart
-  $("#containProductCombo div div a").on("click", function() {
+  $(document).on("click", "#containProductCombo div div #aAddProductCombo", function()  {
     var $idProductToCart = $(this).attr("id-product-to-cart");
-    var $id = $(this).attr("id");
+    var $id = $(this).attr("id-product-combo");
 
     $.post(
       "/customer/cart/add-product-in-cart",
@@ -37,9 +54,9 @@ $(document).ready(function() {
   });
 
   // Remove product simple in cart
-  $("#containProductSimpleInCart").delegate("button","click", function() {
+  $(document).on("click", "#containProductSimpleInCart #btnDeleteQuantitySimple", function() {
     var $idQuantityCart = $(this).attr("id-quantity-cart");
-    var $id = $(this).attr("id");
+    var $id = $(this).attr("id-quantity-simple");
 
     $.post(
       "/customer/cart/remove-product-in-cart",
@@ -54,9 +71,9 @@ $(document).ready(function() {
   });
 
   // Remove product combo in cart
-  $("#containProductComboInCart").delegate("button","click", function() {
+  $(document).on("click", "#containProductComboInCart #btnDeleteQuantityCombo", function()  {
     var $idQuantityCart = $(this).attr("id-quantity-cart");
-    var $id = $(this).attr("id");
+    var $id = $(this).attr("id-quantity-combo");
 
     $.post(
       "/customer/cart/remove-product-in-cart",
@@ -104,14 +121,16 @@ $(document).ready(function() {
     $("#pQuantityProduct").text(+$("#pQuantityProduct").text() + 1);
 
     var isNewProductInCart = true;
-    $("#containProductSimpleInCart .component-show-fast-cart-items").each(function() {
-      var $id = $(this).attr("id-quantity-cart");
+    $("#containProductSimpleInCart .component-show-fast-cart-items").each(
+      function() {
+        var $id = $(this).attr("id-quantity-cart");
 
-      // Có tồn tại hàng sản phẩm này trong giỏ hàng
-      if ($id === idProductToCart) {
-        isNewProductInCart = false;
+        // Có tồn tại hàng sản phẩm này trong giỏ hàng
+        if ($id === idProductToCart) {
+          isNewProductInCart = false;
+        }
       }
-    });
+    );
 
     // Có tồn tại hàng sản phẩm này trong giỏ hàng
     if (isNewProductInCart === false) {
@@ -150,7 +169,7 @@ $(document).ready(function() {
             </div>
  
             <div class="product-delete text-right">
-                <button id="${id}" id-quantity-cart="${idProductToCart}" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
+                <button id="btnDeleteQuantitySimple" id-quantity-simple=${id} id-quantity-cart="${idProductToCart}" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -187,15 +206,17 @@ $(document).ready(function() {
     $("#pQuantityProduct").text(+$("#pQuantityProduct").text() + 1);
 
     var isNewProductInCart = true;
-    $("#containProductComboInCart .component-show-fast-cart-items").each(function() {
-      var $id = $(this).attr("id-quantity-cart");
-      //console.log("TCL: addProductToCart -> id", id)
+    $("#containProductComboInCart .component-show-fast-cart-items").each(
+      function() {
+        var $id = $(this).attr("id-quantity-cart");
+        //console.log("TCL: addProductToCart -> id", id)
 
-      // Có tồn tại hàng sản phẩm này trong giỏ hàng
-      if ($id === idProductToCart) {
-        isNewProductInCart = false;
+        // Có tồn tại hàng sản phẩm này trong giỏ hàng
+        if ($id === idProductToCart) {
+          isNewProductInCart = false;
+        }
       }
-    });
+    );
 
     // Có tồn tại hàng sản phẩm này trong giỏ hàng
     if (isNewProductInCart === false) {
@@ -239,7 +260,7 @@ $(document).ready(function() {
           </div>
 
           <div class="product-delete text-right">
-              <button id="${id}" id-quantity-cart="${idProductToCart}" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
+              <button id="btnDeleteQuantityCombo" id-quantity-combo=${id} id-quantity-cart="${idProductToCart}" class="p-0 border-0" data-toggle="tooltip" title="Xóa">
                   <i class="fas fa-times"></i>
               </button>
           </div>
@@ -260,16 +281,18 @@ $(document).ready(function() {
       +$("#pQuantityProduct").text() - quantityProduct
     );
 
-    $("#containProductSimpleInCart .component-show-fast-cart-items").each(function() {
-      var $id = $(this).attr("id-quantity-cart");
+    $("#containProductSimpleInCart .component-show-fast-cart-items").each(
+      function() {
+        var $id = $(this).attr("id-quantity-cart");
 
-      // Có tồn tại hàng sản phẩm này trong giỏ hàng
-      if ($id === idQuantityCart) {
-        $(this).remove();
+        // Có tồn tại hàng sản phẩm này trong giỏ hàng
+        if ($id === idQuantityCart) {
+          $(this).remove();
 
-        return false;
+          return false;
+        }
       }
-    });
+    );
   }
 
   function removeProductComboToCart(idQuantityCart, id) {
@@ -283,15 +306,17 @@ $(document).ready(function() {
       +$("#pQuantityProduct").text() - quantityProduct
     );
 
-    $("#containProductComboInCart .component-show-fast-cart-items").each(function() {
-      var $id = $(this).attr("id-quantity-cart");
+    $("#containProductComboInCart .component-show-fast-cart-items").each(
+      function() {
+        var $id = $(this).attr("id-quantity-cart");
 
-      // Có tồn tại hàng sản phẩm này trong giỏ hàng
-      if ($id === idQuantityCart) {
-        $(this).remove();
+        // Có tồn tại hàng sản phẩm này trong giỏ hàng
+        if ($id === idQuantityCart) {
+          $(this).remove();
 
-        return false;
+          return false;
+        }
       }
-    });
+    );
   }
 });

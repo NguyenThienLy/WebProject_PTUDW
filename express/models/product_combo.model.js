@@ -11,14 +11,14 @@ module.exports.quantityProductCombo = () => {
 };
 
 // Hàm trả về 6 sản phẩm combo sale nhiều nhất trong index customer
-module.exports.top6ProductComboForIndex = () => {
+module.exports.topNProductComboForIndexFollowOffset = (N, Offset) => {
   return db.load(`SELECT a.ID, a.PRICE, a.SALE, a.NAME, b.ID AS PROID1, c.ID AS PROID2, d.ID AS PROID3, 
                       b.IMAGE AS IMAGE1 , c.IMAGE AS IMAGE2, d.IMAGE AS IMAGE3, 
                       (CASE WHEN a.SALE > 0 THEN (a.PRICE - a.PRICE * (a.SALE / 100)) ELSE a.PRICE END) AS SALEPRICE
                       FROM product_combo a INNER JOIN product b INNER JOIN product c INNER JOIN product d 
                       ON a.PRODUCTID1 = b.ID AND a.PRODUCTID2 = c.ID AND a.PRODUCTID3 = d.ID 
                       ORDER BY SALE DESC
-                      LIMIT 6`);
+                      LIMIT ${N} OFFSET ${Offset * N}`);
 };
 
 // Hàm trả về 6 sản phẩm combo sắp xếp theo typeSort

@@ -594,7 +594,8 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
 };
 
 // Hàm trả về 8 sản phẩm sale nhiều nhất trong index customer
-module.exports.top8ProductForIndex = () => {
+module.exports.topNProductForIndexFollowOffset = (N, Offset) => {
+
   return db.load(`SELECT ID, PRICE, SALE, NAME, IMAGE,
 									(CASE
 											WHEN SALE > 0 THEN (PRICE - PRICE * (SALE / 100))
@@ -602,7 +603,7 @@ module.exports.top8ProductForIndex = () => {
 									END) AS SALEPRICE
 									FROM product
 									ORDER BY SALE DESC
-									LIMIT 8;`);
+									LIMIT ${N} OFFSET ${Offset * N};`);
 };
 
 // Hàm trả về tất cả sản phẩm cùng số lượng bình luận của mỗi sản phẩm
