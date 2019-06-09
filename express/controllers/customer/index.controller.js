@@ -13,14 +13,16 @@ var sessionCartModel = require("../../models/session_cart.model");
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
 // Gọi convertToDateHelper
 var convertToDateHelper = require("../../helpers/convert_to_date.helper");
+// Gọi formatPrice
+var formatPriceHelper = require("../../helpers/format_price.helper");
 
 module.exports.indexShow = function(req, res, next) {
   try {
     Promise.all([
-      productModel.top8ProductForIndex(),
-      productComboModel.top6ProductComboForIndex(),
+      productModel.topNProductForIndexFollowOffset(8, 0),
+      productComboModel.topNProductComboForIndexFollowOffset(6, 0),
       categoryModel.allCategory(),
-      newsModel.top3PopularNewsIndexForIndex(),
+      newsModel.top3PopularNewsIndexForIndex()
     ]).then(values => {
       res.render("customer/index", {
         layout: "main-customer.hbs",
@@ -41,6 +43,57 @@ module.exports.indexShow = function(req, res, next) {
           formatShortContentInfo: formatStringHelper.formatShortContentInfo
         }
       });
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.loadMoreProductSimple = function(req, res, next) {
+  // Get offset
+  var offset = req.body.offset;
+
+  try {
+    Promise.all([
+      productModel.topNProductForIndexFollowOffset(8, offset)
+    ]).then(values => {
+      // Định dạng lại để đưa kết quả trả về cho lệnh ajax
+      for (productSimple of values[0]) {
+        // Giá
+        productSimple.PRICE = formatPriceHelper(productSimple.PRICE);
+        productSimple.SALEPRICE = formatPriceHelper(productSimple.SALEPRICE);
+
+        // Tên của sản phẩm
+        productSimple.FORMATNAME =  formatStringHelper.formatTitleProductSimple(productSimple.NAME);
+      }
+
+      res.json(JSON.stringify(values[0]));
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.loadMoreProductCombo = function(req, res, next) {
+  // Get offset
+  var offset = req.body.offset;
+
+  try {
+    Promise.all([
+      productComboModel.topNProductComboForIndexFollowOffset(6, offset)
+    ]).then(values => {
+      // console.log("TCL: module.exports.loadMoreProductCombo ->  values[0]",  values[0])
+      // Định dạng lại để đưa kết quả trả về cho lệnh ajax
+      for (productCombo of values[0]) {
+        // Giá
+        productCombo.PRICE = formatPriceHelper(productCombo.PRICE);
+        productCombo.SALEPRICE = formatPriceHelper(productCombo.SALEPRICE);
+
+        // Tên của sản phẩm
+        productCombo.FORMATNAME =  formatStringHelper.formatTitleProductSimple(productCombo.NAME);
+      }
+
+      res.json(JSON.stringify(values[0]));
     });
   } catch (error) {
     next(error);

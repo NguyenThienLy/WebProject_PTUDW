@@ -383,7 +383,7 @@
 
                     <img src={{IMAGE}} class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}" alt="">
                     <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
-                        <a id-product-to-cart="productSimple{{ID}}" id={{ID}}
+                        <a id-product-to-cart="productSimple{{ID}}" id="aAddProductSimple" id-product-simple={{ID}}
                             class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Mua ngay">
                             <i class="fas fa-shopping-cart"></i>
@@ -424,26 +424,8 @@
         {{!-- load sản phẩm simple sale nhiều nhất --}}
     </div>
 
-    <div class="row justify-content-center mt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <div class="row justify-content-center mt-3 mb-5">
+        <button id="btnLoadMoreProductSimpleSale" type="button" class="btn btn-outline-success w-25">Xem thêm</button>
     </div>
     <!-- sale -->
 
@@ -483,7 +465,7 @@
                             alt="" />
                     </div>
                     <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
-                        <a id-product-to-cart="productCombo{{ID}}" id={{ID}}
+                        <a id-product-to-cart="productCombo{{ID}}" id="aAddProductCombo" id-product-combo={{ID}}
                             class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
                             data-toggle="tooltip" title="Mua ngay">
                             <i class="fas fa-shopping-cart"></i>
@@ -525,26 +507,8 @@
         {{!-- load sản phẩm combo sale nhiều nhất --}}
     </div>
 
-    <div class="row justify-content-center mt-5">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <div class="row justify-content-center mt-3 mb-5">
+        <button id="btnLoadMoreProductComboSale" type="button" class="btn btn-outline-success w-25">Xem thêm</button>
     </div>
     <!-- combo -->
 </div>
@@ -679,5 +643,6 @@
 <script src="/customer/js/carousel-margin.js"></script>
 <script src="/customer/js/slide-trademark.js"></script>
 <script src="/customer/js/go-to-position.js"></script>
+<script src="/customer/js/load-more-product-index.js"></script>
 {{!-- <script src="/all/js/compress-image.js"></script> --}}
 {{/section}}
