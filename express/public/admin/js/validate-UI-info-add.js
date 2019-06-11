@@ -1,44 +1,53 @@
-jQuery.validator.addMethod("ckeditor", function(value, element) { 
-    var textData = myEditor.getData();
-    if(textData.length > 0) return true;
+jQuery.validator.addMethod("comparisonIMAGE", function (value, element) {
+  var numberFile = $("#info-image")[0].files.length;
+  if (numberFile != 1) {
     return false;
-});
+  } else { return true; }
+})
+
+jQuery.validator.addMethod("tinyMCE", function(value, element) {
+  var data = tinyMCE.get('my_editor').getContent();
+  if(data) {
+    return true;
+  } else {
+    return false;
+  }
+})
 
 $("#frmInfoAdd").validate({
   ignore: [],
   rules: {
-    // simple rule, converted to {required:true}
+    INFO_IMAGE: {
+      comparisonIMAGE: true
+    },
     TITLE: {
       required: true
     },
     TAG: {
       required: true
     },
-    image_info: {
-      required: true
-    },
     SHORTCONTENT: {
       required: true
     },
     CONTENT: {
-        ckeditor: true
+      tinyMCE: true
     }
   },
   messages: {
+    INFO_IMAGE:{
+      comparisonIMAGE:"Vui lòng chọn 1 hình"
+    },
     TITLE: {
       required: "Hãy nhập tiêu đề bài viết"
     },
     TAG: {
       required: "Hãy chọn tag"
     },
-    image_info: {
-      required: "Hãy chọn hình đại diện"
-    },
     SHORTCONTENT: {
       required: "Hãy nhập tóm tắt bài viết"
     },
     CONTENT: {
-        ckeditor: "Hãy nhập nội dung bài viết"
+      tinyMCE: "Hãy nhập nội dung bài viết"
     }
   },
   errorElement: "small",

@@ -1,5 +1,9 @@
 {{#section 'css'}}
 <title>Thêm thông tin hữu ích</title>
+{{!--css input file--}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+{{!--css input file--}}
 
 {{!-- info add page --}}
 <link href="/admin/css/info-add.css" rel="stylesheet" />
@@ -12,21 +16,26 @@
 
 <div id="content" class="mb-5">
     <header>
-        <h5 class="page_title mb-0">Tạo bài viết mới</h5>
+        <h5 class="page_title mb-0">Thêm bài viết mới</h5>
     </header>
     <div class="content-inner">
         <div class="form-wrapper">
-            {{#each this.errors}}
-            <div class="alert alert-danger" role="alert">
-                {{this}}
-            </div>
-            {{/each}}
-
             <form method="POST" enctype="multipart/form-data" id="frmInfoAdd">
                 <div class="form-group">
+                    <label><b>Hình ảnh đại diện bài viết</b></label>
+                    <div class="">
+                        <div class="form-group">
+                            <div>
+                                <input id="info-image" name="INFO_IMAGE" type="file">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
                     <label><b>Tiêu đề</b></label>
-                    <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết"
-                        {{#if this.values}} value="{{this.values.TITLE}}" {{else}} value="" {{/if}} />
+                    <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết"/>
                 </div>
 
                 <div class="form-group">
@@ -39,37 +48,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label><b>Hình ảnh</b></label>
-                    {{!-- <div>
-                        <input name="IMAGE" type="file">
-                    </div> --}}
-                    <div class="row ml-0 mr-0">
-                        <div class="col-4 p-0">
-                            <div class="card mx-auto">
-                                <img id="image_1" class="card-img" src="/uploads/IMG_NOTFOUND.jpg">
-                                <div
-                                    class="card-img-overlay d-flex flex-column align-items-center justify-content-between">
-                                    <h6 class="card-title d-block">Hình đại diện</h6>
-                                    <div>
-                                        <input type="button" id="get_image_file_1" value="Đổi ảnh"
-                                            class="btn btn-primary btn-sm">
-                                        <input type="button" id="remove_file_1" value="Xóa ảnh"
-                                            class="btn btn-secondary btn-sm">
-                                        <input type="file" id="image_file_1" class="form-control d-none"
-                                            name="image_info">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="form-group">
                     <label><b>Nội dung tóm tắt</b></label>
                     <div>
                         <textarea name="SHORTCONTENT" cols="60" rows="5" class="form-control"
-                            placeholder="Nhập nội dung tóm tắt bài viết">{{#if this.values}} {{this.values.SHORTCONTENT}} {{else}}{{/if}}</textarea>
+                            placeholder="Nhập nội dung tóm tắt bài viết"></textarea>
                     </div>
                 </div>
 
@@ -80,10 +62,10 @@
                     </div>
                 </div>
 
-                <div class="custom-control custom-control-inline custom-checkbox">
+                {{!-- <div class="custom-control custom-control-inline custom-checkbox">
                     <input class="custom-control-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                     <label class="custom-control-label" for="inlineCheckbox3">Đăng khi bấm chọn</label>
-                </div>
+                </div> --}}
 
                 <div class="clearfix">
                     <button type="submit" id="submit" class="btn btn-success float-right">
@@ -96,16 +78,21 @@
 </div>
 
 {{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
 <script src="/admin/js/chosen-select.js"></script>
+{{!--Xu ly Editor --}}
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=nxw3p5ckcu5jx187f8q2w3ysytehc7mdor1gcic8zu1iq5pv"></script>
+<script src="/admin/js/tinymce-Editor.js"></script>
+{{!--Xu ly Editor --}}
 
-{{!-- inmport my js --}}
-<script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
-<script src="/admin/js/ckeditor5-classicEditor.js"></script>
+{{!--input file --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+{{!--input file --}}
 
-{{!--Xử lý thêm ảnh --}}
-<script src="/admin/js/preview-image-jquery.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+{{!--Xử lý thêm ảnh bằng file input--}}
+<script src="/admin/js/info-add-file-input.js"></script>
 <script src="/admin/js/validate-UI-info-add.js"></script>
 {{/section}}

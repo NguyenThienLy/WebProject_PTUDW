@@ -3,7 +3,7 @@ var productModel = require("../../models/product.model");
 
 var commentStarsHelper = require("../../helpers/comment_stars.helper");
 
-module.exports.productCommentShow = function(req, res) {
+module.exports.productCommentShow = function(req, res, next) {
   var getProductsWithCommentQuantity = productModel.allProductWithCommentQuantity();
 
   getProductsWithCommentQuantity
@@ -14,13 +14,10 @@ module.exports.productCommentShow = function(req, res) {
         layout: "main-admin.hbs",
         products: products
       });
-    })
-    .catch(err => {
-      next(err);
-    });
+    }).catch(next);
 };
 
-module.exports.commentOfProductShow = function(req, res) {
+module.exports.commentOfProductShow = function(req, res, next) {
   var productId = req.params.id;
   var commentsOfProduct = commentModel.allCommentsOfProduct(productId);
   var commentsCustomerBuyProduct = commentModel.commentsCustomerBuyProduct();
@@ -56,8 +53,5 @@ module.exports.commentOfProductShow = function(req, res) {
           commentStars: commentStarsHelper
         }
       });
-    })
-    .catch(err => {
-      next(err);
-    });
+    }).catch(next);
 };

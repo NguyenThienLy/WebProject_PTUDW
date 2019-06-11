@@ -67,7 +67,6 @@ module.exports = function(app) {
               .then(newAdminId => {
                 newAdmin.avatar = profile._json["picture"];
                 newAdmin.name = profile.displayName;
-                console.log("new admin: " + newAdmin.name);
                 return cb(null, newAdmin);
               })
               .catch(err => {
@@ -106,7 +105,6 @@ module.exports = function(app) {
               .then(newAdminId => {
                 newAdmin.avatar = profile._json["picture"];
                 newAdmin.name = profile.displayName;
-                console.log("new admin: " + newAdmin.name);
                 return cb(null, newAdmin);
               })
               .catch(err => {

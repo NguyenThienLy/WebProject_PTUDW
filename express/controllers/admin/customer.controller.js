@@ -1,7 +1,7 @@
 var customerModel = require("../../models/customer.model");
 var formatPriceHelper = require("../../helpers/format_price.helper");
 
-module.exports.customerShow = function(req, res) {
+module.exports.customerShow = function(req, res, next) {
   var getAllCustomers = customerModel.allCustomers();
 
   getAllCustomers
@@ -16,8 +16,5 @@ module.exports.customerShow = function(req, res) {
           formatPrice: formatPriceHelper
         }
       });
-    })
-    .catch(err => {
-      next(err);
-    });
+    }).catch(next);
 };

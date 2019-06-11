@@ -105,9 +105,7 @@ module.exports.productAddNew = function (req, res, next) {
     if (listFile) {
       uploadImageToStorage(listFile, productID, entity).then(arrImage => {
         res.redirect("product-show");
-      }).catch((error) => {
-        console.error(error);
-      });
+      }).catch(next);
     }
   }).catch(next);
 };
