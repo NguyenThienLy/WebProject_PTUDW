@@ -201,6 +201,9 @@
                             <p id="pQuantityProduct" class="quantity m-0">{{quantityProduct}}</p>
                         </div>
 
+                        {{#if isInCartDetail}}
+
+                        {{else}}
                         <div class="component-show-fast-cart card mt-3" id="parentContainQuantityProduct">
                             <div class="style-scrollbar mt-3" id="containQuantityProduct">
                                 {{!-- Các mặt hàng đã chọn của product simple --}}
@@ -220,17 +223,20 @@
                                                     class="title text-decoration-none" data-toggle="tooltip"
                                                     title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
-                                                <div class="price mt-2">
-                                                    <span>{{formatPrice SALEPRICE}}</span>
+                                                <div class="price mt-2" id="containPriceAndQuantity" id-quantity-cart="productSimple{{ID}}">
+                                                    <span id="spanPriceInRow"
+                                                        id-quantity-cart-price="productSimple{{ID}}">{{formatPrice SALEPRICE}}</span>
                                                     <span><u>đ</u></span>
                                                     &nbsp;
                                                     <span>x</span>
-                                                    <span id="{{ID}}" id-quantity-cart="productSimple{{ID}}">{{QUANTITY_PRO}}</span>
+                                                    <span id="spanQuantityProduct"
+                                                        id-quantity-cart="productSimple{{ID}}">{{QUANTITY_PRO}}</span>
                                                 </div>
                                             </div>
 
                                             <div class="product-delete text-right">
-                                                <button id="btnDeleteQuantitySimple" id-quantity-simple={{ID}} id-quantity-cart="productSimple{{ID}}" class="p-0 border-0"
+                                                <button id="btnDeleteQuantitySimple" id-quantity-simple={{ID}}
+                                                    id-quantity-cart="productSimple{{ID}}" class="p-0 border-0"
                                                     data-toggle="tooltip" title="Xóa">
                                                     <i class="fas fa-times"></i>
                                                 </button>
@@ -262,17 +268,20 @@
                                                     class="title text-decoration-none" data-toggle="tooltip"
                                                     title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
-                                                <div class="price mt-2">
-                                                    <span>{{formatPrice SALEPRICE}}</span>
+                                                <div class="price mt-2" id="containPriceAndQuantity" id-quantity-cart="productCombo{{ID}}">
+                                                    <span id="spanPriceInRow"
+                                                        id-quantity-cart-price="productCombo{{ID}}">{{formatPrice SALEPRICE}}</span>
                                                     <span><u>đ</u></span>
                                                     &nbsp;
                                                     <span>x</span>
-                                                    <span id-quantity-cart="productCombo{{ID}}">{{QUANTITY_PRO}}</span>
+                                                    <span id="spanQuantityProduct"
+                                                        id-quantity-cart="productCombo{{ID}}">{{QUANTITY_PRO}}</span>
                                                 </div>
                                             </div>
 
                                             <div class="product-delete text-right">
-                                                <button id="btnDeleteQuantityCombo" id-quantity-combo={{ID}} id-quantity-cart="productCombo{{ID}}" class="p-0 border-0"
+                                                <button id="btnDeleteQuantityCombo" id-quantity-combo={{ID}}
+                                                    id-quantity-cart="productCombo{{ID}}" class="p-0 border-0"
                                                     data-toggle="tooltip" title="Xóa">
                                                     <i class="fas fa-times"></i>
                                                 </button>
@@ -292,17 +301,18 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="sum-text">Tổng cộng:</div>
                                     <div class="price">
-                                        <span>1.180.000</span>
+                                        <span id="spanSumPriceInFastCart"></span>
                                         <span><u>đ</u></span>
                                     </div>
                                 </div>
 
                                 <a href="/customer/cart/cart-detail"
                                     class="btn btn-outline-success mt-3 d-flex justify-content-center align-items-center font-weight-bold text-decoration-none p-2">
-                                    Tiến hành thanh toán&ensp;<i class="fas fa-dollar-sign"></i>
+                                    Xem giỏ hàng ngay&ensp;<i class="fas fa-dollar-sign"></i>
                                 </a>
                             </div>
                         </div>
+                        {{/if}}
                     </i>
                 </div>
 

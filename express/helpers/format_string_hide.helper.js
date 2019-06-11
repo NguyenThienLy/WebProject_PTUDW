@@ -32,3 +32,10 @@ module.exports.formatTitleProductForFastCart = function(value) {
 
     return value;
 };
+
+// Hàm định dạng title của product khi ở cart detail lấy 30 kí tự
+module.exports.formatTitleProductForCartDetail = function(value) {
+    if (value.length > 25) return value.substr(0, 30) + "...";
+
+    return value;
+};

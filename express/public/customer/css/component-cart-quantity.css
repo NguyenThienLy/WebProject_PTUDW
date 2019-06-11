@@ -11,6 +11,18 @@
     cursor: pointer;
   }
 
+  .component-cart-quantity #sale-image {
+    background-image: url('https://frontend.tikicdn.com/_new-next/static/img/icons/product/deal-tag.png');
+    font-weight: bold;
+    color: white;
+    top: 0%;
+    z-index: 1;
+    height: 1.8rem;
+    width: 2.3rem;
+    background-size: 100% 100%;
+    font-size: 0.8rem;
+  }
+
   .component-cart-quantity .content-left > img {
     object-fit: cover;
   }
@@ -69,6 +81,11 @@
     outline: none;
     border: 1px solid #99cc00;
     background-color: #fff;
+  }
+
+  .component-cart-quantity .content-right .product-quantity > button:hover {
+    background-color: #99cc00;
+    color: #fff;
   }
   
   .component-cart-quantity .content-right .product-general {
