@@ -2,6 +2,8 @@ $(document).ready(function() {
   // Kiểm tra xem có sản phẩm nào trong giỏ hàng không
   checkHaveProductInCart();
 
+  sumPriceInFastCart();
+
   // // Add product simple in cart
   // $("#containProductSimple div div a").on("click", function() {
   //   var $idProductToCart = $(this).attr("id-product-to-cart");
@@ -31,6 +33,7 @@ $(document).ready(function() {
         if (data === "success") {
           addProductSimpleToCart($idProductToCart, $id);
           checkHaveProductInCart();
+          sumPriceInFastCart();
         }
       }
     );
@@ -48,6 +51,7 @@ $(document).ready(function() {
         if (data === "success") {
           addProductComboToCart($idProductToCart, $id);
           checkHaveProductInCart();
+          sumPriceInFastCart();
         }
       }
     );
@@ -65,6 +69,7 @@ $(document).ready(function() {
         if (data === "success") {
           removeProductSimpleToCart($idQuantityCart, $id);
           checkHaveProductInCart();
+          sumPriceInFastCart();
         }
       }
     );
@@ -82,10 +87,36 @@ $(document).ready(function() {
         if (data === "success") {
           removeProductComboToCart($idQuantityCart, $id);
           checkHaveProductInCart();
+          sumPriceInFastCart();
         }
       }
     );
   });
+
+  function sumPriceInFastCart() {
+    var sumPrice = 0;
+    // Lặp tìm vị trí product cần xóa
+    $(".component-show-fast-cart-items #containPriceAndQuantity").each(function() {
+      var $id = $(this).attr("id-quantity-cart");
+
+      var priceProduct = Number(
+        $(`.component-show-fast-cart-items #spanPriceInRow[id-quantity-cart-price=${$id}]`)
+          .text()
+          .replace(/[^0-9.-]+/g, "")
+      );
+
+      var quantity =  Number(
+        $(`.component-show-fast-cart-items #spanQuantityProduct[id-quantity-cart=${$id}]`)
+          .text()
+      );
+
+      sumPrice += priceProduct * quantity;
+    });
+
+    $("#spanSumPriceInFastCart").text(
+      String(sumPrice).replace(/(.)(?=(\d{3})+$)/g, "$1,")
+    );
+  }
 
   function checkHaveProductInCart() {
     if (
@@ -159,12 +190,14 @@ $(document).ready(function() {
                     class="title text-decoration-none" data-toggle="tooltip"
                     title="${title}">${formatTitle}</a>
  
-                <div class="price mt-2">
-                    <span>${salePrice}</span>
+                <div class="price mt-2" id="containPriceAndQuantity" id-quantity-cart="${idProductToCart}">
+                    <span id="spanPriceInRow"
+                    id-quantity-cart-price="${idProductToCart}">${salePrice}</span>
                     <span><u>đ</u></span>
                     &nbsp;
                     <span>x</span>
-                    <span id-quantity-cart="${idProductToCart}">1</span>
+                    <span id-quantity-cart="${idProductToCart}" id="spanQuantityProduct" id="${id}"
+                    >1</span>
                 </div>
             </div>
  
@@ -250,12 +283,14 @@ $(document).ready(function() {
                   class="title text-decoration-none" data-toggle="tooltip"
                   title="${title}">${formatTitle}</a>
 
-              <div class="price mt-2">
-                  <span>${salePrice}</span>
+              <div class="price mt-2" id="containPriceAndQuantity" id-quantity-cart="${idProductToCart}">
+                  <span id="spanPriceInRow"
+                  id-quantity-cart-price="${idProductToCart}">${salePrice}</span>
                   <span><u>đ</u></span>
                   &nbsp;
                   <span>x</span>
-                  <span id-quantity-cart="${idProductToCart}">1</span>
+                  <span id="spanQuantityProduct"
+                  id-quantity-cart="${idProductToCart}">1</span>
               </div>
           </div>
 
