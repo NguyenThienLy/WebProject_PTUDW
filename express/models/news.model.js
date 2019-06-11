@@ -48,6 +48,11 @@ module.exports.addNews = news => {
   return db.add("news", news);
 };
 
+//Hàm cập nhật ảnh đại diện cho sản phẩm
+module.exports.updateNews = news => {
+  return db.update("news", "ID", news);
+};
+
 //Hàm trả về thời gian hiện tại
 function getDateNow() {
   var today = new Date();

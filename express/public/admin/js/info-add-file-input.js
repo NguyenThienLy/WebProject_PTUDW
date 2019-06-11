@@ -1,13 +1,13 @@
 $(function () {
-    $('#product-image').fileinput({
+    $('#info-image').fileinput({
       theme: 'fa',
       dropZoneEnabled: true,
       allowedFileExtensions: ['png', 'jpg', 'jpeg', 'gif'],
-      uploadUrl: '/uploads/input-file-upload',
+      uploadUrl: '/uploads/input-file-upload/', // route điều khiển
       uploadAsync: false,
       showUpload:false,
       showRemove:false,
-      maxFileCount:5,
+      maxFileCount:1,
       required: true,
       validateInitialCount: true,
       overwriteInitial:false,

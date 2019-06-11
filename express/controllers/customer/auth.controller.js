@@ -25,10 +25,7 @@ module.exports.postRegister = (req, res, next) => {
     .addCustomer(newCustomer)
     .then(newCustomerId => {
       res.send({ success: true });
-    })
-    .catch(err => {
-      next(err);
-    });
+    }).catch(next);
 };
 
 module.exports.isAvailable = (req, res, next) => {
