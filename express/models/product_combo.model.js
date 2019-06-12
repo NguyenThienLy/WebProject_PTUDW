@@ -2,7 +2,28 @@
 var db = require("../utils/db");
 
 // Hàm thêm vào sản phẩm combo mới
-module.exports.addProductCombo = product => {};
+module.exports.addProductCombo = productCombo => {
+  productCombo.CREATED = getDateNow();
+  return db.add("product_combo", productCombo);
+};
+
+//Hàm trả về thời gian hiện tại
+function getDateNow() {
+  var today = new Date();
+  var dd = today.getDate();
+
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
+  return today;
+}
 
 // Hàm lấy số lượng sản phẩm product combo
 module.exports.quantityProductCombo = () => {

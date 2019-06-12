@@ -21,10 +21,19 @@ router.get('/product-show', controller.productShow);
 router.get('/product-add', controller.productAdd);
 
 //Xử lý post nhận về ảnh và dữ liệu
-router.post('/product-add',gcsMulter.array('PRODUCT_IMAGE'),controller.productAddNew);
+router.post('/product-add',gcsMulter.array('PRODUCT_IMAGE'),controller.postProductAdd);
+
+//Xử lý post nhận về ảnh và dữ liệu
+router.post('/product-combo-add', controller.postProductComboAdd);
 
 //Post trả về subCategory theo id của category
 router.post('/load-subcategory', controller.SubCategory);
+
+//Post trả về productId theo categoryId
+router.post('/load-productId-by-categoryId', controller.productIdByCategoryId);
+
+//Post trả về product theo productId
+router.post('/load-product-by-productId', controller.productByProductId);
 
 //Xử lý xóa sản phẩm
 router.post('/product-show/delete',controller.deleteProduct);

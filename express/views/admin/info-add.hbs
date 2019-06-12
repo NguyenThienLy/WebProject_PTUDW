@@ -21,9 +21,12 @@
     <div class="content-inner">
         <div class="form-wrapper">
             <form method="POST" enctype="multipart/form-data" id="frmInfoAdd">
-                <div class="form-group">
-                    <label><b>Hình ảnh đại diện bài viết</b></label>
-                    <div class="">
+                <div class="card">
+
+                    <div class="card-header">
+                        <label class="mb-0"><b>Hình ảnh đại diện bài viết</b></label>
+                    </div>
+                    <div class="card-body">
                         <div class="form-group">
                             <div>
                                 <input id="info-image" name="INFO_IMAGE" type="file">
@@ -33,33 +36,42 @@
 
                 </div>
 
-                <div class="form-group">
-                    <label><b>Tiêu đề</b></label>
-                    <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết"/>
-                </div>
+                <div class="card mt-3 mb-3">
 
-                <div class="form-group">
-                    <label><b>Tag</b></label>
-                    <select class="form-control chosen-select" name="TAG" data-placeholder="Chọn tag" multiple>
-                        {{#each this.tags}}
-                        <option value="{{ID}}">{{NAME}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label><b>Nội dung tóm tắt</b></label>
-                    <div>
-                        <textarea name="SHORTCONTENT" cols="60" rows="5" class="form-control"
-                            placeholder="Nhập nội dung tóm tắt bài viết"></textarea>
+                    <div class="card-header">
+                        <label class="mb-0"><b>Thông tin bài viết</b></label>
                     </div>
-                </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label><b>Tiêu đề</b></label>
+                            <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết" />
+                        </div>
 
-                <div class="form-group">
-                    <label><b>Nội dung</b></label>
-                    <div>
-                        <textarea class="form-control" name="CONTENT" id="my_editor"></textarea>
+                        <div class="form-group">
+                            <label><b>Tag</b></label>
+                            <select class="form-control chosen-select" name="TAG" data-placeholder="Chọn tag" multiple>
+                                {{#each this.tags}}
+                                <option value="{{ID}}">{{NAME}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label><b>Nội dung tóm tắt</b></label>
+                            <div>
+                                <textarea name="SHORTCONTENT" cols="60" rows="5" class="form-control"
+                                    placeholder="Nhập nội dung tóm tắt bài viết"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><b>Nội dung chi tiết</b></label>
+                            <div>
+                                <textarea class="form-control" name="CONTENT" id="my_editor"></textarea>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
 
                 {{!-- <div class="custom-control custom-control-inline custom-checkbox">
@@ -67,9 +79,9 @@
                     <label class="custom-control-label" for="inlineCheckbox3">Đăng khi bấm chọn</label>
                 </div> --}}
 
-                <div class="clearfix">
-                    <button type="submit" id="submit" class="btn btn-success float-right">
-                        Xác nhận
+                <div class="d-flex justify-content-center">
+                    <button type="submit" id="submit" class="pl-5 pr-5 btn btn-success float-right">
+                        Đăng
                     </button>
                 </div>
             </form>

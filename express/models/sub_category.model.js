@@ -2,7 +2,13 @@
 var db = require("../utils/db");
 
 //Hàm trả về danh sách sub category 
-module.exports.allSubCategory = (category_ID)=>{
+module.exports.allSubCategory = ()=>{
+	//Hàm này đổi lại sau
+	return db.load(`SELECT * FROM sub_category`);
+}
+
+//Hàm trả về danh sách sub category 
+module.exports.allSubCategoryByCategoryId = (category_ID)=>{
 	//Hàm này đổi lại sau
 	return db.load(`SELECT * FROM sub_category WHERE sub_category.CATEGORYID = ` + category_ID);
 }

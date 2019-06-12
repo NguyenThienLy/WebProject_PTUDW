@@ -10,12 +10,42 @@ module.exports.quantityProduct = () => {
 // Hàm trả về tất cả sản phẩm trong database
 module.exports.allProduct = () => {
   // Gọi hàm querry từ db
-  return db.load(`SELECT product.ID,product.NAME,product.PRICE,product.SALE,product.INVENTORY,product.IMAGE,
-						product.STATUS,product.INVENTORY,
-						product.CATEGORYID,product.BRANDID,sub_category.NAME AS CATEGORYNAME, brand.NAME AS BRANDNAME
-						FROM (product 
-						INNER JOIN sub_category ON product.CATEGORYID = sub_category.ID)
+  return db.load(`SELECT product.ID, product.IMAGE, product.RESIZEDIMAGE, product.CATEGORYID, 
+            product.SUBCATEGORYID, product.NAME, product.BRANDID, product.STATUS, product.RATE, 
+            product.PRICE, product.ORIGIN, product.KILOGRAM, product.SALE, product.VIPSALE,
+            product.SHORTDESCRIPTION, product.DESCRIPTION, product.INVENTORY, product.CREATED,
+            category.NAME AS CATEGORYNAME, sub_category.NAME AS SUBCATEGORYNAME, brand.NAME AS BRANDNAME
+						FROM ((product 
+            INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
+            INNER JOIN category ON product.CATEGORYID = category.ID)
 						INNER JOIN brand ON product.BRANDID = brand.ID`);
+};
+
+// Hàm trả về tất cả sản phẩm còn hàng trong database
+module.exports.allProductInStock = () => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT product.ID, product.IMAGE, product.RESIZEDIMAGE, product.CATEGORYID, 
+            product.SUBCATEGORYID, product.NAME, product.BRANDID, product.STATUS, product.RATE, 
+            product.PRICE, product.ORIGIN, product.KILOGRAM, product.SALE, product.VIPSALE,
+            product.SHORTDESCRIPTION, product.DESCRIPTION, product.INVENTORY, product.CREATED,
+            category.NAME AS CATEGORYNAME, sub_category.NAME AS SUBCATEGORYNAME, brand.NAME AS BRANDNAME
+						FROM ((product 
+            INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
+            INNER JOIN category ON product.CATEGORYID = category.ID)
+            INNER JOIN brand ON product.BRANDID = brand.ID
+            WHERE product.INVENTORY > 0`);
+};
+
+// Hàm trả về tất cả sản phẩm id theo category Id trong database
+module.exports.allProductIdByCategoryId = (categoryId) => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT product.ID
+            FROM product
+            WHERE product.INVENTORY > 0 AND product.CATEGORYID = ${categoryId}`);
+};
+
+module.exports.singleByProductId = productId => {
+  return db.load(`SELECT * FROM product where ID = '${productId}'`);
 };
 
 // Hàm thêm vào sản phẩm mới
@@ -26,8 +56,20 @@ module.exports.addProduct = product => {
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
 module.exports.updateProduct = product=>{
-    console.log(product);
     return db.update('product','ID',product);
+};
+
+//Hàm cập nhật ảnh đại diện cho sản phẩm
+module.exports.updateProductInventory = products => {
+  if (products.constructor === Array) {
+    products.forEach(product => {
+      //gọi hàm insert
+      db.update("product", 'ID', product);
+    });
+  } else {
+    //gọi hàm insert
+    db.update("product", 'ID', product);
+  }
 };
 
 //Hàm xóa 1 sản phẩm
