@@ -81,7 +81,11 @@ module.exports.postInfoAdd = function(req, res, next) {
           news
         );
 
-        Promise.all([addCreatedHistory, addTagForNews, uploadImageToFirebaseStorage])
+        Promise.all([
+          addCreatedHistory,
+          addTagForNews,
+          uploadImageToFirebaseStorage
+        ])
           .then(values => {
             res.redirect("/admin/info/info-add");
           })
@@ -126,7 +130,7 @@ const uploadImageToStorage = (file, infoID, news) => {
 
         //Cập nhật lại thông tin ảnh đại diện của info
         newsModel.updateNews(news).then(changedRowsNumber => {
-          uploadResizeImageToStorage(gcsname, infoID, news, file.mimetype)
+          uploadResizedImageToStorage(gcsname, infoID, news, file.mimetype)
             .then(a => {
               resolve(url);
             })
@@ -141,11 +145,11 @@ const uploadImageToStorage = (file, infoID, news) => {
   });
 };
 
-const uploadResizeImageToStorage = (filename, infoID, news, contentType) => {
+const uploadResizedImageToStorage = (filename, infoID, news, contentType) => {
   return new Promise((resolve, reject) => {
     //Tạo đường dẫn để lưu file
-    var fileName = "resized-" + filename;
-    let fileUpload = bucket.file(`InfoImages/${infoID}/` + fileName);
+    var resizedFileName = "resized-" + filename;
+    let fileUpload = bucket.file(`InfoImages/${infoID}/` + resizedFileName);
     //Upload hình
     let uuid = UUID();
     const metadata = {
@@ -174,7 +178,7 @@ const uploadResizeImageToStorage = (filename, infoID, news, contentType) => {
     });
 
     blobStream.on("finish", () => {
-      var url = getPublicUrl(fileName, infoID, uuid);
+      var url = getPublicUrl(resizedFileName, infoID, uuid);
 
       news.RESIZEDIMAGE = url;
       news.ID = infoID;

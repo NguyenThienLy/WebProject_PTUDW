@@ -3,81 +3,81 @@
     font-size: 16px !important;
   }
 
-  .main-img-product-add{
-    width: 31rem!important;
-    height: 24.5rem!important;
-}
+  .main-img-product-add {
+    width: 31rem !important;
+    height: 24.5rem !important;
+  }
 
-.small-img-product-add{
-    height: 12rem!important;
-    width: 16rem!important;
-}
+  .small-img-product-add {
+    height: 12rem !important;
+    width: 16rem !important;
+  }
 }
 
 /* Từ lg nhảy sang xl */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1199px) {
   html {
     font-size: 15px !important;
   }
 
-  .main-img-product-add{
-    width: 26rem!important;
-    height: 18.5rem!important;
-}
+  .main-img-product-add {
+    width: 26rem !important;
+    height: 18.5rem !important;
+  }
 
-.small-img-product-add{
-    height: 9rem!important;
-    width: 14rem!important;
-}
+  .small-img-product-add {
+    height: 9rem !important;
+    width: 14rem !important;
+  }
 }
 
 /* Từ md nhảy sang lg */
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   html {
     font-size: 15px !important;
   }
 
-  .main-img-product-add{
-    width: 25rem!important;
-    height: 18.5rem!important;
-}
+  .main-img-product-add {
+    width: 25rem !important;
+    height: 18.5rem !important;
+  }
 
-.small-img-product-add{
-    height: 9rem!important;
-    width: 12rem!important;
-}
+  .small-img-product-add {
+    height: 9rem !important;
+    width: 12rem !important;
+  }
 }
 
 /* Từ sm nhảy sang md */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   html {
     font-size: 14px !important;
   }
 
-  .main-img-product-add{
-    width: 20rem!important;
-    height: 13rem!important;
-}
+  .main-img-product-add {
+    width: 20rem !important;
+    height: 13rem !important;
+  }
 
-.small-img-product-add{
-  width: 20rem!important;
-    height: 13rem!important;
-}
+  .small-img-product-add {
+    width: 20rem !important;
+    height: 13rem !important;
+  }
 }
 
 /* Từ xm nhảy sang sm */
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 575px) {
   html {
     font-size: 14px !important;
   }
 
-  .main-img-product-add{
-    width: 15rem!important;
-    height: 9rem!important;
-}
+  .main-img-product-add {
+    width: 15rem !important;
+    height: 9rem !important;
+  }
 
-.small-img-product-add{
-  width: 15rem!important;
-  height: 9rem!important;
-}
+  .small-img-product-add {
+    width: 15rem !important;
+    height: 9rem !important;
+  }
 }

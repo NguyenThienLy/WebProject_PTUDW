@@ -2,20 +2,20 @@
 var db = require("../utils/db");
 
 //Hàm thêm vào lịch sử lúc tạo mới của sản phẩm | input : ID sản phẩm
-module.exports.addCreatedHistory = (productID,ACTION,DETAIL) =>{
+module.exports.addCreatedHistory = (productComboID, action, detail) =>{
     //Tạo  đối tượng
     var entity = {
-        PRODUCTID:productID,
-        CREATED:getDateNow(),
-        ACTION:ACTION,
-        DETAIL:DETAIL
+        PRODUCTCOMBOID: productComboID,
+        CREATED: getDateNow(),
+        ACTION: action,
+        DETAIL: detail
     };
     //Thêm
-    return db.add('product_info_history',entity);
+    return db.add('product_combo_info_history', entity);
 }
 
-module.exports.deleteProductHistory= productID=>{
-    return db.delete('product_info_history','PRODUCTID',productID);
+module.exports.deleteProductComboHistory = productComboID => {
+    return db.delete('product_combo_info_history', 'PRODUCTCOMBOID', productComboID);
 }
 
 //Hàm trả về thời gian hiện tại
