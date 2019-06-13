@@ -1,0 +1,285 @@
+{{#section 'css'}}
+{{!--css input file--}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+{{!--css input file--}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-product-add.css" rel="stylesheet" />
+{{!-- responsive --}}
+
+{{!--css --}}
+<link href="/admin/css/product-add.css" rel="stylesheet" />
+{{!--css --}}
+{{/section}}
+
+<div id="content" class="mb-5">
+    <header>
+        <h5 class="page_title mb-0">Thêm sản phẩm mới</h5>
+    </header>
+    <div class="content-inner">
+        <div class="form-wrapper">
+            <!-- product-detail nav -->
+            <nav>
+                <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+                    <h5 class="nav-item nav-link pb-3 active" id="nav-product-detail-description-tab" data-toggle="tab"
+                        href="#nav-product-detail-description" role="tab" aria-controls="nav-product-detail-description"
+                        aria-selected="true">Sản phẩm thường</h5>
+                </div>
+            </nav>
+            <!-- product-detail nav -->
+
+            <!-- product-detail nav tab-content-->
+            <div class="tab-content" id="nav-tabContent">
+                <!-- nav-product-detail-description-tab -->
+                <div class="tab-pane fade show active pt-4" id="nav-product-detail-description" role="tabpanel"
+                    aria-labelledby="nav-product-detail-description-tab">
+                    <form method="POST" enctype="multipart/form-data" action="/admin/product/product-update-image"
+                        id="add-product-form">
+                        <div class="card">
+
+                            <div class="card-header">
+                                <label class="mb-0"><b>Hình ảnh sản phẩm (hình đầu tiên là ảnh đại
+                                        diện)</b></label>
+                                {{!-- <h5 class="mb-0">Hình ảnh sản phẩm (hình đầu tiên là ảnh đại diện)</h5> --}}
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div>
+                                        <input id="product-image" name="PRODUCT_IMAGE" type="file" multiple>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                            <button id="btn-submit-form" type="submit" class="btn btn-success pl-5 pr-5">Cập nhật hình ảnh</button>
+                            {{!-- <button type="button" class="btn btn-danger">Hủy</button> --}}
+                        </div>
+                            </div>
+
+                        </div>                       
+                    </form>
+
+                    <form method="POST" action="/admin/product/product-update">
+                    <!--Card chứa form nhập thông tin của sản phẩm-->
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <label class="mb-0"><b>Thông tin sản phẩm</b></label>
+                                {{!-- <h5 class="mb-0">Thông tin sản phẩm</h5> --}}
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+                                        {{!-- <label for="inputIDproduct" class="mt-2"><b>Mã sản phẩm</b></label>
+                        <div>
+                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01"
+                                readonly>
+                        </div> --}}
+
+                                        <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <div>
+                                            <input name="NAME" type="text" class="form-control" id="inputnameProduct"
+                                                placeholder="Nhập tên sản phâm">
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="selectProductSource" class="mt-2"><b>Nguồn
+                                                        gốc</b></label>
+                                                <div>
+                                                    <select name="ORIGIN" class="custom-select form-control mr-2"
+                                                        id="selectProductSource">
+                                                        <option selected>Việt Nam</option>
+                                                        <option value="Mỹ">Mỹ</option>
+                                                        <option value="Trung Quốc">Trung Quốc</option>
+                                                        <option value="Nhật bản">Nhật bản</option>
+                                                        <option value="Úc">Úc</option>
+                                                        <option value="New Zealand">New Zealand</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="selectProductBrand" class="mt-2"><b>Thương
+                                                        hiệu</b></label>
+                                                <div>
+                                                    <select name="BRANDID" class="custom-select form-control mr-2"
+                                                        id="selectProductBrand">
+                                                        {{#each this.brands}}
+                                                        <option value="{{ID}}">{{NAME}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="selectProductType" class="mt-2"><b>Danh
+                                                        mục</b></label>
+                                                <select name="CATEGORYID" class="custom-select form-control mr-2"
+                                                    id="selectProductType">
+                                                    {{#each this.categories}}
+                                                    <option value="{{ID}}">{{NAME}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="SubCategory" class="mt-2"><b>Loại sản
+                                                        phẩm</b></label>
+                                                <select name="SUBCATEGORYID" class="custom-select form-control mr-2"
+                                                    id="SubCategory">
+                                                    {{#each this.subCategories}}
+                                                    <option value="{{ID}}">{{NAME}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="inputKLGProduct" class="mt-2"><b>Trọng lượng
+                                                        (kg)</b></label>
+                                                <div>
+                                                    <input type="number" name="KILOGRAM" class="form-control"
+                                                        id="inputKLGProduct" placeholder="Nhập trọng lượng">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="inputINVENTORY" class="mt-2"><b>Số lượng</b></label>
+                                                <div>
+                                                    <input type="number" name="INVENTORY" class="form-control"
+                                                        id="inputINVENTORY" placeholder="Nhập số lượng">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <label for="inputPriceProduct" class="mt-2"><b>Giá sản phẩm (nghìn
+                                                vnđ)</b></label>
+                                        <div>
+                                            <input type="number" name="PRICE" class="form-control"
+                                                id="inputPriceProduct" placeholder="Nhập vào giá sản phẩm">
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="inputPromotionProduct" class="mt-2"><b>Giảm
+                                                        giá</b></label>
+                                                <div>
+                                                    <input type="number" name="SALE" class="form-control"
+                                                        id="inputPromotionProduct" placeholder="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="inputPromotionVIPProduct" class="mt-2"><b>Giảm giá
+                                                        khách
+                                                        V.I.P</b></label>
+                                                <div>
+                                                    <input type="number" name="VIPSALE" class="form-control"
+                                                        id="inputPromotionVIPProduct" placeholder="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--End form nhập thông tin-->
+                            </div>
+                        </div>
+                        <!--End card chứa form nhập thông tin của sản phẩm-->
+
+                        <!--Card chứa form điền thông tin bài viêt-->
+                        <div class="card mt-3 mb-3">
+
+                            <div class="card-header">
+                                <label class="mb-0"><b>Mô tả sản phẩm</b></label>
+                                {{!-- <h5 class="mb-0">Mô tả sản phẩm</h5> --}}
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label><b>Tag</b></label>
+                                    <select name="TAG" class="chosen-select form-control" data-placeholder="Chọn tag" multiple>
+                                        {{#each this.tags}}
+                                        <option value="{{ID}}">{{NAME}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><b>Mô tả tóm tắt</b></label>
+                                    <div>
+                                        <textarea name="SHORTDESCRIPTION" cols="60" rows="4" class="form-control"
+                                            placeholder="Nhập mô tả tóm tắt về sản phẩm"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><b>Mô tả chi tiết</b></label>
+                                    <textarea id="my_editor" class="form-control" name="DESCRIPTION"></textarea>
+                                </div>
+                                {{!-- <div class="pl-2 pb-2">
+                    <div class="custom-control custom-control-inline custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        <label class="custom-control-label" for="inlineCheckbox1">Mới</label>
+                    </div>
+                    <div class="custom-control custom-control-inline custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        <label class="custom-control-label" for="inlineCheckbox2">Nổi bật</label>
+                    </div>
+                    <div class="custom-control custom-control-inline custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        <label class="custom-control-label" for="inlineCheckbox3">Hiển thị</label>
+                    </div>
+                </div> --}}
+
+                            </div>
+                        </div>
+                        <!--End Card chứa form điền thông tin bài viêt-->
+                        <div class="d-flex justify-content-center">
+                            <button id="btn-submit-form" type="submit" class="btn btn-success pl-5 pr-5">Cập nhật</button>
+                            {{!-- <button type="button" class="btn btn-danger">Hủy</button> --}}
+                        </div>
+                    </form>
+                </div>
+                <!-- nav-product-detail-description-tab -->
+            </div>
+            <!-- product-detail nav tab-content-->
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->
+
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
+<script src="/admin/js/chosen-select.js"></script>
+
+{{!-- inmport my js --}}
+{{!-- <script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
+<script src="/admin/js/ckeditor5-classicEditor.js"></script> --}}
+{{!--Xu ly Editor --}}
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=nxw3p5ckcu5jx187f8q2w3ysytehc7mdor1gcic8zu1iq5pv"></script>
+<script src="/admin/js/tinymce-Editor.js"></script>
+{{!--Xu ly Editor --}}
+
+{{!--Xử lý thêm ảnh --}}
+{{!-- <script src="/admin/js/preview-image-jquery.js"></script> --}}
+
+{{!--input file --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+{{!--input file --}}
+
+{{!--Xử lý thêm ảnh bằng file input--}}
+
+{{!--Xử lý trang product-add --}}
+<script src="/admin/js/product-update-view.js"></script>
+
+{{!--Xử lý dữ liệu từ UI--}}
+<script src="/admin/js/validate-UI-product-add.js"></script>
+{{/section}}

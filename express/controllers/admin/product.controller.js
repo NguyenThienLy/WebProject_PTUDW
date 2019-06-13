@@ -409,3 +409,47 @@ module.exports.deleteProduct = (req, res, next) => {
   // productModel.deleteProduct(id);
   res.redirect("/");
 };
+
+//Hiển thị thông tin sản phẩm để update
+module.exports.infoProduct = (req, res, next) => {
+  
+  // Lấy dữ liệu product
+  var dataProducts = productModel.allProductInStock();
+  //Lấy dữ liệu category
+  var dataCategories = categoryModel.allCategory();
+  //Lấy dữ liệu sub category
+  var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(1);
+  //Lấy dữ liệu từ tag
+  var dataTags = tagModel.allTag();
+
+  // Lấy dữ liệu nhãn hiệu
+  var dataBrands = brandModel.allBrand();
+
+  Promise.all([dataCategories, dataSubCategories, dataTags, dataBrands, dataProducts])
+    .then(values => {
+      res.locals.sidebar[5].active = true;
+
+      //Truyền vào trong UI
+      res.render("admin/product-update", {
+        layout: "main-admin.hbs",
+        categories: values[0],
+        subCategories: values[1],
+        tags: values[2],
+        brands: values[3],
+        products: values[4]
+      });
+    })
+    .catch(next);
+};
+
+//Lấy ra hình ảnh của sản phẩm
+module.exports.imagesOfProduct = (req, res, next) => {
+  var dataImages = productImageModel.allImageOfProduct(req.body.productID);
+
+  dataImages
+    .then(Links => {
+      console.log("ff",Links);
+      res.json(JSON.stringify(Links));
+    })
+    .catch(next);
+};

@@ -17,5 +17,12 @@ module.exports.addImagesForProduct = (productID,images)=>{
 }
 
 module.exports.deleteProductImage= productID=>{
-    return db.delete('product_image','PRODUCTID',productID);
+    return db.delete('product_image','PRODUCTID',11);
+}
+
+//Hàm lấy ra list hình ảnh sản phẩm của product
+module.exports.allImageOfProduct= (productID)=>{
+    return db.load(`SELECT product_image.LINK
+            FROM product_image
+            WHERE product_image.PRODUCTID = ${productID}`);
 }
