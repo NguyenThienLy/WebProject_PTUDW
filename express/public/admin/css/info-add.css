@@ -1,11 +1,16 @@
-.form-wrapper{
-    /*background-color: #eee;*/
-    padding: 1rem;
+.form-wrapper {
+  padding: 1rem;
 }
 
-.page_title{
-    /*font-size: 0.875rem;
-    font-weight: bold;
-    padding: 0rem 0rem 0rem 1.25rem;
-    margin: 0rem;*/
+.btn-add-tag {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.btn-add-tag > i {
+  color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  
 }

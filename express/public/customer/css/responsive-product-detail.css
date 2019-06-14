@@ -37,45 +37,12 @@
     display: block;
   }
 
-  .component-show-rate .content-left .avg-rate {
-    /*font-size: 2rem;*/
-  }
-
-  .component-show-rate .content-left .star-rate {
-    /*font-size: 1.2rem;*/
-  }
-
-  .component-show-rate .content-left .review {
-    /*font-size: 0.9rem;*/
-  }
-
   .component-show-rate .content-center .star-percent {
-    /*font-size: 0.9rem;*/
     width: 60%;
   }
 
   .component-show-rate .content-center  {
     border-right: 1px solid #f4f4f4;
-  }
-
-  .component-show-rate .content-right > p {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-show-rate .content-right > button {
-    /*font-size: 1.2rem;*/
-  }
-
-  .collapse-show-rate .comment > form textarea {
-    /*font-size: 1rem;*/
-  }
-
-  .collapse-show-rate .comment > form input {
-    /*font-size: 1rem;*/
-  } 
-
-  .collapse-show-rate .comment > button {
-    /*font-size: 1.2rem;*/
   }
   /*component show rate*/
 
@@ -88,38 +55,8 @@
     display: none !important;
   }
 
-  .component-comment .content-left .time-post-comment {
-    /*font-size: 0.8rem;*/
-  }
-
-  .component-comment .content-top .time-post-comment {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .rate-star {
-    /*font-size: 1.2rem;*/
-  }
-
-  .component-comment .content-right .rate-text {
-    /*font-size: 1.3rem;*/
-  }
-
-  .component-comment .content-right .prove-buy {
-    /*font-size: 1rem;*/
-  }
-
-  .component-comment .content-right .main-content {
-    /*font-size: 1.2rem;*/
-  }
-
   .component-comment .content-right .interactive-customer {
     width: 70%;
-  }
-
-  .component-comment .content-right .interactive-customer > a,
-  .component-comment .content-right .interactive-customer > span, 
-  .component-comment .content-right .interactive-customer > button {
-    /*font-size: 1rem; */
   }
   /*component comment*/
   
@@ -182,45 +119,12 @@
     display: block;
   }
 
-  .component-show-rate .content-left .avg-rate {
-    /*font-size: 2rem;*/
-  }
-
-  .component-show-rate .content-left .star-rate {
-    /*font-size: 1rem;*/
-  }
-
-  .component-show-rate .content-left .review {
-    /*font-size: 0.8rem;*/
-  }
-
   .component-show-rate .content-center .star-percent {
-    /*font-size: 0.8rem;*/
     width: 60%;
   }
 
   .component-show-rate .content-center  {
     border-right: 1px solid #f4f4f4;
-  }
-
-  .component-show-rate .content-right > p {
-    /*font-size: 0.8rem;*/
-  }
-
-  .component-show-rate .content-right > button {
-    /*font-size: 1rem;*/
-  }
-
-  .collapse-show-rate .comment > form textarea {
-    /*font-size: 0.9rem;*/
-  }
-
-  .collapse-show-rate .comment > form input {
-    /*font-size: 0.9rem;*/
-  } 
-
-  .collapse-show-rate .comment > button {
-    /*font-size: 1rem;*/
   }
   /*component show rate*/
   
@@ -233,38 +137,8 @@
     display: none !important;
   }
 
-  .component-comment .content-left .time-post-comment {
-    /*font-size: 0.8rem;*/
-  }
-
-  .component-comment .content-top .time-post-comment {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .rate-star {
-    /*font-size: 1rem;*/
-  }
-
-  .component-comment .content-right .rate-text {
-    /*font-size: 1.2rem;*/
-  }
-
-  .component-comment .content-right .prove-buy {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .main-content {
-    /*font-size: 1rem;*/
-  }
-
   .component-comment .content-right .interactive-customer {
     width: 70%;
-  }
-
-  .component-comment .content-right .interactive-customer > a,
-  .component-comment .content-right .interactive-customer > span, 
-  .component-comment .content-right .interactive-customer > button {
-    /*font-size: 0.9rem; */
   }
   /*component comment*/
   
@@ -326,46 +200,12 @@
   .component-show-rate .content-right > p:nth-child(1){
     display: none;
   }
-
-  .component-show-rate .content-left .avg-rate {
-    /*font-size: 2rem;*/
-  }
-
-  .component-show-rate .content-left .star-rate {
-    /*font-size: 1rem;*/
-  }
-
-  .component-show-rate .content-left .review {
-    /*font-size: 0.8rem;*/
-  }
-
   .component-show-rate .content-center .star-percent {
-    /*font-size: 0.8rem;*/
     width: 90%;
   }
 
   .component-show-rate .content-center  {
     border-right: 1px solid #f4f4f4;
-  }
-
-  .component-show-rate .content-right > p {
-    /*font-size: 0.8rem;*/
-  }
-
-  .component-show-rate .content-right > button {
-    /*font-size: 1rem;*/
-  }
-
-  .collapse-show-rate .comment > form textarea {
-    /*font-size: 0.9rem;*/
-  }
-
-  .collapse-show-rate .comment > form input {
-    /*font-size: 0.9rem;*/
-  } 
-
-  .collapse-show-rate .comment > button {
-    /*font-size: 1rem;*/
   }
   /*component show rate*/
 
@@ -378,38 +218,8 @@
     display: none !important;
   }
 
-  .component-comment .content-left .time-post-comment {
-    /*font-size: 0.8rem;*/
-  }
-
-  .component-comment .content-top .time-post-comment {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .rate-star {
-    /*font-size: 1rem;*/
-  }
-
-  .component-comment .content-right .rate-text {
-    /*font-size: 1.2rem;*/
-  }
-
-  .component-comment .content-right .prove-buy {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .main-content {
-    /*font-size: 1rem;*/
-  }
-
   .component-comment .content-right .interactive-customer {
     width: 100%;
-  }
-
-  .component-comment .content-right .interactive-customer > a,
-  .component-comment .content-right .interactive-customer > span, 
-  .component-comment .content-right .interactive-customer > button {
-    /*font-size: 0.9rem; */
   }
   /*component comment*/
   
@@ -476,45 +286,12 @@
     display: none;
   }
 
-  .component-show-rate .content-left .avg-rate {
-    /*font-size: 2rem;*/
-  }
-
-  .component-show-rate .content-left .star-rate {
-    /*font-size: 1rem;*/
-  }
-
-  .component-show-rate .content-left .review {
-    /*font-size: 0.8rem;*/
-  }
-
   .component-show-rate .content-center .star-percent {
-    /*font-size: .8rem;*/
     width: 90%;
   }
 
   .component-show-rate .content-center  {
     border-right: none;
-  }
-
-  .component-show-rate .content-right > p {
-    /*font-size: .8rem;*/
-  }
-
-  .component-show-rate .content-right > button {
-    /*font-size: 1rem;*/
-  }
-
-  .collapse-show-rate .comment > form textarea {
-    /*font-size: 0.9rem;*/
-  }
-
-  .collapse-show-rate .comment > form input {
-    /*font-size: 0.9rem;*/
-  } 
-
-  .collapse-show-rate .comment > button {
-    /*font-size: 1rem;*/
   }
   /*component show rate*/
   
@@ -527,38 +304,8 @@
     display: block !important;
   }
 
-  .component-comment .content-left .time-post-comment {
-    /*font-size: 0.8rem;*/
-  }
-
-  .component-comment .content-top .time-post-comment {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .rate-star {
-    /*font-size: 1rem;*/
-  }
-
-  .component-comment .content-right .rate-text {
-    /*font-size: 1.2rem;*/
-  }
-
-  .component-comment .content-right .prove-buy {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .main-content {
-    /*font-size: 1rem;*/
-  }
-
   .component-comment .content-right .interactive-customer {
     width: 100%;
-  }
-
-  .component-comment .content-right .interactive-customer > a,
-  .component-comment .content-right .interactive-customer > span, 
-  .component-comment .content-right .interactive-customer > button {
-    /*font-size: 0.9rem; */
   }
   /*component comment*/
 
@@ -629,45 +376,12 @@
     display: none;
   }
 
-  .component-show-rate .content-left .avg-rate {
-    /*font-size: 2rem;*/
-  }
-
-  .component-show-rate .content-left .star-rate {
-    /*font-size: 1rem;*/
-  }
-
-  .component-show-rate .content-left .review {
-    /*font-size: 0.8rem;*/
-  }
-
   .component-show-rate .content-center .star-percent {
-    /*font-size: .8rem;*/
     width: 90%;
   }
 
   .component-show-rate .content-center  {
     border-right: none;
-  }
-
-  .component-show-rate .content-right > p {
-    /*font-size: .8rem;*/
-  }
-
-  .component-show-rate .content-right > button {
-    /*font-size: 1rem;*/
-  }
-
-  .collapse-show-rate .comment > form textarea {
-    /*font-size: 0.9rem;*/
-  }
-
-  .collapse-show-rate .comment > form input {
-    /*font-size: 0.9rem;*/
-  } 
-
-  .collapse-show-rate .comment > button {
-    /*font-size: 1rem;*/
   }
   /*component show rate*/
 
@@ -680,38 +394,8 @@
     display: block !important;
   }
 
-  .component-comment .content-left .time-post-comment {
-    /*font-size: 0.8rem;*/
-  }
-
-  .component-comment .content-top .time-post-comment {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .rate-star {
-    /*font-size: 1rem;*/
-  }
-
-  .component-comment .content-right .rate-text {
-    /*font-size: 1.2rem;*/
-  }
-
-  .component-comment .content-right .prove-buy {
-    /*font-size: 0.9rem;*/
-  }
-
-  .component-comment .content-right .main-content {
-    /*font-size: 1rem;*/
-  }
-
   .component-comment .content-right .interactive-customer {
     width: 100%;
-  }
-
-  .component-comment .content-right .interactive-customer > a,
-  .component-comment .content-right .interactive-customer > span, 
-  .component-comment .content-right .interactive-customer > button {
-    /*font-size: 0.9rem; */
   }
   /*component comment*/
 

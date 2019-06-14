@@ -27,7 +27,8 @@ $("#frmInfoAdd").validate({
       required: true
     },
     SHORTCONTENT: {
-      required: true
+      required: true,
+      maxlength: 500
     },
     CONTENT: {
       tinyMCE: true
@@ -44,7 +45,8 @@ $("#frmInfoAdd").validate({
       required: "Hãy chọn tag"
     },
     SHORTCONTENT: {
-      required: "Hãy nhập tóm tắt bài viết"
+      required: "Hãy nhập tóm tắt bài viết",
+      maxlength: "Vui lòng không nhập quá 500 kí tự"
     },
     CONTENT: {
       tinyMCE: "Hãy nhập nội dung bài viết"

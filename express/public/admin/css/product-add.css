@@ -7,3 +7,29 @@
     height: 12rem;
     width: 17rem;
 }
+
+.form-wrapper{
+    /*background-color: #eee;*/
+    padding: 1rem;
+}
+
+nav .nav-item {
+	cursor: pointer;
+}
+
+nav .nav-tabs .nav-item.show .nav-link, 
+nav .nav-tabs .nav-link.active {
+	color: #99cc00;
+	border-bottom: 3px solid #99cc00;
+}
+
+nav .nav-tabs .nav-link {
+	border: none;
+	border-bottom: 1px solid #dee2e6;
+	transition: 200ms;
+}
+
+nav .nav-tabs .nav-link:hover {
+	border-bottom: 3px solid #99cc00;
+	color: #99cc00;
+}

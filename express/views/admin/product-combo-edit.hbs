@@ -1,0 +1,363 @@
+{{#section 'css'}}
+{{!--css input file--}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+{{!--css input file--}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-product-add.css" rel="stylesheet" />
+{{!-- responsive --}}
+
+{{!--css --}}
+{{!--css --}}
+{{/section}}
+
+<div id="content" class="mb-5">
+    <header>
+        <h5 class="page_title mb-0">Cập nhật thông tin sản phẩm</h5>
+    </header>
+    <div class="content-inner">
+        <div class="form-wrapper">
+            <form method="POST" id="edit-product-combo-form">
+                <!--Card chứa form nhập thông tin của sản phẩm-->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <label class="mb-0"><b>3 sản phẩm thường</b></label>
+                    </div>
+                    <div class="card-body">
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <label class="mb-0"><b>Sản phẩm 1</b></label>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="selectProductID1" class="mt-2"><b>Mã sản phẩm</b></label>
+                                        <div class="input-group">
+                                            <select class="custom-select form-control" id="selectProductID1"
+                                                name="PRODUCTID1">
+                                                {{#each this.products}}
+                                                {{#isSelected ID this.productCombo.PRODUCTID1}}
+                                                <option selected value="{{ID}}">{{ID}}</option>
+                                                {{else}}
+                                                <option value="{{ID}}">{{ID}}</option>
+                                                {{/isSelected}}
+                                                {{/each}}
+
+                                                {{{isExistedInProducts this.productCombo.PRODUCTID1 this.products}}}
+                                            </select>
+
+                                            <input type="text" class="form-control" hidden id="inputOldProductID1"
+                                                value="{{this.productCombo.PRODUCTID1}}">
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success dropdown-toggle" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    id="btnSelectCat1">Danh mục</button>
+                                                <div class="dropdown-menu dropdown-menu-right" id="selectCat1">
+                                                    {{#each this.categories}}
+                                                    <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
+                                                    {{/each}}
+                                                    <div class="dropdown-divider"></div>
+                                                    <span class="dropdown-item" id="-1">Tất cả</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="inputNameProduct1" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <div>
+                                            <input type="text" class="form-control" readonly id="inputNameProduct1"
+                                                value="{{this.productCombo.PRODUCTNAME1}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="inputInventoryProduct1" class="mt-2"><b>Số lượng còn
+                                                lại</b></label>
+                                        <div>
+                                            <input type="number" class="form-control" readonly
+                                                id="inputInventoryProduct1" placeholder="0"
+                                                value="{{this.productCombo.PRODUCTINVENTORY1}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-5">
+                            <div class="card-header">
+                                <label class="mb-0"><b>Sản phẩm 2</b></label>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="selectProductID2" class="mt-2"><b>Mã sản phẩm</b></label>
+                                        <div class="input-group">
+                                            <select class="custom-select form-control" id="selectProductID2"
+                                                name="PRODUCTID2">
+                                                {{#each this.products}}
+                                                {{#isSelected ID ../this.productCombo.PRODUCTID2}}
+                                                <option selected value="{{ID}}">{{ID}}</option>
+                                                {{else}}
+                                                <option value="{{ID}}">{{ID}}</option>
+                                                {{/isSelected}}
+                                                {{/each}}
+
+                                                {{{isExistedInProducts this.productCombo.PRODUCTID2 this.products}}}
+                                            </select>
+
+                                            <input type="text" class="form-control" hidden id="inputOldProductID2"
+                                                value="{{this.productCombo.PRODUCTID2}}">
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success dropdown-toggle" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    id="btnSelectCat2">Danh mục</button>
+                                                <div class="dropdown-menu dropdown-menu-right" id="selectCat2">
+                                                    {{#each this.categories}}
+                                                    <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
+                                                    {{/each}}
+                                                    <div class="dropdown-divider"></div>
+                                                    <span class="dropdown-item" id="-1">Tất cả</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="inputNameProduct2" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <div>
+                                            <input type="text" class="form-control" readonly id="inputNameProduct2"
+                                                value="{{this.productCombo.PRODUCTNAME2}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="inputInventoryProduct2" class="mt-2"><b>Số lượng còn
+                                                lại</b></label>
+                                        <div>
+                                            <input type="number" class="form-control" readonly
+                                                id="inputInventoryProduct2" placeholder="0"
+                                                value="{{this.productCombo.PRODUCTINVENTORY2}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-5">
+                            <div class="card-header">
+                                <label class="mb-0"><b>Sản phẩm 3</b></label>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="selectProductID3" class="mt-2"><b>Mã sản phẩm</b></label>
+                                        <div class="input-group">
+                                            <select class="custom-select form-control" id="selectProductID3"
+                                                name="PRODUCTID3">
+                                                {{#each this.products}}
+                                                {{#isSelected ID ../this.productCombo.PRODUCTID3}}
+                                                <option selected value="{{ID}}">{{ID}}</option>
+                                                {{else}}
+                                                <option value="{{ID}}">{{ID}}</option>
+                                                {{/isSelected}}
+                                                {{/each}}
+
+                                                {{{isExistedInProducts this.productCombo.PRODUCTID3 this.products}}}
+                                            </select>
+
+                                            <input type="text" class="form-control" hidden id="inputOldProductID3"
+                                                value="{{this.productCombo.PRODUCTID3}}">
+
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success dropdown-toggle" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                    id="btnSelectCat3">Danh mục</button>
+                                                <div class="dropdown-menu dropdown-menu-right" id="selectCat3">
+                                                    {{#each this.categories}}
+                                                    <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
+                                                    {{/each}}
+                                                    <div class="dropdown-divider"></div>
+                                                    <span class="dropdown-item" id="-1">Tất cả</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="inputNameProduct3" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <div>
+                                            <input type="text" class="form-control" readonly id="inputNameProduct3"
+                                                value="{{this.productCombo.PRODUCTNAME3}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label for="inputInventoryProduct3" class="mt-2"><b>Số lượng còn
+                                                lại</b></label>
+                                        <div>
+                                            <input type="number" class="form-control" readonly
+                                                id="inputInventoryProduct3" placeholder="0"
+                                                value="{{this.productCombo.PRODUCTINVENTORY3}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End form nhập thông tin-->
+
+                </div>
+                <!--End card chứa form nhập thông tin của sản phẩm-->
+
+                <!--Card chứa form nhập thông tin của sản phẩm-->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <label class="mb-0"><b>Thông tin COMBO</b></label>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="inputIdProductCombo" class="mt-2"><b>Mã COMBO</b></label>
+                                <div>
+                                    <input readonly type="text" name="ID" class="form-control" id="inputIdProductCombo"
+                                        value="{{this.productCombo.ID}}">
+                                </div>
+
+                                <div>
+                                    <input hidden type="text" name="CREATED" class="form-control"
+                                        value="{{this.productCombo.CREATED}}">
+                                    <input hidden type="text" name="OLDPRODUCTID1" class="form-control"
+                                        value="{{this.productCombo.PRODUCTID1}}">
+                                    <input hidden type="text" name="OLDPRODUCTID2" class="form-control"
+                                        value="{{this.productCombo.PRODUCTID2}}">
+                                    <input hidden type="text" name="OLDPRODUCTID3" class="form-control"
+                                        value="{{this.productCombo.PRODUCTID3}}">
+                                </div>
+
+                                <label for="inputnameProductCombo" class="mt-2"><b>Tên COMBO</b></label>
+                                <div>
+                                    <input name="NAME" type="text" class="form-control" id="inputnameProductCombo"
+                                        placeholder="Nhập tên sản phâm" value="{{this.productCombo.NAME}}">
+                                </div>
+
+                                <label for="inputPriceProductCombo" class="mt-2"><b>Giá thành (nghìn
+                                        vnđ)</b></label>
+                                <div>
+                                    <input type="number" name="PRICE" class="form-control" id="inputPriceProductCombo"
+                                        placeholder="Nhập vào giá sản phẩm" value="{{this.productCombo.PRICE}}">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="inputKLGProductCombo" class="mt-2"><b>Trọng lượng
+                                                (kg)</b></label>
+                                        <div>
+                                            <input type="number" name="KILOGRAM" class="form-control"
+                                                id="inputKLGProductCombo" placeholder="0"
+                                                value="{{this.productCombo.KILOGRAM}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="inputINVENTORYCombo" class="mt-2"><b>Số lượng</b></label>
+                                        <div>
+                                            <input type="number" name="INVENTORY" class="form-control"
+                                                id="inputINVENTORYCombo" placeholder="Nhập số lượng"
+                                                value="{{this.productCombo.INVENTORY}}">
+                                        </div>
+
+                                        <div>
+                                            <input hidden type="number" name="OLDINVENTORY" id="inputOLDINVENTORYCombo" class="form-control"
+                                                value="{{this.productCombo.INVENTORY}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="inputPromotionProductCombo" class="mt-2"><b>Giảm
+                                                giá</b></label>
+                                        <div>
+                                            <input type="number" name="SALE" class="form-control"
+                                                id="inputPromotionProductCombo" placeholder="0"
+                                                value="{{this.productCombo.SALE}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="inputPromotionVIPProductCombo" class="mt-2"><b>Giảm giá
+                                                khách
+                                                V.I.P</b></label>
+                                        <div>
+                                            <input type="number" name="VIPSALE" class="form-control"
+                                                id="inputPromotionVIPProductCombo" placeholder="0"
+                                                value="{{this.productCombo.VIPSALE}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--End form nhập thông tin-->
+                    </div>
+                </div>
+                <!--End card chứa form nhập thông tin của sản phẩm-->
+
+                <!--Card chứa form điền thông tin bài viêt-->
+                <div class="card mt-3 mb-3">
+
+                    <div class="card-header">
+                        <label class="mb-0"><b>Mô tả COMBO</b></label>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label><b>Mô tả tóm tắt</b></label>
+                            <div>
+                                <textarea name="SHORTDESCRIPTION" cols="60" rows="4" class="form-control"
+                                    placeholder="Nhập mô tả tóm tắt về sản phẩm">{{this.productCombo.SHORTDESCRIPTION}}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><b>Mô tả chi tiết</b></label>
+                            <textarea id="my_editor_combo" class="form-control"
+                                name="DESCRIPTION">{{this.productCombo.DESCRIPTION}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--End Card chứa form điền thông tin bài viêt-->
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success pl-5 pr-5 mr-5">Cập nhật</button>
+                    <a href="/admin/product/product-show" class="btn btn-primary pl-5 pr-5">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->
+
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+{{!--Xu ly Editor --}}
+<script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=nxw3p5ckcu5jx187f8q2w3ysytehc7mdor1gcic8zu1iq5pv"></script>
+<script src="/admin/js/tinymce-Editor.js"></script>
+{{!--Xu ly Editor --}}
+
+{{!--input file --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+{{!--input file --}}
+
+{{!--Xử lý thêm ảnh bằng file input--}}
+<script src="/admin/js/product-add-file-input.js"></script>
+{{!--Xử lý trang product-add --}}
+<script src="/admin/js/product-combo-edit-view.js"></script>
+
+{{!--Xử lý dữ liệu từ UI--}}
+<script src="/admin/js/validate-UI-product-combo-edit.js"></script>
+{{/section}}

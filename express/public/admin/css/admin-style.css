@@ -248,3 +248,19 @@ body {
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.card > .card-header {
+  background-color: rgba(153, 204, 0, 0.2);
+  color: #568a28;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #99cc00;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  cursor: pointer;
+  user-select: none;
+}

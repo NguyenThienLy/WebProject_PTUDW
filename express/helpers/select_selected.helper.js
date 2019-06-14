@@ -1,15 +1,28 @@
-// Định dạng các option (selected nếu có)
-module.exports = function(id, name, selectedOptionId) {
-    var selectedProperty = "";
-  
-    if (selectedOptionId) {
-        if (selectedOptionId.indexOf(id.toString()) != -1) {
-          selectedProperty = 'selected="selected"';
-        }
+// Hàm kiểm tra xem giá id category|subcategory|tag có được selected
+module.exports.isSelected = function(v1, v2, options) {
+  if (v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+};
+
+//Kiểm tra xem id tag có nằm trong list giá trị hay không
+module.exports.isExistedInProducts = function(productID, listProducts) {
+  var isTrue = false;
+  if (listProducts.constructor === Array) {
+    listProducts.forEach(product => {
+      if (product.ID === productID) {
+        isTrue = true;
+      }
+    });
+  } else {
+    if (listProducts.ID === productID) {
+      isTrue = true;
     }
-  
+  }
+  if (!isTrue) {
     return (
-      '<option value="' + id + '"' + selectedProperty + ">" + name + "</option>"
+      '<option value="' + productID + '" selected>' + productID + "</option>"
     );
-  };
-  
+  }
+};
