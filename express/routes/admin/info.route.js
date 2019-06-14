@@ -19,4 +19,6 @@ router.get('/info-add', controller.infoAdd);
 
 router.post('/info-add', gcsMulter.single('INFO_IMAGE'), controller.postInfoAdd);
 
+router.post('/info-add-tag', controller.postInfoAddTag);
+
 module.exports = router;

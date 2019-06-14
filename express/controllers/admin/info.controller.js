@@ -207,74 +207,15 @@ function getPublicUrl(filename, infoID, uuid) {
   );
 }
 
-// function a(filename, infoID) {
-//   const contentType = "image/jpeg";
-//   const filePath = `InfoImages/${infoID}/` + filename;
+module.exports.postInfoAddTag = function(req, res, next) {
+  var newTagName = req.body.TagName;
 
-//   const destBucket = bucket;
-//   console.log("temp file path: " + path.join(os.tmpdir(), filename));
-//   const tmpFilePath = path.join(os.tmpdir(), filename);
-//   const resizedTmpFilePath = path.join(os.tmpdir(), "resize-" + filename);
-//   let uuid = UUID();
-//   const metadata = {
-//     contentType: contentType,
-//     metadata: {
-//       firebaseStorageDownloadTokens: uuid
-//     }
-//   };
+  var newTag = {
+    NAME: newTagName
+  }
 
-//   return destBucket
-//     .file(filePath)
-//     .download({
-//       destination: tmpFilePath
-//     })
-//     .then(() => {
-//       return spawn("convert", [
-//         tmpFilePath,
-//         "-resize",
-//         "200x200",
-//         resizedTmpFilePath
-//       ]);
-//     })
-//     .then(() => {
-//       return destBucket
-//         .upload(resizedTmpFilePath, {
-//           destination: `InfoImages/${infoID}/resized-` + filename,
-//           metadata: metadata
-//         })
-//         .then(result => {
-//           let file = result[0];
-//           return Promise.resolve(
-//             "https://firebasestorage.googleapis.com/v0/b/" +
-//               bucketName +
-//               "/o/" +
-//               encodeURIComponent(file.name) +
-//               "?alt=media&token=" +
-//               uuid
-//           );
-//         })
-//         .then(downloadURL => {
-//           var newsObject;
-//           newsModel
-//             .singleNewsByID(infoID)
-//             .then(news => {
-//               console.log("news: " + news);
-//               console.log("downloadURL: " + downloadURL);
-//               newsObject = news;
-//               newsObject.RESIZEDIMAGE = downloadURL;
-
-//               newsModel
-//                 .updateNews(newsObject)
-//                 .then(changedRowsNumber => {
-//                   return true;
-//                 })
-//                 .catch(err => {
-//                   console.log(err);
-//                 });
-//             })
-//             .catch(err => {
-//               console.log(err);
-//             });
-//         });
-//     });
-// }
+  tagModel.addTag(newTag).then(tagID => {
+    newTag.ID = tagID;
+    res.send(newTag);
+  }).catch(next);
+};

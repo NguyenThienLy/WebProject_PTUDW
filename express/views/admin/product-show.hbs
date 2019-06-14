@@ -15,18 +15,27 @@
     <div id="content">
         <header class="d-flex align-items-center justify-content-between">
             <h5 class="mb-0">Danh sách sản phẩm</h5>
+
+            <div class="d-flex align-items-center">
+                <input type="checkbox" id="switchType" class="switch"></input>
+                <span id="labelType" class="ml-3">Sản phẩm thường</span>
+            </div>
+
             <button id="btn_add_new" type="button" class="btn btn-sm btn-primary">
+
                 Thêm mới
             </button>
         </header>
 
         <div class="content-inner">
-            <!--Thanh tìm kiếm sản phẩm-->
-            <form class="form row ml-0 mr-0 mb-4">
-                <div class="form-row col-7 col-sm-9 col-lg-10 p-0 ml-0 mr-0">
-                    <div class="form-group col-12 col-sm-4 col-md-4 col-xl-3 mt-2 mb-0 pl-0">
-                        <input type="password" class="form-control form-control-sm" id="inputPassword2"
-                            placeholder="Tên sản phẩm">
+            <div id="product-simple-content">
+                <!--Thanh tìm kiếm sản phẩm-->
+                <form class="form row ml-0 mr-0 mb-4">
+                    <div class="form-row col-7 col-sm-9 col-lg-10 p-0 ml-0 mr-0">
+                        <div class="form-group col-12 col-sm-4 col-md-4 col-xl-3 mt-2 mb-0 pl-0">
+                            <input type="text" class="form-control form-control-sm"
+                                placeholder="Tên sản phẩm">
+                        </div>
                     </div>
 
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
@@ -77,11 +86,11 @@
                         <i class="fas fa-search"></i>&ensp;Tìm kiếm
                     </button>
                 </div>
-            </form>
-            <!--End thanh tìm kiếm sản phẩm-->
+                </form>
+                <!--End thanh tìm kiếm sản phẩm-->
 
 
-            <!--Table hiển thị sản phẩm-->
+                <!--Table hiển thị sản phẩm-->
             <table class="table table-responsive mb-4">
                 <thead>
                     <tr>
@@ -128,9 +137,10 @@
             </table>
             <!--End Table hiển thị sản phẩm-->
 
-            <hr />
+                <hr />
 
-            <!--Thanh điều hướng trang-->
+                <!--Thanh điều hướng trang-->
+                <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
                 <!-- <div class="col-md-12"> -->
                 <nav>
@@ -155,8 +165,125 @@
                     </ul>
                 </nav>
                 <!-- </div> -->
+                </div>
+                <!--End Nội dung trang index-->
             </div>
-            <!--End Nội dung trang index-->
+
+            <div id="product-combo-content">
+                <!--Thanh tìm kiếm sản phẩm-->
+                <form class="form row ml-0 mr-0 mb-4">
+                    <div class="form-row col-7 col-sm-9 col-lg-10 p-0 ml-0 mr-0">
+                        <div class="form-group col-12 col-sm-4 col-md-4 col-xl-3 mt-2 mb-0 pl-0">
+                            <input type="text" class="form-control form-control-sm" id="product-combo-name"
+                                placeholder="Tên sản phẩm combo">
+                        </div>
+
+                        <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
+                            <input type="text" class="form-control form-control-sm" id="product-simple-name"
+                                placeholder="Tên sản phẩm con">
+                        </div>
+
+                        <div class="form-group col-12 col-sm-8 col-md-8 col-lg-4 col-xl-3 mb-0 mt-2 pl-0">
+                            <select class="custom-select custom-select-sm">
+                                <option>Xem tất cả sản phẩm</option>
+                                <option>Lọc</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-5 col-sm-3 col-lg-2 pr-0 mt-2">
+                        <button type="button" class="btn btn-sm btn-success w-100">
+                            <i class="fas fa-search"></i>&ensp;Tìm kiếm
+                        </button>
+                    </div>
+                </form>
+                <!--End thanh tìm kiếm sản phẩm-->
+
+
+                <!--Table hiển thị sản phẩm-->
+                <table class="table table-responsive mb-4">
+                    <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Tên sản phẩm con</th>
+                            <th class="text-center">Hình ảnh</th>
+                            <th>Thông tin</th>
+                            <th class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!--Vòng lặp để in ra sản phẩm -->
+                        {{#each this.productCombos}}
+                        <tr>
+                            <td>{{ID}}</td>
+                            <td>
+                                <div class="wordWrap product-name">
+                                    {{NAME}}
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <div class="wordWrap product-name"><i class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME1}}</div>
+                                    <div class="wordWrap product-name"><i class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME2}}</div>
+                                    <div class="wordWrap product-name"><i class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME3}}</div>
+                                </div>
+                            </td>
+                            <td align="center">
+                                <img src="{{PRODUCTIMAGE1}}" class="show-product-image">
+                                <img src="{{PRODUCTIMAGE2}}" class="show-product-image">
+                                <img src="{{PRODUCTIMAGE3}}" class="show-product-image">
+                            </td>
+                            <td>
+                                <div>
+                                    {{#if SALE}}
+                                    <div class="badge badge-warning mb-1">Đang giảm giá</div>
+                                    {{/if}}
+                                    <div>Giá (nghìn vnđ):&nbsp;{{PRICE}}</div>
+                                    <div>Số lượng:&nbsp;{{INVENTORY}}</div>
+                                </div>
+                            </td>
+                            <td align="center">
+                                <a href="/admin/product/product-combo-edit/{{ID}}" class="btn btn-sm btn-primary">Sửa</a>
+                                <button type="button" class="btn btn-sm btn-danger post_delete_combo" id="{{ID}}">Xóa</button>
+                            </td>
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+                <!--End Table hiển thị sản phẩm-->
+
+                <hr />
+
+                <!--Thanh điều hướng trang-->
+                <div class="row justify-content-center">
+                    <!-- <div class="col-md-12"> -->
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- </div> -->
+                </div>
+                <!--End Nội dung trang index-->
+
+       
 
             <!--footer-->
             <footer id="admin-footer">

@@ -129,16 +129,13 @@ module.exports.updateProduct = product=>{
 };
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
-module.exports.updateProductInventory = products => {
+module.exports.updateListProducts = products => {
   if (products.constructor === Array) {
     products.forEach(product => {
       //gọi hàm insert
       db.update("product", 'ID', product);
     });
-  } else {
-    //gọi hàm insert
-    db.update("product", 'ID', product);
-  }
+  } 
 };
 
 //Hàm xóa 1 sản phẩm | cập nhật status về 0

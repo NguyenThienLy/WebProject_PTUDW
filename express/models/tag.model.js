@@ -2,6 +2,11 @@
 var db = require("../utils/db");
 
 //Hàm trả về tất cả các tag trên database
+module.exports.addTag = tag => {
+  return db.add("tag", tag);
+};
+
+//Hàm trả về tất cả các tag trên database
 module.exports.allTag = () => {
   return db.load(`SELECT * FROM tag`);
 };

@@ -36,7 +36,16 @@ router.post('/load-productId-by-categoryId', controller.productIdByCategoryId);
 router.post('/load-product-by-productId', controller.productByProductId);
 
 //Xử lý xóa sản phẩm
-router.post('/product-show/delete',controller.deleteProduct);
+router.post('/product-show/delete', controller.deleteProduct);
+
+// Xử lí xóa sản phẩm combo
+router.post("/product-combo-delete", controller.postDeleteProductCombo);
+
+// Xử lí sửa sản phẩm combo
+router.get("/product-combo-edit/:id", controller.productComboEdit);
+
+// Xử lí post sửa sản phẩm combo
+router.post("/product-combo-edit/:id", controller.postProductComboEdit);
 
 router.get('/product-update/:id',controller.infoProduct);
 

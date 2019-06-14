@@ -22,7 +22,10 @@ jQuery.validator.addMethod("comparisonKILOGRAMCombo", function(value, element) {
   return false;
 });
 
-jQuery.validator.addMethod("comparisonINVENTORYCombo", function(value, element) {
+jQuery.validator.addMethod("comparisonINVENTORYCombo", function(
+  value,
+  element
+) {
   var pcompra = $("#inputINVENTORYCombo").val();
   if (pcompra > 0) {
     return true;
@@ -37,15 +40,44 @@ jQuery.validator.addMethod("intINVENTORYCombo", function(value, element) {
 
 jQuery.validator.addMethod("isValidInventoryCombo", function(value, element) {
   var inventoryCombo = parseInt($("#inputINVENTORYCombo").val());
+  var oldInventoryCombo = parseInt($("#inputOLDINVENTORYCombo").val());
+
   var inventoryPro1 = parseInt($("#inputInventoryProduct1").val());
   var inventoryPro2 = parseInt($("#inputInventoryProduct2").val());
   var inventoryPro3 = parseInt($("#inputInventoryProduct3").val());
 
-  if (inventoryCombo > 0 && inventoryPro1 > 0 && inventoryPro2 > 0 && inventoryPro3 > 0) {
-    inventoryPro1 -= inventoryCombo;
-    inventoryPro2 -= inventoryCombo;
-    inventoryPro3 -= inventoryCombo;
+  var proId1 = $("#selectProductID1").val();
+  var proId2 = $("#selectProductID2").val();
+  var proId3 = $("#selectProductID3").val();
+  var oldProId1 = $("#inputOldProductID1").val();
+  var oldProId2 = $("#inputOldProductID2").val();
+  var oldProId3 = $("#inputOldProductID3").val();
 
+  if (proId1 === oldProId1 || proId1 === oldProId2 || proId1 === oldProId3) {
+    if (inventoryCombo > oldInventoryCombo) {
+      inventoryPro1 -= inventoryCombo - oldInventoryCombo;
+    }
+  } else {
+    inventoryPro1 -= inventoryCombo;
+  }
+
+  if (proId2 === oldProId1 || proId2 === oldProId2 || proId2 === oldProId3) {
+    if (inventoryCombo > oldInventoryCombo) {
+      inventoryPro2 -= inventoryCombo - oldInventoryCombo;
+    }
+  } else {
+    inventoryPro2 -= inventoryCombo;
+  }
+
+  if (proId3 === oldProId1 || proId3 === oldProId2 || proId3 === oldProId3) {
+    if (inventoryCombo > oldInventoryCombo) {
+      inventoryPro3 -= inventoryCombo - oldInventoryCombo;
+    }
+  } else {
+    inventoryPro3 -= inventoryCombo;
+  }
+
+  if (inventoryCombo > 0) {
     if (inventoryPro1 >= 0 && inventoryPro2 >= 0 && inventoryPro3 >= 0) {
       return true;
     } else {
@@ -147,7 +179,7 @@ jQuery.validator.addMethod("checkNotSameProductID3", function(value, element) {
   return true;
 });
 
-$("#add-product-combo-form").validate({
+$("#edit-product-combo-form").validate({
   ignore: [],
   rules: {
     PRODUCTID1: {
