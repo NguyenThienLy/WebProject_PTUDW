@@ -465,3 +465,34 @@ module.exports.imagesOfProduct = (req, res, next) => {
     })
     .catch(next);
 };
+
+//Cập nhật thông tin sản phẩm
+module.exports.updateProductInfo = (req, res, next) => {
+  console.log(req.body);
+
+  //Tạo mới entity
+  var productInfo = {
+    ID:req.body.ID,
+    CATEGORYID: req.body.CATEGORYID,
+    SUBCATEGORYID: req.body.SUBCATEGORYID,
+    NAME: req.body.NAME,
+    BRANDID: req.body.BRANDID,
+    PRICE: req.body.PRICE,
+    ORIGIN: req.body.ORIGIN,
+    KILOGRAM: req.body.KILOGRAM,
+    SALE: req.body.SALE,
+    VIPSALE: req.body.VIPSALE,
+    SHORTDESCRIPTION: req.body.SHORTDESCRIPTION,
+    DESCRIPTION: req.body.DESCRIPTION,
+    INVENTORY: req.body.INVENTORY
+  };
+
+  //Gọi hàm update
+  productModel.updateProductInfo(productInfo).then(changerows=>{
+    
+  });
+  tagModel.deleteTagOfProduct(req.body.ID).then(value=>{
+      tagModel.addTagForProduct(req.body.ID, req.body.TAG);
+      res.redirect(req.get('referer'));
+  })
+};

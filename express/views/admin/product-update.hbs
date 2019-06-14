@@ -35,7 +35,7 @@
                 <div class="tab-pane fade show active pt-4" id="nav-product-detail-description" role="tabpanel"
                     aria-labelledby="nav-product-detail-description-tab">
                     <form method="POST" enctype="multipart/form-data" action="/admin/product/product-update-image"
-                        id="add-product-form">
+                        id="update-product-form">
                         <div class="card">
 
                             <div class="card-header">
@@ -58,7 +58,7 @@
                         </div>                       
                     </form>
 
-                    <form method="POST" action="/admin/product/product-update">
+                    <form id="update-product-form" action="/admin/product/update-product-info" method="POST">
                     <!--Card chứa form nhập thông tin của sản phẩm-->
                         <div class="card mt-3">
                             <div class="card-header">
@@ -69,12 +69,10 @@
                                 <div class="form-group row">
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
-                                        {{!-- <label for="inputIDproduct" class="mt-2"><b>Mã sản phẩm</b></label>
-                        <div>
-                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01"
-                                readonly>
-                        </div> --}}
-
+                                        <div>
+                                            <input hidden name="ID" type="text" class="form-control"
+                                             id="inputnameProduct" value="{{productinfo.ID}}">
+                                        </div>
                                         <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
                                         <div>
                                             <input name="NAME" type="text" class="form-control"
@@ -295,9 +293,9 @@
 
 {{!--Xử lý thêm ảnh bằng file input--}}
 
-{{!--Xử lý trang product-add --}}
+{{!--Xử lý trang product-update --}}
 <script src="/admin/js/product-update-view.js"></script>
 
 {{!--Xử lý dữ liệu từ UI--}}
-<script src="/admin/js/validate-UI-product-add.js"></script>
+<script src="/admin/js/Validate-UI-product-update.js"></script>
 {{/section}}

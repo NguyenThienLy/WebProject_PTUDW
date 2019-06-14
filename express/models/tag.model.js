@@ -6,6 +6,11 @@ module.exports.allTag = () => {
   return db.load(`SELECT * FROM tag`);
 };
 
+//Hàm xóa tất cả tag của sản phẩm
+module.exports.deleteTagOfProduct = (productID) => {
+  return db.delete('product_tag','PRODUCTID',productID)
+};
+
 //Hàm trả về tag của sản phẩm
 module.exports.allTagOfProduct = (productID) => {
   return db.load(`SELECT tg.ID,tg.NAME FROM product_tag AS pr JOIN tag as tg

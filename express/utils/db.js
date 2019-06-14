@@ -120,7 +120,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       var sql = `delete from ${tableName} where ${idField} = ?`;
 
-      var connection = createConnection();
+      var connection = CreateConnection();
       connection.connect();
 
       connection.query(sql, id, (error, value) => {

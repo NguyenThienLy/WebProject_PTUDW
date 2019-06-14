@@ -75,7 +75,12 @@ module.exports.updateProductInventory = products => {
 //Hàm xóa 1 sản phẩm
 module.exports.deleteProduct = productID=>{
   return db.delete('product','ID',productID);
-}
+};
+
+//Hàm cập nhật thông tin cho sản phẩm
+module.exports.updateProductInfo = (product)=>{
+  return db.update('product','ID',product);
+};
 
 //Hàm trả về thời gian hiện tại
 function getDateNow() {

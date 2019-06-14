@@ -67,7 +67,7 @@ jQuery.validator.addMethod("tinyMCE", function(value, element) {
   }
 });
 
-$("#add-product-form").validate({
+$("#update-product-form").validate({
   ignore: [],
   rules: {
     NAME: {
@@ -111,9 +111,6 @@ $("#add-product-form").validate({
       required: true,
       number: true,
       comparisonVIPSALE: true
-    },
-    PRODUCT_IMAGE: {
-      comparisonIMAGE: true
     },
     TAG: {
       required: true
@@ -168,9 +165,6 @@ $("#add-product-form").validate({
       required: "Vui lòng nhập phần trăm giảm giá (nếu không có, nhập 0)",
       number: "Vui lòng nhập giá trị hợp lệ",
       comparisonVIPSALE: "Nhập giá trị từ 0 đến 100"
-    },
-    PRODUCT_IMAGE: {
-      comparisonIMAGE: "Vui lòng chọn đủ 5 hình"
     },
     TAG: {
       required: "Vui lòng chọn tag"

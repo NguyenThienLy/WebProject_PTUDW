@@ -8,8 +8,6 @@ module.exports.isSelected = function(v1, v2, options) {
 
 //Kiểm tra xem id tag có nằm trong list giá trị hay không
 module.exports.isSelectedInTag = function(tagID, ListTags, options) {
-    console.log("Listag",ListTags);
-    console.log("tagID",tagID);
     var isTrue = false;
     if(ListTags.constructor === Array){
         ListTags.forEach(tag => {
