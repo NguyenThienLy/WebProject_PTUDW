@@ -6,5 +6,8 @@ $(".post_delete").click(function(){
             //load lại trang
             location.reload();
         }
+        else{
+            alert("Sản phẩm này không xóa được!");
+        }
     });
 });

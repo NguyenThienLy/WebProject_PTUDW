@@ -7,6 +7,18 @@ module.exports.quantityProduct = () => {
   return db.load(`SELECT COUNT(*) AS QUANTITY FROM product`);
 };
 
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityProductActive = () => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT COUNT(*) AS QUANTITY FROM product WHERE STATUS = 1`);
+};
+
+// Hàm lấy ra số lượng của sản phẩm có ID
+module.exports.inventoryProduct = (productID) => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT product.INVENTORY FROM product WHERE product.ID = ${productID}`);
+};
+
 // Hàm trả về tất cả sản phẩm trong database
 module.exports.allProduct = () => {
   // Gọi hàm querry từ db
@@ -19,6 +31,21 @@ module.exports.allProduct = () => {
             INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
             INNER JOIN category ON product.CATEGORYID = category.ID)
 						INNER JOIN brand ON product.BRANDID = brand.ID WHERE STATUS = 1`);
+};
+
+// Hàm trả về tất cả sản phẩm trong database có phân trang
+module.exports.pageallProduct = (limit, offset) => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT product.ID, product.IMAGE, product.RESIZEDIMAGE, product.CATEGORYID, 
+            product.SUBCATEGORYID, product.NAME, product.BRANDID, product.STATUS, product.RATE, 
+            product.PRICE, product.ORIGIN, product.KILOGRAM, product.SALE, product.VIPSALE,
+            product.SHORTDESCRIPTION, product.DESCRIPTION, product.INVENTORY, product.CREATED,
+            category.NAME AS CATEGORYNAME, sub_category.NAME AS SUBCATEGORYNAME, brand.NAME AS BRANDNAME
+						FROM ((product 
+            INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
+            INNER JOIN category ON product.CATEGORYID = category.ID)
+            INNER JOIN brand ON product.BRANDID = brand.ID WHERE STATUS = 1 
+            limit ${limit} offset ${offset}`);
 };
 
 // Hàm trả về tất cả sản phẩm còn hàng trong database

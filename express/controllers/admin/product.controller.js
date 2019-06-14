@@ -49,12 +49,24 @@ const gcs = new Storage({
 const bucket = gcs.bucket(bucketName);
 
 // Thêm dữ liệu vào trang product
-module.exports.productShow = function(req, res, next) {
+module.exports.productShow = function (req, res, next) {
+  var page = req.query.page || 1;
+  var limit = req.query.limit || 4;
+  if (page < 1) {
+    page = 1;
+  }
+
+  if(page <1){
+    limit = 4;
+  }
+  
+  var offset = (page - 1) * limit;
+
   // Lấy dữ liệu nhãn hiệu
   var dataBrands = brandModel.allBrand();
 
   // Lấy dữ liệu sản phẩm
-  var dataProducts = productModel.allProduct();
+  var dataProducts = productModel.pageallProduct(limit, offset);
 
   // Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
@@ -62,23 +74,39 @@ module.exports.productShow = function(req, res, next) {
   // Lấy dữ liệu sub category
   var dataSubCategories = subCategoryModel.allSubCategory(1);
 
-  Promise.all([dataBrands, dataProducts, dataCategories, dataSubCategories])
+  var numberPage = productModel.quantityProductActive();
+
+  Promise.all([dataBrands, dataProducts, dataCategories, dataSubCategories,numberPage])
     .then(values => {
       res.locals.sidebar[4].active = true;
+
+      var total = values[4][0].QUANTITY;
+      var nPages = Math.floor(total/limit);
+      if(total % limit >0)nPages++;
+      var pages =[];
+      for( i = 1;i<nPages;i++){
+        var obj = {
+          value:i,
+          active:i===+page
+        };
+        pages.push(obj);
+      }
+
       //Truyền vào trong UI
       res.render("admin/product-show", {
         layout: "main-admin.hbs",
         brands: values[0],
         products: values[1],
         categories: values[2],
-        subCategories: values[3]
+        subCategories: values[3],
+        pages:pages
       });
     })
     .catch(next);
 };
 
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
-module.exports.postProductComboAdd = function(req, res, next) {
+module.exports.postProductComboAdd = function (req, res, next) {
   // Tạo đối tượng để thêm vào cơ sở dữ liệu
   var newProductCombo = {
     PRODUCTID1: req.body.PRODUCTID1,
@@ -120,7 +148,7 @@ module.exports.postProductComboAdd = function(req, res, next) {
           var product1 = values[1][0];
           var product2 = values[2][0];
           var product3 = values[3][0];
-          
+
           var inventoryCombo = parseInt(newProductCombo.INVENTORY)
           product1.INVENTORY -= inventoryCombo;
           product2.INVENTORY -= inventoryCombo;
@@ -137,7 +165,7 @@ module.exports.postProductComboAdd = function(req, res, next) {
 };
 
 //Thêm dữ liệu vào trang productadd
-module.exports.productAdd = function(req, res, next) {
+module.exports.productAdd = function (req, res, next) {
   // Lấy dữ liệu product
   var dataProducts = productModel.allProductInStock();
   //Lấy dữ liệu category
@@ -168,7 +196,7 @@ module.exports.productAdd = function(req, res, next) {
 };
 
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
-module.exports.postProductAdd = function(req, res, next) {
+module.exports.postProductAdd = function (req, res, next) {
   let listFile = req.files;
 
   console.log(req.body);
@@ -367,7 +395,7 @@ function getPublicUrl(filename, productID, uuid) {
   );
 }
 
-module.exports.SubCategory = function(req, res, next) {
+module.exports.SubCategory = function (req, res, next) {
   //Lấy dữ liệu sub category
   var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(req.body.CategoryID);
   //Lấy dữ liệu từ tag
@@ -379,7 +407,7 @@ module.exports.SubCategory = function(req, res, next) {
     .catch(next);
 };
 
-module.exports.productIdByCategoryId = function(req, res, next) {
+module.exports.productIdByCategoryId = function (req, res, next) {
   //Lấy dữ liệu sub category
   var dataProductIds = productModel.allProductIdByCategoryId(req.body.CategoryID);
   //Lấy dữ liệu từ tag
@@ -391,7 +419,7 @@ module.exports.productIdByCategoryId = function(req, res, next) {
     .catch(next);
 };
 
-module.exports.productByProductId = function(req, res, next) {
+module.exports.productByProductId = function (req, res, next) {
   //Lấy dữ liệu sub category
   var dataProduct = productModel.singleByProductId(req.body.ProductID);
   //Lấy dữ liệu từ tag
@@ -406,21 +434,28 @@ module.exports.productByProductId = function(req, res, next) {
 //Xóa sản phẩm, xóa những sản phẩm không có trong combo
 module.exports.deleteProduct = (req, res, next) => {
   var id = req.body.ProductID;
-  //tạo mới product
-  var updateProduct={
-    ID:id,
-    STATUS:0
-  };
-  
-  //Gọi hàm xóa
-  productModel.deleteProduct(updateProduct).then(values=>{
-    res.send(true);
+  //Kiểm tra số lượng của sản phẩm
+  productModel.inventoryProduct(id).then(row => {
+    if (row[0].INVENTORY > 0) {
+      res.send(false);
+    } else {
+      //tạo mới product
+      var updateProduct = {
+        ID: id,
+        STATUS: 0
+      };
+
+      //Gọi hàm xóa
+      productModel.deleteProduct(updateProduct).then(values => {
+        res.send(true);
+      });
+    }
   });
 };
 
 //Hiển thị thông tin sản phẩm để update
 module.exports.infoProduct = (req, res, next) => {
-  
+
   //Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
   //Lấy dữ liệu sub category
@@ -437,7 +472,7 @@ module.exports.infoProduct = (req, res, next) => {
   //Lấy ra tag của sản phẩm
   var productTags = tagModel.allTagOfProduct(req.params.id);
 
-  Promise.all([dataCategories, dataSubCategories, dataTags, dataBrands, productinfo,productTags])
+  Promise.all([dataCategories, dataSubCategories, dataTags, dataBrands, productinfo, productTags])
     .then(values => {
       res.locals.sidebar[5].active = true;
 
@@ -449,11 +484,11 @@ module.exports.infoProduct = (req, res, next) => {
         tags: values[2],
         brands: values[3],
         productinfo: values[4][0],
-        productTags:values[5],
+        productTags: values[5],
         helpers: {
           // Hàm định dạng title của product combo lấy 52 kí tự
           isSelected: selectedHelper.isSelected,
-          isSelectedInTag:selectedHelper.isSelectedInTag
+          isSelectedInTag: selectedHelper.isSelectedInTag
         }
       });
     })
@@ -477,7 +512,7 @@ module.exports.updateProductInfo = (req, res, next) => {
 
   //Tạo mới entity
   var productInfo = {
-    ID:req.body.ID,
+    ID: req.body.ID,
     CATEGORYID: req.body.CATEGORYID,
     SUBCATEGORYID: req.body.SUBCATEGORYID,
     NAME: req.body.NAME,
@@ -493,11 +528,15 @@ module.exports.updateProductInfo = (req, res, next) => {
   };
 
   //Gọi hàm update
-  productModel.updateProductInfo(productInfo).then(changerows=>{
-    
+  productModel.updateProductInfo(productInfo).then(changerows => {
+    productInfoHistoryModel.addCreatedHistory(
+      req.body.ID,
+      "Sửa",
+      "Sửa thông tin"
+    );
   });
-  tagModel.deleteTagOfProduct(req.body.ID).then(value=>{
-      tagModel.addTagForProduct(req.body.ID, req.body.TAG);
-      res.redirect(req.get('referer'));
+  tagModel.deleteTagOfProduct(req.body.ID).then(value => {
+    tagModel.addTagForProduct(req.body.ID, req.body.TAG);
+    res.redirect(req.get('referer'));
   })
 };
