@@ -48,12 +48,43 @@
                         </div>
 
                         <div class="form-group">
-                            <label><b>Tag</b></label>
-                            <select class="form-control chosen-select" name="TAG" data-placeholder="Chọn tag" multiple>
+                            <label class="mr-1 mb-1"><b>Tag</b></label>
+                            <button type="button" class="btn btn-sm btn-success rounded-circle btn-add-tag position-relative" data-toggle="modal"
+                                data-target="#addTagModal">
+                                <i class="fas fa-plus fa-sm position-absolute"></i>
+                            </button>
+                            <select class="form-control chosen-select" id="selectTag" name="TAG" data-placeholder="Chọn tag" multiple>
                                 {{#each this.tags}}
                                 <option value="{{ID}}">{{NAME}}</option>
                                 {{/each}}
                             </select>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="addTagModal" tabindex="-1" role="dialog"
+                                aria-labelledby="addTagLabelModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addTagLabelModal">Thêm tag</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="inputAddNewTag" id="lblAddNewTag"><b>Tên tag</b></label>
+                                                <input type="text" class="form-control" id="inputAddNewTag"
+                                                    placeholder="Nhập tên tag" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-success btn-add-new-tag">Thêm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -107,4 +138,6 @@
 {{!--Xử lý thêm ảnh bằng file input--}}
 <script src="/admin/js/info-add-file-input.js"></script>
 <script src="/admin/js/validate-UI-info-add.js"></script>
+
+<script src="/admin/js/info-add-view.js"></script>
 {{/section}}
