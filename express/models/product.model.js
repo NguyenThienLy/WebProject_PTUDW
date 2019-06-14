@@ -18,7 +18,7 @@ module.exports.allProduct = () => {
 						FROM ((product 
             INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
             INNER JOIN category ON product.CATEGORYID = category.ID)
-						INNER JOIN brand ON product.BRANDID = brand.ID`);
+						INNER JOIN brand ON product.BRANDID = brand.ID WHERE STATUS = 1`);
 };
 
 // Hàm trả về tất cả sản phẩm còn hàng trong database
@@ -72,9 +72,9 @@ module.exports.updateProductInventory = products => {
   }
 };
 
-//Hàm xóa 1 sản phẩm
-module.exports.deleteProduct = productID=>{
-  return db.delete('product','ID',productID);
+//Hàm xóa 1 sản phẩm | cập nhật status về 0
+module.exports.deleteProduct = (product)=>{
+  return db.update('product','ID',product);
 };
 
 //Hàm cập nhật thông tin cho sản phẩm

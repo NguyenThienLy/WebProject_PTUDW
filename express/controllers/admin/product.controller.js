@@ -406,11 +406,16 @@ module.exports.productByProductId = function(req, res, next) {
 //Xóa sản phẩm, xóa những sản phẩm không có trong combo
 module.exports.deleteProduct = (req, res, next) => {
   var id = req.body.ProductID;
-  tagModel.deleteProductTag(id);
-  // productImageModel.deleteProductImage(id);
-  // productInfoHistoryModel.deleteProductHistory(id);
-  // productModel.deleteProduct(id);
-  res.redirect("/");
+  //tạo mới product
+  var updateProduct={
+    ID:id,
+    STATUS:0
+  };
+  
+  //Gọi hàm xóa
+  productModel.deleteProduct(updateProduct).then(values=>{
+    res.send(true);
+  });
 };
 
 //Hiển thị thông tin sản phẩm để update

@@ -47,4 +47,5 @@ router.post('/product-update/get-images',controller.imagesOfProduct)
 router.post('/update-product-info',controller.updateProductInfo)
 
 
+
 module.exports = router;
