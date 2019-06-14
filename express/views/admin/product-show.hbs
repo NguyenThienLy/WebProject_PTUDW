@@ -31,11 +31,8 @@
             <div id="product-simple-content">
                 <!--Thanh tìm kiếm sản phẩm-->
                 <form class="form row ml-0 mr-0 mb-4">
-                    <div class="form-row col-7 col-sm-9 col-lg-10 p-0 ml-0 mr-0">
-                        <div class="form-group col-12 col-sm-4 col-md-4 col-xl-3 mt-2 mb-0 pl-0">
-                            <input type="text" class="form-control form-control-sm"
-                                placeholder="Tên sản phẩm">
-                        </div>
+                    <div class="form-group col-12 col-sm-4 col-md-4 col-xl-3 mt-2 mb-0 pl-0">
+                            <input type="text" class="form-control form-control-sm" placeholder="Tên sản phẩm">
                     </div>
 
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
@@ -43,11 +40,11 @@
                             <option value="0" selected disabled>Danh mục</option>
                             <option value="0">Tất cả</option>
                             {{#each this.categories}}
-                                {{#isSelected ID ../categoryID}}
-                                        <option selected=selected value="{{ID}}">{{NAME}}</option>
-                                    {{else}}
-                                        <option value="{{ID}}">{{NAME}}</option>
-                                {{/isSelected}}
+                            {{#isSelected ID ../categoryID}}
+                            <option selected=selected value="{{ID}}">{{NAME}}</option>
+                            {{else}}
+                            <option value="{{ID}}">{{NAME}}</option>
+                            {{/isSelected}}
                             {{/each}}
                         </select>
                     </div>
@@ -57,12 +54,12 @@
                             <option value="0" selected disabled>Loại sản phẩm</option>
                             <option value="0">Tất cả</option>
                             {{#each this.subCategories}}
-                                {{#isSelected ID ../subCategoryID}}
-                                        <option selected=selected value="{{ID}}">{{NAME}}</option>
-                                    {{else}}
-                                        <option value="{{ID}}">{{NAME}}</option>
-                                {{/isSelected}}
-                             {{/each}}
+                            {{#isSelected ID ../subCategoryID}}
+                            <option selected=selected value="{{ID}}">{{NAME}}</option>
+                            {{else}}
+                            <option value="{{ID}}">{{NAME}}</option>
+                            {{/isSelected}}
+                            {{/each}}
                         </select>
                     </div>
 
@@ -71,100 +68,106 @@
                             <option value="0" selected disabled>Thương hiệu</option>
                             <option value="0">Tất cả</option>
                             <!--Vòng lặp để lấy ra danh sách nhãn hiệu -->
-                             {{#each this.brands}}
-                                {{#isSelected ID ../brandID}}
-                                        <option selected=selected value="{{ID}}">{{NAME}}</option>
-                                    {{else}}
-                                        <option value="{{ID}}">{{NAME}}</option>
-                                {{/isSelected}}
-                             {{/each}}
+                            {{#each this.brands}}
+                            {{#isSelected ID ../brandID}}
+                            <option selected=selected value="{{ID}}">{{NAME}}</option>
+                            {{else}}
+                            <option value="{{ID}}">{{NAME}}</option>
+                            {{/isSelected}}
+                            {{/each}}
                         </select>
                     </div>
-                </div>
-                <div class="col-5 col-sm-3 col-lg-2 pr-0 mt-2">
-                    <button id="btn_search" type="button" class="btn btn-sm btn-success w-100">
-                        <i class="fas fa-search"></i>&ensp;Tìm kiếm
-                    </button>
-                </div>
+
+                    <div class="col-5 col-sm-3 col-lg-2 pr-0 mt-2">
+                        <button id="btn_search" type="button" class="btn btn-sm btn-success w-100">
+                            <i class="fas fa-search"></i>&ensp;Tìm kiếm
+                        </button>
+                    </div>
                 </form>
                 <!--End thanh tìm kiếm sản phẩm-->
 
 
                 <!--Table hiển thị sản phẩm-->
-            <table class="table table-responsive mb-4">
-                <thead>
-                    <tr>
-                        <th>Mã</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Danh mục</th>
-                        <th>Nguồn gốc</th>
-                        <th>Thương hiệu</th>
-                        <th class="text-center">Hình ảnh</th>
-                        <th>Thông tin</th>
-                        <th class="text-center">Tác vụ</th>
-                    </tr>
-                </thead>
+                <table class="table table-responsive mb-4">
+                    <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Danh mục</th>
+                            <th>Nguồn gốc</th>
+                            <th>Thương hiệu</th>
+                            <th class="text-center">Hình ảnh</th>
+                            <th>Thông tin</th>
+                            <th class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <!--Vòng lặp để in ra sản phẩm -->
-                    {{#each this.products}}
-                    <tr>
-                        <td>{{ID}}</td>
-                        <td>{{NAME}}</td>
-                        <td>{{CATEGORYNAME}}</td>
-                        <td>Việt nam</td>
-                        <td>{{BRANDNAME}}</td>
-                        <td align="center">
-                            <img src="{{IMAGE}}" id="productSimple{{ID}}" class="show-product-image">
-                        </td>
-                        <td>
-                            <div>
-                                {{#if SALE}}
+                    <tbody>
+                        <!--Vòng lặp để in ra sản phẩm -->
+                        {{#each this.products}}
+                        <tr>
+                            <td>{{ID}}</td>
+                            <td>{{NAME}}</td>
+                            <td>{{CATEGORYNAME}}</td>
+                            <td>Việt nam</td>
+                            <td>{{BRANDNAME}}</td>
+                            <td align="center">
+                                <img src="{{IMAGE}}" id="productSimple{{ID}}" class="show-product-image">
+                            </td>
+                            <td>
+                                <div>
+                                    {{#if SALE}}
                                     <div class="badge badge-warning mb-1">Đang giảm giá</div>
-                                {{/if}}
-                                <div>Giá:&nbsp;<span>{{PRICE}}</span>đ</div>
-                                <div>Số lượng:&nbsp;<span>{{INVENTORY}}</span></div>
-                            </div>
-                        </td>
-                        <td align="center">
-                            <button type="button" class="btn btn-sm btn-primary get_update" get_id="{{ID}}">Sửa</button>
-                            <button type="button" class="btn btn-sm btn-danger post_delete" post_id="{{ID}}">Xóa</button>
-                        </td>
-                    </tr>
-                    {{/each}}
-                
-                </tbody>
-            </table>
-            <!--End Table hiển thị sản phẩm-->
+                                    {{/if}}
+                                    <div>Giá:&nbsp;<span>{{PRICE}}</span>đ</div>
+                                    <div>Số lượng:&nbsp;<span>{{INVENTORY}}</span></div>
+                                </div>
+                            </td>
+                            <td align="center">
+                                <button type="button" class="btn btn-sm btn-primary get_update"
+                                    get_id="{{ID}}">Sửa</button>
+                                <button type="button" class="btn btn-sm btn-danger post_delete"
+                                    post_id="{{ID}}">Xóa</button>
+                            </td>
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+                <!--End Table hiển thị sản phẩm-->
 
                 <hr />
 
                 <!--Thanh điều hướng trang-->
                 <!--Thanh điều hướng trang-->
-            <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
-                <nav>
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        {{#each this.pages}}
+                <div class="row justify-content-center">
+                    <!-- <div class="col-md-12"> -->
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {{#each this.pages}}
                             {{#if active}}
-                                <li class="page-item active"><a class="page-link" href="?page={{value}}{{createQuery ../categoryID ../subCategoryID ../brandID}}">{{value}}</a></li>
+                            <li class="page-item active"><a class="page-link"
+                                    href="?page={{value}}{{createQuery ../categoryID ../subCategoryID ../brandID}}">{{value}}</a>
+                            </li>
                             {{else}}
-                                <li class="page-item"><a class="page-link" href="?page={{value}}{{createQuery ../categoryID ../subCategoryID ../brandID}}">{{value}}</a></li>
-                            {{/if}}                           
-                        {{/each}}
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- </div> -->
+                            <li class="page-item"><a class="page-link"
+                                    href="?page={{value}}{{createQuery ../categoryID ../subCategoryID ../brandID}}">{{value}}</a>
+                            </li>
+                            {{/if}}
+                            {{/each}}
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- </div> -->
                 </div>
                 <!--End Nội dung trang index-->
             </div>
@@ -225,9 +228,12 @@
                             </td>
                             <td>
                                 <div>
-                                    <div class="wordWrap product-name"><i class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME1}}</div>
-                                    <div class="wordWrap product-name"><i class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME2}}</div>
-                                    <div class="wordWrap product-name"><i class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME3}}</div>
+                                    <div class="wordWrap product-name"><i
+                                            class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME1}}</div>
+                                    <div class="wordWrap product-name"><i
+                                            class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME2}}</div>
+                                    <div class="wordWrap product-name"><i
+                                            class="fas fa-angle-right"></i>&nbsp;{{PRODUCTNAME3}}</div>
                                 </div>
                             </td>
                             <td align="center">
@@ -245,8 +251,10 @@
                                 </div>
                             </td>
                             <td align="center">
-                                <a href="/admin/product/product-combo-edit/{{ID}}" class="btn btn-sm btn-primary">Sửa</a>
-                                <button type="button" class="btn btn-sm btn-danger post_delete_combo" id="{{ID}}">Xóa</button>
+                                <a href="/admin/product/product-combo-edit/{{ID}}"
+                                    class="btn btn-sm btn-primary">Sửa</a>
+                                <button type="button" class="btn btn-sm btn-danger post_delete_combo"
+                                    id="{{ID}}">Xóa</button>
                             </td>
                         </tr>
                         {{/each}}
@@ -283,23 +291,23 @@
                 </div>
                 <!--End Nội dung trang index-->
 
-       
 
-            <!--footer-->
-            <footer id="admin-footer">
 
-                <div class="float-left"><b>Copyright</b>&copy; 2019</div>
-                <div class="float-right">Trang admin</div>
+                <!--footer-->
+                <footer id="admin-footer">
 
-            </footer>
-            <!--end footer-->
+                    <div class="float-left"><b>Copyright</b>&copy; 2019</div>
+                    <div class="float-right">Trang admin</div>
+
+                </footer>
+                <!--end footer-->
+            </div>
         </div>
     </div>
-</div>
-<!--Nội dung trang index-->
+    <!--Nội dung trang index-->
 
-{{#section 'js'}}
-<script src="/admin/js/product-show-delete-product.js"></script>
-<script src="/admin/js/product-show-update-product.js"></script>
-<script src="/admin/js/product-show-view.js"></script>
-{{/section}}
+    {{#section 'js'}}
+    <script src="/admin/js/product-show-delete-product.js"></script>
+    <script src="/admin/js/product-show-update-product.js"></script>
+    <script src="/admin/js/product-show-view.js"></script>
+    {{/section}}

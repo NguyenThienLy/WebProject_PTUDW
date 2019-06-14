@@ -14,7 +14,7 @@ var CreateConnection = () => {
     user: "root",
     port: "3306",
     password: "",
-    database: "cpqzk1zfm6"
+    database: "new_organic"
   });
 
   // return mysql.createConnection({
