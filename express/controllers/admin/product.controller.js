@@ -28,6 +28,9 @@ var productComboInfoHistoryModel = require("../../models/product_combo_info_hist
 // Gọi selected helper
 var selectedHelper = require("../../helpers/selected_selector.helper");
 
+// Gọi createquery helper
+var createQuery = require("../../helpers/create_query.helper");
+
 var sharp = require("sharp");
 var UUID = require("uuid-v4");
 
@@ -52,42 +55,52 @@ const bucket = gcs.bucket(bucketName);
 module.exports.productShow = function (req, res, next) {
   var page = req.query.page || 1;
   var limit = req.query.limit || 4;
+  var categoryID = req.query.catid || 0;
+  var subCategoryID = req.query.subcatid || 0;
+  var brandID = req.query.brandid || 0;
+
+  var objQuery = {
+    catID: categoryID,
+    subCatID: subCategoryID,
+    BrandID: brandID
+  };
+
   if (page < 1) {
     page = 1;
   }
 
-  if(page <1){
+  if (page < 1) {
     limit = 4;
   }
-  
+
   var offset = (page - 1) * limit;
 
   // Lấy dữ liệu nhãn hiệu
   var dataBrands = brandModel.allBrand();
 
   // Lấy dữ liệu sản phẩm
-  var dataProducts = productModel.pageallProduct(limit, offset);
+  var dataProducts = productModel.pageallProductFilter(limit, offset, objQuery);
 
   // Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
 
   // Lấy dữ liệu sub category
-  var dataSubCategories = subCategoryModel.allSubCategory(1);
+  var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(categoryID);
 
-  var numberPage = productModel.quantityProductActive();
+  var numberPage = productModel.quantityProductActive(objQuery);
 
-  Promise.all([dataBrands, dataProducts, dataCategories, dataSubCategories,numberPage])
+  Promise.all([dataBrands, dataProducts, dataCategories, dataSubCategories, numberPage])
     .then(values => {
       res.locals.sidebar[4].active = true;
 
       var total = values[4][0].QUANTITY;
-      var nPages = Math.floor(total/limit);
-      if(total % limit >0)nPages++;
-      var pages =[];
-      for( i = 1;i<nPages;i++){
+      var nPages = Math.floor(total / limit);
+      if (total % limit > 0) nPages++;
+      var pages = [];
+      for (i = 1; i <= nPages; i++) {
         var obj = {
-          value:i,
-          active:i===+page
+          value: i,
+          active: i === +page
         };
         pages.push(obj);
       }
@@ -99,7 +112,14 @@ module.exports.productShow = function (req, res, next) {
         products: values[1],
         categories: values[2],
         subCategories: values[3],
-        pages:pages
+        pages: pages,
+        categoryID: categoryID,
+        subCategoryID: subCategoryID,
+        brandID: brandID,
+        helpers: {
+          isSelected: selectedHelper.isSelected,
+          createQuery:createQuery.createQuery
+        }
       });
     })
     .catch(next);
@@ -486,7 +506,6 @@ module.exports.infoProduct = (req, res, next) => {
         productinfo: values[4][0],
         productTags: values[5],
         helpers: {
-          // Hàm định dạng title của product combo lấy 52 kí tự
           isSelected: selectedHelper.isSelected,
           isSelectedInTag: selectedHelper.isSelectedInTag
         }

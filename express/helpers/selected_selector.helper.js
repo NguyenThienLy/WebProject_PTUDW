@@ -1,6 +1,6 @@
 // Hàm kiểm tra xem giá id category|subcategory|tag có được selected
 module.exports.isSelected = function(v1, v2, options) {
-    if(v1 === v2) {
+    if(v1 == v2) {
         return options.fn(this);
       }
     return options.inverse(this);
