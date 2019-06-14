@@ -38,4 +38,14 @@ router.post('/load-product-by-productId', controller.productByProductId);
 //Xử lý xóa sản phẩm
 router.post('/product-show/delete',controller.deleteProduct);
 
+router.get('/product-update/:id',controller.infoProduct);
+
+//Lấy danh sách hình sản phẩm
+router.post('/product-update/get-images',controller.imagesOfProduct)
+
+//Cập nhật thông tin sản phẩm
+router.post('/update-product-info',controller.updateProductInfo)
+
+
+
 module.exports = router;
