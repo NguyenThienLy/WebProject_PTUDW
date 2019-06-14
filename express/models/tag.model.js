@@ -6,6 +6,12 @@ module.exports.allTag = () => {
   return db.load(`SELECT * FROM tag`);
 };
 
+//Hàm trả về tag của sản phẩm
+module.exports.allTagOfProduct = (productID) => {
+  return db.load(`SELECT tg.ID,tg.NAME FROM product_tag AS pr JOIN tag as tg
+                  ON pr.TAGID = tg.ID WHERE pr.PRODUCTID = ${productID}`);
+};
+
 //Hàm thêm vào danh sách tag cho product | input: ID sản phẩm, mảng tag
 module.exports.addTagForProduct = (productID, tags) => {
 

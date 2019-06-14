@@ -77,7 +77,8 @@
 
                                         <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
                                         <div>
-                                            <input name="NAME" type="text" class="form-control" id="inputnameProduct"
+                                            <input name="NAME" type="text" class="form-control"
+                                             id="inputnameProduct" value="{{productinfo.NAME}}"
                                                 placeholder="Nhập tên sản phâm">
                                         </div>
 
@@ -86,15 +87,10 @@
                                                 <label for="selectProductSource" class="mt-2"><b>Nguồn
                                                         gốc</b></label>
                                                 <div>
-                                                    <select name="ORIGIN" class="custom-select form-control mr-2"
+                                                    <input value="{{productinfo.ORIGIN}}" name="ORIGIN" type="text" class="form-control mr-2"
                                                         id="selectProductSource">
-                                                        <option selected>Việt Nam</option>
-                                                        <option value="Mỹ">Mỹ</option>
-                                                        <option value="Trung Quốc">Trung Quốc</option>
-                                                        <option value="Nhật bản">Nhật bản</option>
-                                                        <option value="Úc">Úc</option>
-                                                        <option value="New Zealand">New Zealand</option>
-                                                    </select>
+  
+                                                    </input>
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -104,7 +100,11 @@
                                                     <select name="BRANDID" class="custom-select form-control mr-2"
                                                         id="selectProductBrand">
                                                         {{#each this.brands}}
-                                                        <option value="{{ID}}">{{NAME}}</option>
+                                                            {{#isSelected ID ../productinfo.BRANDID}}
+                                                                    <option selected=selected value="{{ID}}">{{NAME}}</option>
+                                                                {{else}}
+                                                                    <option value="{{ID}}">{{NAME}}</option>                     
+                                                            {{/isSelected}}
                                                         {{/each}}
                                                     </select>
                                                 </div>
@@ -119,9 +119,13 @@
                                                 <select name="CATEGORYID" class="custom-select form-control mr-2"
                                                     id="selectProductType">
                                                     {{#each this.categories}}
-                                                    <option value="{{ID}}">{{NAME}}</option>
+                                                        {{#isSelected ID ../productinfo.CATEGORYID}}
+                                                                <option selected=selected value="{{ID}}">{{NAME}}</option>
+                                                            {{else}}
+                                                                <option value="{{ID}}">{{NAME}}</option>                     
+                                                        {{/isSelected}}
                                                     {{/each}}
-                                                </select>
+                                                </select>                                           
                                             </div>
                                             <div class="col-6">
                                                 <label for="SubCategory" class="mt-2"><b>Loại sản
@@ -129,12 +133,15 @@
                                                 <select name="SUBCATEGORYID" class="custom-select form-control mr-2"
                                                     id="SubCategory">
                                                     {{#each this.subCategories}}
-                                                    <option value="{{ID}}">{{NAME}}</option>
+                                                        {{#isSelected ID ../productinfo.SUBCATEGORYID}}
+                                                                <option selected=selected value="{{ID}}">{{NAME}}</option>
+                                                            {{else}}
+                                                                <option value="{{ID}}">{{NAME}}</option>                     
+                                                        {{/isSelected}}                                                       
                                                     {{/each}}
                                                 </select>
                                             </div>
                                         </div>
-
 
                                     </div>
 
@@ -145,6 +152,7 @@
                                                         (kg)</b></label>
                                                 <div>
                                                     <input type="number" name="KILOGRAM" class="form-control"
+                                                    value="{{productinfo.KILOGRAM}}"
                                                         id="inputKLGProduct" placeholder="Nhập trọng lượng">
                                                 </div>
                                             </div>
@@ -152,6 +160,7 @@
                                                 <label for="inputINVENTORY" class="mt-2"><b>Số lượng</b></label>
                                                 <div>
                                                     <input type="number" name="INVENTORY" class="form-control"
+                                                    value="{{productinfo.INVENTORY}}"
                                                         id="inputINVENTORY" placeholder="Nhập số lượng">
                                                 </div>
                                             </div>
@@ -161,6 +170,7 @@
                                                 vnđ)</b></label>
                                         <div>
                                             <input type="number" name="PRICE" class="form-control"
+                                            value="{{productinfo.PRICE}}"
                                                 id="inputPriceProduct" placeholder="Nhập vào giá sản phẩm">
                                         </div>
 
@@ -170,6 +180,7 @@
                                                         giá</b></label>
                                                 <div>
                                                     <input type="number" name="SALE" class="form-control"
+                                                    value="{{productinfo.SALE}}"
                                                         id="inputPromotionProduct" placeholder="0">
                                                 </div>
                                             </div>
@@ -179,6 +190,7 @@
                                                         V.I.P</b></label>
                                                 <div>
                                                     <input type="number" name="VIPSALE" class="form-control"
+                                                    value="{{productinfo.VIPSALE}}"
                                                         id="inputPromotionVIPProduct" placeholder="0">
                                                 </div>
                                             </div>
@@ -203,7 +215,11 @@
                                     <label><b>Tag</b></label>
                                     <select name="TAG" class="chosen-select form-control" data-placeholder="Chọn tag" multiple>
                                         {{#each this.tags}}
-                                        <option value="{{ID}}">{{NAME}}</option>
+                                            {{#isSelectedInTag ID ../this.productTags}}
+                                                    <option selected=selected value="{{ID}}">{{NAME}}</option>
+                                                {{else}}
+                                                    <option value="{{ID}}">{{NAME}}</option>
+                                            {{/isSelectedInTag}}                                       
                                         {{/each}}
                                     </select>
                                 </div>
@@ -212,13 +228,15 @@
                                     <label><b>Mô tả tóm tắt</b></label>
                                     <div>
                                         <textarea name="SHORTDESCRIPTION" cols="60" rows="4" class="form-control"
-                                            placeholder="Nhập mô tả tóm tắt về sản phẩm"></textarea>
+                                            placeholder="Nhập mô tả tóm tắt về sản phẩm">{{productinfo.SHORTDESCRIPTION}}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label><b>Mô tả chi tiết</b></label>
-                                    <textarea id="my_editor" class="form-control" name="DESCRIPTION"></textarea>
+                                    <textarea id="my_editor" class="form-control" name="DESCRIPTION">
+                                        {{productinfo.DESCRIPTION}}
+                                    </textarea>
                                 </div>
                                 {{!-- <div class="pl-2 pb-2">
                     <div class="custom-control custom-control-inline custom-checkbox">

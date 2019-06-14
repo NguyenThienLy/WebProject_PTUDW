@@ -25,6 +25,9 @@ var productInfoHistoryModel = require("../../models/product_info_history");
 //product_combo_info_history model
 var productComboInfoHistoryModel = require("../../models/product_combo_info_history");
 
+// Gọi selected helper
+var selectedHelper = require("../../helpers/selected_selector.helper");
+
 var sharp = require("sharp");
 var UUID = require("uuid-v4");
 
@@ -413,19 +416,23 @@ module.exports.deleteProduct = (req, res, next) => {
 //Hiển thị thông tin sản phẩm để update
 module.exports.infoProduct = (req, res, next) => {
   
-  // Lấy dữ liệu product
-  var dataProducts = productModel.allProductInStock();
   //Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
   //Lấy dữ liệu sub category
-  var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(1);
+  var dataSubCategories = subCategoryModel.allSubCategoryByProductID(req.params.id);
   //Lấy dữ liệu từ tag
   var dataTags = tagModel.allTag();
 
   // Lấy dữ liệu nhãn hiệu
   var dataBrands = brandModel.allBrand();
 
-  Promise.all([dataCategories, dataSubCategories, dataTags, dataBrands, dataProducts])
+  //Dữ liệu product
+  var productinfo = productModel.singleByProductId(req.params.id);
+
+  //Lấy ra tag của sản phẩm
+  var productTags = tagModel.allTagOfProduct(req.params.id);
+
+  Promise.all([dataCategories, dataSubCategories, dataTags, dataBrands, productinfo,productTags])
     .then(values => {
       res.locals.sidebar[5].active = true;
 
@@ -436,7 +443,13 @@ module.exports.infoProduct = (req, res, next) => {
         subCategories: values[1],
         tags: values[2],
         brands: values[3],
-        products: values[4]
+        productinfo: values[4][0],
+        productTags:values[5],
+        helpers: {
+          // Hàm định dạng title của product combo lấy 52 kí tự
+          isSelected: selectedHelper.isSelected,
+          isSelectedInTag:selectedHelper.isSelectedInTag
+        }
       });
     })
     .catch(next);
@@ -448,7 +461,6 @@ module.exports.imagesOfProduct = (req, res, next) => {
 
   dataImages
     .then(Links => {
-      console.log("ff",Links);
       res.json(JSON.stringify(Links));
     })
     .catch(next);
