@@ -144,3 +144,12 @@ input:checked {
   background: rgb(246, 255, 219) !important;
 }
 
+#divInfoAllProductDetail a {
+  text-decoration: none;
+  color: #666;
+}
+
+#divInfoAllProductDetail a:hover {
+  color:#99cc00;
+}
+

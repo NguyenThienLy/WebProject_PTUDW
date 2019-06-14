@@ -5,6 +5,11 @@
 	border: 1px solid #dee2e6;
 	width: calc(20% - 0.375rem);
 	transition: 200ms;
+	border-radius: 0.5rem;
+}
+
+.product-detail-intro .component-image-show .image-product-small img {
+	border-radius: 0.5rem;
 }
 
 .product-detail-intro .component-image-show .image-product-small:hover {

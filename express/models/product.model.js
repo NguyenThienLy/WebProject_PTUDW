@@ -25,15 +25,15 @@ module.exports.addProduct = product => {
 };
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
-module.exports.updateProduct = product=>{
-    console.log(product);
-    return db.update('product','ID',product);
+module.exports.updateProduct = product => {
+  console.log(product);
+  return db.update("product", "ID", product);
 };
 
 //Hàm xóa 1 sản phẩm
-module.exports.deleteProduct = productID=>{
-  return db.delete('product','ID',productID);
-}
+module.exports.deleteProduct = productID => {
+  return db.delete("product", "ID", productID);
+};
 
 //Hàm trả về thời gian hiện tại
 function getDateNow() {
@@ -344,14 +344,13 @@ module.exports.topNProductFollowTypeSortAndBrandAndPrice = (
 };
 
 function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
-	typeSort,
+  typeSort,
   idCat,
   idSub,
   brandFilter,
   priceFilter
 ) {
-	
-  if (idSub == 0) {
+  if (idSub == 0 && idCat != 0) {
     switch (typeSort) {
       // Hàng mới nhất
       case 0:
@@ -457,7 +456,103 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
           }
         }
     }
-  } else {
+  } else if (idSub == 0 && idCat == 0) {
+    switch (typeSort) {
+      // Hàng mới nhất
+      case 0:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `ORDER BY CREATED DESC`;
+          } else {
+            return `${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+                    pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+                    ORDER BY CREATED DESC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `pro.BRANDID = ${brandFilter}
+						        ORDER BY CREATED DESC`;
+          } else {
+            return `WHERE 	pro.BRANDID = ${brandFilter} AND
+                    ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+                    pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+                    ORDER BY CREATED DESC`;
+          }
+        }
+
+      // Hàng cũ nhất
+      case 1:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            console.log("run");
+
+            return `ORDER BY CREATED ASC`;
+          } else {
+            return `${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+                    pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+                    ORDER BY CREATED ASC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.BRANDID = ${brandFilter}
+						        ORDER BY CREATED ASC`;
+          } else {
+            return `WHERE pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY CREATED ASC`;
+          }
+        }
+
+      // Giá tăng dần
+      case 2:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `ORDER BY PRICE ASC`;
+          } else {
+            return `WHERE 	${
+              priceFilterArray[priceFilter].minPrice
+            } <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE ASC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE  pro.BRANDID = ${brandFilter}
+						ORDER BY PRICE ASC`;
+          } else {
+            return `WHERE	pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE ASC`;
+          }
+        }
+
+      // Giá giảm dần
+      default:
+        if (brandFilter == 0) {
+          if (priceFilter == 0) {
+            return `ORDER BY PRICE DESC`;
+          } else {
+            return `WHERE 	${
+              priceFilterArray[priceFilter].minPrice
+            } <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+          }
+        } else {
+          if (priceFilter == 0) {
+            return `WHERE pro.BRANDID = ${brandFilter}
+						ORDER BY PRICE DESC`;
+          } else {
+            return `WHERE	pro.BRANDID = ${brandFilter} AND
+						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						ORDER BY PRICE DESC`;
+          }
+        }
+    }
+  } else if (idSub != 0 && idCat != 0){
     switch (typeSort) {
       // Hàng mới nhất
       case 0:
@@ -574,7 +669,7 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
   brandFilter,
   priceFilter,
   N
-) => {
+) => {    
   var stringValues = returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
     typeSort,
     idCat,
@@ -582,6 +677,7 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
     brandFilter,
     priceFilter
   );
+  console.log("TCL: stringValues", stringValues)
 
   return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
 	(CASE
@@ -593,9 +689,20 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
 	LIMIT ${N};`);
 };
 
-// Hàm trả về 8 sản phẩm sale nhiều nhất trong index customer
-module.exports.topNProductForIndexFollowOffset = (N, Offset) => {
+// Hàm trả về N sản phẩm cùng loại trong product detail
+module.exports.topNProductTheSameFollowOffsetFollowIdPro = (IdPro, N , Offset) => {
+  return db.load(`SELECT  ID, PRICE, SALE, NAME, IMAGE,
+                  (CASE
+                      WHEN SALE > 0 THEN (PRICE - PRICE * (SALE / 100))
+                      ELSE PRICE
+                  END) AS SALEPRICE
+                  FROM product WHERE CATEGORYID In (SELECT CATEGORYID
+                  FROM product WHERE ID = ${IdPro}) AND ID != ${IdPro}
+									LIMIT ${N} OFFSET ${Offset * N};`);
+};
 
+// Hàm trả về N sản phẩm sale nhiều nhất trong index customer
+module.exports.topNProductBestSalerFollowOffset = (N, Offset) => {
   return db.load(`SELECT ID, PRICE, SALE, NAME, IMAGE,
 									(CASE
 											WHEN SALE > 0 THEN (PRICE - PRICE * (SALE / 100))
@@ -617,3 +724,28 @@ module.exports.allProductWithCommentQuantity = () => {
 		GROUP BY PRODUCT.ID, PRODUCT.NAME, PRODUCT.IMAGE, CATEGORY.NAME, SUB_CATEGORY.NAME`
   );
 };
+
+// Hàm lấy 1 sản phẩm theo id
+module.exports.top1ProductFollowId = id => {
+  return db.load(
+    `SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+    bra.NAME AS BRANDNAME, pro.INVENTORY AS INVENTORY, pro.ORIGIN AS ORIGIN, pro.KILOGRAM AS KILOGRAM,
+    pro.RATE AS RATE, pro.IMAGE AS IMAGE, pro.DESCRIPTION, cat.NAME AS CATEGORYNAME, sub.NAME AS SUBCATEGORYNAME,
+    pro.PRICE,
+    (CASE
+        WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+        ELSE pro.PRICE
+    END) AS SALEPRICE FROM product AS pro JOIN brand AS bra
+    JOIN category as cat JOIN sub_category as sub 
+    ON pro.BRANDID = bra.ID AND pro.CATEGORYID = cat.ID AND pro.SUBCATEGORYID = sub.ID
+    AND pro.CATEGORYID = sub.CATEGORYID WHERE pro.ID = ${id}`
+  );
+};
+
+// Hàm lấy ra số lượng sản phẩm theo id
+module.exports.GetInventoryProductFollowId = id => {
+  return db.load(
+    `SELECT INVENTORY FROM product WHERE ID = ${id}`
+  );
+};
+

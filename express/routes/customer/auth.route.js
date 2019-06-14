@@ -35,4 +35,7 @@ router.get(
   }
 );
 
+// Hàm kiểm tra xem người có đăng nhập chưa
+router.post("/check-is-login", controller.checkIsLogin);
+
 module.exports = router;

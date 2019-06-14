@@ -57,6 +57,9 @@ $(document).ready(function() {
               increaseQuantityProductSimple($idProductCartDetail, currQuantity);
               sumPriceInCartDetail();
             }
+            else if (data === "notEnough") {
+              $("#not-enough-product").modal();
+            }
           }
         );
       }
@@ -170,9 +173,23 @@ $(document).ready(function() {
   );
 
   // Kiểm tra đã đăng nhập chưa
-  function checkIsLogin() {
-    
-  }
+  $(document).on(
+    "click",
+    "#aOrderNow",
+    function() {
+      $.post(
+        "/customer/auth/check-is-login",
+        function(data) {
+          if (data === "true") {
+            alert("login");
+          }
+          else {
+            $("#header-user-modal").modal();
+          }
+        }
+      );
+    }
+  );
 
   function sumPriceInCartDetail() {
     var sumPrice = 0;

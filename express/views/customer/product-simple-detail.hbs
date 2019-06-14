@@ -1,0 +1,922 @@
+{{#section 'css'}}
+<title>Chi tiết sản phẩm</title>
+
+{{!-- product detail page --}}
+<link href="/customer/css/component-show-rate.css" rel="stylesheet" />
+<link href="/customer/css/component-comment.css" rel="stylesheet" />
+<link href="/customer/css/component-product-simple.css" rel="stylesheet" />
+<link href="/customer/css/component-image-show.css" rel="stylesheet" />
+<link href="/customer/css/component-show-rate.css" rel="stylesheet" />
+<link href="/customer/css/component-product-detail.css" rel="stylesheet" />
+{{!-- product detail page --}}
+
+{{!-- responsive --}}
+<link href="/customer/css/responsive-product-detail.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
+<!-- Breadcrumb header -->
+<div class="breadcrumb-header container-fluid p-0">
+    <div
+        class="breadcrumb-div text-dark w-100 h-100 d-flex flex-column justify-content-center align-items-center pt-4 pb-4">
+        <p>{{productName}}</p>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="/customer/index/">Trang chủ</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/customer/product/product-show/{{productCategoryId}}/0">{{productCategoryName}}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a
+                        href="/customer/product/product-show/{{productCategoryId}}/{{productSubCategoryId}}">{{productSubCategoryName}}</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    {{productName}}
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Breadcrumb header -->
+
+<!-- product detail intro -->
+<div class="container mt-5">
+    <div class="product-detail-intro row ml-0 mr-0">
+        <div class="component-image-show p-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"
+            id="divContainImageProductSimpleDetail">
+            <div class="image-product-large mb-3">
+                <img src="{{productImage}}" id="imgProductBig" alt="" class="d-block w-100 h-100">
+            </div>
+
+            <div id="divContainImageSmall" class="image-product-small-container d-flex">
+                {{#each productSimpleImages}}
+                <div class="image-product-small m-1">
+                    <img class="w-100 h-100" src="{{LINK}}" />
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div id="divInfoAllProductDetail"
+            class="product-detail-intro-right d-flex align-items-center pr-0 col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <div>
+                <div>
+                    <h1 id="h1ProductNameProductDetail">{{productName}}</h1>
+
+                    <div>
+                        <span>Thương hiệu: </span>
+                        <span class="text-success"><strong>{{productBrandName}}</strong></span>
+                        <span>&nbsp;|&nbsp;</span>
+                        <span> Tình trạng: </span>
+                        <span class="text-success"><strong>{{productInventory}}</strong></span>
+                        <span> sp </span>
+                    </div>
+
+                    <div class="star-rate mt-2">
+                        {{#each arrStarInRate}}
+                        <i class="fa fa-star checked"></i>
+                        {{/each}}
+                    </div>
+
+                    <h1 id="h1ProductPriceProductDetail" class="d-inline text-success">{{formatPrice productSalePrice}}
+                    </h1>
+                    <h1 class="d-inline text-success"><u>đ</u></h1>
+
+                    {{#if productSale}} &nbsp<p class="d-inline"><del>{{formatPrice productPrice}} đ</del></p> {{/if}}
+
+                    <div class="mt-2">
+                        <span>Nguồn gốc: </span>
+                        <span>{{productOrigin}}</span>
+                    </div>
+
+                    <div class="mt-2">
+                        <span>Khối lượng: <span>
+                                <span>{{productKilogram}} kg/1 sp<span>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div>
+                    <ul>
+                        <li><strong>Sản phẩm thực tế có thể có màu sắc khác nhau, tùy theo mùa vụ hoặc thời
+                                tiết</strong>
+                        </li>
+                        <li>Đảm bảo độ tươi ngon</li>
+                        <li>Cung cấp chất sơ cần thiết cho cơ thể</li>
+                        <li>Nguồn gốc tự nhiên đảm bảo an toàn</li>
+                    </ul>
+                </div>
+
+                <hr />
+
+                <div class="add-to-cart">
+                    <div class="d-flex align-items-center mb-3">
+                        <span>Số lượng:&emsp;</span>
+                        <div class="product-quantity d-flex align-items-center">
+                            <button id="btnDecreaseQuantity" id-product-detail="productSimple{{productId}}"
+                                id-product={{productId}} class="d-flex justify-content-center align-items-center mr-1">
+                                -
+                            </button>
+
+                            <input type="number" id="inputQuantityProduct" class="mr-1 ml-1 text-center p-1"
+                                value="1" />
+
+                            <button id="btnIncreaseQuantity" id-product-detail="productSimple{{productId}}"
+                                is-simple="{{isSimple}}" id-product={{productId}}
+                                class="d-flex justify-content-center align-items-center mr-1">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <button id="btnAddToCartProductDetail" id-product-detail="productSimple{{productId}}"
+                        is-simple="{{isSimple}}" id-product={{productId}} type="button"
+                        class="btn btn-outline-success btn-lg">
+                        Thêm vào giỏ hàng&ensp;<i class="fa fa-shopping-cart"></i>
+                    </button>
+
+                    <div class="mt-4">
+                        <p class="d-inline">Gọi đặt mua:</p>
+                        <a href="#" class="d-inline">0973-446-184</a>
+                        <p class="d-inline">để nhanh chóng đặt hàng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- product detail intro -->
+
+<!-- Product detail -->
+<div class="container component-product-detail mt-5">
+    <!-- product-detail accordion -->
+    <div class="accordion" id="product-detail-accordion">
+        <!-- product-detail-heading1 -->
+        <div class="card mb-3 border-0">
+            <div id="product-detail-heading1">
+                <div class="product-detail-accordion-header-1 p-2">
+                    <button class="btn btn-link text-decoration-none p-0 text-success w-100" type="button"
+                        data-toggle="collapse" data-target="#product-detail-collapse1" aria-expanded="true"
+                        aria-controls="product-detail-collapse1">
+                        <h3 class="mb-0">Mô tả sản phẩm</h3>
+                    </button>
+                </div>
+            </div>
+
+            <div id="product-detail-collapse1" class="collapse show pt-3" aria-labelledby="product-detail-heading1"
+                data-parent="#product-detail-accordion">
+                <div>
+                    {{{productDescription}}}
+                </div>
+            </div>
+        </div>
+        <!-- product-detail-heading1 -->
+
+        <!-- product-detail-heading2 -->
+        <div class="card mb-3 border-0">
+            <div id="product-detail-heading2">
+                <div class="product-detail-accordion-header-2 p-2">
+                    <button class="btn btn-link text-decoration-none p-0 text-success w-100" type="button"
+                        data-toggle="collapse" data-target="#product-detail-collapse2" aria-expanded="true"
+                        aria-controls="product-detail-collapse2">
+                        <h3 class="mb-0">Khách hàng nhận xét</h3>
+                    </button>
+                </div>
+            </div>
+
+            <div id="product-detail-collapse2" class="collapse show pt-3" aria-labelledby="product-detail-heading2"
+                data-parent="#product-detail-accordion">
+                <div>
+                    <div class="component-show-rate d-flex rounded-lg row ml-0 mr-0">
+                        <div
+                            class="content-left col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
+                            <p>Đánh giá trung bình</p>
+                            <div class="avg-rate font-weight-bold">
+                                <span>4</span>
+                                <span>/5</span>
+                            </div>
+                            <div class="star-rate">
+                                {{#each arrStarInRate}}
+                                <i class="fa fa-star checked"></i>
+                                {{/each}}
+                            </div>
+                            <p class="review m-0">(<span>85</span> nhận xét)</p>
+                        </div>
+
+                        <div
+                            class="content-center col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6 p-3 d-flex flex-column justify-content-center align-items-center">
+                            <div class="star-percent d-flex align-items-center">
+                                <div class="mr-2">5 <i class="fas fa-star"></i></div>
+                                <div class="progress mr-2">
+                                    <div class="progress-bar-1 progress-bar bg-success" role="progressbar"
+                                        aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="percent">76%</div>
+                            </div>
+
+                            <div class="star-percent d-flex align-items-center">
+                                <div class="mr-2">4 <i class="fas fa-star"></i></div>
+                                <div class="progress mr-2">
+                                    <div class="progress-bar-2 progress-bar bg-success" role="progressbar"
+                                        aria-valuenow="6" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="percent">6%</div>
+                            </div>
+
+                            <div class="star-percent d-flex align-items-center">
+                                <div class="mr-2">3 <i class="fas fa-star"></i></div>
+                                <div class="progress mr-2">
+                                    <div class="progress-bar-3 progress-bar bg-success" role="progressbar"
+                                        aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="percent">9%</div>
+                            </div>
+
+                            <div class="star-percent d-flex align-items-center">
+                                <div class="mr-2">2 <i class="fas fa-star"></i></div>
+                                <div class="progress mr-2">
+                                    <div class="progress-bar-4 progress-bar" role="progressbar" aria-valuenow="7"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="percent">7%</div>
+                            </div>
+
+                            <div class="star-percent d-flex align-items-center">
+                                <div class="mr-2">1 &nbsp;<i class="fas fa-star"></i></div>
+                                <div class="progress mr-2">
+                                    <div class="progress-bar-5 progress-bar" role="progressbar" aria-valuenow="2"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="percent">2%</div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="content-right col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
+                            <p class="mb-2">Chia sẻ nhận xét về sản phẩm</p>
+
+                            <button type="button" class="btn btn-success w-100" data-toggle="collapse"
+                                data-target="#product-detail-accordion-post-comment-collapse" aria-expanded="false"
+                                aria-controls="product-detail-accordion-post-comment-collapse">
+                                Viết nhận xét của bạn
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="collapse-show-rate collapse" id="product-detail-accordion-post-comment-collapse">
+                        <div class="comment p-3 rounded-lg">
+                            <h6 class="text-uppercase">gửi nhận xét của bạn</h6>
+
+                            <div class="d-flex align-items-center">
+                                <p class="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>
+                                <div class="rate">
+                                    <input type="radio" id="product-detail-accordion-star1" name="rate" value="1" />
+                                    <label for="product-detail-accordion-star1" title="text"></label>
+                                    <input type="radio" id="product-detail-accordion-star2" name="rate" value="2" />
+                                    <label for="product-detail-accordion-star2" title="text"></label>
+                                    <input type="radio" id="product-detail-accordion-star3" name="rate" value="3" />
+                                    <label for="product-detail-accordion-star3" title="text"></label>
+                                    <input type="radio" id="product-detail-accordion-star4" name="rate" value="4" />
+                                    <label for="product-detail-accordion-star4" title="text"></label>
+                                    <input type="radio" id="product-detail-accordion-star5" name="rate" value="5" />
+                                    <label for="product-detail-accordion-star5" title="text"></label>
+                                </div>
+                            </div>
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="product-detail-accordion-collapse-show-rate-comment-title">2. Tiêu đề
+                                        của nhận xét:</label>
+                                    <input type="text" class="form-control form-control-sm"
+                                        placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
+                                        id="product-detail-accordion-collapse-show-rate-comment-title" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="product-detail-accordion-collapse-show-rate-comment-content">3. Viết
+                                        nhận xét của bạn vào bên dưới:</label>
+                                    <textarea class="form-control"
+                                        id="product-detail-accordion-collapse-show-rate-comment-content" rows="3"
+                                        placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
+                                </div>
+                            </form>
+
+                            <button type="button" class="btn btn-success">
+                                Gửi nhận xét
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- comment -->
+                    <div class="component-comment row ml-0 mr-0 mt-3">
+                        <div class="content-left col-2">
+                            <div class="img-avatar">
+                                <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                    class="w-100 rounded-circle" alt="" />
+                            </div>
+
+                            <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
+                                Trần Khánh Linh
+                            </h5>
+
+                            <p class="mt-0 text-center time-post-comment">
+                                một ngày trước
+                            </p>
+                        </div>
+
+                        <div class="content-top col-12 mb-1">
+                            <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
+                                Trần Khánh Linh
+                            </h5>
+                            <span class="mb-0 time-post-comment">
+                                <span>(</span>một ngày trước<span>)</span>
+                            </span>
+                        </div>
+
+                        <div class="content-right col-12 col-md-10">
+                            <div class="d-inline-block mr-2 rate-star">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+
+                            <span class="rate-text">Hài lòng</span>
+
+                            <div class="prove-buy">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                <span>Đã mua sản phẩm</span>
+                            </div>
+
+                            <p class="mt-2 mb-2 main-content">
+                                Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
+                                hơn vào bản thân mình hơn là những gì người khác nghĩ về
+                                mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
+                                trung hơn vào bản thân mình hơn là những gì người khác nghĩ
+                                về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
+                                tập trung hơn vào bản thân mình hơn là những gì người khác
+                                nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
+                                để tập trung hơn vào bản thân mình hơn là những gì người
+                                khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
+                                mình để tập trung hơn vào bản thân mình hơn là những gì
+                                người khác nghĩ về mình.
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center interactive-customer">
+                                <a href="#" class="text-decoration-none">Gửi trả lời</a>
+                                <a href="#" class="text-decoration-none">Share Facebook</a>
+                                <span>Nhận xét này hữu ích với bạn?</span>
+                                <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
+                                    <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="component-comment row ml-0 mr-0 mt-3">
+                        <div class="content-left col-2">
+                            <div class="img-avatar">
+                                <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                    class="w-100 rounded-circle" alt="" />
+                            </div>
+
+                            <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
+                                Trần Khánh Linh
+                            </h5>
+
+                            <p class="mt-0 text-center time-post-comment">
+                                một ngày trước
+                            </p>
+                        </div>
+
+                        <div class="content-top col-12 mb-1">
+                            <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
+                                Trần Khánh Linh
+                            </h5>
+                            <span class="mb-0 time-post-comment">
+                                <span>(</span>một ngày trước<span>)</span>
+                            </span>
+                        </div>
+
+                        <div class="content-right col-12 col-md-10">
+                            <div class="d-inline-block mr-2 rate-star">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+
+                            <span class="rate-text">Hài lòng</span>
+
+                            <div class="prove-buy">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                <span>Đã mua sản phẩm</span>
+                            </div>
+
+                            <p class="mt-2 mb-2 main-content">
+                                Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
+                                hơn vào bản thân mình hơn là những gì người khác nghĩ về
+                                mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
+                                trung hơn vào bản thân mình hơn là những gì người khác nghĩ
+                                về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
+                                tập trung hơn vào bản thân mình hơn là những gì người khác
+                                nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
+                                để tập trung hơn vào bản thân mình hơn là những gì người
+                                khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
+                                mình để tập trung hơn vào bản thân mình hơn là những gì
+                                người khác nghĩ về mình.
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center interactive-customer">
+                                <a href="#" class="text-decoration-none">Gửi trả lời</a>
+                                <a href="#" class="text-decoration-none">Share Facebook</a>
+                                <span>Nhận xét này hữu ích với bạn?</span>
+                                <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
+                                    <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- comment -->
+
+                </div>
+            </div>
+        </div>
+        <!-- product-detail-heading2 -->
+
+    </div>
+    <!-- product-detail accordion -->
+
+    <!-- product-detail nav -->
+    <nav>
+        <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+            <h3 class="nav-item nav-link pb-3 active" id="nav-product-detail-description-tab" data-toggle="tab"
+                href="#nav-product-detail-description" role="tab" aria-controls="nav-product-detail-description"
+                aria-selected="true">Mô tả sản phẩm</h3>
+            <h3 class="nav-item nav-link ml-5 pb-3" id="nav-product-detail-comment-tab" data-toggle="tab"
+                href="#nav-product-detail-comment" role="tab" aria-controls="nav-product-detail-comment"
+                aria-selected="false">Khách hàng nhận xét</h3>
+        </div>
+    </nav>
+    <!-- product-detail nav -->
+
+    <!-- product-detail nav tab-content-->
+    <div class="tab-content" id="nav-tabContent">
+        <!-- nav-product-detail-description-tab -->
+        <div class="tab-pane fade show active pt-4" id="nav-product-detail-description" role="tabpanel"
+            aria-labelledby="nav-product-detail-description-tab">
+            {{{productDescription}}}
+        </div>
+        <!-- nav-product-detail-description-tab -->
+
+        <!-- nav-product-detail-comment-tab -->
+        <div class="tab-pane fade pt-4" id="nav-product-detail-comment" role="tabpanel"
+            aria-labelledby="nav-product-detail-comment-tab">
+            <div class="component-show-rate d-flex rounded-lg row ml-0 mr-0">
+                <div
+                    class="content-left col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
+                    <p>Đánh giá trung bình</p>
+                    <div class="avg-rate font-weight-bold">
+                        <span>4</span>
+                        <span>/5</span>
+                    </div>
+                    <div class="star-rate">
+                        {{#each arrStarInRate}}
+                        <i class="fa fa-star checked"></i>
+                        {{/each}}
+                    </div>
+                    <p class="review m-0">(<span>85</span> nhận xét)</p>
+                </div>
+
+                <div
+                    class="content-center col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6 p-3 d-flex flex-column justify-content-center align-items-center">
+                    <div class="star-percent d-flex align-items-center">
+                        <div class="mr-2">5 <i class="fas fa-star"></i></div>
+                        <div class="progress mr-2">
+                            <div class="progress-bar-1 progress-bar bg-success" role="progressbar" aria-valuenow="76"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="percent">76%</div>
+                    </div>
+
+                    <div class="star-percent d-flex align-items-center">
+                        <div class="mr-2">4 <i class="fas fa-star"></i></div>
+                        <div class="progress mr-2">
+                            <div class="progress-bar-2 progress-bar bg-success" role="progressbar" aria-valuenow="6"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="percent">6%</div>
+                    </div>
+
+                    <div class="star-percent d-flex align-items-center">
+                        <div class="mr-2">3 <i class="fas fa-star"></i></div>
+                        <div class="progress mr-2">
+                            <div class="progress-bar-3 progress-bar bg-success" role="progressbar" aria-valuenow="9"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="percent">9%</div>
+                    </div>
+
+                    <div class="star-percent d-flex align-items-center">
+                        <div class="mr-2">2 <i class="fas fa-star"></i></div>
+                        <div class="progress mr-2">
+                            <div class="progress-bar-4 progress-bar" role="progressbar" aria-valuenow="7"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="percent">7%</div>
+                    </div>
+
+                    <div class="star-percent d-flex align-items-center">
+                        <div class="mr-2">1 &nbsp;<i class="fas fa-star"></i></div>
+                        <div class="progress mr-2">
+                            <div class="progress-bar-5 progress-bar" role="progressbar" aria-valuenow="2"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="percent">2%</div>
+                    </div>
+                </div>
+
+                <div
+                    class="content-right col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
+                    <p class="mb-2">Chia sẻ nhận xét về sản phẩm</p>
+
+                    <button type="button" class="btn btn-success w-100" data-toggle="collapse"
+                        data-target="#product-detail-nav-post-comment-collapse" aria-expanded="false"
+                        aria-controls="product-detail-nav-post-comment-collapse">
+                        Viết nhận xét của bạn
+                    </button>
+                </div>
+            </div>
+
+            <div class="collapse-show-rate collapse" id="product-detail-nav-post-comment-collapse">
+                <div class="comment p-3 rounded-lg">
+                    <h6 class="text-uppercase">gửi nhận xét của bạn</h6>
+
+                    <div class="d-flex align-items-center">
+                        <p class="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>
+                        <div class="rate">
+                            <input type="radio" name="rate" value="5" />
+                            <!-- <label for="product-detail-nav-star1" title="text"></label> -->
+                            <input type="radio" name="rate" value="4" />
+                            <!-- <label for="product-detail-nav-star2" title="text"></label> -->
+                            <input type="radio" name="rate" value="3" />
+                            <!-- <label for="product-detail-nav-star3" title="text"></label> -->
+                            <input type="radio" name="rate" value="2" />
+                            <!-- <label for="product-detail-nav-star4" title="text"></label> -->
+                            <input type="radio" name="rate" value="1" checked />
+                            <!-- <label for="product-detail-nav-star5" title="text"></label> -->
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="product-detail-nav-collapse-show-rate-comment-title">2. Tiêu đề của nhận
+                                xét:</label>
+                            <input type="text" class="form-control form-control-sm"
+                                placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
+                                id="product-detail-nav-collapse-show-rate-comment-title" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-detail-nav-collapse-show-rate-comment-content">3. Viết nhận xét của bạn
+                                vào bên dưới:</label>
+                            <textarea class="form-control" id="product-detail-nav-collapse-show-rate-comment-content"
+                                rows="3" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
+                        </div>
+                    </form>
+
+                    <button type="button" class="btn btn-success">
+                        Gửi nhận xét
+                    </button>
+                </div>
+            </div>
+
+            <!-- comment -->
+            <div class="component-comment row ml-0 mr-0 mt-3">
+                <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="img-avatar">
+                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                            class="w-100 rounded-circle" alt="" />
+                    </div>
+
+                    <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
+                        Trần Khánh Linh
+                    </h5>
+
+                    <p class="mt-0 text-center time-post-cmt">
+                        một ngày trước
+                    </p>
+                </div>
+
+                <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                    <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
+                        Trần Khánh Linh
+                    </h5>
+                    <span class="mb-0 time-post-comment">
+                        <span>(</span>một ngày trước<span>)</span>
+                    </span>
+                </div>
+
+                <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                    <div class="d-inline-block mr-2 rate-star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+
+                    <span class="rate-text">Hài lòng</span>
+
+                    <div class="prove-buy">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        <span>Đã mua sản phẩm</span>
+                    </div>
+
+                    <p class="mt-2 mb-2 main-content">
+                        Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
+                        hơn vào bản thân mình hơn là những gì người khác nghĩ về
+                        mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
+                        trung hơn vào bản thân mình hơn là những gì người khác nghĩ
+                        về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
+                        tập trung hơn vào bản thân mình hơn là những gì người khác
+                        nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
+                        để tập trung hơn vào bản thân mình hơn là những gì người
+                        khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
+                        mình để tập trung hơn vào bản thân mình hơn là những gì
+                        người khác nghĩ về mình.
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center interactive-customer">
+                        <a href="#" class="text-decoration-none">Gửi trả lời</a>
+                        <a href="#" class="text-decoration-none">Share Facebook</a>
+                        <span>Nhận xét này hữu ích với bạn?</span>
+                        <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
+                            <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="component-comment row ml-0 mr-0 mt-3">
+                <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="img-avatar">
+                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                            class="w-100 rounded-circle" alt="" />
+                    </div>
+
+                    <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
+                        Trần Khánh Linh
+                    </h5>
+
+                    <p class="mt-0 text-center time-post-cmt">
+                        một ngày trước
+                    </p>
+                </div>
+
+                <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                    <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
+                        Trần Khánh Linh
+                    </h5>
+                    <span class="mb-0 time-post-comment">
+                        <span>(</span>một ngày trước<span>)</span>
+                    </span>
+                </div>
+
+                <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                    <div class="d-inline-block mr-2 rate-star">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+
+                    <span class="rate-text">Hài lòng</span>
+
+                    <div class="prove-buy">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        <span>Đã mua sản phẩm</span>
+                    </div>
+
+                    <p class="mt-2 mb-2 main-content">
+                        Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
+                        hơn vào bản thân mình hơn là những gì người khác nghĩ về
+                        mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
+                        trung hơn vào bản thân mình hơn là những gì người khác nghĩ
+                        về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
+                        tập trung hơn vào bản thân mình hơn là những gì người khác
+                        nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
+                        để tập trung hơn vào bản thân mình hơn là những gì người
+                        khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
+                        mình để tập trung hơn vào bản thân mình hơn là những gì
+                        người khác nghĩ về mình.
+                    </p>
+
+                    <div class="d-flex justify-content-between align-items-center interactive-customer">
+                        <a href="#" class="text-decoration-none">Gửi trả lời</a>
+                        <a href="#" class="text-decoration-none">Share Facebook</a>
+                        <span>Nhận xét này hữu ích với bạn?</span>
+                        <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
+                            <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- comment -->
+
+        </div>
+        <!-- nav-product-detail-comment-tab -->
+
+    </div>
+    <!-- product-detail nav tab-content-->
+
+</div>
+<!-- Product detail -->
+
+<!-- image -->
+<div class="container-fluid mt-5 p-0">
+    <div class="component-image-divider">
+        <div class="overlay h-100 w-100">
+            <div class="text-light w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <h3>Hotline</h3>
+                <h1>
+                    <a href="#">0973-446-184</a>
+                </h1>
+                <p class="text-center">
+                    Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng,
+                    <br />
+                    sạch, an toàn và đảm bảo chất lượng ngon nhất.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- image -->
+
+<!-- the same, sale product -->
+<div class="container mt-5">
+    <!-- the same product -->
+    <div class="row justify-content-center">
+        <h3 class="text-success text-center">SẢN PHẨM CÙNG LOẠI TỪ ORGANIC.VN</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <img src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466" width="80"
+            height="30" alt="" />
+    </div>
+
+    <div class="row mt-5" id="containProductSimple">
+        {{!-- load sản phẩm simple sale nhiều nhất --}}
+        {{#each this.productsTheSame}}
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
+            <div class="component-product-simple card w-100">
+                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip"
+                    id-product-to-cart="productSimple{{ID}}" title="{{NAME}}">
+                    {{!-- <a class="stretched-link" href="/customer/product/product-detail/product-simple/{{ID}}"></a> --}}
+
+                    {{!-- Nếu có giảm giá mới hiện ra --}}
+                    {{#if SALE}}
+                    <div id="sale-image" class="position-absolute d-flex justify-content-center ml-2">
+                        -{{SALE}}%
+                    </div>
+                    {{/if}}
+                    {{!-- Nếu có giảm giá mới hiện ra --}}
+
+                    <img src="{{IMAGE}}" class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}"
+                        alt="">
+                    <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
+                        <a id-product-to-cart="productSimple{{ID}}" id="aAddProductSimple" id-product-simple={{ID}}
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Mua ngay">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Xem chi tiết">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
+                    <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                        class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
+                    <div class="mt-1 d-flex justify-content-center">
+                        <div class="price-sale">
+                            <span id-product-to-cart="productSimple{{ID}}">{{formatPrice SALEPRICE}}</span>
+                            <span><u>đ</u></span>
+                        </div>
+
+                        {{!-- Nếu có giảm giá mới hiện ra --}}
+                        {{#if SALE}}
+                        <div class="price-old">
+                            <del class="ml-3">
+                                {{formatPrice PRICE}}
+                                <span><u>đ</u></span>
+                            </del>
+                        </div>
+                        {{/if}}
+                        {{!-- Nếu có giảm giá mới hiện ra --}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{!-- load sản phẩm simple sale nhiều nhất --}}
+    </div>
+
+    <!-- the same product -->
+
+    <!-- sale product -->
+
+    <div class="row justify-content-center mt-5">
+        <h3 class="text-success text-center">KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <img src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466" width="80"
+            height="30" alt="" />
+    </div>
+
+    <div class="row mt-5" id="containProductSimple">
+        {{!-- load sản phẩm simple sale nhiều nhất --}}
+        {{#each this.productsBestSaler}}
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
+            <div class="component-product-simple card w-100">
+                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip"
+                    id-product-to-cart="productSimple{{ID}}" title="{{NAME}}">
+                    {{!-- <a class="stretched-link" href="/customer/product/product-detail/product-simple/{{ID}}"></a> --}}
+
+                    {{!-- Nếu có giảm giá mới hiện ra --}}
+                    {{#if SALE}}
+                    <div id="sale-image" class="position-absolute d-flex justify-content-center ml-2">
+                        -{{SALE}}%
+                    </div>
+                    {{/if}}
+                    {{!-- Nếu có giảm giá mới hiện ra --}}
+
+                    <img src="{{IMAGE}}" class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}"
+                        alt="">
+                    <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
+                        <a id-product-to-cart="productSimple{{ID}}" id="aAddProductSimple" id-product-simple={{ID}}
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Mua ngay">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Xem chi tiết">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
+                    <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                        class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
+                    <div class="mt-1 d-flex justify-content-center">
+                        <div class="price-sale">
+                            <span id-product-to-cart="productSimple{{ID}}">{{formatPrice SALEPRICE}}</span>
+                            <span><u>đ</u></span>
+                        </div>
+
+                        {{!-- Nếu có giảm giá mới hiện ra --}}
+                        {{#if SALE}}
+                        <div class="price-old">
+                            <del class="ml-3">
+                                {{formatPrice PRICE}}
+                                <span><u>đ</u></span>
+                            </del>
+                        </div>
+                        {{/if}}
+                        {{!-- Nếu có giảm giá mới hiện ra --}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{!-- load sản phẩm simple sale nhiều nhất --}}
+    </div>
+    <!-- sale product -->
+</div>
+<!-- the same, sale product -->
+
+{{#section 'js'}}
+<script src="/customer/js/image-product-detail.js"></script>
+<script src="/customer/js/breadcrumb-margin.js"></script>
+{{!-- <script src="/all/js/compress-image.js"></script> --}}
+<script src="/customer/js/add-in-cart-product-detail.js"></script>
+{{/section}}

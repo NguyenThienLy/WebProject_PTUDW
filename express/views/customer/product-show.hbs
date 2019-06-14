@@ -248,7 +248,7 @@
                 <div class="component-product-simple card w-100">
                     <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip"
                         id-product-to-cart="productSimple{{ID}}" title="{{NAME}}">
-                        <a class="stretched-link" href="/customer/product/product-detail/product-simple/{{ID}}"></a>
+                        {{!-- <a class="stretched-link" href="/customer/product/product-detail/product-simple/{{ID}}"></a> --}}
 
                         {{!-- Nếu có giảm giá mới hiện ra --}}
                         {{#if SALE}}
@@ -258,7 +258,7 @@
                         {{/if}}
                         {{!-- Nếu có giảm giá mới hiện ra --}}
 
-                        <img src={{IMAGE}} class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}"
+                        <img src="{{IMAGE}}" class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}"
                          alt="">
                         <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
                             <a id-product-to-cart="productSimple{{ID}}" id="aAddProductSimple" id-product-simple={{ID}}
@@ -268,7 +268,7 @@
                             </a>
                             <a href="/customer/product/product-detail/product-simple/{{ID}}"
                                 class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                                data-toggle="tooltip" title="Xem nhanh">
+                                data-toggle="tooltip" title="Xem chi tiết">
                                 <i class="fas fa-search"></i>
                             </a>
                         </div>
@@ -337,7 +337,7 @@
                     <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
                         id-product-to-cart="productCombo{{ID}}" title="{{NAME}}">
                         <div class="position-relative d-flex h-100">
-                            <a href="/customer/product/product-detail/product-combo/{{ID}}" class="stretched-link"></a>
+                            {{!-- <a href="/customer/product/product-detail/product-combo/{{ID}}" class="stretched-link"></a> --}}
 
                             {{!-- Nếu đang giảm giá mới hiện ra --}}
                             {{#if SALE}}
@@ -348,11 +348,11 @@
                             {{!-- Nếu đang giảm giá mới hiện ra --}}
 
                             <img id-product-to-cart-src-1="productCombo{{ID}}" class="image-product-1" 
-                                src={{IMAGE1}} alt="" />
+                                src="{{IMAGE1}}" alt="" />
                             <img id-product-to-cart-src-2="productCombo{{ID}}" class="image-product-2" 
-                                src={{IMAGE2}} alt="" />
+                                src="{{IMAGE2}}" alt="" />
                             <img id-product-to-cart-src-3="productCombo{{ID}}" class="image-product-3"
-                                src={{IMAGE3}} alt="" />
+                                src="{{IMAGE3}}" alt="" />
                         </div>
                         <div
                             class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
@@ -363,7 +363,7 @@
                             </a>
                             <a href="customer/product/product-detail/product-combo/{{ID}}"
                                 class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                                data-toggle="tooltip" title="Xem nhanh">
+                                data-toggle="tooltip" title="Xem chi tiết">
                                 <i class="fas fa-search"></i>
                             </a>
                         </div>

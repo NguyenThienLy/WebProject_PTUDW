@@ -10,9 +10,15 @@ var newsModel = require("../../models/news.model");
 var sessionCartModel = require("../../models/session_cart.model");
 // Gọi brandModel
 var brandModel = require("../../models/brand.model");
+// Gọi productImageModel
+var productImageModel = require("../../models/product_image.model");
 
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
+// Gọi formatStringHelper
+var formatStringHelper = require("../../helpers/format_string_hide.helper");
+// Gọi convertToDateHelper
+var convertToDateHelper = require("../../helpers/convert_to_date.helper");
 
 // Loại sắp xếp
 var typeSort = 0;
@@ -114,7 +120,6 @@ function funcPostKeyFilter(req) {
 }
 
 function funcCategory(categories) {
-
   var groups = {};
   for (var i = 0; i < categories.length; i++) {
     // Tạo category hiện tại
@@ -172,8 +177,112 @@ function funcCategory(categories) {
   return categoriesDetail;
 }
 
-module.exports.productDetail = function(req, res) {
-  res.render("customer/product-detail", { layout: "main-customer.hbs" });
+module.exports.productSimpleDetail = function(req, res, next) {
+  try {
+    // Lấy id của product simple hiện tại
+    var idProduct = req.params.idProduct;
+
+    Promise.all([
+      productModel.top1ProductFollowId(idProduct),
+      productModel.topNProductTheSameFollowOffsetFollowIdPro(idProduct, 4, 0),
+      productModel.topNProductBestSalerFollowOffset(4, 0),
+      productImageModel.topNProductImageFollowIdPro(idProduct, 5)
+    ]).then(values => {
+      var arrStar = [];
+
+      for (var i = 0; i < values[0][0].RATE; i++) arrStar.push(i);
+
+      res.render("customer/product-simple-detail", {
+        layout: "main-customer.hbs",
+        arrStarInRate: arrStar,
+        productsTheSame: values[1],
+        productsBestSaler: values[2],
+        productSimpleImages: values[3],
+        productId: idProduct,
+        isSimple: true,
+        productName: values[0][0].NAME,
+        productPrice: values[0][0].PRICE,
+        productSale: values[0][0].SALE,
+        productSalePrice: values[0][0].SALEPRICE,
+        productBrandName: values[0][0].BRANDNAME,
+        productInventory: values[0][0].INVENTORY,
+        productOrigin: values[0][0].ORIGIN,
+        productKilogram: values[0][0].KILOGRAM,
+        productImage: values[0][0].IMAGE,
+        productDescription: values[0][0].DESCRIPTION,
+        productCategoryId: values[0][0].CATEGORYID,
+        productSubCategoryId: values[0][0].SUBCATEGORYID,
+        productCategoryName: values[0][0].CATEGORYNAME,
+        productSubCategoryName: values[0][0].SUBCATEGORYNAME,
+        helpers: {
+          // Hàm chuyển đổi qua kiểu ngày
+          convertToDate: convertToDateHelper,
+          // Hàm định dạng title của product simple lấy 36 kí tự
+          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
+          // Hàm định dạng title của product combo lấy 52 kí tự
+          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
+          // Hàm định dạng title của info lấy 85 kí tự
+          formatTitleInfo: formatStringHelper.formatTitleInfo
+        }
+      });
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.productComboDetail = function(req, res, next) {
+  try {
+    // Lấy id của product simple hiện tại
+    var idProduct = req.params.idProduct;
+
+    Promise.all([
+      productComboModel.top1ProductComboFollowId(idProduct),
+      productComboModel.topNProductComboNewestFollowOffsetFollowIdPro(idProduct, 3, 0),
+      productComboModel.topNProductComboBestSalerFollowOffset(3, 0)
+    ]).then(values => {
+      var arrStar = [];
+
+      for (var i = 0; i < values[0][0].RATE; i++) arrStar.push(i);
+
+      res.render("customer/product-combo-detail", {
+        layout: "main-customer.hbs",
+        arrStarInRate: arrStar,
+        productsTheSame: values[1],
+        productsBestSaler: values[2],
+        productImage1: values[0][0].IMAGE1, 
+        productImage2: values[0][0].IMAGE2,
+        productImage3: values[0][0].IMAGE3,
+        productId1: values[0][0].ID1,
+        productId2:values[0][0].ID2,
+        productId3:values[0][0].ID3,
+        productName1: values[0][0].NAME1,
+        productName2: values[0][0].NAME2,
+        productName3: values[0][0].NAME3,
+        productId: idProduct,
+        isSimple: false,
+        productName: values[0][0].NAME,
+        productPrice: values[0][0].SALE,
+        productSalePrice: values[0][0].SALEPRICE,
+        productInventory: values[0][0].INVENTORY,
+        productKilogram: values[0][0].KILOGRAM,
+        productImage: values[0][0].IMAGE,
+        productDescription: values[0][0].DESCRIPTION,
+        helpers: {
+          // Hàm chuyển đổi qua kiểu ngày
+          convertToDate: convertToDateHelper,
+          // Hàm định dạng title của product simple lấy 36 kí tự
+          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
+          // Hàm định dạng title của product combo lấy 52 kí tự
+          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
+          // Hàm định dạng title của info lấy 85 kí tự
+          formatTitleInfo: formatStringHelper.formatTitleInfo
+        }
+      });
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 
 // Hàm hiển thị product simple và product combo
@@ -353,6 +462,10 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
       ),
       brandModel.allBrandWithDetail()
     ]).then(values => {
+      console.log(
+        "TCL: module.exports.productShowFollowIdCatAndIdSub -> values",
+        values[0]
+      );
       // Cài đặt các thuộc tính hỗ trợ
       for (product of values[0]) {
         product.SUBCATEGORYID = idSub;
@@ -454,6 +567,11 @@ module.exports.applyPostForProductAllShow = function(req, res, next) {
       brandModel.allBrandWithDetail(),
       categoryModel.allWithDetailQuantity()
     ]).then(values => {
+      console.log(
+        "TCL: module.exports.applyPostForProductAllShow -> products",
+        values[0]
+      );
+
       // Đang hiện tất cả
       for (product of values[0]) {
         product.isSelectAll = true;

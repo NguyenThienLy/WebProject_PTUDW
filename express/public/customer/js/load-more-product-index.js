@@ -87,9 +87,9 @@ $(document).ready(function() {
                       -${productSimple.SALE}%
                   </div>
 
-                  <img src=${
+                  <img src="${
                     productSimple.IMAGE
-                  } class="rounded-top w-100 h-100" id-product-to-cart="productSimple${productSimple.ID}" alt="">
+                  }" class="rounded-top w-100 h-100" id-product-to-cart="productSimple${productSimple.ID}" alt="">
                   <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
                       <a id-product-to-cart="productSimple${
                         productSimple.ID
@@ -149,9 +149,9 @@ $(document).ready(function() {
                     productSimple.ID
                   }"></a>
 
-                  <img src=${
+                  <img src="${
                     productSimple.IMAGE
-                  } class="rounded-top w-100 h-100" id-product-to-cart="productSimple${productSimple.ID}" alt="">
+                  }" class="rounded-top w-100 h-100" id-product-to-cart="productSimple${productSimple.ID}" alt="">
                   <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
                       <a id-product-to-cart="productSimple${
                         productSimple.ID
@@ -220,15 +220,15 @@ $(document).ready(function() {
 
                         <img id-product-to-cart-src-1="productCombo${
                           productCombo.ID
-                        }" class="image-product-1" src=${productCombo.IMAGE1}
+                        }" class="image-product-1" src="${productCombo.IMAGE1}"
                             alt="" />
                         <img id-product-to-cart-src-2="productCombo${
                           productCombo.ID
-                        }" class="image-product-2" src=${productCombo.IMAGE2}
+                        }" class="image-product-2" src="${productCombo.IMAGE2}"
                             alt="" />
                         <img id-product-to-cart-src-3="productCombo${
                           productCombo.ID
-                        }" class="image-product-3" src=${productCombo.IMAGE3}
+                        }" class="image-product-3" src="${productCombo.IMAGE3}"
                             alt="" />
                     </div>
                     <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
@@ -294,15 +294,15 @@ $(document).ready(function() {
 
                         <img id-product-to-cart-src-1="productCombo${
                           productCombo.ID
-                        }" class="image-product-1" src=${productCombo.IMAGE1}
+                        }" class="image-product-1" src="${productCombo.IMAGE1}"
                             alt="" />
                         <img id-product-to-cart-src-2="productCombo${
                           productCombo.ID
-                        }" class="image-product-2" src=${productCombo.IMAGE2}
+                        }" class="image-product-2" src="${productCombo.IMAGE2}"
                             alt="" />
                         <img id-product-to-cart-src-3="productCombo${
                           productCombo.ID
-                        }" class="image-product-3" src=${productCombo.IMAGE3}
+                        }" class="image-product-3" src="${productCombo.IMAGE3}"
                             alt="" />
                     </div>
                     <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
