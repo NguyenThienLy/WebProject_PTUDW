@@ -35,7 +35,7 @@
                 <div class="tab-pane fade show active pt-4" id="nav-product-detail-description" role="tabpanel"
                     aria-labelledby="nav-product-detail-description-tab">
                     <form method="POST" enctype="multipart/form-data" action="/admin/product/product-update-image"
-                        id="update-product-form">
+                        id="form-update-image">
                         <div class="card">
 
                             <div class="card-header">
@@ -291,11 +291,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
 {{!--input file --}}
 
-{{!--Xử lý thêm ảnh bằng file input--}}
+{{!--Xử lý dữ liệu từ UI--}}
+<script src="/admin/js/Validate-UI-product-update.js"></script>
 
 {{!--Xử lý trang product-update --}}
 <script src="/admin/js/product-update-view.js"></script>
 
-{{!--Xử lý dữ liệu từ UI--}}
-<script src="/admin/js/Validate-UI-product-update.js"></script>
 {{/section}}
