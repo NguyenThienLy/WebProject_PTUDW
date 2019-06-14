@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var y = 0;
-    var arrPositionDesc = [920, 1450, 2440, 3750];
+    var arrPositionDesc = [920, 1450, 2440, 3690];
     var arrInstancePositonDesc = [700, 1200, 1300, 1800, 2000, 2660, 3200, 4000];
 
     // $(window).scroll(function () {

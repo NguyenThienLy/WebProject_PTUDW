@@ -12,6 +12,9 @@ router.get("/cart-order", controller.cartOrder);
 // Thêm sản phẩm trong giỏ hàng
 router.post('/add-product-in-cart', controller.addProductInCart);
 
+// Kiểm tra sản phẩm trong giỏ hàng
+router.post('/check-product-in-cart', controller.checkProductInCart);
+
 // Xóa sản phẩm trong giỏ hàng
 router.post('/remove-product-in-cart', controller.removeProductInCart);
 

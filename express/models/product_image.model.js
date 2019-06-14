@@ -16,6 +16,11 @@ module.exports.addImagesForProduct = (productID,images)=>{
     });
 }
 
+// Hàm lấy ra list image product theo id
+module.exports.topNProductImageFollowIdPro = (productID, N) =>{
+    return db.load(`SELECT * FROM product_image WHERE PRODUCTID = ${productID} LIMIT ${N}`);
+}
+
 module.exports.deleteProductImage= productID=>{
     return db.delete('product_image','PRODUCTID',productID);
 }

@@ -70,3 +70,17 @@ module.exports.postLogout = (req, res, next) => {
     res.redirect("/customer/index");
   }
 };
+
+module.exports.checkIsLogin = (req, res, next) => {
+  try {
+    if (res.locals.isAuthenticated === true) {
+      res.send("true");
+    }
+    else {
+      res.send("false");
+    }
+  }
+  catch (error) {
+    next(error);
+  }
+}

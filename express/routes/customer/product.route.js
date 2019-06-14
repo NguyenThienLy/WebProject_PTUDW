@@ -8,7 +8,9 @@ var addToCartSessionMiddleware = require("../../middlewares/customer/add_to_cart
 
 var router = express.Router();
 
-router.get("/product-detail", controller.productDetail);
+router.get("/product-detail/product-simple/:idProduct", controller.productSimpleDetail);
+
+router.get("/product-detail/product-combo/:idProduct", controller.productComboDetail);
 
 // Hiển thị tất cả sản phẩm simple và combo
 router.get("/product-all-show", controller.productAllShow);

@@ -19,8 +19,8 @@ var formatPriceHelper = require("../../helpers/format_price.helper");
 module.exports.indexShow = function(req, res, next) {
   try {
     Promise.all([
-      productModel.topNProductForIndexFollowOffset(8, 0),
-      productComboModel.topNProductComboForIndexFollowOffset(6, 0),
+      productModel.topNProductBestSalerFollowOffset(8, 0),
+      productComboModel.topNProductComboBestSalerFollowOffset(6, 0),
       categoryModel.allCategory(),
       newsModel.top3PopularNewsIndexForIndex()
     ]).then(values => {
@@ -55,7 +55,7 @@ module.exports.loadMoreProductSimple = function(req, res, next) {
 
   try {
     Promise.all([
-      productModel.topNProductForIndexFollowOffset(8, offset)
+      productModel.topNProductBestSalerFollowOffset(8, offset)
     ]).then(values => {
       // Định dạng lại để đưa kết quả trả về cho lệnh ajax
       for (productSimple of values[0]) {
@@ -100,89 +100,89 @@ module.exports.loadMoreProductCombo = function(req, res, next) {
   }
 };
 
-module.exports.addProductToSession = function(req, res, next) {
-  try {
-    // Lấy ID của product simple
-    var productId = req.params.idProductSimple;
-    // Lấy ID của product combo
-    var sessionId = req.signedCookies.sessionId;
+// module.exports.addProductToSession = function(req, res, next) {
+//   try {
+//     // Lấy ID của product simple
+//     var productId = req.params.idProductSimple;
+//     // Lấy ID của product combo
+//     var sessionId = req.signedCookies.sessionId;
 
-    // Đối tượng session cart danh cho product
-    var session_cart = {
-      ID: sessionId,
-      PRODUCT_ID: productId,
-      PRODUCT_COMBO_ID: 0,
-      QUANTITY: 1,
-      IS_LOGIN: 0
-    };
+//     // Đối tượng session cart danh cho product
+//     var session_cart = {
+//       ID: sessionId,
+//       PRODUCT_ID: productId,
+//       PRODUCT_COMBO_ID: 0,
+//       QUANTITY: 1,
+//       IS_LOGIN: 0
+//     };
 
-    sessionCartModel.allRowFollowID(sessionId).then(sessionCarts => {
-      // var isFind = false;
-      var index = sessionCarts.findIndex(
-        sessionCart =>
-          sessionCart.PRODUCT_COMBO_ID == session_cart.PRODUCT_COMBO_ID &&
-          sessionCart.PRODUCT_ID == session_cart.PRODUCT_ID &&
-          sessionCart.ID == session_cart.ID
-      );
+//     sessionCartModel.allRowFollowID(sessionId).then(sessionCarts => {
+//       // var isFind = false;
+//       var index = sessionCarts.findIndex(
+//         sessionCart =>
+//           sessionCart.PRODUCT_COMBO_ID == session_cart.PRODUCT_COMBO_ID &&
+//           sessionCart.PRODUCT_ID == session_cart.PRODUCT_ID &&
+//           sessionCart.ID == session_cart.ID
+//       );
 
-      if (index === -1) {
-        sessionCartModel.addSessionCart(session_cart).then(result => {
-          res.redirect("/customer/index");
-        });
-      } else {
-        // Tăng quantity lên 1 đơn vị
-        session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
+//       if (index === -1) {
+//         sessionCartModel.addSessionCart(session_cart).then(result => {
+//           res.redirect("/customer/index");
+//         });
+//       } else {
+//         // Tăng quantity lên 1 đơn vị
+//         session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
 
-        sessionCartModel.update3PrimaryKey(session_cart).then(result => {
-          console.log(result);
-          res.redirect("/customer/index");
-        });
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+//         sessionCartModel.update3PrimaryKey(session_cart).then(result => {
+//           console.log(result);
+//           res.redirect("/customer/index");
+//         });
+//       }
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
-module.exports.addProductComboToSession = function(req, res, next) {
-  try {
-    // Lấy ID của product simple
-    var productComboId = req.params.idProductCombo;
-    // Lấy ID của product combo
-    var sessionId = req.signedCookies.sessionId;
+// module.exports.addProductComboToSession = function(req, res, next) {
+//   try {
+//     // Lấy ID của product simple
+//     var productComboId = req.params.idProductCombo;
+//     // Lấy ID của product combo
+//     var sessionId = req.signedCookies.sessionId;
 
-    // Đối tượng session cart danh cho product
-    var session_cart = {
-      ID: sessionId,
-      PRODUCT_ID: 0,
-      PRODUCT_COMBO_ID: productComboId,
-      QUANTITY: 1,
-      IS_LOGIN: 0
-    };
+//     // Đối tượng session cart danh cho product
+//     var session_cart = {
+//       ID: sessionId,
+//       PRODUCT_ID: 0,
+//       PRODUCT_COMBO_ID: productComboId,
+//       QUANTITY: 1,
+//       IS_LOGIN: 0
+//     };
 
-    sessionCartModel.allRowFollowID(sessionId).then(sessionCarts => {
-      var index = sessionCarts.findIndex(
-        sessionCart =>
-          sessionCart.PRODUCT_COMBO_ID == session_cart.PRODUCT_COMBO_ID &&
-          sessionCart.PRODUCT_ID == session_cart.PRODUCT_ID &&
-          sessionCart.ID == session_cart.ID
-      );
+//     sessionCartModel.allRowFollowID(sessionId).then(sessionCarts => {
+//       var index = sessionCarts.findIndex(
+//         sessionCart =>
+//           sessionCart.PRODUCT_COMBO_ID == session_cart.PRODUCT_COMBO_ID &&
+//           sessionCart.PRODUCT_ID == session_cart.PRODUCT_ID &&
+//           sessionCart.ID == session_cart.ID
+//       );
 
-      if (index === -1) {
-        sessionCartModel.addSessionCart(session_cart).then(result => {
-          res.redirect("/customer/index");
-        });
-      } else {
-        // Tăng quantity lên 1 đơn vị
-        session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
+//       if (index === -1) {
+//         sessionCartModel.addSessionCart(session_cart).then(result => {
+//           res.redirect("/customer/index");
+//         });
+//       } else {
+//         // Tăng quantity lên 1 đơn vị
+//         session_cart.QUANTITY = ++sessionCarts[index].QUANTITY;
 
-        sessionCartModel.update3PrimaryKey(session_cart).then(result => {
-          console.log(result);
-          res.redirect("/customer/index");
-        });
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+//         sessionCartModel.update3PrimaryKey(session_cart).then(result => {
+//           console.log(result);
+//           res.redirect("/customer/index");
+//         });
+//       }
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// };

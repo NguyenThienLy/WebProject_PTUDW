@@ -194,6 +194,33 @@
                 </a>
                 {{/if}}
 
+                <form id="frmLogout" action="/customer/auth/logout" method="POST"></form>
+                {{#if this.isAuthenticated}}
+                <div class="pt-0 pl-2 pr-2 ml-1 pb-1" id="my-account">
+                    <div class="component-avatar-user position-relative">
+                        <img src="{{this.authUser.avatar}}" class="rounded-circle h-100 w-100" alt="">
+                        <div class="card component-avatar-user-content">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
+                                khoản của tôi</a>
+                            {{#if this.authUser.typeLogin}}
+                            <a href="javascript: $('#frmLogout').submit();" class="dropdown-item">
+                                <span class="fas fa-sign-out-alt"></span>
+                                &nbsp;Đăng xuất
+                            </a>
+                            {{else}}
+                            <a href="javascript:void(0);" id="btn-logout" class="dropdown-item">
+                                <span class="fas fa-sign-out-alt"></span>
+                                &nbsp;Đăng xuất
+                            </a>
+                            {{/if}}
+
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+
+                {{/if}}
+
                 <div class="spanCart btn pl-2 pr-2 ml-1 mr-1" id="span-show-cart">
                     <i class="fas fa-shopping-cart position-relative">
                         <a href="/customer/cart/cart-detail" class="stretched-link"></a>
@@ -215,7 +242,7 @@
                                                 title="{{NAME}}">
                                                 <a class="stretched-link"
                                                     href="/customer/product/product-detail/product-simple/{{ID}}"></a>
-                                                <img src="{{IMAGE}}" class="w-100" alt="" />
+                                                <img src="{{IMAGE}}" class="mt-3 w-100 h-100" alt="" />
                                             </div>
 
                                             <div class="product-info text-left">
@@ -223,7 +250,8 @@
                                                     class="title text-decoration-none" data-toggle="tooltip"
                                                     title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
-                                                <div class="price mt-2" id="containPriceAndQuantity" id-quantity-cart="productSimple{{ID}}">
+                                                <div class="price mt-2" id="containPriceAndQuantity"
+                                                    id-quantity-cart="productSimple{{ID}}">
                                                     <span id="spanPriceInRow"
                                                         id-quantity-cart-price="productSimple{{ID}}">{{formatPrice SALEPRICE}}</span>
                                                     <span><u>đ</u></span>
@@ -253,7 +281,7 @@
                                     {{#each cartProductsCombo}}
                                     <div class="component-show-fast-cart-items" id-quantity-cart="productCombo{{ID}}">
                                         <div class="d-flex align-items-center pl-3 pr-3 pb-3">
-                                            <div class="position-relative product-image pt-3 pb-3" data-toggle="tooltip"
+                                            <div class="position-relative product-image-combo pt-3 pb-3" data-toggle="tooltip"
                                                 title="{{NAME}}">
                                                 <a class="stretched-link"
                                                     href="/customer/product/product-detail/product-combo/{{ID}}"></a>
@@ -268,7 +296,8 @@
                                                     class="title text-decoration-none" data-toggle="tooltip"
                                                     title="{{NAME}}">{{formatTitleProductForFastCart NAME}}</a>
 
-                                                <div class="price mt-2" id="containPriceAndQuantity" id-quantity-cart="productCombo{{ID}}">
+                                                <div class="price mt-2" id="containPriceAndQuantity"
+                                                    id-quantity-cart="productCombo{{ID}}">
                                                     <span id="spanPriceInRow"
                                                         id-quantity-cart-price="productCombo{{ID}}">{{formatPrice SALEPRICE}}</span>
                                                     <span><u>đ</u></span>
@@ -315,33 +344,6 @@
                         {{/if}}
                     </i>
                 </div>
-
-                <form id="frmLogout" action="/customer/auth/logout" method="POST"></form>
-                {{#if this.isAuthenticated}}
-                <div class="pt-0 pl-2 pr-2 ml-1 pb-1" id="my-account">
-                    <div class="component-avatar-user position-relative">
-                        <img src="{{this.authUser.avatar}}" class="rounded-circle h-100 w-100" alt="">
-                        <div class="card component-avatar-user-content">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
-                                khoản của tôi</a>
-                            {{#if this.authUser.typeLogin}}
-                            <a href="javascript: $('#frmLogout').submit();" class="dropdown-item">
-                                <span class="fas fa-sign-out-alt"></span>
-                                &nbsp;Đăng xuất
-                            </a>
-                            {{else}}
-                            <a href="javascript:void(0);" id="btn-logout" class="dropdown-item">
-                                <span class="fas fa-sign-out-alt"></span>
-                                &nbsp;Đăng xuất
-                            </a>
-                            {{/if}}
-
-                        </div>
-                    </div>
-                </div>
-                {{else}}
-
-                {{/if}}
 
             </div>
         </nav>
@@ -1035,6 +1037,29 @@ class="custom-file col-8 p-0"
         </div>
     </div>
     <!-- component user account modal -->
+
+    <!-- component not enough product modal -->
+    <div class="modal fade" id="not-enough-product" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông báo!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   Sản phẩm này hiện tại đã <strong>hết hàng</strong>, cảm ơn quí khách!!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- component user account modal -->
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
