@@ -89,12 +89,12 @@
 
                     <div class="mt-2">
                         <span>Nguồn gốc: </span>
-                        <span>{{productOrigin}}</span>
+                        <span class="text-success"><strong>{{productOrigin}}</strong></span>
                     </div>
 
                     <div class="mt-2">
-                        <span>Khối lượng: <span>
-                                <span>{{productKilogram}} kg/1 sp<span>
+                        <span>Khối lượng: </span>
+                        <span class="text-success"><strong>{{productKilogram}} </strong></span> <span>/1 sp</span>
                     </div>
                 </div>
 
@@ -102,12 +102,11 @@
 
                 <div>
                     <ul>
-                        <li><strong>Sản phẩm thực tế có thể có màu sắc khác nhau, tùy theo mùa vụ hoặc thời
-                                tiết</strong>
+                        <li><strong>Giới thiệu về sản phẩm này</strong>
                         </li>
-                        <li>Đảm bảo độ tươi ngon</li>
-                        <li>Cung cấp chất sơ cần thiết cho cơ thể</li>
-                        <li>Nguồn gốc tự nhiên đảm bảo an toàn</li>
+                        {{#each arrShortDescription}}
+                        <li>{{content}}</li>
+                        {{/each}}
                     </ul>
                 </div>
 

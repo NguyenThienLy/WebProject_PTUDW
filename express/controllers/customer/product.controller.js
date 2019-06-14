@@ -189,12 +189,32 @@ module.exports.productSimpleDetail = function(req, res, next) {
       productImageModel.topNProductImageFollowIdPro(idProduct, 5)
     ]).then(values => {
       var arrStar = [];
+      var arrShortDescription = [];
+      var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
+
+      // Lấy phần giới thiệu về sản phẩm
+      for (short of arrShorts) {
+        if (short.length > 0) {
+          var shortDescription = {};
+          shortDescription.content = short;
+
+          arrShortDescription.push(shortDescription);
+        }
+      }
+
+      if (values[0][0].SHORTDESCRIPTION.length === 0) {
+        var shortDescription = {};
+        shortDescription.content = "Sản phẩm này chưa có phần giới thiệu";
+
+        arrShortDescription.push(shortDescription);
+      }
 
       for (var i = 0; i < values[0][0].RATE; i++) arrStar.push(i);
 
       res.render("customer/product-simple-detail", {
         layout: "main-customer.hbs",
         arrStarInRate: arrStar,
+        arrShortDescription: arrShortDescription,
         productsTheSame: values[1],
         productsBestSaler: values[2],
         productSimpleImages: values[3],
@@ -238,24 +258,60 @@ module.exports.productComboDetail = function(req, res, next) {
 
     Promise.all([
       productComboModel.top1ProductComboFollowId(idProduct),
-      productComboModel.topNProductComboNewestFollowOffsetFollowIdPro(idProduct, 3, 0),
+      productComboModel.topNProductComboNewestFollowOffsetFollowIdPro(
+        idProduct,
+        3,
+        0
+      ),
       productComboModel.topNProductComboBestSalerFollowOffset(3, 0)
     ]).then(values => {
       var arrStar = [];
+      var arrShortDescription = [];
+      var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
 
+      // Lấy phần giới thiệu về sản phẩm
+      for (short of arrShorts) {
+        if (short.length > 0) {
+          var shortDescription = {};
+          shortDescription.content = short;
+
+          arrShortDescription.push(shortDescription);
+        }
+      }
+
+      if (values[0][0].SHORTDESCRIPTION.length === 0) {
+        var shortDescription = {};
+        shortDescription.content = "Sản phẩm này chưa có phần giới thiệu";
+
+        arrShortDescription.push(shortDescription);
+      }
+
+      //arrShortDescription
+      console.log(
+        "TCL: module.exports.productComboDetail -> arrShortDescription",
+        arrShortDescription
+      );
+
+      // Mảng các sao của sản phẩm
       for (var i = 0; i < values[0][0].RATE; i++) arrStar.push(i);
+
+      // shorDescriptions.split(".");
+
+      // shorDescriptions
+      // console.log("TCL: module.exports.productComboDetail -> shorDescriptions", shorDescriptions)
 
       res.render("customer/product-combo-detail", {
         layout: "main-customer.hbs",
         arrStarInRate: arrStar,
+        arrShortDescription: arrShortDescription,
         productsTheSame: values[1],
         productsBestSaler: values[2],
-        productImage1: values[0][0].IMAGE1, 
+        productImage1: values[0][0].IMAGE1,
         productImage2: values[0][0].IMAGE2,
         productImage3: values[0][0].IMAGE3,
         productId1: values[0][0].ID1,
-        productId2:values[0][0].ID2,
-        productId3:values[0][0].ID3,
+        productId2: values[0][0].ID2,
+        productId3: values[0][0].ID3,
         productName1: values[0][0].NAME1,
         productName2: values[0][0].NAME2,
         productName3: values[0][0].NAME3,

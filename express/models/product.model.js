@@ -844,7 +844,7 @@ module.exports.top1ProductFollowId = id => {
     `SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
     bra.NAME AS BRANDNAME, pro.INVENTORY AS INVENTORY, pro.ORIGIN AS ORIGIN, pro.KILOGRAM AS KILOGRAM,
     pro.RATE AS RATE, pro.IMAGE AS IMAGE, pro.DESCRIPTION, cat.NAME AS CATEGORYNAME, sub.NAME AS SUBCATEGORYNAME,
-    pro.PRICE,
+    pro.PRICE, pro.SHORTDESCRIPTION,
     (CASE
         WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
         ELSE pro.PRICE

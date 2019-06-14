@@ -73,6 +73,9 @@
                         <span> Tình trạng: </span>
                         <span class="text-success"><strong>{{productInventory}}</strong></span>
                         <span> sp </span>
+                        <span>&nbsp;|&nbsp;</span>
+                        <span>Khối lượng: </span>
+                        <span class="text-success"><strong>{{productKilogram}}</strong></span> <span>kg/1 sp</span>
                     </div>
 
                     <div class="star-rate mt-2">
@@ -86,11 +89,18 @@
                     <h1 class="d-inline text-success"><u>đ</u></h1>
 
                     {{#if productSale}} &nbsp<p class="d-inline"><del>{{formatPrice productPrice}} đ</del></p> {{/if}}
+                </div>
 
-                    <div class="mt-2">
-                        <span>Khối lượng: <span>
-                                <span>{{productKilogram}} kg/1 sp<span>
-                    </div>
+                <hr />
+
+                <div>
+                    <ul>
+                        <li><strong>Giới thiệu về sản phẩm này</strong>
+                        </li>
+                        {{#each arrShortDescription}}
+                        <li>{{content}}</li>
+                        {{/each}}
+                    </ul>
                 </div>
 
                 <hr />

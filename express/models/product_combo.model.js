@@ -261,7 +261,7 @@ module.exports.top1ProductComboFollowId = id => {
     pro3.IMAGE AS IMAGE3, pro1.ID AS ID1, pro2.ID AS ID2, pro3.ID AS ID3, pro1.NAME AS NAME1,
     pro2.NAME AS NAME2, pro3.NAME AS NAME3,
     pro_cb.INVENTORY AS INVENTORY, pro_cb.KILOGRAM AS KILOGRAM,
-    pro_cb.RATE AS RATE, pro_cb.DESCRIPTION, 
+    pro_cb.RATE AS RATE, pro_cb.DESCRIPTION, pro_cb.SHORTDESCRIPTION, 
     pro_cb.PRICE,
     (CASE
         WHEN pro_cb.SALE > 0 THEN (pro_cb.PRICE - pro_cb.PRICE * (pro_cb.SALE / 100))
