@@ -179,7 +179,7 @@ jQuery.validator.addMethod("checkNotSameProductID3", function(value, element) {
   return true;
 });
 
-$("#edit-product-combo-form").validate({
+$("#update-product-combo-form").validate({
   ignore: [],
   rules: {
     PRODUCTID1: {

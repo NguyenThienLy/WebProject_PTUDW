@@ -74,7 +74,7 @@
 
                     {{#if sidebar.1.active}}
                     <li class="link ads-button">
-                        <a href="/admin/customer">
+                        <a href="/admin/customer/customer-show">
                             <span class="fas fa-users"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Khách hàng</span>
                             <span
@@ -83,7 +83,7 @@
                     </li>
                     {{else}}
                     <li class="link">
-                        <a href="/admin/customer">
+                        <a href="/admin/customer/customer-show">
                             <span class="fas fa-users"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Khách hàng</span>
                             <span
@@ -110,20 +110,20 @@
 
                     {{#if sidebar.3.active}}
                     <li class="link ads-button">
-                        <a href="/admin/order">
+                        <a href="/admin/order/order-show">
                             <span class="fas fa-shopping-cart"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Đơn hàng</span>
                             <span
-                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.3.quantity}}</span>
                         </a>
                     </li>
                     {{else}}
                     <li class="link">
-                        <a href="/admin/order">
+                        <a href="/admin/order/order-show">
                             <span class="fas fa-shopping-cart"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Đơn hàng</span>
                             <span
-                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.3.quantity}}</span>
                         </a>
                     </li>
                     {{/if}}
@@ -131,19 +131,19 @@
                     {{#if sidebar.4.active}}
                     <li class="link ads-button">
                         <a href="/admin/product/product-show">
-                            <span class="fas fa-tags"></span>
+                            <span class="fas fa-carrot"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Sản phẩm</span>
                             <span
-                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">20</span>
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.4.quantity}}</span>
                         </a>
                     </li>
                     {{else}}
                     <li class="link">
                         <a href="/admin/product/product-show">
-                            <span class="fas fa-tags"></span>
+                            <span class="fas fa-carrot"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Sản phẩm</span>
                             <span
-                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">20</span>
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.4.quantity}}</span>
                         </a>
                     </li>
                     {{/if}}
@@ -151,51 +151,51 @@
                     {{#if sidebar.5.active}}
                     <li class="link ads-button">
                         <a href="/admin/product/product-add">
-                            <span class="fas fa-plus-circle"></span>
-                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm mới</span>
+                            <span class="fas fa-cart-plus"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm sản phẩm</span>
                         </a>
                     </li>
                     {{else}}
                     <li class="link">
                         <a href="/admin/product/product-add">
-                            <span class="fas fa-plus-circle"></span>
-                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm mới</span>
+                            <span class="fas fa-cart-plus"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm sản phẩm</span>
                         </a>
                     </li>
                     {{/if}}
 
                     {{#if sidebar.6.active}}
                     <li class="link ads-button">
-                        <a href="/admin/info/info-add">
+                        <a href="/admin/info/info-show">
                             <span class="fas fa-file-alt"></span>
-                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm bài viết</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bài viết</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.6.quantity}}</span>
                         </a>
                     </li>
                     {{else}}
                     <li class="link">
-                        <a href="/admin/info/info-add">
+                        <a href="/admin/info/info-show">
                             <span class="fas fa-file-alt"></span>
-                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm bài viết</span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bài viết</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.6.quantity}}</span>
                         </a>
                     </li>
                     {{/if}}
 
                     {{#if sidebar.7.active}}
                     <li class="link ads-button">
-                        <a href="/admin/info/info-show">
-                            <span class="fas fa-stream"></span>
-                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bài viết</span>
-                            <span
-                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                        <a href="/admin/info/info-add">
+                            <span class="fas fa-file-medical"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm bài viết</span>
                         </a>
                     </li>
                     {{else}}
                     <li class="link">
-                        <a href="/admin/info/info-show">
-                            <span class="fas fa-stream"></span>
-                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bài viết</span>
-                            <span
-                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">40</span>
+                        <a href="/admin/info/info-add">
+                             <span class="fas fa-file-medical"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thêm bài viết</span>
                         </a>
                     </li>
                     {{/if}}
@@ -203,16 +203,16 @@
                     {{#if sidebar.8.active}}
                     <li class="link ads-button">
                         <a href="/admin/comment/product-comment">
-                            <span class="fas fa-comment"></span>
+                            <span class="fas fa-comments"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bình luận</span>
                             <span
-                                class="badge badge-light p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.8.quantity}}</span>
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.8.quantity}}</span>
                         </a>
                     </li>
                     {{else}}
                     <li class="link">
                         <a href="/admin/comment/product-comment">
-                            <span class="fas fa-comment"></span>
+                            <span class="fas fa-comments"></span>
                             <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Bình luận</span>
                             <span
                                 class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.8.quantity}}</span>
@@ -220,7 +220,87 @@
                     </li>
                     {{/if}}
 
-                    {{#if sidebar.9.active}}
+                     {{#if sidebar.9.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/category/category-show">
+                            <span class="fas fa-list"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Danh mục</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.9.quantity}}</span>
+                        </a>
+                    </li>
+                    {{else}}
+                    <li class="link">
+                        <a href="/admin/category/category-show">
+                             <span class="fas fa-list"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Danh mục</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.9.quantity}}</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                     {{#if sidebar.10.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/subCategory/subCategory-show">
+                            <span class="fas fa-grip-vertical"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Danh mục con</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.10.quantity}}</span>
+                        </a>
+                    </li>
+                    {{else}}
+                    <li class="link">
+                        <a href="/admin/subCategory/subCategory-show">
+                            <span class="fas fa-grip-vertical"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Danh mục con</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.10.quantity}}</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                     {{#if sidebar.11.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/tag/tag-show">
+                            <span class="fas fa-tags"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Tag</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.11.quantity}}</span>
+                        </a>
+                    </li>
+                    {{else}}
+                    <li class="link">
+                        <a href="/admin/tag/tag-show">
+                            <span class="fas fa-tags"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Tag</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.11.quantity}}</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                     {{#if sidebar.12.active}}
+                    <li class="link ads-button">
+                        <a href="/admin/brand/brand-show">
+                            <span class="fas fa-store"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thương hiệu</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.12.quantity}}</span>
+                        </a>
+                    </li>
+                    {{else}}
+                    <li class="link">
+                        <a href="/admin/brand/brand-show">
+                            <span class="fas fa-store"></span>
+                            <span class="d-none d-sm-none d-md-none d-lg-inline d-xl-inline ml-2">Thương hiệu</span>
+                            <span
+                                class="badge badge-success p-1 d-none d-sm-none d-md-none d-lg-inline d-xl-inline">{{sidebar.12.quantity}}</span>
+                        </a>
+                    </li>
+                    {{/if}}
+
+                    {{#if sidebar.13.active}}
                     <li class="link ads-button">
                         <a href="404-not-found.html">
                             <span class="fas fa-ad"></span>

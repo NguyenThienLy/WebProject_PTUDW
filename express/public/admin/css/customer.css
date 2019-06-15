@@ -1,0 +1,13 @@
+.search-field {
+  /*height: 1.9375rem;*/
+  border: 1px #e7eaec solid;
+}
+
+.search-row {
+  margin-bottom: 1.875rem;
+}
+
+.show-image {
+  width: 7.5rem;
+  height: 7.5rem;
+}

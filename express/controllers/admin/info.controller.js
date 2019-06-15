@@ -1,6 +1,11 @@
 var newsModel = require("../../models/news.model");
 var tagModel = require("../../models/tag.model");
+var newsTagModel = require("../../models/news_tag.model");
 var newsInfoHistoryModel = require("../../models/news_info_history.model");
+
+// Gọi selected helper
+var selectedHelper = require("../../helpers/selected_selector.helper");
+
 var sharp = require("sharp");
 var UUID = require("uuid-v4");
 
@@ -20,10 +25,20 @@ const gcs = new Storage({
 //Đường dẫn đến nơi lưu hình
 const bucket = gcs.bucket(bucketName);
 
-module.exports.infoShow = function(req, res) {
-  res.locals.sidebar[7].active = true;
+module.exports.infoShow = async function(req, res, next) {
+  res.locals.sidebar[6].active = true;
 
-  res.render("admin/info-show", { layout: "main-admin.hbs" });
+  var dataNews = await newsModel.allNews();
+
+  for (news of dataNews) {
+    var allNewsTag = await newsTagModel.allTagOfNews(news.ID);
+    news.TAGS = allNewsTag;
+  }
+
+  res.render("admin/info-show", {
+    layout: "main-admin.hbs",
+    allNews: dataNews
+  });
 };
 
 module.exports.infoAdd = function(req, res, next) {
@@ -32,7 +47,7 @@ module.exports.infoAdd = function(req, res, next) {
 
   dataTags
     .then(tags => {
-      res.locals.sidebar[6].active = true;
+      res.locals.sidebar[7].active = true;
 
       res.render("admin/info-add", {
         layout: "main-admin.hbs",
@@ -43,12 +58,7 @@ module.exports.infoAdd = function(req, res, next) {
 };
 
 module.exports.postInfoAdd = function(req, res, next) {
-  res.locals.sidebar[6].active = true;
-
-  // req.body.IMAGE = "\\" + req.file.path
-  //   .split("\\")
-  //   .slice(1)
-  //   .join("\\");
+  res.locals.sidebar[7].active = true;
 
   //Tạo đối tượng để thêm vào cơ sở dữ liệu
   var news = {
@@ -56,7 +66,8 @@ module.exports.postInfoAdd = function(req, res, next) {
     RESIZEDIMAGE: "/uploads/IMG_NOTFOUND.jpg",
     TITLE: req.body.TITLE,
     SHORTCONTENT: req.body.SHORTCONTENT,
-    CONTENT: req.body.CONTENT
+    CONTENT: req.body.CONTENT,
+    STATUS: 1
   };
 
   // Thêm vào news
@@ -65,7 +76,7 @@ module.exports.postInfoAdd = function(req, res, next) {
   addNews
     .then(infoID => {
       //Thêm vào tag
-      var addTagForNews = tagModel.addTagForNews(infoID, req.body.TAG);
+      var addTagForNews = newsTagModel.addTagForNews(infoID, req.body.TAG);
       //Thêm vào lịch sử
       var addCreatedHistory = newsInfoHistoryModel.addCreatedHistory(
         infoID,
@@ -207,15 +218,150 @@ function getPublicUrl(filename, infoID, uuid) {
   );
 }
 
+module.exports.infoUpdate = (req, res, next) => {
+  var id = +req.params.id;
+
+  // Lấy dữ liệu product combo theo id
+  var dataInfo = newsModel.singleByNewsId(id);
+
+  var dataTags = tagModel.allTag();
+
+  var dataNewsTag = newsTagModel.allTagOfNews(id);
+
+  Promise.all([dataInfo, dataTags, dataNewsTag])
+    .then(values => {
+      res.locals.sidebar[6].active = true;
+
+      //Truyền vào trong UI
+      res.render("admin/info-update", {
+        layout: "main-admin.hbs",
+        info: values[0][0],
+        tags: values[1],
+        newsTag: values[2],
+        helpers: {
+          isSelected: selectedHelper.isSelected,
+          isSelectedInTag: selectedHelper.isSelectedInTag
+        }
+      });
+    })
+    .catch(next);
+};
+
+module.exports.postInfoUpdate = (req, res, next) => {
+  // Tạo đối tượng để thêm vào cơ sở dữ liệu
+  var newsID = req.body.ID;
+
+  var news = {
+    ID: newsID,
+    TITLE: req.body.TITLE,
+    SHORTCONTENT: req.body.SHORTCONTENT,
+    CONTENT: req.body.CONTENT
+  };
+
+  // Thêm vào news
+  var updateNewsImage = newsModel.updateNews(news);
+
+  updateNewsImage
+    .then(changedRowsNumber => {
+      // Thêm vào lịch sử
+      var addCreatedHistory = newsInfoHistoryModel.addCreatedHistory(
+        newsID,
+        "Cập nhật",
+        "Cập nhật thông tin"
+      );
+
+      addCreatedHistory
+        .then(createdHistoryId => {
+          newsTagModel.deleteTagOfNews(newsID).then(affectedRowsNumber => {
+            newsTagModel.addTagForNews(newsID, req.body.TAG);
+
+            res.redirect(req.get("referer"));
+          });
+        })
+        .catch(next);
+    })
+    .catch(next);
+};
+
+//Lấy ra hình ảnh của sản phẩm
+module.exports.infoImage = (req, res, next) => {
+  var dataNews = newsModel.singleByNewsId(req.body.infoID);
+
+  dataNews
+    .then(news => {
+      res.json(JSON.stringify(news[0].IMAGE));
+    })
+    .catch(next);
+};
+
+//Lấy ra hình ảnh của sản phẩm
+module.exports.postInfoImageUpdate = (req, res, next) => {
+  //Tạo đối tượng để thêm vào cơ sở dữ liệu
+  var news = {
+    ID: req.body.ID,
+    IMAGE: "/uploads/IMG_NOTFOUND.jpg",
+    RESIZEDIMAGE: "/uploads/IMG_NOTFOUND.jpg"
+  };
+
+  // Thêm vào news
+  var updateNewsImage = newsModel.updateNews(news);
+
+  updateNewsImage
+    .then(changedRowsNumber => {
+      if (req.file) {
+        // Upload hình đại diện lên firebase
+        var uploadImageToFirebaseStorage = uploadImageToStorage(
+          req.file,
+          req.body.ID,
+          news
+        );
+
+        uploadImageToFirebaseStorage
+          .then(values => {
+            res.send({ valid: true });
+          })
+          .catch(next);
+      } else {
+        res.send({ valid: false });
+      }
+    })
+    .catch(next);
+};
+
 module.exports.postInfoAddTag = function(req, res, next) {
   var newTagName = req.body.TagName;
 
   var newTag = {
     NAME: newTagName
-  }
+  };
 
-  tagModel.addTag(newTag).then(tagID => {
-    newTag.ID = tagID;
-    res.send(newTag);
+  tagModel
+    .addTag(newTag)
+    .then(tagID => {
+      newTag.ID = tagID;
+      res.send(newTag);
+    })
+    .catch(next);
+};
+
+//Xóa sản phẩm, xóa những sản phẩm không có trong combo
+module.exports.postDeleteInfo = (req, res, next) => {
+  var infoID = req.body.InfoID;
+
+  var deleteTagOfNews = newsTagModel.deleteTagOfNews(infoID);
+
+  deleteTagOfNews.then(affectedRowsNumber => {
+    //tạo mới product combo
+    var updateNews = {
+      ID: infoID,
+      STATUS: 0
+    };
+
+    //Gọi hàm xóa
+    newsModel.deleteNews(updateNews)
+      .then(changedRowsNumber => {
+        res.send(true);
+      })
+      .catch(next);
   }).catch(next);
 };

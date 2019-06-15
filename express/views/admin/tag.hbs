@@ -1,0 +1,171 @@
+{{#section 'css'}}
+<title>Quản lí tag</title>
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-customer.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+    <div id="content">
+        <header>
+            <h5 class="mb-0">Danh sách tag</h5>
+        </header>
+
+        <div class="content-inner">
+            <!--Thanh tìm kiếm-->
+            <div class="row mb-2 ml-0 mr-0">
+                <div class="col-md-6 p-0">
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control search-field" id="search" placeholder="Tên tag" />
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button">
+                                Tìm kiếm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end thanh tìm kiếm-->
+
+            <!--Thanh thêm mới-->
+            <div class="row mb-3 ml-0 mr-0">
+                <div class="col-md-6 p-0">
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control" id="inputNewTagName" placeholder="Nhập tên tag" />
+                        <div class="input-group-append">
+                            <button class="btn btn-warning pl-3 pr-3 post_add_tag" type="button">
+                                Thêm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end thanh thêm mới-->
+
+            <!--Table hiển thị tag-->
+            <table class="table table-responsive mb-4">
+                <thead>
+                    <tr>
+                        <th class="text-center">Mã tag</th>
+                        <th>Tên tag</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each this.tags}}
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td align="center">{{ID}}</td>
+                        <td>{{NAME}}</td>
+                        <td align="center">
+                            <button class="btn btn-sm btn-primary mr-2 post_modal_get_info" id={{ID}} type="button"
+                                data-toggle="modal" data-target="#tagDetailModal">
+                                <i class="fas fa-info"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger post_delete_tag" id="{{ID}}" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+                    {{/each}}
+                </tbody>
+            </table>
+            <!--End Table hiển thị tag-->
+
+            <!--Modal hiển thị thông tin chi tiết của tag-->
+            <div class="modal fade" id="tagDetailModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                Thông tin tag
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="col-12" id="modal-id"></div>
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Mã tag:</p>
+                                    </div>
+                                    <div class="col-9" id="modal-tag-id"></div>
+                                </div>
+
+                                <div class="row ml-0 mr-0 mb-3 d-flex align-items-center">
+                                    <div class="col-3 p-0">
+                                        <label for="inputTagName">Tên tag:</label>
+                                    </div>
+                                    <div class="col-9 input-group input-group-sm">
+                                        <input type="text" id="inputTagName" class="form-control mr-2" />
+                                        <button class="btn btn-sm btn-warning post_tag_name_update" type="button">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary pl-2 pr-2" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-danger pl-2 pr-2 post_modal_delete_tag">
+                                Xóa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End modal hiển thị thông tin chi tiết của tag-->
+
+            <hr />
+
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->
+
+{{#section 'js'}}
+<script src="/admin/js/tag-show-view.js"></script>
+{{/section}}

@@ -4,13 +4,17 @@
 {{!-- responsive --}}
 <link href="/admin/css/responsive-info-show.css" rel="stylesheet" />
 {{!-- responsive --}}
+
+{{!-- info show page --}}
+<link href="/admin/css/info-show.css" rel="stylesheet" />
+{{!-- info show page --}}
 {{/section}}
 
 <div id="content" class="mb-5">
-    
+
     <header class="d-flex align-items-center justify-content-between">
-        <h5 class="page_title mb-0">Tất cả nội dung</h5>
-        <button type="button" class="btn btn-primary btn-sm">Thêm nội dung mới</button>
+        <h5 class="page_title mb-0">Tất cả bài viết</h5>
+        <a href="/admin/info/info-add" class="btn btn-primary btn-sm">Thêm bài viết mới</a>
     </header>
 
     <div class="content-inner">
@@ -18,8 +22,7 @@
         <div class="row search-row ml-0 mr-0">
             <div class="col-md-12 p-0">
                 <div class="input-group input-group-sm mb-3">
-                    <input type="text" class="form-control search-field" id="search" placeholder="Tên bài viết"
-                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control search-field" id="search" placeholder="Tên bài viết">
                     <div class="input-group-append">
                         <button class="btn btn-success" type="button">Tìm kiếm</button>
                     </div>
@@ -28,104 +31,56 @@
         </div>
         <!--end thanh tìm kiếm-->
 
-        <!--Hàng chứa nội dung tóm tắt của bài đăng-->
-        <div class="row ml-0 mr-0 article-row">
-            <div class="col-2 col-sm-1 col-md-1 p-0">
-                <span class="badge badge-warning">Cam tươi</span>
-            </div>
+        <!--Table hiển thị sản phẩm-->
+        <table class="table table-responsive mb-4">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên bài viết</th>
+                    <th class="text-center">Hình ảnh</th>
+                    <th class="text-center">Tag</th>
+                    <th>Nội dung tóm tắt</th>
+                    <th>Ngày đăng</th>
+                    <th class="text-center">Tác vụ</th>
+                </tr>
+            </thead>
 
-            <div class="col-10 col-sm-8 col-md-8 article-title">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos laboriosam, aperiam</p>
-                <small>Đăng vào ngày 12 tháng 4 năm 2019</small>
-            </div>
+            <tbody>
+                <!--Vòng lặp để in ra sản phẩm -->
+                {{#each this.allNews}}
+                <tr>
+                    <td>{{ID}}</td>
+                    <td>
+                        <div class="wordWrap info-title">
+                            {{TITLE}}
+                        </div>
+                    </td>
+                    <td align="center">
+                        <img src="{{RESIZEDIMAGE}}" class="show-info-image">
+                    </td>
+                    <td>
+                        {{#each TAGS}}
+                        <div class="badge badge-pill badge-warning mb-1 d-block">{{NAME}}</div>
+                        {{/each}}
+                    </td>
+                    <td>
+                        <div class="wordWrap info-short-content">
+                            {{SHORTCONTENT}}
+                        </div>
+                    </td>
+                    <td>
+                        <span>{{CREATED}}</span>
+                    </td>
+                    <td align="center">
+                        <a href="/admin/info/info-update/{{ID}}" class="btn btn-sm btn-primary">Sửa</a>
+                        <button type="button" class="btn btn-sm btn-danger post_delete_info" id="{{ID}}">Xóa</button>
+                    </td>
+                </tr>
+                {{/each}}
 
-            <div
-                class="col-12 col-sm-3 col-md-3 pr-0 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 p-0">
-                <div class="article-actions text-right">
-                    <a class="btn btn-primary btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-folder-open">&nbsp;Xem</span> -->
-                        Xem
-                    </a>
-
-                    <a class="btn btn-success btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-edit">&nbsp;Sửa</span> -->
-                        Sửa
-                    </a>
-
-                    <a class="btn btn-danger btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-times">&nbsp;Xóa</span> -->
-                        Xóa
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--end Hàng chứa nội dung tóm tắt của bài đăng-->
-
-        <!--Hàng chứa nội dung tóm tắt của bài đăng-->
-        <div class="row ml-0 mr-0 article-row">
-            <div class="col-2 col-sm-1 col-md-1 p-0">
-                <span class="badge badge-warning">Cam tươi</span>
-            </div>
-
-            <div class="col-10 col-sm-8 col-md-8 article-title">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos laboriosam, aperiam</p>
-                <small>Đăng vào ngày 12 tháng 4 năm 2019</small>
-            </div>
-
-            <div
-                class="col-12 col-sm-3 col-md-3 pr-0 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 p-0">
-                <div class="article-actions text-right">
-                    <a class="btn btn-primary btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-folder-open">&nbsp;Xem</span> -->
-                        Xem
-                    </a>
-
-                    <a class="btn btn-success btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-edit">&nbsp;Sửa</span> -->
-                        Sửa
-                    </a>
-
-                    <a class="btn btn-danger btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-times">&nbsp;Xóa</span> -->
-                        Xóa
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--end Hàng chứa nội dung tóm tắt của bài đăng-->
-
-        <!--Hàng chứa nội dung tóm tắt của bài đăng-->
-        <div class="row ml-0 mr-0 article-row">
-            <div class="col-2 col-sm-1 col-md-1 p-0">
-                <span class="badge badge-warning">Cam tươi</span>
-            </div>
-
-            <div class="col-10 col-sm-8 col-md-8 article-title">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos laboriosam, aperiam</p>
-                <small>Đăng vào ngày 12 tháng 4 năm 2019</small>
-            </div>
-
-            <div
-                class="col-12 col-sm-3 col-md-3 pr-0 col-xs-offset-2 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 p-0">
-                <div class="article-actions text-right">
-                    <a class="btn btn-primary btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-folder-open">&nbsp;Xem</span> -->
-                        Xem
-                    </a>
-
-                    <a class="btn btn-success btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-edit">&nbsp;Sửa</span> -->
-                        Sửa
-                    </a>
-
-                    <a class="btn btn-danger btn-sm" href="#" role="button">
-                        <!-- <span class="fas fa-times">&nbsp;Xóa</span> -->
-                        Xóa
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!--end Hàng chứa nội dung tóm tắt của bài đăng-->
+            </tbody>
+        </table>
+        <!--End Table hiển thị sản phẩm-->
 
         <hr>
 
@@ -156,5 +111,8 @@
         <!--end Thanh điều hướng trang-->
 
     </div>
-
 </div>
+
+{{#section 'js'}}
+<script src="/admin/js/info-show-view.js"></script>
+{{/section}}

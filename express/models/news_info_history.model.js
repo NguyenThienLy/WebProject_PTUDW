@@ -11,7 +11,7 @@ module.exports.addCreatedHistory = (newsID, ACTION, DETAIL) => {
     DETAIL: DETAIL
   };
   //Thêm
-  db.add("news_info_history", entity);
+  return db.add("news_info_history", entity);
 };
 
 //Hàm trả về thời gian hiện tại

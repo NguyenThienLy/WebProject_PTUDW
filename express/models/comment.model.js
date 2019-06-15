@@ -39,3 +39,11 @@ module.exports.commentsCustomerBuyProduct = () => {
     AND COMMENT.PRODUCTID = ORDER_DETAIL.PRODUCTID`
   );
 };
+
+module.exports.deleteCommentByCustomerId = customerId => {
+  return db.delete("comment", "CUSTOMERID", customerId);
+};
+
+module.exports.deleteCommentByProductId = productId => {
+  return db.delete("comment", "PRODUCTID", productId);
+};
