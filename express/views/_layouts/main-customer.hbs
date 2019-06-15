@@ -281,8 +281,8 @@
                                     {{#each cartProductsCombo}}
                                     <div class="component-show-fast-cart-items" id-quantity-cart="productCombo{{ID}}">
                                         <div class="d-flex align-items-center pl-3 pr-3 pb-3">
-                                            <div class="position-relative product-image-combo pt-3 pb-3" data-toggle="tooltip"
-                                                title="{{NAME}}">
+                                            <div class="position-relative product-image-combo pt-3 pb-3"
+                                                data-toggle="tooltip" title="{{NAME}}">
                                                 <a class="stretched-link"
                                                     href="/customer/product/product-detail/product-combo/{{ID}}"></a>
                                                 <img src="{{IMAGE1}}" class="image-combo" alt="" />
@@ -874,6 +874,11 @@
                                     aria-controls="header-edit-info-modal-nav" aria-selected="false">
                                     Chỉnh sửa thông tin
                                 </p>
+                                <p class="nav-item nav-link ml-3" id="header-edit-info-modal-nav-tab" data-toggle="tab"
+                                    href="#header-edit-passwork-modal-nav" role="tab"
+                                    aria-controls="header-edit-passwork-modal-nav" aria-selected="false">
+                                    Thay đổi mật khẩu
+                                </p>
                             </div>
                         </nav>
 
@@ -881,9 +886,9 @@
                             <div class="tab-pane fade show active" id="header-info-modal-nav" role="tabpanel"
                                 aria-labelledby="header-info-modal-nav-tab">
                                 <form class="p-4">
-
                                     <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng vip</label>
+                                        <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng
+                                            vip</label>
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
@@ -910,8 +915,7 @@
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Ảnh đại diện:</label>
                                         <div class="col-8 p-0">
-                                            <img src="{{this.authUser.avatar}}"
-                                                class="user-avatar">
+                                            <img src="{{this.authUser.avatar}}" class="user-avatar">
                                         </div>
                                     </div>
                                 </form>
@@ -919,13 +923,13 @@
 
                             <div class="tab-pane fade" id="header-edit-info-modal-nav" role="tabpanel"
                                 aria-labelledby="header-edit-info-modal-nav-tab">
-                                <form method="POST" id="form-update-info" class="p-4">
+                                <form id="frmUpdate" class="p-4">
+                                    <input hidden value=" {{this.authUser.ID}}" type="text" name="ID" />
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-edit-info-modal-name" class="col-4 col-form-label">Họ
                                             tên</label>
                                         <div class="col-8 p-0">
-                                            <input value=" {{this.authUser.FULLNAME}}" type="text"
-                                            name="NAME"
+                                            <input value=" {{this.authUser.FULLNAME}}" type="text" name="FULLNAME"
                                                 class="form-control form-control-sm" placeholder="Nhập họ tên"
                                                 id="header-edit-info-modal-name" />
                                         </div>
@@ -935,8 +939,8 @@
                                         <label for="header-edit-info-modal-phone"
                                             class="col-4 col-form-label">SĐT</label>
                                         <div class="col-8 p-0">
-                                            <input value="{{this.authUser.PHONE}}" type="text" class="form-control form-control-sm"
-                                            name="PHONE"
+                                            <input value="{{this.authUser.PHONE}}" type="text"
+                                                class="form-control form-control-sm" name="PHONE"
                                                 placeholder="Nhập số điện thoại" id="header-edit-info-modal-phone" />
                                         </div>
                                     </div>
@@ -945,48 +949,29 @@
                                         <label for="header-edit-info-modal-email"
                                             class="col-4 col-form-label">Email</label>
                                         <div class="col-8 p-0">
-                                            <input value="{{this.authUser.EMAIL}}" type="text"
-                                            name="EMAIL"
+                                            <input value="{{this.authUser.EMAIL}}" type="text" name="EMAIL"
                                                 class="form-control form-control-sm" placeholder="Nhập email"
                                                 id="header-edit-info-modal-email" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label for="header-edit-info-modal-password" class="col-4 col-form-label">Mật
-                                            khẩu</label>
-                                        <div class="col-8 p-0">
-                                            <input value="********" type="password"
-                                                class="form-control form-control-sm"
-                                                placeholder="Mật khẩu từ 6 đến 32 ký tự"
-                                                id="header-edit-info-modal-password" />
                                         </div>
                                     </div>
 
                                     <div class="d-flex">
                                         <div class="col-4 col-form-label"></div>
                                         <div class="col-8 p-0">
-                                            <img src="{{this.authUser.avatar}}"
-                                                class="edit-user-avatar">
+                                            <img src="{{this.authUser.avatar}}" class="edit-user-avatar">
                                         </div>
                                     </div>
 
                                     <div class="form-group row align-items-end ml-0 mr-0 mt-3">
                                         <label for="header-edit-info-modal-avatar" class="col-4 col-form-label pb-0">Ảnh
                                             đại diện</label>
-                                        <!-- <div
-class="custom-file col-8 p-0"
->
-  <input type="file" class="custom-file-input " id="customFile">
-  <label class="custom-file-label" for="customFile">Choose file</label>
-</div> -->
                                         <div class="col-8 p-0">
                                             <input type="file" id="header-edit-info-modal-avatar"
                                                 class="form-control-file form-control-sm p-0">
                                         </div>
                                     </div>
 
-                                    <div class="d-flex mt-2">
+                                    <div class="d-flex mt-2 justify-content-center">
                                         <div class="col-4 col-form-label"></div>
                                         <button type="submit" class="btn btn-success col-8">
                                             Lưu
@@ -995,6 +980,52 @@ class="custom-file col-8 p-0"
                                 </form>
                             </div>
 
+                            <div class="tab-pane fade" id="header-edit-passwork-modal-nav" role="tabpanel"
+                                aria-labelledby="header-edit-info-modal-nav-tab">
+                                <form id="frmUpdatePass" class="p-4">
+                                    <input hidden value=" {{this.authUser.ID}}" type="text" name="ID" />
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-password"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Mật
+                                            khẩu cũ</label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="password" class="form-control form-control-sm"
+                                                placeholder="Mật khẩu cũ" name="OLDPASSWORD"
+                                                id="header-update-modal-password" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-confirmPassword"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">
+                                            Mật khẩu mới
+                                        </label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="password" class="form-control form-control-sm"
+                                                placeholder="Mật khẩu từ 6 đến 32 ký tự" name="NEWPASSWORD"
+                                                id="header-update-modal-newPassword" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-confirmPassword"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">
+                                            Xác nhận mật khẩu
+                                        </label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="password" class="form-control form-control-sm"
+                                                placeholder="xác nhận mật khẩu" name="CONFIRMPASSWORD"
+                                                id="header-update-modal-confirmPassword" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"></div>
+                                        <button type="submit" class="btn btn-success col-sm-9">
+                                            Xác nhận
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -1020,7 +1051,7 @@ class="custom-file col-8 p-0"
                     </button>
                 </div>
                 <div class="modal-body">
-                   Sản phẩm này hiện tại đã <strong>hết hàng</strong>, cảm ơn quí khách!!!
+                    Sản phẩm này hiện tại đã <strong>hết hàng</strong>, cảm ơn quí khách!!!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
@@ -1051,6 +1082,8 @@ class="custom-file col-8 p-0"
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script src="/customer/js/validate-UI-login.js"></script>
     <script src="/customer/js/validate-UI-register.js"></script>
+    <script src="/customer/js/validate-UI-update-info.js"></script>
+    <script src="/customer/js/validate-UI-update-pass.js"></script>
     <script src="/customer/js/main-customer.js"></script>
     {{!-- js all page --}}
 </body>

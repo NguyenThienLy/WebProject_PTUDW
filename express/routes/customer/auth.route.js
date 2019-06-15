@@ -38,4 +38,13 @@ router.get(
 // Hàm kiểm tra xem người có đăng nhập chưa
 router.post("/check-is-login", controller.checkIsLogin);
 
+//Nhận về post update
+router.post('/update', controller.updateInfo);
+
+//Kiểm tra mật khẩu có đúng hay không
+router.get('/is-password', controller.IsPasswork);
+
+//Cập nhật mật khẩu mới
+router.post('/update-password', controller.UpdatePassWord);
+
 module.exports = router;

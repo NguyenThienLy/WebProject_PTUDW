@@ -6,6 +6,8 @@ var moment = require("moment");
 module.exports.postRegister = (req, res, next) => {
   var saltRounds = 10;
   var hash = bcrypt.hashSync(req.body.PASSWORD, saltRounds);
+  console.log(req.body.PASSWORD);
+  console.log(hash);
   var dob = moment(req.body.BIRTHDATE, "DD/MM/YYYY").format("YYYY-MM-DD");
   var avatar =
     "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
@@ -83,4 +85,49 @@ module.exports.checkIsLogin = (req, res, next) => {
   catch (error) {
     next(error);
   }
-}
+};
+
+//Cập nhật thông tin cá nhân
+module.exports.updateInfo = (req, res, next) => {
+  console.log(req.body);
+
+  //Trường hợp cập nhật thông tin cá nhân không bao gồm hình ảnh
+  var infoCustomer = {
+    ID:req.body.ID,
+    FULLNAME:req.body.FULLNAME,
+    EMAIL:req.body.EMAIL,
+    PHONE:req.body.PHONE
+  };
+
+  //Gọi hàm update
+  customerModel.updateInfoCustomer(infoCustomer).then(value=>{
+    res.send({ success: true });
+  }).catch(next);
+};
+
+//Kiểm tra mật khẩu có chính xác hay không
+module.exports.IsPasswork = (req, res, next) => {
+  bcrypt.compare(req.query.OLDPASSWORD,res.locals.authUser.PASSWORD).then((value)=>{
+    if(value){
+      res.json(true);
+    }else{
+      res.json(false);
+    }   
+  }) 
+};
+
+//Cập nhật mật khẩu mới
+module.exports.UpdatePassWord = (req, res, next) => {
+  //Mã hóa mk
+  var saltRounds = 10;
+  var hashpass = bcrypt.hashSync(req.body.NEWPASSWORD, saltRounds); 
+ 
+  var infoCustomer = {
+    ID:req.body.ID,
+    PASSWORD:hashpass
+  };
+  //Gọi hàm update
+  customerModel.updateInfoCustomer(infoCustomer).then(value=>{
+    res.send({ success: true });
+  }).catch(next);
+};

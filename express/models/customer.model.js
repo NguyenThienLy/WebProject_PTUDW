@@ -21,6 +21,11 @@ module.exports.addCustomer = customer => {
   return db.add("customer", customer);
 };
 
+// hàm cập nhật thông tin khách hàng
+module.exports.updateInfoCustomer = customer => {
+  return db.update("customer", "ID",customer);
+};
+
 // hàm lấy ra số lượng customers
 module.exports.customersQuantity = () => {
   return db.load(
