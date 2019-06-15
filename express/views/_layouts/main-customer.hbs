@@ -673,6 +673,11 @@
                                     aria-controls="header-register-modal-nav" aria-selected="false">
                                     Đăng ký
                                 </p>
+                                <p class="nav-item nav-link ml-3" id="header-register-modal-nav-tab" data-toggle="tab"
+                                    href="#header-forgot-pass-modal-nav" role="tab"
+                                    aria-controls="header-forgot-pass-modal-nav" aria-selected="false">
+                                    Quên mật khẩu
+                                </p>
                             </div>
                         </nav>
 
@@ -822,6 +827,27 @@
                                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"></div>
                                         <button type="submit" class="btn btn-success col-sm-9">
                                             Đăng ký
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane fade" id="header-forgot-pass-modal-nav" role="tabpanel"
+                                aria-labelledby="header-register-modal-nav-tab">
+                                <form id="frmForgotPass" class="p-4">
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-email"
+                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Email</label>
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="Nhập email đã đăng ký" name="EMAIL"
+                                                id="header-register-modal-email" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"></div>
+                                        <button type="submit" class="btn btn-success col-sm-9">
+                                            Xác nhận
                                         </button>
                                     </div>
                                 </form>
@@ -1100,6 +1126,7 @@
     <script src="/customer/js/validate-UI-register.js"></script>
     <script src="/customer/js/validate-UI-update-info.js"></script>
     <script src="/customer/js/validate-UI-update-pass.js"></script>
+    <script src="/customer/js/validate-UI-send-email.js"></script>
     <script src="/customer/js/main-customer.js"></script>
     {{!-- js all page --}}
 </body>
