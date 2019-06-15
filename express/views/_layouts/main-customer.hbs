@@ -881,49 +881,36 @@
                             <div class="tab-pane fade show active" id="header-info-modal-nav" role="tabpanel"
                                 aria-labelledby="header-info-modal-nav-tab">
                                 <form class="p-4">
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng vip</label>
+                                    </div>
+
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Họ tên:</label>
                                         <div class="col-8 p-0">
-                                            Trần Khánh Linh
+                                            {{this.authUser.FULLNAME}}
                                         </div>
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">SĐT:</label>
                                         <div class="col-8 p-0">
-                                            01298937282
+                                            {{this.authUser.PHONE}}
                                         </div>
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Email:</label>
                                         <div class="col-8 p-0">
-                                            trankhanhlinh98@gmail.com
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label class="col-4 col-form-label">Giới tính:</label>
-
-                                        <div class="row col-8 p-0 ml-0 mr-0">
-                                            <div class="custom-control custom-radio mr-3">
-                                                <input type="radio" name="customRadio" class="custom-control-input"
-                                                    disabled />
-                                                <label class="custom-control-label">Nam</label>
-                                            </div>
-
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" name="customRadio" class="custom-control-input"
-                                                    checked disabled />
-                                                <label class="custom-control-label">Nữ</label>
-                                            </div>
+                                            {{this.authUser.EMAIL}}
                                         </div>
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Ảnh đại diện:</label>
                                         <div class="col-8 p-0">
-                                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                            <img src="{{this.authUser.avatar}}"
                                                 class="user-avatar">
                                         </div>
                                     </div>
@@ -932,12 +919,13 @@
 
                             <div class="tab-pane fade" id="header-edit-info-modal-nav" role="tabpanel"
                                 aria-labelledby="header-edit-info-modal-nav-tab">
-                                <form class="p-4">
+                                <form method="POST" id="form-update-info" class="p-4">
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-edit-info-modal-name" class="col-4 col-form-label">Họ
                                             tên</label>
                                         <div class="col-8 p-0">
-                                            <input value="Trần Khánh Linh" type="text"
+                                            <input value=" {{this.authUser.FULLNAME}}" type="text"
+                                            name="NAME"
                                                 class="form-control form-control-sm" placeholder="Nhập họ tên"
                                                 id="header-edit-info-modal-name" />
                                         </div>
@@ -947,7 +935,8 @@
                                         <label for="header-edit-info-modal-phone"
                                             class="col-4 col-form-label">SĐT</label>
                                         <div class="col-8 p-0">
-                                            <input value="0192987388" type="text" class="form-control form-control-sm"
+                                            <input value="{{this.authUser.PHONE}}" type="text" class="form-control form-control-sm"
+                                            name="PHONE"
                                                 placeholder="Nhập số điện thoại" id="header-edit-info-modal-phone" />
                                         </div>
                                     </div>
@@ -956,7 +945,8 @@
                                         <label for="header-edit-info-modal-email"
                                             class="col-4 col-form-label">Email</label>
                                         <div class="col-8 p-0">
-                                            <input value="trankhanhlinh98@gmail.com" type="text"
+                                            <input value="{{this.authUser.EMAIL}}" type="text"
+                                            name="EMAIL"
                                                 class="form-control form-control-sm" placeholder="Nhập email"
                                                 id="header-edit-info-modal-email" />
                                         </div>
@@ -966,42 +956,22 @@
                                         <label for="header-edit-info-modal-password" class="col-4 col-form-label">Mật
                                             khẩu</label>
                                         <div class="col-8 p-0">
-                                            <input value="0908987879" type="password"
+                                            <input value="********" type="password"
                                                 class="form-control form-control-sm"
                                                 placeholder="Mật khẩu từ 6 đến 32 ký tự"
                                                 id="header-edit-info-modal-password" />
                                         </div>
                                     </div>
 
-                                    <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label class="col-4 col-form-label">Giới tính</label>
-
-                                        <div class="row col-8 p-0 ml-0 mr-0">
-                                            <div class="custom-control custom-radio mr-3">
-                                                <input type="radio" id="header-edit-info-modal-gender-male"
-                                                    name="customRadio" class="custom-control-input" />
-                                                <label class="custom-control-label" id="lblMale"
-                                                    for="header-edit-info-modal-gender-male">Nam</label>
-                                            </div>
-
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="header-edit-info-modal-gender-female"
-                                                    name="customRadio" class="custom-control-input" checked />
-                                                <label class="custom-control-label" id="lblFemale"
-                                                    for="header-edit-info-modal-gender-female">Nữ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <div class="d-flex">
                                         <div class="col-4 col-form-label"></div>
                                         <div class="col-8 p-0">
-                                            <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
+                                            <img src="{{this.authUser.avatar}}"
                                                 class="edit-user-avatar">
                                         </div>
                                     </div>
 
-                                    <div class="form-group row align-items-end ml-0 mr-0">
+                                    <div class="form-group row align-items-end ml-0 mr-0 mt-3">
                                         <label for="header-edit-info-modal-avatar" class="col-4 col-form-label pb-0">Ảnh
                                             đại diện</label>
                                         <!-- <div
@@ -1018,7 +988,7 @@ class="custom-file col-8 p-0"
 
                                     <div class="d-flex mt-2">
                                         <div class="col-4 col-form-label"></div>
-                                        <button type="button" class="btn btn-success col-8">
+                                        <button type="submit" class="btn btn-success col-8">
                                             Lưu
                                         </button>
                                     </div>
