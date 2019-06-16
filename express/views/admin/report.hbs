@@ -8,13 +8,25 @@
 {{!-- responsive --}}
 <link href="/admin/css/responsive-report.css" rel="stylesheet" />
 {{!-- responsive --}}
+
+{{!-- datetime picker --}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 {{/section}}
 
 <!--Nội dung trang index-->
 <div class="dashboard-con" id="dashboard-con">
 
-    <!--Hàng chứa nội dung lượt tương tác trong ngày-->
+    <div class="row">
+        <div class="col-12">
+            <div class="admin-content-con d-flex justify-content-center">
+                <input id="datepicker" type="text">
+            </div>
+        </div>
 
+    </div>
+
+    <!--Hàng chứa nội dung lượt tương tác trong ngày-->
     <div class="row">
 
         <div class="col-12 col-sm-4">
@@ -28,7 +40,7 @@
 
                 <div class="d-flex flex-column mt-1">
                     <span></span>
-                    <b>40</b>
+                    <b id="totalView">{{this.TotalViews}}</b>
                     <span></span>
                 </div>
             </div>
@@ -40,7 +52,7 @@
                 </div>
 
                 <div class="badge badge-light">
-                    <h6>40</h6>
+                    <h6 id="totalView">{{this.TotalViews}}</h6>
                 </div>
             </div>
             <!--End Thẻ chứa lượt view trong ngày-->
@@ -176,6 +188,8 @@
 {{!-- import chart --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 {{!-- end import chart --}}
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 
-<script src="/admin/js/report-chart-script.js"></script>
+<script src="/admin/js/report-chart-date-script.js"></script>
 {{/section}}

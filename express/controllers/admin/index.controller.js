@@ -25,7 +25,9 @@ module.exports.indexShow = function (req, res, next) {
             var totalView;
             if (values[3].length > 0) {
                 totalView = values[3][0].VIEWS;
-            } else {
+            } 
+            
+            if(totalView==null){
                 totalView = 0;
             }
 
@@ -45,14 +47,36 @@ module.exports.loadChart = function (req, res, next) {
     var structProduct = productModel.structProduct();
     //Lấy ra ngày hiện tại
     var curentDate = new moment().format('YYYY-MM-DD');
+    console.log(curentDate);
     var charView = newsModel.chartViewInMonth(curentDate);
-
-    
-
     Promise.all([structProduct, charView]).then(values => {
 
         var arrViewChart = CreateViewChart(values[1]);
         res.json(JSON.stringify({ arrStruct: values[0],arrView:arrViewChart }));
+    }).catch(next);
+};
+
+module.exports.loadChartDate = function (req, res, next) {
+    var curentDate = moment(req.body.date,'DD/MM/YYYY').format('YYYY-MM-DD');
+
+    var charView = newsModel.chartViewInMonth(curentDate);
+    //Lấy ra tổng lượt xem trong ngày
+    var getToltalView = newsModel.sumViewInDate(curentDate);
+
+    
+    Promise.all([charView,getToltalView]).then(values => {
+        console.log(values[1]);
+        var totalView;
+            if (values[1].length>0) {
+                totalView = values[1][0].VIEWS;
+            }
+            if(totalView==null){
+                totalView = 0;
+            }
+            console.log(totalView);
+        var arrViewChart = CreateViewChart(values[0]);
+
+        res.json(JSON.stringify({arrView:arrViewChart,TotalView:totalView }));
     }).catch(next);
 };
 
