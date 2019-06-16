@@ -18,8 +18,26 @@ module.exports.allWithDetailQuantity = () => {
 	GROUP BY cat_pro.ID, cat_pro.NAME, sub_cat.ID, sub_cat.NAME, cat_pro.quantityCat`);
 };
 
-// Linh thêm
+// Lấy số lượng
 module.exports.categoriesQuantity = () => {
-  // Gọi hàm querry từ db
   return db.load(`SELECT COUNT(ID) AS CATEGORY_QUANTITY FROM category`);
 };
+
+module.exports.singleById = categoryId => {
+  return db.load(`SELECT * FROM category where ID = '${categoryId}'`);
+};
+
+module.exports.addCategory = category => {
+  return db.add("category", category);
+};
+
+module.exports.updateCategory = category => {
+  return db.update("category", "ID", category);
+};
+
+// Xóa category theo id
+module.exports.deleteCategoryByCategoryId = categoryId => {
+  return db.delete("category", "ID", categoryId);
+};
+
+

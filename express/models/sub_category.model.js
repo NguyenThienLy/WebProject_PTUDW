@@ -14,12 +14,10 @@ module.exports.allSubCategoryByProductID = product_ID => {
 	WHERE CATEGORYID IN (SELECT CATEGORYID FROM product WHERE ID = ${product_ID})`);
 };
 
-//Hàm trả về danh sách sub category theo id của product
+//Hàm trả về danh sách sub category theo id của category
 module.exports.allSubCategoryByCategoryId = category_ID => {
   //Hàm này đổi lại sau
-  return db.load(
-    `SELECT * FROM sub_category WHERE sub_category.CATEGORYID = ` + category_ID
-  );
+  return db.load(`SELECT * FROM sub_category WHERE sub_category.CATEGORYID = ${category_ID}`);
 };
 
 //Hàm trả về danh sách sub category theo ID category
@@ -35,8 +33,45 @@ module.exports.allSubCategoryWithDetailQuantity = category_ID => {
   );
 };
 
-// Linh thêm
+// Lấy số lượng
 module.exports.subCategoriesQuantity = () => {
-  // Gọi hàm querry từ db
   return db.load(`SELECT COUNT(ID) AS SUBCATEGORY_QUANTITY FROM sub_category`);
+};
+
+// Xóa sub category của category 
+module.exports.deleteSubCategoriesByCategoryId = (categoryId) => {
+  return db.delete("sub_category", "CATEGORYID", categoryId);
+};
+
+module.exports.addSubCategoriesForCategory = (categoryId, subCategories) => {
+  if (subCategories.constructor === Array) {
+    subCategories.forEach(subCategory => {
+      var sub_category = {
+        CATEGORYID: categoryId,
+        NAME: subCategory
+      };
+
+      //gọi hàm insert
+      db.add("sub_category", sub_category);
+    });
+  } else {
+    //Tạo entity
+    var sub_category = {
+      CATEGORYID: categoryId,
+      NAME: subCategories
+    };
+
+    //gọi hàm insert
+    db.add("sub_category", sub_category);
+  }
+};
+
+module.exports.deleteSubCategories = (subCategories) => {
+  if (subCategories.constructor === Array) {
+    subCategories.forEach(subCategoryId => {
+      db.delete("sub_category", "ID", subCategoryId);
+    });
+  } else {
+    db.delete("sub_category", "ID", subCategories);
+  }
 };

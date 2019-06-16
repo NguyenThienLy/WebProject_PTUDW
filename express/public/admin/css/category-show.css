@@ -1,0 +1,7 @@
+.form-wrapper {
+  padding: 1rem;
+}
+
+.subCategory-name > i {
+  color: rgba(33, 37, 41, 0.5);
+}
