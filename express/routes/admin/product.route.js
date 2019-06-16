@@ -21,7 +21,7 @@ router.get('/product-show', controller.productShow);
 router.get('/product-add', controller.productAdd);
 
 //Xử lý post nhận về ảnh và dữ liệu
-router.post('/product-add',gcsMulter.array('PRODUCT_IMAGE'),controller.postProductAdd);
+router.post('/product-add', gcsMulter.array('PRODUCT_IMAGE'), controller.postProductAdd);
 
 //Xử lý post nhận về ảnh và dữ liệu
 router.post('/product-combo-add', controller.postProductComboAdd);
@@ -36,24 +36,28 @@ router.post('/load-productId-by-categoryId', controller.productIdByCategoryId);
 router.post('/load-product-by-productId', controller.productByProductId);
 
 //Xử lý xóa sản phẩm
-router.post('/product-show/delete', controller.deleteProduct);
+router.post('/product-delete', controller.postDeleteProduct);
 
 // Xử lí xóa sản phẩm combo
 router.post("/product-combo-delete", controller.postDeleteProductCombo);
 
 // Xử lí sửa sản phẩm combo
-router.get("/product-combo-edit/:id", controller.productComboEdit);
+router.get("/product-combo-update/:id", controller.productComboUpdate);
 
 // Xử lí post sửa sản phẩm combo
-router.post("/product-combo-edit/:id", controller.postProductComboEdit);
+router.post("/product-combo-update/:id", controller.postProductComboUpdate);
 
-router.get('/product-update/:id',controller.infoProduct);
+// Xử lí sửa sản phẩm
+router.get('/product-update/:id', controller.productUpdate);
 
 //Lấy danh sách hình sản phẩm
-router.post('/product-update/get-images',controller.imagesOfProduct)
+router.post('/product-update/get-images', controller.productImages);
 
-//Cập nhật thông tin sản phẩm
-router.post('/update-product-info',controller.updateProductInfo)
+// Xử lí post sửa sản phẩm
+router.post('/product-update-info', controller.postProductUpdate);
+
+//Update danh sách hình sản phẩm
+router.post('/product-update-images', gcsMulter.array('PRODUCT_IMAGE'), controller.postProductImagesUpdate);
 
 
 

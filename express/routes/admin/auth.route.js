@@ -28,4 +28,5 @@ function(req, res) {
   res.redirect('/admin/index');
 });
 
+
 module.exports = router;

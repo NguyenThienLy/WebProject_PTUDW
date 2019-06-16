@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+
+    <link href="/admin/css/login-admin.css" rel="stylesheet" />
+    <link href="/admin/css/admin-style.css" rel="stylesheet" />
+    <link href="/admin/css/responsive-login-admin.css" rel="stylesheet" />
+</head>
+
+<body class="d-flex justify-content-center align-items-center">
+    <div class="card shadow border-0">
+        <div class="card-body p-0">
+            <div class="content-left float-left h-100 rounded-left pl-4 pr-3 pt-3 pb-2">
+                <div>
+                    <h3 id="title" class="font-weight-normal">Cập nhật mật khẩu</h3>
+                    <p id="content">
+                        Cập nhật mật khẩu mới của bạn
+                    </p>
+                </div>
+
+                <img src="https://pipe.tikicdn.com/media/upload/2018/10/12/2a3acb91a35d45e1b4b7c96912a0c84a.png"
+                    alt="" />
+            </div>
+
+            <div class="content-right float-left h-100 rounded-right pr-4 pl-3 pt-2 pb-2">
+                <div class="icon-user mb-3"><i class="far fa-user"></i></div>
+                {{#if this.error}}
+                    <div class="alert alert-danger" role="alert">
+                        Token không hợp lệ
+                    </div>
+                    {{else}}
+                {{/if}}
+
+                <form method="POST" id="frmupdatepass" action="/customer/auth/reset-pass/{{this.token}}">
+                    <div class="form-group row align-items-center ml-0 mr-0">
+                        <label for="txtUsername" class="col-12 col-md-3 col-form-label pl-0">Mật khẩu mới</label>
+                        <div class="col-12 col-md-9 p-0">
+                            <input type="password" class="form-control form-control-sm"
+                                placeholder="Nhập mật khẩu từ 6 đến 32 kí tự" id="newpass" name="NEWPASSWORD" />
+                        </div>
+                    </div>
+                    <div class="form-group row align-items-center ml-0 mr-0">
+                        <label for="txtPassword" class="col-12 col-md-3 col-form-label pl-0">Xác nhận mật khẩu</label>
+                        <div class="col-12 col-md-9 p-0">
+                            <input type="password" class="form-control form-control-sm"
+                                placeholder="Nhập mật khẩu từ 6 đến 32 kí tự" id="comfirmpass" name="COMFIRMPASSWORD" />
+                        </div>
+                    </div>
+                    <div class="d-flex mt-4">
+                        <div class="col-0 col-md-3 d-none d-md-block"></div>
+                        <button type="submit" class="btn btn-success col-12 col-md-9">
+                            Xác nhận
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="/customer/js/validate-UI-forgot-pass.js"></script>
+</body>
+
+</html>

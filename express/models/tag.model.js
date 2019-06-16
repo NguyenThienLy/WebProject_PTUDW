@@ -1,7 +1,6 @@
 // Lấy database
 var db = require("../utils/db");
 
-//Hàm trả về tất cả các tag trên database
 module.exports.addTag = tag => {
   return db.add("tag", tag);
 };
@@ -11,69 +10,21 @@ module.exports.allTag = () => {
   return db.load(`SELECT * FROM tag`);
 };
 
-//Hàm xóa tất cả tag của sản phẩm
-module.exports.deleteTagOfProduct = (productID) => {
-  return db.delete('product_tag','PRODUCTID',productID)
+module.exports.singleByTagId = tagId => {
+  return db.load(`SELECT * FROM tag where ID = '${tagId}'`);
 };
 
-//Hàm trả về tag của sản phẩm
-module.exports.allTagOfProduct = (productID) => {
-  return db.load(`SELECT tg.ID,tg.NAME FROM product_tag AS pr JOIN tag as tg
-                  ON pr.TAGID = tg.ID WHERE pr.PRODUCTID = ${productID}`);
+// Linh thêm
+module.exports.tagsQuantity = () => {
+  return db.load(`SELECT COUNT(ID) AS TAG_QUANTITY FROM tag`);
 };
 
-//Hàm thêm vào danh sách tag cho product | input: ID sản phẩm, mảng tag
-module.exports.addTagForProduct = (productID, tags) => {
-
-  if (tags.constructor === Array) {
-    tags.forEach(element => {
-      //Tạo entity
-      var entity = {
-        PRODUCTID: productID,
-        TAGID: element
-      };
-
-      //gọi hàm insert
-      db.add("product_tag", entity);
-    });
-  } else {
-    //Tạo entity
-    var entity = {
-      PRODUCTID: productID,
-      TAGID: tags
-    };
-
-    //gọi hàm insert
-    db.add("product_tag", entity);
-  }
-
+//Hàm cập nhật tag
+module.exports.updateTag = tag => {
+  return db.update("tag", "ID", tag);
 };
 
-module.exports.deleteProductTag= productID=>{
-  return db.delete('product_tag','PRODUCTID',productID);
-}
-
-//Hàm thêm vào danh sách tag cho news | input: ID news, mảng tag
-module.exports.addTagForNews = (newsID, tags) => {
-  if (tags.constructor === Array) {
-    tags.forEach(tag => {
-      //Tạo entity
-      var entity = {
-        NEWSID: newsID,
-        TAGID: tag
-      };
-
-      //gọi hàm insert
-      db.add("news_tag", entity);
-    });
-  } else {
-    //Tạo entity
-    var entity = {
-      NEWSID: newsID,
-      TAGID: tags
-    };
-
-    //gọi hàm insert
-    db.add("news_tag", entity);
-  }
+//Hàm xóa tag theo id
+module.exports.deleteTagById = tagId => {
+  return db.delete("tag", "ID", tagId);
 };

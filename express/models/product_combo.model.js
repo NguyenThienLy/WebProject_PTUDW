@@ -14,7 +14,8 @@ module.exports.allProductCombos = () => {
 						FROM ((product_combo
             JOIN product PRO1 ON product_combo.PRODUCTID1 = PRO1.ID)
             JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
-						JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID`);
+            JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID
+            WHERE product_combo.STATUS = 1`);
 };
 
 
@@ -33,6 +34,21 @@ module.exports.singleByProductComboId = productComboId => {
     JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID 
     WHERE product_combo.ID = '${productComboId}'`);
 };
+
+// Linh thêm
+// Lấy ra số lượng product combo
+module.exports.productCombosQuantity = () => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT COUNT(ID) AS PRODUCTCOMBO_QUANTITY FROM product_combo WHERE STATUS = 1`);
+};
+
+// Linh thêm
+// Lấy ra những combo có productid
+module.exports.isInProductCombo = productID => {
+  return db.load(`SELECT * FROM product_combo 
+                  WHERE (PRODUCTID1 = ${productID} OR PRODUCTID2 = ${productID}  
+                  OR PRODUCTID3 = ${productID}) AND STATUS = 1`)
+}
 
 // Hàm lấy ra số lượng của sản phẩm có ID
 module.exports.inventoryProductCombo = (productComboID) => {
@@ -87,6 +103,7 @@ module.exports.topNProductComboBestSalerFollowOffset = (N, Offset) => {
                       (CASE WHEN a.SALE > 0 THEN (a.PRICE - a.PRICE * (a.SALE / 100)) ELSE a.PRICE END) AS SALEPRICE
                       FROM product_combo a INNER JOIN product b INNER JOIN product c INNER JOIN product d 
                       ON a.PRODUCTID1 = b.ID AND a.PRODUCTID2 = c.ID AND a.PRODUCTID3 = d.ID 
+                      WHERE a.STATUS = 1
                       ORDER BY SALE DESC
                       LIMIT ${N} OFFSET ${Offset * N}`);
 };
@@ -97,7 +114,7 @@ module.exports.topNProductComboNewestFollowOffsetFollowIdPro = (idProduct, N, Of
                       (CASE WHEN a.SALE > 0 THEN (a.PRICE - a.PRICE * (a.SALE / 100)) ELSE a.PRICE END) AS SALEPRICE
                       FROM product_combo a INNER JOIN product b INNER JOIN product c INNER JOIN product d 
                       ON a.PRODUCTID1 = b.ID AND a.PRODUCTID2 = c.ID AND a.PRODUCTID3 = d.ID 
-                      WHERE a.ID != ${idProduct}
+                      WHERE a.ID != ${idProduct} AND a.STATUS = 1
                       ORDER BY a.CREATED ASC
                       LIMIT ${N} OFFSET ${Offset * N}`);
 };
@@ -124,6 +141,7 @@ module.exports.topNProductComboFollowFilter = (
                 FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
                 ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
                 pro_cb.PRODUCTID3 = pro_3.ID
+                WHERE pro_cb.STATUS = 1
                 ORDER BY pro_cb.CREATED DESC
                 LIMIT ${N};`);
 
@@ -139,6 +157,7 @@ module.exports.topNProductComboFollowFilter = (
                 FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
                 ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
                 pro_cb.PRODUCTID3 = pro_3.ID
+                WHERE pro_cb.STATUS = 1
                 ORDER BY pro_cb.CREATED ASC
                 LIMIT ${N};`);
 
@@ -154,6 +173,7 @@ module.exports.topNProductComboFollowFilter = (
                 FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
                 ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
                 pro_cb.PRODUCTID3 = pro_3.ID
+                WHERE pro_cb.STATUS = 1
                 ORDER BY pro_cb.PRICE ASC
                 LIMIT ${N};`);
 
@@ -169,6 +189,7 @@ module.exports.topNProductComboFollowFilter = (
                 FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
                 ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
                 pro_cb.PRODUCTID3 = pro_3.ID
+                WHERE pro_cb.STATUS = 1
                 ORDER BY pro_cb.PRICE DESC
                 LIMIT ${N};`);
   }
@@ -269,7 +290,7 @@ module.exports.top1ProductComboFollowId = id => {
     END) AS SALEPRICE 
     FROM product_combo AS pro_cb INNER JOIN product AS pro1 INNER JOIN product AS pro2 INNER JOIN product AS pro3 
     ON pro_cb.PRODUCTID1 = pro1.ID AND pro_cb.PRODUCTID2 = pro2.ID AND pro_cb.PRODUCTID3 = pro3.ID 
-    WHERE pro_cb.ID = ${id}`
+    WHERE pro_cb.ID = ${id} AND pro_cb.STATUS = 1`
   );
 };
 

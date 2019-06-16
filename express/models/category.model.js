@@ -17,3 +17,9 @@ module.exports.allWithDetailQuantity = () => {
 	ON sub_cat.CATEGORYID = cat_pro.ID
 	GROUP BY cat_pro.ID, cat_pro.NAME, sub_cat.ID, sub_cat.NAME, cat_pro.quantityCat`);
 };
+
+// Linh thêm
+module.exports.categoriesQuantity = () => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT COUNT(ID) AS CATEGORY_QUANTITY FROM category`);
+};

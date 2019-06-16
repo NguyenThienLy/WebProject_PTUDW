@@ -21,10 +21,9 @@
                 <span id="labelType" class="ml-3">Sản phẩm thường</span>
             </div>
 
-            <button id="btn_add_new" type="button" class="btn btn-sm btn-primary">
-
+            <a href="/admin/product/product-add" class="btn btn-sm btn-primary">
                 Thêm mới
-            </button>
+            </a>
         </header>
 
         <div class="content-inner">
@@ -32,7 +31,7 @@
                 <!--Thanh tìm kiếm sản phẩm-->
                 <form class="form row ml-0 mr-0 mb-4">
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-3 mt-2 mb-0 pl-0">
-                            <input type="text" class="form-control form-control-sm" placeholder="Tên sản phẩm">
+                        <input type="text" class="form-control form-control-sm" placeholder="Tên sản phẩm">
                     </div>
 
                     <div class="form-group col-12 col-sm-4 col-md-4 col-xl-2 mb-0 mt-2 pl-0">
@@ -107,9 +106,13 @@
                         {{#each this.products}}
                         <tr>
                             <td>{{ID}}</td>
-                            <td>{{NAME}}</td>
+                            <td>
+                                <div class="wordWrap product-name">
+                                    {{NAME}}
+                                </div>
+                            </td>
                             <td>{{CATEGORYNAME}}</td>
-                            <td>Việt nam</td>
+                            <td>{{ORIGIN}}</td>
                             <td>{{BRANDNAME}}</td>
                             <td align="center">
                                 <img src="{{IMAGE}}" id="productSimple{{ID}}" class="show-product-image">
@@ -124,10 +127,9 @@
                                 </div>
                             </td>
                             <td align="center">
-                                <button type="button" class="btn btn-sm btn-primary get_update"
-                                    get_id="{{ID}}">Sửa</button>
-                                <button type="button" class="btn btn-sm btn-danger post_delete"
-                                    post_id="{{ID}}">Xóa</button>
+                                <a href="/admin/product/product-update/{{ID}}" class="btn btn-sm btn-primary">Sửa</a>
+                                <button type="button" class="btn btn-sm btn-danger post_delete_simple"
+                                    id="{{ID}}">Xóa</button>
                             </td>
                         </tr>
                         {{/each}}
@@ -251,7 +253,7 @@
                                 </div>
                             </td>
                             <td align="center">
-                                <a href="/admin/product/product-combo-edit/{{ID}}"
+                                <a href="/admin/product/product-combo-update/{{ID}}"
                                     class="btn btn-sm btn-primary">Sửa</a>
                                 <button type="button" class="btn btn-sm btn-danger post_delete_combo"
                                     id="{{ID}}">Xóa</button>
@@ -290,24 +292,21 @@
                     <!-- </div> -->
                 </div>
                 <!--End Nội dung trang index-->
-
-
-
-                <!--footer-->
-                <footer id="admin-footer">
-
-                    <div class="float-left"><b>Copyright</b>&copy; 2019</div>
-                    <div class="float-right">Trang admin</div>
-
-                </footer>
-                <!--end footer-->
             </div>
         </div>
-    </div>
-    <!--Nội dung trang index-->
 
-    {{#section 'js'}}
-    <script src="/admin/js/product-show-delete-product.js"></script>
-    <script src="/admin/js/product-show-update-product.js"></script>
-    <script src="/admin/js/product-show-view.js"></script>
-    {{/section}}
+        <!--footer-->
+        <footer id="admin-footer">
+
+            <div class="float-left"><b>Copyright</b>&copy; 2019</div>
+            <div class="float-right">Trang admin</div>
+
+        </footer>
+        <!--end footer-->
+    </div>
+</div>
+<!--Nội dung trang index-->
+
+{{#section 'js'}}
+<script src="/admin/js/product-show-view.js"></script>
+{{/section}}

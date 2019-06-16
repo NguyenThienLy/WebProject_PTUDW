@@ -44,7 +44,6 @@
                             <div class="card-header">
                                 <label class="mb-0"><b>Hình ảnh sản phẩm (hình đầu tiên là ảnh đại
                                         diện)</b></label>
-                                {{!-- <h5 class="mb-0">Hình ảnh sản phẩm (hình đầu tiên là ảnh đại diện)</h5> --}}
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -60,17 +59,10 @@
                         <div class="card mt-3">
                             <div class="card-header">
                                 <label class="mb-0"><b>Thông tin sản phẩm</b></label>
-                                {{!-- <h5 class="mb-0">Thông tin sản phẩm</h5> --}}
                             </div>
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-
-                                        {{!-- <label for="inputIDproduct" class="mt-2"><b>Mã sản phẩm</b></label>
-                        <div>
-                            <input name="ID" type="text" class="form-control" id="inputIDproduct" placeholder="SPT01"
-                                readonly>
-                        </div> --}}
 
                                         <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
                                         <div>
@@ -193,18 +185,8 @@
 
                             <div class="card-header">
                                 <label class="mb-0"><b>Mô tả sản phẩm</b></label>
-                                {{!-- <h5 class="mb-0">Mô tả sản phẩm</h5> --}}
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label><b>Tag</b></label>
-                                    <select name="TAG" class="chosen-select form-control" data-placeholder="Chọn tag" multiple>
-                                        {{#each this.tags}}
-                                        <option value="{{ID}}">{{NAME}}</option>
-                                        {{/each}}
-                                    </select>
-                                </div>
-
                                 <div class="form-group">
                                     <label><b>Mô tả tóm tắt</b></label>
                                     <div>
@@ -237,7 +219,6 @@
                         <!--End Card chứa form điền thông tin bài viêt-->
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-success pl-5 pr-5">Đăng</button>
-                            {{!-- <button type="button" class="btn btn-danger">Hủy</button> --}}
                         </div>
                     </form>
                 </div>
@@ -511,10 +492,6 @@
 <script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
 <script src="/admin/js/chosen-select.js"></script>
 
-{{!-- inmport my js --}}
-{{!-- <script src="/admin/ckeditor5-build-classic/build/ckeditor.js"></script>
-<script src="/admin/js/ckeditor5-classicEditor.js"></script> --}}
-{{!--Xu ly Editor --}}
 <script
     src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=nxw3p5ckcu5jx187f8q2w3ysytehc7mdor1gcic8zu1iq5pv"></script>
 <script src="/admin/js/tinymce-Editor.js"></script>

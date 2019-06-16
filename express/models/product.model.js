@@ -7,6 +7,12 @@ module.exports.quantityProduct = () => {
   return db.load(`SELECT COUNT(*) AS QUANTITY FROM product`);
 };
 
+// Linh thêm
+module.exports.productsQuantity = () => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT COUNT(ID) AS PRODUCT_QUANTITY FROM product WHERE STATUS = 1`);
+};
+
 // Hàm lấy số lượng sản phẩm product simple có status = 1
 module.exports.quantityProductActive = (objQuery) => {
   // Gọi hàm querry từ db
@@ -102,7 +108,7 @@ module.exports.allProductInStock = () => {
             INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
             INNER JOIN category ON product.CATEGORYID = category.ID)
             INNER JOIN brand ON product.BRANDID = brand.ID
-            WHERE product.INVENTORY > 0`);
+            WHERE product.INVENTORY > 0 AND product.STATUS = 1`);
 };
 
 // Hàm trả về tất cả sản phẩm id theo category Id trong database
@@ -110,7 +116,16 @@ module.exports.allProductIdByCategoryId = (categoryId) => {
   // Gọi hàm querry từ db
   return db.load(`SELECT product.ID
             FROM product
-            WHERE product.INVENTORY > 0 AND product.CATEGORYID = ${categoryId}`);
+            WHERE product.INVENTORY > 0 AND product.STATUS = 1 
+            AND product.CATEGORYID = ${categoryId}`);
+};
+
+// Hàm trả về số lượng sản phẩm có brandid 
+module.exports.productQuantityByBrandId = (brandId) => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT COUNT(*) AS PRODUCT_QUANTITY
+            FROM product
+            WHERE product.BRANDID = ${brandId}`);
 };
 
 module.exports.singleByProductId = productId => {
@@ -125,7 +140,7 @@ module.exports.addProduct = product => {
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
 module.exports.updateProduct = product=>{
-    return db.update('product','ID',product);
+    return db.update('product','ID', product);
 };
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
@@ -177,7 +192,7 @@ module.exports.top8ProductFollowIdCatAndTypeSort = (idCat, typeSort) => {
 												ELSE pro.PRICE
 										END) AS SALEPRICE
 										FROM product AS pro 
-										WHERE pro.CATEGORYID = ${idCat}
+										WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 										ORDER BY CREATED DESC
 										LIMIT 8;`);
 
@@ -189,7 +204,7 @@ module.exports.top8ProductFollowIdCatAndTypeSort = (idCat, typeSort) => {
 												ELSE pro.PRICE
 										END) AS SALEPRICE
 										FROM product AS pro 
-										WHERE pro.CATEGORYID = ${idCat}
+										WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 										ORDER BY CREATED ASC
 										LIMIT 8;`);
 
@@ -201,7 +216,7 @@ module.exports.top8ProductFollowIdCatAndTypeSort = (idCat, typeSort) => {
 												ELSE pro.PRICE
 										END) AS SALEPRICE
 										FROM product AS pro 
-										WHERE pro.CATEGORYID = ${idCat}
+										WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 										ORDER BY PRICE ASC
 										LIMIT 8;`);
 
@@ -213,7 +228,7 @@ module.exports.top8ProductFollowIdCatAndTypeSort = (idCat, typeSort) => {
 										ELSE pro.PRICE
 								END) AS SALEPRICE
 								FROM product AS pro 
-								WHERE pro.CATEGORYID = ${idCat}
+								WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 								ORDER BY PRICE DESC
 								LIMIT 8;`);
   }
@@ -232,7 +247,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 													ELSE pro.PRICE
 											END) AS SALEPRICE
 											FROM product AS pro 
-											WHERE pro.CATEGORYID = ${idCat}
+											WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 											ORDER BY CREATED DESC
 											LIMIT ${N};`);
 
@@ -244,7 +259,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 													ELSE pro.PRICE
 											END) AS SALEPRICE
 											FROM product AS pro 
-											WHERE pro.CATEGORYID = ${idCat}
+											WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 											ORDER BY CREATED ASC
 											LIMIT ${N};`);
 
@@ -256,7 +271,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 													ELSE pro.PRICE
 											END) AS SALEPRICE
 											FROM product AS pro 
-											WHERE pro.CATEGORYID = ${idCat}
+											WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 											ORDER BY PRICE ASC
 											LIMIT ${N};`);
 
@@ -268,7 +283,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 													ELSE pro.PRICE
 											END) AS SALEPRICE
 											FROM product AS pro 
-											WHERE pro.CATEGORYID = ${idCat}
+											WHERE pro.CATEGORYID = ${idCat} AND pro.STATUS = 1
 											ORDER BY PRICE DESC
 											LIMIT ${N};`);
     }
@@ -283,7 +298,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 														ELSE pro.PRICE
 												END) AS SALEPRICE
 												FROM product AS pro
-												WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub}
+												WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub} AND pro.STATUS = 1
 												ORDER BY CREATED DESC
 												LIMIT ${N};`);
 
@@ -295,7 +310,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 														ELSE pro.PRICE
 												END) AS SALEPRICE
 												FROM product AS pro
-												WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub}
+												WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub} AND pro.STATUS = 1
 												ORDER BY CREATED ASC
 												LIMIT ${N};`);
 
@@ -307,7 +322,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 													ELSE pro.PRICE
 											END) AS SALEPRICE
 											FROM product AS pro
-											WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub}
+											WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub} AND pro.STATUS = 1
 											ORDER BY PRICE ASC
 											LIMIT ${N};`);
 
@@ -319,7 +334,7 @@ module.exports.topNProductFollowIdCatAndIdSub = (idCat, idSub, typeSort, N) => {
 													ELSE pro.PRICE
 											END) AS SALEPRICE
 											FROM product AS pro
-											WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub}
+											WHERE pro.CATEGORYID = ${idCat} AND pro.SUBCATEGORYID = ${idSub} AND pro.STATUS = 1
 											ORDER BY PRICE DESC
 											LIMIT ${N};`);
     }
@@ -350,12 +365,12 @@ function returnStringFollowTypeSortAndBrandAndPrice(
           return `ORDER BY CREATED DESC`;
         } else {
           return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE
-					AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+					AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 					ORDER BY CREATED DESC`;
         }
       } else {
         if (priceFilter == 0) {
-          return `WHERE pro.BRANDID = ${brandFilter}
+          return `WHERE pro.BRANDID = ${brandFilter} 
 					ORDER BY CREATED DESC`;
         } else {
           return `WHERE pro.BRANDID = ${brandFilter} AND
@@ -416,7 +431,7 @@ function returnStringFollowTypeSortAndBrandAndPrice(
           return `ORDER BY PRICE DESC`;
         } else {
           return `WHERE ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE
-						AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						AND pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 						ORDER BY PRICE DESC`;
         }
       } else {
@@ -474,7 +489,7 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
           } else {
             return `WHERE pro.CATEGORYID = ${idCat} AND
 						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
-						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 						ORDER BY CREATED DESC`;
           }
         } else {
@@ -486,7 +501,7 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
             return `WHERE pro.CATEGORYID = ${idCat} AND
 						pro.BRANDID = ${brandFilter} AND
 						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
-						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						 pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 						ORDER BY CREATED DESC`;
           }
         }
@@ -500,7 +515,7 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
           } else {
             return `WHERE pro.CATEGORYID = ${idCat} AND 
 						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
-						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 						ORDER BY CREATED ASC`;
           }
         } else {
@@ -521,12 +536,12 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
       case 2:
         if (brandFilter == 0) {
           if (priceFilter == 0) {
-            return `WHERE pro.CATEGORYID = ${idCat}
+            return `WHERE pro.CATEGORYID = ${idCat} 
 						ORDER BY PRICE ASC`;
           } else {
             return `WHERE pro.CATEGORYID = ${idCat} AND 
 						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
-						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 						ORDER BY PRICE ASC`;
           }
         } else {
@@ -538,7 +553,7 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
             return `WHERE pro.CATEGORYID = ${idCat} AND 
 						pro.BRANDID = ${brandFilter} AND
 						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
-						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 						ORDER BY PRICE ASC`;
           }
         }
@@ -552,13 +567,13 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
           } else {
             return `WHERE pro.CATEGORYID = ${idCat} AND 
 						${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
-						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+						pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
 						ORDER BY PRICE DESC`;
           }
         } else {
           if (priceFilter == 0) {
             return `WHERE pro.CATEGORYID = ${idCat} AND 
-						pro.BRANDID = ${brandFilter}
+						pro.BRANDID = ${brandFilter} 
 						ORDER BY PRICE DESC`;
           } else {
             return `WHERE pro.CATEGORYID = ${idCat} AND
@@ -578,15 +593,15 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
             return `ORDER BY CREATED DESC`;
           } else {
             return `${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
-                    pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
+                    pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
                     ORDER BY CREATED DESC`;
           }
         } else {
           if (priceFilter == 0) {
-            return `pro.BRANDID = ${brandFilter}
+            return `pro.BRANDID = ${brandFilter} 
 						        ORDER BY CREATED DESC`;
           } else {
-            return `WHERE 	pro.BRANDID = ${brandFilter} AND
+            return `WHERE pro.BRANDID = ${brandFilter} AND
                     ${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
                     pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
                     ORDER BY CREATED DESC`;
@@ -833,7 +848,8 @@ module.exports.allProductWithCommentQuantity = () => {
 						SUB_CATEGORY.NAME AS SUBCATNAME, count(COMMENT.ID) AS COMMENT_QUANTITY
 		FROM ((product PRODUCT LEFT JOIN comment COMMENT ON PRODUCT.ID = COMMENT.PRODUCTID) 
 					JOIN category CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID) 
-					JOIN sub_category SUB_CATEGORY ON PRODUCT.SUBCATEGORYID = SUB_CATEGORY.ID
+          JOIN sub_category SUB_CATEGORY ON PRODUCT.SUBCATEGORYID = SUB_CATEGORY.ID
+    WHERE PRODUCT.STATUS = 1
 		GROUP BY PRODUCT.ID, PRODUCT.NAME, PRODUCT.IMAGE, CATEGORY.NAME, SUB_CATEGORY.NAME`
   );
 };
@@ -851,7 +867,7 @@ module.exports.top1ProductFollowId = id => {
     END) AS SALEPRICE FROM product AS pro JOIN brand AS bra
     JOIN category as cat JOIN sub_category as sub 
     ON pro.BRANDID = bra.ID AND pro.CATEGORYID = cat.ID AND pro.SUBCATEGORYID = sub.ID
-    AND pro.CATEGORYID = sub.CATEGORYID WHERE pro.ID = ${id}`
+    AND pro.CATEGORYID = sub.CATEGORYID WHERE pro.ID = ${id} AND pro.STATUS = 1`
   );
 };
 

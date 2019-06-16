@@ -65,7 +65,8 @@ module.exports = function(app) {
               EMAIL: profile.emails[0].value,
               BIRTHDATE: null,
               CASH: 0,
-              CUSTOMERTYPEID: 2
+              CUSTOMERTYPEID: 2,
+              STATUS: 1
             };
 
             customerModel
@@ -111,7 +112,8 @@ module.exports = function(app) {
                 EMAIL: profile.emails[0].value,
                 BIRTHDATE: null,
                 CASH: 0,
-                CUSTOMERTYPEID: 2
+                CUSTOMERTYPEID: 2,
+                STATUS: 1
               };
   
               customerModel

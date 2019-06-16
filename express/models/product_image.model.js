@@ -2,17 +2,16 @@
 var db = require("../utils/db");
 
 //Hàm thêm vào list hình ảnh của sản phẩm vào database | input: ID sản phẩm, mảng link hình
-module.exports.addImagesForProduct = (productID,images)=>{
+module.exports.addImagesForProduct = (productID, images) => {
     //Duyệt mảng và insert
-    images.forEach(element => {
+    images.forEach(link => {
         //tạo entity
-        
-        var entity = {
-            LINK:element,
-            PRODUCTID:productID
+        var productImage = {
+            LINK: link,
+            PRODUCTID: productID
         };
         //Thêm vào database
-        db.add('product_image',entity);
+        db.add('product_image', productImage);
     });
 }
 
@@ -21,8 +20,8 @@ module.exports.topNProductImageFollowIdPro = (productID, N) =>{
     return db.load(`SELECT * FROM product_image WHERE PRODUCTID = ${productID} LIMIT ${N}`);
 }
 
-module.exports.deleteProductImage= productID=>{
-    return db.delete('product_image','PRODUCTID',productID);
+module.exports.deleteProductImageByProductID = productID => {
+    return db.delete('product_image', 'PRODUCTID', productID);
 }
 
 //Hàm lấy ra list hình ảnh sản phẩm của product

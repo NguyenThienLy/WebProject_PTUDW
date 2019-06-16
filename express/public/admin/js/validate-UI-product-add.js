@@ -112,9 +112,6 @@ $("#update-product-form").validate({
       number: true,
       comparisonVIPSALE: true
     },
-    TAG: {
-      required: true
-    },
     SHORTDESCRIPTION: {
       required: true,
       maxlength: 400
@@ -165,9 +162,6 @@ $("#update-product-form").validate({
       required: "Vui lòng nhập phần trăm giảm giá (nếu không có, nhập 0)",
       number: "Vui lòng nhập giá trị hợp lệ",
       comparisonVIPSALE: "Nhập giá trị từ 0 đến 100"
-    },
-    TAG: {
-      required: "Vui lòng chọn tag"
     },
     SHORTDESCRIPTION: {
       required: "Vui lòng nhập mô tả tóm tắt về sản phẩm",

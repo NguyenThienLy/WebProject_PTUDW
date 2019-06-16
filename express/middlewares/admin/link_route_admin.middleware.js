@@ -5,6 +5,8 @@ var adminCustomerRoute = require("../../routes/admin/customer.route");
 var adminReportRoute = require("../../routes/admin/report.route");
 var adminOrderRoute = require("../../routes/admin/order.route");
 var adminCommentRoute = require("../../routes/admin/comment.route");
+var adminTagRoute = require("../../routes/admin/tag.route");
+var adminBrandRoute = require("../../routes/admin/brand.route");
 var adminAuthRoute = require("../../routes/admin/auth.route");
 
 var adminAuthMiddleware = require("./auth.middleware");
@@ -65,5 +67,19 @@ module.exports = function(app) {
     adminSidebarActiveMiddleware,
     adminSidebarQuantityBadgeMiddleware,
     adminCommentRoute
+  );
+  app.use(
+    "/admin/tag",
+    adminAuthMiddleware.requireAuth,
+    adminSidebarActiveMiddleware,
+    adminSidebarQuantityBadgeMiddleware,
+    adminTagRoute
+  );
+  app.use(
+    "/admin/brand",
+    adminAuthMiddleware.requireAuth,
+    adminSidebarActiveMiddleware,
+    adminSidebarQuantityBadgeMiddleware,
+    adminBrandRoute
   );
 };

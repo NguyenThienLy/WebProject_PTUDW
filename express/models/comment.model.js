@@ -98,3 +98,10 @@ module.exports.groupStarQuantityFollowProductIdAndTypeProduct = (productId, type
     ORDER BY STARS DESC`);
 };
 
+module.exports.deleteCommentByCustomerId = customerId => {
+  return db.delete("comment", "CUSTOMERID", customerId);
+};
+
+module.exports.deleteCommentByProductId = productId => {
+  return db.delete("comment", "PRODUCTID", productId);
+};
