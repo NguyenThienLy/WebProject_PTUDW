@@ -79,6 +79,10 @@
                         {{#each arrStarInRate}}
                         <i class="fa fa-star checked"></i>
                         {{/each}}
+
+                        {{#each arrStarInRateUnCheck}}
+                        <i class="fa fa-star"></i>
+                        {{/each}}
                     </div>
 
                     <h1 id="h1ProductPriceProductDetail" class="d-inline text-success">{{formatPrice productSalePrice}}
@@ -94,7 +98,7 @@
 
                     <div class="mt-2">
                         <span>Khối lượng: </span>
-                        <span class="text-success"><strong>{{productKilogram}} </strong></span> <span>/1 sp</span>
+                        <span class="text-success"><strong>{{productKilogram}} </strong></span> <span>/ 1 sp</span>
                     </div>
                 </div>
 
@@ -189,76 +193,51 @@
 
             <div id="product-detail-collapse2" class="collapse show pt-3" aria-labelledby="product-detail-heading2"
                 data-parent="#product-detail-accordion">
-                <div>
+                <div id="divContainAllAboutComment">
                     <div class="component-show-rate d-flex rounded-lg row ml-0 mr-0">
                         <div
                             class="content-left col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
                             <p>Đánh giá trung bình</p>
                             <div class="avg-rate font-weight-bold">
-                                <span>4</span>
-                                <span>/5</span>
+                                <span id="spanRateProductDetail">{{productRateStar}}</span>
+                                <span>/ 5</span>
                             </div>
                             <div class="star-rate">
                                 {{#each arrStarInRate}}
                                 <i class="fa fa-star checked"></i>
                                 {{/each}}
+                                {{#each arrStarInRateUnCheck}}
+                                <i class="fa fa-star"></i>
+                                {{/each}}
                             </div>
-                            <p class="review m-0">(<span>85</span> nhận xét)</p>
+                            <p class="review m-0">(<span><strong
+                                        id="strongQuantityCommentProductDetail">{{productCommentsQuantity}}</strong></span>
+                                nhận
+                                xét)</p>
                         </div>
 
-                        <div
+                        <div id="divContainStarsPercentProductDetail"
                             class="content-center col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6 p-3 d-flex flex-column justify-content-center align-items-center">
-                            <div class="star-percent d-flex align-items-center">
-                                <div class="mr-2">5 <i class="fas fa-star"></i></div>
-                                <div class="progress mr-2">
-                                    <div class="progress-bar-1 progress-bar bg-success" role="progressbar"
-                                        aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="percent">76%</div>
-                            </div>
 
+                            {{#each productStarPercentInRate}}
                             <div class="star-percent d-flex align-items-center">
-                                <div class="mr-2">4 <i class="fas fa-star"></i></div>
+                                <div class="mr-2">{{STARS}} <i class="ml-1 fas fa-star"></i></div>
                                 <div class="progress mr-2">
-                                    <div class="progress-bar-2 progress-bar bg-success" role="progressbar"
-                                        aria-valuenow="6" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar-1 progress-bar bg-success" style="width: {{percent}}%"
+                                        role="progressbar" aria-valuenow="{{percent}}" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
-                                <div class="percent">6%</div>
+                                <div class="percent">{{percent}}%</div>
                             </div>
-
-                            <div class="star-percent d-flex align-items-center">
-                                <div class="mr-2">3 <i class="fas fa-star"></i></div>
-                                <div class="progress mr-2">
-                                    <div class="progress-bar-3 progress-bar bg-success" role="progressbar"
-                                        aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="percent">9%</div>
-                            </div>
-
-                            <div class="star-percent d-flex align-items-center">
-                                <div class="mr-2">2 <i class="fas fa-star"></i></div>
-                                <div class="progress mr-2">
-                                    <div class="progress-bar-4 progress-bar" role="progressbar" aria-valuenow="7"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="percent">7%</div>
-                            </div>
-
-                            <div class="star-percent d-flex align-items-center">
-                                <div class="mr-2">1 &nbsp;<i class="fas fa-star"></i></div>
-                                <div class="progress mr-2">
-                                    <div class="progress-bar-5 progress-bar" role="progressbar" aria-valuenow="2"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="percent">2%</div>
-                            </div>
+                            {{/each}}
                         </div>
 
                         <div
                             class="content-right col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
                             <p class="mb-2">Chia sẻ nhận xét về sản phẩm</p>
 
-                            <button type="button" class="btn btn-success w-100" data-toggle="collapse"
+                            <button id="btnHeadingShowPostCommentProductDetail" type="button"
+                                class="btn btn-success w-100" data-toggle="collapse"
                                 data-target="#product-detail-accordion-post-comment-collapse" aria-expanded="false"
                                 aria-controls="product-detail-accordion-post-comment-collapse">
                                 Viết nhận xét của bạn
@@ -267,185 +246,123 @@
                     </div>
 
                     <div class="collapse-show-rate collapse" id="product-detail-accordion-post-comment-collapse">
-                        <div class="comment p-3 rounded-lg">
+                        <form id="formHeadingProductDetail" class="comment p-3 rounded-lg">
                             <h6 class="text-uppercase">gửi nhận xét của bạn</h6>
 
                             <div class="d-flex align-items-center">
                                 <p class="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>
                                 <div class="rate">
-                                    <input type="radio" id="product-detail-accordion-star1" name="rate" value="1" />
-                                    <label for="product-detail-accordion-star1" title="text"></label>
-                                    <input type="radio" id="product-detail-accordion-star2" name="rate" value="2" />
-                                    <label for="product-detail-accordion-star2" title="text"></label>
-                                    <input type="radio" id="product-detail-accordion-star3" name="rate" value="3" />
-                                    <label for="product-detail-accordion-star3" title="text"></label>
-                                    <input type="radio" id="product-detail-accordion-star4" name="rate" value="4" />
-                                    <label for="product-detail-accordion-star4" title="text"></label>
-                                    <input type="radio" id="product-detail-accordion-star5" name="rate" value="5" />
-                                    <label for="product-detail-accordion-star5" title="text"></label>
+                                    <input type="radio" name="rate" value="5" />
+                                    <!-- <label for="product-detail-nav-star1" title="text"></label> -->
+                                    <input type="radio" name="rate" value="4" />
+                                    <!-- <label for="product-detail-nav-star2" title="text"></label> -->
+                                    <input type="radio" name="rate" value="3" />
+                                    <!-- <label for="product-detail-nav-star3" title="text"></label> -->
+                                    <input type="radio" name="rate" value="2" />
+                                    <!-- <label for="product-detail-nav-star4" title="text"></label> -->
+                                    <input type="radio" id="inputRate1" name="rate" value="1" checked="true" />
+                                    <!-- <label for="product-detail-nav-star5" title="text"></label> -->
                                 </div>
                             </div>
 
-                            <form>
+                            <div>
                                 <div class="form-group">
-                                    <label for="product-detail-accordion-collapse-show-rate-comment-title">2. Tiêu đề
-                                        của nhận xét:</label>
+                                    <label for="product-detail-nav-collapse-show-rate-comment-title">2. Tiêu đề của nhận
+                                        xét:</label>
                                     <input type="text" class="form-control form-control-sm"
-                                        placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
-                                        id="product-detail-accordion-collapse-show-rate-comment-title" />
+                                        placeholder="Nhập tiêu đề nhận xét"
+                                        id="product-detail-nav-collapse-show-rate-comment-title" name="TITLE" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="product-detail-accordion-collapse-show-rate-comment-content">3. Viết
-                                        nhận xét của bạn vào bên dưới:</label>
+                                    <label for="product-detail-nav-collapse-show-rate-comment-content">3. Viết nhận xét
+                                        của bạn
+                                        vào bên dưới:</label>
                                     <textarea class="form-control"
-                                        id="product-detail-accordion-collapse-show-rate-comment-content" rows="3"
-                                        placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
+                                        id="product-detail-nav-collapse-show-rate-comment-content" rows="3"
+                                        placeholder="Nhận xét của bạn về sản phẩm này" name="CONTENT"></textarea>
                                 </div>
-                            </form>
+                            </div>
 
-                            <button type="button" class="btn btn-success">
+                            <button id-product-detail="productSimple{{productId}}" is-simple="{{isSimple}}"
+                                id-product={{productId}} id="btnPostCommentProductDetail" type="submit"
+                                class="btn btn-success">
                                 Gửi nhận xét
                             </button>
-                        </div>
+                        </form>
                     </div>
 
-                    <!-- comment -->
-                    <div class="component-comment row ml-0 mr-0 mt-3">
-                        <div class="content-left col-2">
-                            <div class="img-avatar">
-                                <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                    class="w-100 rounded-circle" alt="" />
+                    <div id="divContainCommentsProductDetail">
+                        <!-- comment -->
+                        {{#each productComments}}
+                        <div class="component-comment row ml-0 mr-0 mt-3">
+                            <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                <div class="img-avatar">
+                                    <img src="{{IMAGE}}" class="w-100 rounded-circle" alt="" />
+                                </div>
+
+                                <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
+                                    {{FULLNAME}}
+                                </h5>
+
+                                <p class="mt-0 text-center time-post-cmt">
+                                    {{CREATED}}
+                                </p>
                             </div>
 
-                            <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
-                                Trần Khánh Linh
-                            </h5>
+                            <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
+                                    {{FULLNAME}}
+                                </h5>
+                                <span class="mb-0 time-post-comment">
+                                    <span>(</span>{{CREATED}}<span>)</span>
+                                </span>
+                            </div>
 
-                            <p class="mt-0 text-center time-post-comment">
-                                một ngày trước
-                            </p>
+                            <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                                <div class="d-inline-block mr-2 rate-star">
+                                    {{#each rateStar}}
+                                    <span class="fa fa-star checked"></span>
+                                    {{/each}}
+
+                                    {{#each rateStarUncheck}}
+                                    <span class="fa fa-star"></span>
+                                    {{/each}}
+                                </div>
+
+                                <span class="rate-text">{{TITLE}}</span>
+
+                                {{#if VERIFYCATION}}
+                                <div class="prove-buy">
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    <span>Đã mua sản phẩm</span>
+                                </div>
+                                {{else}}
+                                <div class="prove-not-buy">
+                                    <i class="fas fa-ban mr-1"></i>
+                                    <span>Chưa mua sản phẩm</span>
+                                </div>
+                                {{/if}}
+
+                                <p class="mt-2 mb-2 main-content">
+                                    {{COMMENT}}
+                                </p>
+
+                                <div class="d-flex justify-content-between align-items-center interactive-customer">
+                                    <a href="#" class="text-decoration-none">Số lượt cảm ơn <strong>5</strong></a>
+                                    {{!-- <a href="#" class="text-decoration-none">                </a> --}}
+                                    <span>Nhận xét này hữu ích với bạn?</span>
+                                    <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
+                                        <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="content-top col-12 mb-1">
-                            <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
-                                Trần Khánh Linh
-                            </h5>
-                            <span class="mb-0 time-post-comment">
-                                <span>(</span>một ngày trước<span>)</span>
-                            </span>
-                        </div>
-
-                        <div class="content-right col-12 col-md-10">
-                            <div class="d-inline-block mr-2 rate-star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-
-                            <span class="rate-text">Hài lòng</span>
-
-                            <div class="prove-buy">
-                                <i class="fas fa-check-circle mr-1"></i>
-                                <span>Đã mua sản phẩm</span>
-                            </div>
-
-                            <p class="mt-2 mb-2 main-content">
-                                Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
-                                hơn vào bản thân mình hơn là những gì người khác nghĩ về
-                                mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
-                                trung hơn vào bản thân mình hơn là những gì người khác nghĩ
-                                về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
-                                tập trung hơn vào bản thân mình hơn là những gì người khác
-                                nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
-                                để tập trung hơn vào bản thân mình hơn là những gì người
-                                khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
-                                mình để tập trung hơn vào bản thân mình hơn là những gì
-                                người khác nghĩ về mình.
-                            </p>
-
-                            <div class="d-flex justify-content-between align-items-center interactive-customer">
-                                <a href="#" class="text-decoration-none">Gửi trả lời</a>
-                                <a href="#" class="text-decoration-none">Share Facebook</a>
-                                <span>Nhận xét này hữu ích với bạn?</span>
-                                <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
-                                    <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
-                                </button>
-                            </div>
-                        </div>
+                        <hr />
+                        {{/each}}
+                        <!-- comment -->
                     </div>
-
-                    <hr />
-
-                    <div class="component-comment row ml-0 mr-0 mt-3">
-                        <div class="content-left col-2">
-                            <div class="img-avatar">
-                                <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                                    class="w-100 rounded-circle" alt="" />
-                            </div>
-
-                            <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
-                                Trần Khánh Linh
-                            </h5>
-
-                            <p class="mt-0 text-center time-post-comment">
-                                một ngày trước
-                            </p>
-                        </div>
-
-                        <div class="content-top col-12 mb-1">
-                            <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
-                                Trần Khánh Linh
-                            </h5>
-                            <span class="mb-0 time-post-comment">
-                                <span>(</span>một ngày trước<span>)</span>
-                            </span>
-                        </div>
-
-                        <div class="content-right col-12 col-md-10">
-                            <div class="d-inline-block mr-2 rate-star">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-
-                            <span class="rate-text">Hài lòng</span>
-
-                            <div class="prove-buy">
-                                <i class="fas fa-check-circle mr-1"></i>
-                                <span>Đã mua sản phẩm</span>
-                            </div>
-
-                            <p class="mt-2 mb-2 main-content">
-                                Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
-                                hơn vào bản thân mình hơn là những gì người khác nghĩ về
-                                mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
-                                trung hơn vào bản thân mình hơn là những gì người khác nghĩ
-                                về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
-                                tập trung hơn vào bản thân mình hơn là những gì người khác
-                                nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
-                                để tập trung hơn vào bản thân mình hơn là những gì người
-                                khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
-                                mình để tập trung hơn vào bản thân mình hơn là những gì
-                                người khác nghĩ về mình.
-                            </p>
-
-                            <div class="d-flex justify-content-between align-items-center interactive-customer">
-                                <a href="#" class="text-decoration-none">Gửi trả lời</a>
-                                <a href="#" class="text-decoration-none">Share Facebook</a>
-                                <span>Nhận xét này hữu ích với bạn?</span>
-                                <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
-                                    <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- comment -->
-
                 </div>
             </div>
         </div>
@@ -484,79 +401,54 @@
                     class="content-left col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
                     <p>Đánh giá trung bình</p>
                     <div class="avg-rate font-weight-bold">
-                        <span>4</span>
-                        <span>/5</span>
+                        <span id="spanRateProductDetail">{{productRateStar}}</span>
+                        <span>/ 5</span>
                     </div>
                     <div class="star-rate">
                         {{#each arrStarInRate}}
                         <i class="fa fa-star checked"></i>
                         {{/each}}
+
+                        {{#each arrStarInRateUnCheck}}
+                        <i class="fa fa-star"></i>
+                        {{/each}}
                     </div>
-                    <p class="review m-0">(<span>85</span> nhận xét)</p>
+                    <p class="review m-0">(<span><strong
+                                id="strongQuantityCommentProductDetail">{{productCommentsQuantity}}</strong></span>
+                        nhận
+                        xét)</p>
                 </div>
 
-                <div
+                <div id="divContainStarsPercentProductDetail"
                     class="content-center col-8 col-sm-8 col-md-6 col-lg-6 col-xl-6 p-3 d-flex flex-column justify-content-center align-items-center">
-                    <div class="star-percent d-flex align-items-center">
-                        <div class="mr-2">5 <i class="fas fa-star"></i></div>
-                        <div class="progress mr-2">
-                            <div class="progress-bar-1 progress-bar bg-success" role="progressbar" aria-valuenow="76"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="percent">76%</div>
-                    </div>
 
+                    {{#each productStarPercentInRate}}
                     <div class="star-percent d-flex align-items-center">
-                        <div class="mr-2">4 <i class="fas fa-star"></i></div>
+                        <div class="mr-2">{{STARS}} <i class="ml-1 fas fa-star"></i></div>
                         <div class="progress mr-2">
-                            <div class="progress-bar-2 progress-bar bg-success" role="progressbar" aria-valuenow="6"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar-1 progress-bar bg-success" style="width: {{percent}}%"
+                                role="progressbar" aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
                         </div>
-                        <div class="percent">6%</div>
+                        <div class="percent">{{percent}}%</div>
                     </div>
-
-                    <div class="star-percent d-flex align-items-center">
-                        <div class="mr-2">3 <i class="fas fa-star"></i></div>
-                        <div class="progress mr-2">
-                            <div class="progress-bar-3 progress-bar bg-success" role="progressbar" aria-valuenow="9"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="percent">9%</div>
-                    </div>
-
-                    <div class="star-percent d-flex align-items-center">
-                        <div class="mr-2">2 <i class="fas fa-star"></i></div>
-                        <div class="progress mr-2">
-                            <div class="progress-bar-4 progress-bar" role="progressbar" aria-valuenow="7"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="percent">7%</div>
-                    </div>
-
-                    <div class="star-percent d-flex align-items-center">
-                        <div class="mr-2">1 &nbsp;<i class="fas fa-star"></i></div>
-                        <div class="progress mr-2">
-                            <div class="progress-bar-5 progress-bar" role="progressbar" aria-valuenow="2"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="percent">2%</div>
-                    </div>
+                    {{/each}}
                 </div>
 
                 <div
                     class="content-right col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 p-3 d-flex flex-column justify-content-center align-items-center">
                     <p class="mb-2">Chia sẻ nhận xét về sản phẩm</p>
 
-                    <button type="button" class="btn btn-success w-100" data-toggle="collapse"
-                        data-target="#product-detail-nav-post-comment-collapse" aria-expanded="false"
-                        aria-controls="product-detail-nav-post-comment-collapse">
+                    <button id="btnShowPostCommentProductDetail" type="button" class="btn btn-success w-100"
+                        data-toggle="collapse" data-target="#product-detail-nav-post-comment-collapse"
+                        aria-expanded="true" aria-controls="product-detail-nav-post-comment-collapse">
                         Viết nhận xét của bạn
                     </button>
                 </div>
             </div>
 
             <div class="collapse-show-rate collapse" id="product-detail-nav-post-comment-collapse">
-                <div class="comment p-3 rounded-lg">
+                <form id="formTabProductDetail" class="comment p-3 rounded-lg">
                     <h6 class="text-uppercase">gửi nhận xét của bạn</h6>
 
                     <div class="d-flex align-items-center">
@@ -570,170 +462,108 @@
                             <!-- <label for="product-detail-nav-star3" title="text"></label> -->
                             <input type="radio" name="rate" value="2" />
                             <!-- <label for="product-detail-nav-star4" title="text"></label> -->
-                            <input type="radio" name="rate" value="1" checked />
+                            <input type="radio" id="inputRate1" name="rate" value="1" checked="true" />
                             <!-- <label for="product-detail-nav-star5" title="text"></label> -->
                         </div>
                     </div>
 
-                    <form>
+                    <div>
                         <div class="form-group">
                             <label for="product-detail-nav-collapse-show-rate-comment-title">2. Tiêu đề của nhận
                                 xét:</label>
-                            <input type="text" class="form-control form-control-sm"
-                                placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
+                            <input name="TITLE" type="text" class="form-control form-control-sm"
+                                placeholder="Nhập tiêu đề nhận xét"
                                 id="product-detail-nav-collapse-show-rate-comment-title" />
                         </div>
 
                         <div class="form-group">
-                            <label for="product-detail-nav-collapse-show-rate-comment-content">3. Viết nhận xét của bạn
+                            <label for="product-detail-nav-collapse-show-rate-comment-content">3. Viết nhận xét của
+                                bạn
                                 vào bên dưới:</label>
-                            <textarea class="form-control" id="product-detail-nav-collapse-show-rate-comment-content"
-                                rows="3" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
+                            <textarea name="CONTENT" class="form-control"
+                                id="product-detail-nav-collapse-show-rate-comment-content" rows="3"
+                                placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
                         </div>
-                    </form>
+                    </div>
 
-                    <button type="button" class="btn btn-success">
+                    <button id-product-detail="productSimple{{productId}}" is-simple="{{isSimple}}"
+                        id-product={{productId}} id="btnPostCommentProductDetail" type="submit" class="btn btn-success">
                         Gửi nhận xét
                     </button>
-                </div>
+                </form>
             </div>
 
-            <!-- comment -->
-            <div class="component-comment row ml-0 mr-0 mt-3">
-                <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <div class="img-avatar">
-                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                            class="w-100 rounded-circle" alt="" />
+            <div id="divContainCommentsProductDetail">
+                <!-- comment -->
+                {{#each productComments}}
+                <div class="component-comment row ml-0 mr-0 mt-3">
+                    <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        <div class="img-avatar">
+                            <img src="{{IMAGE}}" class="w-100 rounded-circle" alt="" />
+                        </div>
+
+                        <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
+                            {{FULLNAME}}
+                        </h5>
+
+                        <p class="mt-0 text-center time-post-cmt">
+                            {{CREATED}}
+                        </p>
                     </div>
 
-                    <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
-                        Trần Khánh Linh
-                    </h5>
+                    <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                        <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
+                            {{FULLNAME}}
+                        </h5>
+                        <span class="mb-0 time-post-comment">
+                            <span>(</span>{{CREATED}}<span>)</span>
+                        </span>
+                    </div>
 
-                    <p class="mt-0 text-center time-post-cmt">
-                        một ngày trước
-                    </p>
+                    <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                        <div class="d-inline-block mr-2 rate-star">
+                            {{#each rateStar}}
+                            <span class="fa fa-star checked"></span>
+                            {{/each}}
+
+                            {{#each rateStarUncheck}}
+                            <span class="fa fa-star"></span>
+                            {{/each}}
+                        </div>
+
+                        <span class="rate-text">{{TITLE}}</span>
+
+                        {{#if VERIFYCATION}}
+                        <div class="prove-buy">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            <span>Đã mua sản phẩm</span>
+                        </div>
+                        {{else}}
+                        <div class="prove-not-buy">
+                            <i class="fas fa-ban mr-1"></i>
+                            <span>Chưa mua sản phẩm</span>
+                        </div>
+                        {{/if}}
+
+                        <p class="mt-2 mb-2 main-content">
+                            {{COMMENT}}
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center interactive-customer">
+                            <a href="#" class="text-decoration-none">Số lượt cảm ơn <strong>5</strong></a>
+                            {{!-- <a href="#" class="text-decoration-none">                </a> --}}
+                            <span>Nhận xét này hữu ích với bạn?</span>
+                            <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
+                                <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
-                    <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
-                        Trần Khánh Linh
-                    </h5>
-                    <span class="mb-0 time-post-comment">
-                        <span>(</span>một ngày trước<span>)</span>
-                    </span>
-                </div>
-
-                <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <div class="d-inline-block mr-2 rate-star">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-
-                    <span class="rate-text">Hài lòng</span>
-
-                    <div class="prove-buy">
-                        <i class="fas fa-check-circle mr-1"></i>
-                        <span>Đã mua sản phẩm</span>
-                    </div>
-
-                    <p class="mt-2 mb-2 main-content">
-                        Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
-                        hơn vào bản thân mình hơn là những gì người khác nghĩ về
-                        mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
-                        trung hơn vào bản thân mình hơn là những gì người khác nghĩ
-                        về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
-                        tập trung hơn vào bản thân mình hơn là những gì người khác
-                        nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
-                        để tập trung hơn vào bản thân mình hơn là những gì người
-                        khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
-                        mình để tập trung hơn vào bản thân mình hơn là những gì
-                        người khác nghĩ về mình.
-                    </p>
-
-                    <div class="d-flex justify-content-between align-items-center interactive-customer">
-                        <a href="#" class="text-decoration-none">Gửi trả lời</a>
-                        <a href="#" class="text-decoration-none">Share Facebook</a>
-                        <span>Nhận xét này hữu ích với bạn?</span>
-                        <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
-                            <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
-                        </button>
-                    </div>
-                </div>
+                <hr />
+                {{/each}}
+                <!-- comment -->
             </div>
-
-            <hr />
-
-            <div class="component-comment row ml-0 mr-0 mt-3">
-                <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    <div class="img-avatar">
-                        <img src="https://vaperz.co.uk/wp-content/uploads/Lemon-E-Liquid.jpg"
-                            class="w-100 rounded-circle" alt="" />
-                    </div>
-
-                    <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
-                        Trần Khánh Linh
-                    </h5>
-
-                    <p class="mt-0 text-center time-post-cmt">
-                        một ngày trước
-                    </p>
-                </div>
-
-                <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
-                    <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
-                        Trần Khánh Linh
-                    </h5>
-                    <span class="mb-0 time-post-comment">
-                        <span>(</span>một ngày trước<span>)</span>
-                    </span>
-                </div>
-
-                <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <div class="d-inline-block mr-2 rate-star">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-
-                    <span class="rate-text">Hài lòng</span>
-
-                    <div class="prove-buy">
-                        <i class="fas fa-check-circle mr-1"></i>
-                        <span>Đã mua sản phẩm</span>
-                    </div>
-
-                    <p class="mt-2 mb-2 main-content">
-                        Mình thấy nội dung cuốn sách hữu ích cho mình để tập trung
-                        hơn vào bản thân mình hơn là những gì người khác nghĩ về
-                        mình. Mình thấy nội dung cuốn sách hữu ích cho mình để tập
-                        trung hơn vào bản thân mình hơn là những gì người khác nghĩ
-                        về mình. Mình thấy nội dung cuốn sách hữu ích cho mình để
-                        tập trung hơn vào bản thân mình hơn là những gì người khác
-                        nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho mình
-                        để tập trung hơn vào bản thân mình hơn là những gì người
-                        khác nghĩ về mình. Mình thấy nội dung cuốn sách hữu ích cho
-                        mình để tập trung hơn vào bản thân mình hơn là những gì
-                        người khác nghĩ về mình.
-                    </p>
-
-                    <div class="d-flex justify-content-between align-items-center interactive-customer">
-                        <a href="#" class="text-decoration-none">Gửi trả lời</a>
-                        <a href="#" class="text-decoration-none">Share Facebook</a>
-                        <span>Nhận xét này hữu ích với bạn?</span>
-                        <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
-                            <i class="far fa-thumbs-up mr-1"></i>Cảm ơn
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <!-- comment -->
-
         </div>
         <!-- nav-product-detail-comment-tab -->
 
@@ -913,9 +743,34 @@
 </div>
 <!-- the same, sale product -->
 
+<!-- component not enough product modal -->
+<div class="modal fade" id="not-show-comment-product-modal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Hiện tại không hiển thị được <strong>bình luận</strong>, xin lỗi quí khách!!!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- component not enough product modal -->
+
 {{#section 'js'}}
 <script src="/customer/js/image-product-detail.js"></script>
 <script src="/customer/js/breadcrumb-margin.js"></script>
 {{!-- <script src="/all/js/compress-image.js"></script> --}}
 <script src="/customer/js/add-in-cart-product-detail.js"></script>
+<script src="/customer/js/handle-in-comment-product-detail.js"></script>
+<script src="/customer/js/product-detail.js"></script>
+{{!-- <script src="/customer/js/handle-heading-in-comment-product-detail.js"></script> --}}
 {{/section}}

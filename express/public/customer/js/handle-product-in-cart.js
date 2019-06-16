@@ -4,23 +4,6 @@ $(document).ready(function() {
 
   sumPriceInFastCart();
 
-  // // Add product simple in cart
-  // $("#containProductSimple div div a").on("click", function() {
-  //   var $idProductToCart = $(this).attr("id-product-to-cart");
-  //   var $id = $(this).attr("id-product");
-
-  //   $.post(
-  //     "/customer/cart/add-product-in-cart",
-  //     { productId: $id, isSimple: true },
-  //     function(data) {
-  //       if (data === "success") {
-  //         addProductSimpleToCart($idProductToCart, $id);
-  //         checkHaveProductInCart();
-  //       }
-  //     }
-  //   );
-  // });
-
   // Add product simple in cart
   $(document).on("click", "#containProductSimple div div #aAddProductSimple", function() {
     var $idProductToCart = $(this).attr("id-product-to-cart");
@@ -36,7 +19,7 @@ $(document).ready(function() {
           sumPriceInFastCart();
         }
         else if (data === "notEnough") {
-          $("#not-enough-product").modal();
+          $("#not-enough-product-modal").modal();
         }
       }
     );
@@ -55,6 +38,9 @@ $(document).ready(function() {
           addProductComboToCart($idProductToCart, $id);
           checkHaveProductInCart();
           sumPriceInFastCart();
+        }
+        else if (data === "notEnough") {
+          $("#not-enough-product-modal").modal();
         }
       }
     );

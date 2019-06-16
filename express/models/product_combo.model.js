@@ -261,7 +261,7 @@ module.exports.top1ProductComboFollowId = id => {
     pro3.IMAGE AS IMAGE3, pro1.ID AS ID1, pro2.ID AS ID2, pro3.ID AS ID3, pro1.NAME AS NAME1,
     pro2.NAME AS NAME2, pro3.NAME AS NAME3,
     pro_cb.INVENTORY AS INVENTORY, pro_cb.KILOGRAM AS KILOGRAM,
-    pro_cb.RATE AS RATE, pro_cb.DESCRIPTION, pro_cb.SHORTDESCRIPTION, 
+    pro_cb.RATE AS RATE, pro_cb.DESCRIPTION, pro_cb.SHORTDESCRIPTION, pro_cb.RATE,
     pro_cb.PRICE,
     (CASE
         WHEN pro_cb.SALE > 0 THEN (pro_cb.PRICE - pro_cb.PRICE * (pro_cb.SALE / 100))
@@ -279,4 +279,20 @@ module.exports.GetInventoryProductComboFollowId = id => {
     `SELECT INVENTORY FROM product_combo WHERE ID = ${id}`
   );
 };
+
+// Cập nhật rate theo sản phẩm
+module.exports.updateRateFollowProductId = id => {
+  return db.load(`UPDATE product_combo SET RATE = (SELECT ROUND(AVG(STARS)) FROM comment WHERE PRODUCTID = ${id} AND ISSIMPLE = 0)
+  WHERE ID = ${id}`);
+}
+
+// Lấy ra đánh giá của theo sản phẩm
+module.exports.getRateProductComboFollowProductId = id => {
+  return db.load(`SELECT pro_cb.RATE AS RATE
+  FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
+  ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
+  pro_cb.PRODUCTID3 = pro_3.ID
+  WHERE pro_cb.ID = ${id}`);
+}
+
 
