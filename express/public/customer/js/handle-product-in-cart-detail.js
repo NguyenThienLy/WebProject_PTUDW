@@ -58,7 +58,7 @@ $(document).ready(function() {
               sumPriceInCartDetail();
             }
             else if (data === "notEnough") {
-              $("#not-enough-product").modal();
+              $("#not-enough-product-modal").modal();
             }
           }
         );
@@ -122,6 +122,9 @@ $(document).ready(function() {
               increaseQuantityProductCombo($idProductCartDetail, currQuantity);
               sumPriceInCartDetail();
             }
+            else if (data === "notEnough") {
+              $("#not-enough-product-modal").modal();
+            }
           }
         );
       }
@@ -184,7 +187,11 @@ $(document).ready(function() {
             alert("login");
           }
           else {
-            $("#header-user-modal").modal();
+            $("#not-login-system-modal").modal();  
+
+            $(document).on("click", "#not-login-system-modal #btnAceptLoginSystem", function() {
+              $("#header-user-modal").modal();
+            });
           }
         }
       );

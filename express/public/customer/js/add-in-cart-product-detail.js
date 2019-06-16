@@ -50,7 +50,7 @@ $(document).ready(function() {
                 currQuantity
               );
             } else if (data === "notEnough") {
-              $("#not-enough-product").modal();
+              $("#not-enough-product-modal").modal();
             }
           }
         );
@@ -82,7 +82,7 @@ $(document).ready(function() {
             checkHaveProductInCart();
             sumPriceInFastCart();
           } else if (data === "notEnough") {
-            $("#not-enough-product").modal();
+            $("#not-enough-product-modal").modal();
           }
         }
       );

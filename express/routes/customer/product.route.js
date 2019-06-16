@@ -12,6 +12,8 @@ router.get("/product-detail/product-simple/:idProduct", controller.productSimple
 
 router.get("/product-detail/product-combo/:idProduct", controller.productComboDetail);
 
+router.post("/post-comment-product-detail", controller.postCommentProductDetail);
+
 // Hiển thị tất cả sản phẩm simple và combo
 router.get("/product-all-show", controller.productAllShow);
 

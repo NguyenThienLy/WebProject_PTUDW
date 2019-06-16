@@ -878,3 +878,15 @@ module.exports.GetInventoryProductFollowId = id => {
   );
 };
 
+// Cập nhật rate theo sản phẩm
+module.exports.updateRateFollowProductId = id => {
+  return db.load(`UPDATE product SET RATE = (SELECT ROUND(AVG(STARS)) FROM comment WHERE PRODUCTID = ${id} AND ISSIMPLE = 1)
+  WHERE ID = ${id}`);
+}
+
+// Lấy ra đánh giá của theo sản phẩm
+module.exports.getRateProductSimpleFollowProductId = id => {
+  return db.load(`SELECT RATE FROM product 
+  WHERE ID = ${id}`);
+}
+

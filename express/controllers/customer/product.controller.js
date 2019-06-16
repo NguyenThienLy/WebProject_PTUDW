@@ -12,6 +12,12 @@ var sessionCartModel = require("../../models/session_cart.model");
 var brandModel = require("../../models/brand.model");
 // Gọi productImageModel
 var productImageModel = require("../../models/product_image.model");
+// Gọi commentModel
+var commentModel = require("../../models/comment.model");
+// Gọi commentReactionModel
+var commentReactionModel = require("../../models/comment_reaction.model");
+// Gọi orderInfoModel
+var orderInfoModel = require("../../models/order_info.model");
 
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
@@ -186,9 +192,18 @@ module.exports.productSimpleDetail = function(req, res, next) {
       productModel.top1ProductFollowId(idProduct),
       productModel.topNProductTheSameFollowOffsetFollowIdPro(idProduct, 4, 0),
       productModel.topNProductBestSalerFollowOffset(4, 0),
-      productImageModel.topNProductImageFollowIdPro(idProduct, 5)
+      productImageModel.topNProductImageFollowIdPro(idProduct, 5),
+      commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
+        idProduct,
+        5,
+        0,
+        1
+      ),
+      commentModel.commentsQuantityFollowIdProductAndTypeProduct(idProduct, 1),
+      commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 1)
     ]).then(values => {
-      var arrStar = [];
+      var arrStarProduct = [];
+      var arrStarUnCheckProduct = [];
       var arrShortDescription = [];
       var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
 
@@ -209,17 +224,77 @@ module.exports.productSimpleDetail = function(req, res, next) {
         arrShortDescription.push(shortDescription);
       }
 
-      for (var i = 0; i < values[0][0].RATE; i++) arrStar.push(i);
+      /* Đánh giá sao cho sản phẩm */
+      for (var i = 0; i < values[0][0].RATE; i++) arrStarProduct.push(i);
+
+      for (var i = values[0][0].RATE; i < 5; i++) arrStarUnCheckProduct.push(i);
+      /* Đánh giá sao cho sản phẩm */
+
+      /* Đánh giá sao cho bình luận */
+      for (commentRate of values[4]) {
+        var arrStar = [];
+        var arrStarUnCheck = [];
+
+        for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
+
+        for (var i = commentRate.STARS; i < 5; i++) arrStarUnCheck.push(i);
+
+        commentRate.rateStar = arrStar;
+        commentRate.rateStarUncheck = arrStarUnCheck;
+      }
+      /* Đánh giá sao cho bình luận */
+
+      /* Tính lượng % đánh giá của người dùng */
+      // Thêm các phần tử thiếu
+      var starInPercent = 5;
+
+      // Nếu mảng trống
+      if (values[6].length === 0) {
+        for (var i = 1; i <= 5; i++) {
+          var star = { STARS: i, QUANTITY: 0, percent: 0 };
+
+          values[6].push(star);
+        }
+      } else {
+        for (var i = 0; i < values[5].length; i++) {
+          if (+values[6][i].STARS < starInPercent) {
+            var star = { STARS: starInPercent, QUANTITY: 0 };
+            values[6].push(star);
+            starInPercent--;
+            i--;
+          } else starInPercent--;
+        }
+
+        // Sắp xếp lại
+        values[6].sort(function(star1, star2) {
+          return star1.STARS < star2.STARS;
+        });
+
+        var sumQuantity = values[6].reduce(function(sum, star) {
+          return sum + +star.QUANTITY;
+        }, 0);
+
+        // Thêm thuộc tính phần trăm
+        for (var star of values[6]) {
+          star.percent = Math.round((star.QUANTITY / sumQuantity) * 100);
+        }
+      }
+      /* Tính lượng % đánh giá của người dùng */
 
       res.render("customer/product-simple-detail", {
         layout: "main-customer.hbs",
-        arrStarInRate: arrStar,
+        arrStarInRate: arrStarProduct,
+        arrStarInRateUnCheck: arrStarUnCheckProduct,
         arrShortDescription: arrShortDescription,
         productsTheSame: values[1],
         productsBestSaler: values[2],
         productSimpleImages: values[3],
+        productComments: values[4],
+        productCommentsQuantity: values[5][0].COMMENT_QUANTITY,
+        productStarPercentInRate: values[6],
         productId: idProduct,
         isSimple: true,
+        productRateStar: values[0][0].RATE,
         productName: values[0][0].NAME,
         productPrice: values[0][0].PRICE,
         productSale: values[0][0].SALE,
@@ -263,9 +338,18 @@ module.exports.productComboDetail = function(req, res, next) {
         3,
         0
       ),
-      productComboModel.topNProductComboBestSalerFollowOffset(3, 0)
+      productComboModel.topNProductComboBestSalerFollowOffset(3, 0),
+      commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
+        idProduct,
+        5,
+        0,
+        0
+      ),
+      commentModel.commentsQuantityFollowIdProductAndTypeProduct(idProduct, 0),
+      commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 0)
     ]).then(values => {
-      var arrStar = [];
+      var arrStarProduct = [];
+      var arrStarUnCheckProduct = [];
       var arrShortDescription = [];
       var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
 
@@ -287,25 +371,79 @@ module.exports.productComboDetail = function(req, res, next) {
       }
 
       //arrShortDescription
-      console.log(
-        "TCL: module.exports.productComboDetail -> arrShortDescription",
-        arrShortDescription
-      );
+      // console.log(
+      //   "TCL: module.exports.productComboDetail -> arrShortDescription",
+      //   arrShortDescription
+      // );
 
-      // Mảng các sao của sản phẩm
-      for (var i = 0; i < values[0][0].RATE; i++) arrStar.push(i);
+      /* Đánh giá sao cho sản phẩm */
+      for (var i = 0; i < values[0][0].RATE; i++) arrStarProduct.push(i);
 
-      // shorDescriptions.split(".");
+      for (var i = values[0][0].RATE; i < 5; i++) arrStarUnCheckProduct.push(i);
+      /* Đánh giá sao cho sản phẩm */
 
-      // shorDescriptions
-      // console.log("TCL: module.exports.productComboDetail -> shorDescriptions", shorDescriptions)
+      /* Đánh giá sao cho bình luận */
+      for (commentRate of values[3]) {
+        var arrStar = [];
+        var arrStarUnCheck = [];
+
+        for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
+
+        for (var i = commentRate.STARS; i < 5; i++) arrStarUnCheck.push(i);
+
+        commentRate.rateStar = arrStar;
+        commentRate.rateStarUncheck = arrStarUnCheck;
+      }
+      /* Đánh giá sao cho bình luận */
+
+      /* Tính lượng % đánh giá của người dùng */
+      // Thêm các phần tử thiếu
+      var starInPercent = 5;
+
+      // Nếu mảng trống
+      if (values[5].length === 0) {
+        for (var i = 1; i <= 5; i++) {
+          var star = { STARS: i, QUANTITY: 0, percent: 0 };
+
+          values[5].push(star);
+        }
+      } else {
+        for (var i = 0; i < values[5].length; i++) {
+          if (+values[5][i].STARS < starInPercent) {
+            var star = { STARS: starInPercent, QUANTITY: 0 };
+            values[5].push(star);
+            starInPercent--;
+            i--;
+          } else starInPercent--;
+        }
+
+        // Sắp xếp lại
+        values[5].sort(function(star1, star2) {
+          return star1.STARS < star2.STARS;
+        });
+
+        var sumQuantity = values[5].reduce(function(sum, star) {
+          return sum + +star.QUANTITY;
+        }, 0);
+
+        // Thêm thuộc tính phần trăm
+        for (var star of values[5]) {
+          star.percent = Math.round((star.QUANTITY / sumQuantity) * 100);
+        }
+      }
+      /* Tính lượng % đánh giá của người dùng */
 
       res.render("customer/product-combo-detail", {
         layout: "main-customer.hbs",
-        arrStarInRate: arrStar,
+        arrStarInRate: arrStarProduct,
+        arrStarInRateUnCheck: arrStarUnCheckProduct,
         arrShortDescription: arrShortDescription,
         productsTheSame: values[1],
         productsBestSaler: values[2],
+        productComments: values[3],
+        productCommentsQuantity: values[4][0].COMMENT_QUANTITY,
+        productStarPercentInRate: values[5],
+        productRateStar: values[0][0].RATE,
         productImage1: values[0][0].IMAGE1,
         productImage2: values[0][0].IMAGE2,
         productImage3: values[0][0].IMAGE3,
@@ -336,6 +474,302 @@ module.exports.productComboDetail = function(req, res, next) {
         }
       });
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.postCommentProductDetail = function(req, res, next) {
+  try {
+    // Lấy ID của product simple
+    var idProduct = req.body.idProduct;
+    // Kiểm tra xem người dùng thêm simple hay combo
+    var isSimple = req.body.isSimple === "true";
+    // Lấy đánh giá sao
+    var starComment = req.body.starComment;
+    // Lấy tiêu đề
+    var titleComment = req.body.titleComment;
+    // Lấy nội dung bình luận
+    var contentComment = req.body.contentComment;
+    // Lấy người dùng hiện tại
+    var customer = res.locals.authUser;
+
+    if (isSimple === true) {
+      var comment = {
+        CUSTOMERID: customer.ID,
+        PRODUCTID: idProduct,
+        CREATED: null,
+        TITLE: titleComment,
+        COMMENT: contentComment,
+        STARS: starComment,
+        LIKES: 0,
+        VERIFYCATION: 0,
+        ISSIMPLE: 1
+      };
+
+      orderInfoModel
+        .checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct(
+          comment.PRODUCTID,
+          comment.CUSTOMERID,
+          comment.ISSIMPLE
+        )
+        .then(quantity => {
+          // Nếu khách hàng đã mua sản phẩm
+          if (+quantity[0].QUANTITY > 0) {
+            comment.VERIFYCATION = 1;
+          }
+
+          commentModel
+            .addComment(comment)
+            .then(successAdd => {
+              // Cập nhật đánh giá
+              productModel
+                .updateRateFollowProductId(idProduct)
+                .then(successUpdate => {
+                  Promise.all([
+                    commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
+                      idProduct,
+                      5,
+                      0,
+                      comment.ISSIMPLE
+                    ),
+                    commentModel.groupStarQuantityFollowProductIdAndTypeProduct(
+                      idProduct,
+                      comment.ISSIMPLE
+                    ),
+                    productModel.getRateProductSimpleFollowProductId(idProduct),
+                    commentModel.commentsQuantityFollowIdProductAndTypeProduct(
+                      idProduct,
+                      comment.ISSIMPLE
+                    )
+                  ])
+                    .then(values => {
+                      var arrStar = [];
+                      var arrStarUnCheck = [];
+
+                      /* Đánh giá sao cho bình luận */
+                      for (commentRate of values[0]) {
+                        var arrStar = [];
+                        var arrStarUnCheck = [];
+
+                        for (var i = 0; i < commentRate.STARS; i++)
+                          arrStar.push(i);
+
+                        for (var i = commentRate.STARS; i < 5; i++)
+                          arrStarUnCheck.push(i);
+
+                        commentRate.rateStar = arrStar;
+                        commentRate.rateStarUncheck = arrStarUnCheck;
+                      }
+                      /* Đánh giá sao cho bình luận */
+
+                      /* Tính lượng % đánh giá của người dùng */
+                      // Thêm các phần tử thiếu
+                      var starInPercent = 5;
+
+                      if (values[1].length === 0) {
+                        for (var i = 1; i <= 5; i++) {
+                          var star = { STARS: i, QUANTITY: 0, percent: 0 };
+
+                          values[1].push(star);
+                        }
+                      } else {
+                        for (var i = 0; i < values[1].length; i++) {
+                          if (+values[1][i].STARS < starInPercent) {
+                            var star = { STARS: starInPercent, QUANTITY: 0 };
+                            values[1].push(star);
+                            starInPercent--;
+                            i--;
+                          } else starInPercent--;
+                        }
+
+                        // Sắp xếp lại
+                        values[1].sort(function(star1, star2) {
+                          return star1.STARS < star2.STARS;
+                        });
+
+                        var sumQuantity = values[1].reduce(function(sum, star) {
+                          return sum + +star.QUANTITY;
+                        }, 0);
+
+                        // Thêm thuộc tính phần trăm
+                        for (var star of values[1]) {
+                          star.percent = Math.round(
+                            (+star.QUANTITY / sumQuantity) * 100
+                          );
+                        }
+                      }
+                      /* Tính lượng % đánh giá của người dùng */
+                      //values[0]
+                      //console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
+                      //values[1]
+                      //console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
+                      //values[2].RATE
+                      // console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
+                      // //values[2].COMMENT_QUANTITY
+                      // console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
+                      res.json({
+                        comments: JSON.stringify(values[0]),
+                        percentsStar: JSON.stringify(values[1]),
+                        rate: JSON.stringify(values[2][0].RATE),
+                        quantityComment: JSON.stringify(
+                          values[3][0].COMMENT_QUANTITY
+                        )
+                      });
+                    })
+                    .catch(err => {
+                      res.send("fail");
+                    });
+                })
+                .catch(err => {
+                  res.send("fail");
+                });
+            })
+            .catch(err => {
+              res.send("fail");
+            });
+        })
+        .catch(err => {
+          res.send("fail");
+        });
+    } else {
+      var comment = {
+        CUSTOMERID: customer.ID,
+        PRODUCTID: idProduct,
+        CREATED: null,
+        TITLE: titleComment,
+        COMMENT: contentComment,
+        STARS: starComment,
+        LIKES: 0,
+        VERIFYCATION: 0,
+        ISSIMPLE: 0
+      };
+
+      orderInfoModel
+        .checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct(
+          comment.PRODUCTID,
+          comment.CUSTOMERID,
+          comment.ISSIMPLE
+        )
+        .then(quantity => {
+          // Nếu khách hàng đã mua sản phẩm
+          if (+quantity[0].QUANTITY > 0) {
+            comment.VERIFYCATION = 1;
+          }
+          commentModel
+            .addComment(comment)
+            .then(successAdd => {
+              // Cập nhật đánh giá
+              productComboModel
+                .updateRateFollowProductId(idProduct)
+                .then(successUpdate => {
+                  Promise.all([
+                    commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
+                      idProduct,
+                      5,
+                      0,
+                      comment.ISSIMPLE
+                    ),
+                    commentModel.groupStarQuantityFollowProductIdAndTypeProduct(
+                      idProduct,
+                      comment.ISSIMPLE
+                    ),
+                    productComboModel.getRateProductComboFollowProductId(idProduct),
+                    commentModel.commentsQuantityFollowIdProductAndTypeProduct(
+                      idProduct,
+                      comment.ISSIMPLE
+                    )
+                  ])
+                    .then(values => {
+                      var arrStar = [];
+                      var arrStarUnCheck = [];
+
+                      /* Đánh giá sao cho bình luận */
+                      for (commentRate of values[0]) {
+                        var arrStar = [];
+                        var arrStarUnCheck = [];
+
+                        for (var i = 0; i < commentRate.STARS; i++)
+                          arrStar.push(i);
+
+                        for (var i = commentRate.STARS; i < 5; i++)
+                          arrStarUnCheck.push(i);
+
+                        commentRate.rateStar = arrStar;
+                        commentRate.rateStarUncheck = arrStarUnCheck;
+                      }
+                      /* Đánh giá sao cho bình luận */
+
+                      /* Tính lượng % đánh giá của người dùng */
+                      // Thêm các phần tử thiếu
+                      var starInPercent = 5;
+
+                      if (values[1].length === 0) {
+                        for (var i = 1; i <= 5; i++) {
+                          var star = { STARS: i, QUANTITY: 0, percent: 0 };
+
+                          values[1].push(star);
+                        }
+                      } else {
+                        for (var i = 0; i < values[1].length; i++) {
+                          if (+values[1][i].STARS < starInPercent) {
+                            var star = { STARS: starInPercent, QUANTITY: 0 };
+                            values[1].push(star);
+                            starInPercent--;
+                            i--;
+                          } else starInPercent--;
+                        }
+
+                        // Sắp xếp lại
+                        values[1].sort(function(star1, star2) {
+                          return star1.STARS < star2.STARS;
+                        });
+
+                        var sumQuantity = values[1].reduce(function(sum, star) {
+                          return sum + +star.QUANTITY;
+                        }, 0);
+
+                        // Thêm thuộc tính phần trăm
+                        for (var star of values[1]) {
+                          star.percent = Math.round(
+                            (+star.QUANTITY / sumQuantity) * 100
+                          );
+                        }
+                      }
+                      /* Tính lượng % đánh giá của người dùng */
+                    //   //values[0]
+                    //   console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
+                    //   //values[1]
+                    //   console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
+                    //  // values[2].RATE
+                    //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
+                    //   //values[2].COMMENT_QUANTITY
+                    //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
+                      res.json({
+                        comments: JSON.stringify(values[0]),
+                        percentsStar: JSON.stringify(values[1]),
+                        rate: JSON.stringify(values[2][0].RATE),
+                        quantityComment: JSON.stringify(
+                          values[3][0].COMMENT_QUANTITY
+                        )
+                      });
+                    })
+                    .catch(err => {
+                      res.send("fail");
+                    });
+                })
+                .catch(err => {
+                  res.send("fail");
+                });
+            })
+            .catch(err => {
+              res.send("fail");
+            });
+        })
+        .catch(err => {
+          res.send("fail");
+        });
+    }
   } catch (error) {
     next(error);
   }
