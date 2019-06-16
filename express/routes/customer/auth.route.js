@@ -38,4 +38,25 @@ router.get(
 // Hàm kiểm tra xem người có đăng nhập chưa
 router.post("/check-is-login", controller.checkIsLogin);
 
+//Nhận về post update
+router.post('/update', controller.updateInfo);
+
+//Kiểm tra mật khẩu có đúng hay không
+router.get('/is-password', controller.IsPasswork);
+
+//Cập nhật mật khẩu mới
+router.post('/update-password', controller.UpdatePassWord);
+
+//Quên mật khẩu
+router.post('/forgot-pass', controller.SendMail);
+
+//Nhận về đường dẫn để trả về trang cập nhật mật khẩu
+router.get('/reset/:token',controller.renderResetPage);
+
+router.post('/reset-pass/:token',controller.resetPass);
+
+//Kiểm tra mail có tồn tại hay không
+router.get('/is-available-mail', controller.IsAvailaleMail);
+
+
 module.exports = router;
