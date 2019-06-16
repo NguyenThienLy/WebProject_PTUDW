@@ -19,6 +19,27 @@ $("#switchType").on("change", function() {
   }
 });
 
+// Xóa sản phẩm simple
+$(".post_delete_simple").click(function() {
+  var deleteProductID = $(this).attr("id");
+
+  $.ajax({
+    type: "POST",
+    url: "/admin/product/product-delete",
+    data: { ProductID: deleteProductID },
+    success: function(data) {
+      if (data) {
+        //load lại trang
+        window.location.href = location.href;
+      } else {
+        alert("Không thể xóa sản phẩm!");
+      }
+    }
+  });
+});
+
+
+// Xóa sản phẩm combo
 $(".post_delete_combo").click(function() {
   var deletedComboID = $(this).attr("id");
 
@@ -31,7 +52,7 @@ $(".post_delete_combo").click(function() {
         //load lại trang
         window.location.href = location.href;
       } else {
-        alert("Không được xóa sản phẩm!");
+        alert("Không thể xóa sản phẩm!");
       }
     }
   });
@@ -57,16 +78,8 @@ function reloadSubCategory(data) {
     $("#SubCategory").html(option);
 }
 
-$("#btn_add_new").click(function () {
-    var base_url = location.protocol + "//" + document.domain + ":" + location.port;
-    //Chuyển trang
-    window.location = base_url + `/admin/product/product-add`;
-});
-
 //Tìm kiếm
 $("#btn_search").click(function () {
-
-
     var selectedCategory = $("#selectProductType").children("option:selected").val();
     var selectedSubCategory = $("#SubCategory").children("option:selected").val();
     var selectedBrand = $("#Brand").children("option:selected").val();

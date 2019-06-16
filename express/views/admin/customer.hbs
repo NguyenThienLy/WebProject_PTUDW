@@ -1,6 +1,8 @@
 {{#section 'css'}}
 <title>Quản lí khách hàng</title>
 
+<link href="/admin/css/customer.css" rel="stylesheet" />
+
 {{!-- responsive --}}
 <link href="/admin/css/responsive-customer.css" rel="stylesheet" />
 {{!-- responsive --}}
@@ -38,9 +40,7 @@
                         <th>Loại KH</th>
                         <th>Tài khoản</th>
                         <th>Họ tên</th>
-                        <th>Email</th>
-                        <th>Ngày sinh</th>
-                        <th>Ví tiền</th>
+                        <th class="text-center">Ảnh đại diện</th>
                         <th>Thời gian đăng ký</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
@@ -48,20 +48,20 @@
 
                 <tbody>
                     {{#each this.customers}}
-                        <!--Nội dung của một hàng-->
+                    <!--Nội dung của một hàng-->
                     <tr>
                         <td align="center">{{ID}}</td>
-                        <td>{{TYPE}}</td>
+                        <td>{{TYPENAME}}</td>
                         <td>{{USERNAME}}</td>
                         <td>{{FULLNAME}}</td>
-                        <td>{{EMAIL}}</td>
-                        <td>{{BIRTHDATE}}</td>
-                        <td> {{formatPrice CASH}} đ</td>
-                        <td>
-                            <span>{{CREATED}}</span>
-                        </td>
+                        <td align="center"><img src="{{IMAGE}}" class="show-image"></td>
+                        <td>{{CREATED}}</td>
                         <td align="center">
-                            <button class="btn btn-sm btn-danger" type="button">
+                            <button class="btn btn-sm btn-primary post_modal_get_info" id={{ID}} type="button" data-toggle="modal"
+                                data-target="#customerDetailModal">
+                                <i class="fas fa-info"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger post_delete_customer" id="{{ID}}" type="button">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
@@ -73,15 +73,13 @@
             <!--End Table hiển thị sản phẩm-->
 
             <!--Modal hiển thị thông tin chi tiết của đơn hàng-->
-            <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg" id="customerDetailModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">
-                                Thông tin chi tiết đơn hàng&nbsp;
+                            <h5 class="modal-title">
+                                Thông tin chi tiết khách hàng
                             </h5>
-                            <h5 class="modal-title">KH120</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -89,99 +87,82 @@
 
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <div class="row ml-0 mr-0">
-                                    <div class="col-3 p-0">
-                                        <p>Khách hàng:</p>
-                                    </div>
-                                    <div class="col-9">
-                                        Lê Tường Qui
+                                <div class="row ml-0 mr-0" id="modal-image">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <img src="/uploads/IMG_NOTFOUND.jpg" id="modal-customer-image"
+                                            class="show-image">
                                     </div>
                                 </div>
 
                                 <div class="row ml-0 mr-0">
                                     <div class="col-3 p-0">
-                                        <p>Ngày đặt:</p>
+                                        <p>Mã khách hàng:</p>
                                     </div>
-                                    <div class="col-9">
-                                        14/04/2019 14:00
+                                    <div class="col-9" id="modal-customer-id"></div>
+                                </div>
+
+                                <div class="row ml-0 mr-0 mb-3 d-flex align-items-center">
+                                    <div class="col-3 p-0">
+                                        <label for="customerTypeId">Loại khách hàng:</label>
+                                    </div>
+                                    <div class="col-9 input-group input-group-sm">
+                                        <select class="custom-select form-control mr-2"
+                                            id="customerTypeId">
+                                        </select>
+                                        <button class="btn btn-sm btn-warning post_customer_type_update" type="button">
+                                            <i class="far fa-edit"></i>
+                                        </button>
                                     </div>
                                 </div>
 
                                 <div class="row ml-0 mr-0">
                                     <div class="col-3 p-0">
-                                        <p>Hình thức:</p>
+                                        <p>Họ tên:</p>
                                     </div>
-                                    <div class="col-9">
-                                        <span class="badge badge-pill badge-warning">Đặt hàng</span>
-                                    </div>
+                                    <div class="col-9" id="modal-customer-name"></div>
                                 </div>
 
                                 <div class="row ml-0 mr-0">
                                     <div class="col-3 p-0">
-                                        <p>Trạng thái:</p>
+                                        <p>Tài khoản:</p>
                                     </div>
-                                    <div class="col-9">
-                                        <span class="badge badge-info">đang giao</span>
-                                    </div>
+                                    <div class="col-9" id="modal-customer-username"></div>
                                 </div>
 
                                 <div class="row ml-0 mr-0">
                                     <div class="col-3 p-0">
-                                        <p>Tổng giá trị:</p>
+                                        <p>Email:</p>
                                     </div>
-                                    <div class="col-9">
-                                        200.000&nbsp;đ
-                                    </div>
+                                    <div class="col-9" id="modal-customer-email"></div>
                                 </div>
-                                <br />
-                                <h5>Thông tin chi tiết</h5>
+
                                 <div class="row ml-0 mr-0">
-                                    <table class="table table-responsive-sm">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Mã</th>
-                                                <th scope="col">Sản phẩm</th>
-                                                <th scope="col">Số lượng</th>
-                                                <th scope="col">Tổng tiền</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">CA1</td>
-                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
-                                                <td>10</td>
-                                                <td>200.000&nbsp;đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">CA1</td>
-                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
-                                                <td>10</td>
-                                                <td>200.000&nbsp;đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="row">CA1</td>
-                                                <td>Cà chua sạch (200.000&nbsp;đ)</td>
-                                                <td>10</td>
-                                                <td>200.000&nbsp;đ</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="col-3 p-0">
+                                        <p>Ngày sinh:</p>
+                                    </div>
+                                    <div class="col-9" id="modal-customer-birthdate"></div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Ví tiền:</p>
+                                    </div>
+                                    <div class="col-9" id="modal-customer-cash"></div>
+                                </div>
+
+                                <div class="row ml-0 mr-0">
+                                    <div class="col-3 p-0">
+                                        <p>Thời gian đăng ký:</p>
+                                    </div>
+                                    <div class="col-9" id="modal-customer-created"></div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-outline-success">
-                                Duyệt
-                            </button>
-                            <button type="button" class="btn btn-sm btn-outline-primary">
-                                Giao hàng
-                            </button>
-                            <button type="button" class="btn btn-sm btn-outline-info">
-                                Hoàn tất đơn hàng
-                            </button>
-                            <button type="button" class="btn btn-sm btn-outline-danger">
-                                Hủy đơn
+                            <button type="button" class="btn btn-secondary pl-2 pr-2" data-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-danger pl-2 pr-2 post_modal_delete_customer">
+                                Xóa
                             </button>
                         </div>
                     </div>
@@ -230,3 +211,7 @@
     </div>
 </div>
 <!--End Nội dung trang index-->
+
+{{#section 'js'}}
+<script src="/admin/js/customer-show-view.js"></script>
+{{/section}}

@@ -1,10 +1,10 @@
-.search-field{
-    /*height: 1.9375rem;*/
-    border: 1px #e7eaec solid;
+.search-field {
+  /*height: 1.9375rem;*/
+  border: 1px #e7eaec solid;
 }
 
-.search-row{
-    margin-bottom: 1.875rem;
+.search-row {
+  margin-bottom: 1.875rem;
 }
 
 /*.btn-view{
@@ -19,7 +19,7 @@
     border: 1px #eee solid;
 }*/
 
-.article-row{
+/* .article-row{
     border-bottom: 1px solid #eee;
     padding-top: 0.625rem;
     padding-bottom: 0.3125rem;
@@ -38,19 +38,35 @@
 
 .article-title small{
     color: #bbb;
-}
-
-.page_title{
-    /*font-size: 0.875rem;
-    font-weight: bold;
-    padding: 0rem 0rem 0rem 1.25rem;
-    margin: 0rem;*/
-}
+} */
 
 /*padding để tránh bị đụng khi thu nhỏ màn hình*/
-@media(max-width:991px){
+/* @media(max-width:991px){
     .article-title{
         padding-left: 30px;
         
     }
+} */
+
+.table .show-info-image {
+  width: 7.5rem;
+  height: 7.5rem;
+}
+
+.wordWrap {
+  white-space: normal;
+  -ms-word-break: break-all;
+  -ms-word-wrap: break-all;
+  -webkit-word-break: break-word;
+  -webkit-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+.table .info-title {
+  width: 10rem;
+}
+
+.table .info-short-content {
+  width: 15rem;
 }

@@ -23,7 +23,8 @@ module.exports.postRegister = (req, res, next) => {
     EMAIL: req.body.EMAIL,
     BIRTHDATE: dob,
     CASH: 0,
-    CUSTOMERTYPEID: 2
+    CUSTOMERTYPEID: 2,
+    STATUS: 1
   };
 
   customerModel

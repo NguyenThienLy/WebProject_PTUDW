@@ -42,6 +42,31 @@ module.exports.topNNewsFollowTypeSort = (typeSort, N) => {
   }
 };
 
+module.exports.singleByNewsId = newsId => {
+  return db.load(`SELECT news.ID, news.IMAGE, news.RESIZEDIMAGE, news.TITLE, 
+                  news.SHORTCONTENT, news.CONTENT, news.CREATED
+                  FROM news
+                  WHERE news.ID = '${newsId}'`);
+};
+
+// Hàm trả về tất cả sản phẩm trong database
+module.exports.allNews = () => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT news.ID, news.IMAGE, news.RESIZEDIMAGE, news.TITLE,
+                  news.SHORTCONTENT, news.CONTENT, DATE_FORMAT(news.CREATED, '%d/%m/%Y %H:%i') AS CREATED 
+                  FROM news WHERE STATUS = 1`);
+};
+
+// hàm lấy ra số lượng comments
+module.exports.newsQuantity = () => {
+  return db.load(
+    `SELECT COUNT(ID) AS NEWS_QUANTITY
+    FROM news
+    WHERE STATUS = 1`
+  );
+};
+
+
 // hàm thêm một info vào csdl
 module.exports.addNews = news => {
   news.CREATED = getDateNow();
@@ -51,6 +76,11 @@ module.exports.addNews = news => {
 //Hàm cập nhật ảnh đại diện cho sản phẩm
 module.exports.updateNews = news => {
   return db.update("news", "ID", news);
+};
+
+// Hàm xóa 1 bài viết | cập nhật status về 0
+module.exports.deleteNews = (news) => {
+  return db.update('news','ID', news);
 };
 
 //Hàm trả về thời gian hiện tại

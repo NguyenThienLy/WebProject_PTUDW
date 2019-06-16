@@ -16,26 +16,32 @@
 
 <div id="content" class="mb-5">
     <header>
-        <h5 class="page_title mb-0">Thêm bài viết mới</h5>
+        <h5 class="page_title mb-0">Cập nhật bài viết</h5>
     </header>
     <div class="content-inner">
         <div class="form-wrapper">
-            <form method="POST" enctype="multipart/form-data" id="frmInfoAdd">
+            <form id="frmInfoUpdateImage" enctype="multipart/form-data">
                 <div class="card">
 
                     <div class="card-header">
                         <label class="mb-0"><b>Hình ảnh đại diện bài viết</b></label>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
+                        <div class="form-group" id="info-update-image">
                             <div>
                                 <input id="info-image" name="INFO_IMAGE" type="file">
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success pl-5 pr-5">Cập nhật hình
+                                ảnh</button>
+                        </div>
+                        <input hidden type="text" name="ID" class="form-control" value="{{this.info.ID}}">
                     </div>
 
                 </div>
-
+            </form>
+            <form method="POST" id="frmInfoUpdate">
                 <div class="card mt-3 mb-3">
 
                     <div class="card-header">
@@ -43,22 +49,36 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
+                            <label for="inputIdNews" class="mt-2"><b>Mã bài viết</b></label>
+                            <div>
+                                <input readonly type="text" name="ID" class="form-control" id="inputIdNews"
+                                    value="{{this.info.ID}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label><b>Tiêu đề</b></label>
-                            <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết" />
+                            <input type="text" class="form-control" name="TITLE" value="{{this.info.TITLE}}"
+                                placeholder="Nhập tiêu đề bài viết" />
                         </div>
 
                         <div class="form-group">
                             <label class="mr-1 mb-1"><b>Tag</b></label>
-                            <button type="button" class="btn btn-sm btn-success rounded-circle btn-add-tag position-relative" data-toggle="modal"
-                                data-target="#addTagModal">
+                            <button type="button"
+                                class="btn btn-sm btn-success rounded-circle btn-add-tag position-relative"
+                                data-toggle="modal" data-target="#addTagModal">
                                 <i class="fas fa-plus fa-sm position-absolute"></i>
                             </button>
-                            <select class="form-control chosen-select" id="selectTag" name="TAG" data-placeholder="Chọn tag" multiple>
+                            <select class="form-control chosen-select" id="selectTag" name="TAG"
+                                data-placeholder="Chọn tag" multiple>
                                 {{#each this.tags}}
+                                {{#isSelectedInTag ID ../this.newsTag}}
+                                <option selected value="{{ID}}">{{NAME}}</option>
+                                {{else}}
                                 <option value="{{ID}}">{{NAME}}</option>
+                                {{/isSelectedInTag}}
                                 {{/each}}
                             </select>
-                            
+
                             <!-- Modal -->
                             <div class="modal fade" id="addTagModal" tabindex="-1" role="dialog"
                                 aria-labelledby="addTagLabelModal" aria-hidden="true">
@@ -91,29 +111,23 @@
                             <label><b>Nội dung tóm tắt</b></label>
                             <div>
                                 <textarea name="SHORTCONTENT" cols="60" rows="5" class="form-control"
-                                    placeholder="Nhập nội dung tóm tắt bài viết"></textarea>
+                                    placeholder="Nhập nội dung tóm tắt bài viết">{{this.info.SHORTCONTENT}}</textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label><b>Nội dung chi tiết</b></label>
                             <div>
-                                <textarea class="form-control" name="CONTENT" id="my_editor"></textarea>
+                                <textarea class="form-control" name="CONTENT"
+                                    id="my_editor">{{this.info.CONTENT}}</textarea>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-                {{!-- <div class="custom-control custom-control-inline custom-checkbox">
-                    <input class="custom-control-input" type="checkbox" id="inlineCheckbox3" value="option3" />
-                    <label class="custom-control-label" for="inlineCheckbox3">Đăng khi bấm chọn</label>
-                </div> --}}
-
                 <div class="d-flex justify-content-center">
-                    <button type="submit" id="submit" class="pl-5 pr-5 btn btn-success float-right">
-                        Đăng
-                    </button>
+                    <button type="submit" id="submit" class="pl-5 pr-5 mr-5 btn btn-success">Cập nhật</button>
+                    <a href="/admin/info/info-show" class="btn btn-primary pl-5 pr-5">Quay lại</a>
                 </div>
             </form>
         </div>
@@ -136,8 +150,8 @@
 {{!--input file --}}
 
 {{!--Xử lý thêm ảnh bằng file input--}}
-<script src="/admin/js/info-add-file-input.js"></script>
-<script src="/admin/js/validate-UI-info-add.js"></script>
+<script src="/admin/js/info-update-view.js"></script>
+<script src="/admin/js/validate-UI-info-update.js"></script>
 
 <script src="/admin/js/info-add-view.js"></script>
 {{/section}}
