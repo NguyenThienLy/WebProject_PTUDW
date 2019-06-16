@@ -39,6 +39,21 @@ module.exports.addCustomer = customer => {
   return db.add("customer", customer);
 };
 
+// hàm cập nhật thông tin khách hàng
+module.exports.updateInfoCustomer = customer => {
+  return db.update("customer", "ID",customer);
+};
+
+//Hàm trả về id của nhân viên có email
+module.exports.idOfEmailUser = email => {
+  return db.load(`SELECT ID FROM customer WHERE EMAIL = '${email}'`);
+};
+
+//Hàm trả về id của nhân viên có token
+module.exports.idOfToken = token => {
+  return db.load(`SELECT ID FROM customer WHERE RESETPASSWORDTOKEN = '${token}' AND RESETPASSWORDEXPIRES > NOW()`);
+};
+
 // hàm lấy ra số lượng customers
 module.exports.customersQuantity = () => {
   return db.load(

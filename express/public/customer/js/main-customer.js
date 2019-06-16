@@ -17,6 +17,18 @@ $("#frmLogin").on("submit", function(e) {
   e.preventDefault();
 });
 
+$("#frmUpdate").on("submit", function(e) {
+  e.preventDefault();
+});
+
+$("#frmUpdatePass").on("submit", function(e) {
+  e.preventDefault();
+});
+
+$("#frmForgotPass").on("submit", function(e) {
+  e.preventDefault();
+});
+
 $("#btn-logout").on("click", function(e) {
   $.ajax({
     type: "POST",
