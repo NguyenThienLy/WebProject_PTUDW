@@ -7,6 +7,14 @@ module.exports.quantityProduct = () => {
   return db.load(`SELECT COUNT(*) AS QUANTITY FROM product`);
 };
 
+//Lấy ra cấu trúc sản phẩm của cửa hàng
+module.exports.structProduct = () => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT category.NAME,SUM(product.INVENTORY) AS SUM
+                  FROM product JOIN category ON product.CATEGORYID = category.ID
+                  GROUP BY product.CATEGORYID`);
+};
+
 // Linh thêm
 module.exports.productsQuantity = () => {
   // Gọi hàm querry từ db

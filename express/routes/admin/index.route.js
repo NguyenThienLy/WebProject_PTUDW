@@ -10,4 +10,6 @@ var router = express.Router();
 
 router.get('/', controller.indexShow);
 
+router.post('/report',controller.loadChart);
+
 module.exports = router;
