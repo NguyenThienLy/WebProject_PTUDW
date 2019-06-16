@@ -22,11 +22,11 @@ router.post('/info-add', gcsMulter.single('INFO_IMAGE'), controller.postInfoAdd)
 // Xử lí sửa bài viết
 router.get("/info-update/:id", controller.infoUpdate);
 
-// Xử lí post sửa bài viết
-router.post("/info-update/:id", controller.postInfoUpdate);
-
 //Lấy hình bài viết
 router.post('/info-update/get-image', controller.infoImage);
+
+// Xử lí post sửa bài viết
+router.post("/info-update-info", controller.postInfoUpdate);
 
 //Cập nhật hình bài viết
 router.post('/info-update-image', gcsMulter.single('INFO_IMAGE'), controller.postInfoImageUpdate);

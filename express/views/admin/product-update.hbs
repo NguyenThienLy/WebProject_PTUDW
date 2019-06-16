@@ -43,7 +43,7 @@
                 </div>
             </form>
 
-            <form id="update-product-form" method="POST">
+            <form id="update-product-form" action="/admin/product/product-update-info" method="POST">
                 <!--Card chứa form nhập thông tin của sản phẩm-->
                 <div class="card mt-3">
                     <div class="card-header">
@@ -54,7 +54,7 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <label for="inputIdProduct" class="mt-2"><b>Mã sản phẩm</b></label>
                                 <div>
-                                    <input readonly type="text" class="form-control" id="inputIdProduct"
+                                    <input readonly type="text" name="ID" class="form-control" id="inputIdProduct"
                                         value="{{productinfo.ID}}">
                                 </div>
                                 <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>

@@ -50,11 +50,11 @@ router.post("/product-combo-update/:id", controller.postProductComboUpdate);
 // Xử lí sửa sản phẩm
 router.get('/product-update/:id', controller.productUpdate);
 
-// Xử lí post sửa sản phẩm
-router.post('/product-update/:id', controller.postProductUpdate);
-
 //Lấy danh sách hình sản phẩm
 router.post('/product-update/get-images', controller.productImages);
+
+// Xử lí post sửa sản phẩm
+router.post('/product-update-info', controller.postProductUpdate);
 
 //Update danh sách hình sản phẩm
 router.post('/product-update-images', gcsMulter.array('PRODUCT_IMAGE'), controller.postProductImagesUpdate);
