@@ -14,6 +14,7 @@
   outline: none;
   position: relative;
   transition: 200ms;
+  cursor: pointer;
 }
 
 .switch:checked {
@@ -54,4 +55,8 @@
 
 .product-name > i {
   color: rgba(33, 37, 41, 0.5);
+}
+
+.update-delete {
+  width: 10rem;
 }

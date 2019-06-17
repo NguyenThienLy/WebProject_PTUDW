@@ -49,20 +49,20 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="inputIdNews" class="mt-2"><b>Mã bài viết</b></label>
+                            <label class="mt-2"><b>Mã bài viết</b></label>
                             <div>
-                                <input readonly type="text" name="ID" class="form-control" id="inputIdNews"
+                                <input readonly type="text" name="ID" class="form-control"
                                     value="{{this.info.ID}}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label><b>Tiêu đề</b></label>
-                            <input type="text" class="form-control" name="TITLE" value="{{this.info.TITLE}}"
+                            <label for="inputInfoTitle"><b>Tiêu đề</b></label>
+                            <input type="text" class="form-control" id="inputInfoTitle" name="TITLE" value="{{this.info.TITLE}}"
                                 placeholder="Nhập tiêu đề bài viết" />
                         </div>
 
                         <div class="form-group">
-                            <label class="mr-1 mb-1"><b>Tag</b></label>
+                            <label for="selectTag" class="mr-1 mb-1"><b>Tag</b></label>
                             <button type="button"
                                 class="btn btn-sm btn-success rounded-circle btn-add-tag position-relative"
                                 data-toggle="modal" data-target="#addTagModal">
@@ -108,9 +108,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label><b>Nội dung tóm tắt</b></label>
+                            <label for="infoShortContent"><b>Nội dung tóm tắt</b></label>
                             <div>
-                                <textarea name="SHORTCONTENT" cols="60" rows="5" class="form-control"
+                                <textarea name="SHORTCONTENT" id="infoShortContent" cols="60" rows="5" class="form-control"
                                     placeholder="Nhập nội dung tóm tắt bài viết">{{this.info.SHORTCONTENT}}</textarea>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <button type="submit" id="submit" class="pl-5 pr-5 mr-5 btn btn-success">Cập nhật</button>
+                    <button type="submit" class="pl-5 pr-5 mr-5 btn btn-success">Cập nhật</button>
                     <a href="/admin/info/info-show" class="btn btn-primary pl-5 pr-5">Quay lại</a>
                 </div>
             </form>

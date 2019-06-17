@@ -24,9 +24,12 @@ module.exports.customerInfo = function(req, res, next) {
   var dataCustomer = customerModel.singleById(req.body.CustomerID);
   dataCustomer
     .then(customer => {
-      customerModel.customerType(customer[0].CUSTOMERTYPEID).then(customerType => {
-        res.send({customer: customer[0], customerType: customerType});
-      }).catch(next);
+      customerModel
+        .customerType(customer[0].CUSTOMERTYPEID)
+        .then(customerType => {
+          res.send({ customer: customer[0], customerType: customerType });
+        })
+        .catch(next);
     })
     .catch(next);
 };
@@ -38,11 +41,14 @@ module.exports.postCustomerTypeUpdate = (req, res, next) => {
   var updateCustomer = {
     ID: customerId,
     CUSTOMERTYPEID: customerTypeId
-  }
+  };
 
-  customerModel.updateCustomer(updateCustomer).then(changedRowsNumber => {
-    res.send(true);
-  }).catch(next);
+  customerModel
+    .updateCustomer(updateCustomer)
+    .then(changedRowsNumber => {
+      res.send(true);
+    })
+    .catch(next);
 };
 
 //Xóa sản phẩm, xóa những sản phẩm không có trong combo
@@ -53,22 +59,22 @@ module.exports.postDeleteCustomer = (req, res, next) => {
     customerID
   );
   var deleteComment = commentModel.deleteCommentByCustomerId(customerID);
-  var deleteCustomerView = customerViewModel.deleteCustomerViewByCustomerId(
-    customerID
-  );
+  // var deleteCustomerView = customerViewModel.deleteCustomerViewByCustomerId(
+  //   customerID
+  // );
 
   var updateOrderInfo = {
     CUSTOMERID: customerID,
     STATUS: 0
-  }
+  };
   var deleteOrderInfo = orderInfoModel.deleteOrderInfo(updateOrderInfo);
 
-  Promise.all([deleteCommentReaction, deleteCustomerView, deleteOrderInfo])
+  Promise.all([deleteCommentReaction, deleteOrderInfo])
     .then(values => {
       var updateCustomer = {
         ID: customerID,
         STATUS: 0
-      }
+      };
       var deleteCustomer = customerModel.deleteCustomer(updateCustomer);
 
       Promise.all([deleteComment, deleteCustomer])

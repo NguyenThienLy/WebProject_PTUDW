@@ -12,4 +12,6 @@ router.get('/product-comment/:id', controller.commentOfProductShow);
 
 router.get('/product-comment', controller.productCommentShow);
 
+router.post('/product-comment-delete', controller.postDeleteComment);
+
 module.exports = router;

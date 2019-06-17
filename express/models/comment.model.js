@@ -6,7 +6,8 @@ module.exports.allComments = () => {
     `SELECT COMMENT.ID, COMMENT.CUSTOMERID, COMMENT.PRODUCTID, 
             DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
             COMMENT.TITLE, COMMENT.COMMENT, COMMENT.STARS, COMMENT.LIKES, CUSTOMER.FULLNAME, CUSTOMER.IMAGE
-    FROM (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)`
+    FROM (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+    ORDER BY COMMENT.CREATED DESC`
   );
 };
 
@@ -18,7 +19,8 @@ module.exports.allCommentsOfProduct = productId => {
             COMMENT.TITLE, COMMENT.COMMENT, COMMENT.STARS, COMMENT.LIKES, CUSTOMER.FULLNAME, CUSTOMER.IMAGE
     FROM product PRODUCT JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
         ON PRODUCT.ID = COMMENT.PRODUCTID
-    WHERE PRODUCT.ID = ${productId}`
+    WHERE PRODUCT.ID = ${productId}
+    ORDER BY COMMENT.CREATED DESC`
   );
 };
 
@@ -98,10 +100,26 @@ module.exports.groupStarQuantityFollowProductIdAndTypeProduct = (productId, type
     ORDER BY STARS DESC`);
 };
 
+module.exports.deleteCommentById = commentId => {
+  return db.delete("comment", "ID", commentId);
+};
+
 module.exports.deleteCommentByCustomerId = customerId => {
   return db.delete("comment", "CUSTOMERID", customerId);
 };
 
 module.exports.deleteCommentByProductId = productId => {
   return db.delete("comment", "PRODUCTID", productId);
+};
+
+// Hàm lấy ra comment gần nhất của sản phẩm
+module.exports.RecentlyComments = () => {
+  return db.load(
+    `SELECT COMMENT.PRODUCTID, PRODUCT.NAME AS PRODUCTNAME,
+            DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
+            COMMENT.TITLE, COMMENT.COMMENT, CUSTOMER.FULLNAME
+    FROM product PRODUCT JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+        ON PRODUCT.ID = COMMENT.PRODUCTID
+        ORDER BY COMMENT.CREATED DESC LIMIT 4`
+  );
 };

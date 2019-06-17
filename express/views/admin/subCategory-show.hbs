@@ -1,0 +1,135 @@
+{{#section 'css'}}
+<title>Quản lí danh mục phụ</title>
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-customer.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+    <div id="content">
+        <header class="d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">Tất cả danh mục phụ</h5>
+            <a href="/admin/subCategory/subCategory-add" class="btn btn-primary btn-sm">Thêm mới</a>
+        </header>
+
+        <div class="content-inner">
+            <!--Thanh tìm kiếm-->
+            <div class="row mb-2 ml-0 mr-0">
+                <div class="col-md-7 p-0">
+                    <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control search-field" id="search" placeholder="Tên danh mục phụ" />
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button">
+                                Tìm kiếm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end thanh tìm kiếm-->
+
+            <!--Table hiển thị danh mục-->
+            <table class="table table-responsive mb-4">
+                <thead>
+                    <tr>
+                        <th class="text-center">Mã danh mục phụ</th>
+                        <th>Tên danh mục phụ</th>
+                        <th>Thuộc danh mục</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each this.subCategories}}
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td align="center">{{ID}}</td>
+                        <td>{{NAME}}</td>
+                        <td>{{CATEGORYNAME}}</td>
+                        <td align="center">
+                            <a class="btn btn-sm btn-primary mr-1" href="/admin/subCategory/subCategory-update/{{ID}}">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <button class="btn btn-sm btn-danger post_delete_subCategory" id="{{ID}}" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+                    {{/each}}
+                </tbody>
+            </table>
+            <!--End Table hiển thị danh mục-->
+
+            <hr />
+
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->
+
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary alert_modal" data-toggle="modal" data-target="#cannotRemoveModal">
+  Không thể xóa
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Không thể xóa danh mục phụ
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#section 'js'}}
+<script src="/admin/js/subCategory-show-view.js"></script>
+{{/section}}

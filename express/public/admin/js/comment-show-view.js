@@ -1,11 +1,11 @@
-// Xóa sản phẩm combo
-$(".post_delete_info").click(function() {
-    var deleteInfoID = $(this).attr("id");
+// Xóa bình luận
+$(".post_delete_comment").click(function() {
+    var deleteCommentID = $(this).attr("id");
   
     $.ajax({
       type: "POST",
-      url: "/admin/info/info-delete",
-      data: { InfoID: deleteInfoID },
+      url: "/admin/comment/product-comment-delete",
+      data: { CommentID: deleteCommentID },
       success: function(data) {
         if (data) {
           //load lại trang

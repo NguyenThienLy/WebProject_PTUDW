@@ -14,7 +14,7 @@
 
     <header class="d-flex align-items-center justify-content-between">
         <h5 class="page_title mb-0">Tất cả bài viết</h5>
-        <a href="/admin/info/info-add" class="btn btn-primary btn-sm">Thêm bài viết mới</a>
+        <a href="/admin/info/info-add" class="btn btn-primary btn-sm">Thêm mới</a>
     </header>
 
     <div class="content-inner">
@@ -72,8 +72,10 @@
                         <span>{{CREATED}}</span>
                     </td>
                     <td align="center">
-                        <a href="/admin/info/info-update/{{ID}}" class="btn btn-sm btn-primary">Sửa</a>
-                        <button type="button" class="btn btn-sm btn-danger post_delete_info" id="{{ID}}">Xóa</button>
+                        <a href="/admin/info/info-update/{{ID}}" class="btn btn-sm btn-primary mr-1"><i
+                                class="fas fa-pencil-alt"></i></a>
+                        <button type="button" class="btn btn-sm btn-danger post_delete_info" id="{{ID}}"><i
+                                class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
                 {{/each}}
@@ -111,6 +113,31 @@
         <!--end Thanh điều hướng trang-->
 
     </div>
+</div>
+
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary alert_modal" data-toggle="modal" data-target="#cannotRemoveModal">
+  Không thể xóa
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Không thể xóa bài viết
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 {{#section 'js'}}

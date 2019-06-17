@@ -51,3 +51,21 @@
 /*table{
   font-size: 0.875rem;
 }*/
+
+.wordWrap {
+  white-space: normal;
+  -ms-word-break: break-all;
+  -ms-word-wrap: break-all;
+  -webkit-word-break: break-word;
+  -webkit-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+.table .info-title {
+  width: 10rem;
+}
+
+.table .info-short-content {
+  width: 15rem;
+}

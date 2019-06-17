@@ -1,11 +1,11 @@
-// Xóa sản phẩm combo
-$(".post_delete_info").click(function() {
-    var deleteInfoID = $(this).attr("id");
+// Xóa danh mục con
+$(".post_delete_subCategory").click(function() {
+    var deleteSubCategoryID = $(this).attr("id");
   
     $.ajax({
       type: "POST",
-      url: "/admin/info/info-delete",
-      data: { InfoID: deleteInfoID },
+      url: "/admin/subCategory/subCategory-delete",
+      data: { SubCategoryID: deleteSubCategoryID },
       success: function(data) {
         if (data) {
           //load lại trang

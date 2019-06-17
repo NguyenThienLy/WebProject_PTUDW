@@ -7,11 +7,11 @@ module.exports.addTag = tag => {
 
 //Hàm trả về tất cả các tag trên database
 module.exports.allTag = () => {
-  return db.load(`SELECT * FROM tag`);
+  return db.load(`SELECT * FROM tag ORDER BY ID ASC`);
 };
 
 module.exports.singleByTagId = tagId => {
-  return db.load(`SELECT * FROM tag where ID = '${tagId}'`);
+  return db.load(`SELECT * FROM tag WHERE ID = '${tagId}'`);
 };
 
 // Linh thêm

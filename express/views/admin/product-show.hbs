@@ -14,7 +14,7 @@
 <div id="dashboard-con">
     <div id="content">
         <header class="d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Danh sách sản phẩm</h5>
+            <h5 class="mb-0">Tất cả sản phẩm</h5>
 
             <div class="d-flex align-items-center">
                 <input type="checkbox" id="switchType" class="switch"></input>
@@ -127,9 +127,12 @@
                                 </div>
                             </td>
                             <td align="center">
-                                <a href="/admin/product/product-update/{{ID}}" class="btn btn-sm btn-primary">Sửa</a>
-                                <button type="button" class="btn btn-sm btn-danger post_delete_simple"
-                                    id="{{ID}}">Xóa</button>
+                                <div class="update-delete">
+                                    <a href="/admin/product/product-update/{{ID}}"
+                                        class="btn btn-sm btn-primary mr-1"><i class="fas fa-pencil-alt"></i></a>
+                                    <button type="button" class="btn btn-sm btn-danger post_delete_simple"
+                                        id="{{ID}}"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </td>
                         </tr>
                         {{/each}}
@@ -254,9 +257,9 @@
                             </td>
                             <td align="center">
                                 <a href="/admin/product/product-combo-update/{{ID}}"
-                                    class="btn btn-sm btn-primary">Sửa</a>
-                                <button type="button" class="btn btn-sm btn-danger post_delete_combo"
-                                    id="{{ID}}">Xóa</button>
+                                    class="btn btn-sm btn-primary mr-1"><i class="fas fa-pencil-alt"></i></a>
+                                <button type="button" class="btn btn-sm btn-danger post_delete_combo" id="{{ID}}"><i
+                                        class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                         {{/each}}
@@ -306,6 +309,31 @@
     </div>
 </div>
 <!--Nội dung trang index-->
+
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary alert_modal" data-toggle="modal" data-target="#cannotRemoveModal">
+  Không thể xóa
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Không thể xóa sản phẩm
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{#section 'js'}}
 <script src="/admin/js/product-show-view.js"></script>

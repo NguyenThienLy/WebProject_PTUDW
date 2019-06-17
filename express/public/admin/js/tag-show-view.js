@@ -11,7 +11,8 @@ $(".post_add_tag").click(function() {
           //load lại trang
           window.location.href = location.href;
         } else {
-          alert("Không thể thêm tag!");
+          $('.cannotRemoveModalMessage').text('Không thể thêm tag');
+          $(".alert_modal").click();
         }
       }
     });
@@ -34,7 +35,8 @@ $(".post_delete_tag").click(function() {
         //load lại trang
         window.location.href = location.href;
       } else {
-        alert("Không thể xóa tag!");
+        $('.cannotRemoveModalMessage').text('Không thể xóa tag');
+        $(".alert_modal").click();
       }
     }
   });

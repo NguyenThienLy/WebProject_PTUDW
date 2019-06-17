@@ -10,7 +10,7 @@
 <div id="dashboard-con">
     <div id="content">
         <header>
-            <h5 class="mb-0">Danh sách thương hiệu</h5>
+            <h5 class="mb-0">Tất cả thương hiệu</h5>
         </header>
 
         <div class="content-inner">
@@ -61,9 +61,9 @@
                         <td align="center">{{ID}}</td>
                         <td>{{NAME}}</td>
                         <td align="center">
-                            <button class="btn btn-sm btn-primary mr-2 post_modal_get_info" id={{ID}} type="button"
+                            <button class="btn btn-sm btn-primary mr-1 post_modal_get_info" id={{ID}} type="button"
                                 data-toggle="modal" data-target="#brandDetailModal">
-                                <i class="fas fa-info"></i>
+                                <i class="fas fa-info pl-1 pr-1"></i>
                             </button>
                             <button class="btn btn-sm btn-danger post_delete_brand" id="{{ID}}" type="button">
                                 <i class="fas fa-trash-alt"></i>
@@ -165,6 +165,30 @@
     </div>
 </div>
 <!--End Nội dung trang index-->
+
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary alert_modal" data-toggle="modal" data-target="#cannotRemoveModal">
+  Không thể xóa
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body cannotRemoveModalMessage">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{#section 'js'}}
 <script src="/admin/js/brand-show-view.js"></script>

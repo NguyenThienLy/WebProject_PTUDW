@@ -1,0 +1,96 @@
+{{#section 'css'}}
+<title>Quản lí danh mục</title>
+
+{{!-- info add page --}}
+<link href="/admin/css/info-add.css" rel="stylesheet" />
+{{!-- info add page --}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-info-add.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
+<div id="content" class="mb-5">
+    <header>
+        <h5 class="page_title mb-0">Cập nhật danh mục</h5>
+    </header>
+    <div class="content-inner">
+        <div class="form-wrapper">
+            <div class="card">
+
+                <div class="card-header">
+                    <label class="mb-0"><b>Thêm danh mục con</b></label>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="inputNewSubCategoryName" id="lblAddNewSubCategory" class="mt-2"><b>Tên</b></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="inputNewSubCategoryName"
+                                placeholder="Nhập tên danh mục con" />
+                            <div class="input-group-append">
+                                <button class="btn btn-success pl-3 pr-3 btn_add_subCategory" type="button">
+                                    Thêm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <form id="frmCategoryUpdate">
+                <div class="card mt-3 mb-3">
+
+                    <div class="card-header">
+                        <label class="mb-0"><b>Thông tin danh mục</b></label>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group" id="categoryId">
+                            <label><b>Mã danh mục</b></label>
+                            <input readonly type="text" class="form-control" name="ID" value="{{this.category.ID}}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputCategoryName"><b>Tên danh mục</b></label>
+                            <input type="text" class="form-control" id="inputCategoryName" name="NAME" placeholder="Nhập tên danh mục"
+                                value="{{this.category.NAME}}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selectTag" class="mr-1 mb-1"><b>Danh mục con</b></label>
+                            <select class="form-control chosen-select" id="selectTag" name="SUBCATEGORIES"
+                                data-placeholder="Chọn danh mục con" multiple>
+                                {{#each this.subCategories}}
+                                <option selected value="{{ID}}">{{NAME}}</option>
+                                {{/each}}
+                            </select>
+                            <span id="spanHiddenSelectTag">
+                                <select class="form-control chosen-select" name="OLDSUBCATEGORIES"
+                                    multiple>
+                                    {{#each this.subCategories}}
+                                    <option selected value="{{ID}}">{{NAME}}</option>
+                                    {{/each}}
+                                </select>
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mb-4">
+                        <button type="submit" class="pl-5 pr-5 mr-5 btn btn-warning">Cập nhật</button>
+                        <a href="/admin/category/category-show" class="btn btn-primary pl-5 pr-5">Quay lại</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="/admin/chosen_v1.8.7/chosen.jquery.min.js"></script>
+<script src="/admin/js/chosen-select.js"></script>
+
+<script src="/admin/js/validate-UI-category-update.js"></script>
+<script src="/admin/js/category-update-view.js"></script>
+{{/section}}
