@@ -6,5 +6,8 @@ $('p[data-toggle="tab"]').on('show.bs.tab', function (e) {
     } else if (target === "#header-edit-info-modal-nav") {
         document.getElementById("header-avatar-modal-title").innerText = "Chỉnh sửa thông tin";
         document.getElementById("header-avatar-modal-content").innerText = "Luôn cập nhật thông tin cá nhân để có trải nghiệm tốt.";
+    } else if (target === "#header-edit-password-modal-nav") {
+        document.getElementById("header-avatar-modal-title").innerText = "Thay đổi mật khẩu";
+        document.getElementById("header-avatar-modal-content").innerText = "Cập nhật mật khẩu để bảo vệ tài khoản tốt nhất.";
     }
 });

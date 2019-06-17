@@ -169,7 +169,8 @@ body {
 .badge-warning,
 .badge-light,
 .badge-danger,
-.badge-info {
+.badge-info,
+.badge-success {
   padding: 0.4rem 0.6rem;
 }
 

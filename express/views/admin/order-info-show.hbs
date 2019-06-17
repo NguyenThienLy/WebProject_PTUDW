@@ -1,0 +1,169 @@
+{{#section 'css'}}
+<title>Quản lí đơn hàng</title>
+
+{{!-- order list page --}}
+<link href="/admin/css/order-info.css" rel="stylesheet" />
+{{!-- order list page --}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-order-info.css" rel="stylesheet" />
+{{!-- responsive --}}
+
+{{!-- datetime picker --}}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+    <div id="content">
+        <header>
+            <h5 class="mb-0">Danh sách đơn hàng</h5>
+        </header>
+
+        <div class="content-inner">
+            <!--Thanh tìm kiếm sản phẩm-->
+            <form class="form row ml-0 mr-0 mb-4">
+                <div class="form-row col-7 col-sm-9 col-lg-10 p-0 ml-0 mr-0">
+                    <div class="form-group col-12 col-md-4 col-lg-3 mt-2 mb-0 pl-0">
+                        <input type="password" class="form-control form-control-sm" id="inputPassword2"
+                            placeholder="Tên khách hàng" />
+                    </div>
+
+                    <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-0 mt-2 d-flex">
+                        <label class="col-form-label col-form-label-sm mr-2">Từ</label>
+                        <input type="text" class="form-control form-control-sm" id="from-date" />
+                    </div>
+
+                    <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-0 mt-2 d-flex">
+                        <label class="col-form-label col-form-label-sm mr-2">Đến</label>
+                        <input type="text" class="form-control form-control-sm" id="to-date" />
+                    </div>
+
+                    <div class="form-group col-12 col-sm-12 col-md-4 col-lg-3 mb-0 mt-2 pl-0">
+                        <select class="custom-select custom-select-sm">
+                            <option>Xem tất cả</option>
+                            <option>Đã thanh toán</option>
+                            <option>Chưa thanh toán</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5 col-sm-3 col-lg-2 pr-0 mt-2">
+                    <button type="button" class="btn btn-sm btn-success w-100">
+                        <i class="fas fa-search"></i>&ensp;Tìm kiếm
+                    </button>
+                </div>
+            </form>
+            <!--End thanh tìm kiếm sản phẩm-->
+
+            <!--Table hiển thị sản phẩm-->
+            <table class="table table-responsive-xl mb-4">
+                <thead>
+                    <tr>
+                        <th class="text-center">Mã đơn hàng</th>
+                        <th>Khách hàng</th>
+                        <th>Thời gian đặt</th>
+                        <th class="text-center">Tổng tiền</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--Nội dung của một hàng-->
+                    {{#each this.orders}}
+                    <tr>
+                        <td align="center">{{ID}}</td>
+                        <td>{{CUSTOMERNAME}}</td>
+                        <td>{{CREATED}}</td>
+                        <td align="center">{{formatPrice TOTALMONEY}}&nbsp;đ</td>
+                        <td align="center">
+                            {{{formatStatus ORDERSTATUSID ORDERSTATUSNAME}}}
+                        </td>
+                        <td align="center">
+                            <a href="/admin/order/order-info/{{ID}}" class="btn btn-sm btn-primary mr-1">
+                                <i class="fas fa-info pl-1 pr-1"></i>
+                            </a>
+                            <button class="btn btn-sm btn-danger post_delete_order" id="{{ID}}" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    <!--End nội dung của một hàng-->
+                </tbody>
+            </table>
+            <!--End Table hiển thị sản phẩm-->
+
+            <hr />
+
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->
+
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary alert_modal" data-toggle="modal" data-target="#cannotRemoveModal">
+    Không thể xóa
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Không thể xóa đơn hàng
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#section 'js'}}
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="/admin/js/order-info-show-view.js"></script>
+{{/section}}

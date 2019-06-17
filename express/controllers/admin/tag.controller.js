@@ -17,7 +17,7 @@ module.exports.tagShow = function(req, res, next) {
 };
 
 module.exports.tagInfo = function(req, res, next) {
-  var dataTag = tagModel.singleByTagId(req.body.TagID);
+  var dataTag = tagModel.singleById(req.body.TagID);
   dataTag
     .then(tag => {
       res.send({ tag: tag[0] });

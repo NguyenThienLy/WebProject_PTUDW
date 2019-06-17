@@ -416,6 +416,27 @@ INSERT INTO `order_detail` (`ORDERINFOID`, `PRODUCTID`, `QUANTITY`, `TOTALMONEY`
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_status`
+--
+
+INSERT INTO `order_status` (`ID`, `NAME`) VALUES
+(1, 'Chờ xác nhận'),
+(2, 'Đang giao'),
+(3, 'Đã giao'),
+(4, 'Đã hủy');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `order_info`
 --
 
@@ -424,6 +445,7 @@ CREATE TABLE `order_info` (
   `CUSTOMERID` int(11) NOT NULL,
   `CREATED` date NOT NULL,
   `TOTALMONEY` double NOT NULL,
+  `ORDERSTATUSID` int(11) NOT NULL,
   `STATUS` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -431,9 +453,9 @@ CREATE TABLE `order_info` (
 -- Đang đổ dữ liệu cho bảng `order_info`
 --
 
-INSERT INTO `order_info` (`ID`, `CUSTOMERID`, `CREATED`, `TOTALMONEY`, `STATUS`) VALUES
-(1, 1, '2019-05-01', 230000, 1),
-(2, 2, '2019-05-01', 230000, 1);
+INSERT INTO `order_info` (`ID`, `CUSTOMERID`, `CREATED`, `TOTALMONEY`, `ORDERSTATUSID`, `STATUS`) VALUES
+(1, 1, '2019-05-01', 230000, 1, 1),
+(2, 2, '2019-05-01', 230000, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -831,11 +853,18 @@ ALTER TABLE `order_detail`
   ADD KEY `FK_order_detail_product` (`PRODUCTID`);
 
 --
+-- Chỉ mục cho bảng `order_status`
+--
+ALTER TABLE `order_status`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Chỉ mục cho bảng `order_info`
 --
 ALTER TABLE `order_info`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_order_info_customer` (`CUSTOMERID`);
+  ADD KEY `FK_order_info_customer` (`CUSTOMERID`),
+  ADD KEY `FK_order_info_order_status` (`ORDERSTATUSID`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -994,6 +1023,12 @@ ALTER TABLE `news_info_history`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT cho bảng `order_status`
+--
+ALTER TABLE `order_status`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `order_info`
 --
 ALTER TABLE `order_info`
@@ -1101,7 +1136,8 @@ ALTER TABLE `order_detail`
 -- Các ràng buộc cho bảng `order_info`
 --
 ALTER TABLE `order_info`
-  ADD CONSTRAINT `FK_order_info_customer` FOREIGN KEY (`CUSTOMERID`) REFERENCES `customer` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_order_info_customer` FOREIGN KEY (`CUSTOMERID`) REFERENCES `customer` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_order_info_order_status` FOREIGN KEY (`ORDERSTATUSID`) REFERENCES `order_status` (`id`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `product`
