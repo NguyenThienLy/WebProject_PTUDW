@@ -8,6 +8,8 @@ var categoryModel = require("../../models/category.model");
 var newsModel = require("../../models/news.model");
 // Gọi sessionCartModel
 var sessionCartModel = require("../../models/session_cart.model");
+// Gọi tagModel
+var tagModel = require("../../models/tag.model");
 
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
@@ -16,32 +18,42 @@ var convertToDateHelper = require("../../helpers/convert_to_date.helper");
 // Gọi formatPrice
 var formatPriceHelper = require("../../helpers/format_price.helper");
 
+async function getAllTagForNews(arrNews) {
+  for (news of arrNews) {
+    var result = await tagModel.allTagFollowInfoId(news.ID);
+    news.tags = result;
+  }
+
+  return arrNews;
+}
+
 module.exports.indexShow = function(req, res, next) {
   try {
     Promise.all([
       productModel.topNProductBestSalerFollowOffset(8, 0),
       productComboModel.topNProductComboBestSalerFollowOffset(6, 0),
       categoryModel.allCategory(),
-      newsModel.top3PopularNewsIndexForIndex()
+      newsModel.topNNewestNews(3)
     ]).then(values => {
-      res.render("customer/index", {
-        layout: "main-customer.hbs",
-        products: values[0],
-        productsCombo: values[1],
-        categories: values[2],
-        news: values[3],
-        helpers: {
-          // Hàm chuyển đổi qua kiểu ngày
-          convertToDate: convertToDateHelper,
-          // Hàm định dạng title của product simple lấy 36 kí tự
-          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
-          // Hàm định dạng title của product combo lấy 52 kí tự
-          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
-          // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo,
-          // Hàm định dạng short content của info lấy 320 kí tự
-          formatShortContentInfo: formatStringHelper.formatShortContentInfo
-        }
+      getAllTagForNews(values[3]).then(result => {     
+        res.render("customer/index", {
+          layout: "main-customer.hbs",
+          products: values[0],
+          productsCombo: values[1],
+          categories: values[2],
+          news: result,
+          helpers: {
+            // Hàm định dạng title của product simple lấy 36 kí tự
+            formatTitleProductSimple:
+              formatStringHelper.formatTitleProductSimple,
+            // Hàm định dạng title của product combo lấy 52 kí tự
+            formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
+            // Hàm định dạng title của info lấy 85 kí tự
+            formatTitleInfo: formatStringHelper.formatTitleInfo,
+            // Hàm định dạng short content của info lấy 320 kí tự
+            formatShortContentInfo: formatStringHelper.formatShortContentInfo
+          }
+        });
       });
     });
   } catch (error) {
@@ -64,7 +76,9 @@ module.exports.loadMoreProductSimple = function(req, res, next) {
         productSimple.SALEPRICE = formatPriceHelper(productSimple.SALEPRICE);
 
         // Tên của sản phẩm
-        productSimple.FORMATNAME =  formatStringHelper.formatTitleProductSimple(productSimple.NAME);
+        productSimple.FORMATNAME = formatStringHelper.formatTitleProductSimple(
+          productSimple.NAME
+        );
       }
 
       res.json(JSON.stringify(values[0]));
@@ -80,8 +94,9 @@ module.exports.loadMoreProductCombo = function(req, res, next) {
 
   try {
     Promise.all([
-      productComboModel.topNProductComboForIndexFollowOffset(6, offset)
+      productComboModel.topNProductComboBestSalerFollowOffset(6, offset)
     ]).then(values => {
+      //console.log("TCL: module.exports.loadMoreProductCombo -> values[0]", values[0])
       // console.log("TCL: module.exports.loadMoreProductCombo ->  values[0]",  values[0])
       // Định dạng lại để đưa kết quả trả về cho lệnh ajax
       for (productCombo of values[0]) {
@@ -90,7 +105,9 @@ module.exports.loadMoreProductCombo = function(req, res, next) {
         productCombo.SALEPRICE = formatPriceHelper(productCombo.SALEPRICE);
 
         // Tên của sản phẩm
-        productCombo.FORMATNAME =  formatStringHelper.formatTitleProductSimple(productCombo.NAME);
+        productCombo.FORMATNAME = formatStringHelper.formatTitleProductSimple(
+          productCombo.NAME
+        );
       }
 
       res.json(JSON.stringify(values[0]));

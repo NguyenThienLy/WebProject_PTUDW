@@ -246,7 +246,6 @@ module.exports.productSimpleDetail = function(req, res, next) {
 
       /* Tính lượng % đánh giá của người dùng */
       // Thêm các phần tử thiếu
-      var starInPercent = 5;
 
       // Nếu mảng trống
       if (values[6].length === 0) {
@@ -256,14 +255,19 @@ module.exports.productSimpleDetail = function(req, res, next) {
           values[6].push(star);
         }
       } else {
-        for (var i = 0; i < values[5].length; i++) {
-          if (+values[6][i].STARS < starInPercent) {
-            var star = { STARS: starInPercent, QUANTITY: 0 };
-            values[6].push(star);
-            starInPercent--;
-            i--;
-          } else starInPercent--;
+        var arrStarRateTemp = [
+          {STARS: 1, QUANTITY: 0},
+          {STARS: 2, QUANTITY: 0},
+          {STARS: 3, QUANTITY: 0},
+          {STARS: 4, QUANTITY: 0},
+          {STARS: 5, QUANTITY: 0}
+        ]
+
+        for (var rateStar of values[6]) {
+          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
         }
+
+        values[6] = arrStarRateTemp;
 
         // Sắp xếp lại
         values[6].sort(function(star1, star2) {
@@ -317,7 +321,9 @@ module.exports.productSimpleDetail = function(req, res, next) {
           // Hàm định dạng title của product combo lấy 52 kí tự
           formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
           // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo
+          formatTitleInfo: formatStringHelper.formatTitleInfo,
+          // Hàm định dạng trong breadcrumb lấy 30 kí tự
+          formatTitleInBreadCrumb: formatStringHelper.formatTitleInBreadCrumb
         }
       });
     });
@@ -398,8 +404,6 @@ module.exports.productComboDetail = function(req, res, next) {
 
       /* Tính lượng % đánh giá của người dùng */
       // Thêm các phần tử thiếu
-      var starInPercent = 5;
-
       // Nếu mảng trống
       if (values[5].length === 0) {
         for (var i = 1; i <= 5; i++) {
@@ -408,16 +412,21 @@ module.exports.productComboDetail = function(req, res, next) {
           values[5].push(star);
         }
       } else {
-        for (var i = 0; i < values[5].length; i++) {
-          if (+values[5][i].STARS < starInPercent) {
-            var star = { STARS: starInPercent, QUANTITY: 0 };
-            values[5].push(star);
-            starInPercent--;
-            i--;
-          } else starInPercent--;
+        var arrStarRateTemp = [
+          {STARS: 1, QUANTITY: 0},
+          {STARS: 2, QUANTITY: 0},
+          {STARS: 3, QUANTITY: 0},
+          {STARS: 4, QUANTITY: 0},
+          {STARS: 5, QUANTITY: 0}
+        ]
+
+        for (var rateStar of values[5]) {
+          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
         }
 
-        // Sắp xếp lại
+        values[5] = arrStarRateTemp;
+
+         // Sắp xếp lại
         values[5].sort(function(star1, star2) {
           return star1.STARS < star2.STARS;
         });
@@ -470,7 +479,9 @@ module.exports.productComboDetail = function(req, res, next) {
           // Hàm định dạng title của product combo lấy 52 kí tự
           formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
           // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo
+          formatTitleInfo: formatStringHelper.formatTitleInfo,
+          // Hàm định dạng trong breadcrumb lấy 30 kí tự
+          formatTitleInBreadCrumb: formatStringHelper.formatTitleInBreadCrumb
         }
       });
     });
@@ -565,8 +576,6 @@ module.exports.postCommentProductDetail = function(req, res, next) {
 
                       /* Tính lượng % đánh giá của người dùng */
                       // Thêm các phần tử thiếu
-                      var starInPercent = 5;
-
                       if (values[1].length === 0) {
                         for (var i = 1; i <= 5; i++) {
                           var star = { STARS: i, QUANTITY: 0, percent: 0 };
@@ -574,14 +583,19 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                           values[1].push(star);
                         }
                       } else {
-                        for (var i = 0; i < values[1].length; i++) {
-                          if (+values[1][i].STARS < starInPercent) {
-                            var star = { STARS: starInPercent, QUANTITY: 0 };
-                            values[1].push(star);
-                            starInPercent--;
-                            i--;
-                          } else starInPercent--;
+                        var arrStarRateTemp = [
+                          {STARS: 1, QUANTITY: 0},
+                          {STARS: 2, QUANTITY: 0},
+                          {STARS: 3, QUANTITY: 0},
+                          {STARS: 4, QUANTITY: 0},
+                          {STARS: 5, QUANTITY: 0}
+                        ]
+                
+                        for (var rateStar of values[1]) {
+                          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
                         }
+                
+                        values[1] = arrStarRateTemp;
 
                         // Sắp xếp lại
                         values[1].sort(function(star1, star2) {
@@ -674,7 +688,9 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                       idProduct,
                       comment.ISSIMPLE
                     ),
-                    productComboModel.getRateProductComboFollowProductId(idProduct),
+                    productComboModel.getRateProductComboFollowProductId(
+                      idProduct
+                    ),
                     commentModel.commentsQuantityFollowIdProductAndTypeProduct(
                       idProduct,
                       comment.ISSIMPLE
@@ -702,8 +718,6 @@ module.exports.postCommentProductDetail = function(req, res, next) {
 
                       /* Tính lượng % đánh giá của người dùng */
                       // Thêm các phần tử thiếu
-                      var starInPercent = 5;
-
                       if (values[1].length === 0) {
                         for (var i = 1; i <= 5; i++) {
                           var star = { STARS: i, QUANTITY: 0, percent: 0 };
@@ -711,14 +725,19 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                           values[1].push(star);
                         }
                       } else {
-                        for (var i = 0; i < values[1].length; i++) {
-                          if (+values[1][i].STARS < starInPercent) {
-                            var star = { STARS: starInPercent, QUANTITY: 0 };
-                            values[1].push(star);
-                            starInPercent--;
-                            i--;
-                          } else starInPercent--;
+                        var arrStarRateTemp = [
+                          {STARS: 1, QUANTITY: 0},
+                          {STARS: 2, QUANTITY: 0},
+                          {STARS: 3, QUANTITY: 0},
+                          {STARS: 4, QUANTITY: 0},
+                          {STARS: 5, QUANTITY: 0}
+                        ]
+                
+                        for (var rateStar of values[1]) {
+                          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
                         }
+                
+                        values[1] = arrStarRateTemp;
 
                         // Sắp xếp lại
                         values[1].sort(function(star1, star2) {
@@ -737,14 +756,14 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                         }
                       }
                       /* Tính lượng % đánh giá của người dùng */
-                    //   //values[0]
-                    //   console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
-                    //   //values[1]
-                    //   console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
-                    //  // values[2].RATE
-                    //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
-                    //   //values[2].COMMENT_QUANTITY
-                    //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
+                      //   //values[0]
+                      //   console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
+                      //   //values[1]
+                      //   console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
+                      //  // values[2].RATE
+                      //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
+                      //   //values[2].COMMENT_QUANTITY
+                      //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
                       res.json({
                         comments: JSON.stringify(values[0]),
                         percentsStar: JSON.stringify(values[1]),

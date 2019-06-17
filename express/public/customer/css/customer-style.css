@@ -153,3 +153,12 @@ input:checked {
   color:#99cc00;
 }
 
+.li-newest a {
+  color:#666;
+  text-decoration: none;
+}
+
+.li-newest a:hover {
+  color:#99cc00;
+}
+

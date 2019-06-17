@@ -74,7 +74,7 @@
                 </li>
 
                 <li><a href="info-show.html">Tin tức</a></li>
-                <li><a href="404-not-found.html">Liên hệ</a></li>
+                <li><a href="404-not-found.html">Tags</a></li>
             </ul>
         </div>
     </div>
@@ -163,7 +163,7 @@
                         <a class="nav-link" href="/customer/info/info-show">Tin tức</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="404-not-found.html">Liên hệ</a>
+                        <a class="nav-link" href="/customer/info/tag/0">Tags</a>
                     </li>
                 </ul>
             </div>
@@ -198,7 +198,7 @@
                 {{#if this.isAuthenticated}}
                 <div class="pt-0 pl-2 pr-2 ml-1 pb-1" id="my-account">
                     <div class="component-avatar-user position-relative">
-                        <img src="{{this.authUser.avatar}}" class="rounded-circle h-100 w-100" alt="">
+                        <img src="{{this.authUser.IMAGE}}" class="rounded-circle h-100 w-100" alt="">
                         <div class="card component-avatar-user-content">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
                                 khoản của tôi</a>

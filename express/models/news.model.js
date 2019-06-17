@@ -2,42 +2,51 @@
 var db = require("../utils/db");
 
 // Hàm trả về 3 thông tin hữu ích mới nhất
-module.exports.top3PopularNewsIndexForIndex = () => {
-  return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+module.exports.topNNewestNews = (N) => {
+  return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT,  NEWS.VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
 									FROM news
-                  ORDER BY CREATED DESC
-                  LIMIT 3;`);
+                  ORDER BY DATE(CREATED) DESC
+                  LIMIT ${N};`);
+};
+
+// Hàm trả về 3 thông tin hữu ích mới nhất
+module.exports.topNNewestNewsDiffNewsId = (N, NewsId) => {
+  return db.load(`SELECT ID, IMAGE, TITLE,  NEWS.VIEWS, SHORTCONTENT, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
+                  FROM news
+                  WHERE ID != ${NewsId}
+                  ORDER BY DATE(CREATED) DESC
+                  LIMIT ${N};`);
 };
 
 // Hàm trả về 3 thông tin hữu ích mới nhất
 module.exports.topNNewsFollowTypeSort = (typeSort, N) => {
   switch (typeSort) {
-    // Hàng mới nhất
+    // Tin mới nhất
     case 0:
-      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED	
                       FROM news
-                      ORDER BY CREATED DESC
+                      ORDER BY DATE(CREATED) DESC
                       LIMIT ${N};`);
 
-    // Hàng cũ nhất
+    // Tin cũ nhất
     case 1:
-      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
                       FROM news
-                      ORDER BY CREATED ASC
+                      ORDER BY DATE(CREATED) ASC
                       LIMIT ${N};`);
 
-    // Giá tăng dần
+    // Đọc nhiều nhất
     case 2:
-      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
                       FROM news
-                      ORDER BY CREATED DESC
+                      ORDER BY VIEWS DESC
                       LIMIT ${N};`);
 
-    // Giá giảm dần
+    // Đọc ít nhất
     default:
-      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, CREATED				
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
                       FROM news
-                      ORDER BY CREATED ASC
+                      ORDER BY VIEWS ASC
                       LIMIT ${N};`);
   }
 };
@@ -120,3 +129,45 @@ function getDateNow() {
   today = yyyy + "-" + mm + "-" + dd;
   return today;
 }
+
+// Hàm trả về một thông tin theo id
+module.exports.top1NewFollowId = (id) => {
+  return db.load(`SELECT ID, TITLE, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED,
+                  SHORTCONTENT, CONTENT
+                  FROM news
+                  WHERE ID = ${id} AND STATUS = 1`);
+}
+
+
+// Hàm lấy các bài báo có cùng tag
+module.exports.topNNewsTheSameFollowOffsetFollowIdNews = (IdInfo, N , Offset) => {
+  return db.load(`SELECT NEWS.ID, NEWS.IMAGE, NEWS.TITLE, NEWS.VIEWS, NEWS.SHORTCONTENT, DATE_FORMAT(NEWS.CREATED, '%d/%m/%Y') AS CREATED	
+                FROM news NEWS JOIN news_tag NEWS_TAG ON NEWS.ID = NEWS_TAG.NEWSID WHERE ID != ${IdInfo} AND
+                NEWS_TAG.TAGID IN (SELECT TAG1.ID
+                FROM news_tag NEWS_TAG1 JOIN tag TAG1 ON NEWS_TAG1.TAGID = TAG1.ID WHERE NEWS_TAG1.NEWSID = ${IdInfo})
+                GROUP BY NEWS.ID
+								LIMIT ${N} OFFSET ${Offset * N};`);
+};
+
+// Hàm lấy các bài báo được đọc nhiều nhất tuần
+module.exports.topNNewsPopularInWeekFollowOffsetFollowIdNews = (IdInfo, N , Offset, startDate, endDate) => {
+  return db.load(`SELECT SUM(NEWS_VIEWS.VIEWS) AS QUANTITY_VIEWS, NEWS.ID, NEWS.IMAGE, NEWS.TITLE, NEWS.VIEWS, NEWS.SHORTCONTENT, DATE_FORMAT(NEWS.CREATED, '%d/%m/%Y') AS CREATED	
+                  FROM news NEWS JOIN news_views NEWS_VIEWS ON NEWS.ID = NEWS_VIEWS.IDNEWS
+                  WHERE '${startDate}' <= NEWS_VIEWS.DATE AND NEWS_VIEWS.DATE <= '${endDate}'
+                  GROUP BY  NEWS.ID
+                  ORDER BY QUANTITY_VIEWS DESC
+								LIMIT ${N} OFFSET ${Offset * N};`);
+};
+
+// Hàm lấy các bài báo được đọc nhiều nhất tuần
+module.exports.topNNewsFollowTagId = (tagId, N , Offset, ) => {
+  var stringTagId = "";
+  
+  if (+tagId !== 0)
+    stringTagId = `WHERE NEWS_TAG.TAGID = ${tagId}`;
+
+  return db.load(`SELECT NEWS.ID, NEWS.IMAGE, NEWS.TITLE, NEWS.VIEWS, NEWS.SHORTCONTENT, DATE_FORMAT(NEWS.CREATED, '%d/%m/%Y') AS CREATED	
+                FROM news NEWS LEFT JOIN news_tag NEWS_TAG ON NEWS.ID = NEWS_TAG.NEWSID ${stringTagId}
+                GROUP BY NEWS_TAG.NEWSID
+								LIMIT ${N} OFFSET ${Offset * N};`);
+};

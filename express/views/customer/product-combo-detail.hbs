@@ -20,7 +20,7 @@
 <div class="breadcrumb-header container-fluid p-0">
     <div
         class="breadcrumb-div text-dark w-100 h-100 d-flex flex-column justify-content-center align-items-center pt-4 pb-4">
-        <p>{{productName}}</p>
+        <p>{{formatTitleInBreadCrumb productName}}</p>
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
@@ -31,7 +31,7 @@
                     <a href="/customer/product/product-combo-show">combo</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    {{productName}}
+                    {{formatTitleInBreadCrumb productName}}
                 </li>
             </ol>
         </nav>
