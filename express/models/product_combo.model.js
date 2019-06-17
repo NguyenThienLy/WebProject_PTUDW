@@ -10,12 +10,13 @@ module.exports.allProductCombos = () => {
             PRO1.RESIZEDIMAGE AS PRODUCTIMAGE1, PRO2.RESIZEDIMAGE AS PRODUCTIMAGE2, PRO3.RESIZEDIMAGE AS PRODUCTIMAGE3,
             product_combo.NAME, product_combo.STATUS, product_combo.RATE, product_combo.PRICE, product_combo.KILOGRAM, 
             product_combo.SALE, product_combo.VIPSALE, product_combo.SHORTDESCRIPTION, product_combo.DESCRIPTION, 
-            product_combo.INVENTORY, product_combo.CREATED
+            product_combo.INVENTORY, DATE_FORMAT(product_combo.CREATED, '%d/%m/%Y %H:%i') AS CREATED
 						FROM ((product_combo
             JOIN product PRO1 ON product_combo.PRODUCTID1 = PRO1.ID)
             JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
             JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID
-            WHERE product_combo.STATUS = 1`);
+            WHERE product_combo.STATUS = 1
+            ORDER BY product_combo.CREATED DESC`);
 };
 
 

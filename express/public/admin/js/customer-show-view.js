@@ -11,7 +11,7 @@ $(".post_delete_customer").click(function() {
         //load lại trang
         window.location.href = location.href;
       } else {
-        alert("Không thể xóa khách hàng!");
+        $(".alert_modal").click();
       }
     }
   });

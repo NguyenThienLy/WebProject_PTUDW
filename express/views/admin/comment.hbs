@@ -13,7 +13,7 @@
 
 <div id="content" class="mb-5">
     <header class="clearfix">
-        <h5 class="page_title mb-0">Tất cả bình luận</h5>
+        <h5 class="page_title mb-0">Tất cả bình luận của sản phẩm {{this.productId}}</h5>
     </header>
 
     <div class="content-inner">
@@ -21,8 +21,7 @@
         <div class="row search-row ml-0 mr-0">
             <div class="col-md-12 p-0">
                 <div class="input-group input-group-sm mb-3">
-                    <input type="text" class="form-control search-field" id="search" placeholder="Tên khách hàng"
-                        aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                    <input type="text" class="form-control search-field" id="search" placeholder="Tên khách hàng" />
                     <div class="input-group-append">
                         <button class="btn btn-success" type="button">
                             Tìm kiếm
@@ -67,13 +66,17 @@
 
                     <span class="rate-text">{{TITLE}}</span>
 
+                    <span class="float-right comment-id">Mã bình luận: {{ID}}</span>
+
                     <div class="prove-buy">
                         {{#if BOUGHT}}
                         <i class="fas fa-check-circle mr-1"></i>
                         <span>Đã mua sản phẩm</span>
                         {{else}}
-                        <i class="fa fa-exclamation-circle"></i>
-                        <span>Chưa mua sản phẩm</span>
+                        <div class="unbought">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <span>Chưa mua sản phẩm</span>
+                        </div>
                         {{/if}}
                     </div>
 
@@ -81,20 +84,17 @@
                         {{COMMENT}}
                     </p>
 
-                    <div class="clearfix">
+                    <div class="clearfix mb-3">
                         <div class="float-left mt-2 pr-2">
-                            <a class="btn btn-sm btn-warning disabled" href="#" role="button">
+                            <button class="btn btn-sm btn-warning disabled" role="button">
                                 <span>Cảm ơn</span>
-                                <span class="badge badge-light p-1"> {{LIKES}}</span>
-                            </a>
+                                <span class="badge badge-light p-1">{{LIKES}}</span>
+                            </button>
                         </div>
                         <div class="float-right mt-2 pr-2">
-                            <a class="btn btn-sm btn-primary" href="#" role="button">
-                                <span class="fas fa-eye-slash">&ensp;Ẩn</span>
-                            </a>
-                            <a class="btn btn-sm btn-danger" href="#" role="button">
-                                <span class="fas fa-times">&ensp;Xóa</span>
-                            </a>
+                            <button class="btn btn-sm btn-danger post_delete_comment" id="{{ID}}" type="button">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -143,5 +143,31 @@
     </div>
 </div>
 
+<!-- Button trigger modal -->
+<button hidden type="button" class="btn btn-primary alert_modal" data-toggle="modal" data-target="#cannotRemoveModal">
+  Không thể xóa
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Không thể xóa bình luận
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {{#section 'js'}}
+<script src="/admin/js/comment-show-view.js"></script>
 {{/section}}

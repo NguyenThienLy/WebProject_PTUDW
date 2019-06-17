@@ -32,7 +32,7 @@ $(".post_delete_simple").click(function() {
         //load lại trang
         window.location.href = location.href;
       } else {
-        alert("Không thể xóa sản phẩm!");
+        $(".alert_modal").click();
       }
     }
   });
@@ -52,7 +52,7 @@ $(".post_delete_combo").click(function() {
         //load lại trang
         window.location.href = location.href;
       } else {
-        alert("Không thể xóa sản phẩm!");
+        $(".alert_modal").click();
       }
     }
   });

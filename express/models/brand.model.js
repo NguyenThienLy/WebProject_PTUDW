@@ -3,7 +3,7 @@ var db = require("../utils/db");
 
 // hàm trả về danh sách tất cả nhãn hiệu
 module.exports.allBrand = () => {
-  return db.load(`SELECT * FROM brand`);
+  return db.load(`SELECT * FROM brand ORDER BY ID ASC`);
 };
 
 // hàm trả về danh sách tất cả nhãn hiệu

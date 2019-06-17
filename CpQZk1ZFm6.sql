@@ -76,7 +76,8 @@ CREATE TABLE `cart` (
   `CUSTOMERID` int(11) NOT NULL,
   `PRODUCTID` int(11) NOT NULL,
   `QUANTITY` int(11) NOT NULL,
-  `TOTALMONEY` double NOT NULL
+  `TOTALMONEY` double NOT NULL,
+  `ISSIMPLE` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -104,6 +105,58 @@ INSERT INTO `category` (`ID`, `NAME`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `sub_category`
+--
+
+CREATE TABLE `sub_category` (
+  `ID` int(11) NOT NULL,
+  `CATEGORYID` int(11) NOT NULL,
+  `NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sub_category`
+--
+
+INSERT INTO `sub_category` (`ID`, `CATEGORYID`, `NAME`) VALUES
+(1, 5, 'Thịt bò'),
+(2, 5, 'Thịt heo'),
+(3, 5, 'Thịt gia cầm'),
+(4, 3, 'Mực'),
+(5, 3, 'Cá'),
+(6, 3, 'Tôm'),
+(7, 3, 'Cua'),
+(8, 1, 'Rau hữu cơ'),
+(9, 1, 'Rau gia vị'),
+(10, 1, 'Nấm - Rau mầm'),
+(11, 2, 'Trái cây việt'),
+(12, 2, 'Trái cây nhập'),
+(13, 2, 'Trái cây khô');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tag`
+--
+
+CREATE TABLE `tag` (
+  `ID` int(11) NOT NULL,
+  `NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tag`
+--
+
+INSERT INTO `tag` (`ID`, `NAME`) VALUES
+(1, 'Các món từ bơ'),
+(2, 'Cơn sốt rau sạch'),
+(3, 'Rau organic'),
+(4, 'Vietgap');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `comment`
 --
 
@@ -115,17 +168,18 @@ CREATE TABLE `comment` (
   `TITLE` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `COMMENT` varchar(2000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `STARS` int(11) NOT NULL,
-  `LIKES` int(11) NOT NULL
+  `LIKES` int(11) NOT NULL,
+  `ISSIMPLE` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `comment`
 --
 
-INSERT INTO `comment` (`ID`, `CUSTOMERID`, `PRODUCTID`, `CREATED`, `TITLE`, `COMMENT`, `STARS`, `LIKES`) VALUES
-(1, 1, 1, '2019-05-01', 'Hài lòng', 'Sản phẩm rất tốt', 5, 2),
-(2, 2, 5, '2019-05-02', 'Giá mắc', 'Sản phẩm này rất tệ, không phù hợp với mình, giá cả thì mắc', 1, 1),
-(3, 3, 7, '2019-05-30', 'OK', 'Tuyệt vời', 3, 0);
+INSERT INTO `comment` (`ID`, `CUSTOMERID`, `PRODUCTID`, `CREATED`, `TITLE`, `COMMENT`, `STARS`, `LIKES`, `ISSIMPLE`) VALUES
+(1, 1, 1, '2019-05-01', 'Hài lòng', 'Sản phẩm rất tốt', 5, 2, 1),
+(2, 2, 5, '2019-05-02', 'Giá mắc', 'Sản phẩm này rất tệ, không phù hợp với mình, giá cả thì mắc', 1, 1, 1),
+(3, 3, 7, '2019-05-30', 'OK', 'Tuyệt vời', 3, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +219,9 @@ CREATE TABLE `customer` (
   `CASH` double NOT NULL,
   `CUSTOMERTYPEID` int(11) NOT NULL,
   `STATUS` tinyint(1) NOT NULL,
-  `CREATED` date NOT NULL
+  `CREATED` date NOT NULL,
+  `RESETPASSWORDTOKEN` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `RESETPASSWORDEXPIRES` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -202,21 +258,21 @@ INSERT INTO `customer_type` (`ID`, `NAME`) VALUES
 -- Cấu trúc bảng cho bảng `customer_view`
 --
 
-CREATE TABLE `customer_view` (
-  `ID` int(11) NOT NULL,
-  `CUSTOMERID` int(11) NOT NULL,
-  `CREATED` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- CREATE TABLE `customer_view` (
+--   `ID` int(11) NOT NULL,
+--   `CUSTOMERID` int(11) NOT NULL,
+--   `CREATED` date NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `customer_view`
 --
 
-INSERT INTO `customer_view` (`ID`, `CUSTOMERID`, `CREATED`) VALUES
-(1, 1, '2019-05-01'),
-(2, 1, '2019-05-01'),
-(3, 2, '2019-05-01'),
-(4, 2, '2019-05-01');
+-- INSERT INTO `customer_view` (`ID`, `CUSTOMERID`, `CREATED`) VALUES
+-- (1, 1, '2019-05-01'),
+-- (2, 1, '2019-05-01'),
+-- (3, 2, '2019-05-01'),
+-- (4, 2, '2019-05-01');
 
 -- --------------------------------------------------------
 
@@ -224,10 +280,10 @@ INSERT INTO `customer_view` (`ID`, `CUSTOMERID`, `CREATED`) VALUES
 -- Cấu trúc bảng cho bảng `feature`
 --
 
-CREATE TABLE `feature` (
-  `ID` int(11) NOT NULL,
-  `NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- CREATE TABLE `feature` (
+--   `ID` int(11) NOT NULL,
+--   `NAME` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -243,21 +299,35 @@ CREATE TABLE `news` (
   `SHORTCONTENT` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `CONTENT` varchar(5000) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `STATUS` tinyint(1) NOT NULL,
-  `CREATED` date NOT NULL
+  `CREATED` date NOT NULL,
+  `VIEWS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `news`
 --
 
-INSERT INTO `news` (`ID`, `IMAGE`, `RESIZEDIMAGE`, `TITLE`, `SHORTCONTENT`, `CONTENT`, `STATUS`, `CREATED`) VALUES
-(1, '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913', '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913','Cà chua giảm giá mạnh vì hiện tượng được mùa mất giá ở Lâm Đồng, nông dân lao đao tìm hướng ra của sản phẩm\r\n', 'Cà chua thuộc họ cây Bạch anh, các loại cây trong họ này thường phát triển từ 1 đến 3 mét chiều cao, có những cây thân mềm bò trên mặt đất hoặc dây leo trên thân cây khác ví dụ nho.', 'Hiện có khoảng 7.500 giống cà chua trồng cho các mục đích khác nhau. Cà chua thuần chủng đang ngày càng trở lên phổ biến, đặc biệt giữa các người vườn và nhà sản xuất khi học có xu hướng sản xuất các loại cây trồng có hương vị thú vị hơn, tăng khả năng kháng bệnh và năng suất.\r\n\r\nCây lai vẫn còn phổ biến, kể từ khi có mục đích sản xuất lớn, người ta kết hợp các đặc điểm tốt của các loại cà chua thuần chủng với độ ổn định của các loại cà chua thương mại thông thường.\r\n\r\n\r\nCác giống cà chua thuần chủng khác nhau\r\nGiống cà chua được chia thành nhiều loại, chủ yếu dựa vào hình dạng và kích thước.\r\n\r\nLoại cà chua Slicing hay globe là cà chua thương mại thông thường, dùng được cho nhiều cách chế biến và ăn tươi.\r\nLoại cà chua Beefsteak là cà chua lớn thường dùng cho bánh mì. Thời gian bảo quản ngắn khiến ít được sử dụng trong thương mại.\r\nLoại cà chua Oxheart có hình dạng giống như loại dâu tây lớn.\r\nCà chua mận được lai tại để sử dụng trong sản xuất nước sốt cà chua.\r\nCà chua lê hình quả lê.\r\nCà chua anh đào nhỏ và tròn, vị ngọt ăn trong món salad.\r\nCà chua nho được giới thiệu gần đây, một biến thể của cà chua mận nhưng nhỏ hơn, được dùng trong món salad\r\nCà chua Campari ngọt, lớn hơn cà chua anh đào nhưng nhỏ hơn cà chua mận.\r\nHầu hết các giống cà chua hiện đại đều mịn bề mặt, nhưng một số giống cà chua hiện đại như beefsteak thường có khía rõ rệt. Hầu hết các giống trái cây thương mại màu đỏ, nhưng nhiều giống cà chua thuần chủng có màu sắc đa dạng. Có một sự khác biệt giữa cà chua trồng cho thương mại so với cà chua do những người làm vườn sản xuất tại gia. Giống sản xuất do người làm vườn thường được chú trọng đến hương vị, còn giống do các cơ sở sản xuất thương mại hướng đến hình dạng, kích thước, kháng sâu bệnh, phù hợp cho việc cơ giới hóa thu hái và vận chuyển.\r\n\r\nCà chua phát triển tốt với 7 giờ chiếu sáng mỗi ngày từ ánh sáng mặt trời. Một phân bón NPK với tỷ lệ 5-10-10 thường được bán làm phân bón cà chua hoặc phân bón rau, cả phân hữu cơ cũng được sử dụng.', 1, '2019-05-21'),
-(2, '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/8.jpg?v=1553634487280', '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913', 'Bí quyết ăn ngò gai cùng với cháo ngon hơn trong mua đông', 'Ngò gai là cây cỏ thấp, có thân đơn độc, chia cành ở ngọn, hoa quả mọc ở cành. Lá mọc ở gốc, xoè ra hình hoa thị. Lá hình mác thuôn dài, bìa có răng cưa nhỏ. Hoa tự, hình đầu, hình bầu dục, hoặc hình trụ. Khi trưởng thành, hạt rụng và phát tán, Ăn ngò gai vào mùa đông rất tuyêt và ngon cùng với tô cháo thịt ngon tuyệt vời nếu ai chưa biết\r\n', 'Mùi tàu là tên gọi của miền Bắc, ngò gai là tên gọi của người miền Nam với loại rau thân thảo, cây đơn lẻ, lá mọc ở gốc xòe ra hình hoa thị, lá hình thuôn có răng cưa, cành chia ở ngọn chứa hoa.\r\n\r\nHoa hình trụ hoặc hình bầu. Có tác dụng làm rau thơm, chữa bệnh rất tốt.\r\n\r\nTheo Đông Y mùi tàu tình ấm, vị đắng, mùi thơm hắc, có tác dụng tiện kỳ, sơ phong thanh nhiệt, giảm đau, hành khí tiêu thũng, thông khí, giải độc, giải nhiệt, kiện tỳ, kích thích tiêu hoá, khử mùi hôi hiệu quả.\r\n\r\nDo đó, mùi tàu không chỉ dùng làm rau gia vị mà nó còn được dùng như 1 vị thuốc chữa bệnh hữu hiệu trong Đông Y.\r\n\r\nLá mùi tàu có chứa tới 0,02 – 0,04% tinh dầu bay hơi, rễ chứa saponin…, được dùng ở dạng tươi hoặc khô trong các bài thuốc giảm đau, chữa cảm cúm, cảm lạnh, hôi miệng,…\r\n', 1, '2019-04-10'),
-(3, '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/41968416-280694729439890-8459559393178510661-n.jpg?v=1553650945157', '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913','Chắc bạn chưa biết số lượng vitamin A mà cây dền đỏ có thể mang lại\r\n', 'Dền đỏ, dền tía, dền canh hay rau dền, rau giền (danh pháp: Amaranthus tricolor) là loài thực vật có hoa thuộc họ Dền. Loài này được L. mô tả khoa học đầu tiên năm 1753', 'Giàu dinh dưỡng\r\n\r\nNhư mình đã kể ở trên, rau dền có rất nhiều dưỡng chất. Vì mang đặc tính chung của các họ rau củ màu đỏ, rau dền đỏ chứa hàm lượng vitamin A rất cao, chưa kể đến các vitamin khác như B1, B6, B12.\r\n\r\nTuy hàm lượng sắt và canxi trong rau dền đỏ khá cao, nhưng rau dền lại không chứa acid oxalic, nên hai chất này được cơ thể hấp thụ và tận dụng dễ dàng, đặc biệt tốt cho các mẹ bầu thiếu chất.\r\n\r\nĐiều trị thiếu máu\r\n\r\nNhư các bạn đã biết sắt là một trong những nguyên tố vi lượng cần thiết cho cơ thể chúng ta, chất sắt giúp tạo máu để duy trì hoạt động của cơ thể, thiếu sắt đồng nghĩa với tình trạng thiếu máu.\r\n\r\nRau dền đặc biệt là rau dền đỏ có hàm lượng chất sắt khá cao vì vậy đây chính là nguồn bổ sung chất sắt dồi dào cho cơ thể, rất tốt cho những bệnh nhân thiếu máu do không đủ chất sắt, người bệnh mới ốm dậy, người xanh xao.\r\n\r\nGiải nhiệt\r\n\r\nVào mùa hè, thời tiết chuyển sang oi bức, người dễ bốc hỏa và nóng trong, nhiệt độ ngoài trời cộng thêm ăn uống không lành mạnh dễ làm cơ thể mệt mỏi. Rau dền là một gợi ý tuyệt vời cho cả gia đình trong những ngày này.\r\n\r\nChẳng ít thì nhiều, mỗi tuần, chúng mình nên bổ sung từ 2-3 bữa canh rau dền vào thực đơn, để đề phòng nắng nóng ảnh hưởng xấu đến sức khỏe cơ thể.\r\n\r\nĐiều trị táo bón\r\n\r\nTáo bón là chứng bệnh mang lại cực kì nhiều khó chịu, nếu không điều trị kịp thời sẽ gây ra những căn bệnh phiền toái hơn. Ấy vậy mà nó lại cực kì dễ xử lý, nếu như chúng ta ăn rau dền luộc hàng ngày.', 1, '2019-05-16'),
-(6, '/uploads/IMAGE-1558240804761.jpg', '/uploads/IMAGE-1558240804761.jpg', 'Bài viết mới', 'Cà chua thuộc họ cây Bạch anh, các loại cây trong họ này thường phát triển từ 1 đến 3 mét chiều cao, có những cây thân mềm bò trên mặt đất hoặc dây leo trên thân cây khác ví dụ nho.', '<blockquote><p>Hiện có khoảng 7.500 giống cà chua trồng cho các mục đích khác nhau. Cà chua thuần chủng đang ngày càng trở lên phổ biến, đặc biệt giữa các người vườn và nhà sản xuất khi học có xu hướng sản xuất các loại cây trồng có hương vị thú vị hơn, tăng khả năng kháng bệnh và năng suất.&nbsp;</p></blockquote><figure class=\"image image-style-align-left\"><img src=\"https://cksource.com/weuy2g4ryt278ywiue/core/connector/php/connector.php?command=Proxy&amp;type=Files&amp;currentFolder=%2F&amp;fileName=heart%284%29.jpg\"><figcaption>hình trái tim</figcaption></figure><p><br><mark class=\"marker-green\">Cây lai vẫn còn phổ biến, kể từ khi có mục đích sản xuất lớn, người ta kết hợp các đặc điểm tốt của các loại cà chua thuần chủng với độ ổn định của các loại cà chua thương mại thông thường.&nbsp;</mark></p><p><br>Các giống cà chua thuần chủng khác nhau&nbsp;<br>Giống cà chua được chia thành nhiều loại, chủ yếu dựa vào hình dạng và kích thước.&nbsp;<br><br>Loại cà chua Slicing hay globe là cà chua thương mại thông thường, dùng được cho nhiều cách chế biến và ăn tươi.&nbsp;<br>Loại cà chua Beefsteak là cà chua lớn thường dùng cho bánh mì. Thời gian bảo quản ngắn khiến ít được sử dụng trong thương mại.&nbsp;<br>Loại cà chua Oxheart có hình dạng giống như loại dâu tây lớn.&nbsp;<br>Cà chua mận được lai tại để sử dụng trong sản xuất nước sốt cà chua.&nbsp;<br>Cà chua lê hình quả lê.&nbsp;<br>Cà chua anh đào nhỏ và tròn, vị ngọt ăn trong món salad.&nbsp;<br>Cà chua nho được giới thiệu gần đây, một biến thể của cà chua mận nhưng nhỏ hơn, được dùng trong món salad&nbsp;<br>Cà chua Campari ngọt, lớn hơn cà chua anh đào nhưng nhỏ hơn cà chua mận.&nbsp;<br>Hầu hết các giống cà chua hiện đại đều mịn bề mặt, nhưng một số giống cà chua hiện đại như beefsteak thường có khía rõ rệt. Hầu hết các giống trái cây thương mại màu đỏ, nhưng nhiều giống cà chua thuần chủng có màu sắc đa dạng. Có một sự khác biệt giữa cà chua trồng cho thương mại so với cà chua do những người làm vườn sản xuất tại gia. Giống sản xuất do người làm vườn thường được chú trọng đến hương vị, còn giống do các cơ sở sản xuất thương mại hướng đến hình dạng, kích thước, kháng sâu bệnh, phù hợp cho việc cơ giới hóa thu hái và vận chuyển.&nbsp;<br>&nbsp;</p><figure class=\"media\"><oembed url=\"https://www.youtube.com/watch?v=6cpIuOJ7jXc\"></oembed></figure><p><br>Cà chua phát triển tốt với 7 giờ chiếu sáng mỗi ngày từ ánh sáng mặt trời. Một phân bón NPK với tỷ lệ 5-10-10 thường được bán làm phân bón cà chua hoặc phân bón rau, cả phân hữu cơ cũng được sử dụng.</p>', 1, '2019-05-19'),
-(7, '/uploads/IMAGE-1558257401749.jpg', '/uploads/IMAGE-1558240804761.jpg', 'Bài viết mới 2', 'Ngò gai là cây cỏ thấp, có thân đơn độc, chia cành ở ngọn, hoa quả mọc ở cành. Lá mọc ở gốc, xoè ra hình hoa thị. Lá hình mác thuôn dài, bìa có răng cưa nhỏ. Hoa tự, hình đầu, hình bầu dục, hoặc hình trụ. Khi trưởng thành, hạt rụng và phát tán, Ăn ngò gai vào mùa đông rất tuyêt và ngon cùng với tô cháo thịt ngon tuyệt vời nếu ai chưa biết\r\n', '<figure class=\"media\"><oembed url=\"https://www.youtube.com/watch?v=stBpQw3Ybmo\"></oembed></figure><p>Mùi tàu là tên gọi của miền Bắc, ngò gai là tên gọi của người miền Nam với loại rau thân thảo, cây đơn lẻ, lá mọc ở gốc xòe ra hình hoa thị, lá hình thuôn có răng cưa, cành chia ở ngọn chứa hoa.&nbsp;<br><br>Hoa hình trụ hoặc hình bầu. Có tác dụng làm rau thơm, chữa bệnh rất tốt.&nbsp;<br><br>Theo Đông Y mùi tàu tình ấm, vị đắng, mùi thơm hắc, có tác dụng tiện kỳ, sơ phong thanh nhiệt, giảm đau, hành khí tiêu thũng, thông khí, giải độc, giải nhiệt, kiện tỳ, kích thích tiêu hoá, khử mùi hôi hiệu quả.&nbsp;<br><br>Do đó, mùi tàu không chỉ dùng làm rau gia vị mà nó còn được dùng như 1 vị thuốc chữa bệnh hữu hiệu trong Đông Y.&nbsp;<br><br>Lá mùi tàu có chứa tới 0,02 – 0,04% tinh dầu bay hơi, rễ chứa saponin…, được dùng ở dạng tươi hoặc khô trong các bài thuốc giảm đau, chữa cảm cúm, cảm lạnh, hôi miệng,…&nbsp;<br><br>&nbsp;</p>', 1, '2019-05-19'),
-(8, '/uploads/IMAGE-1558257870525.jpg', '/uploads/IMAGE-1558240804761.jpg', '123', '123', '<p>123</p>', 1, '2019-05-19'),
-(9, '/uploads/image_info-1558423239394.jpg', '/uploads/IMAGE-1558240804761.jpg', 'Bài viết mới 3', 'Dền đỏ, dền tía, dền canh hay rau dền, rau giền (danh pháp: Amaranthus tricolor) là loài thực vật có hoa thuộc họ Dền. Loài này được L. mô tả khoa học đầu tiên năm 1753', '<p>Giàu dinh dưỡng&nbsp;<br><br>Như mình đã kể ở trên, rau dền có rất nhiều dưỡng chất. Vì mang đặc tính chung của các họ rau củ màu đỏ, rau dền đỏ chứa hàm lượng vitamin A rất cao, chưa kể đến các vitamin khác như B1, B6, B12.&nbsp;<br><br>Tuy hàm lượng sắt và canxi trong rau dền đỏ khá cao, nhưng rau dền lại không chứa acid oxalic, nên hai chất này được cơ thể hấp thụ và tận dụng dễ dàng, đặc biệt tốt cho các mẹ bầu thiếu chất.&nbsp;<br><br>Điều trị thiếu máu&nbsp;<br><br>Như các bạn đã biết sắt là một trong những nguyên tố vi lượng cần thiết cho cơ thể chúng ta, chất sắt giúp tạo máu để duy trì hoạt động của cơ thể, thiếu sắt đồng nghĩa với tình trạng thiếu máu.&nbsp;<br><br>Rau dền đặc biệt là rau dền đỏ có hàm lượng chất sắt khá cao vì vậy đây chính là nguồn bổ sung chất sắt dồi dào cho cơ thể, rất tốt cho những bệnh nhân thiếu máu do không đủ chất sắt, người bệnh mới ốm dậy, người xanh xao.&nbsp;<br><br>Giải nhiệt&nbsp;<br><br>Vào mùa hè, thời tiết chuyển sang oi bức, người dễ bốc hỏa và nóng trong, nhiệt độ ngoài trời cộng thêm ăn uống không lành mạnh dễ làm cơ thể mệt mỏi. Rau dền là một gợi ý tuyệt vời cho cả gia đình trong những ngày này.&nbsp;<br><br>Chẳng ít thì nhiều, mỗi tuần, chúng mình nên bổ sung từ 2-3 bữa canh rau dền vào thực đơn, để đề phòng nắng nóng ảnh hưởng xấu đến sức khỏe cơ thể.&nbsp;<br><br>Điều trị táo bón&nbsp;<br><br>Táo bón là chứng bệnh mang lại cực kì nhiều khó chịu, nếu không điều trị kịp thời sẽ gây ra những căn bệnh phiền toái hơn. Ấy vậy mà nó lại cực kì dễ xử lý, nếu như chúng ta ăn rau dền luộc hàng ngày.</p>', 1, '2019-05-21');
+INSERT INTO `news` (`ID`, `IMAGE`, `RESIZEDIMAGE`, `TITLE`, `SHORTCONTENT`, `CONTENT`, `STATUS`, `CREATED`, `VIEWS`) VALUES
+(1, '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913', '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913','Cà chua giảm giá mạnh vì hiện tượng được mùa mất giá ở Lâm Đồng, nông dân lao đao tìm hướng ra của sản phẩm\r\n', 'Cà chua thuộc họ cây Bạch anh, các loại cây trong họ này thường phát triển từ 1 đến 3 mét chiều cao, có những cây thân mềm bò trên mặt đất hoặc dây leo trên thân cây khác ví dụ nho.', 'Hiện có khoảng 7.500 giống cà chua trồng cho các mục đích khác nhau. Cà chua thuần chủng đang ngày càng trở lên phổ biến, đặc biệt giữa các người vườn và nhà sản xuất khi học có xu hướng sản xuất các loại cây trồng có hương vị thú vị hơn, tăng khả năng kháng bệnh và năng suất.\r\n\r\nCây lai vẫn còn phổ biến, kể từ khi có mục đích sản xuất lớn, người ta kết hợp các đặc điểm tốt của các loại cà chua thuần chủng với độ ổn định của các loại cà chua thương mại thông thường.\r\n\r\n\r\nCác giống cà chua thuần chủng khác nhau\r\nGiống cà chua được chia thành nhiều loại, chủ yếu dựa vào hình dạng và kích thước.\r\n\r\nLoại cà chua Slicing hay globe là cà chua thương mại thông thường, dùng được cho nhiều cách chế biến và ăn tươi.\r\nLoại cà chua Beefsteak là cà chua lớn thường dùng cho bánh mì. Thời gian bảo quản ngắn khiến ít được sử dụng trong thương mại.\r\nLoại cà chua Oxheart có hình dạng giống như loại dâu tây lớn.\r\nCà chua mận được lai tại để sử dụng trong sản xuất nước sốt cà chua.\r\nCà chua lê hình quả lê.\r\nCà chua anh đào nhỏ và tròn, vị ngọt ăn trong món salad.\r\nCà chua nho được giới thiệu gần đây, một biến thể của cà chua mận nhưng nhỏ hơn, được dùng trong món salad\r\nCà chua Campari ngọt, lớn hơn cà chua anh đào nhưng nhỏ hơn cà chua mận.\r\nHầu hết các giống cà chua hiện đại đều mịn bề mặt, nhưng một số giống cà chua hiện đại như beefsteak thường có khía rõ rệt. Hầu hết các giống trái cây thương mại màu đỏ, nhưng nhiều giống cà chua thuần chủng có màu sắc đa dạng. Có một sự khác biệt giữa cà chua trồng cho thương mại so với cà chua do những người làm vườn sản xuất tại gia. Giống sản xuất do người làm vườn thường được chú trọng đến hương vị, còn giống do các cơ sở sản xuất thương mại hướng đến hình dạng, kích thước, kháng sâu bệnh, phù hợp cho việc cơ giới hóa thu hái và vận chuyển.\r\n\r\nCà chua phát triển tốt với 7 giờ chiếu sáng mỗi ngày từ ánh sáng mặt trời. Một phân bón NPK với tỷ lệ 5-10-10 thường được bán làm phân bón cà chua hoặc phân bón rau, cả phân hữu cơ cũng được sử dụng.', 1, '2019-05-21', 0),
+(2, '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/8.jpg?v=1553634487280', '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913', 'Bí quyết ăn ngò gai cùng với cháo ngon hơn trong mua đông', 'Ngò gai là cây cỏ thấp, có thân đơn độc, chia cành ở ngọn, hoa quả mọc ở cành. Lá mọc ở gốc, xoè ra hình hoa thị. Lá hình mác thuôn dài, bìa có răng cưa nhỏ. Hoa tự, hình đầu, hình bầu dục, hoặc hình trụ. Khi trưởng thành, hạt rụng và phát tán, Ăn ngò gai vào mùa đông rất tuyêt và ngon cùng với tô cháo thịt ngon tuyệt vời nếu ai chưa biết\r\n', 'Mùi tàu là tên gọi của miền Bắc, ngò gai là tên gọi của người miền Nam với loại rau thân thảo, cây đơn lẻ, lá mọc ở gốc xòe ra hình hoa thị, lá hình thuôn có răng cưa, cành chia ở ngọn chứa hoa.\r\n\r\nHoa hình trụ hoặc hình bầu. Có tác dụng làm rau thơm, chữa bệnh rất tốt.\r\n\r\nTheo Đông Y mùi tàu tình ấm, vị đắng, mùi thơm hắc, có tác dụng tiện kỳ, sơ phong thanh nhiệt, giảm đau, hành khí tiêu thũng, thông khí, giải độc, giải nhiệt, kiện tỳ, kích thích tiêu hoá, khử mùi hôi hiệu quả.\r\n\r\nDo đó, mùi tàu không chỉ dùng làm rau gia vị mà nó còn được dùng như 1 vị thuốc chữa bệnh hữu hiệu trong Đông Y.\r\n\r\nLá mùi tàu có chứa tới 0,02 – 0,04% tinh dầu bay hơi, rễ chứa saponin…, được dùng ở dạng tươi hoặc khô trong các bài thuốc giảm đau, chữa cảm cúm, cảm lạnh, hôi miệng,…\r\n', 1, '2019-04-10', 0),
+(3, '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/41968416-280694729439890-8459559393178510661-n.jpg?v=1553650945157', '//bizweb.dktcdn.net/thumb/large/100/350/980/articles/49997669-476326726231228-9092403644171095934-n.jpg?v=1553650991913','Chắc bạn chưa biết số lượng vitamin A mà cây dền đỏ có thể mang lại\r\n', 'Dền đỏ, dền tía, dền canh hay rau dền, rau giền (danh pháp: Amaranthus tricolor) là loài thực vật có hoa thuộc họ Dền. Loài này được L. mô tả khoa học đầu tiên năm 1753', 'Giàu dinh dưỡng\r\n\r\nNhư mình đã kể ở trên, rau dền có rất nhiều dưỡng chất. Vì mang đặc tính chung của các họ rau củ màu đỏ, rau dền đỏ chứa hàm lượng vitamin A rất cao, chưa kể đến các vitamin khác như B1, B6, B12.\r\n\r\nTuy hàm lượng sắt và canxi trong rau dền đỏ khá cao, nhưng rau dền lại không chứa acid oxalic, nên hai chất này được cơ thể hấp thụ và tận dụng dễ dàng, đặc biệt tốt cho các mẹ bầu thiếu chất.\r\n\r\nĐiều trị thiếu máu\r\n\r\nNhư các bạn đã biết sắt là một trong những nguyên tố vi lượng cần thiết cho cơ thể chúng ta, chất sắt giúp tạo máu để duy trì hoạt động của cơ thể, thiếu sắt đồng nghĩa với tình trạng thiếu máu.\r\n\r\nRau dền đặc biệt là rau dền đỏ có hàm lượng chất sắt khá cao vì vậy đây chính là nguồn bổ sung chất sắt dồi dào cho cơ thể, rất tốt cho những bệnh nhân thiếu máu do không đủ chất sắt, người bệnh mới ốm dậy, người xanh xao.\r\n\r\nGiải nhiệt\r\n\r\nVào mùa hè, thời tiết chuyển sang oi bức, người dễ bốc hỏa và nóng trong, nhiệt độ ngoài trời cộng thêm ăn uống không lành mạnh dễ làm cơ thể mệt mỏi. Rau dền là một gợi ý tuyệt vời cho cả gia đình trong những ngày này.\r\n\r\nChẳng ít thì nhiều, mỗi tuần, chúng mình nên bổ sung từ 2-3 bữa canh rau dền vào thực đơn, để đề phòng nắng nóng ảnh hưởng xấu đến sức khỏe cơ thể.\r\n\r\nĐiều trị táo bón\r\n\r\nTáo bón là chứng bệnh mang lại cực kì nhiều khó chịu, nếu không điều trị kịp thời sẽ gây ra những căn bệnh phiền toái hơn. Ấy vậy mà nó lại cực kì dễ xử lý, nếu như chúng ta ăn rau dền luộc hàng ngày.', 1, '2019-05-16', 0),
+(4, '/uploads/IMAGE-1558240804761.jpg', '/uploads/IMAGE-1558240804761.jpg', 'Bài viết mới', 'Cà chua thuộc họ cây Bạch anh, các loại cây trong họ này thường phát triển từ 1 đến 3 mét chiều cao, có những cây thân mềm bò trên mặt đất hoặc dây leo trên thân cây khác ví dụ nho.', '<blockquote><p>Hiện có khoảng 7.500 giống cà chua trồng cho các mục đích khác nhau. Cà chua thuần chủng đang ngày càng trở lên phổ biến, đặc biệt giữa các người vườn và nhà sản xuất khi học có xu hướng sản xuất các loại cây trồng có hương vị thú vị hơn, tăng khả năng kháng bệnh và năng suất.&nbsp;</p></blockquote><figure class=\"image image-style-align-left\"><img src=\"https://cksource.com/weuy2g4ryt278ywiue/core/connector/php/connector.php?command=Proxy&amp;type=Files&amp;currentFolder=%2F&amp;fileName=heart%284%29.jpg\"><figcaption>hình trái tim</figcaption></figure><p><br><mark class=\"marker-green\">Cây lai vẫn còn phổ biến, kể từ khi có mục đích sản xuất lớn, người ta kết hợp các đặc điểm tốt của các loại cà chua thuần chủng với độ ổn định của các loại cà chua thương mại thông thường.&nbsp;</mark></p><p><br>Các giống cà chua thuần chủng khác nhau&nbsp;<br>Giống cà chua được chia thành nhiều loại, chủ yếu dựa vào hình dạng và kích thước.&nbsp;<br><br>Loại cà chua Slicing hay globe là cà chua thương mại thông thường, dùng được cho nhiều cách chế biến và ăn tươi.&nbsp;<br>Loại cà chua Beefsteak là cà chua lớn thường dùng cho bánh mì. Thời gian bảo quản ngắn khiến ít được sử dụng trong thương mại.&nbsp;<br>Loại cà chua Oxheart có hình dạng giống như loại dâu tây lớn.&nbsp;<br>Cà chua mận được lai tại để sử dụng trong sản xuất nước sốt cà chua.&nbsp;<br>Cà chua lê hình quả lê.&nbsp;<br>Cà chua anh đào nhỏ và tròn, vị ngọt ăn trong món salad.&nbsp;<br>Cà chua nho được giới thiệu gần đây, một biến thể của cà chua mận nhưng nhỏ hơn, được dùng trong món salad&nbsp;<br>Cà chua Campari ngọt, lớn hơn cà chua anh đào nhưng nhỏ hơn cà chua mận.&nbsp;<br>Hầu hết các giống cà chua hiện đại đều mịn bề mặt, nhưng một số giống cà chua hiện đại như beefsteak thường có khía rõ rệt. Hầu hết các giống trái cây thương mại màu đỏ, nhưng nhiều giống cà chua thuần chủng có màu sắc đa dạng. Có một sự khác biệt giữa cà chua trồng cho thương mại so với cà chua do những người làm vườn sản xuất tại gia. Giống sản xuất do người làm vườn thường được chú trọng đến hương vị, còn giống do các cơ sở sản xuất thương mại hướng đến hình dạng, kích thước, kháng sâu bệnh, phù hợp cho việc cơ giới hóa thu hái và vận chuyển.&nbsp;<br>&nbsp;</p><figure class=\"media\"><oembed url=\"https://www.youtube.com/watch?v=6cpIuOJ7jXc\"></oembed></figure><p><br>Cà chua phát triển tốt với 7 giờ chiếu sáng mỗi ngày từ ánh sáng mặt trời. Một phân bón NPK với tỷ lệ 5-10-10 thường được bán làm phân bón cà chua hoặc phân bón rau, cả phân hữu cơ cũng được sử dụng.</p>', 1, '2019-05-19', 0),
+(5, '/uploads/IMAGE-1558257401749.jpg', '/uploads/IMAGE-1558240804761.jpg', 'Bài viết mới 2', 'Ngò gai là cây cỏ thấp, có thân đơn độc, chia cành ở ngọn, hoa quả mọc ở cành. Lá mọc ở gốc, xoè ra hình hoa thị. Lá hình mác thuôn dài, bìa có răng cưa nhỏ. Hoa tự, hình đầu, hình bầu dục, hoặc hình trụ. Khi trưởng thành, hạt rụng và phát tán, Ăn ngò gai vào mùa đông rất tuyêt và ngon cùng với tô cháo thịt ngon tuyệt vời nếu ai chưa biết\r\n', '<figure class=\"media\"><oembed url=\"https://www.youtube.com/watch?v=stBpQw3Ybmo\"></oembed></figure><p>Mùi tàu là tên gọi của miền Bắc, ngò gai là tên gọi của người miền Nam với loại rau thân thảo, cây đơn lẻ, lá mọc ở gốc xòe ra hình hoa thị, lá hình thuôn có răng cưa, cành chia ở ngọn chứa hoa.&nbsp;<br><br>Hoa hình trụ hoặc hình bầu. Có tác dụng làm rau thơm, chữa bệnh rất tốt.&nbsp;<br><br>Theo Đông Y mùi tàu tình ấm, vị đắng, mùi thơm hắc, có tác dụng tiện kỳ, sơ phong thanh nhiệt, giảm đau, hành khí tiêu thũng, thông khí, giải độc, giải nhiệt, kiện tỳ, kích thích tiêu hoá, khử mùi hôi hiệu quả.&nbsp;<br><br>Do đó, mùi tàu không chỉ dùng làm rau gia vị mà nó còn được dùng như 1 vị thuốc chữa bệnh hữu hiệu trong Đông Y.&nbsp;<br><br>Lá mùi tàu có chứa tới 0,02 – 0,04% tinh dầu bay hơi, rễ chứa saponin…, được dùng ở dạng tươi hoặc khô trong các bài thuốc giảm đau, chữa cảm cúm, cảm lạnh, hôi miệng,…&nbsp;<br><br>&nbsp;</p>', 1, '2019-05-19', 0),
+(6, '/uploads/IMAGE-1558257870525.jpg', '/uploads/IMAGE-1558240804761.jpg', '123', '123', '<p>123</p>', 1, '2019-05-19', 0),
+(7, '/uploads/image_info-1558423239394.jpg', '/uploads/IMAGE-1558240804761.jpg', 'Bài viết mới 3', 'Dền đỏ, dền tía, dền canh hay rau dền, rau giền (danh pháp: Amaranthus tricolor) là loài thực vật có hoa thuộc họ Dền. Loài này được L. mô tả khoa học đầu tiên năm 1753', '<p>Giàu dinh dưỡng&nbsp;<br><br>Như mình đã kể ở trên, rau dền có rất nhiều dưỡng chất. Vì mang đặc tính chung của các họ rau củ màu đỏ, rau dền đỏ chứa hàm lượng vitamin A rất cao, chưa kể đến các vitamin khác như B1, B6, B12.&nbsp;<br><br>Tuy hàm lượng sắt và canxi trong rau dền đỏ khá cao, nhưng rau dền lại không chứa acid oxalic, nên hai chất này được cơ thể hấp thụ và tận dụng dễ dàng, đặc biệt tốt cho các mẹ bầu thiếu chất.&nbsp;<br><br>Điều trị thiếu máu&nbsp;<br><br>Như các bạn đã biết sắt là một trong những nguyên tố vi lượng cần thiết cho cơ thể chúng ta, chất sắt giúp tạo máu để duy trì hoạt động của cơ thể, thiếu sắt đồng nghĩa với tình trạng thiếu máu.&nbsp;<br><br>Rau dền đặc biệt là rau dền đỏ có hàm lượng chất sắt khá cao vì vậy đây chính là nguồn bổ sung chất sắt dồi dào cho cơ thể, rất tốt cho những bệnh nhân thiếu máu do không đủ chất sắt, người bệnh mới ốm dậy, người xanh xao.&nbsp;<br><br>Giải nhiệt&nbsp;<br><br>Vào mùa hè, thời tiết chuyển sang oi bức, người dễ bốc hỏa và nóng trong, nhiệt độ ngoài trời cộng thêm ăn uống không lành mạnh dễ làm cơ thể mệt mỏi. Rau dền là một gợi ý tuyệt vời cho cả gia đình trong những ngày này.&nbsp;<br><br>Chẳng ít thì nhiều, mỗi tuần, chúng mình nên bổ sung từ 2-3 bữa canh rau dền vào thực đơn, để đề phòng nắng nóng ảnh hưởng xấu đến sức khỏe cơ thể.&nbsp;<br><br>Điều trị táo bón&nbsp;<br><br>Táo bón là chứng bệnh mang lại cực kì nhiều khó chịu, nếu không điều trị kịp thời sẽ gây ra những căn bệnh phiền toái hơn. Ấy vậy mà nó lại cực kì dễ xử lý, nếu như chúng ta ăn rau dền luộc hàng ngày.</p>', 1, '2019-05-21', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `news_views`
+--
+
+CREATE TABLE `news_views` (
+  `ID` int(11) NOT NULL,
+  `IDNEWS` int(11) NOT NULL,
+  `DATE` date NOT NULL,
+  `VIEWS` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -265,12 +335,12 @@ INSERT INTO `news` (`ID`, `IMAGE`, `RESIZEDIMAGE`, `TITLE`, `SHORTCONTENT`, `CON
 -- Cấu trúc bảng cho bảng `news_image`
 --
 
-CREATE TABLE `news_image` (
-  `ID` int(11) NOT NULL,
-  `LINK` varchar(300) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `NOTE` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `NEWSID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- CREATE TABLE `news_image` (
+--   `ID` int(11) NOT NULL,
+--   `LINK` varchar(300) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+--   `NOTE` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+--   `NEWSID` int(11) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -291,10 +361,10 @@ CREATE TABLE `news_info_history` (
 --
 
 INSERT INTO `news_info_history` (`ID`, `NEWSID`, `CREATED`, `ACTION`, `DETAIL`) VALUES
-(1, 6, '2019-05-19', 'Thêm', 'Thêm mới'),
-(2, 7, '2019-05-19', 'Thêm', 'Thêm mới'),
-(3, 9, '2019-05-19', 'Thêm', 'Thêm mới'),
-(4, 10, '2019-05-21', 'Thêm', 'Thêm mới');
+(1, 1, '2019-05-19', 'Thêm', 'Thêm mới'),
+(2, 2, '2019-05-19', 'Thêm', 'Thêm mới'),
+(3, 3, '2019-05-19', 'Thêm', 'Thêm mới'),
+(4, 4, '2019-05-21', 'Thêm', 'Thêm mới');
 
 -- --------------------------------------------------------
 
@@ -312,12 +382,12 @@ CREATE TABLE `news_tag` (
 --
 
 INSERT INTO `news_tag` (`NEWSID`, `TAGID`) VALUES
-(6, 3),
-(6, 4),
-(7, 2),
-(7, 4),
-(9, 2),
-(10, 3);
+(1, 3),
+(1, 4),
+(2, 2),
+(2, 4),
+(3, 2),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -329,18 +399,19 @@ CREATE TABLE `order_detail` (
   `ORDERINFOID` int(11) NOT NULL,
   `PRODUCTID` int(11) NOT NULL,
   `QUANTITY` int(11) NOT NULL,
-  `TOTALMONEY` double NOT NULL
+  `TOTALMONEY` double NOT NULL,
+  `ISSIMPLE` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_detail`
 --
 
-INSERT INTO `order_detail` (`ORDERINFOID`, `PRODUCTID`, `QUANTITY`, `TOTALMONEY`) VALUES
-(1, 1, 1, 230000),
-(1, 2, 2, 230000),
-(2, 4, 1, 230500),
-(2, 5, 1, 200000);
+INSERT INTO `order_detail` (`ORDERINFOID`, `PRODUCTID`, `QUANTITY`, `TOTALMONEY`, `ISSIMPLE`) VALUES
+(1, 1, 1, 230000, 1),
+(1, 2, 2, 230000, 1),
+(2, 4, 1, 230500, 1),
+(2, 5, 1, 200000, 1);
 
 -- --------------------------------------------------------
 
@@ -475,10 +546,10 @@ INSERT INTO `product_combo_info_history` (`ID`, `PRODUCTCOMBOID`, `CREATED`, `AC
 -- Cấu trúc bảng cho bảng `product_feature`
 --
 
-CREATE TABLE `product_feature` (
-  `PRODUCTID` int(11) NOT NULL,
-  `FEATUREID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- CREATE TABLE `product_feature` (
+--   `PRODUCTID` int(11) NOT NULL,
+--   `FEATUREID` int(11) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -559,20 +630,20 @@ INSERT INTO `product_info_history` (`ID`, `PRODUCTID`, `CREATED`, `ACTION`, `DET
 -- Cấu trúc bảng cho bảng `product_tag`
 --
 
-CREATE TABLE `product_tag` (
-  `PRODUCTID` int(11) NOT NULL,
-  `TAGID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- CREATE TABLE `product_tag` (
+--   `PRODUCTID` int(11) NOT NULL,
+--   `TAGID` int(11) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `product_tag`
 --
 
-INSERT INTO `product_tag` (`PRODUCTID`, `TAGID`) VALUES
-(1, 2),
-(1, 3),
-(1, 4),
-(6, 1);
+-- INSERT INTO `product_tag` (`PRODUCTID`, `TAGID`) VALUES
+-- (1, 2),
+-- (1, 3),
+-- (1, 4),
+-- (6, 1);
 
 -- --------------------------------------------------------
 
@@ -633,58 +704,6 @@ INSERT INTO `session_cart` (`ID`, `PRODUCT_ID`, `PRODUCT_COMBO_ID`, `QUANTITY`, 
 ('z8u7W_LAU', 9, 0, 5, 0),
 ('z8u7W_LAU', 10, 0, 2, 0);
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `sub_category`
---
-
-CREATE TABLE `sub_category` (
-  `ID` int(11) NOT NULL,
-  `CATEGORYID` int(11) NOT NULL,
-  `NAME` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `sub_category`
---
-
-INSERT INTO `sub_category` (`ID`, `CATEGORYID`, `NAME`) VALUES
-(1, 5, 'Thịt bò'),
-(2, 5, 'Thịt heo'),
-(3, 5, 'Thịt gia cầm'),
-(4, 3, 'Mực'),
-(5, 3, 'Cá'),
-(6, 3, 'Tôm'),
-(7, 3, 'Cua'),
-(8, 1, 'Rau hữu cơ'),
-(9, 1, 'Rau gia vị'),
-(10, 1, 'Nấm - Rau mầm'),
-(11, 2, 'Trái cây việt'),
-(12, 2, 'Trái cây nhập'),
-(13, 2, 'Trái cây khô');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tag`
---
-
-CREATE TABLE `tag` (
-  `ID` int(11) NOT NULL,
-  `NAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tag`
---
-
-INSERT INTO `tag` (`ID`, `NAME`) VALUES
-(1, 'Các món từ bơ'),
-(2, 'Cơn sốt rau sạch'),
-(3, 'Rau organic'),
-(4, 'Vietgap');
-
 --
 -- Chỉ mục cho các bảng đã đổ
 --
@@ -713,6 +732,19 @@ ALTER TABLE `cart`
 -- Chỉ mục cho bảng `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Chỉ mục cho bảng `sub_category`
+--
+ALTER TABLE `sub_category`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_sub_category_category` (`CATEGORYID`);
+
+--
+-- Chỉ mục cho bảng `tag`
+--
+ALTER TABLE `tag`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -747,15 +779,15 @@ ALTER TABLE `customer_type`
 --
 -- Chỉ mục cho bảng `customer_view`
 --
-ALTER TABLE `customer_view`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_customer_view_customer` (`CUSTOMERID`);
+-- ALTER TABLE `customer_view`
+--   ADD PRIMARY KEY (`ID`),
+--   ADD KEY `FK_customer_view_customer` (`CUSTOMERID`);
 
 --
 -- Chỉ mục cho bảng `feature`
 --
-ALTER TABLE `feature`
-  ADD PRIMARY KEY (`ID`);
+-- ALTER TABLE `feature`
+--   ADD PRIMARY KEY (`ID`);
 
 --
 -- Chỉ mục cho bảng `news`
@@ -764,11 +796,18 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Chỉ mục cho bảng `news_views`
+--
+ALTER TABLE `news_views`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_news_views_news` (`IDNEWS`);
+
+--
 -- Chỉ mục cho bảng `news_image`
 --
-ALTER TABLE `news_image`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_news_image_news` (`NEWSID`);
+-- ALTER TABLE `news_image`
+--   ADD PRIMARY KEY (`ID`),
+--   ADD KEY `FK_news_image_news` (`NEWSID`);
 
 --
 -- Chỉ mục cho bảng `news_info_history`
@@ -808,6 +847,13 @@ ALTER TABLE `product`
   ADD KEY `FK_product_brand` (`BRANDID`);
 
 --
+-- Chỉ mục cho bảng `product_info_history`
+--
+ALTER TABLE `product_info_history`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_product_info_history_product` (`PRODUCTID`);
+
+--
 -- Chỉ mục cho bảng `product_combo`
 --
 ALTER TABLE `product_combo`
@@ -826,10 +872,10 @@ ALTER TABLE `product_combo_info_history`
 --
 -- Chỉ mục cho bảng `product_feature`
 --
-ALTER TABLE `product_feature`
-  ADD PRIMARY KEY (`PRODUCTID`,`FEATUREID`),
-  ADD KEY `FK_product_feature_product` (`PRODUCTID`),
-  ADD KEY `FK_product_feature_feature` (`FEATUREID`);
+-- ALTER TABLE `product_feature`
+--   ADD PRIMARY KEY (`PRODUCTID`,`FEATUREID`),
+--   ADD KEY `FK_product_feature_product` (`PRODUCTID`),
+--   ADD KEY `FK_product_feature_feature` (`FEATUREID`);
 
 --
 -- Chỉ mục cho bảng `product_image`
@@ -839,19 +885,12 @@ ALTER TABLE `product_image`
   ADD KEY `FK_product_image_product` (`PRODUCTID`);
 
 --
--- Chỉ mục cho bảng `product_info_history`
---
-ALTER TABLE `product_info_history`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_product_info_history_product` (`PRODUCTID`);
-
---
 -- Chỉ mục cho bảng `product_tag`
 --
-ALTER TABLE `product_tag`
-  ADD PRIMARY KEY (`PRODUCTID`,`TAGID`),
-  ADD KEY `FK_product_tag_product` (`PRODUCTID`),
-  ADD KEY `FK_product_tag_tag` (`TAGID`);
+-- ALTER TABLE `product_tag`
+--   ADD PRIMARY KEY (`PRODUCTID`,`TAGID`),
+--   ADD KEY `FK_product_tag_product` (`PRODUCTID`),
+--   ADD KEY `FK_product_tag_tag` (`TAGID`);
 
 --
 -- Chỉ mục cho bảng `search_history`
@@ -863,20 +902,8 @@ ALTER TABLE `search_history`
 -- Chỉ mục cho bảng `session_cart`
 --
 ALTER TABLE `session_cart`
-  ADD PRIMARY KEY (`ID`,`PRODUCT_ID`,`PRODUCT_COMBO_ID`);
+  ADD PRIMARY KEY (`ID`, `PRODUCT_ID`, `PRODUCT_COMBO_ID`);
 
---
--- Chỉ mục cho bảng `sub_category`
---
-ALTER TABLE `sub_category`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_sub_category_category` (`CATEGORYID`);
-
---
--- Chỉ mục cho bảng `tag`
---
-ALTER TABLE `tag`
-  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -901,6 +928,18 @@ ALTER TABLE `category`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT cho bảng `sub_category`
+--
+ALTER TABLE `sub_category`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT cho bảng `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
@@ -921,32 +960,38 @@ ALTER TABLE `customer_type`
 --
 -- AUTO_INCREMENT cho bảng `customer_view`
 --
-ALTER TABLE `customer_view`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+-- ALTER TABLE `customer_view`
+--   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `feature`
 --
-ALTER TABLE `feature`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `feature`
+--   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `news`
 --
 ALTER TABLE `news`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT cho bảng `news_views`
+--
+ALTER TABLE `news_views`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `news_image`
 --
-ALTER TABLE `news_image`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `news_image`
+--   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `news_info_history`
 --
 ALTER TABLE `news_info_history`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `order_info`
@@ -961,6 +1006,18 @@ ALTER TABLE `product`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT cho bảng `product_info_history`
+--
+ALTER TABLE `product_info_history`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT cho bảng `product_image`
+--
+ALTER TABLE `product_image`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
 -- AUTO_INCREMENT cho bảng `product_combo`
 --
 ALTER TABLE `product_combo`
@@ -973,34 +1030,10 @@ ALTER TABLE `product_combo_info_history`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `product_image`
---
-ALTER TABLE `product_image`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT cho bảng `product_info_history`
---
-ALTER TABLE `product_info_history`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT cho bảng `search_history`
 --
 ALTER TABLE `search_history`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `sub_category`
---
-ALTER TABLE `sub_category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT cho bảng `tag`
---
-ALTER TABLE `tag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -1036,14 +1069,20 @@ ALTER TABLE `customer`
 --
 -- Các ràng buộc cho bảng `customer_view`
 --
-ALTER TABLE `customer_view`
-  ADD CONSTRAINT `FK_customer_view_customer` FOREIGN KEY (`CUSTOMERID`) REFERENCES `customer` (`id`) ON UPDATE CASCADE;
+-- ALTER TABLE `customer_view`
+--   ADD CONSTRAINT `FK_customer_view_customer` FOREIGN KEY (`CUSTOMERID`) REFERENCES `customer` (`id`) ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `news_views`
+--
+ALTER TABLE `news_views`
+  ADD CONSTRAINT `FK_news_views_news` FOREIGN KEY (`IDNEWS`) REFERENCES `news` (`id`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `news_image`
 --
-ALTER TABLE `news_image`
-  ADD CONSTRAINT `FK_news_image_news` FOREIGN KEY (`NEWSID`) REFERENCES `news` (`id`) ON UPDATE CASCADE;
+-- ALTER TABLE `news_image`
+--   ADD CONSTRAINT `FK_news_image_news` FOREIGN KEY (`NEWSID`) REFERENCES `news` (`id`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `news_info_history`
@@ -1073,6 +1112,12 @@ ALTER TABLE `product`
   ADD CONSTRAINT `FK_product_sub_category` FOREIGN KEY (`SUBCATEGORYID`) REFERENCES `sub_category` (`id`) ON UPDATE CASCADE;
 
 --
+-- Các ràng buộc cho bảng `product_info_history`
+--
+ALTER TABLE `product_info_history`
+  ADD CONSTRAINT `FK_product_info_history_product` FOREIGN KEY (`PRODUCTID`) REFERENCES `product` (`id`) ON UPDATE CASCADE;
+
+--
 -- Các ràng buộc cho bảng `product_combo`
 --
 ALTER TABLE `product_combo`
@@ -1089,9 +1134,9 @@ ALTER TABLE `product_combo_info_history`
 --
 -- Các ràng buộc cho bảng `product_feature`
 --
-ALTER TABLE `product_feature`
-  ADD CONSTRAINT `FK_product_feature_feature` FOREIGN KEY (`FEATUREID`) REFERENCES `feature` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_product_feature_product` FOREIGN KEY (`PRODUCTID`) REFERENCES `product` (`id`) ON UPDATE CASCADE;
+-- ALTER TABLE `product_feature`
+--   ADD CONSTRAINT `FK_product_feature_feature` FOREIGN KEY (`FEATUREID`) REFERENCES `feature` (`id`) ON UPDATE CASCADE,
+--   ADD CONSTRAINT `FK_product_feature_product` FOREIGN KEY (`PRODUCTID`) REFERENCES `product` (`id`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `product_image`
@@ -1100,17 +1145,11 @@ ALTER TABLE `product_image`
   ADD CONSTRAINT `FK_product_image_product` FOREIGN KEY (`PRODUCTID`) REFERENCES `product` (`id`) ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `product_info_history`
---
-ALTER TABLE `product_info_history`
-  ADD CONSTRAINT `FK_product_info_history_product` FOREIGN KEY (`PRODUCTID`) REFERENCES `product` (`id`) ON UPDATE CASCADE;
-
---
 -- Các ràng buộc cho bảng `product_tag`
 --
-ALTER TABLE `product_tag`
-  ADD CONSTRAINT `FK_product_tag_product` FOREIGN KEY (`PRODUCTID`) REFERENCES `product` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_product_tag_tag` FOREIGN KEY (`TAGID`) REFERENCES `tag` (`id`) ON UPDATE CASCADE;
+-- ALTER TABLE `product_tag`
+--   ADD CONSTRAINT `FK_product_tag_product` FOREIGN KEY (`PRODUCTID`) REFERENCES `product` (`id`) ON UPDATE CASCADE,
+--   ADD CONSTRAINT `FK_product_tag_tag` FOREIGN KEY (`TAGID`) REFERENCES `tag` (`id`) ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `sub_category`

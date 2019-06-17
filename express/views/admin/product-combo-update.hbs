@@ -66,7 +66,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <label for="inputNameProduct1" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <label class="mt-2"><b>Tên sản phẩm</b></label>
                                         <div>
                                             <input type="text" class="form-control" readonly id="inputNameProduct1"
                                                 value="{{this.productCombo.PRODUCTNAME1}}">
@@ -74,7 +74,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <label for="inputInventoryProduct1" class="mt-2"><b>Số lượng còn
+                                        <label class="mt-2"><b>Số lượng còn
                                                 lại</b></label>
                                         <div>
                                             <input type="number" class="form-control" readonly
@@ -127,7 +127,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <label for="inputNameProduct2" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <label class="mt-2"><b>Tên sản phẩm</b></label>
                                         <div>
                                             <input type="text" class="form-control" readonly id="inputNameProduct2"
                                                 value="{{this.productCombo.PRODUCTNAME2}}">
@@ -135,7 +135,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <label for="inputInventoryProduct2" class="mt-2"><b>Số lượng còn
+                                        <label class="mt-2"><b>Số lượng còn
                                                 lại</b></label>
                                         <div>
                                             <input type="number" class="form-control" readonly
@@ -188,7 +188,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <label for="inputNameProduct3" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <label class="mt-2"><b>Tên sản phẩm</b></label>
                                         <div>
                                             <input type="text" class="form-control" readonly id="inputNameProduct3"
                                                 value="{{this.productCombo.PRODUCTNAME3}}">
@@ -196,7 +196,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <label for="inputInventoryProduct3" class="mt-2"><b>Số lượng còn
+                                        <label class="mt-2"><b>Số lượng còn
                                                 lại</b></label>
                                         <div>
                                             <input type="number" class="form-control" readonly
@@ -221,9 +221,9 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-12">
-                                <label for="inputIdProductCombo" class="mt-2"><b>Mã COMBO</b></label>
+                                <label class="mt-2"><b>Mã COMBO</b></label>
                                 <div>
-                                    <input readonly type="text" name="ID" class="form-control" id="inputIdProductCombo"
+                                    <input readonly type="text" name="ID" class="form-control"
                                         value="{{this.productCombo.ID}}">
                                 </div>
 
@@ -238,9 +238,9 @@
                                         value="{{this.productCombo.PRODUCTID3}}">
                                 </div>
 
-                                <label for="inputnameProductCombo" class="mt-2"><b>Tên COMBO</b></label>
+                                <label for="inputNameProductCombo" class="mt-2"><b>Tên COMBO</b></label>
                                 <div>
-                                    <input name="NAME" type="text" class="form-control" id="inputnameProductCombo"
+                                    <input name="NAME" type="text" class="form-control" id="inputNameProductCombo"
                                         placeholder="Nhập tên sản phâm" value="{{this.productCombo.NAME}}">
                                 </div>
 
@@ -253,7 +253,7 @@
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="inputKLGProductCombo" class="mt-2"><b>Trọng lượng
+                                        <label class="mt-2"><b>Trọng lượng
                                                 (kg)</b></label>
                                         <div>
                                             <input type="number" name="KILOGRAM" class="form-control"
@@ -270,8 +270,8 @@
                                         </div>
 
                                         <div>
-                                            <input hidden type="number" name="OLDINVENTORY" id="inputOLDINVENTORYCombo" class="form-control"
-                                                value="{{this.productCombo.INVENTORY}}">
+                                            <input hidden type="number" name="OLDINVENTORY" id="inputOLDINVENTORYCombo"
+                                                class="form-control" value="{{this.productCombo.INVENTORY}}">
                                         </div>
                                     </div>
                                 </div>
@@ -313,9 +313,10 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label><b>Mô tả tóm tắt</b></label>
+                            <label for="productComboShortDescription"><b>Mô tả tóm tắt</b></label>
                             <div>
-                                <textarea name="SHORTDESCRIPTION" cols="60" rows="4" class="form-control"
+                                <textarea name="SHORTDESCRIPTION" id="productComboShortDescription" cols="60" rows="4"
+                                    class="form-control"
                                     placeholder="Nhập mô tả tóm tắt về sản phẩm">{{this.productCombo.SHORTDESCRIPTION}}</textarea>
                             </div>
                         </div>

@@ -1,8 +1,8 @@
-$("#frmCategoryAdd").validate({
+$("#frmSubCategoryAdd").validate({
   ignore: [],
   rules: {
-    SUBCATEGORIES: {
-        required: true
+    CATEGORYID: {
+      required: true
     },
     NAME: {
       required: true
@@ -10,10 +10,10 @@ $("#frmCategoryAdd").validate({
   },
   messages: {
     NAME: {
-      required: "Hãy nhập tên danh mục"
+      required: "Hãy nhập tên danh mục phụ"
     },
-    SUBCATEGORIES: {
-      required: "Hãy chọn danh mục phụ"
+    CATEGORYID: {
+      required: "Hãy chọn danh mục"
     }
   },
   errorElement: "small",

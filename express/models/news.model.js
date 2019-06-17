@@ -73,7 +73,8 @@ module.exports.allNews = () => {
   // Gọi hàm querry từ db
   return db.load(`SELECT news.ID, news.IMAGE, news.RESIZEDIMAGE, news.TITLE,
                   news.SHORTCONTENT, news.CONTENT, DATE_FORMAT(news.CREATED, '%d/%m/%Y %H:%i') AS CREATED 
-                  FROM news WHERE STATUS = 1`);
+                  FROM news WHERE STATUS = 1
+                  ORDER BY news.CREATED DESC`);
 };
 
 // hàm lấy ra số lượng comments

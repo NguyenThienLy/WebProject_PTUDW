@@ -52,12 +52,15 @@ module.exports.allProduct = () => {
   return db.load(`SELECT product.ID, product.IMAGE, product.RESIZEDIMAGE, product.CATEGORYID, 
             product.SUBCATEGORYID, product.NAME, product.BRANDID, product.STATUS, product.RATE, 
             product.PRICE, product.ORIGIN, product.KILOGRAM, product.SALE, product.VIPSALE,
-            product.SHORTDESCRIPTION, product.DESCRIPTION, product.INVENTORY, product.CREATED,
+            product.SHORTDESCRIPTION, product.DESCRIPTION, product.INVENTORY, 
+            DATE_FORMAT(product.CREATED, '%d/%m/%Y %H:%i') AS CREATED,
             category.NAME AS CATEGORYNAME, sub_category.NAME AS SUBCATEGORYNAME, brand.NAME AS BRANDNAME
 						FROM ((product 
             INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
             INNER JOIN category ON product.CATEGORYID = category.ID)
-						INNER JOIN brand ON product.BRANDID = brand.ID WHERE STATUS = 1`);
+            INNER JOIN brand ON product.BRANDID = brand.ID 
+            WHERE STATUS = 1
+            ORDER BY product.CREATED DESC`);
 };
 
 // Hàm trả về tất cả sản phẩm trong database có phân trang
@@ -159,9 +162,14 @@ module.exports.addProduct = product => {
   return db.add("product", product);
 };
 
-//Hàm cập nhật ảnh đại diện cho sản phẩm
+//Hàm cập nhật thông tin sản phẩm
 module.exports.updateProduct = product=>{
     return db.update('product','ID', product);
+};
+
+//Hàm cập nhật categoryId cho sản phẩm
+module.exports.updateCategoryIdBySubCategoryIdForProduct = product => {
+  return db.update('product', 'SUBCATEGORYID', product);
 };
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
@@ -176,11 +184,6 @@ module.exports.updateListProducts = products => {
 
 //Hàm xóa 1 sản phẩm | cập nhật status về 0
 module.exports.deleteProduct = (product)=>{
-  return db.update('product','ID',product);
-};
-
-//Hàm cập nhật thông tin cho sản phẩm
-module.exports.updateProductInfo = (product)=>{
   return db.update('product','ID',product);
 };
 

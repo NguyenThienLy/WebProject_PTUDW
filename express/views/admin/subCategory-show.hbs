@@ -1,7 +1,5 @@
 {{#section 'css'}}
-<title>Quản lí danh mục</title>
-
-<link rel="stylesheet" href="/admin/css/category-show.css">
+<title>Quản lí danh mục phụ</title>
 
 {{!-- responsive --}}
 <link href="/admin/css/responsive-customer.css" rel="stylesheet" />
@@ -12,8 +10,8 @@
 <div id="dashboard-con">
     <div id="content">
         <header class="d-flex align-items-center justify-content-between">
-            <h5 class="mb-0">Tất cả danh mục</h5>
-            <a href="/admin/category/category-add" class="btn btn-primary btn-sm">Thêm mới</a>
+            <h5 class="mb-0">Tất cả danh mục phụ</h5>
+            <a href="/admin/subCategory/subCategory-add" class="btn btn-primary btn-sm">Thêm mới</a>
         </header>
 
         <div class="content-inner">
@@ -21,7 +19,7 @@
             <div class="row mb-2 ml-0 mr-0">
                 <div class="col-md-7 p-0">
                     <div class="input-group input-group-sm mb-3">
-                        <input type="text" class="form-control search-field" id="search" placeholder="Tên danh mục" />
+                        <input type="text" class="form-control search-field" id="search" placeholder="Tên danh mục phụ" />
                         <div class="input-group-append">
                             <button class="btn btn-success" type="button">
                                 Tìm kiếm
@@ -36,31 +34,25 @@
             <table class="table table-responsive mb-4">
                 <thead>
                     <tr>
-                        <th class="text-center">Mã danh mục</th>
-                        <th>Tên danh mục</th>
-                        <th>Tên danh mục con</th>
+                        <th class="text-center">Mã danh mục phụ</th>
+                        <th>Tên danh mục phụ</th>
+                        <th>Thuộc danh mục</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {{#each this.categories}}
+                    {{#each this.subCategories}}
                     <!--Nội dung của một hàng-->
                     <tr>
                         <td align="center">{{ID}}</td>
                         <td>{{NAME}}</td>
-                        <td>
-                            <div>
-                                {{#each SUBCATEGORIES}}
-                                    <div class="subCategory-name"><i class="fas fa-angle-right"></i>&nbsp;{{NAME}}</div>
-                                {{/each}}
-                            </div>
-                        </td>
+                        <td>{{CATEGORYNAME}}</td>
                         <td align="center">
-                            <a class="btn btn-sm btn-primary mr-1" href="/admin/category/category-update/{{ID}}">
+                            <a class="btn btn-sm btn-primary mr-1" href="/admin/subCategory/subCategory-update/{{ID}}">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <button class="btn btn-sm btn-danger post_delete_category" id="{{ID}}" type="button">
+                            <button class="btn btn-sm btn-danger post_delete_subCategory" id="{{ID}}" type="button">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
@@ -120,7 +112,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Thông báo</h5>
@@ -129,7 +121,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Không thể xóa danh mục
+        Không thể xóa danh mục phụ
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -139,5 +131,5 @@
 </div>
 
 {{#section 'js'}}
-<script src="/admin/js/category-show-view.js"></script>
+<script src="/admin/js/subCategory-show-view.js"></script>
 {{/section}}

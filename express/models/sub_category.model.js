@@ -4,7 +4,10 @@ var db = require("../utils/db");
 //Hàm trả về danh sách sub category
 module.exports.allSubCategory = () => {
   //Hàm này đổi lại sau
-  return db.load(`SELECT * FROM sub_category`);
+  return db.load(`SELECT sub_category.ID, sub_category.NAME, 
+                  sub_category.CATEGORYID, category.NAME AS CATEGORYNAME
+                  FROM sub_category JOIN category ON sub_category.CATEGORYID = category.ID
+                  ORDER BY sub_category.ID ASC`);
 };
 
 //Hàm trả về danh sách sub category của product
@@ -75,3 +78,21 @@ module.exports.deleteSubCategories = (subCategories) => {
     db.delete("sub_category", "ID", subCategories);
   }
 };
+
+module.exports.singleById = subCategoryId => {
+  return db.load(`SELECT * FROM sub_category where ID = '${subCategoryId}'`);
+};
+
+module.exports.addSubCategory = subCategory => {
+  return db.add("sub_category", subCategory);
+};
+
+module.exports.updateSubCategory = subCategory => {
+  return db.update("sub_category", "ID", subCategory);
+};
+
+// Xóa sub_category theo id
+module.exports.deleteSubCategoryById = subCategoryId => {
+  return db.delete("sub_category", "ID", subCategoryId);
+};
+
