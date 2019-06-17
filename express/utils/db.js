@@ -16,9 +16,9 @@ var CreateConnection = () => {
     password: "",
     //database: "organic"
     //database: "CpQZk1ZFm6"
-    database: "newest_organic"
+    //database: "newest_organic"
     //database: "organic"
-    //database: "CpQZk1ZFm6"
+    database: "CpQZk1ZFm6"
 
   });
 
@@ -85,6 +85,25 @@ module.exports = {
       connection.connect();
  
       connection.query(sql, [entity, id], (error, value) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(value.changedRows);
+        }
+        connection.end();
+      });
+    });
+  },
+
+  updateIncrease: (tableName,rowIncrease,idField,Id)=>{
+    return new Promise((resolve, reject) => {
+
+      var sql = `update ${tableName} set ${rowIncrease} = ${rowIncrease} + 1  where ${idField} = ${Id}`;
+
+      var connection = CreateConnection();
+      connection.connect();
+ 
+      connection.query(sql, (error, value) => {
         if (error) {
           reject(error);
         } else {

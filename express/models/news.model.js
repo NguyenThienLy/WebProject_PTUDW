@@ -1,6 +1,28 @@
 // Lấy database
 var db = require("../utils/db");
 
+
+//Hàm thêm số lượng view vào bảng news
+module.exports.IncreaseView = (newsID) => {
+  return db.updateIncrease('news', 'VIEWS', 'ID', newsID);
+}
+
+//Hàm thêm số lượng view vào bảng new_views
+module.exports.IncreaseNewViews = (newsID, date) => {
+  db.load(`SELECT ID FROM news_views WHERE IDNEWS = ${newsID} AND DATE = '${date}'`).then(rows => {
+    if (rows.length == 0) {
+      var entity = {
+        IDNEWS: newsID,
+        DATE: date,
+        VIEWS: 1
+      };
+      return db.add('news_views', entity);
+    } else {
+      return db.updateIncrease('news_views', 'VIEWS', 'IDNEWS', newsID);
+    }
+  });
+}
+
 // Hàm trả về 3 thông tin hữu ích mới nhất
 module.exports.topNNewestNews = (N) => {
   return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT,  NEWS.VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
@@ -140,7 +162,7 @@ module.exports.top1NewFollowId = (id) => {
 
 
 // Hàm lấy các bài báo có cùng tag
-module.exports.topNNewsTheSameFollowOffsetFollowIdNews = (IdInfo, N , Offset) => {
+module.exports.topNNewsTheSameFollowOffsetFollowIdNews = (IdInfo, N, Offset) => {
   return db.load(`SELECT NEWS.ID, NEWS.IMAGE, NEWS.TITLE, NEWS.VIEWS, NEWS.SHORTCONTENT, DATE_FORMAT(NEWS.CREATED, '%d/%m/%Y') AS CREATED	
                 FROM news NEWS JOIN news_tag NEWS_TAG ON NEWS.ID = NEWS_TAG.NEWSID WHERE ID != ${IdInfo} AND
                 NEWS_TAG.TAGID IN (SELECT TAG1.ID
@@ -150,7 +172,7 @@ module.exports.topNNewsTheSameFollowOffsetFollowIdNews = (IdInfo, N , Offset) =>
 };
 
 // Hàm lấy các bài báo được đọc nhiều nhất tuần
-module.exports.topNNewsPopularInWeekFollowOffsetFollowIdNews = (IdInfo, N , Offset, startDate, endDate) => {
+module.exports.topNNewsPopularInWeekFollowOffsetFollowIdNews = (IdInfo, N, Offset, startDate, endDate) => {
   return db.load(`SELECT SUM(NEWS_VIEWS.VIEWS) AS QUANTITY_VIEWS, NEWS.ID, NEWS.IMAGE, NEWS.TITLE, NEWS.VIEWS, NEWS.SHORTCONTENT, DATE_FORMAT(NEWS.CREATED, '%d/%m/%Y') AS CREATED	
                   FROM news NEWS JOIN news_views NEWS_VIEWS ON NEWS.ID = NEWS_VIEWS.IDNEWS
                   WHERE '${startDate}' <= NEWS_VIEWS.DATE AND NEWS_VIEWS.DATE <= '${endDate}'
@@ -160,9 +182,9 @@ module.exports.topNNewsPopularInWeekFollowOffsetFollowIdNews = (IdInfo, N , Offs
 };
 
 // Hàm lấy các bài báo được đọc nhiều nhất tuần
-module.exports.topNNewsFollowTagId = (tagId, N , Offset, ) => {
+module.exports.topNNewsFollowTagId = (tagId, N, Offset, ) => {
   var stringTagId = "";
-  
+
   if (+tagId !== 0)
     stringTagId = `WHERE NEWS_TAG.TAGID = ${tagId}`;
 

@@ -61,6 +61,8 @@ module.exports.infoDetail = function(req, res, next) {
         .toDate()
     ).format("YYYY-MM-DD");
 
+    var currentDate = moment().format('YYYY-MM-DD');
+
     Promise.all([
       newsModel.top1NewFollowId(idInfo),
       newsModel.topNNewestNewsDiffNewsId(3, idInfo),
@@ -72,7 +74,9 @@ module.exports.infoDetail = function(req, res, next) {
         0,
         startDate,
         endDate
-      )
+      ),
+      newsModel.IncreaseView(idInfo),
+      newsModel.IncreaseNewViews(idInfo,currentDate)
     ]).then(values => {
       if (values[3].length === 0) isHaveThesameInfo = false;
 

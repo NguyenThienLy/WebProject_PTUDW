@@ -43,11 +43,16 @@ $("#frmUpdatePass").validate({
             data: $(form).serialize(),
             success: function (result) {
                 if (result.success == true) {
-                    alert("Cập nhật thành công");
+                    $("#update-succes-modal").modal();
+                    ClearInput();
                 } else {
-                    alert("Cập nhật thất bại");
+                    
                 }
             }
         });
     }
 });
+
+function ClearInput(){
+    $("#frmUpdatePass")[0].reset();
+}
