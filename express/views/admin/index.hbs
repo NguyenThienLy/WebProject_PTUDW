@@ -28,7 +28,7 @@
 
                 <div class="d-flex flex-column mt-1">
                     <span></span>
-                    <b>40</b>
+                    <b>{{this.TotalViews}}</b>
                     <span></span>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="badge badge-light">
-                    <h6>40</h6>
+                    <h6>{{this.TotalViews}}</h6>
                 </div>
             </div>
             <!--End Thẻ chứa lượt view trong ngày-->
@@ -174,7 +174,7 @@
         <div class="col-12">
             <div class="admin-content-con">
                 <header>
-                    <h5>Danh sách khách hàng</h5>
+                    <h5>Top khách hàng</h5>
                 </header>
 
                 <table class="table table-responsive-sm">
@@ -182,97 +182,30 @@
                         <tr>
                             <th>#</th>
                             <th>Tên</th>
-                            <th>Tài khoản</th>
-                            <th>Trạng thái</th>
+                            <th>Email</th>
+                            <th>Loại</th>
+                            <th>Thanh toán</th>
                             <th>Ngày tạo</th>
                             <th class="text-center">#</th>
                         </tr>
                     </thead>
 
                     <tbody>
+                        {{#each this.TopCustomer}}
                         <tr>
-                            <td>1</td>
-                            <td>Lê Tường Qui</td>
-                            <td>qui021098@gmail.com</td>
-                            <td></td>
-                            <td>13/4/2019</td>
-                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
-                                    Xóa
+                            <td>{{ID}}</td>
+                            <td>{{FULLNAME}}</td>
+                            <td>{{EMAIL}}</td>
+                            <td>{{TYPENAME}}</td>
+                            <td>{{CASH}}</td>
+                            <td>{{CREATED}}</td>
+                            <td align="center"><a href="/admin/customer/customer-show"
+                                    class="badge badge-pill badge-danger">
+                                    xem
                                 </a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td>Lê Tường Qui</td>
-                            <td>qui021098@gmail.com</td>
-                            <td></td>
-                            <td>13/4/2019</td>
-                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>3</td>
-                            <td>Lê Tường Qui</td>
-                            <td>qui021098@gmail.com</td>
-                            <td></td>
-                            <td>13/4/2019</td>
-                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>4</td>
-                            <td>Lê Tường Qui</td>
-                            <td>qui021098@gmail.com</td>
-                            <td></td>
-                            <td>13/4/2019</td>
-                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>5</td>
-                            <td>Lê Tường Qui</td>
-                            <td>qui021098@gmail.com</td>
-                            <td></td>
-                            <td>13/4/2019</td>
-                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>6</td>
-                            <td>Lê Tường Qui</td>
-                            <td>qui021098@gmail.com</td>
-                            <td></td>
-                            <td>13/4/2019</td>
-                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>7</td>
-                            <td>Lê Tường Qui</td>
-                            <td>qui021098@gmail.com</td>
-                            <td></td>
-                            <td>13/4/2019</td>
-                            <td align="center"><a href="#" class="badge badge-pill badge-danger">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -370,9 +303,6 @@
                             </td>
                         </tr>
                         <!--End Nội dung một hàng-->
-
-
-
                     </tbody>
                 </table>
 
@@ -391,9 +321,9 @@
         <div class="col-12 col-md-6">
             <div class="admin-content-con">
                 <header class="d-flex align-items-center justify-content-between">
-                    <h5>Nội dung</h5>
-                    <a class="btn btn-sm btn-primary" href="#" role="button">
-                        Tạo mới nội dung
+                    <h5>Bài viết xem nhiều</h5>
+                    <a class="btn btn-sm btn-primary" href="/admin/info/info-add" role="button">
+                        Tạo mới bài viết
                     </a>
                 </header>
 
@@ -401,84 +331,33 @@
                     <thead>
                         <tr>
                             <th>Tiêu đề</th>
-                            <th>Tương tác</th>
                             <th>Ngày đăng</th>
+                            <th>Lượt xem</th>
                             <th style="text-align:center">Tác vụ</th>
                         </tr>
                     </thead>
 
                     <tbody>
+                        {{#each this.Newpost}}
                         <tr>
-                            <td>Bài đăng đầu</td>
-                            <td>20</td>
-                            <td>Hôm nay</td>
+                            <td>
+                                <div class="wordWrap info-title">
+                                    {{TITLE}}
+                                </div>
+                            </td>
+                            <td>{{CREATED}}</td>
+                            <td>{{VIEWS}}</td>
                             <td align="center">
-                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                <a class="btn btn-primary btn-sm" href="/admin/info/info-update/{{ID}}" role="button">
                                     Xem
-                                </a>
-                                <a class="btn btn-success btn-sm" href="#" role="button">
-                                    Sửa
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#" role="button">
-                                    Xóa
                                 </a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>Bài đăng đầu</td>
-                            <td>20</td>
-                            <td>Hom nay</td>
-                            <td align="center">
-                                <a class="btn btn-primary btn-sm" href="#" role="button">
-                                    Xem
-                                </a>
-                                <a class="btn btn-success btn-sm" href="#" role="button">
-                                    Sửa
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#" role="button">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Bài đăng đầu</td>
-                            <td>20</td>
-                            <td>Hôm nay</td>
-                            <td align="center">
-                                <a class="btn btn-primary btn-sm" href="#" role="button">
-                                    Xem
-                                </a>
-                                <a class="btn btn-success btn-sm" href="#" role="button">
-                                    Sửa
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#" role="button">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>Bài đăng đầu</td>
-                            <td>20</td>
-                            <td>Hôm nay</td>
-                            <td align="center">
-                                <a class="btn btn-primary btn-sm" href="#" role="button">
-                                    Xem
-                                </a>
-                                <a class="btn btn-success btn-sm" href="#" role="button">
-                                    Sửa
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#" role="button">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <a href="articles.html" class="float-right text-link">Xem tất cả bài viết</a>
+                    <a href="/admin/info/info-show" class="float-right text-link">Xem tất cả bài viết</a>
                 </div>
 
 
@@ -491,27 +370,27 @@
 
             <div class="admin-content-con">
                 <header>
-                    <h5>Bình luận</h5>
+                    <h5>Bình luận gần đây</h5>
                 </header>
                 <!--Nội dung bình luận-->
+                {{#each this.Comment}}
                 <div class="comment-header-dash clearfix">
                     <div class="comment-name-dash float-left">
-                        Lê Tường Qui
+                        {{FULLNAME}}
+                        <i>({{PRODUCTNAME}})</i>
                     </div>
-                    <div class="day-dash float-right">2 ngày trước</div>
+                    <div class="day-dash float-right">{{CREATED}}</div>
                 </div>
                 <p class="comment-dash">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo aperiam quae cum,
-                    magni suscipit nesciunt repellendus sunt accusantium esse quaerat aliquam numquam
-                    in. Quas dignissimos asperiores reiciendis obcaecati incidunt nam.
+                    {{COMMENT}}
                 </p>
                 <!-- <small class="comment-date-dash">Hôm nay 13/4/2019 </small> -->
                 <hr>
+                {{/each}}
+
                 <!--End nội dung bình luận-->
-
-
                 <div class="clearfix">
-                    <a href="comments.html" class="float-right text-link">Xem tất cả bình luận</a>
+                    <a href="/admin/comment/product-comment" class="float-right text-link">Xem tất cả bình luận</a>
                 </div>
             </div>
         </div>

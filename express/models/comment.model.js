@@ -105,3 +105,15 @@ module.exports.deleteCommentByCustomerId = customerId => {
 module.exports.deleteCommentByProductId = productId => {
   return db.delete("comment", "PRODUCTID", productId);
 };
+
+// Hàm lấy ra comment gần nhất của sản phẩm
+module.exports.RecentlyComments = () => {
+  return db.load(
+    `SELECT COMMENT.PRODUCTID, PRODUCT.NAME AS PRODUCTNAME,
+            DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
+            COMMENT.TITLE, COMMENT.COMMENT, CUSTOMER.FULLNAME
+    FROM product PRODUCT JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+        ON PRODUCT.ID = COMMENT.PRODUCTID
+        ORDER BY COMMENT.CREATED DESC LIMIT 4`
+  );
+};

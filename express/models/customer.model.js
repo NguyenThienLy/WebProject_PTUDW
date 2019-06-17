@@ -12,6 +12,19 @@ module.exports.allCustomers = () => {
   );
 };
 
+//Hàm ra top 10 khách hàng thanh toán nhiều nhất
+module.exports.Top10Customer = () => {
+  return db.load(
+    `SELECT customer.ID, customer.FULLNAME, customer.EMAIL, customer.CASH, 
+    DATE_FORMAT(customer.CREATED, '%d/%m/%Y %H:%i') AS CREATED, 
+    customer_type.NAME AS TYPENAME
+    FROM customer JOIN customer_type ON customer.CUSTOMERTYPEID = customer_type.ID
+    WHERE customer.STATUS = 1
+    ORDER BY customer.CASH DESC
+    LIMIT 5`
+  );
+};
+
 // Hàm lấy ra customer có USERNAME = userName
 module.exports.singleByUserName = userName => {
   return db.load(`SELECT * FROM customer where USERNAME = '${userName}'`);

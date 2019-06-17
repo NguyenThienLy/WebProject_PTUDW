@@ -1,4 +1,6 @@
 
+
+
 //Biểu đồ tròn cấu trúc 
 var ctxPieChar = document.getElementById('structureProductChart').getContext('2d');
 //Biểu đồ đường thể hiện lượt xem
@@ -25,6 +27,7 @@ var arrBarlabel = ['Cà chua', 'Măng tươi', 'Sữa tươi', 'Đậu rang'];
 var arrBarData = [10, 20, 50, 10];
 //End liệu biểu đồ cột top sản phẩm bán chạy
 
+
 var base_url =
     location.protocol + "//" + document.domain + ":" + location.port;
 $.post(
@@ -48,6 +51,44 @@ $.post(
         CreateLineChart(ctxLineViewChart, arrViewLabel, arrViewData, 'Lượt xem');
     }
 );
+
+$("#datepicker").datetimepicker({
+    format: "d/m/Y",
+    timepicker: false,
+    closeOnDateSelect:true,
+    mask: true,
+    onSelectDate:function(dp,$input){
+        sendPost($input.val());
+      }
+  })
+
+  function sendPost(date){
+    var base_url =
+    location.protocol + "//" + document.domain + ":" + location.port;
+$.post(
+    base_url + "/admin/index/report-date",
+    {date:date},
+    function (data) {
+        //Parse json
+        var jsonData = JSON.parse(data);
+
+        //Cập nhật text
+        $('#totalView').text(jsonData.TotalView);
+
+        //Cập nhật biểu đồ
+        arrViewLabel=[];
+        arrViewData=[];
+
+        jsonData.arrView.forEach(view=>{
+            arrViewLabel.push(view.DATE);
+            arrViewData.push(view.VIEW);
+        })
+
+        // CreatePieChart(ctxPieChar, arrPieLabel, arrPieData);
+        CreateLineChart(ctxLineViewChart, arrViewLabel, arrViewData, 'Lượt xem');
+    }
+);
+  }
 
 
 CreateBarChart(ctxBarChar, arrBarlabel, arrBarData);

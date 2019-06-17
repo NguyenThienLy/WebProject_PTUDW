@@ -42,6 +42,25 @@ module.exports.topNNewsFollowTypeSort = (typeSort, N) => {
   }
 };
 
+module.exports.Top5News = () => {
+  return db.load(`SELECT ID, TITLE, DATE_FORMAT(news.CREATED, '%d/%m/%Y %H:%i') AS CREATED, VIEWS			
+                  FROM news
+                  ORDER BY VIEWS DESC
+                  LIMIT 5`);
+};
+
+//Trả về tổng số view trong ngày
+module.exports.sumViewInDate = (date) => {
+  return db.load(`SELECT SUM(VIEWS) AS VIEWS FROM news_views WHERE DATE = '${date}'`);
+};
+
+//Trả về danh sách view trong tháng và ngày
+module.exports.chartViewInMonth = (date) => {
+  return db.load(`SELECT DAY(DATE) AS DATE, SUM(VIEWS) AS VIEW FROM news_views
+                  WHERE MONTH(DATE) = MONTH('${date}') AND YEAR(DATE) = YEAR('${date}')
+                  GROUP BY DATE`);
+};
+
 module.exports.singleByNewsId = newsId => {
   return db.load(`SELECT news.ID, news.IMAGE, news.RESIZEDIMAGE, news.TITLE, 
                   news.SHORTCONTENT, news.CONTENT, news.CREATED
@@ -80,7 +99,7 @@ module.exports.updateNews = news => {
 
 // Hàm xóa 1 bài viết | cập nhật status về 0
 module.exports.deleteNews = (news) => {
-  return db.update('news','ID', news);
+  return db.update('news', 'ID', news);
 };
 
 //Hàm trả về thời gian hiện tại
