@@ -65,7 +65,7 @@ module.exports.idOfEmailUser = email => {
 
 //Hàm trả về id của nhân viên có token
 module.exports.idOfToken = token => {
-  return db.load(`SELECT ID FROM customer WHERE RESETPASSWORDTOKEN = '${token}' AND RESETPASSWORDEXPIRES < NOW()`);
+  return db.load(`SELECT ID FROM customer WHERE RESETPASSWORDTOKEN = '${token}' AND RESETPASSWORDEXPIRES > NOW()`);
 };
 
 // hàm lấy ra số lượng customers
