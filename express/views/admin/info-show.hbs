@@ -14,7 +14,7 @@
 
     <header class="d-flex align-items-center justify-content-between">
         <h5 class="page_title mb-0">Tất cả bài viết</h5>
-        <a href="/admin/info/info-add" class="btn btn-primary btn-sm">Thêm bài viết mới</a>
+        <a href="/admin/info/info-add" class="btn btn-primary btn-sm">Thêm mới</a>
     </header>
 
     <div class="content-inner">
@@ -72,8 +72,10 @@
                         <span>{{CREATED}}</span>
                     </td>
                     <td align="center">
-                        <a href="/admin/info/info-update/{{ID}}" class="btn btn-sm btn-primary">Sửa</a>
-                        <button type="button" class="btn btn-sm btn-danger post_delete_info" id="{{ID}}">Xóa</button>
+                        <a href="/admin/info/info-update/{{ID}}" class="btn btn-sm btn-primary mr-1"><i
+                                class="fas fa-pencil-alt"></i></a>
+                        <button type="button" class="btn btn-sm btn-danger post_delete_info" id="{{ID}}"><i
+                                class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
                 {{/each}}

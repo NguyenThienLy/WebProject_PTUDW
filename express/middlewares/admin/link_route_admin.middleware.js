@@ -7,6 +7,8 @@ var adminOrderRoute = require("../../routes/admin/order.route");
 var adminCommentRoute = require("../../routes/admin/comment.route");
 var adminTagRoute = require("../../routes/admin/tag.route");
 var adminBrandRoute = require("../../routes/admin/brand.route");
+var adminCategoryRoute = require("../../routes/admin/category.route");
+var adminSubCategoryRoute = require("../../routes/admin/subCategory.route");
 var adminAuthRoute = require("../../routes/admin/auth.route");
 
 var adminAuthMiddleware = require("./auth.middleware");
@@ -81,5 +83,19 @@ module.exports = function(app) {
     adminSidebarActiveMiddleware,
     adminSidebarQuantityBadgeMiddleware,
     adminBrandRoute
+  );
+  app.use(
+    "/admin/category",
+    adminAuthMiddleware.requireAuth,
+    adminSidebarActiveMiddleware,
+    adminSidebarQuantityBadgeMiddleware,
+    adminCategoryRoute
+  );
+  app.use(
+    "/admin/subCategory",
+    adminAuthMiddleware.requireAuth,
+    adminSidebarActiveMiddleware,
+    adminSidebarQuantityBadgeMiddleware,
+    adminSubCategoryRoute
   );
 };

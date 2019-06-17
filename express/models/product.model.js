@@ -128,10 +128,23 @@ module.exports.allProductIdByCategoryId = (categoryId) => {
             AND product.CATEGORYID = ${categoryId}`);
 };
 
-// Hàm trả về số lượng sản phẩm có brandid 
+// Hàm trả về số lượng sản phẩm theo id danh mục để xóa danh mục
+module.exports.productQuantityByCategoryId = (categoryId) => {
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+            FROM product
+            WHERE product.CATEGORYID = ${categoryId}`);
+};
+
+// Hàm trả về số lượng sản phẩm theo id danh mục để xóa danh mục con
+module.exports.productQuantityBySubCategoryId = (subCategoryId) => {
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+            FROM product
+            WHERE product.SUBCATEGORYID = ${subCategoryId}`);
+};
+
+// Hàm trả về số lượng sản phẩm theo id thương hiệu để xóa thương hiệu
 module.exports.productQuantityByBrandId = (brandId) => {
-  // Gọi hàm querry từ db
-  return db.load(`SELECT COUNT(*) AS PRODUCT_QUANTITY
+  return db.load(`SELECT COUNT(*) AS QUANTITY
             FROM product
             WHERE product.BRANDID = ${brandId}`);
 };

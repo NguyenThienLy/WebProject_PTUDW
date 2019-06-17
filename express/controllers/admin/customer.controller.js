@@ -53,9 +53,9 @@ module.exports.postDeleteCustomer = (req, res, next) => {
     customerID
   );
   var deleteComment = commentModel.deleteCommentByCustomerId(customerID);
-  var deleteCustomerView = customerViewModel.deleteCustomerViewByCustomerId(
-    customerID
-  );
+  // var deleteCustomerView = customerViewModel.deleteCustomerViewByCustomerId(
+  //   customerID
+  // );
 
   var updateOrderInfo = {
     CUSTOMERID: customerID,
@@ -63,7 +63,7 @@ module.exports.postDeleteCustomer = (req, res, next) => {
   }
   var deleteOrderInfo = orderInfoModel.deleteOrderInfo(updateOrderInfo);
 
-  Promise.all([deleteCommentReaction, deleteCustomerView, deleteOrderInfo])
+  Promise.all([deleteCommentReaction, deleteOrderInfo])
     .then(values => {
       var updateCustomer = {
         ID: customerID,
