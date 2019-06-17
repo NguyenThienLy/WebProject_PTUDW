@@ -59,7 +59,7 @@ module.exports.postBrandNameUpdate = (req, res, next) => {
 
 module.exports.postDeleteBrand = (req, res, next) => {
   var brandId = req.body.BrandID;
-
+  
   productModel.productQuantityByBrandId(brandId).then(quantity => {
       if (quantity[0].QUANTITY > 0) {
           res.send(false);

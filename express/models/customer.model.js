@@ -8,7 +8,8 @@ module.exports.allCustomers = () => {
             DATE_FORMAT(customer.CREATED, '%d/%m/%Y %H:%i') AS CREATED, 
             customer_type.NAME AS TYPENAME, customer.CUSTOMERTYPEID
     FROM customer JOIN customer_type ON customer.CUSTOMERTYPEID = customer_type.ID
-    WHERE customer.STATUS = 1`
+    WHERE customer.STATUS = 1
+    ORDER BY customer.CREATED DESC`
   );
 };
 

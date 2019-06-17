@@ -14,7 +14,8 @@ module.exports.productCommentShow = function(req, res, next) {
         layout: "main-admin.hbs",
         products: products
       });
-    }).catch(next);
+    })
+    .catch(next);
 };
 
 module.exports.commentOfProductShow = function(req, res, next) {
@@ -49,9 +50,22 @@ module.exports.commentOfProductShow = function(req, res, next) {
       res.render("admin/comment", {
         layout: "main-admin.hbs",
         comments: values[0],
+        productId: productId,
         helpers: {
           commentStars: commentStarsHelper
         }
       });
-    }).catch(next);
+    })
+    .catch(next);
+};
+
+module.exports.postDeleteComment = (req, res, next) => {
+  var commentID = req.body.CommentID;
+
+  commentModel
+    .deleteCommentById(commentID)
+    .then(affectedRowsNumber => {
+      res.send(false);
+    })
+    .catch(next);
 };

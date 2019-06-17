@@ -64,9 +64,9 @@
                                 <div class="form-group row">
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
-                                        <label for="inputnameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
+                                        <label for="inputNameProduct" class="mt-2"><b>Tên sản phẩm</b></label>
                                         <div>
-                                            <input name="NAME" type="text" class="form-control" id="inputnameProduct"
+                                            <input name="NAME" type="text" class="form-control" id="inputNameProduct"
                                                 placeholder="Nhập tên sản phâm">
                                         </div>
 
@@ -188,9 +188,10 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label><b>Mô tả tóm tắt</b></label>
+                                    <label for="productShortDescription"><b>Mô tả tóm tắt</b></label>
                                     <div>
-                                        <textarea name="SHORTDESCRIPTION" cols="60" rows="4" class="form-control"
+                                        <textarea name="SHORTDESCRIPTION" id="productShortDescription" cols="60"
+                                            rows="4" class="form-control"
                                             placeholder="Nhập mô tả tóm tắt về sản phẩm"></textarea>
                                     </div>
                                 </div>
@@ -227,8 +228,7 @@
                 <!-- nav-product-detail-comment-tab -->
                 <div class="tab-pane fade pt-4" id="nav-product-detail-comment" role="tabpanel"
                     aria-labelledby="nav-product-detail-comment-tab">
-                    <form method="POST" action="/admin/product/product-combo-add"
-                        id="add-product-combo-form">
+                    <form method="POST" action="/admin/product/product-combo-add" id="add-product-combo-form">
                         <!--Card chứa form nhập thông tin của sản phẩm-->
                         <div class="card mt-3">
                             <div class="card-header">
@@ -244,19 +244,20 @@
                                             <div class="col-4">
                                                 <label for="selectProductID1" class="mt-2"><b>Mã sản phẩm</b></label>
                                                 <div class="input-group">
-                                                    <select class="custom-select form-control" id="selectProductID1" name="PRODUCTID1">
+                                                    <select class="custom-select form-control" id="selectProductID1"
+                                                        name="PRODUCTID1">
                                                         <option value="">Chọn...</option>
                                                         {{#each this.products}}
-                                                            <option value="{{ID}}">{{ID}}</option>
+                                                        <option value="{{ID}}">{{ID}}</option>
                                                         {{/each}}
                                                     </select>
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-success dropdown-toggle"
-                                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        <button class="btn btn-success dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false" id="btnSelectCat1">Danh mục</button>
                                                         <div class="dropdown-menu dropdown-menu-right" id="selectCat1">
                                                             {{#each this.categories}}
-                                                                 <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
+                                                            <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
                                                             {{/each}}
                                                         </div>
                                                     </div>
@@ -264,7 +265,7 @@
                                             </div>
 
                                             <div class="col-4">
-                                                <label for="inputNameProduct1" class="mt-2"><b>Tên sản phẩm</b></label>
+                                                <label class="mt-2"><b>Tên sản phẩm</b></label>
                                                 <div>
                                                     <input type="text" class="form-control" readonly
                                                         id="inputNameProduct1">
@@ -272,7 +273,7 @@
                                             </div>
 
                                             <div class="col-4">
-                                                <label for="inputInventoryProduct1" class="mt-2"><b>Số lượng còn
+                                                <label class="mt-2"><b>Số lượng còn
                                                         lại</b></label>
                                                 <div>
                                                     <input type="number" class="form-control" readonly
@@ -291,20 +292,21 @@
                                         <div class="form-group row">
                                             <div class="col-4">
                                                 <label for="selectProductID2" class="mt-2"><b>Mã sản phẩm</b></label>
-                                               <div class="input-group">
-                                                    <select class="custom-select form-control" id="selectProductID2" name="PRODUCTID2">
+                                                <div class="input-group">
+                                                    <select class="custom-select form-control" id="selectProductID2"
+                                                        name="PRODUCTID2">
                                                         <option value="">Chọn...</option>
-                                                         {{#each this.products}}
-                                                            <option value="{{ID}}">{{ID}}</option>
+                                                        {{#each this.products}}
+                                                        <option value="{{ID}}">{{ID}}</option>
                                                         {{/each}}
                                                     </select>
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-success dropdown-toggle"
-                                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        <button class="btn btn-success dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false" id="btnSelectCat2">Danh mục</button>
                                                         <div class="dropdown-menu dropdown-menu-right" id="selectCat2">
                                                             {{#each this.categories}}
-                                                                 <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
+                                                            <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
                                                             {{/each}}
                                                         </div>
                                                     </div>
@@ -312,7 +314,7 @@
                                             </div>
 
                                             <div class="col-4">
-                                                <label for="inputNameProduct2" class="mt-2"><b>Tên sản phẩm</b></label>
+                                                <label class="mt-2"><b>Tên sản phẩm</b></label>
                                                 <div>
                                                     <input type="text" class="form-control" readonly
                                                         id="inputNameProduct2">
@@ -320,7 +322,7 @@
                                             </div>
 
                                             <div class="col-4">
-                                                <label for="inputInventoryProduct2" class="mt-2"><b>Số lượng còn
+                                                <label class="mt-2"><b>Số lượng còn
                                                         lại</b></label>
                                                 <div>
                                                     <input type="number" class="form-control" readonly
@@ -340,19 +342,20 @@
                                             <div class="col-4">
                                                 <label for="selectProductID3" class="mt-2"><b>Mã sản phẩm</b></label>
                                                 <div class="input-group">
-                                                    <select class="custom-select form-control" id="selectProductID3" name="PRODUCTID3">
+                                                    <select class="custom-select form-control" id="selectProductID3"
+                                                        name="PRODUCTID3">
                                                         <option value="">Chọn...</option>
-                                                         {{#each this.products}}
-                                                            <option value="{{ID}}">{{ID}}</option>
+                                                        {{#each this.products}}
+                                                        <option value="{{ID}}">{{ID}}</option>
                                                         {{/each}}
                                                     </select>
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-success dropdown-toggle"
-                                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        <button class="btn btn-success dropdown-toggle" type="button"
+                                                            data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false" id="btnSelectCat3">Danh mục</button>
                                                         <div class="dropdown-menu dropdown-menu-right" id="selectCat3">
                                                             {{#each this.categories}}
-                                                                 <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
+                                                            <span class="dropdown-item" id="{{ID}}">{{NAME}}</span>
                                                             {{/each}}
                                                         </div>
                                                     </div>
@@ -360,7 +363,7 @@
                                             </div>
 
                                             <div class="col-4">
-                                                <label for="inputNameProduct3" class="mt-2"><b>Tên sản phẩm</b></label>
+                                                <label class="mt-2"><b>Tên sản phẩm</b></label>
                                                 <div>
                                                     <input type="text" class="form-control" readonly
                                                         id="inputNameProduct3">
@@ -368,7 +371,7 @@
                                             </div>
 
                                             <div class="col-4">
-                                                <label for="inputInventoryProduct3" class="mt-2"><b>Số lượng còn
+                                                <label class="mt-2"><b>Số lượng còn
                                                         lại</b></label>
                                                 <div>
                                                     <input type="number" class="form-control" readonly
@@ -394,8 +397,8 @@
                                     <div class="col-12">
                                         <label for="inputnameProductCombo" class="mt-2"><b>Tên COMBO</b></label>
                                         <div>
-                                            <input name="NAME" type="text" class="form-control" id="inputnameProductCombo"
-                                                placeholder="Nhập tên sản phâm">
+                                            <input name="NAME" type="text" class="form-control"
+                                                id="inputnameProductCombo" placeholder="Nhập tên sản phâm">
                                         </div>
 
                                         <label for="inputPriceProductCombo" class="mt-2"><b>Giá thành (nghìn
@@ -407,7 +410,7 @@
 
                                         <div class="row">
                                             <div class="col-6">
-                                                <label for="inputKLGProductCombo" class="mt-2"><b>Trọng lượng
+                                                <label class="mt-2"><b>Trọng lượng
                                                         (kg)</b></label>
                                                 <div>
                                                     <input type="number" name="KILOGRAM" class="form-control"
@@ -458,9 +461,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label><b>Mô tả tóm tắt</b></label>
+                                    <label for="productComboShortDescription"><b>Mô tả tóm tắt</b></label>
                                     <div>
-                                        <textarea name="SHORTDESCRIPTION" cols="60" rows="4" class="form-control"
+                                        <textarea name="SHORTDESCRIPTION" id="productComboShortDescription" cols="60" rows="4" class="form-control"
                                             placeholder="Nhập mô tả tóm tắt về sản phẩm"></textarea>
                                     </div>
                                 </div>

@@ -1,127 +1,103 @@
 var categoryModel = require("../../models/category.model");
 var subCategoryModel = require("../../models/sub_category.model");
 var productModel = require("../../models/product.model");
+var productInfoHistory = require("../../models/product_info_history");
+// Gọi selected helper
+var selectedHelper = require("../../helpers/selected_selector.helper");
 
 module.exports.subCategoryShow = function(req, res, next) {
-  var getAllCategories = categoryModel.allCategory();
   var getAllSubCategories = subCategoryModel.allSubCategory();
 
-  Promise.all([getAllCategories, getAllSubCategories])
-    .then(values => {
-      res.locals.sidebar[9].active = true;
+  getAllSubCategories
+    .then(subCategories => {
+      res.locals.sidebar[10].active = true;
 
-      var listCategories = values[0];
-      var listSubCategories = values[1];
-
-      listCategories.forEach(category => {
-        category.SUBCATEGORIES = [];
-        listSubCategories.forEach(subCategory => {
-          if (subCategory.CATEGORYID === category.ID) {
-            category.SUBCATEGORIES.push(subCategory);
-          }
-        });
-      });
-
-      res.render("admin/category-show", {
+      res.render("admin/subCategory-show", {
         layout: "main-admin.hbs",
-        categories: listCategories
+        subCategories: subCategories
       });
     })
     .catch(next);
 };
 
 module.exports.subCategoryAdd = function(req, res, next) {
-  res.locals.sidebar[9].active = true;
+  categoryModel.allCategory().then(categories => {
+    res.locals.sidebar[10].active = true;
 
-  res.render("admin/category-add", {
-    layout: "main-admin.hbs"
+    res.render("admin/subCategory-add", {
+      layout: "main-admin.hbs",
+      categories: categories
+    });
   });
 };
 
 module.exports.postSubCategoryAdd = function(req, res, next) {
-  var subCategories = req.body.SUBCATEGORIES;
-
-  var newCategory = {
-    NAME: req.body.NAME
+  var newSubCategory = {
+    NAME: req.body.NAME,
+    CATEGORYID: req.body.CATEGORYID
   };
-  categoryModel.addCategory(newCategory).then(newCategoryId => {
-    subCategoryModel.addSubCategoriesForCategory(newCategoryId, subCategories);
-    res.redirect("/admin/category/category-add");
-  });
+
+  subCategoryModel.addSubCategory(newSubCategory).then(subCategoryId => {
+    res.redirect("/admin/subCategory/subCategory-add");
+  })
 };
 
 module.exports.subCategoryUpdate = function(req, res, next) {
-  var categoryId = req.params.id;
-  var dataCategory = categoryModel.singleById(categoryId);
-  var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(
-    categoryId
-  );
+  var subCategoryId = req.params.id;
+  var dataSubCategory = subCategoryModel.singleById(subCategoryId);
+  var dataCategories = categoryModel.allCategory();
 
-  Promise.all([dataCategory, dataSubCategories]).then(values => {
+  Promise.all([dataSubCategory, dataCategories]).then(values => {
     res.locals.sidebar[9].active = true;
 
-    res.render("admin/category-update", {
+    res.render("admin/subCategory-update", {
       layout: "main-admin.hbs",
-      category: values[0][0],
-      subCategories: values[1]
+      subCategory: values[0][0],
+      categories: values[1],
+      helpers: {
+        isSelected: selectedHelper.isSelected
+      }
     });
   });
 };
 
 module.exports.postSubCategoryUpdate = function(req, res, next) {
-  var category = {
+  var subCategory = {
     ID: req.body.ID,
+    CATEGORYID: req.body.CATEGORYID,
     NAME: req.body.NAME
   };
 
-  var listSubCategories = req.body.SUBCATEGORIES;
-  var listOldSubCategories = req.body.OLDSUBCATEGORIES;
-  var listNewSubCategories = [];
-  var listDeleteSubCategories = [];
+  var oldCategoryId = req.body.OLDCATEGORYID;
 
-  // tìm những danh mục con mới
-  listSubCategories.forEach(subCategory => {
-    if (listOldSubCategories.indexOf(subCategory) == -1) {
-      listNewSubCategories.push(subCategory);
+  subCategoryModel.updateSubCategory(subCategory).then(changedRowsNumber => {
+    if (req.body.CATEGORYID !== oldCategoryId) {
+      var updateProduct = {
+        SUBCATEGORYID: req.body.ID,
+        CATEGORYID: req.body.CATEGORYID
+      }
+
+      productModel.updateCategoryIdBySubCategoryIdForProduct(updateProduct).then(changedRowsNumber => {
+        res.redirect(req.get("referer"));
+      }).catch(next);
     }
-  });
-
-  // tìm những danh mục con cũ bị xóa
-  listOldSubCategories.forEach(oldSubCategory => {
-    if (listSubCategories.indexOf(oldSubCategory) == -1) {
-      listDeleteSubCategories.push(oldSubCategory);
-    }
-  });
-  
-  res.redirect("/admin/category/category-show");
-
-  // categoryModel.updateCategory(category).then(changedRowsNumber => {
-  //   subCategoryModel.deleteSubCategories(listDeleteSubCategories);
-  //   subCategoryModel.addSubCategoriesForCategory(req.body.ID, listNewSubCategories);
-
-  //   res.redirect("/admin/category/category-show");
-  // }).catch(next);
+  }).catch(next);
 };
 
-// Xóa danh mục
+// Xóa danh mục phụ
 module.exports.postDeleteSubCategory = (req, res, next) => {
-  var categoryId = req.body.CategoryID;
+  var subCategoryId = req.body.SubCategoryID;
 
   productModel
-    .productQuantityByCategoryId(categoryId)
+    .productQuantityBySubCategoryId(subCategoryId)
     .then(quantity => {
       if (quantity[0].QUANTITY > 0) {
         res.send(false);
       } else {
         subCategoryModel
-          .deleteSubCategoriesByCategoryId(categoryId)
-          .then(affectedRowsNumber1 => {
-            categoryModel
-              .deleteCategoryByCategoryId(categoryId)
-              .then(affectedRowsNumber2 => {
-                res.send(true);
-              })
-              .catch(next);
+          .deleteSubCategoryById(subCategoryId)
+          .then(affectedRowsNumber => {
+            res.send(true);
           })
           .catch(next);
       }
@@ -131,21 +107,23 @@ module.exports.postDeleteSubCategory = (req, res, next) => {
 
 // Xóa danh mục
 module.exports.postIsValidDeleteSubCategory = async (req, res, next) => {
-    var listSubCategories = req.body.SUBCATEGORIES;
-    var isValidToDelete = true;
+  var listSubCategories = req.body.SUBCATEGORIES;
+  var isValidToDelete = true;
 
-    for(var i = 0; i < listSubCategories.length; i++) {
-        var subCategoryId = listSubCategories[i];
-        var quantity = await productModel.productQuantityBySubCategoryId(subCategoryId);
-        if (quantity[0].QUANTITY > 0) {
-            isValidToDelete = false;
-            break;
-        }
+  for (var i = 0; i < listSubCategories.length; i++) {
+    var subCategoryId = listSubCategories[i];
+    var quantity = await productModel.productQuantityBySubCategoryId(
+      subCategoryId
+    );
+    if (quantity[0].QUANTITY > 0) {
+      isValidToDelete = false;
+      break;
     }
+  }
 
-    if (isValidToDelete) {
-        res.send(true);
-    } else {
-        res.send(false);
-    }
-}
+  if (isValidToDelete) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+};

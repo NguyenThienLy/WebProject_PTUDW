@@ -559,7 +559,7 @@ module.exports.postProductUpdate = (req, res, next) => {
 
   //Gọi hàm update
   productModel
-    .updateProductInfo(product)
+    .updateProduct(product)
     .then(changedRowsNumber => {
       productInfoHistoryModel
         .addCreatedHistory(productID, "Cập nhật", "Cập nhật thông tin")

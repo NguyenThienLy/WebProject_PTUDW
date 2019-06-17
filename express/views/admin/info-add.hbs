@@ -43,22 +43,25 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label><b>Tiêu đề</b></label>
-                            <input type="text" class="form-control" name="TITLE" placeholder="Nhập tiêu đề bài viết" />
+                            <label for="inputInfoTitle"><b>Tiêu đề</b></label>
+                            <input type="text" class="form-control" id="inputInfoTitle" name="TITLE"
+                                placeholder="Nhập tiêu đề bài viết" />
                         </div>
 
                         <div class="form-group">
-                            <label class="mr-1 mb-1"><b>Tag</b></label>
-                            <button type="button" class="btn btn-sm btn-success rounded-circle btn-add-tag position-relative" data-toggle="modal"
-                                data-target="#addTagModal">
+                            <label for="selectTag" class="mr-1 mb-1"><b>Tag</b></label>
+                            <button type="button"
+                                class="btn btn-sm btn-success rounded-circle btn-add-tag position-relative"
+                                data-toggle="modal" data-target="#addTagModal">
                                 <i class="fas fa-plus fa-sm position-absolute"></i>
                             </button>
-                            <select class="form-control chosen-select" id="selectTag" name="TAG" data-placeholder="Chọn tag" multiple>
+                            <select class="form-control chosen-select" id="selectTag" name="TAG"
+                                data-placeholder="Chọn tag" multiple>
                                 {{#each this.tags}}
                                 <option value="{{ID}}">{{NAME}}</option>
                                 {{/each}}
                             </select>
-                            
+
                             <!-- Modal -->
                             <div class="modal fade" id="addTagModal" tabindex="-1" role="dialog"
                                 aria-labelledby="addTagLabelModal" aria-hidden="true">
@@ -88,17 +91,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label><b>Nội dung tóm tắt</b></label>
+                            <label for="infoShortContent"><b>Nội dung tóm tắt</b></label>
                             <div>
-                                <textarea name="SHORTCONTENT" cols="60" rows="5" class="form-control"
-                                    placeholder="Nhập nội dung tóm tắt bài viết"></textarea>
+                                <textarea name="SHORTCONTENT" id="infoShortContent" cols="60" rows="5"
+                                    class="form-control" placeholder="Nhập nội dung tóm tắt bài viết"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label><b>Nội dung chi tiết</b></label>
                             <div>
-                                <textarea class="form-control" name="CONTENT" id="my_editor"></textarea>
+                                <textarea class="form-control" name="CONTENT"
+                                    id="my_editor"></textarea>
                             </div>
                         </div>
                     </div>

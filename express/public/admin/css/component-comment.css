@@ -37,9 +37,17 @@
   font-size: 1.2rem;
 }
 
+.component-comment .content-right .comment-id {
+  font-size: 1rem;
+}
+
 .component-comment .content-right .prove-buy {
   font-size: 0.9rem; 
   color: #99cc00;
+}
+
+.component-comment .content-right .prove-buy .unbought {
+  color: #dc3545;
 }
 
 .component-comment .content-right .main-content {

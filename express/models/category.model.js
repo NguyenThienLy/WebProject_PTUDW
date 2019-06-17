@@ -3,7 +3,7 @@ var db = require("../utils/db");
 
 //hàm trả về danh sách tất cả category lv 1
 module.exports.allCategory = () => {
-  return db.load(`SELECT * FROM category`);
+  return db.load(`SELECT * FROM category ORDER BY ID ASC`);
 };
 
 // Hàm trả về danh sách tất cả category và số lượng sản phẩm thuộc category đó
