@@ -8,12 +8,15 @@ var express = require('express');
 
 var router = express.Router();
 
-router.get('/info-detail', controller.infoDetail);
+router.get('/info-detail/:idInfo', controller.infoDetail);
 
 // Hiển thị tất cả thông tin
 router.get('/info-show', controller.infoShow);
 
 // Đưa thông tin từ sort lên info-show
-router.post("/post-value-filter", controller.handlePostValueFilter);
+router.post("/info-show", controller.handlePostValueFilter);
+
+// Hiển thị các bài viết cùng tag
+router.get("/tag/:idTag", controller.showInfoFollowTag);
 
 module.exports = router;

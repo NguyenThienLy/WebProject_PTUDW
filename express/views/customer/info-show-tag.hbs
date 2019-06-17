@@ -4,6 +4,7 @@
 {{!-- info show page --}}
 <link href="/customer/css/component-info.css" rel="stylesheet" />
 <link href="/customer/css/component-sort-header.css" rel="stylesheet" />
+<link href="/customer/css/component-tags.css" rel="stylesheet" />
 {{!-- info show page --}}
 
 {{!-- responsive --}}
@@ -11,12 +12,12 @@
 {{!-- responsive --}}
 {{/section}}
 
-<form method="POST" name="frmInfoShow" action="/customer/info/info-show">
+<div>
 
     <div class="breadcrumb-header container-fluid p-0">
         <div
             class="breadcrumb-div text-dark w-100 h-100 d-flex flex-column justify-content-center align-items-center pt-4 pb-4">
-            <p>Tin tức</p>
+            <p>Tags</p>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
@@ -24,7 +25,7 @@
                         <a href="/customer/index/">Trang chủ</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        Tin tức
+                        Tags
                     </li>
                 </ol>
             </nav>
@@ -37,28 +38,16 @@
         {{!-- Các loại sắp xếp của info --}}
         <div class="row d-flex justify-content-center component-sort-header">
             <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 d-flex justify-content-center align-items-center">
-                <h3 class="text-success">Tất cả thông tin</h3>
+                <h3 class="text-success"><i class="fas fa-tag"></i>Tags</h3>
             </div>
 
             <div
                 class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 align-items-center d-flex justify-content-center content-right">
-                <p class="m-0 sort-type">Sắp theo:</p>
-
-                {{#each typeSorts}} <div class="form-check-inline ml-1">
-                    <label class="form-check-label" for="radioSortProductShow">
-                        <input type="radio" value="{{value}}" {{#if selected}}checked="" {{/if}}
-                            class="form-check-input" name="radioSortInfoShow" />
-                        {{name}}
-                    </label>
-                </div>
-                {{/each}}
-
-                <select name="selectSortInfoShow" class="form-control">
-                    {{#each typeSorts}}
-                    <option {{#if selected}}selected="" {{/if}} value="{{value}}">{{name}}
-                    </option>
+                <ul class="m-0 p-0">
+                    {{#each tags}}
+                    <a href="/customer/info/tag/{{ID}}" class="badge {{#if isSelected}}badge-success{{else}}badge-dark {{/if}}">{{NAME}}</a>
                     {{/each}}
-                </select>
+                </ul>
             </div>
         </div>
         {{!-- Các loại sắp xếp của info --}}
@@ -135,7 +124,7 @@
     </div>
     <!-- info -->
 
-</form>
+</div>
 
 {{#section 'js'}}
 <script src="/customer/js/breadcrumb-margin.js"></script>

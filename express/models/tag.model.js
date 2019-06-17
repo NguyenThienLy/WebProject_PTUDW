@@ -28,3 +28,11 @@ module.exports.updateTag = tag => {
 module.exports.deleteTagById = tagId => {
   return db.delete("tag", "ID", tagId);
 };
+
+// Hàm lấy tag cho sảm phẩm hiện tại
+module.exports.allTagFollowInfoId = (id) => {
+  return db.load(`SELECT TAG.ID, TAG.NAME
+                  FROM news NEWS JOIN news_tag NEWS_TAG JOIN tag TAG
+                  ON NEWS_TAG.NEWSID = NEWS.ID AND NEWS_TAG.TAGID = TAG.ID
+                  WHERE NEWS.ID = ${id} AND NEWS.STATUS = 1`);
+}
