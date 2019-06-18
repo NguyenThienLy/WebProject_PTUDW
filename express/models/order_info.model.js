@@ -183,6 +183,15 @@ module.exports.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset = (cusId, 
   `);
 }
 
+//Hàm lấy số lượng theo id customer và order status id
+module.exports.quantityOrderInfoFollowIdCustomerAndOrderStatusId = (cusId, statusId) => {
+  return db.load(`
+  SELECT COUNT(*) AS QUANTITY
+  FROM order_info ORDER_INFO 
+  WHERE ORDER_INFO.CUSTOMERID = ${cusId} AND ORDER_INFO.ORDERSTATUSID = ${statusId}
+  `);
+}
+
 // Hàm lấy ra tất cả các row bảng product simple theo id của info detail table
 module.exports.allRowProductSimpleFollowID = orderInfoId => {
   return db.load(`SELECT pro.ID AS ID, pro.NAME AS NAME,

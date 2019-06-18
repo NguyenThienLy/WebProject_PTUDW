@@ -24,6 +24,11 @@ module.exports.orderInfoShow = function(req, res, next) {
     var isHaveType3 = true;
     var isHaveType4 = true;
 
+    var quantityHaveType1 = 0;
+    var quantityHaveType2 = 0;
+    var quantityHaveType3 = 0;
+    var quantityHaveType4 = 0;
+
     Promise.all([
       orderInfoModel.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset(
         customerId,
@@ -49,6 +54,22 @@ module.exports.orderInfoShow = function(req, res, next) {
         6,
         0
       ),
+      orderInfoModel.quantityOrderInfoFollowIdCustomerAndOrderStatusId(
+        customerId,
+        1
+      ),
+      orderInfoModel.quantityOrderInfoFollowIdCustomerAndOrderStatusId(
+        customerId,
+        2
+      ),
+      orderInfoModel.quantityOrderInfoFollowIdCustomerAndOrderStatusId(
+        customerId,
+        3
+      ),
+      orderInfoModel.quantityOrderInfoFollowIdCustomerAndOrderStatusId(
+        customerId,
+        4
+      ),
       productModel.topNProductBestSalerFollowOffset(4, 0),
       productComboModel.topNProductComboBestSalerFollowOffset(3, 0)
     ]).then(values => {
@@ -61,18 +82,28 @@ module.exports.orderInfoShow = function(req, res, next) {
 
       if (values[3].length === 0) isHaveType4 = false;
 
+      quantityHaveType1 = +values[4][0].QUANTITY;
+      //console.log("TCL: module.exports.orderInfoShow -> values[4][0].QUANTITY", values[4][0].QUANTITY)
+      quantityHaveType2 = +values[5][0].QUANTITY;
+      quantityHaveType3 = +values[6][0].QUANTITY;
+      quantityHaveType4 = +values[7][0].QUANTITY;
+
       res.render("customer/order-info-show", {
         layout: "main-customer.hbs",
         orderInfoType1: values[0],
         orderInfoType2: values[1],
         orderInfoType3: values[2],
         orderInfoType4: values[3],
-        products: values[4],
-        productsCombo: values[5],
+        products: values[8],
+        productsCombo: values[9],
         isHaveType1: isHaveType1,
         isHaveType2: isHaveType2,
         isHaveType3: isHaveType3,
         isHaveType4: isHaveType4,
+        quantityHaveType1: quantityHaveType1,
+        quantityHaveType2: quantityHaveType2,
+        quantityHaveType3: quantityHaveType3,
+        quantityHaveType4: quantityHaveType4,
         helpers: {
           // Hàm định dạng title của product simple lấy 36 kí tự
           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
@@ -89,7 +120,6 @@ module.exports.orderInfoShow = function(req, res, next) {
 module.exports.orderDetailShow = function(req, res, next) {
   try {
     var orderInfoId = req.body.orderInfoId;
-    console.log("TCL: module.exports.orderDetailShow -> orderInfoId", orderInfoId)
 
     Promise.all([
       orderInfoModel.allRowProductSimpleFollowID(orderInfoId),

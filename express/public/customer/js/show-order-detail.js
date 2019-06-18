@@ -1,9 +1,6 @@
 $(document).ready(function() {
   // Tăng số lượng sản phẩm trong giỏ hàng product simple
-  $(document).on("click", "#nav-order-info-type-1 #btnShowDetail", function() {
-
-  
-
+  $(document).on("click", "#btnShowDetail", function() {
     var $id = $(this).attr("id-show-detail");
 
       $.post(
