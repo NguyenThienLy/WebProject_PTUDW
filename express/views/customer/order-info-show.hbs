@@ -1,12 +1,16 @@
 {{#section 'css'}}
-<title>Chi tiết sản phẩm</title>
+<title>Chi tiết đơn hàng của bạn</title>
 
 {{!-- product detail page --}}
-<link href="/customer/css/component-show-rate.css" rel="stylesheet" />
-<link href="/customer/css/component-comment.css" rel="stylesheet" />
 <link href="/customer/css/component-product-simple.css" rel="stylesheet" />
-<link href="/customer/css/component-image-show.css" rel="stylesheet" />
-<link href="/customer/css/component-show-rate.css" rel="stylesheet" />
+<link href="/customer/css/component-product-combo.css" rel="stylesheet" />
+<link href="/customer/css/component-cart-quantity.css" rel="stylesheet" />
+<link href="/customer/css/component-scrollbar.css" rel="stylesheet" />
+{{!-- <link href="/customer/css/component-show-rate.css" rel="stylesheet" /> --}}
+{{!-- <link href="/customer/css/component-comment.css" rel="stylesheet" /> --}}
+{{!-- <link href="/customer/css/component-product-simple.css" rel="stylesheet" /> --}}
+{{!-- <link href="/customer/css/component-image-show.css" rel="stylesheet" /> --}}
+{{!-- <link href="/customer/css/component-show-rate.css" rel="stylesheet" /> --}}
 <link href="/customer/css/component-product-detail.css" rel="stylesheet" />
 {{!-- product detail page --}}
 
@@ -88,49 +92,374 @@
     <!-- product-detail nav -->
     <nav>
         <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-            <h3 class="nav-item nav-link pb-3 active" id="nav-order-info-type-1-tab" data-toggle="tab"
-                href="#nav-order-info-type-1" role="tab" aria-controls="nav-order-info-type-1"
-                aria-selected="true">Chờ xác nhận</h3>
-            <h3 class="nav-item nav-link ml-5 pb-3" id="nav-order-info-type-2-tab" data-toggle="tab"
-                href="#nav-order-info-type-2" role="tab" aria-controls="nav-order-info-type-2"
-                aria-selected="false">Đang giao</h3>
-            <h3 class="nav-item nav-link ml-5 pb-3" id="nav-order-info-type-3-tab" data-toggle="tab"
-                href="#nav-order-info-type-3" role="tab" aria-controls="nav-order-info-type-3"
-                aria-selected="false">Đã giao</h3>
-            <h3 class="nav-item nav-link ml-5 pb-3" id="nav-order-info-type-4-tab" data-toggle="tab"
-                href="#nav-order-info-type-4" role="tab" aria-controls="nav-order-info-type-4"
-                aria-selected="false">Đã hủy</h3>
+            <h3 class="nav-item nav-link pb-3 active text-primary border-primary" id="nav-order-info-type-1-tab"
+                data-toggle="tab" href="#nav-order-info-type-1" role="tab" aria-controls="nav-order-info-type-1"
+                aria-selected="true">Chờ
+                xác nhận</h3>
+            <h3 class="nav-item nav-link ml-5 pb-3 text-success border-success" id="nav-order-info-type-2-tab"
+                data-toggle="tab" href="#nav-order-info-type-2" role="tab" aria-controls="nav-order-info-type-2"
+                aria-selected="false">
+                &nbsp Đang giao &nbsp</h3>
+            <h3 class="nav-item nav-link ml-5 pb-3 text-info border-info" id="nav-order-info-type-3-tab"
+                data-toggle="tab" href="#nav-order-info-type-3" role="tab" aria-controls="nav-order-info-type-3"
+                aria-selected="false"> &nbsp &nbsp &nbsp Đã
+                giao &nbsp &nbsp &nbsp</h3>
+            <h3 class="nav-item nav-link ml-5 pb-3 text-danger border-danger" id="nav-order-info-type-4-tab"
+                data-toggle="tab" href="#nav-order-info-type-4" role="tab" aria-controls="nav-order-info-type-4"
+                aria-selected="false">&nbsp &nbsp &nbsp Đã
+                hủy &nbsp &nbsp &nbsp</h3>
         </div>
     </nav>
     <!-- product-detail nav -->
 
     <!-- product-detail nav tab-content-->
     <div class="tab-content" id="nav-tabContent">
-        <!-- nav-product-detail-description-tab -->
-        <div class="tab-pane fade show active pt-4" id="nav-order-info-type-1" role="tabpanel"
+        <!-- info-type 1 -->
+        <div class="tab-pane fade show active pt-4 " id="nav-order-info-type-1" role="tabpanel"
             aria-labelledby="nav-order-info-type-1-tab">
 
-        </div>
-        <!-- nav-product-detail-description-tab -->
+            {{#if isHaveType1}}
+            <!--Table hiển thị sản phẩm-->
+            <table class="table table-responsive w-100">
+                <thead class="d-flex justify-content-center align-items-center">
+                    <tr>
+                        <th class="text-center">Mã ĐH</th>
+                        <th class="text-center">Thời gian đặt hàng</th>
+                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Tình trạng đơn hàng</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
 
-        <!-- nav-product-detail-comment-tab -->
+                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                    {{#each this.orderInfoType1}}
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>{{ID}}</td>
+                        <td>{{CREATED}}</td>
+                        <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
+                        <td><span class="badge badge-primary">{{STATUSNAME}}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
+                                type="button" data-toggle="modal" data-target="#customerDetailModal">
+                                <i class="fas fa-info pl-1 pr-1"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+                    {{/each}}
+                </tbody>
+            </table>
+            <!--End Table hiển thị sản phẩm-->
+
+            <hr />
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+            {{else}}
+            <div class="d-flex flex-column align-items-center mt-5 mb-5">
+                <h1 id="h1EmptyCartDetail" class="text-center text-primary w-50 p-2"><i
+                        class="fab fa-opencart fa-5x"></i></h1>
+                <a class="d-block btn btn-outline-primary btn-lg w-50 p-2 mt-4 mb-4"
+                    href="/customer/product/product-all-show">
+                    Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
+                </a>
+            </div>
+            {{/if}}
+        </div>
+        <!--info-type 1 -->
+
+        <!-- info-type 2 -->
         <div class="tab-pane fade pt-4" id="nav-order-info-type-2" role="tabpanel"
             aria-labelledby="nav-order-info-type-2-tab">
-        </div>
-        <!-- nav-product-detail-comment-tab -->
 
-          <!-- nav-product-detail-description-tab -->
-        <div class="tab-pane fade show active pt-4" id="nav-order-info-type-3" role="tabpanel"
+            {{#if isHaveType2}}
+            <!--Table hiển thị sản phẩm-->
+            <table class="table table-responsive w-100">
+                <thead class="d-flex justify-content-center align-items-center">
+                    <tr>
+                        <th class="text-center">Mã ĐH</th>
+                        <th class="text-center">Thời gian đặt hàng</th>
+                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Tình trạng đơn hàng</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
+
+                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                    {{#each this.orderInfoType2}}
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>{{ID}}</td>
+                        <td>{{CREATED}}</td>
+                        <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
+                        <td><span class="badge badge-success">{{STATUSNAME}}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-success mr-1" id={{ID}} type="button" data-toggle="modal"
+                                data-target="#customerDetailModal">
+                                <i class="fas fa-info pl-1 pr-1"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+                    {{/each}}
+                </tbody>
+            </table>
+            <!--End Table hiển thị sản phẩm-->
+
+            <hr />
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+            {{else}}
+            <div class="d-flex flex-column align-items-center mt-5 mb-5">
+                <h1 id="h1EmptyCartDetail" class="text-center text-success w-50 p-2"><i
+                        class="fab fa-opencart fa-5x"></i></h1>
+                <a class="d-block btn btn-outline-success btn-lg w-50 p-2 mt-4 mb-4"
+                    href="/customer/product/product-all-show">
+                    Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
+                </a>
+            </div>
+            {{/if}}
+        </div>
+        <!-- info-type 2 -->
+
+        <!-- info-type 3 -->
+        <div class="tab-pane fade pt-4" id="nav-order-info-type-3" role="tabpanel"
             aria-labelledby="nav-order-info-type-3-tab">
+            {{#if isHaveType3}}
+            <!--Table hiển thị sản phẩm-->
+            <table class="table table-responsive w-100">
+                <thead class="d-flex justify-content-center align-items-center">
+                    <tr>
+                        <th class="text-center">Mã ĐH</th>
+                        <th class="text-center">Thời gian đặt hàng</th>
+                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Tình trạng đơn hàng</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
 
+                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                    {{#each this.orderInfoType3}}
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>{{ID}}</td>
+                        <td>{{CREATED}}</td>
+                        <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
+                        <td><span class="badge badge-info">{{STATUSNAME}}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-info mr-1" id={{ID}} type="button" data-toggle="modal"
+                                data-target="#customerDetailModal">
+                                <i class="fas fa-info pl-1 pr-1"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+                    {{/each}}
+                </tbody>
+            </table>
+            <!--End Table hiển thị sản phẩm-->
+
+            <hr />
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+            {{else}}
+            <div class="d-flex flex-column align-items-center mt-5 mb-5">
+                <h1 id="h1EmptyCartDetail" class="text-center text-info w-50 p-2"><i class="fab fa-opencart fa-5x"></i>
+                </h1>
+                <a class="d-block btn btn-outline-info btn-lg w-50 p-2 mt-4 mb-4"
+                    href="/customer/product/product-all-show">
+                    Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
+                </a>
+            </div>
+            {{/if}}
         </div>
-        <!-- nav-product-detail-description-tab -->
+        <!-- info-type 3 -->
 
-        <!-- nav-product-detail-comment-tab -->
+        <!-- info-type 4 -->
         <div class="tab-pane fade pt-4" id="nav-order-info-type-4" role="tabpanel"
             aria-labelledby="nav-order-info-type-4-tab">
+
+            {{#if isHaveType4}}
+            <!--Table hiển thị sản phẩm-->
+            <table class="table table-responsive w-100">
+                <thead class="d-flex justify-content-center align-items-center">
+                    <tr>
+                        <th class="text-center">Mã ĐH</th>
+                        <th class="text-center">Thời gian đặt hàng</th>
+                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Tình trạng đơn hàng</th>
+                        <th class="text-center">Tác vụ</th>
+                    </tr>
+                </thead>
+
+                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                    {{#each this.orderInfoType4}}
+                    <!--Nội dung của một hàng-->
+                    <tr>
+                        <td>{{ID}}</td>
+                        <td>{{CREATED}}</td>
+                        <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
+                        <td><span class="badge badge-danger ">{{STATUSNAME}}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-danger mr-1" id={{ID}} type="button" data-toggle="modal"
+                                data-target="#customerDetailModal">
+                                <i class="fas fa-info pl-1 pr-1"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--End nội dung của một hàng-->
+                    {{/each}}
+                </tbody>
+            </table>
+            <!--End Table hiển thị sản phẩm-->
+
+            <hr />
+            <!--Thanh điều hướng trang-->
+            <div class="row justify-content-center">
+                <!-- <div class="col-md-12"> -->
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- </div> -->
+            </div>
+            <!--end Thanh điều hướng trang-->
+            {{else}}
+            <div class="d-flex flex-column align-items-center mt-5 mb-5">
+                <h1 id="h1EmptyCartDetail" class="text-center text-danger w-50 p-2"><i
+                        class="fab fa-opencart fa-5x"></i></h1>
+                <a class="d-block btn btn-outline-danger btn-lg w-50 p-2 mt-4 mb-4"
+                    href="/customer/product/product-all-show">
+                    Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
+                </a>
+            </div>
+            {{/if}}
         </div>
-        <!-- nav-product-detail-comment-tab -->
+        <!-- info-type 4 -->
 
     </div>
     <!-- product-detail nav tab-content-->
@@ -158,12 +487,192 @@
 </div>
 <!-- image -->
 
+<div class="container mt-5">
+    <!-- sale -->
+    <div class="row justify-content-center mt-5">
+        <h3 class="text-success text-center">KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <img src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466" width="80"
+            height="30" alt="" />
+    </div>
+
+    <div class="row mt-5" id="containProductSimple">
+        {{!-- load sản phẩm simple sale nhiều nhất --}}
+        {{#each this.products}}
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 d-flex justify-content-center">
+            <div class="component-product-simple card w-100">
+                <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip"
+                    id-product-to-cart="productSimple{{ID}}" title="{{NAME}}">
+                    {{!-- <a class="stretched-link" href="/customer/product/product-detail/product-simple/{{ID}}"></a> --}}
+
+                    {{!-- Nếu có giảm giá mới hiện ra --}}
+                    {{#if SALE}}
+                    <div id="sale-image" class="position-absolute d-flex justify-content-center ml-2">
+                        -{{SALE}}%
+                    </div>
+                    {{/if}}
+                    {{!-- Nếu có giảm giá mới hiện ra --}}
+
+                    <img src="{{IMAGE}}" class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}"
+                        alt="">
+                    <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
+                        <a id-product-to-cart="productSimple{{ID}}" id="aAddProductSimple" id-product-simple={{ID}}
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Mua ngay">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Xem chi tiết">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
+                    <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                        class="title card-title m-0">{{formatTitleProductSimple NAME}}</a>
+                    <div class="mt-1 d-flex justify-content-center">
+                        <div class="price-sale">
+                            <span id-product-to-cart="productSimple{{ID}}">{{formatPrice SALEPRICE}}</span>
+                            <span><u>đ</u></span>
+                        </div>
+
+                        {{!-- Nếu có giảm giá mới hiện ra --}}
+                        {{#if SALE}}
+                        <div class="price-old">
+                            <del class="ml-3">
+                                {{formatPrice PRICE}}
+                                <span><u>đ</u></span>
+                            </del>
+                        </div>
+                        {{/if}}
+                        {{!-- Nếu có giảm giá mới hiện ra --}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{!-- load sản phẩm simple sale nhiều nhất --}}
+    </div>
+
+    <!-- sale -->
+
+    <!-- combo -->
+    <div class="row justify-content-center mt-3">
+        <h3 class="text-success text-center">KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
+    </div>
+
+    <div class="row justify-content-center">
+        <img src="https://bizweb.dktcdn.net/100/350/980/themes/714097/assets/logo.png?1553920233466" width="80"
+            height="30" alt="" />
+    </div>
+
+    <div class="row mt-5" id="containProductCombo">
+        {{!-- Load sản phẩm combo sale nhiều nhất --}}
+        {{#each this.productsCombo}}
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 d-flex justify-content-center">
+            <div class="component-product-combo card font-weight-bold w-100">
+                <div class="position-relative w-100 h-75 card-img-top" data-toggle="tooltip"
+                    id-product-to-cart="productCombo{{ID}}" title="{{NAME}}">
+                    <div class="position-relative d-flex h-100">
+                        {{!-- <a href="/customer/product/product-detail/product-combo/{{ID}}" class="stretched-link"></a> --}}
+
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+                        {{#if SALE}}
+                        <div id="sale-image" class="position-absolute d-flex justify-content-center ml-2">
+                            -{{SALE}}%
+                        </div>
+                        {{/if}}
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+
+                        <img id-product-to-cart-src-1="productCombo{{ID}}" class="image-product-1" src="{{IMAGE1}}"
+                            alt="" />
+                        <img id-product-to-cart-src-2="productCombo{{ID}}" class="image-product-2" src="{{IMAGE2}}"
+                            alt="" />
+                        <img id-product-to-cart-src-3="productCombo{{ID}}" class="image-product-3" src="{{IMAGE3}}"
+                            alt="" />
+                    </div>
+                    <div class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
+                        <a id-product-to-cart="productCombo{{ID}}" id="aAddProductCombo" id-product-combo={{ID}}
+                            class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Mua ngay">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                        <a href="/customer/product/product-detail/product-combo/{{ID}}"
+                            class="mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                            data-toggle="tooltip" title="Xem chi tiết">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
+                    <a href="/customer/product/product-detail/product-combo/{{ID}}" class="title card-title m-0"
+                        data-toggle="tooltip"
+                        title="Baby combo - combo rau hữu cơ Nhật cho bé">{{formatTitleProductCombo NAME}}</a>
+                    <div class="m-0 d-flex justify-content-center">
+                        <div class="price-sale">
+                            <span id-product-to-cart="productCombo{{ID}}">{{formatPrice SALEPRICE}}</span>
+                            <span><u>đ</u></span>
+                        </div>
+
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+                        {{#if SALE}}
+                        <div class="price-old">
+                            <del class="ml-2">
+                                {{formatPrice PRICE}}
+                                <span><u>đ</u></span>
+                            </del>
+                        </div>
+                        {{/if}}
+                        {{!-- Nếu đang giảm giá mới hiện ra --}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{!-- load sản phẩm combo sale nhiều nhất --}}
+    </div>
+</div>
+
+<!--Modal hiển thị thông tin chi tiết của đơn hàng-->
+<div class="modal fade bd-example-modal-lg" id="orderDetailModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Thông tin chi tiết đơn hàng
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body component-scrollbar">
+                <div class="style-scrollbar">
+                    <div id="containProductSimpleInOrderDetailShow" class="mt-2">
+                    </div>
+
+                    <div id="containProductComboInOrderDetailShow">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success pl-2 pr-2" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End modal hiển thị thông tin chi tiết của đơn hàng-->
+
 {{#section 'js'}}
-<script src="/customer/js/image-product-detail.js"></script>
 <script src="/customer/js/breadcrumb-margin.js"></script>
-{{!-- <script src="/all/js/compress-image.js"></script> --}}
 <script src="/customer/js/add-in-cart-product-detail.js"></script>
-<script src="/customer/js/handle-in-comment-product-detail.js"></script>
-<script src="/customer/js/product-detail.js"></script>
-{{!-- <script src="/customer/js/handle-heading-in-comment-product-detail.js"></script> --}}
+<script src="/customer/js/show-order-detail.js"></script>
 {{/section}}

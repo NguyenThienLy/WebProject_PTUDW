@@ -168,3 +168,39 @@ function getDateTimeNow() {
   return today;
 }
 
+
+// Hàm lấy ra danh sách các order info theo id customer và order status id
+module.exports.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset = (cusId, statusId, N, offset) => {
+
+  return db.load(`
+  SELECT ORDER_INFO.ID AS ID, DATE_FORMAT(ORDER_INFO.CREATED , '%m/%d/%Y %H:%i') AS CREATED, ORDER_INFO.TOTALMONEY AS TOTALMONEY,
+  ORDER_STATUS.NAME AS STATUSNAME
+  FROM order_info ORDER_INFO JOIN order_status ORDER_STATUS ON ORDER_INFO.ORDERSTATUSID = ORDER_STATUS.ID
+  WHERE ORDER_INFO.CUSTOMERID = ${cusId} AND ORDER_STATUS.ID = ${statusId}
+  ORDER BY DATE(ORDER_INFO.CREATED) DESC
+  LIMIT ${N} 
+  OFFSET ${N * offset}
+  `);
+}
+
+// Hàm lấy ra tất cả các row bảng product simple theo id của info detail table
+module.exports.allRowProductSimpleFollowID = orderInfoId => {
+  return db.load(`SELECT pro.ID AS ID, pro.NAME AS NAME,
+  pro.IMAGE AS IMAGE, detail.QUANTITY AS QUANTITY, detail.TOTALMONEY AS TOTALMONEY
+  FROM product pro JOIN order_detail detail ON
+  pro.ID = detail.PRODUCTID 
+  WHERE detail.ORDERINFOID = ${orderInfoId} AND 
+  detail.ISSIMPLE = 1`);
+};
+
+// Hàm lấy ra tất cả các row bảng product simple theo id của info detail table
+module.exports.allRowProductComboFollowID = orderInfoId => {
+  return db.load(`SELECT procombo.ID AS ID, procombo.NAME AS NAME,
+  pro1.IMAGE AS IMAGE1, pro2.IMAGE AS IMAGE2,
+  pro3.IMAGE AS IMAGE3, detail.QUANTITY AS QUANTITY, detail.TOTALMONEY AS TOTALMONEY
+  FROM (product_combo procombo JOIN product pro1 JOIN product pro2 JOIN product pro3 ON procombo.PRODUCTID1 = pro1.ID 
+  AND procombo.PRODUCTID2 = pro2.ID AND procombo.PRODUCTID3 = pro3.ID) JOIN order_detail detail  
+  ON procombo.ID = detail.PRODUCTID
+  WHERE detail.ORDERINFOID = ${orderInfoId} AND
+  detail.ISSIMPLE = 0`);
+};
