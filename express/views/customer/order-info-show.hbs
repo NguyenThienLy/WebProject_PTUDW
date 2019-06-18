@@ -1,0 +1,150 @@
+{{#section 'css'}}
+<title>Chi tiết sản phẩm</title>
+
+{{!-- product detail page --}}
+<link href="/customer/css/component-show-rate.css" rel="stylesheet" />
+<link href="/customer/css/component-comment.css" rel="stylesheet" />
+<link href="/customer/css/component-product-simple.css" rel="stylesheet" />
+<link href="/customer/css/component-image-show.css" rel="stylesheet" />
+<link href="/customer/css/component-show-rate.css" rel="stylesheet" />
+<link href="/customer/css/component-product-detail.css" rel="stylesheet" />
+{{!-- product detail page --}}
+
+{{!-- responsive --}}
+<link href="/customer/css/responsive-product-detail.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
+<!-- Breadcrumb header -->
+<div class="breadcrumb-header container-fluid p-0">
+    <div
+        class="breadcrumb-div text-dark w-100 h-100 d-flex flex-column justify-content-center align-items-center pt-4 pb-4">
+        <p>Đơn hàng của tôi</p>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="/customer/index/">Trang chủ</a>
+                </li>
+                 
+                <li class="breadcrumb-item active" aria-current="page">
+                    Đơn hàng của tôi
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Breadcrumb header -->
+
+<!-- Product detail -->
+<div class="container component-product-detail mt-5">
+    <!-- product-detail accordion -->
+    <div class="accordion" id="product-detail-accordion">
+        <!-- product-detail-heading1 -->
+        <div class="card mb-3 border-0">
+            <div id="product-detail-heading1">
+                <div class="product-detail-accordion-header-1 p-2">
+                    <button class="btn btn-link text-decoration-none p-0 text-success w-100" type="button"
+                        data-toggle="collapse" data-target="#product-detail-collapse1" aria-expanded="true"
+                        aria-controls="product-detail-collapse1">
+                        <h3 class="mb-0">Mô tả sản phẩm</h3>
+                    </button>
+                </div>
+            </div>
+
+            <div id="product-detail-collapse1" class="collapse show pt-3" aria-labelledby="product-detail-heading1"
+                data-parent="#product-detail-accordion">
+                <div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- product-detail-heading1 -->
+
+        <!-- product-detail-heading2 -->
+        <div class="card mb-3 border-0">
+            <div id="product-detail-heading2">
+                <div class="product-detail-accordion-header-2 p-2">
+                    <button class="btn btn-link text-decoration-none p-0 text-success w-100" type="button"
+                        data-toggle="collapse" data-target="#product-detail-collapse2" aria-expanded="true"
+                        aria-controls="product-detail-collapse2">
+                        <h3 class="mb-0">Khách hàng nhận xét</h3>
+                    </button>
+                </div>
+            </div>
+
+            <div id="product-detail-collapse2" class="collapse show pt-3" aria-labelledby="product-detail-heading2"
+                data-parent="#product-detail-accordion">
+                <div id="divContainAllAboutComment">
+                
+                </div>
+            </div>
+        </div>
+        <!-- product-detail-heading2 -->
+
+    </div>
+    <!-- product-detail accordion -->
+
+    <!-- product-detail nav -->
+    <nav>
+        <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+            <h3 class="nav-item nav-link pb-3 active" id="nav-product-detail-description-tab" data-toggle="tab"
+                href="#nav-product-detail-description" role="tab" aria-controls="nav-product-detail-description"
+                aria-selected="true">Mô tả sản phẩm</h3>
+            <h3 class="nav-item nav-link ml-5 pb-3" id="nav-product-detail-comment-tab" data-toggle="tab"
+                href="#nav-product-detail-comment" role="tab" aria-controls="nav-product-detail-comment"
+                aria-selected="false">Khách hàng nhận xét</h3>
+        </div>
+    </nav>
+    <!-- product-detail nav -->
+
+    <!-- product-detail nav tab-content-->
+    <div class="tab-content" id="nav-tabContent">
+        <!-- nav-product-detail-description-tab -->
+        <div class="tab-pane fade show active pt-4" id="nav-product-detail-description" role="tabpanel"
+            aria-labelledby="nav-product-detail-description-tab">
+           
+        </div>
+        <!-- nav-product-detail-description-tab -->
+
+        <!-- nav-product-detail-comment-tab -->
+        <div class="tab-pane fade pt-4" id="nav-product-detail-comment" role="tabpanel"
+            aria-labelledby="nav-product-detail-comment-tab">
+        </div>
+        <!-- nav-product-detail-comment-tab -->
+
+    </div>
+    <!-- product-detail nav tab-content-->
+
+</div>
+<!-- Product detail -->
+
+<!-- image -->
+<div class="container-fluid mt-5 p-0">
+    <div class="component-image-divider">
+        <div class="overlay h-100 w-100">
+            <div class="text-light w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <h3>Hotline</h3>
+                <h1>
+                    <a href="#">0973-446-184</a>
+                </h1>
+                <p class="text-center">
+                    Chúng tôi cam kết 100% các sản phẩm có nguồn gốc xuất xứ rõ ràng,
+                    <br />
+                    sạch, an toàn và đảm bảo chất lượng ngon nhất.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- image -->
+
+{{#section 'js'}}
+<script src="/customer/js/image-product-detail.js"></script>
+<script src="/customer/js/breadcrumb-margin.js"></script>
+{{!-- <script src="/all/js/compress-image.js"></script> --}}
+<script src="/customer/js/add-in-cart-product-detail.js"></script>
+<script src="/customer/js/handle-in-comment-product-detail.js"></script>
+<script src="/customer/js/product-detail.js"></script>
+{{!-- <script src="/customer/js/handle-heading-in-comment-product-detail.js"></script> --}}
+{{/section}}

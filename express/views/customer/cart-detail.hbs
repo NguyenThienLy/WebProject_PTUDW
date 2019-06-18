@@ -40,10 +40,8 @@
 
     <div id="containProductSimpleInCartDetail" class="mt-5">
         {{#each cartProducts}}
-        <div class="row mt-2">
-            <div
-                class="position-relative component-cart-quantity card d-flex flex-row align-items-center p-4 w-100 h-100"
-                id-product-cart-detail="productSimple{{ID}}">
+        <div class="row mt-2" id-product-cart-detail="productSimple{{ID}}">
+            <div class="component-cart-quantity card d-flex flex-row align-items-center p-4 w-100 h-100">
 
                 {{!-- Nếu có giảm giá mới hiện ra --}}
                 {{#if SALE}}
@@ -60,7 +58,8 @@
 
                 <div class="d-flex content-right">
                     <div class="product-info">
-                        <a href="/customer/product/product-detail/product-simple/{{ID}}" class="title product-name">{{formatShortTitleCartDetail NAME}}</a>
+                        <a href="/customer/product/product-detail/product-simple/{{ID}}"
+                            class="title product-name">{{formatShortTitleCartDetail NAME}}</a>
 
                         <div class="mt-2 font-weight-bold product-price-sale">
                             <span>{{formatPrice SALEPRICE}}</span>
@@ -80,16 +79,16 @@
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center product-quantity">
-                        <button id="btnDecreaseQuantity" id-product-cart-detail="productSimple{{ID}}" id-product-simple={{ID}}
-                            class="d-flex justify-content-center align-items-center mr-1">
+                        <button id="btnDecreaseQuantity" id-product-cart-detail="productSimple{{ID}}"
+                            id-product-simple={{ID}} class="d-flex justify-content-center align-items-center mr-1">
                             -
                         </button>
 
-                        <input type="number" id="inputQuantityProduct"
-                            class="mr-1 text-center p-1" id-product-cart-detail="productSimple{{ID}}" value="{{QUANTITY_PRO}}" />
+                        <input type="number" id="inputQuantityProduct" class="mr-1 text-center p-1"
+                            id-product-cart-detail="productSimple{{ID}}" value="{{QUANTITY_PRO}}" />
 
-                        <button id="btnIncreaseQuantity" id-product-cart-detail="productSimple{{ID}}" id-product-simple={{ID}}
-                            class="d-flex justify-content-center align-items-center mr-1">
+                        <button id="btnIncreaseQuantity" id-product-cart-detail="productSimple{{ID}}"
+                            id-product-simple={{ID}} class="d-flex justify-content-center align-items-center mr-1">
                             +
                         </button>
                     </div>
@@ -100,13 +99,14 @@
                         </div>
 
                         <div class="mt-2 font-weight-bold total-price">
-                            <span id="spanSumPriceInRow" id-product-cart-detail="productSimple{{ID}}">{{formatPrice SUMPRICE}}</span>
+                            <span id="spanSumPriceInRow"
+                                id-product-cart-detail="productSimple{{ID}}">{{formatPrice SUMPRICE}}</span>
                             <span><u>đ</u></span>
                         </div>
 
                         <div class="mt-2 delete" data-toggle="tooltip" title="Xóa">
                             <button id="btnRemoveProduct" id-product-cart-detail="productSimple{{ID}}"
-                            id-product-simple={{ID}} class="btn btn-sm btn-danger" type="button">
+                                id-product-simple={{ID}} class="btn btn-sm btn-danger" type="button">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -119,9 +119,8 @@
 
     <div id="containProductComboInCartDetail">
         {{#each cartProductsCombo}}
-        <div class="row mt-2">
-            <div class="component-cart-quantity card d-flex flex-row align-items-center p-4 w-100" 
-            id-product-cart-detail="productCombo{{ID}}">
+        <div class="row mt-2" id-product-cart-detail="productCombo{{ID}}">
+            <div class="component-cart-quantity card d-flex flex-row align-items-center p-4 w-100 h-100">
 
                 {{!-- Nếu có giảm giá mới hiện ra --}}
                 {{#if SALE}}
@@ -159,16 +158,16 @@
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center product-quantity">
-                        <button id="btnDecreaseQuantity" id-product-cart-detail="productCombo{{ID}}" id-product-combo={{ID}}
-                         class="d-flex justify-content-center align-items-center mr-1">
+                        <button id="btnDecreaseQuantity" id-product-cart-detail="productCombo{{ID}}"
+                            id-product-combo={{ID}} class="d-flex justify-content-center align-items-center mr-1">
                             -
                         </button>
 
                         <input type="number" id="inputQuantityProduct" class="mr-1 text-center p-1"
-                        id-product-cart-detail="productCombo{{ID}}" value="{{QUANTITY_PRO}}" disabled="false"/>
+                            id-product-cart-detail="productCombo{{ID}}" value="{{QUANTITY_PRO}}" disabled="false" />
 
-                        <button id="btnIncreaseQuantity" id-product-cart-detail="productCombo{{ID}}" id-product-combo={{ID}}
-                        class="d-flex justify-content-center align-items-center mr-1">
+                        <button id="btnIncreaseQuantity" id-product-cart-detail="productCombo{{ID}}"
+                            id-product-combo={{ID}} class="d-flex justify-content-center align-items-center mr-1">
                             +
                         </button>
                     </div>
@@ -179,13 +178,14 @@
                         </div>
 
                         <div class="mt-2 font-weight-bold total-price">
-                            <span id="spanSumPriceInRow" id-product-cart-detail="productCombo{{ID}}">{{formatPrice SUMPRICE}}</span>
+                            <span id="spanSumPriceInRow"
+                                id-product-cart-detail="productCombo{{ID}}">{{formatPrice SUMPRICE}}</span>
                             <span><u>đ</u></span>
                         </div>
 
                         <div class="mt-2 delete" data-toggle="tooltip" title="Xóa">
-                            <button class="btn btn-sm btn-danger" type="button"  id="btnRemoveProduct"
-                            id-product-cart-detail="productCombo{{ID}}" id-product-combo={{ID}}>
+                            <button class="btn btn-sm btn-danger" type="button" id="btnRemoveProduct"
+                                id-product-cart-detail="productCombo{{ID}}" id-product-combo={{ID}}>
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -198,7 +198,7 @@
 
     <div class="row mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center w-100">
-            <div class="d-flex align-items-center justify-content-center">
+            <div id="divTotalMoney" class="d-flex align-items-center justify-content-center">
                 <h3 class="mb-0">Thành tiền:</h3>
 
                 <div class="font-weight-bold ml-3 text-success">
@@ -206,6 +206,9 @@
                     <h1 class="d-inline"><u>đ</u></h1>
                 </div>
             </div>
+
+            <h1 id="h1EmptyCartDetail" class="text-info"><i class="fab fa-opencart fa-5x"></i></h1>
+
             <div class="d-flex align-items-center justify-content-center mt-3">
                 <a class="d-block btn btn-outline-info btn-lg" href="/customer/product/product-all-show">
                     Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
@@ -239,6 +242,29 @@
     </div>
 </div>
 <!-- image -->
+
+<!-- component not enough product modal -->
+<div class="modal fade" id="notifycation-cart-detail-modal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="divContainContent">
+                <p>Giỏ hàng đã được <strong>cập nhật</strong> theo số lượng còn, xin lỗi quí khách!!!</p>
+                <small class="text-center">Đang chuyển hướng <strong id="strongRediectPage"></strong></small>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- component not enough product modal -->
 
 {{#section 'js'}}
 <script src="/customer/js/cart-detail.js"></script>

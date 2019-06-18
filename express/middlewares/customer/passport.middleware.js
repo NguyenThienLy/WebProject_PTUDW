@@ -99,7 +99,7 @@ module.exports = function(app) {
       profileFields: ['id', 'displayName', 'emails', 'photos']
     },
     function(accessToken, refreshToken, profile, cb) {
-      console.log(profile);
+
       customerModel
         .singleByUserName(profile.id)
         .then(customers => {

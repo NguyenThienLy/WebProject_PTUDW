@@ -188,6 +188,9 @@ module.exports.productSimpleDetail = function(req, res, next) {
     // Lấy id của product simple hiện tại
     var idProduct = req.params.idProduct;
 
+    var isHaveTheSameProduct = true;
+    var isHaveBestSalerProduct = true;
+
     Promise.all([
       productModel.top1ProductFollowId(idProduct),
       productModel.topNProductTheSameFollowOffsetFollowIdPro(idProduct, 4, 0),
@@ -202,6 +205,9 @@ module.exports.productSimpleDetail = function(req, res, next) {
       commentModel.commentsQuantityFollowIdProductAndTypeProduct(idProduct, 1),
       commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 1)
     ]).then(values => {
+      if (values[1].length === 0) isHaveTheSameProduct = false;
+      if (values[2].length === 0) isHaveBestSalerProduct = false;
+
       var arrStarProduct = [];
       var arrStarUnCheckProduct = [];
       var arrShortDescription = [];
@@ -256,15 +262,15 @@ module.exports.productSimpleDetail = function(req, res, next) {
         }
       } else {
         var arrStarRateTemp = [
-          {STARS: 1, QUANTITY: 0},
-          {STARS: 2, QUANTITY: 0},
-          {STARS: 3, QUANTITY: 0},
-          {STARS: 4, QUANTITY: 0},
-          {STARS: 5, QUANTITY: 0}
-        ]
+          { STARS: 1, QUANTITY: 0 },
+          { STARS: 2, QUANTITY: 0 },
+          { STARS: 3, QUANTITY: 0 },
+          { STARS: 4, QUANTITY: 0 },
+          { STARS: 5, QUANTITY: 0 }
+        ];
 
         for (var rateStar of values[6]) {
-          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
+          arrStarRateTemp[rateStar.STARS - 1].QUANTITY = rateStar.QUANTITY;
         }
 
         values[6] = arrStarRateTemp;
@@ -298,6 +304,8 @@ module.exports.productSimpleDetail = function(req, res, next) {
         productStarPercentInRate: values[6],
         productId: idProduct,
         isSimple: true,
+        isHaveTheSameProduct: isHaveTheSameProduct,
+        isHaveBestSalerProduct: isHaveBestSalerProduct,
         productRateStar: values[0][0].RATE,
         productName: values[0][0].NAME,
         productPrice: values[0][0].PRICE,
@@ -337,6 +345,9 @@ module.exports.productComboDetail = function(req, res, next) {
     // Lấy id của product simple hiện tại
     var idProduct = req.params.idProduct;
 
+    var isHaveTheSameProduct = true;
+    var isHaveBestSalerProduct = true;
+
     Promise.all([
       productComboModel.top1ProductComboFollowId(idProduct),
       productComboModel.topNProductComboNewestFollowOffsetFollowIdPro(
@@ -354,6 +365,9 @@ module.exports.productComboDetail = function(req, res, next) {
       commentModel.commentsQuantityFollowIdProductAndTypeProduct(idProduct, 0),
       commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 0)
     ]).then(values => {
+      if (values[1].length === 0) isHaveTheSameProduct = false;
+      if (values[2].length === 0) isHaveBestSalerProduct = false;
+
       var arrStarProduct = [];
       var arrStarUnCheckProduct = [];
       var arrShortDescription = [];
@@ -413,20 +427,20 @@ module.exports.productComboDetail = function(req, res, next) {
         }
       } else {
         var arrStarRateTemp = [
-          {STARS: 1, QUANTITY: 0},
-          {STARS: 2, QUANTITY: 0},
-          {STARS: 3, QUANTITY: 0},
-          {STARS: 4, QUANTITY: 0},
-          {STARS: 5, QUANTITY: 0}
-        ]
+          { STARS: 1, QUANTITY: 0 },
+          { STARS: 2, QUANTITY: 0 },
+          { STARS: 3, QUANTITY: 0 },
+          { STARS: 4, QUANTITY: 0 },
+          { STARS: 5, QUANTITY: 0 }
+        ];
 
         for (var rateStar of values[5]) {
-          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
+          arrStarRateTemp[rateStar.STARS - 1].QUANTITY = rateStar.QUANTITY;
         }
 
         values[5] = arrStarRateTemp;
 
-         // Sắp xếp lại
+        // Sắp xếp lại
         values[5].sort(function(star1, star2) {
           return star1.STARS < star2.STARS;
         });
@@ -452,6 +466,8 @@ module.exports.productComboDetail = function(req, res, next) {
         productComments: values[3],
         productCommentsQuantity: values[4][0].COMMENT_QUANTITY,
         productStarPercentInRate: values[5],
+        isHaveTheSameProduct: isHaveTheSameProduct,
+        isHaveBestSalerProduct: isHaveBestSalerProduct,
         productRateStar: values[0][0].RATE,
         productImage1: values[0][0].IMAGE1,
         productImage2: values[0][0].IMAGE2,
@@ -584,17 +600,18 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                         }
                       } else {
                         var arrStarRateTemp = [
-                          {STARS: 1, QUANTITY: 0},
-                          {STARS: 2, QUANTITY: 0},
-                          {STARS: 3, QUANTITY: 0},
-                          {STARS: 4, QUANTITY: 0},
-                          {STARS: 5, QUANTITY: 0}
-                        ]
-                
+                          { STARS: 1, QUANTITY: 0 },
+                          { STARS: 2, QUANTITY: 0 },
+                          { STARS: 3, QUANTITY: 0 },
+                          { STARS: 4, QUANTITY: 0 },
+                          { STARS: 5, QUANTITY: 0 }
+                        ];
+
                         for (var rateStar of values[1]) {
-                          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
+                          arrStarRateTemp[rateStar.STARS - 1].QUANTITY =
+                            rateStar.QUANTITY;
                         }
-                
+
                         values[1] = arrStarRateTemp;
 
                         // Sắp xếp lại
@@ -726,17 +743,18 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                         }
                       } else {
                         var arrStarRateTemp = [
-                          {STARS: 1, QUANTITY: 0},
-                          {STARS: 2, QUANTITY: 0},
-                          {STARS: 3, QUANTITY: 0},
-                          {STARS: 4, QUANTITY: 0},
-                          {STARS: 5, QUANTITY: 0}
-                        ]
-                
+                          { STARS: 1, QUANTITY: 0 },
+                          { STARS: 2, QUANTITY: 0 },
+                          { STARS: 3, QUANTITY: 0 },
+                          { STARS: 4, QUANTITY: 0 },
+                          { STARS: 5, QUANTITY: 0 }
+                        ];
+
                         for (var rateStar of values[1]) {
-                          arrStarRateTemp[rateStar.STARS-1].QUANTITY = rateStar.QUANTITY;
+                          arrStarRateTemp[rateStar.STARS - 1].QUANTITY =
+                            rateStar.QUANTITY;
                         }
-                
+
                         values[1] = arrStarRateTemp;
 
                         // Sắp xếp lại

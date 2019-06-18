@@ -47,34 +47,47 @@
     <div class="bg-over-lay"></div>
 
     <div class="component-sidebar-menu">
-        <div id="mySidenav" class="side-bar">
+        <div id="mySidenav" class="side-bar style-scrollbar">
             <div class="top-menu"><span class="logo"></span></div>
             <ul class="main-menu">
                 <li><a href="#">Giới thiệu</a></li>
                 <li><a href="" id="side-bar-open-header-user-modal" data-toggle="modal"
                         data-target="#header-user-modal">Đăng nhập</a></li>
                 <li class="position-relative">
-                    <a href="product-show.html">Sản phẩm</a>
+                    <a>Sản phẩm</a>
                     <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
-
                     <ul class="dropdown-container transform">
-                        <li class="position-relative">
-                            <a href="product-show.html">Rau củ</a>
-                            <i id="sub-dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
-                            <ul class="dropdown-container list-unstyled sub-transform">
-                                <li><a href="product-show.html">Rau củ 1</a> </li>
-                                <li><a href="product-show.html">Rau củ 2</a></li>
-                                <li><a href="product-show.html">Rau củ 3</a></li>
-                            </ul>
+                        {{#each lcCategories}}
+                        {{!-- Nếu category ko có sản phẩm nào --}}
+                        {{#if QUANTITYCAT}}
+                        <li><a href="/customer/product/product-show/{{IDCAT}}/0">
+                                {{NAMECAT}}
+                                <span class="badge ml-1 badge-success badge-pill">{{QUANTITYCAT}}</span>
+                            </a>
                         </li>
-                        <li><a href="product-show.html">Hoa quả</a></li>
-                        <li><a href="product-show.html">Các loại hạt</a></li>
+                        {{!-- Nếu category ko có sản phẩm nào --}}
+                        {{else}}
+                        <li>
+                            <a class="disabled">
+                                {{NAMECAT}}
+                            </a>
+                        </li>
+                        {{/if}}
+                        {{!-- Nếu category ko có sản phẩm nào --}}
+                        {{/each}}
+
+                        <li> <a href="/customer/product/product-combo-show">Combo
+                                <span class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductCombo}}</span>
+                            </a>
+                        </li>
+                        <li> <a href="/customer/product/product-all-show">Tất cả
+                                <span class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductAll}}</span>
+                            </a>
+                        </li>
                     </ul>
-
                 </li>
-
-                <li><a href="info-show.html">Tin tức</a></li>
-                <li><a href="404-not-found.html">Tags</a></li>
+                <li><a href="/customer/info/show-info">Tin tức</a></li>
+                <li><a href="/customer/info/tag/0">Tags</a></li>
             </ul>
         </div>
     </div>
@@ -902,7 +915,7 @@
                                 </p>
                                 {{#is3ThLogin this.typeLogin}}
 
-                                    {{else}}
+                                {{else}}
                                 <p class="nav-item nav-link ml-3" id="header-edit-info-modal-nav-tab" data-toggle="tab"
                                     href="#header-edit-passwork-modal-nav" role="tab"
                                     aria-controls="header-edit-passwork-modal-nav" aria-selected="false">
@@ -917,11 +930,11 @@
                                 aria-labelledby="header-info-modal-nav-tab">
                                 <form class="p-4">
                                     {{#isEqual this.authUser.CUSTOMERTYPEID 2}}
-                                        <div class="form-group row align-items-center ml-0 mr-0">
-                                            <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng
-                                                vip</label>
-                                        </div>
-                                        {{else}}
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng
+                                            vip</label>
+                                    </div>
+                                    {{else}}
                                     {{/isEqual}}
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Họ tên:</label>
@@ -981,13 +994,8 @@
                                         <label for="header-edit-info-modal-email"
                                             class="col-4 col-form-label">Email</label>
                                         <div class="col-8 p-0">
-                                            <input 
-                                            {{#isEqual 'google' this.typeLogin}}
-                                                readonly
-                                            {{else}}
-
-                                            {{/isEqual}}
-                                             value="{{this.authUser.EMAIL}}" type="text" name="EMAIL"
+                                            <input {{#isEqual 'google' this.typeLogin}} readonly {{else}} {{/isEqual}}
+                                                value="{{this.authUser.EMAIL}}" type="text" name="EMAIL"
                                                 class="form-control form-control-sm" placeholder="Nhập email"
                                                 id="header-edit-info-modal-email" />
                                         </div>
@@ -1019,7 +1027,7 @@
                             </div>
 
                             {{#is3ThLogin this.typeLogin}}
-                                {{else}}
+                            {{else}}
                             <div class="tab-pane fade" id="header-edit-passwork-modal-nav" role="tabpanel"
                                 aria-labelledby="header-edit-info-modal-nav-tab">
                                 <form id="frmUpdatePass" class="p-4">
@@ -1067,7 +1075,7 @@
                                 </form>
                             </div>
                             {{/is3ThLogin}}
-                            
+
                         </div>
                     </div>
 
@@ -1115,10 +1123,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                   Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!!!
+                    Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!!!
                 </div>
                 <div class="modal-footer">
-                     <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng ý</button>
+                    <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng
+                        ý</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>

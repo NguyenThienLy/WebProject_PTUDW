@@ -606,6 +606,8 @@
 
 <!-- the same, sale product -->
 <div class="container mt-5">
+
+    {{#if isHaveTheSameProduct}}
     <!-- the same product -->
     <div class="row justify-content-center">
         <h3 class="text-success text-center">SẢN PHẨM COMBO MỚI NHẤT TỪ ORGANIC.VN</h3>
@@ -683,11 +685,11 @@
         {{/each}}
         {{!-- load sản phẩm simple sale nhiều nhất --}}
     </div>
-
     <!-- the same product -->
+    {{/if}}
 
+    {{#if isHaveBestSalerProduct}}
     <!-- sale product -->
-
     <div class="row justify-content-center mt-5">
         <h3 class="text-success text-center">KHUYẾN MÃI HOT TỪ ORGANIC.VN</h3>
     </div>
@@ -765,6 +767,7 @@
         {{!-- load sản phẩm simple sale nhiều nhất --}}
     </div>
     <!-- sale product -->
+    {{/if}}
 </div>
 <!-- the same, sale product -->
 
