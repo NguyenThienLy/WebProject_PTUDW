@@ -5,6 +5,8 @@ var newsInfoHistoryModel = require("../../models/news_info_history.model");
 
 // Gọi selected helper
 var selectedHelper = require("../../helpers/selected_selector.helper");
+// Gọi createquery helper
+var createQuery = require("../../helpers/create_query.helper");
 
 var sharp = require("sharp");
 var UUID = require("uuid-v4");
@@ -26,9 +28,61 @@ const gcs = new Storage({
 const bucket = gcs.bucket(bucketName);
 
 module.exports.infoShow = async function(req, res, next) {
+  var page = req.query.page || 1;
+  var limit = req.query.limit || 3;
+
+  var name = req.query.name || "";
+
+  var objQuery = {
+    Name: name
+  };
+
+  if (page < 1) {
+    page = 1;
+  }
+
+  if (page < 1) {
+    limit = 3;
+  }
+
+  var offset = (page - 1) * limit;
+
+  var dataNews = await newsModel.pageAllNewsFilter(limit, offset, objQuery);
+
+  var numberPage = await newsModel.quantityNewsActive(objQuery);
+
   res.locals.sidebar[6].active = true;
 
-  var dataNews = await newsModel.allNews();
+  var total = numberPage[0].QUANTITY;
+  var nPages = Math.floor(total / limit);
+  if (total % limit > 0) nPages++;
+
+  var pages = createArrPage(nPages, page);
+
+  var prePage = {
+    value: 0,
+    active: false
+  };
+  if (page > 1) {
+    prePage.value = page - 1;
+    prePage.active = true;
+  } else {
+    prePage.value = 0;
+    prePage.active = false;
+  }
+
+  var nextPage = {
+    value: 0,
+    active: false
+  };
+
+  if (page < nPages) {
+    nextPage.value = parseInt(page) + 1;
+    nextPage.active = true;
+  } else {
+    nextPage.value = 0;
+    nextPage.active = false;
+  }
 
   for (news of dataNews) {
     var allNewsTag = await newsTagModel.allTagOfNews(news.ID);
@@ -37,9 +91,57 @@ module.exports.infoShow = async function(req, res, next) {
 
   res.render("admin/info-show", {
     layout: "main-admin.hbs",
-    allNews: dataNews
+    allNews: dataNews,
+    pages: pages,
+    prePage: prePage,
+    nextPage: nextPage,
+    name: name,
+    helpers: {
+      createQueryCustomer: createQuery.createQueryCustomer
+    }
   });
 };
+
+//Hàm tạo mảng trang
+function createArrPage(nPages, page) {
+  var pages = [];
+  //Chỉ hiện tối đa 5 trang
+  var start = (end = 0);
+  if (nPages <= 5) {
+    start = 1;
+    end = nPages;
+  } else {
+    if (page == 1) {
+      start = 1;
+      end = 5;
+    } else if (page == nPages) {
+      start = nPages - 5;
+      end = nPages;
+    } else {
+      if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
+        start = page - 2;
+        end = parseInt(page) + 2;
+      } else {
+        if (page - 2 == 0) {
+          start = page - 1;
+          end = parseInt(page) + 3;
+        } else {
+          start = page - 3;
+          end = parseInt(page) + 1;
+        }
+      }
+    }
+  }
+  for (i = start; i <= end; i++) {
+    var obj = {
+      value: i,
+      active: i === +page
+    };
+    pages.push(obj);
+  }
+
+  return pages;
+}
 
 module.exports.infoAdd = function(req, res, next) {
   //Lấy dữ liệu từ tag
@@ -350,18 +452,21 @@ module.exports.postDeleteInfo = (req, res, next) => {
 
   var deleteTagOfNews = newsTagModel.deleteTagOfNews(infoID);
 
-  deleteTagOfNews.then(affectedRowsNumber => {
-    //tạo mới product combo
-    var updateNews = {
-      ID: infoID,
-      STATUS: 0
-    };
+  deleteTagOfNews
+    .then(affectedRowsNumber => {
+      //tạo mới product combo
+      var updateNews = {
+        ID: infoID,
+        STATUS: 0
+      };
 
-    //Gọi hàm xóa
-    newsModel.deleteNews(updateNews)
-      .then(changedRowsNumber => {
-        res.send(true);
-      })
-      .catch(next);
-  }).catch(next);
+      //Gọi hàm xóa
+      newsModel
+        .deleteNews(updateNews)
+        .then(changedRowsNumber => {
+          res.send(true);
+        })
+        .catch(next);
+    })
+    .catch(next);
 };

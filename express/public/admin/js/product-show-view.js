@@ -74,7 +74,7 @@ $(".post_delete_combo").click(function() {
   });
 });
 
-$("#selectProductType").on("change", function () {
+$("#CategorySimple").on("change", function () {
     var base_url =
         location.protocol + "//" + document.domain + ":" + location.port;
     $.post(
@@ -91,7 +91,7 @@ function reloadSubCategory(data) {
     for (var i = 0; i < data.length; i++) {
         option += `<option value="${data[i].ID}">${data[i].NAME}</option>`;
     }
-    $("#SubCategory").html(option);
+    $("#SubCategorySimple").html(option);
 }
 
 //Tìm kiếm

@@ -17,6 +17,8 @@ router.post("/register", controller.postRegister);
 
 router.get("/is-available", controller.isAvailable);
 
+router.get("/is-valid-email", controller.isValidEmail);
+
 router.post("/login", controller.postLogin);
 
 router.post("/logout", controller.postLogout);

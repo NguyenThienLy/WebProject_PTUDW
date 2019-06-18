@@ -6,6 +6,30 @@ module.exports.allCategory = () => {
   return db.load(`SELECT * FROM category ORDER BY ID ASC`);
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllCategoryFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` MATCH (NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    return db.load(`SELECT * FROM category WHERE ${query} ORDER BY ID ASC limit ${limit} offset ${offset}`);
+  } else {
+    return db.load(`SELECT * FROM category ORDER BY ID ASC limit ${limit} offset ${offset}`);
+  }
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityCategoryActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` MATCH (NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    return db.load(`SELECT COUNT(*) AS QUANTITY FROM category WHERE ${query}`);
+  } else {
+    return db.load(`SELECT COUNT(*) AS QUANTITY FROM category`);
+  }
+};
+
 // Hàm trả về danh sách tất cả category và số lượng sản phẩm thuộc category đó
 module.exports.allWithDetailQuantity = () => {
   return db.load(`SELECT cat_pro.ID AS IDCAT, cat_pro.NAME AS NAMECAT, sub_cat.ID AS IDSUB, sub_cat.NAME AS NAMESUB, 

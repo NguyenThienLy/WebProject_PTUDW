@@ -10,107 +10,219 @@
 {{!-- responsive --}}
 {{/section}}
 
-<div id="content" class="mb-5">
-    <header class="clearfix">
-        <h5 class="page_title mb-0">Tất cả sản phẩm với bình luận</h5>
-    </header>
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+    <div id="content">
+        <header class="d-flex align-items-center">
+            <h5 class="mb-0 mr-5">Tất cả sản phẩm với bình luận</h5>
 
-    <div class="content-inner">
-        <!--Thanh tìm kiếm-->
-        <div class="row search-row ml-0 mr-0">
-            <div class="col-md-12 p-0">
-                <div class="input-group input-group-sm mb-3">
-                    <input type="text" class="form-control search-field" id="search" placeholder="Tên sản phẩm"
-                        aria-label="Tên sản phẩm" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-success" type="button">
-                            Tìm kiếm
-                        </button>
+            <div class="d-flex align-items-center">
+                <input type="checkbox" id="switchType" class="switch"></input>
+                <span id="labelType" class="ml-3">Sản phẩm thường</span>
+            </div>
+        </header>
+
+        <div class="content-inner">
+            <div id="product-simple-content">
+                <!--Thanh tìm kiếm-->
+                <div class="row search-row ml-0 mr-0">
+                    <div class="col-md-12 p-0">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control search-field" id="nameSimple" value="{{this.nameSimple}}" placeholder="Tên sản phẩm" />
+                            <div class="input-group-append">
+                                <button class="btn btn-success" id="btn_search_simple" type="button">
+                                    Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!--end thanh tìm kiếm-->
+
+                <!--Table hiển thị sản phẩm-->
+                <table class="table table-responsive-xl mb-4">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Mã SP</th>
+                            <th>Tên SP</th>
+                            <th>Danh mục</th>
+                            <th>Danh mục con</th>
+                            <th class="text-center">Hình ảnh</th>
+                            <th class="text-center">Số lượt bình luận</th>
+                            <th class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each this.products}}
+                        <!--Thông tin một sản phẩm-->
+                        <tr>
+                            <td align="center">{{ID}}</td>
+                            <td>
+                                <div class="wordWrap product-name">{{NAME}}</div>
+                            </td>
+                            <td>{{CATNAME}}</td>
+                            <td>{{SUBCATNAME}}</td>
+                            <td align="center">
+                                <img src="{{IMAGE}}" class="show-product-image">
+                            </td>
+                            <td align="center">{{COMMENT_QUANTITY}}</td>
+                            <td align="center">
+                                <a class="btn btn-sm btn-primary" href="/admin/comment/product-comment-simple/{{ID}}"><i
+                                        class="fas fa-info pl-1 pr-1"></i></a>
+                            </td>
+                        </tr>
+                        <!--End thông tin một sản phẩm-->
+                        {{/each}}
+
+
+                    </tbody>
+                </table>
+                <!--End Table hiển thị sản phẩm-->
+
+                <hr />
+
+                <!--Thanh điều hướng trang-->
+                <div class="row justify-content-center">
+                    <nav>
+                        <ul class="pagination">
+                            {{#if this.prePageSimple.active}}
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/comment/product-comment-simple?page={{this.prePageSimple.value}}{{createQueryCustomer nameSimple}}"
+                                    aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {{else}}
+
+                            {{/if}}
+                            {{#each this.pagesSimple}}
+                            {{#if active}}
+                            <li class="page-item active"><a class="page-link"
+                                    href="/admin/comment/product-comment-simple?page={{value}}{{createQueryCustomer ../nameSimple}}">{{value}}</a>
+                            </li>
+                            {{else}}
+                            <li class="page-item"><a class="page-link"
+                                    href="/admin/comment/product-comment-simple?page={{value}}{{createQueryCustomer ../nameSimple}}">{{value}}</a>
+                            </li>
+                            {{/if}}
+                            {{/each}}
+                            {{#if this.nextPageSimple.active}}
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/comment/product-comment-simple?page={{this.nextPageSimple.value}}{{createQueryCustomer nameSimple}}"
+                                    aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            {{else}}
+
+                            {{/if}}
+                        </ul>
+                    </nav>
+                </div>
+                <!--end Thanh điều hướng trang-->
+            </div>
+
+            <div id="product-combo-content">
+                <!--Thanh tìm kiếm-->
+                <div class="row search-row ml-0 mr-0">
+                    <div class="col-md-12 p-0">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control search-field" id="nameCombo" value="{{this.nameCombo}}"
+                                placeholder="Tên sản phẩm combo" />
+                            <div class="input-group-append">
+                                <button class="btn btn-success" id="btn_search_combo" type="button">
+                                    Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end thanh tìm kiếm-->
+
+                <!--Table hiển thị sản phẩm-->
+                <table class="table table-responsive-xl mb-4">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Mã SP</th>
+                            <th>Tên SP</th>
+                            <th class="text-center">Hình ảnh</th>
+                            <th class="text-center">Số lượt bình luận</th>
+                            <th class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{#each this.productCombos}}
+                        <!--Thông tin một sản phẩm-->
+                        <tr>
+                            <td align="center">{{ID}}</td>
+                            <td>
+                                <div class="wordWrap product-name">{{NAME}}</div>
+                            </td>
+                            <td align="center">
+                                <img src="{{PRODUCTIMAGE1}}" class="show-product-image">
+                                <img src="{{PRODUCTIMAGE2}}" class="show-product-image">
+                                <img src="{{PRODUCTIMAGE3}}" class="show-product-image">
+                            </td>
+                            <td align="center">{{COMMENT_QUANTITY}}</td>
+                            <td align="center">
+                                <a class="btn btn-sm btn-primary" href="/admin/comment/product-comment-combo/{{ID}}"><i
+                                        class="fas fa-info pl-1 pr-1"></i></a>
+                            </td>
+                        </tr>
+                        <!--End thông tin một sản phẩm-->
+                        {{/each}}
+                    </tbody>
+                </table>
+                <!--End Table hiển thị sản phẩm-->
+
+                <hr />
+
+                <!--Thanh điều hướng trang-->
+                <div class="row justify-content-center">
+                    <nav>
+                        <ul class="pagination">
+                            {{#if this.prePageCombo.active}}
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/comment/product-comment-combo?page={{this.prePageCombo.value}}{{createQueryCustomer nameCombo}}"
+                                    aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {{else}}
+
+                            {{/if}}
+                            {{#each this.pagesCombo}}
+                            {{#if active}}
+                            <li class="page-item active"><a class="page-link"
+                                    href="/admin/comment/product-comment-combo?page={{value}}{{createQueryCustomer ../nameCombo}}">{{value}}</a>
+                            </li>
+                            {{else}}
+                            <li class="page-item"><a class="page-link"
+                                    href="/admin/comment/product-comment-combo?page={{value}}{{createQueryCustomer ../nameCombo}}">{{value}}</a>
+                            </li>
+                            {{/if}}
+                            {{/each}}
+                            {{#if this.nextPageCombo.active}}
+                            <li class="page-item">
+                                <a class="page-link" href="/admin/comment/product-comment-combo?page={{this.nextPageCombo.value}}{{createQueryCustomer nameCombo}}"
+                                    aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            {{else}}
+
+                            {{/if}}
+                        </ul>
+                    </nav>
+                </div>
+                <!--end Thanh điều hướng trang-->
             </div>
         </div>
-        <!--end thanh tìm kiếm-->
-
-        <!--Table hiển thị sản phẩm-->
-        <table class="table table-responsive-xl mb-4">
-            <thead>
-                <tr>
-                    <th class="text-center">Mã SP</th>
-                    <th>Tên SP</th>
-                    <th>Danh mục</th>
-                    <th>Danh mục con</th>
-                    <th class="text-center">Hình ảnh</th>
-                    <th class="text-center">Số lượt bình luận</th>
-                    <th class="text-center">Tác vụ</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {{#each this.products}}
-                <!--Thông tin một sản phẩm-->
-                <tr>
-                    <td align="center">{{ID}}</td>
-                    <td>{{NAME}}</td>
-                    <td>{{CATNAME}}</td>
-                    <td>{{SUBCATNAME}}</td>
-                    <td align="center">
-                        <img src="{{IMAGE}}" id="productSimple{{ID}}"
-                            class="show-product-image">
-                    </td>
-                    <td align="center">{{COMMENT_QUANTITY}}</td>
-                    <td align="center">
-                        <a class="btn btn-sm btn-primary" href="/admin/comment/product-comment/{{ID}}"><i class="fas fa-info pl-1 pr-1"></i></a>
-                    </td>
-                </tr>
-                <!--End thông tin một sản phẩm-->
-                {{/each}}
-
-
-            </tbody>
-        </table>
-        <!--End Table hiển thị sản phẩm-->
-
-        <hr />
-
-        <!--Thanh điều hướng trang-->
-        <div class="row justify-content-center">
-            <!-- <div class="col-md-12"> -->
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">4</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">5</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- </div> -->
-        </div>
-        <!--end Thanh điều hướng trang-->
     </div>
 </div>
 
 {{#section 'js'}}
-<script src="/all/js/compress-image.js"></script>
+<script src="/admin/js/product-comment-view.js"></script>
 {{/section}}

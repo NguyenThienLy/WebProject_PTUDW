@@ -108,6 +108,34 @@ module.exports.allNews = () => {
                   ORDER BY news.CREATED DESC`);
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllNewsFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (news.TITLE, news.SHORTCONTENT) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  return db.load(`
+  SELECT news.ID, news.IMAGE, news.RESIZEDIMAGE, news.TITLE,
+  news.SHORTCONTENT, news.CONTENT, DATE_FORMAT(news.CREATED, '%d/%m/%Y %H:%i') AS CREATED 
+  FROM news WHERE STATUS = 1
+  ${query}
+  ORDER BY news.CREATED DESC
+  limit ${limit} offset ${offset}`);
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityNewsActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (news.TITLE, news.SHORTCONTENT) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  return db.load(`SELECT COUNT(*) AS QUANTITY FROM news WHERE STATUS = 1
+                  ${query}`);
+};
+
 // hàm lấy ra số lượng comments
 module.exports.newsQuantity = () => {
   return db.load(

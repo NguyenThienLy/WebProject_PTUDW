@@ -1,10 +1,11 @@
 
 //Tạo chuỗi query
-module.exports.createQuerySimple = function(catID,subCatID,brandID) {
+module.exports.createQuerySimple = function(catID,subCatID,brandID,name) {
     var data = {
-        'catid': catID,
-        'subcatid': subCatID,
-        'brandid': brandID
+        'catId': catID,
+        'subCatId': subCatID,
+        'brandId': brandID,
+        'name': name
     };
     var query = encodeQueryData(data);
     if(query !=""){
@@ -26,6 +27,33 @@ module.exports.createQueryCombo = function(name, nameSimple) {
     return query;
 };
 
+//Tạo chuỗi query
+module.exports.createQueryCustomer = function(name) {
+    var data = {
+        'name': name
+    };
+    var query = encodeQueryData(data);
+    if(query !=""){
+        query = `&${query}`;
+    }
+    return query;
+};
+
+//Tạo chuỗi query
+module.exports.createQueryOrder = function(name, fromDate, toDate, orderStatus) {
+    var data = {
+      'name': name,
+      'fromDate': fromDate,
+      'toDate': toDate,
+      'orderStatus': orderStatus
+    };
+  
+    var query = encodeQueryData(data);
+    if(query !=""){
+        query = `&${query}`;
+    }
+    return query;
+};
 
 function encodeQueryData(data) {
     const ret = [];

@@ -18,9 +18,9 @@
             <div class="row mb-2 ml-0 mr-0">
                 <div class="col-md-6 p-0">
                     <div class="input-group input-group-sm mb-3">
-                        <input type="text" class="form-control search-field" id="search" placeholder="Tên tag" />
+                        <input type="text" class="form-control search-field" id="name" value="{{this.name}}" placeholder="Tên thương hiệu" />
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="button">
+                            <button class="btn btn-success" id="btn_search" type="button">
                                 Tìm kiếm
                             </button>
                         </div>
@@ -128,37 +128,41 @@
 
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePage.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="?page={{this.prePage.value}}{{createQueryCustomer name}}"
+                                aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pages}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link"
+                                href="?page={{value}}{{createQueryCustomer ../name}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{value}}{{createQueryCustomer ../name}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPage.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="?page={{this.nextPage.value}}{{createQueryCustomer name}}"
+                                aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
         </div>

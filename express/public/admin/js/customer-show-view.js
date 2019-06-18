@@ -121,3 +121,35 @@ $("#customerDetailModal").on("hidden.bs.modal", function(e) {
   //load lại trang
   window.location.href = location.href;
 });
+
+//Tìm kiếm
+$("#btn_search").click(function() {
+  var inputName = $("#name").val();
+
+  var query = CreateQuery(inputName);
+  var base_url =
+    location.protocol + "//" + document.domain + ":" + location.port;
+  if (query != "") {
+    //Chuyển trang
+    window.location = base_url + `/admin/customer/customer-show?${query}`;
+  } else {
+    window.location = base_url + `/admin/customer/customer-show`;
+  }
+});
+
+function CreateQuery(name) {
+  var data = {
+    name: name
+  };
+
+  return encodeQueryData(data);
+}
+
+function encodeQueryData(data) {
+    const ret = [];
+    for (let d in data)
+        if (data[d] != 0) {
+            ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+        }
+    return ret.join('&');
+}

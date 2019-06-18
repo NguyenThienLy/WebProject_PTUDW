@@ -2,6 +2,7 @@ var db = require("../utils/db");
 
 module.exports.addOrderDetail = (orderDetail) => {
     return db.add("order_detail", orderDetail);
+}
 
 // hàm lấy ra danh sách tất cả comments
 module.exports.orderDetailByOrderInfoId = orderInfoId => {

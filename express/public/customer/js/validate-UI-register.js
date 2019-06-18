@@ -1,7 +1,7 @@
 $("#header-register-modal-birthdate").datetimepicker({
   format: "d/m/Y",
   timepicker: false,
-  mask: true
+  mask: false
 });
 
 $("#frmRegister").validate({
@@ -26,10 +26,19 @@ $("#frmRegister").validate({
     },
     EMAIL: {
       required: true,
-      email: true
+      email: true,
+      remote: {
+        url: "/customer/auth/is-valid-email"
+      }
     },
     BIRTHDATE: {
       required: true
+    },
+    PHONE: {
+      required: true,
+      number: true,
+      minlength: 10,
+      maxlength: 12
     }
   },
   messages: {
@@ -51,11 +60,18 @@ $("#frmRegister").validate({
     },
     EMAIL: {
       required: "Bạn cần nhập địa chỉ email.",
-      email: "Địa chỉ email không hợp lệ."
+      email: "Địa chỉ email không hợp lệ.",
+      remote: "Email này đã được đăng ký. Vui lòng chọn email khác."
     },
     BIRTHDATE: {
       required: "Bạn cần nhập ngày sinh hợp lệ."
-    }
+    },
+    PHONE: {
+      required: "Bạn cần nhập số điện thoại.",
+      number: "Bạn cần nhập số điện thoại hợp lệ.",
+      minlength: "Bạn cần nhập số điện thoại hợp lệ.",
+      maxlength: "Bạn cần nhập số điện thoại hợp lệ."
+    },
   },
 
   errorElement: "small",
@@ -70,6 +86,10 @@ $("#frmRegister").validate({
         if (result.success == true) {
           $("#header-login-modal-nav-tab").tab("show");
         } else {
+          $("#alert-register").remove();
+          var alert =
+            '<div class="alert alert-warning alert-dismissible fade show" id="alert-register" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Lỗi hệ thống. Đăng ký thất bại!</div>';
+          $("#frmRegister").prepend(alert);
         }
       }
     });

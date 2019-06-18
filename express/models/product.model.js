@@ -44,6 +44,16 @@ module.exports.quantityProductActive = (objQuery) => {
                   ${query}`);
 };
 
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityProductCommentSimpleActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  return db.load(`SELECT COUNT(*) AS QUANITTY FROM product WHERE STATUS = 1 ${query}`);
+};
+
 // Hàm lấy ra số lượng của sản phẩm có ID
 module.exports.inventoryProduct = (productID) => {
   // Gọi hàm querry từ db
@@ -113,6 +123,26 @@ module.exports.pageallProductFilter = (limit, offset, objQuery) => {
             INNER JOIN brand ON product.BRANDID = brand.ID WHERE STATUS = 1
             ${query}
             limit ${limit} offset ${offset}`);
+};
+
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllProductCommentSimpleFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  return db.load(`
+  SELECT product.ID, product.NAME, product.IMAGE, category.NAME AS CATNAME, 
+  sub_category.NAME AS SUBCATNAME, count(COMMENT.ID) AS COMMENT_QUANTITY
+  FROM ((product LEFT JOIN (SELECT * FROM comment WHERE comment.ISSIMPLE = 1) AS comment 
+  ON product.ID = comment.PRODUCTID) 
+  JOIN category ON product.CATEGORYID = category.ID) 
+  JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID
+  WHERE product.STATUS = 1 ${query}
+  GROUP BY product.ID, product.NAME, product.IMAGE, category.NAME, sub_category.NAME
+  limit ${limit} offset ${offset}`);
 };
 
 // Hàm trả về tất cả sản phẩm còn hàng trong database
@@ -876,13 +906,13 @@ module.exports.topNProductBestSalerFollowOffset = (N, Offset) => {
 // Hàm trả về tất cả sản phẩm cùng số lượng bình luận của mỗi sản phẩm
 module.exports.allProductWithCommentQuantity = () => {
   return db.load(
-    `SELECT PRODUCT.ID, PRODUCT.NAME, PRODUCT.IMAGE, CATEGORY.NAME AS CATNAME, 
-						SUB_CATEGORY.NAME AS SUBCATNAME, count(COMMENT.ID) AS COMMENT_QUANTITY
-		FROM ((product PRODUCT LEFT JOIN comment COMMENT ON PRODUCT.ID = COMMENT.PRODUCTID) 
-					JOIN category CATEGORY ON PRODUCT.CATEGORYID = CATEGORY.ID) 
-          JOIN sub_category SUB_CATEGORY ON PRODUCT.SUBCATEGORYID = SUB_CATEGORY.ID
-    WHERE PRODUCT.STATUS = 1
-		GROUP BY PRODUCT.ID, PRODUCT.NAME, PRODUCT.IMAGE, CATEGORY.NAME, SUB_CATEGORY.NAME`
+    `SELECT product.ID, product.NAME, product.IMAGE, category.NAME AS CATNAME, 
+    sub_category.NAME AS SUBCATNAME, count(COMMENT.ID) AS COMMENT_QUANTITY
+		FROM ((product LEFT JOIN (SELECT * FROM comment WHERE comment.ISSIMPLE = 1) AS comment ON product.ID = comment.PRODUCTID) 
+					JOIN category ON product.CATEGORYID = category.ID) 
+          JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID
+    WHERE product.STATUS = 1
+		GROUP BY product.ID, product.NAME, product.IMAGE, category.NAME, sub_category.NAME`
   );
 };
 

@@ -12,7 +12,7 @@ module.exports.allComments = () => {
 };
 
 // hàm lấy ra danh sách tất cả comments của 1 sản phẩm
-module.exports.allCommentsOfProduct = productId => {
+module.exports.allCommentsOfProductSimple = productId => {
   return db.load(
     `SELECT COMMENT.ID, COMMENT.CUSTOMERID, COMMENT.PRODUCTID, 
             DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
@@ -20,6 +20,19 @@ module.exports.allCommentsOfProduct = productId => {
     FROM product PRODUCT JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
         ON PRODUCT.ID = COMMENT.PRODUCTID
     WHERE PRODUCT.ID = ${productId}
+    ORDER BY COMMENT.CREATED DESC`
+  );
+};
+
+// hàm lấy ra danh sách tất cả comments của 1 sản phẩm
+module.exports.allCommentsOfProductCombo = productComboId => {
+  return db.load(
+    `SELECT COMMENT.ID, COMMENT.CUSTOMERID, COMMENT.PRODUCTID, 
+            DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
+            COMMENT.TITLE, COMMENT.COMMENT, COMMENT.STARS, COMMENT.LIKES, CUSTOMER.FULLNAME, CUSTOMER.IMAGE
+    FROM product_combo PRODUCTCOMBO JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+        ON PRODUCTCOMBO.ID = COMMENT.PRODUCTID
+    WHERE PRODUCTCOMBO.ID = ${productComboId}
     ORDER BY COMMENT.CREATED DESC`
   );
 };
@@ -33,12 +46,22 @@ module.exports.commentsQuantity = () => {
 };
 
 // hàm lấy ra customer bình luận có mua product
-module.exports.commentsCustomerBuyProduct = () => {
+module.exports.commentsCustomerBuyProductSimple = () => {
   return db.load(
-    `SELECT COMMENT.CUSTOMERID, COMMENT.PRODUCTID
-    FROM comment COMMENT JOIN order_info ORDER_INFO JOIN order_detail ORDER_DETAIL
-    ON COMMENT.CUSTOMERID = ORDER_INFO.CUSTOMERID AND ORDER_INFO.ID = ORDER_DETAIL.ORDERINFOID 
-    AND COMMENT.PRODUCTID = ORDER_DETAIL.PRODUCTID`
+    `SELECT comment.CUSTOMERID, comment.PRODUCTID
+    FROM comment JOIN order_info JOIN order_detail
+    ON comment.CUSTOMERID = order_info.CUSTOMERID AND order_info.ID = order_detail.ORDERINFOID AND order_detail.PRODUCTID = comment.PRODUCTID
+    	WHERE comment.ISSIMPLE = 1 AND order_detail.ISSIMPLE = 1`
+  );
+};
+
+// hàm lấy ra customer bình luận có mua product
+module.exports.commentsCustomerBuyProductCombo = () => {
+  return db.load(
+    `SELECT comment.CUSTOMERID, comment.PRODUCTID
+    FROM comment JOIN order_info JOIN order_detail
+    ON comment.CUSTOMERID = order_info.CUSTOMERID AND order_info.ID = order_detail.ORDERINFOID AND order_detail.PRODUCTID = comment.PRODUCTID
+    	WHERE comment.ISSIMPLE = 0 AND order_detail.ISSIMPLE = 0`
   );
 };
 
@@ -108,8 +131,8 @@ module.exports.deleteCommentByCustomerId = customerId => {
   return db.delete("comment", "CUSTOMERID", customerId);
 };
 
-module.exports.deleteCommentByProductId = productId => {
-  return db.delete("comment", "PRODUCTID", productId);
+module.exports.deleteCommentByProductIdAndProductType = (comment) => {
+  return db.delete2PrimaryKey("comment", "PRODUCTID", "ISSIMPLE", comment);
 };
 
 // Hàm lấy ra comment gần nhất của sản phẩm

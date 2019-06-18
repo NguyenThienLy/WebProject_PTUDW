@@ -10,6 +10,30 @@ module.exports.allTag = () => {
   return db.load(`SELECT * FROM tag ORDER BY ID ASC`);
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllTagFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` MATCH (NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    return db.load(`SELECT * FROM tag WHERE ${query} ORDER BY ID ASC limit ${limit} offset ${offset}`);
+  } else {
+    return db.load(`SELECT * FROM tag ORDER BY ID ASC limit ${limit} offset ${offset}`);
+  }
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityTagActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` MATCH (NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    return db.load(`SELECT COUNT(*) AS QUANTITY FROM tag WHERE ${query}`);
+  } else {
+    return db.load(`SELECT COUNT(*) AS QUANTITY FROM tag`);
+  }
+};
+
 module.exports.singleById = tagId => {
   return db.load(`SELECT * FROM tag WHERE ID = '${tagId}'`);
 };

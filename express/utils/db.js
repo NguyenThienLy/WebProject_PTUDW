@@ -162,6 +162,27 @@ module.exports = {
     });
   },
 
+  delete2PrimaryKey: (tableName, idField1, idField2, entity) => {
+    return new Promise((resolve, reject) => {
+      var id1 = entity[idField1];
+      var id2 = entity[idField2];
+
+      var sql = `delete from ${tableName} where ${idField1} = ? and ${idField2} = ?`;
+     
+      var connection = CreateConnection();
+      connection.connect();
+
+      connection.query(sql, [id1, id2], (error, value) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(value.affectedRows);
+        }
+        connection.end();
+      });
+    });
+  },
+
   delete3PrimaryKey: (tableName, idField1, idField2, idField3, entity) => {
     return new Promise((resolve, reject) => {
       var id1 = entity[idField1];
