@@ -1,4 +1,4 @@
-var moment = require('moment');
+var moment = require("moment");
 
 var orderInfoModel = require("../../models/order_info.model");
 var orderDetailModel = require("../../models/order_detail.model");
@@ -31,15 +31,20 @@ module.exports.orderShow = function(req, res, next) {
     toDate = moment(toDate, "DD/MM/YYYY").format("YYYY-MM-DD");
   }
 
-  console.log(fromDate);
-  console.log(toDate);
+  if (isNaN(orderStatus)) {
+    orderStatus = 0;
+  }
 
   var objQuery = {
     Name: name,
-    FromDate: fromDate, 
+    FromDate: fromDate,
     ToDate: toDate,
     OrderStatus: orderStatus
   };
+
+  if (isNaN(page)) {
+    page = 1;
+  }
 
   if (page < 1) {
     page = 1;
@@ -53,7 +58,11 @@ module.exports.orderShow = function(req, res, next) {
 
   var dataOrderStatus = orderStatusModel.allOrderStatus();
 
-  var dataOrderInfos = orderInfoModel.pageAllOrderFilter(limit, offset, objQuery);
+  var dataOrderInfos = orderInfoModel.pageAllOrderFilter(
+    limit,
+    offset,
+    objQuery
+  );
 
   var numberPage = orderInfoModel.quantityOrderActive(objQuery);
 
@@ -72,23 +81,23 @@ module.exports.orderShow = function(req, res, next) {
         active: false
       };
       if (page > 1) {
-        prePage.value = page - 1
+        prePage.value = page - 1;
         prePage.active = true;
       } else {
-        prePage.value = 0
+        prePage.value = 0;
         prePage.active = false;
       }
 
       var nextPage = {
         value: 0,
         active: false
-      }
+      };
 
       if (page < nPages) {
-        nextPage.value = parseInt(page) + 1
+        nextPage.value = parseInt(page) + 1;
         nextPage.active = true;
       } else {
-        nextPage.value = 0
+        nextPage.value = 0;
         nextPage.active = false;
       }
 
@@ -125,7 +134,7 @@ module.exports.orderShow = function(req, res, next) {
 function createArrPage(nPages, page) {
   var pages = [];
   //Chỉ hiện tối đa 5 trang
-  var start = end = 0;
+  var start = (end = 0);
   if (nPages <= 5) {
     start = 1;
     end = nPages;
@@ -133,12 +142,10 @@ function createArrPage(nPages, page) {
     if (page == 1) {
       start = 1;
       end = 5;
-    }
-    else if (page == nPages) {
+    } else if (page == nPages) {
       start = nPages - 5;
       end = nPages;
-    }
-    else {
+    } else {
       if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
         start = page - 2;
         end = parseInt(page) + 2;
@@ -167,8 +174,13 @@ function createArrPage(nPages, page) {
 module.exports.orderInfo = function(req, res, next) {
   var orderInfoId = req.params.id;
 
+  if (isNaN(orderInfoId)) {
+    orderInfoId = 0;
+  }
+
   orderInfoModel.singleById(orderInfoId).then(orderInfo => {
-    orderDetailModel
+    if (orderInfo[0]) {
+      orderDetailModel
       .orderDetailByOrderInfoId(orderInfoId)
       .then(orderDetails => {
         res.locals.sidebar[3].active = true;
@@ -192,6 +204,9 @@ module.exports.orderInfo = function(req, res, next) {
           }
         });
       });
+    } else {
+      res.redirect("/admin/order/order-show");
+    }
   });
 };
 
@@ -206,34 +221,40 @@ module.exports.postStatusOrderUpdate = async (req, res, next) => {
 
   await orderInfoModel.updateOrderInfo(updateOrderInfo);
 
-  if (orderStatusID === '4') {
-    var orderDetails = await orderDetailModel.orderDetailByOrderInfoId(orderInfoID);
-   
+  if (orderStatusID === "4") {
+    var orderDetails = await orderDetailModel.orderDetailByOrderInfoId(
+      orderInfoID
+    );
+
     for (var i = 0; i < orderDetails.length; i++) {
       if (orderDetails[i].ISSIMPLE === 1) {
-        var product = await productModel.singleByProductId(orderDetails[i].PRODUCTID);
+        var product = await productModel.singleByProductId(
+          orderDetails[i].PRODUCTID
+        );
         console.log("simple");
         console.log(orderDetails[i].QUANTITY);
         console.log(product[0].INVENTORY);
         product[0].INVENTORY += orderDetails[i].QUANTITY;
 
         var updateProduct = {
-            ID: product[0].ID,
-            INVENTORY: product[0].INVENTORY
-        }
+          ID: product[0].ID,
+          INVENTORY: product[0].INVENTORY
+        };
 
         await productModel.updateProduct(updateProduct);
       } else {
-        var productCombo = await productComboModel.singleByProductComboId(orderDetails[i].PRODUCTID);
+        var productCombo = await productComboModel.singleByProductComboId(
+          orderDetails[i].PRODUCTID
+        );
         console.log("combo");
         console.log(orderDetails[i].QUANTITY);
         console.log(productCombo[0].INVENTORY);
         productCombo[0].INVENTORY += orderDetails[i].QUANTITY;
 
         var updateProductCombo = {
-            ID: productCombo[0].ID,
-            INVENTORY: productCombo[0].INVENTORY
-        }
+          ID: productCombo[0].ID,
+          INVENTORY: productCombo[0].INVENTORY
+        };
 
         await productComboModel.updateProductCombo(updateProductCombo);
       }
@@ -246,20 +267,28 @@ module.exports.postStatusOrderUpdate = async (req, res, next) => {
 module.exports.postDeleteOrder = (req, res, next) => {
   var orderId = req.body.OrderInfoID;
 
-  orderInfoModel.singleById(orderId).then(order => {
-    if (order[0].ORDERSTATUSID === 3 || order[0].ORDERSTATUSID === 4) {
-      var deleteOrder = {
-        ID: orderId,
-        STATUS: 0
-      };
+  orderInfoModel
+    .singleById(orderId)
+    .then(order => {
+      if (order[0].ORDERSTATUSID === 3 || order[0].ORDERSTATUSID === 4) {
+        var deleteOrder = {
+          ID: orderId,
+          STATUS: 0
+        };
 
-      orderInfoModel
-        .deleteOrderInfoById(deleteOrder)
-        .then(changedRowsNumber => {
-          res.send(true);
-        });
-    } else {
+        orderInfoModel
+          .deleteOrderInfoById(deleteOrder)
+          .then(changedRowsNumber => {
+            res.send(true);
+          })
+          .catch(err => {
+            res.send(false);
+          });
+      } else {
+        res.send(false);
+      }
+    })
+    .catch(err => {
       res.send(false);
-    }
-  });
+    });
 };

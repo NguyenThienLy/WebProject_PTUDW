@@ -210,7 +210,7 @@ module.exports.topNNewsPopularInWeekFollowOffsetFollowIdNews = (IdInfo, N, Offse
 };
 
 // Hàm lấy các bài báo được đọc nhiều nhất tuần
-module.exports.topNNewsFollowTagId = (tagId, N, Offset, ) => {
+module.exports.topNNewsFollowTagId = (tagId, N, Offset) => {
   var stringTagId = "";
 
   if (+tagId !== 0)

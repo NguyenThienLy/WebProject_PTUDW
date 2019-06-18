@@ -37,6 +37,10 @@ module.exports.infoShow = async function(req, res, next) {
     Name: name
   };
 
+  if (isNaN(page)) {
+    page = 1;
+  }
+
   if (page < 1) {
     page = 1;
   }
@@ -323,6 +327,10 @@ function getPublicUrl(filename, infoID, uuid) {
 module.exports.infoUpdate = (req, res, next) => {
   var id = +req.params.id;
 
+  if (isNaN(id)) {
+    id = 0;
+  }
+
   // Lấy dữ liệu product combo theo id
   var dataInfo = newsModel.singleByNewsId(id);
 
@@ -332,19 +340,23 @@ module.exports.infoUpdate = (req, res, next) => {
 
   Promise.all([dataInfo, dataTags, dataNewsTag])
     .then(values => {
-      res.locals.sidebar[6].active = true;
+      if (values[0][0]) {
+        res.locals.sidebar[6].active = true;
 
-      //Truyền vào trong UI
-      res.render("admin/info-update", {
-        layout: "main-admin.hbs",
-        info: values[0][0],
-        tags: values[1],
-        newsTag: values[2],
-        helpers: {
-          isSelected: selectedHelper.isSelected,
-          isSelectedInTag: selectedHelper.isSelectedInTag
-        }
-      });
+        //Truyền vào trong UI
+        res.render("admin/info-update", {
+          layout: "main-admin.hbs",
+          info: values[0][0],
+          tags: values[1],
+          newsTag: values[2],
+          helpers: {
+            isSelected: selectedHelper.isSelected,
+            isSelectedInTag: selectedHelper.isSelectedInTag
+          }
+        });
+      } else {
+        res.redirect("/admin/info/info-show");
+      }
     })
     .catch(next);
 };
@@ -422,12 +434,16 @@ module.exports.postInfoImageUpdate = (req, res, next) => {
           .then(values => {
             res.send({ valid: true });
           })
-          .catch(next);
+          .catch(err => {
+            res.send({ valid: false });
+          });
       } else {
         res.send({ valid: false });
       }
     })
-    .catch(next);
+    .catch(err => {
+      res.send({ valid: false });
+    });
 };
 
 module.exports.postInfoAddTag = function(req, res, next) {
@@ -443,7 +459,9 @@ module.exports.postInfoAddTag = function(req, res, next) {
       newTag.ID = tagID;
       res.send(newTag);
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 //Xóa sản phẩm, xóa những sản phẩm không có trong combo
@@ -466,7 +484,11 @@ module.exports.postDeleteInfo = (req, res, next) => {
         .then(changedRowsNumber => {
           res.send(true);
         })
-        .catch(next);
+        .catch(err => {
+          res.send(false);
+        });
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };

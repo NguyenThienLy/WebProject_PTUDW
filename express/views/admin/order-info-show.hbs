@@ -69,8 +69,8 @@
                         <th class="text-center">Mã đơn hàng</th>
                         <th>Khách hàng</th>
                         <th>Thời gian đặt</th>
-                        <th class="text-center">Tổng tiền</th>
-                        <th class="text-center">Trạng thái</th>
+                        <th>Tổng tiền</th>
+                        <th class="text-center">Tình trạng</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
                 </thead>
@@ -82,7 +82,7 @@
                         <td align="center">{{ID}}</td>
                         <td>{{CUSTOMERNAME}}</td>
                         <td>{{CREATED}}</td>
-                        <td align="center">{{formatPrice TOTALMONEY}}&nbsp;đ</td>
+                        <td>{{formatPrice TOTALMONEY}}&nbsp;đ</td>
                         <td align="center">
                             {{{formatStatus ORDERSTATUSID ORDERSTATUSNAME}}}
                         </td>

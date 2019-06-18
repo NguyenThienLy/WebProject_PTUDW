@@ -32,45 +32,47 @@
             </div>
             <!--end thanh tìm kiếm-->
 
-            <!--Table hiển thị sản phẩm-->
-            <table class="table table-responsive mb-4">
-                <thead>
-                    <tr>
-                        <th class="text-center">Mã KH</th>
-                        <th>Loại KH</th>
-                        <th>Tài khoản</th>
-                        <th>Họ tên</th>
-                        <th class="text-center">Ảnh đại diện</th>
-                        <th>Thời gian đăng ký</th>
-                        <th class="text-center">Tác vụ</th>
-                    </tr>
-                </thead>
+            <div class="d-flex justify-content-center">
+                <!--Table hiển thị sản phẩm-->
+                <table class="table table-responsive-xl mb-4">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Mã KH</th>
+                            <th>Loại KH</th>
+                            <th>Tài khoản</th>
+                            <th>Họ tên</th>
+                            <th class="text-center">Ảnh đại diện</th>
+                            <th>Thời gian đăng ký</th>
+                            <th class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    {{#each this.customers}}
-                    <!--Nội dung của một hàng-->
-                    <tr>
-                        <td align="center">{{ID}}</td>
-                        <td>{{TYPENAME}}</td>
-                        <td>{{USERNAME}}</td>
-                        <td>{{FULLNAME}}</td>
-                        <td align="center"><img src="{{IMAGE}}" class="show-image"></td>
-                        <td>{{CREATED}}</td>
-                        <td align="center">
-                            <button class="btn btn-sm btn-primary mr-1 post_modal_get_info" id={{ID}} type="button"
-                                data-toggle="modal" data-target="#customerDetailModal">
-                                <i class="fas fa-info pl-1 pr-1"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger post_delete_customer" id="{{ID}}" type="button">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!--End nội dung của một hàng-->
-                    {{/each}}
-                </tbody>
-            </table>
-            <!--End Table hiển thị sản phẩm-->
+                    <tbody>
+                        {{#each this.customers}}
+                        <!--Nội dung của một hàng-->
+                        <tr>
+                            <td align="center">{{ID}}</td>
+                            <td>{{TYPENAME}}</td>
+                            <td>{{USERNAME}}</td>
+                            <td>{{FULLNAME}}</td>
+                            <td align="center"><img src="{{IMAGE}}" class="show-image"></td>
+                            <td>{{CREATED}}</td>
+                            <td align="center">
+                                <button class="btn btn-sm btn-primary mr-1 post_modal_get_info" id={{ID}} type="button"
+                                    data-toggle="modal" data-target="#customerDetailModal">
+                                    <i class="fas fa-info pl-1 pr-1"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger post_delete_customer" id="{{ID}}" type="button">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <!--End nội dung của một hàng-->
+                        {{/each}}
+                    </tbody>
+                </table>
+                <!--End Table hiển thị sản phẩm-->
+            </div>
 
             <!--Modal hiển thị thông tin chi tiết của đơn hàng-->
             <div class="modal fade bd-example-modal-lg" id="customerDetailModal" tabindex="-1" role="dialog">

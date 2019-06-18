@@ -18,6 +18,10 @@ module.exports.productCommentShowSimple = function(req, res, next) {
     Name: nameSimple
   };
 
+  if (isNaN(pageSimple)) {
+    pageSimple = 1;
+  }
+
   if (pageSimple < 1) {
     pageSimple = 1;
   }
@@ -39,16 +43,33 @@ module.exports.productCommentShowSimple = function(req, res, next) {
   };
 
   // Lấy dữ liệu sản phẩm
-  var productsWithCommentQuantity = productModel.pageAllProductCommentSimpleFilter(limitSimple, offsetSimple, objQuerySimple);
+  var productsWithCommentQuantity = productModel.pageAllProductCommentSimpleFilter(
+    limitSimple,
+    offsetSimple,
+    objQuerySimple
+  );
 
   // Lấy dữ liệu sản phẩm combo
-  var productCombosWithCommentQuantity = productComboModel.pageAllProductCommentComboFilter(limitCombo, offsetCombo, objQueryCombo);
+  var productCombosWithCommentQuantity = productComboModel.pageAllProductCommentComboFilter(
+    limitCombo,
+    offsetCombo,
+    objQueryCombo
+  );
 
-  var numberPageSimple = productModel.quantityProductCommentSimpleActive(objQuerySimple);
+  var numberPageSimple = productModel.quantityProductCommentSimpleActive(
+    objQuerySimple
+  );
 
-  var numberPageCombo = productComboModel.quantityProductCommentComboActive(objQueryCombo);
+  var numberPageCombo = productComboModel.quantityProductCommentComboActive(
+    objQueryCombo
+  );
 
-  Promise.all([productsWithCommentQuantity, productCombosWithCommentQuantity, numberPageSimple, numberPageCombo])
+  Promise.all([
+    productsWithCommentQuantity,
+    productCombosWithCommentQuantity,
+    numberPageSimple,
+    numberPageCombo
+  ])
     .then(values => {
       res.locals.sidebar[8].active = true;
 
@@ -64,23 +85,23 @@ module.exports.productCommentShowSimple = function(req, res, next) {
         active: false
       };
       if (pageSimple > 1) {
-        prePageSimple.value = pageSimple - 1
+        prePageSimple.value = pageSimple - 1;
         prePageSimple.active = true;
       } else {
-        prePageSimple.value = 0
+        prePageSimple.value = 0;
         prePageSimple.active = false;
       }
 
       var nextPageSimple = {
         value: 0,
         active: false
-      }
+      };
 
       if (pageSimple < nPagesSimple) {
-        nextPageSimple.value = parseInt(pageSimple) + 1
+        nextPageSimple.value = parseInt(pageSimple) + 1;
         nextPageSimple.active = true;
       } else {
-        nextPageSimple.value = 0
+        nextPageSimple.value = 0;
         nextPageSimple.active = false;
       }
 
@@ -96,23 +117,23 @@ module.exports.productCommentShowSimple = function(req, res, next) {
         active: false
       };
       if (pageCombo > 1) {
-        prePageCombo.value = pageCombo - 1
+        prePageCombo.value = pageCombo - 1;
         prePageCombo.active = true;
       } else {
-        prePageCombo.value = 0
+        prePageCombo.value = 0;
         prePageCombo.active = false;
       }
 
       var nextPageCombo = {
         value: 0,
         active: false
-      }
+      };
 
       if (pageCombo < nPagesCombo) {
-        nextPageCombo.value = parseInt(pageCombo) + 1
+        nextPageCombo.value = parseInt(pageCombo) + 1;
         nextPageCombo.active = true;
       } else {
-        nextPageCombo.value = 0
+        nextPageCombo.value = 0;
         nextPageCombo.active = false;
       }
 
@@ -147,6 +168,10 @@ module.exports.productCommentShowCombo = function(req, res, next) {
     Name: name
   };
 
+  if (isNaN(pageCombo)) {
+    pageCombo = 1;
+  }
+
   if (pageCombo < 1) {
     pageCombo = 1;
   }
@@ -159,7 +184,7 @@ module.exports.productCommentShowCombo = function(req, res, next) {
 
   // simple
   var pageSimple = 1;
-  var limitSimple =  3;
+  var limitSimple = 3;
   var offsetSimple = 0;
   var nameSimple = "";
 
@@ -168,16 +193,33 @@ module.exports.productCommentShowCombo = function(req, res, next) {
   };
 
   // Lấy dữ liệu sản phẩm
-  var productsWithCommentQuantity = productModel.pageAllProductCommentSimpleFilter(limitSimple, offsetSimple, objQuerySimple);
+  var productsWithCommentQuantity = productModel.pageAllProductCommentSimpleFilter(
+    limitSimple,
+    offsetSimple,
+    objQuerySimple
+  );
 
   // Lấy dữ liệu sản phẩm combo
-  var productCombosWithCommentQuantity = productComboModel.pageAllProductCommentComboFilter(limitCombo, offsetCombo, objQueryCombo);
+  var productCombosWithCommentQuantity = productComboModel.pageAllProductCommentComboFilter(
+    limitCombo,
+    offsetCombo,
+    objQueryCombo
+  );
 
-  var numberPageSimple = productModel.quantityProductCommentSimpleActive(objQuerySimple);
+  var numberPageSimple = productModel.quantityProductCommentSimpleActive(
+    objQuerySimple
+  );
 
-  var numberPageCombo = productComboModel.quantityProductCommentComboActive(objQueryCombo);
+  var numberPageCombo = productComboModel.quantityProductCommentComboActive(
+    objQueryCombo
+  );
 
-  Promise.all([productsWithCommentQuantity, productCombosWithCommentQuantity, numberPageCombo, numberPageSimple])
+  Promise.all([
+    productsWithCommentQuantity,
+    productCombosWithCommentQuantity,
+    numberPageCombo,
+    numberPageSimple
+  ])
     .then(values => {
       res.locals.sidebar[8].active = true;
 
@@ -193,57 +235,57 @@ module.exports.productCommentShowCombo = function(req, res, next) {
         active: false
       };
       if (pageCombo > 1) {
-        prePageCombo.value = pageCombo - 1
+        prePageCombo.value = pageCombo - 1;
         prePageCombo.active = true;
       } else {
-        prePageCombo.value = 0
+        prePageCombo.value = 0;
         prePageCombo.active = false;
       }
 
       var nextPageCombo = {
         value: 0,
         active: false
-      }
+      };
 
       if (pageCombo < nPagesCombo) {
-        nextPageCombo.value = parseInt(pageCombo) + 1
+        nextPageCombo.value = parseInt(pageCombo) + 1;
         nextPageCombo.active = true;
       } else {
-        nextPageCombo.value = 0
+        nextPageCombo.value = 0;
         nextPageCombo.active = false;
       }
 
-     // simple
-     var totalSimple = values[3][0].QUANTITY;
-     var nPagesSimple = Math.floor(totalSimple / limitSimple);
-     if (totalSimple % limitSimple > 0) nPagesSimple++;
+      // simple
+      var totalSimple = values[3][0].QUANTITY;
+      var nPagesSimple = Math.floor(totalSimple / limitSimple);
+      if (totalSimple % limitSimple > 0) nPagesSimple++;
 
-     var pagesSimple = createArrPage(nPagesSimple, pageSimple);
+      var pagesSimple = createArrPage(nPagesSimple, pageSimple);
 
-     var prePageSimple = {
-       value: 0,
-       active: false
-     };
-     if (pageSimple > 1) {
-       prePageSimple.value = pageSimple - 1
-       prePageSimple.active = true;
-     } else {
-       prePageSimple.value = 0
-       prePageSimple.active = false;
-     }
+      var prePageSimple = {
+        value: 0,
+        active: false
+      };
+      if (pageSimple > 1) {
+        prePageSimple.value = pageSimple - 1;
+        prePageSimple.active = true;
+      } else {
+        prePageSimple.value = 0;
+        prePageSimple.active = false;
+      }
 
-     var nextPageSimple = {
-       value: 0,
-       active: false
-     }
+      var nextPageSimple = {
+        value: 0,
+        active: false
+      };
 
-     if (pageSimple < nPagesSimple) {
-       nextPageSimple.value = parseInt(pageSimple) + 1
-       nextPageSimple.active = true;
-     } else {
-       nextPageSimple.value = 0
-       nextPageSimple.active = false;
-     }
+      if (pageSimple < nPagesSimple) {
+        nextPageSimple.value = parseInt(pageSimple) + 1;
+        nextPageSimple.active = true;
+      } else {
+        nextPageSimple.value = 0;
+        nextPageSimple.active = false;
+      }
 
       res.render("admin/product-comment", {
         layout: "main-admin.hbs",
@@ -269,7 +311,7 @@ module.exports.productCommentShowCombo = function(req, res, next) {
 function createArrPage(nPages, page) {
   var pages = [];
   //Chỉ hiện tối đa 5 trang
-  var start = end = 0;
+  var start = (end = 0);
   if (nPages <= 5) {
     start = 1;
     end = nPages;
@@ -277,12 +319,10 @@ function createArrPage(nPages, page) {
     if (page == 1) {
       start = 1;
       end = 5;
-    }
-    else if (page == nPages) {
+    } else if (page == nPages) {
       start = nPages - 5;
       end = nPages;
-    }
-    else {
+    } else {
       if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
         start = page - 2;
         end = parseInt(page) + 2;
@@ -310,87 +350,330 @@ function createArrPage(nPages, page) {
 
 module.exports.commentOfProductSimpleShow = function(req, res, next) {
   var productId = req.params.id;
-  var commentsOfProduct = commentModel.allCommentsOfProductSimple(productId);
+  var page = req.query.page || 1;
+  var limit = req.query.limit || 2;
+
+  var name = req.query.name || "";
+
+  var objQuery = {
+    Name: name
+  };
+
+  if (isNaN(productId)) {
+    productId = 0;
+  }
+
+  if (isNaN(page)) {
+    page = 1;
+  }
+
+  if (page < 1) {
+    page = 1;
+  }
+
+  if (page < 1) {
+    limit = 2;
+  }
+
+  var offset = (page - 1) * limit;
+
+  var dataCommentsOfProduct = commentModel.pageAllCommentProductSimpleFilter(
+    productId,
+    limit,
+    offset,
+    objQuery
+  );
+
+  var numberPage = commentModel.quantityCommentProductSimpleActive(
+    productId,
+    objQuery
+  );
+
   var commentsCustomerBuyProduct = commentModel.commentsCustomerBuyProductSimple();
 
-  Promise.all([commentsOfProduct, commentsCustomerBuyProduct])
+  Promise.all([dataCommentsOfProduct, commentsCustomerBuyProduct, numberPage])
     .then(values => {
-      res.locals.sidebar[8].active = true;
+      if (values[0].length !== 0) {
+        res.locals.sidebar[8].active = true;
 
-      // xét xem ng bình luận có mua sản phẩm chưa, gán giá trị cho BOUGHT
-      for (var comment of values[0]) {
-        var customer = values[1].find((value, index, array) => {
-          if (
-            value.CUSTOMERID === comment.CUSTOMERID &&
-            value.PRODUCTID === comment.PRODUCTID
-          ) {
-            return value.CUSTOMERID;
+        var total = values[2][0].QUANTITY;
+        var nPages = Math.floor(total / limit);
+        if (total % limit > 0) nPages++;
+
+        var pages = createArrPageCommentSimple(nPages, page, productId);
+
+        var prePage = {
+          value: 0,
+          active: false
+        };
+        if (page > 1) {
+          prePage.value = page - 1;
+          prePage.active = true;
+        } else {
+          prePage.value = 0;
+          prePage.active = false;
+        }
+
+        var nextPage = {
+          value: 0,
+          active: false
+        };
+
+        if (page < nPages) {
+          nextPage.value = parseInt(page) + 1;
+          nextPage.active = true;
+        } else {
+          nextPage.value = 0;
+          nextPage.active = false;
+        }
+
+        // xét xem ng bình luận có mua sản phẩm chưa, gán giá trị cho BOUGHT
+        for (var comment of values[0]) {
+          var customer = values[1].find((value, index, array) => {
+            if (
+              value.CUSTOMERID === comment.CUSTOMERID &&
+              value.PRODUCTID === comment.PRODUCTID
+            ) {
+              return value.CUSTOMERID;
+            } else {
+              return null;
+            }
+          });
+
+          if (customer) {
+            comment.BOUGHT = true;
           } else {
-            return null;
+            comment.BOUGHT = false;
+          }
+        }
+
+        res.render("admin/comment", {
+          layout: "main-admin.hbs",
+          comments: values[0],
+          productId: productId,
+          pages: pages,
+          prePage: prePage,
+          nextPage: nextPage,
+          name: name,
+          helpers: {
+            commentStars: commentStarsHelper,
+            createQueryCustomer: createQuery.createQueryCustomer
           }
         });
-
-        if (customer) {
-          comment.BOUGHT = true;
-        } else {
-          comment.BOUGHT = false;
-        }
+      } else {
+        res.redirect("/admin/comment/product-comment-simple");
       }
-
-      res.render("admin/comment", {
-        layout: "main-admin.hbs",
-        comments: values[0],
-        productId: productId,
-        helpers: {
-          commentStars: commentStarsHelper
-        }
-      });
     })
     .catch(next);
 };
 
 module.exports.commentOfProductComboShow = function(req, res, next) {
   var productComboId = req.params.id;
-  var commentsOfProductCombo = commentModel.allCommentsOfProductCombo(
-    productComboId
+
+  var page = req.query.page || 1;
+  var limit = req.query.limit || 2;
+
+  var name = req.query.name || "";
+
+  var objQuery = {
+    Name: name
+  };
+
+  if (isNaN(productComboId)) {
+    productComboId = 0;
+  }
+
+  if (isNaN(page)) {
+    page = 1;
+  }
+
+  if (page < 1) {
+    page = 1;
+  }
+
+  if (page < 1) {
+    limit = 2;
+  }
+
+  var offset = (page - 1) * limit;
+
+  var dataCommentsOfProductCombo = commentModel.pageAllCommentProductComboFilter(
+    productComboId,
+    limit,
+    offset,
+    objQuery
   );
+
+  var numberPage = commentModel.quantityCommentProductComboActive(
+    productComboId,
+    objQuery
+  );
+
   var commentsCustomerBuyProductCombo = commentModel.commentsCustomerBuyProductCombo();
 
-  Promise.all([commentsOfProductCombo, commentsCustomerBuyProductCombo])
+  Promise.all([
+    dataCommentsOfProductCombo,
+    commentsCustomerBuyProductCombo,
+    numberPage
+  ])
     .then(values => {
-      res.locals.sidebar[8].active = true;
+      if (values[0].length !== 0) {
+        res.locals.sidebar[8].active = true;
 
-      // xét xem ng bình luận có mua sản phẩm chưa, gán giá trị cho BOUGHT
-      for (var comment of values[0]) {
-        var customer = values[1].find((value, index, array) => {
-          if (
-            value.CUSTOMERID === comment.CUSTOMERID &&
-            value.PRODUCTID === comment.PRODUCTID
-          ) {
-            return value.CUSTOMERID;
+        var total = values[2][0].QUANTITY;
+        var nPages = Math.floor(total / limit);
+        if (total % limit > 0) nPages++;
+
+        var pages = createArrPageCommentCombo(nPages, page, productComboId);
+
+        var prePage = {
+          value: 0,
+          active: false
+        };
+        if (page > 1) {
+          prePage.value = page - 1;
+          prePage.active = true;
+        } else {
+          prePage.value = 0;
+          prePage.active = false;
+        }
+
+        var nextPage = {
+          value: 0,
+          active: false
+        };
+
+        if (page < nPages) {
+          nextPage.value = parseInt(page) + 1;
+          nextPage.active = true;
+        } else {
+          nextPage.value = 0;
+          nextPage.active = false;
+        }
+
+        // xét xem ng bình luận có mua sản phẩm chưa, gán giá trị cho BOUGHT
+        for (var comment of values[0]) {
+          var customer = values[1].find((value, index, array) => {
+            if (
+              value.CUSTOMERID === comment.CUSTOMERID &&
+              value.PRODUCTID === comment.PRODUCTID
+            ) {
+              return value.CUSTOMERID;
+            } else {
+              return null;
+            }
+          });
+
+          if (customer) {
+            comment.BOUGHT = true;
           } else {
-            return null;
+            comment.BOUGHT = false;
+          }
+        }
+
+        res.render("admin/comment", {
+          layout: "main-admin.hbs",
+          comments: values[0],
+          productComboId: productComboId,
+          pages: pages,
+          prePage: prePage,
+          nextPage: nextPage,
+          name: name,
+          helpers: {
+            commentStars: commentStarsHelper,
+            createQueryCustomer: createQuery.createQueryCustomer
           }
         });
-
-        if (customer) {
-          comment.BOUGHT = true;
-        } else {
-          comment.BOUGHT = false;
-        }
+      } else {
+        res.redirect("/admin/comment/product-comment-combo");
       }
-
-      res.render("admin/comment", {
-        layout: "main-admin.hbs",
-        comments: values[0],
-        productComboId: productComboId,
-        helpers: {
-          commentStars: commentStarsHelper
-        }
-      });
     })
     .catch(next);
 };
+
+//Hàm tạo mảng trang
+function createArrPageCommentSimple(nPages, page, productId) {
+  var pages = [];
+  //Chỉ hiện tối đa 5 trang
+  var start = (end = 0);
+  if (nPages <= 5) {
+    start = 1;
+    end = nPages;
+  } else {
+    if (page == 1) {
+      start = 1;
+      end = 5;
+    } else if (page == nPages) {
+      start = nPages - 5;
+      end = nPages;
+    } else {
+      if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
+        start = page - 2;
+        end = parseInt(page) + 2;
+      } else {
+        if (page - 2 == 0) {
+          start = page - 1;
+          end = parseInt(page) + 3;
+        } else {
+          start = page - 3;
+          end = parseInt(page) + 1;
+        }
+      }
+    }
+  }
+  for (i = start; i <= end; i++) {
+    var obj = {
+      value: i,
+      active: i === +page,
+      productId
+    };
+    pages.push(obj);
+  }
+
+  return pages;
+}
+
+//Hàm tạo mảng trang
+function createArrPageCommentCombo(nPages, page, productComboId) {
+  var pages = [];
+  //Chỉ hiện tối đa 5 trang
+  var start = (end = 0);
+  if (nPages <= 5) {
+    start = 1;
+    end = nPages;
+  } else {
+    if (page == 1) {
+      start = 1;
+      end = 5;
+    } else if (page == nPages) {
+      start = nPages - 5;
+      end = nPages;
+    } else {
+      if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
+        start = page - 2;
+        end = parseInt(page) + 2;
+      } else {
+        if (page - 2 == 0) {
+          start = page - 1;
+          end = parseInt(page) + 3;
+        } else {
+          start = page - 3;
+          end = parseInt(page) + 1;
+        }
+      }
+    }
+  }
+  for (i = start; i <= end; i++) {
+    var obj = {
+      value: i,
+      active: i === +page,
+      productComboId: productComboId
+    };
+    pages.push(obj);
+  }
+
+  return pages;
+}
 
 module.exports.postDeleteComment = (req, res, next) => {
   var commentID = req.body.CommentID;
@@ -403,7 +686,11 @@ module.exports.postDeleteComment = (req, res, next) => {
         .then(affectedRowsNumber => {
           res.send(true);
         })
-        .catch(next);
+        .catch(err => {
+          res.send(false);
+        });
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };

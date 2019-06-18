@@ -11,6 +11,70 @@ module.exports.allComments = () => {
   );
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllCommentProductSimpleFilter = (productId, limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (CUSTOMER.FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  return db.load(`
+  SELECT COMMENT.ID, COMMENT.CUSTOMERID, COMMENT.PRODUCTID, 
+  DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
+  COMMENT.TITLE, COMMENT.COMMENT, COMMENT.STARS, COMMENT.LIKES, CUSTOMER.FULLNAME, CUSTOMER.IMAGE
+  FROM product PRODUCT JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+  ON PRODUCT.ID = COMMENT.PRODUCTID
+  WHERE PRODUCT.ID = ${productId} ${query}
+  ORDER BY COMMENT.CREATED DESC
+  limit ${limit} offset ${offset}`);
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityCommentProductSimpleActive = (productId, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+  FROM product PRODUCT JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+  ON PRODUCT.ID = COMMENT.PRODUCTID
+  WHERE PRODUCT.ID = ${productId} ${query}`);
+};
+
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllCommentProductComboFilter = (productComboId, limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (CUSTOMER.FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  return db.load(`
+  SELECT COMMENT.ID, COMMENT.CUSTOMERID, COMMENT.PRODUCTID, 
+  DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
+  COMMENT.TITLE, COMMENT.COMMENT, COMMENT.STARS, COMMENT.LIKES, CUSTOMER.FULLNAME, CUSTOMER.IMAGE
+  FROM product_combo PRODUCTCOMBO JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+  ON PRODUCTCOMBO.ID = COMMENT.PRODUCTID
+  WHERE PRODUCTCOMBO.ID = ${productComboId} ${query}
+  ORDER BY COMMENT.CREATED DESC
+  limit ${limit} offset ${offset}`);
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityCommentProductComboActive = (productComboId, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+  FROM product_combo PRODUCTCOMBO JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
+  ON PRODUCTCOMBO.ID = COMMENT.PRODUCTID
+  WHERE PRODUCTCOMBO.ID = ${productComboId} ${query}`);
+};
+
 // hàm lấy ra danh sách tất cả comments của 1 sản phẩm
 module.exports.allCommentsOfProductSimple = productId => {
   return db.load(
@@ -51,7 +115,7 @@ module.exports.commentsCustomerBuyProductSimple = () => {
     `SELECT comment.CUSTOMERID, comment.PRODUCTID
     FROM comment JOIN order_info JOIN order_detail
     ON comment.CUSTOMERID = order_info.CUSTOMERID AND order_info.ID = order_detail.ORDERINFOID AND order_detail.PRODUCTID = comment.PRODUCTID
-    	WHERE comment.ISSIMPLE = 1 AND order_detail.ISSIMPLE = 1`
+    	WHERE comment.ISSIMPLE = 1 AND order_detail.ISSIMPLE = 1 AND order_info.ORDERSTATUSID = 3`
   );
 };
 
@@ -61,7 +125,7 @@ module.exports.commentsCustomerBuyProductCombo = () => {
     `SELECT comment.CUSTOMERID, comment.PRODUCTID
     FROM comment JOIN order_info JOIN order_detail
     ON comment.CUSTOMERID = order_info.CUSTOMERID AND order_info.ID = order_detail.ORDERINFOID AND order_detail.PRODUCTID = comment.PRODUCTID
-    	WHERE comment.ISSIMPLE = 0 AND order_detail.ISSIMPLE = 0`
+    	WHERE comment.ISSIMPLE = 0 AND order_detail.ISSIMPLE = 0 AND order_info.ORDERSTATUSID = 3`
   );
 };
 
@@ -79,15 +143,13 @@ module.exports.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct
   return db.load(
     `SELECT COMMENT.ID, COMMENT.CUSTOMERID, COMMENT.PRODUCTID, 
             DATE_FORMAT(COMMENT.CREATED, '%d/%m/%Y') AS CREATED, 
-            COMMENT.TITLE, COMMENT.COMMENT, COMMENT.STARS, COMMENT.LIKES, CUSTOMER.FULLNAME, CUSTOMER.IMAGE, COMMENT.VERIFYCATION
-    FROM product PRODUCT JOIN (comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID)
-        ON PRODUCT.ID = COMMENT.PRODUCTID
-    WHERE PRODUCT.ID = ${productId} AND COMMENT.ISSIMPLE = ${typeProduct}
+            COMMENT.TITLE, COMMENT.COMMENT, COMMENT.STARS, COMMENT.LIKES, CUSTOMER.FULLNAME, CUSTOMER.IMAGE
+    FROM comment COMMENT JOIN customer CUSTOMER ON COMMENT.CUSTOMERID = CUSTOMER.ID
+    WHERE COMMENT.PRODUCTID = ${productId} AND COMMENT.ISSIMPLE = ${typeProduct}
     ORDER BY COMMENT.CREATED DESC
     LIMIT ${N} OFFSET ${N * offset}`
   );
 };
-
 
 //Hàm trả về thời gian hiện tại
 function getDateNow(){

@@ -49,6 +49,10 @@ module.exports.infoDetail = function(req, res, next) {
     var isHaveThesameInfo = true;
     var idInfo = req.params.idInfo;
 
+    if (isNaN(idInfo)) {
+      idInfo = 0;
+    }
+
     var startDate = moment(
       moment()
         .startOf("week")
@@ -61,7 +65,7 @@ module.exports.infoDetail = function(req, res, next) {
         .toDate()
     ).format("YYYY-MM-DD");
 
-    var currentDate = moment().format('YYYY-MM-DD');
+    var currentDate = moment().format("YYYY-MM-DD");
 
     Promise.all([
       newsModel.top1NewFollowId(idInfo),
@@ -76,7 +80,7 @@ module.exports.infoDetail = function(req, res, next) {
         endDate
       ),
       newsModel.IncreaseView(idInfo),
-      newsModel.IncreaseNewViews(idInfo,currentDate)
+      newsModel.IncreaseNewViews(idInfo, currentDate)
     ]).then(values => {
       if (values[3].length === 0) isHaveThesameInfo = false;
 
@@ -188,30 +192,40 @@ module.exports.showInfoFollowTag = function(req, res, next) {
     // Lấy giá trị của radio hoặc select tùy theo responsive
     var tagId = req.params.idTag;
 
+    if (isNaN(tagId)) {
+      tagId = 0;
+    }
+
+    console.log(tagId);
+
     Promise.all([
       newsModel.topNNewsFollowTagId(tagId, 12, 0),
       tagModel.allTag()
     ]).then(values => {
-      for (tag of values[1]) {
-        if (tag.ID === +tagId) tag.isSelected = true;
-      }
+      if (values[0].length !== 0) {
+        for (tag of values[1]) {
+          if (tag.ID === +tagId) tag.isSelected = true;
+        }
 
-      getAllTagForNews(values[0]).then(infoShow => {
-        res.render("customer/info-show-tag", {
-          layout: "main-customer.hbs",
-          news: infoShow,
-          tags: values[1],
-          typeSorts: typeSortArray,
-          helpers: {
-            // Hàm chuyển đổi qua kiểu ngày
-            convertToDate: convertToDateHelper,
-            // Hàm định dạng title của info lấy 85 kí tự
-            formatTitleInfo: formatStringHelper.formatTitleInfo,
-            // Hàm định dạng short content của info lấy 320 kí tự
-            formatShortContentInfo: formatStringHelper.formatShortContentInfo
-          }
+        getAllTagForNews(values[0]).then(infoShow => {
+          res.render("customer/info-show-tag", {
+            layout: "main-customer.hbs",
+            news: infoShow,
+            tags: values[1],
+            typeSorts: typeSortArray,
+            helpers: {
+              // Hàm chuyển đổi qua kiểu ngày
+              convertToDate: convertToDateHelper,
+              // Hàm định dạng title của info lấy 85 kí tự
+              formatTitleInfo: formatStringHelper.formatTitleInfo,
+              // Hàm định dạng short content của info lấy 320 kí tự
+              formatShortContentInfo: formatStringHelper.formatShortContentInfo
+            }
+          });
         });
-      });
+      } else {
+        res.redirect("/customer/info/info-show");
+      }
     });
   } catch (error) {
     next(error);

@@ -60,6 +60,8 @@ module.exports.isAvailable = (req, res, next) => {
     if (customers.length > 0) return res.json(false);
 
     return res.json(true);
+  }).catch(err => {
+    return res.json(false);
   });
 };
 
@@ -69,6 +71,8 @@ module.exports.isValidEmail = (req, res, next) => {
     if (customers.length > 0) return res.json(false);
 
     return res.json(true);
+  }).catch(err => {
+    return res.json(false);
   });
 };
 
@@ -116,7 +120,7 @@ module.exports.checkIsLogin = (req, res, next) => {
     }
   }
   catch (error) {
-    next(error);
+    res.send("false");
   }
 };
 
@@ -307,6 +311,8 @@ module.exports.IsAvailaleMail = (req, res, next) => {
     } else {
       return res.json(false);
     }
+  }).catch(err => {
+    return res.json(false);
   })
 };
 

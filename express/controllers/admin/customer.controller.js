@@ -18,6 +18,10 @@ module.exports.customerShow = function(req, res, next) {
     Name: name
   };
 
+  if (isNaN(page)) {
+    page = 1;
+  }
+
   if (page < 1) {
     page = 1;
   }
@@ -153,7 +157,9 @@ module.exports.postCustomerTypeUpdate = (req, res, next) => {
     .then(changedRowsNumber => {
       res.send(true);
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 //Xóa sản phẩm, xóa những sản phẩm không có trong combo
@@ -186,7 +192,11 @@ module.exports.postDeleteCustomer = (req, res, next) => {
         .then(values => {
           res.send(true);
         })
-        .catch(next);
+        .catch(err => {
+          res.send(false);
+        });
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
