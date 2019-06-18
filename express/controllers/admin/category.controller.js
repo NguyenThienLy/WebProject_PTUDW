@@ -15,6 +15,10 @@ module.exports.categoryShow = function(req, res, next) {
     Name: name
   };
 
+  if (isNaN(page)) {
+    page = 1;
+  }
+
   if (page < 1) {
     page = 1;
   }
@@ -163,14 +167,22 @@ module.exports.categoryUpdate = function(req, res, next) {
     categoryId
   );
 
-  Promise.all([dataCategory, dataSubCategories]).then(values => {
-    res.locals.sidebar[9].active = true;
+  if (isNaN(categoryId)) {
+    categoryId = 0;
+  }
 
-    res.render("admin/category-update", {
-      layout: "main-admin.hbs",
-      category: values[0][0],
-      subCategories: values[1]
-    });
+  Promise.all([dataCategory, dataSubCategories]).then(values => {
+    if (values[0][0]) {
+      res.locals.sidebar[9].active = true;
+
+      res.render("admin/category-update", {
+        layout: "main-admin.hbs",
+        category: values[0][0],
+        subCategories: values[1]
+      });
+    } else {
+      res.redirect("/admin/category/category-show");
+    }
   });
 };
 
@@ -204,7 +216,9 @@ module.exports.postCategoryUpdate = function(req, res, next) {
     subCategoryModel.addSubCategoriesForCategory(req.body.ID, listNewSubCategories);
 
     res.send(true);
-  }).catch(next);
+  }).catch(err => {
+    res.send(false);
+  });
 };
 
 // Xóa danh mục
@@ -225,10 +239,16 @@ module.exports.postDeleteCategory = (req, res, next) => {
               .then(affectedRowsNumber2 => {
                 res.send(true);
               })
-              .catch(next);
+              .catch(err => {
+                res.send(false);
+              });
           })
-          .catch(next);
+          .catch(err => {
+            res.send(false);
+          });
       }
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };

@@ -306,31 +306,31 @@
                     <div id="divContainCommentsProductDetail">
                         <!-- comment -->
                         {{#each productComments}}
-                        <div class="component-comment row ml-0 mr-0 mt-3">
-                            <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        <div class="component-comment row w-100 ml-0 mr-0 mt-3">
+                            <div class="content-left col-2 col-md-3 col-lg-2 pr-0">
                                 <div class="img-avatar">
-                                    <img src="{{IMAGE}}" class="w-100 rounded-circle" alt="" />
+                                    <img src="{{IMAGE}}" class="w-100 h-100 rounded-circle" alt="" />
                                 </div>
 
                                 <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
                                     {{FULLNAME}}
                                 </h5>
 
-                                <p class="mt-0 text-center time-post-cmt">
+                                <p class="mt-0 text-center time-post-comment">
                                     {{CREATED}}
                                 </p>
                             </div>
 
-                            <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                            <div class="content-top col-12 mb-1">
                                 <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
                                     {{FULLNAME}}
                                 </h5>
                                 <span class="mb-0 time-post-comment">
-                                    <span>(</span>{{CREATED}}<span>)</span>
+                                    <span>(</span> {{CREATED}}<span>)</span>
                                 </span>
                             </div>
 
-                            <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                            <div class="content-right col-12 col-md-9 col-lg-10">
                                 <div class="d-inline-block mr-2 rate-star">
                                     {{#each rateStar}}
                                     <span class="fa fa-star checked"></span>
@@ -343,24 +343,27 @@
 
                                 <span class="rate-text">{{TITLE}}</span>
 
-                                {{#if VERIFYCATION}}
                                 <div class="prove-buy">
+                                    {{#if BOUGHT}}
                                     <i class="fas fa-check-circle mr-1"></i>
                                     <span>Đã mua sản phẩm</span>
+                                    {{else}}
+                                    <div class="unbought">
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <span>Chưa mua sản phẩm</span>
+                                    </div>
+                                    {{/if}}
                                 </div>
-                                {{else}}
-                                <div class="prove-not-buy">
-                                    <i class="fas fa-ban mr-1"></i>
-                                    <span>Chưa mua sản phẩm</span>
-                                </div>
-                                {{/if}}
 
                                 <p class="mt-2 mb-2 main-content">
                                     {{COMMENT}}
                                 </p>
 
                                 <div class="d-flex justify-content-between align-items-center interactive-customer">
-                                    <a href="#" class="text-decoration-none">Số lượt cảm ơn <strong>5</strong></a>
+                                    <button class="btn btn-sm btn-warning disabled" role="button">
+                                        <span>Số lượt cảm ơn</span>
+                                        <span class="badge badge-light p-1">{{LIKES}}</span>
+                                    </button>
                                     {{!-- <a href="#" class="text-decoration-none">                </a> --}}
                                     <span>Nhận xét này hữu ích với bạn?</span>
                                     <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">
@@ -507,31 +510,31 @@
             <div id="divContainCommentsProductDetail">
                 <!-- comment -->
                 {{#each productComments}}
-                <div class="component-comment row ml-0 mr-0 mt-3">
-                    <div class="content-left col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                <div class="component-comment row w-100 ml-0 mr-0 mt-3">
+                    <div class="content-left col-2 col-md-3 col-lg-2 pr-0">
                         <div class="img-avatar">
-                            <img src="{{IMAGE}}" class="w-100 rounded-circle" alt="" />
+                            <img src="{{IMAGE}}" class="w-100 h-100 rounded-circle" alt="" />
                         </div>
 
                         <h5 class="mt-3 mb-0 text-center font-weight-bold full-name">
                             {{FULLNAME}}
                         </h5>
 
-                        <p class="mt-0 text-center time-post-cmt">
+                        <p class="mt-0 text-center time-post-comment">
                             {{CREATED}}
                         </p>
                     </div>
 
-                    <div class="content-top col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                    <div class="content-top col-12 mb-1">
                         <h5 class="full-name mb-0 mr-2 font-weight-bold d-inline-block">
                             {{FULLNAME}}
                         </h5>
                         <span class="mb-0 time-post-comment">
-                            <span>(</span>{{CREATED}}<span>)</span>
+                            <span>(</span> {{CREATED}}<span>)</span>
                         </span>
                     </div>
 
-                    <div class="content-right col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                    <div class="content-right col-12 col-md-9 col-lg-10">
                         <div class="d-inline-block mr-2 rate-star">
                             {{#each rateStar}}
                             <span class="fa fa-star checked"></span>
@@ -544,24 +547,27 @@
 
                         <span class="rate-text">{{TITLE}}</span>
 
-                        {{#if VERIFYCATION}}
                         <div class="prove-buy">
+                            {{#if BOUGHT}}
                             <i class="fas fa-check-circle mr-1"></i>
                             <span>Đã mua sản phẩm</span>
+                            {{else}}
+                            <div class="unbought">
+                                <i class="fa fa-exclamation-circle"></i>
+                                <span>Chưa mua sản phẩm</span>
+                            </div>
+                            {{/if}}
                         </div>
-                        {{else}}
-                        <div class="prove-not-buy">
-                            <i class="fas fa-ban mr-1"></i>
-                            <span>Chưa mua sản phẩm</span>
-                        </div>
-                        {{/if}}
 
                         <p class="mt-2 mb-2 main-content">
                             {{COMMENT}}
                         </p>
 
                         <div class="d-flex justify-content-between align-items-center interactive-customer">
-                            <a href="#" class="text-decoration-none">Số lượt cảm ơn <strong>5</strong></a>
+                            <button class="btn btn-sm btn-warning disabled" role="button">
+                                <span>Số lượt cảm ơn</span>
+                                <span class="badge badge-light p-1">{{LIKES}}</span>
+                            </button>
                             {{!-- <a href="#" class="text-decoration-none">                </a> --}}
                             <span>Nhận xét này hữu ích với bạn?</span>
                             <button type="button" class="btn btn-success pt-1 pb-1 pl-2 pr-2">

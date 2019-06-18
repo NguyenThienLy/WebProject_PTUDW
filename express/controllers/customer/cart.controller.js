@@ -589,7 +589,3 @@ module.exports.checkRealQuantityProduct = function(req, res, next) {
     next(error);
   }
 };
-
-module.exports.cartOrder = function(req, res) {
-  res.end("thanh toan");
-};

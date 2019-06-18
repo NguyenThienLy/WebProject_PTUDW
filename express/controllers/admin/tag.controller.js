@@ -14,6 +14,10 @@ module.exports.tagShow = function(req, res, next) {
     Name: name
   };
 
+  if (isNaN(page)) {
+    page = 1;
+  }
+
   if (page < 1) {
     page = 1;
   }
@@ -142,7 +146,9 @@ module.exports.postAddTag = (req, res, next) => {
     .then(tagID => {
       res.send(true);
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 module.exports.postTagNameUpdate = (req, res, next) => {
@@ -159,7 +165,9 @@ module.exports.postTagNameUpdate = (req, res, next) => {
     .then(changedRowsNumber => {
       res.send(true);
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 module.exports.postDeleteTag = (req, res, next) => {
@@ -168,6 +176,10 @@ module.exports.postDeleteTag = (req, res, next) => {
   newsTagModel.deleteByTagId(tagId).then(affectedRowsNumber1 => {
     tagModel.deleteTagById(tagId).then(affectedRowsNumber2 => {
       res.send(true);
+    }).catch(err => {
+      res.send(false);
     });
+  }).catch(err => {
+    res.send(false);
   });
 };

@@ -66,6 +66,16 @@ html {
   border-color: #99cc00;
 }
 
+.badge-pill,
+.badge-secondary,
+.badge-warning,
+.badge-light,
+.badge-danger,
+.badge-info,
+.badge-success {
+  padding: 0.4rem 0.6rem;
+}
+
 .item-image:hover {
   transform: scale(1.1);
 }

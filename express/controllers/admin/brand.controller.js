@@ -14,6 +14,10 @@ module.exports.brandShow = function(req, res, next) {
     Name: name
   };
 
+  if (isNaN(page)) {
+    page = 1;
+  }
+
   if (page < 1) {
     page = 1;
   }
@@ -142,7 +146,9 @@ module.exports.postAddBrand = (req, res, next) => {
     .then(brandID => {
       res.send(true);
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 module.exports.postBrandNameUpdate = (req, res, next) => {
@@ -159,7 +165,9 @@ module.exports.postBrandNameUpdate = (req, res, next) => {
     .then(changedRowsNumber => {
       res.send(true);
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 module.exports.postDeleteBrand = (req, res, next) => {
@@ -171,7 +179,11 @@ module.exports.postDeleteBrand = (req, res, next) => {
       } else {
         brandModel.deleteBrandById(brandId).then(affectedRowNumber => {
             res.send(true);
+        }).catch(err => {
+          res.send(false);
         })
       }
-  }).catch(next);
+  }).catch(err => {
+    res.send(false);
+  });
 };

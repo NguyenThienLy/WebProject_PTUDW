@@ -51,9 +51,13 @@
   color: #99cc00;
 }
 
-.component-comment .content-right .prove-not-buy {
+/* .component-comment .content-right .prove-not-buy {
   font-size: 0.9rem; 
   color: #eb4a34;
+} */
+
+.component-comment .content-right .prove-buy .unbought {
+  color: #dc3545;
 }
 
 .component-comment .content-right .main-content {
