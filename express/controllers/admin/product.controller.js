@@ -52,7 +52,7 @@ const gcs = new Storage({
 const bucket = gcs.bucket(bucketName);
 
 // Thêm dữ liệu vào trang product
-module.exports.productShow = function(req, res, next) {
+module.exports.productShow = function (req, res, next) {
   var page = req.query.page || 1;
   var limit = req.query.limit || 4;
   var categoryID = req.query.catid || 0;
@@ -108,13 +108,33 @@ module.exports.productShow = function(req, res, next) {
       var total = values[5][0].QUANTITY;
       var nPages = Math.floor(total / limit);
       if (total % limit > 0) nPages++;
-      var pages = [];
-      for (i = 1; i <= nPages; i++) {
-        var obj = {
-          value: i,
-          active: i === +page
-        };
-        pages.push(obj);
+
+      //Chỉ hiện tối đa 5 trang
+      var pages = createArrPage(nPages, page);
+
+      var prePage = {
+        value: 0,
+        active: false
+      };
+      if (page > 1) {
+        prePage.value = page - 1
+        prePage.active = true;
+      } else {
+        prePage.value = 0
+        prePage.active = false;
+      }
+
+      var nextPage = {
+        value: 0,
+        active: false
+      }
+
+      if (page < nPages) {
+        nextPage.value = parseInt(page) + 1
+        nextPage.active = true;
+      } else {
+        nextPage.value = 0
+        nextPage.active = false;
       }
 
       //Truyền vào trong UI
@@ -126,6 +146,8 @@ module.exports.productShow = function(req, res, next) {
         categories: values[3],
         subCategories: values[4],
         pages: pages,
+        prePage: prePage,
+        nextPage: nextPage,
         categoryID: categoryID,
         subCategoryID: subCategoryID,
         brandID: brandID,
@@ -138,8 +160,51 @@ module.exports.productShow = function(req, res, next) {
     .catch(next);
 };
 
+//Hàm tạo mảng trang
+function createArrPage(nPages, page) {
+  var pages = [];
+  //Chỉ hiện tối đa 5 trang
+  var start = end = 0;
+  if (nPages <= 5) {
+    start = 1;
+    end = nPages;
+  } else {
+    if (page == 1) {
+      start = 1;
+      end = 5;
+    }
+    else if (page == nPages) {
+      start = nPages - 5;
+      end = nPages;
+    }
+    else {
+      if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
+        start = page - 2;
+        end = parseInt(page) + 2;
+      } else {
+        if (page - 2 == 0) {
+          start = page - 1;
+          end = parseInt(page) + 3;
+        } else {
+          start = page - 3;
+          end = parseInt(page) + 1;
+        }
+      }
+    }
+  }
+  for (i = start; i <= end; i++) {
+    var obj = {
+      value: i,
+      active: i === +page
+    };
+    pages.push(obj);
+  }
+
+  return pages;
+}
+
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
-module.exports.postProductComboAdd = function(req, res, next) {
+module.exports.postProductComboAdd = function (req, res, next) {
   // Tạo đối tượng để thêm vào cơ sở dữ liệu
   var newProductCombo = {
     PRODUCTID1: req.body.PRODUCTID1,
@@ -203,7 +268,7 @@ module.exports.postProductComboAdd = function(req, res, next) {
 };
 
 //Thêm dữ liệu vào trang productadd
-module.exports.productAdd = function(req, res, next) {
+module.exports.productAdd = function (req, res, next) {
   // Lấy dữ liệu product
   var dataProducts = productModel.allProductInStock();
   //Lấy dữ liệu category
@@ -231,7 +296,7 @@ module.exports.productAdd = function(req, res, next) {
 };
 
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
-module.exports.postProductAdd = function(req, res, next) {
+module.exports.postProductAdd = function (req, res, next) {
   let listFile = req.files;
 
   // Tạo đối tượng để thêm vào cơ sở dữ liệu
@@ -424,7 +489,7 @@ function getPublicUrl(filename, productID, uuid) {
   );
 }
 
-module.exports.SubCategory = function(req, res, next) {
+module.exports.SubCategory = function (req, res, next) {
   //Lấy dữ liệu sub category
   var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(
     req.body.CategoryID
@@ -438,7 +503,7 @@ module.exports.SubCategory = function(req, res, next) {
     .catch(next);
 };
 
-module.exports.productIdByCategoryId = function(req, res, next) {
+module.exports.productIdByCategoryId = function (req, res, next) {
   var catID = req.body.CategoryID;
   var dataProductIds;
 
@@ -455,7 +520,7 @@ module.exports.productIdByCategoryId = function(req, res, next) {
     .catch(next);
 };
 
-module.exports.productByProductId = function(req, res, next) {
+module.exports.productByProductId = function (req, res, next) {
   //Lấy dữ liệu sub category
   var dataProduct = productModel.singleByProductId(req.body.ProductID);
   //Lấy dữ liệu từ tag
