@@ -9,6 +9,7 @@ var formatPriceHelper = require("../../helpers/format_price.helper");
 var formatOrderStatusHelper = require("../../helpers/format_order_status.helper");
 var formatOrderDetailButtonHelper = require("../../helpers/format_order_detail_button.helper");
 
+
 module.exports.orderShow = function(req, res, next) {
   orderInfoModel
     .allOrderInfo()

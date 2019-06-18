@@ -52,37 +52,53 @@ const gcs = new Storage({
 const bucket = gcs.bucket(bucketName);
 
 // Thêm dữ liệu vào trang product
-module.exports.productShow = function (req, res, next) {
-  var page = req.query.page || 1;
-  var limit = req.query.limit || 4;
-  var categoryID = req.query.catid || 0;
-  var subCategoryID = req.query.subcatid || 0;
-  var brandID = req.query.brandid || 0;
+module.exports.productShowSimple = function (req, res, next) {
+  // simple
+  var pageSimple = req.query.page || 1;
+  var limitSimple = req.query.limit || 4;
 
-  var objQuery = {
+  var categoryID = req.query.catId || 0;
+  var subCategoryID = req.query.subCatId || 0;
+  var brandID = req.query.brandId || 0;
+  var nameSimple = req.query.name || "";
+
+  var objQuerySimple = {
     catID: categoryID,
     subCatID: subCategoryID,
-    BrandID: brandID
+    BrandID: brandID,
+    Name: nameSimple
   };
 
-  if (page < 1) {
-    page = 1;
+  if (pageSimple < 1) {
+    pageSimple = 1;
   }
 
-  if (page < 1) {
-    limit = 4;
+  if (pageSimple < 1) {
+    limitSimple = 4;
   }
 
-  var offset = (page - 1) * limit;
+  var offsetSimple = (pageSimple - 1) * limitSimple;
+
+  // combo
+  var pageCombo = 1;
+  var limitCombo =  4;
+  var offsetCombo = 0;
+  var nameCombo = "";
+  var nameSimpleCombo = "";
+
+  var objQueryCombo = {
+    Name: nameCombo,
+    NameSimple: nameSimpleCombo
+  };
 
   // Lấy dữ liệu nhãn hiệu
   var dataBrands = brandModel.allBrand();
 
   // Lấy dữ liệu sản phẩm
-  var dataProducts = productModel.pageallProductFilter(limit, offset, objQuery);
+  var dataProducts = productModel.pageallProductFilter(limitSimple, offsetSimple, objQuerySimple);
 
   // Lấy dữ liệu sản phẩm combo
-  var dataProductCombos = productComboModel.allProductCombos();
+  var dataProductCombos = productComboModel.pageAllProductComboFilter(limitCombo, offsetCombo, objQueryCombo);
 
   // Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
@@ -92,7 +108,9 @@ module.exports.productShow = function (req, res, next) {
     categoryID
   );
 
-  var numberPage = productModel.quantityProductActive(objQuery);
+  var numberPageSimple = productModel.quantityProductActive(objQuerySimple);
+
+  var numberPageCombo = productComboModel.quantityProductComboActive(objQueryCombo);
 
   Promise.all([
     dataBrands,
@@ -100,41 +118,74 @@ module.exports.productShow = function (req, res, next) {
     dataProductCombos,
     dataCategories,
     dataSubCategories,
-    numberPage
+    numberPageSimple,
+    numberPageCombo
   ])
     .then(values => {
       res.locals.sidebar[4].active = true;
 
-      var total = values[5][0].QUANTITY;
-      var nPages = Math.floor(total / limit);
-      if (total % limit > 0) nPages++;
+      // simple
+      var totalSimple = values[5][0].QUANTITY;
+      var nPagesSimple = Math.floor(totalSimple / limitSimple);
+      if (totalSimple % limitSimple > 0) nPagesSimple++;
 
-      //Chỉ hiện tối đa 5 trang
-      var pages = createArrPage(nPages, page);
+      var pagesSimple = createArrPage(nPagesSimple, pageSimple);
 
-      var prePage = {
+      var prePageSimple = {
         value: 0,
         active: false
       };
-      if (page > 1) {
-        prePage.value = page - 1
-        prePage.active = true;
+      if (pageSimple > 1) {
+        prePageSimple.value = pageSimple - 1
+        prePageSimple.active = true;
       } else {
-        prePage.value = 0
-        prePage.active = false;
+        prePageSimple.value = 0
+        prePageSimple.active = false;
       }
 
-      var nextPage = {
+      var nextPageSimple = {
         value: 0,
         active: false
       }
 
-      if (page < nPages) {
-        nextPage.value = parseInt(page) + 1
-        nextPage.active = true;
+      if (pageSimple < nPagesSimple) {
+        nextPageSimple.value = parseInt(pageSimple) + 1
+        nextPageSimple.active = true;
       } else {
-        nextPage.value = 0
-        nextPage.active = false;
+        nextPageSimple.value = 0
+        nextPageSimple.active = false;
+      }
+
+      // combo
+      var totalCombo = values[6][0].QUANTITY;
+      var nPagesCombo = Math.floor(totalCombo / limitCombo);
+      if (totalCombo % limitCombo > 0) nPagesCombo++;
+
+      var pagesCombo = createArrPage(nPagesCombo, pageCombo);
+
+      var prePageCombo = {
+        value: 0,
+        active: false
+      };
+      if (pageCombo > 1) {
+        prePageCombo.value = pageCombo - 1
+        prePageCombo.active = true;
+      } else {
+        prePageCombo.value = 0
+        prePageCombo.active = false;
+      }
+
+      var nextPageCombo = {
+        value: 0,
+        active: false
+      }
+
+      if (pageCombo < nPagesCombo) {
+        nextPageCombo.value = parseInt(pageCombo) + 1
+        nextPageCombo.active = true;
+      } else {
+        nextPageCombo.value = 0
+        nextPageCombo.active = false;
       }
 
       //Truyền vào trong UI
@@ -145,15 +196,187 @@ module.exports.productShow = function (req, res, next) {
         productCombos: values[2],
         categories: values[3],
         subCategories: values[4],
-        pages: pages,
-        prePage: prePage,
-        nextPage: nextPage,
-        categoryID: categoryID,
-        subCategoryID: subCategoryID,
-        brandID: brandID,
+        pagesSimple: pagesSimple,
+        pagesCombo: pagesCombo,
+        prePageSimple: prePageSimple,
+        nextPageSimple: nextPageSimple,
+        prePageCombo: prePageCombo,
+        nextPageCombo: nextPageCombo,
+        categoryIDSimple: categoryID,
+        subCategoryIDSimple: subCategoryID,
+        brandIDSimple: brandID,
+        nameSimple: nameSimple,
+        nameCombo: nameCombo,
+        nameSimpleCombo: nameSimpleCombo,
         helpers: {
           isSelected: selectedHelper.isSelected,
-          createQuery: createQuery.createQuery
+          createQuerySimple: createQuery.createQuerySimple,
+          createQueryCombo: createQuery.createQueryCombo
+        }
+      });
+    })
+    .catch(next);
+};
+
+// Thêm dữ liệu vào trang product
+module.exports.productShowCombo = function(req, res, next) {
+  // combo
+  var pageCombo = req.query.page || 1;
+  var limitCombo = req.query.limit || 4;
+
+  var name = req.query.name || "";
+  var nameSimpleCombo = req.query.nameSimple || "";
+
+  var objQueryCombo = {
+    Name: name,
+    NameSimple: nameSimpleCombo
+  };
+
+  if (pageCombo < 1) {
+    pageCombo = 1;
+  }
+
+  if (pageCombo < 1) {
+    limitCombo = 4;
+  }
+
+  var offsetCombo = (pageCombo - 1) * limitCombo;
+
+  // simple
+  var pageSimple = 1;
+  var limitSimple =  4;
+  var offsetSimple = 0;
+  var categoryID = 0;
+  var subCategoryID = 0;
+  var brandID = 0;
+  var nameSimple = "";
+
+  var objQuerySimple = {
+    catID: categoryID,
+    subCatID: subCategoryID,
+    BrandID: brandID,
+    Name: nameSimple
+  };
+
+  // Lấy dữ liệu nhãn hiệu
+  var dataBrands = brandModel.allBrand();
+
+  // Lấy dữ liệu sản phẩm
+  var dataProducts = productModel.pageallProductFilter(limitSimple, offsetSimple, objQuerySimple);
+
+  // Lấy dữ liệu sản phẩm combo
+  var dataProductCombos = productComboModel.pageAllProductComboFilter(limitCombo, offsetCombo, objQueryCombo);
+
+  // Lấy dữ liệu category
+  var dataCategories = categoryModel.allCategory();
+
+  // Lấy dữ liệu sub category
+  var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(0);
+
+  var numberPageCombo = productComboModel.quantityProductComboActive(objQueryCombo);
+
+  var numberPageSimple = productModel.quantityProductActive(objQuerySimple);
+
+  Promise.all([
+    dataBrands,
+    dataProducts,
+    dataProductCombos,
+    dataCategories,
+    dataSubCategories,
+    numberPageCombo,
+    numberPageSimple
+  ])
+    .then(values => {
+      res.locals.sidebar[4].active = true;
+
+       // combo
+       var totalCombo = values[5][0].QUANTITY;
+       var nPagesCombo = Math.floor(totalCombo / limitCombo);
+       if (totalCombo % limitCombo > 0) nPagesCombo++;
+ 
+       var pagesCombo = createArrPage(nPagesCombo, pageCombo);
+ 
+       var prePageCombo = {
+         value: 0,
+         active: false
+       };
+       if (pageCombo > 1) {
+         prePageCombo.value = pageCombo - 1
+         prePageCombo.active = true;
+       } else {
+         prePageCombo.value = 0
+         prePageCombo.active = false;
+       }
+ 
+       var nextPageCombo = {
+         value: 0,
+         active: false
+       }
+ 
+       if (pageCombo < nPagesCombo) {
+         nextPageCombo.value = parseInt(pageCombo) + 1
+         nextPageCombo.active = true;
+       } else {
+         nextPageCombo.value = 0
+         nextPageCombo.active = false;
+       }
+
+      // simple
+      var totalSimple = values[6][0].QUANTITY;
+      var nPagesSimple = Math.floor(totalSimple / limitSimple);
+      if (totalSimple % limitSimple > 0) nPagesSimple++;
+
+      var pagesSimple = createArrPage(nPagesSimple, pageSimple);
+
+      var prePageSimple = {
+        value: 0,
+        active: false
+      };
+      if (pageSimple > 1) {
+        prePageSimple.value = pageSimple - 1
+        prePageSimple.active = true;
+      } else {
+        prePageSimple.value = 0
+        prePageSimple.active = false;
+      }
+
+      var nextPageSimple = {
+        value: 0,
+        active: false
+      }
+
+      if (pageSimple < nPagesSimple) {
+        nextPageSimple.value = parseInt(pageSimple) + 1
+        nextPageSimple.active = true;
+      } else {
+        nextPageSimple.value = 0
+        nextPageSimple.active = false;
+      }
+
+      //Truyền vào trong UI
+      res.render("admin/product-show", {
+        layout: "main-admin.hbs",
+        brands: values[0],
+        products: values[1],
+        productCombos: values[2],
+        categories: values[3],
+        subCategories: values[4],
+        pagesCombo: pagesCombo,
+        pagesSimple: pagesSimple,
+        prePageSimple: prePageSimple,
+        nextPageSimple: nextPageSimple,
+        prePageCombo: prePageCombo,
+        nextPageCombo: nextPageCombo,
+        categoryIDSimple: categoryID,
+        subCategoryIDSimple: subCategoryID,
+        brandIDSimple: brandID,
+        nameSimple: nameSimple,
+        nameCombo: name,
+        nameSimpleCombo: nameSimpleCombo,
+        helpers: {
+          isSelected: selectedHelper.isSelected,
+          createQueryCombo: createQuery.createQueryCombo,
+          createQuerySimple: createQuery.createQuerySimple
         }
       });
     })

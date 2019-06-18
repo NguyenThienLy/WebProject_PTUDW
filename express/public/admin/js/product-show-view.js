@@ -1,11 +1,27 @@
-
 $(function() {
-  $("#switchType").prop("checked", false);
+  if (getProductTypeFromUrl() === 0) {
+    $("#switchType").prop("checked", false);
 
-  $("#labelType").html("Sản phẩm thường");
-  $("#product-simple-content").show();
-  $("#product-combo-content").hide();
+    $("#labelType").html("Sản phẩm thường");
+    $("#product-simple-content").show();
+    $("#product-combo-content").hide();
+  } else {
+    $("#switchType").prop("checked", true);
+
+    $("#labelType").html("Sản phẩm combo");
+    $("#product-combo-content").show();
+    $("#product-simple-content").hide();
+  }
 });
+
+function getProductTypeFromUrl() {
+  var url = window.location.href;
+  var isSimple = url
+    .substring(url.lastIndexOf("/") + 1)
+    .indexOf("product-show-simple");
+
+  return isSimple;
+}
 
 $("#switchType").on("change", function() {
   if (this.checked) {
@@ -79,30 +95,68 @@ function reloadSubCategory(data) {
 }
 
 //Tìm kiếm
-$("#btn_search").click(function () {
-    var selectedCategory = $("#selectProductType").children("option:selected").val();
-    var selectedSubCategory = $("#SubCategory").children("option:selected").val();
-    var selectedBrand = $("#Brand").children("option:selected").val();
+$("#btn_search_simple").click(function() {
+  var selectedCategory = $("#CategorySimple")
+    .children("option:selected")
+    .val();
+  var selectedSubCategory = $("#SubCategorySimple")
+    .children("option:selected")
+    .val();
+  var selectedBrand = $("#BrandSimple")
+    .children("option:selected")
+    .val();
+  var inputName = $("#NameSimple").val();
 
-    var query = CreateQuery(selectedCategory,selectedSubCategory,selectedBrand);
-    var base_url = location.protocol + "//" + document.domain + ":" + location.port;
-    if(query!=""){
-        //Chuyển trang
-        window.location = base_url+`/admin/product/product-show?${query}`;
-    }
-    else{
-        window.location = base_url+`/admin/product/product-show`;
-    }
+  var query = CreateQuerySimple(
+    selectedCategory,
+    selectedSubCategory,
+    selectedBrand,
+    inputName
+  );
+  var base_url =
+    location.protocol + "//" + document.domain + ":" + location.port;
+  if (query != "") {
+    //Chuyển trang
+    window.location = base_url + `/admin/product/product-show-simple?${query}`;
+  } else {
+    window.location = base_url + `/admin/product/product-show-simple`;
+  }
 });
 
-function CreateQuery(catID, subCatID, brandID) {
-    var data = {
-        'catid': catID,
-        'subcatid': subCatID,
-        'brandid': brandID
-    };
+function CreateQuerySimple(catID, subCatID, brandID, name) {
+  var data = {
+    catId: catID,
+    subCatId: subCatID,
+    brandId: brandID,
+    name: name
+  };
 
-    return encodeQueryData(data);
+  return encodeQueryData(data);
+}
+
+//Tìm kiếm
+$("#btn_search_combo").click(function() {
+  var inputName = $("#product_combo_name").val();
+  var inputSimpleName = $("#product_simple_name").val();
+
+  var query = CreateQueryCombo(inputName, inputSimpleName);
+  var base_url =
+    location.protocol + "//" + document.domain + ":" + location.port;
+  if (query != "") {
+    //Chuyển trang
+    window.location = base_url + `/admin/product/product-show-combo?${query}`;
+  } else {
+    window.location = base_url + `/admin/product/product-show-combo`;
+  }
+});
+
+function CreateQueryCombo(name, nameSimple) {
+  var data = {
+    name: name,
+    nameSimple: nameSimple
+  };
+
+  return encodeQueryData(data);
 }
 
 function encodeQueryData(data) {
