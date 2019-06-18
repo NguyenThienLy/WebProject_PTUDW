@@ -205,7 +205,7 @@ $(document).ready(function() {
             <p class="text-center">Đang chuyển hướng <strong id="strongRediectPage"></strong></p>
           `;
 
-            updateModel(contentModel, 3, 3000, "/customer/order/show-order-info/");
+            updateModel(contentModel, 3, 3000, "/customer/order/order-info-show/");
           } else {
             var contentModel = `
             <p>Đơn hàng <strong>thất bại</strong>, cảm ơn quí khách!!!</p>

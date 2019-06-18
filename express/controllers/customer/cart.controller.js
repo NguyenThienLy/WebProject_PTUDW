@@ -552,7 +552,8 @@ module.exports.checkRealQuantityProduct = function(req, res, next) {
                       CUSTOMERID: customerId,
                       CREATED: created,
                       TOTALMONEY: totalMoney,
-                      STATUS: 1
+                      STATUS: 1,
+                      ORDERSTATUSID: 1
                     };
 
                     orderInfoModel.addOrderInfo(order_info).then(successAdd => {

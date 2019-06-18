@@ -198,6 +198,8 @@
 
     <div class="row mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center w-100">
+
+            {{#if quantityProduct}}
             <div id="divTotalMoney" class="d-flex align-items-center justify-content-center">
                 <h3 class="mb-0">Thành tiền:</h3>
 
@@ -206,17 +208,20 @@
                     <h1 class="d-inline"><u>đ</u></h1>
                 </div>
             </div>
-
+            {{else}}
             <h1 id="h1EmptyCartDetail" class="text-info"><i class="fab fa-opencart fa-5x"></i></h1>
+            {{/if}}
 
             <div class="d-flex align-items-center justify-content-center mt-3">
                 <a class="d-block btn btn-outline-info btn-lg" href="/customer/product/product-all-show">
                     Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
                 </a>
 
+                {{#if quantityProduct}}
                 <a id="aOrderNow" href="javacript:void(0);" class="ml-5 d-block btn btn-outline-success btn-lg">
                     Tiến hành đặt hàng&ensp;<i class="fas fa-dollar-sign"></i>
                 </a>
+                {{/if}}
             </div>
         </div>
     </div>
