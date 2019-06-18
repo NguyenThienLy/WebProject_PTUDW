@@ -239,6 +239,11 @@
         </div>
         {{!-- Các loại sắp xếp của product --}}
 
+        <div class="row justify-content-start mt-4">
+            <h5 class="text-secondary">Số lượng Kết quả: <b id="bQuantityInCartDetail">{{quantityProduct}}</b> sp
+            </h5>
+        </div>
+
         {{!-- product simple --}}
         {{#if isShowSimple}}
         <div class="row mt-5" id="containProductSimple">
@@ -259,7 +264,7 @@
                         {{!-- Nếu có giảm giá mới hiện ra --}}
 
                         <img src="{{IMAGE}}" class="rounded-top w-100 h-100" id-product-to-cart="productSimple{{ID}}"
-                         alt="">
+                            alt="">
                         <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
                             <a id-product-to-cart="productSimple{{ID}}" id="aAddProductSimple" id-product-simple={{ID}}
                                 class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
@@ -347,12 +352,12 @@
                             {{/if}}
                             {{!-- Nếu đang giảm giá mới hiện ra --}}
 
-                            <img id-product-to-cart-src-1="productCombo{{ID}}" class="image-product-1" 
-                                src="{{IMAGE1}}" alt="" />
-                            <img id-product-to-cart-src-2="productCombo{{ID}}" class="image-product-2" 
-                                src="{{IMAGE2}}" alt="" />
-                            <img id-product-to-cart-src-3="productCombo{{ID}}" class="image-product-3"
-                                src="{{IMAGE3}}" alt="" />
+                            <img id-product-to-cart-src-1="productCombo{{ID}}" class="image-product-1" src="{{IMAGE1}}"
+                                alt="" />
+                            <img id-product-to-cart-src-2="productCombo{{ID}}" class="image-product-2" src="{{IMAGE2}}"
+                                alt="" />
+                            <img id-product-to-cart-src-3="productCombo{{ID}}" class="image-product-3" src="{{IMAGE3}}"
+                                alt="" />
                         </div>
                         <div
                             class="overlay d-flex justify-content-center align-items-end position-absolute h-100 w-100">
