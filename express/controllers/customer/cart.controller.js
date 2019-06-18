@@ -1,9 +1,15 @@
+var moment = require("moment");
+
 // Gọi sessionCartModel
 var sessionCartModel = require("../../models/session_cart.model");
 // Gọi productModel
 var productModel = require("../../models/product.model");
 // Gọi productComboModel
 var productComboModel = require("../../models/product_combo.model");
+// Gọi orderInfoModel
+var orderInfoModel = require("../../models/order_info.model");
+// Gọi orderDetailModel
+var orderDetailModel = require("../../models/order_detail.model");
 
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
@@ -199,7 +205,7 @@ module.exports.checkProductInCart = function(req, res, next) {
                   sessionCart.PRODUCT_ID == session_cart.PRODUCT_ID &&
                   sessionCart.ID == session_cart.ID
               );
-              
+
               // Thêm mới sản phẩm trong giỏ hàng
               if (index === -1) {
                 if (+inventory[0].INVENTORY < currQuantity) {
@@ -389,6 +395,181 @@ module.exports.updateQuantityProductInCart = function(req, res, next) {
         });
     }
   } catch (error) {
+    next(error);
+  }
+};
+
+async function updateQuantitySessionCartForProductSimple(
+  arrSessionCart,
+  sessionId
+) {
+  var isUpdate = false;
+
+  for (sessioncart of arrSessionCart) {
+    if (+sessioncart.SESSION_CART_QUANTITY > +sessioncart.PRODUCT_QUANTITY) {
+      isUpdate = true;
+
+      var session_cart = {
+        ID: sessionId,
+        PRODUCT_ID: sessioncart.PRODUCT_ID,
+        PRODUCT_COMBO_ID: 0,
+        QUANTITY: +sessioncart.PRODUCT_QUANTITY,
+        IS_LOGIN: 0
+      };
+
+      if (+sessioncart.PRODUCT_QUANTITY === 0)
+        await sessionCartModel.deleteFollow3PrimaryKey(session_cart);
+      else await sessionCartModel.update3PrimaryKey(session_cart);
+    }
+  }
+
+  return isUpdate;
+}
+
+async function updateQuantitySessionCartForProductCombo(
+  arrSessionCart,
+  sessionId
+) {
+  var isUpdate = false;
+
+  for (sessioncart of arrSessionCart) {
+    if (+sessioncart.SESSION_CART_QUANTITY > +sessioncart.PRODUCT_QUANTITY) {
+      isUpdate = true;
+
+      var session_cart = {
+        ID: sessionId,
+        PRODUCT_ID: 0,
+        PRODUCT_COMBO_ID: sessioncart.PRODUCT_ID,
+        QUANTITY: +sessioncart.PRODUCT_QUANTITY,
+        IS_LOGIN: 0
+      };
+
+      if (+sessioncart.PRODUCT_QUANTITY === 0)
+        await sessionCartModel.deleteFollow3PrimaryKey(session_cart);
+      else await sessionCartModel.update3PrimaryKey(session_cart);
+    }
+  }
+
+  return isUpdate;
+}
+
+async function addOrderDetailProductSimple(
+  arrSessionProductSimple,
+  orderInfoId
+) {
+  for (sessioncart of arrSessionProductSimple) {
+    var orderDetail = {
+      ORDERINFOID: orderInfoId,
+      PRODUCTID: sessioncart.ID,
+      QUANTITY: sessioncart.QUANTITY_PRO,
+      TOTALMONEY: +sessioncart.QUANTITY_PRO * +sessioncart.SALEPRICE,
+      ISSIMPLE: 1
+    };
+    console.log("TCL: orderDetail", orderDetail);
+    await orderDetailModel.addOrderDetail(orderDetail);
+  }
+}
+
+async function addOrderDetailProductCombo(arrSessionProductCombo, orderInfoId) {
+  for (sessioncart of arrSessionProductCombo) {
+    var orderDetail = {
+      ORDERINFOID: orderInfoId,
+      PRODUCTID: sessioncart.ID,
+      QUANTITY: sessioncart.QUANTITY_PRO,
+      TOTALMONEY: +sessioncart.QUANTITY_PRO * +sessioncart.SALEPRICE,
+      ISSIMPLE: 0
+    };
+    await orderDetailModel.addOrderDetail(orderDetail);
+  }
+}
+
+// Kiểm tra số lượng sản phẩm
+module.exports.checkRealQuantityProduct = function(req, res, next) {
+  try {
+    // Lấy ID signed cookies combo
+    var sessionId = req.signedCookies.sessionId;
+    // Lấy user hiện tại
+    var customerId = res.locals.authUser.ID;
+
+    sessionCartModel
+      .allSessionCartProductSimpleFollowSessionId(sessionId)
+      .then(session_product_simple => {
+        sessionCartModel
+          .allSessionCartProductCompoFollowSessionId(sessionId)
+          .then(session_product_combo => {
+            updateQuantitySessionCartForProductSimple(
+              session_product_simple,
+              sessionId
+            ).then(resultSimple => {
+              updateQuantitySessionCartForProductCombo(
+                session_product_combo,
+                sessionId
+              ).then(resultCombo => {
+                // console.log("TCL: module.exports.checkRealQuantityProduct -> resultSimple", resultSimple)
+
+                // console.log("TCL: module.exports.checkRealQuantityProduct -> resultCombo", resultCombo)
+                if (resultSimple === true || resultCombo === true) {
+                  res.send("isChange");
+                } else {
+                  Promise.all([
+                    sessionCartModel.allRowProductSimpleFollowID(sessionId),
+                    sessionCartModel.allRowProductComboFollowID(sessionId)
+                  ]).then(values => {
+                    var totalMoney = 0;
+
+                    // Tổng tiền simple
+                    for (productSimple of values[0]) {
+                      totalMoney +=
+                        +productSimple.SALEPRICE * +productSimple.QUANTITY_PRO;
+                    }
+
+                    // Tổng tiền combo
+                    for (productCombo of values[1]) {
+                      totalMoney +=
+                        +productCombo.SALEPRICE * +productCombo.QUANTITY_PRO;
+                    }
+
+                    var created = moment().format("YYYY-MM-DD HH:mm:ss");
+                    //console.log("TCL: module.exports.checkRealQuantityProduct -> created", created)
+
+                    var order_info = {
+                      ID: null,
+                      CUSTOMERID: customerId,
+                      CREATED: created,
+                      TOTALMONEY: totalMoney,
+                      STATUS: 1
+                    };
+
+                    orderInfoModel.addOrderInfo(order_info).then(successAdd => {
+                      orderInfoModel
+                        .getIdFollowObjectOrderInfo(order_info)
+                        .then(idOrderInfo => {
+                          var id = idOrderInfo[0].ID;
+                          //console.log("TCL: module.exports.checkRealQuantityProduct -> id", id)
+
+                          addOrderDetailProductSimple(values[0], id).then(
+                            resultSimple => {
+                              addOrderDetailProductCombo(values[1], id).then(
+                                resultCombo => {
+                                  sessionCartModel
+                                    .deleteSessionIdFollowId(sessionId)
+                                    .then(successDelete => {
+                                      res.send("success");
+                                    });
+                                }
+                              );
+                            }
+                          );
+                        });
+                    });
+                  });
+                }
+              });
+            });
+          });
+      });
+  } catch (error) {
+    res.send("fail");
     next(error);
   }
 };

@@ -44,11 +44,11 @@ module.exports.allOrderInfoByCustomerId = customerId => {
   return db.load(`SELECT * FROM order_info WHERE CUSTOMERID = '${customerId}'`);
 };
 
-// Hàm thêm mới đơn hàng
-module.exports.addOrderInfo = orderInfo => {
-  orderInfo.CREATED = getDateTimeNow();
-  return db.add("order_info", orderInfo);
-};
+// // Hàm thêm mới đơn hàng
+// module.exports.addOrderInfo = orderInfo => {
+//   orderInfo.CREATED = getDateTimeNow();
+//   return db.add("order_info", orderInfo);
+// };
 
 //Hàm cập nhật đơn hàng
 module.exports.updateOrderInfo = orderInfo => {
@@ -64,6 +64,39 @@ module.exports.deleteOrderInfoById = orderInfo => {
 module.exports.deleteOrderInfo = orderInfo => {
   return db.update("order_info", "CUSTOMERID", orderInfo);
 };
+
+//Hàm trả về thời gian hiện tại
+function getDateNow(){
+  var today = new Date();
+  var dd = today.getDate();
+
+  var mm = today.getMonth() + 1;
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+      dd = '0' + dd;
+  }
+
+  if (mm < 10) {
+      mm = '0' + mm;
+  }
+  today = yyyy + '-' + mm + '-' + dd;
+  return today;
+}
+
+// Thên một đơn hàng mới
+module.exports.addOrderInfo = orderInfo => {
+  return db.add("order_info", orderInfo);
+}
+
+// Lấy ra id vừa được thêm vào cơ sở dữ liệu
+module.exports.getIdFollowObjectOrderInfo = orderInfo => {
+  return db.load(`
+  SELECT ID 
+  FROM order_info
+  WHERE CUSTOMERID = ${orderInfo.CUSTOMERID} AND CREATED = '${orderInfo.CREATED}'
+  AND TOTALMONEY = ${orderInfo.TOTALMONEY} AND STATUS = ${orderInfo.STATUS}
+  LIMIT 1
+  `);
 
 //Hàm trả về thời gian hiện tại
 function getDateTimeNow() {

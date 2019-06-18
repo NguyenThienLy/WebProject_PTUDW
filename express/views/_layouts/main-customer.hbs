@@ -51,33 +51,48 @@
     <div class="bg-over-lay"></div>
 
     <div class="component-sidebar-menu">
-        <div id="mySidenav" class="side-bar">
+        <div id="mySidenav" class="side-bar style-scrollbar">
             <div class="top-menu"><span class="logo"></span></div>
             <ul class="main-menu">
                 <li><a href="#">Giới thiệu</a></li>
                 <li><a href="" id="side-bar-open-header-user-modal" data-toggle="modal"
                         data-target="#header-user-modal">Đăng nhập</a></li>
                 <li class="position-relative">
-                    <a href="product-show.html">Sản phẩm</a>
+                    <a>Sản phẩm</a>
                     <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
-
                     <ul class="dropdown-container transform">
-                        <li class="position-relative">
-                            <a href="product-show.html">Rau củ</a>
-                            <i id="sub-dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
-                            <ul class="dropdown-container list-unstyled sub-transform">
-                                <li><a href="product-show.html">Rau củ 1</a> </li>
-                                <li><a href="product-show.html">Rau củ 2</a></li>
-                                <li><a href="product-show.html">Rau củ 3</a></li>
-                            </ul>
+                        {{#each lcCategories}}
+                        {{!-- Nếu category ko có sản phẩm nào --}}
+                        {{#if QUANTITYCAT}}
+                        <li><a href="/customer/product/product-show/{{IDCAT}}/0">
+                                {{NAMECAT}}
+                                <span class="badge ml-1 badge-success badge-pill">{{QUANTITYCAT}}</span>
+                            </a>
                         </li>
-                        <li><a href="product-show.html">Hoa quả</a></li>
-                        <li><a href="product-show.html">Các loại hạt</a></li>
+                        {{!-- Nếu category ko có sản phẩm nào --}}
+                        {{else}}
+                        <li>
+                            <a class="disabled">
+                                {{NAMECAT}}
+                            </a>
+                        </li>
+                        {{/if}}
+                        {{!-- Nếu category ko có sản phẩm nào --}}
+                        {{/each}}
+
+                        <li> <a href="/customer/product/product-combo-show">Combo
+                                <span class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductCombo}}</span>
+                            </a>
+                        </li>
+                        <li> <a href="/customer/product/product-all-show">Tất cả
+                                <span class="badge ml-1 badge-success badge-pill">{{lcSumQuantityProductAll}}</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
-
-                <li><a href="info-show.html">Tin tức</a></li>
-                <li><a href="404-not-found.html">Tags</a></li>
+                <li><a href="/customer/info/show-info">Tin tức</a></li>
+                <li><a href="/customer/info/tag/0">Tags</a></li>
             </ul>
         </div>
     </div>
@@ -906,6 +921,7 @@
                                 {{#is3ThLogin this.typeLogin}}
 
 
+
                                     {{else}}
                                 <p class="nav-item nav-link ml-3" id="header-edit-password-modal-nav-tab" data-toggle="tab"
                                     href="#header-edit-password-modal-nav" role="tab"
@@ -1031,6 +1047,7 @@
                             </div>
 
                             {{#is3ThLogin this.typeLogin}}
+
                                 {{else}}
                             <div class="tab-pane fade" id="header-edit-password-modal-nav" role="tabpanel"
                                 aria-labelledby="header-edit-password-modal-nav-tab">
@@ -1129,7 +1146,9 @@
                 </div>
                 <div class="modal-body">
 
+
                     Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!!!
+
 
                 </div>
                 <div class="modal-footer">

@@ -21,5 +21,8 @@ router.post('/remove-product-in-cart', controller.removeProductInCart);
 // Cập nhật số lượng sản phẩm trong giỏ hàng
 router.post('/update-quantity-product-in-cart', controller.updateQuantityProductInCart);
 
+// Kiểm tra xem các mặt hàng và số lượng tại cart detail và cập nhật lại
+router.post('/check-real-quantity-product', controller.checkRealQuantityProduct);
+
 module.exports = router;
 

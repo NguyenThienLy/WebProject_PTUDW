@@ -28,8 +28,8 @@ const bucket = gcs.bucket(bucketName);
 module.exports.postRegister = (req, res, next) => {
   var saltRounds = 10;
   var hash = bcrypt.hashSync(req.body.PASSWORD, saltRounds);
-  console.log(req.body.PASSWORD);
-  console.log(hash);
+  // console.log(req.body.PASSWORD);
+  // console.log(hash);
   var dob = moment(req.body.BIRTHDATE, "DD/MM/YYYY").format("YYYY-MM-DD");
   var avatar =
     "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
@@ -178,17 +178,17 @@ module.exports.SendMail = (req, res, next) => {
           //Cập nhật token và thời gian hết hạn cho người dùng
           var lastime = Date.now() + 3600000;
           var stringdate = new Date(lastime);
-          console.log(stringdate);
+        //  console.log(stringdate);
           //format qua mysql
           var mysqlDatetime = moment(stringdate, 'YYYY-MM-DD hh:mm:ss').format('YYYY-MM-DD hh:mm:ss');
 
-          console.log(mysqlDatetime);
+        //  console.log(mysqlDatetime);
           var updateToken = {
             ID: IDuser,
             RESETPASSWORDTOKEN: token,
             RESETPASSWORDEXPIRES: mysqlDatetime
           };
-          console.log('tao xong token')
+        //  console.log('tao xong token')
           customerModel.updateInfoCustomer(updateToken).then(rows => {
             //Tạo mới tài khoản để gửi mail
             var transporter = nodemailer.createTransport({

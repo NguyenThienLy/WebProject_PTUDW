@@ -3,6 +3,7 @@ var customerProductRoute = require("../../routes/customer/product.route");
 var customerInfoRoute = require("../../routes/customer/info.route");
 var customerCartRoute = require("../../routes/customer/cart.route");
 var customerAuthRoute = require("../../routes/customer/auth.route");
+var customerOrderRoute = require("../../routes/customer/order.route");
 
 var customerCategoryMiddleware = require("../../middlewares/customer/category.middleware");
 var customerSessionMiddleware = require("../../middlewares/customer/session.middleware");
@@ -41,11 +42,20 @@ module.exports = function(app) {
     customerShowFastCartMiddleware,
     customerInfoRoute
   );
+
   app.use(
     "/customer/cart",
     customerSessionMiddleware,
     customerCategoryMiddleware,
     customerShowFastCartMiddleware,
     customerCartRoute
+  );
+
+  app.use(
+    "/customer/order",
+    customerSessionMiddleware,
+    customerCategoryMiddleware,
+    customerShowFastCartMiddleware,
+    customerOrderRoute
   );
 };
