@@ -75,23 +75,23 @@ $(".post_delete_combo").click(function() {
 });
 
 $("#CategorySimple").on("change", function () {
-    var base_url =
-        location.protocol + "//" + document.domain + ":" + location.port;
-    $.post(
-        base_url + "/admin/product/load-subcategory",
-        { CategoryID: this.value },
-        function (data) {
-            reloadSubCategory(JSON.parse(data));
-        }
-    );
+  var base_url =
+      location.protocol + "//" + document.domain + ":" + location.port;
+  $.post(
+      base_url + "/admin/product/load-subcategory",
+      { CategoryID: this.value },
+      function (data) {
+          reloadSubCategory(JSON.parse(data));
+      }
+  );
 });
 
 function reloadSubCategory(data) {
-    var option = `<option value="0">Tất cả</option>`;
-    for (var i = 0; i < data.length; i++) {
-        option += `<option value="${data[i].ID}">${data[i].NAME}</option>`;
-    }
-    $("#SubCategorySimple").html(option);
+  var option = `<option value="0">Tất cả</option>`;
+  for (var i = 0; i < data.length; i++) {
+      option += `<option value="${data[i].ID}">${data[i].NAME}</option>`;
+  }
+  $("#SubCategorySimple").html(option);
 }
 
 //Tìm kiếm

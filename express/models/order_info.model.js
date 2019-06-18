@@ -11,10 +11,33 @@ module.exports.checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct = (p
   );
 };
 
+//Lấy ra số lượng đơn hàng trong ngày
+module.exports.orderQuantityInDay =(date)=>{
+  return db.load(
+    `SELECT COUNT(ID) AS ORDER_QUANTITY FROM order_info WHERE DATE(CREATED) ='${date}'`
+  );
+}
+
+//Lấy ra tổng danh thu trong ngày
+module.exports.TotalMoneyInDay =(date)=>{
+  return db.load(
+    `SELECT SUM(TOTALMONEY) AS TOTALMONEY FROM order_info WHERE DATE(CREATED) ='${date}' AND ORDERSTATUSID = 3`
+  );
+}
+
 // hàm lấy ra số lượng customers
 module.exports.ordersQuantity = () => {
   return db.load(
     `SELECT COUNT(ID) AS ORDER_QUANTITY FROM order_info WHERE STATUS = 1`
+  );
+};
+
+//Hàm lấy ra doanh thu trong tháng và năm
+module.exports.ChartMoneyInMonth = (date) => {
+  return db.load(
+    `SELECT DAY(CREATED) AS DATE,SUM(TOTALMONEY) AS TOTALMONEY FROM order_info 
+    WHERE MONTH(CREATED) = MONTH('${date}') AND YEAR(CREATED) = YEAR('${date}') AND ORDERSTATUSID = 3
+    GROUP BY DATE(CREATED)`
   );
 };
 
@@ -37,6 +60,18 @@ module.exports.allOrderInfo = () => {
     ON order_info.CUSTOMERID = customer.ID AND order_info.ORDERSTATUSID = order_status.ID
     WHERE order_info.STATUS = 1
     ORDER BY order_info.CREATED DESC`
+  );
+};
+
+module.exports.Nearest5OrderInfo = () => {
+  return db.load(
+    `SELECT order_info.ID, order_info.CUSTOMERID, customer.FULLNAME AS CUSTOMERNAME, 
+    DATE_FORMAT(order_info.CREATED, '%d-%m-%Y %H:%i:%s') AS CREATED,
+    order_info.TOTALMONEY, order_info.ORDERSTATUSID, order_status.NAME AS ORDERSTATUSNAME
+    FROM order_info JOIN customer JOIN order_status 
+    ON order_info.CUSTOMERID = customer.ID AND order_info.ORDERSTATUSID = order_status.ID
+    WHERE order_info.STATUS = 1
+    ORDER BY order_info.CREATED DESC LIMIT 5`
   );
 };
 
@@ -149,7 +184,7 @@ module.exports.getIdFollowObjectOrderInfo = orderInfo => {
   WHERE CUSTOMERID = ${orderInfo.CUSTOMERID} AND CREATED = '${orderInfo.CREATED}'
   AND TOTALMONEY = ${orderInfo.TOTALMONEY} AND STATUS = ${orderInfo.STATUS}
   LIMIT 1
-  `)};
+ `)};
 
 //Hàm trả về thời gian hiện tại
 function getDateTimeNow() {
@@ -184,3 +219,48 @@ function getDateTimeNow() {
   today = yyyy + "-" + mm + "-" + dd + " " + hh + ":" + MM + ":" + ss;
   return today;
 }
+
+// Hàm lấy ra danh sách các order info theo id customer và order status id
+module.exports.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset = (cusId, statusId, N, offset) => {
+
+  return db.load(`
+  SELECT ORDER_INFO.ID AS ID, DATE_FORMAT(ORDER_INFO.CREATED , '%m/%d/%Y %H:%i') AS CREATED, ORDER_INFO.TOTALMONEY AS TOTALMONEY,
+  ORDER_STATUS.NAME AS STATUSNAME
+  FROM order_info ORDER_INFO JOIN order_status ORDER_STATUS ON ORDER_INFO.ORDERSTATUSID = ORDER_STATUS.ID
+  WHERE ORDER_INFO.CUSTOMERID = ${cusId} AND ORDER_STATUS.ID = ${statusId}
+  ORDER BY DATE(ORDER_INFO.CREATED) DESC
+  LIMIT ${N} 
+  OFFSET ${N * offset}
+  `);
+}
+
+//Hàm lấy số lượng theo id customer và order status id
+module.exports.quantityOrderInfoFollowIdCustomerAndOrderStatusId = (cusId, statusId) => {
+  return db.load(`
+  SELECT COUNT(*) AS QUANTITY
+  FROM order_info ORDER_INFO 
+  WHERE ORDER_INFO.CUSTOMERID = ${cusId} AND ORDER_INFO.ORDERSTATUSID = ${statusId}
+  `);
+}
+
+// Hàm lấy ra tất cả các row bảng product simple theo id của info detail table
+module.exports.allRowProductSimpleFollowID = orderInfoId => {
+  return db.load(`SELECT pro.ID AS ID, pro.NAME AS NAME,
+  pro.IMAGE AS IMAGE, detail.QUANTITY AS QUANTITY, detail.TOTALMONEY AS TOTALMONEY
+  FROM product pro JOIN order_detail detail ON
+  pro.ID = detail.PRODUCTID 
+  WHERE detail.ORDERINFOID = ${orderInfoId} AND 
+  detail.ISSIMPLE = 1`);
+};
+
+// Hàm lấy ra tất cả các row bảng product simple theo id của info detail table
+module.exports.allRowProductComboFollowID = orderInfoId => {
+  return db.load(`SELECT procombo.ID AS ID, procombo.NAME AS NAME,
+  pro1.IMAGE AS IMAGE1, pro2.IMAGE AS IMAGE2,
+  pro3.IMAGE AS IMAGE3, detail.QUANTITY AS QUANTITY, detail.TOTALMONEY AS TOTALMONEY
+  FROM (product_combo procombo JOIN product pro1 JOIN product pro2 JOIN product pro3 ON procombo.PRODUCTID1 = pro1.ID 
+  AND procombo.PRODUCTID2 = pro2.ID AND procombo.PRODUCTID3 = pro3.ID) JOIN order_detail detail  
+  ON procombo.ID = detail.PRODUCTID
+  WHERE detail.ORDERINFOID = ${orderInfoId} AND
+  detail.ISSIMPLE = 0`);
+};

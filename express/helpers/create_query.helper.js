@@ -11,6 +11,7 @@ module.exports.createQuerySimple = function(catID,subCatID,brandID,name) {
     if(query !=""){
         query = `&${query}`;
     }
+    console.log(query);
     return query;
 };
 

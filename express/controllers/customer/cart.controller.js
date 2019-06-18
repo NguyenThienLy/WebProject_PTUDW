@@ -465,8 +465,15 @@ async function addOrderDetailProductSimple(
       TOTALMONEY: +sessioncart.QUANTITY_PRO * +sessioncart.SALEPRICE,
       ISSIMPLE: 1
     };
-    console.log("TCL: orderDetail", orderDetail);
+
+    var product = {
+      ID: sessioncart.ID,
+      INVENTORY: +sessioncart.INVENTORY - +sessioncart.QUANTITY_PRO
+    }
+    
     await orderDetailModel.addOrderDetail(orderDetail);
+
+    await productModel.updateInventoryProductSimple(product);
   }
 }
 
@@ -479,7 +486,15 @@ async function addOrderDetailProductCombo(arrSessionProductCombo, orderInfoId) {
       TOTALMONEY: +sessioncart.QUANTITY_PRO * +sessioncart.SALEPRICE,
       ISSIMPLE: 0
     };
+
+    var product = {
+      ID: sessioncart.ID,
+      INVENTORY: +sessioncart.INVENTORY - +sessioncart.QUANTITY_PRO
+    }
+    
     await orderDetailModel.addOrderDetail(orderDetail);
+
+    await productComboModel.updateInventoryProductCombo(product);
   }
 }
 
@@ -537,7 +552,8 @@ module.exports.checkRealQuantityProduct = function(req, res, next) {
                       CUSTOMERID: customerId,
                       CREATED: created,
                       TOTALMONEY: totalMoney,
-                      STATUS: 1
+                      STATUS: 1,
+                      ORDERSTATUSID: 1
                     };
 
                     orderInfoModel.addOrderInfo(order_info).then(successAdd => {
