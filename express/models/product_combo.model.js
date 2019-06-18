@@ -373,4 +373,9 @@ module.exports.getRateProductComboFollowProductId = id => {
   WHERE pro_cb.ID = ${id}`);
 }
 
+// hàm cập nhật thông tin product
+module.exports.updateInventoryProductCombo = product => {
+  return db.update("product_combo", "ID", product);
+};
+
 

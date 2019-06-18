@@ -922,3 +922,8 @@ module.exports.getRateProductSimpleFollowProductId = id => {
   WHERE ID = ${id}`);
 }
 
+// hàm cập nhật thông tin product
+module.exports.updateInventoryProductSimple = product => {
+  return db.update("product", "ID", product);
+};
+

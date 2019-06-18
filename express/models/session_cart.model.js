@@ -15,7 +15,7 @@ module.exports.quantityFollowID = sessionID => {
 
 // Hàm lấy ra tất cả các row bảng product simple theo id của session table
 module.exports.allRowProductSimpleFollowID = sessionID => {
-  return db.load(`SELECT pro.ID AS ID, pro.NAME AS NAME, pro.SALE AS SALE,
+  return db.load(`SELECT pro.ID AS ID, pro.NAME AS NAME, pro.SALE AS SALE, pro.INVENTORY AS INVENTORY,
   pro.IMAGE AS IMAGE, session_table.QUANTITY AS QUANTITY_PRO, pro.PRICE AS PRICE,
   (CASE WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100)) ELSE pro.PRICE END) AS SALEPRICE, 
   (pro.PRICE - pro.PRICE * (pro.SALE / 100)) * session_table.QUANTITY AS SUMPRICE
@@ -26,7 +26,7 @@ module.exports.allRowProductSimpleFollowID = sessionID => {
 
 // Hàm lấy ra tất cả các row bảng product simple theo id của session table
 module.exports.allRowProductComboFollowID = sessionID => {
-  return db.load(`SELECT procombo.ID AS ID, procombo.NAME AS NAME, procombo.SALE AS SALE,
+  return db.load(`SELECT procombo.ID AS ID, procombo.NAME AS NAME, procombo.SALE AS SALE,  procombo.INVENTORY AS INVENTORY,
   pro1.IMAGE AS IMAGE1, pro2.IMAGE AS IMAGE2,
   pro3.IMAGE AS IMAGE3, session_table.QUANTITY AS QUANTITY_PRO, procombo.PRICE AS PRICE,
   (CASE WHEN procombo.SALE > 0 THEN (procombo.PRICE - procombo.PRICE * (procombo.SALE / 100)) ELSE procombo.PRICE END) AS SALEPRICE,

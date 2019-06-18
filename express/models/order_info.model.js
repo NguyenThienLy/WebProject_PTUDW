@@ -97,6 +97,7 @@ module.exports.getIdFollowObjectOrderInfo = orderInfo => {
   AND TOTALMONEY = ${orderInfo.TOTALMONEY} AND STATUS = ${orderInfo.STATUS}
   LIMIT 1
   `);
+}
 
 //Hàm trả về thời gian hiện tại
 function getDateTimeNow() {
