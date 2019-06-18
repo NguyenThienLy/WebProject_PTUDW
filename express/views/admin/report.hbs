@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-12">
             <div class="admin-content-con d-flex justify-content-center">
-                <input id="datepicker" type="text">
+                <input value="{{this.DisplayDate}}" id="datepicker" type="text">
             </div>
         </div>
 
@@ -70,7 +70,7 @@
 
                 <div class="d-flex flex-column mt-1">
                     <span></span>
-                    <b>60</b>
+                    <b id="TotalOrders">{{this.ToltalOrders}}</b>
                     <span></span>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="badge badge-light">
-                    <h6>60</h6>
+                    <b id="TotalOrders">{{this.ToltalOrders}}</b>
                 </div>
             </div>
             <!--End Thẻ chứa lượt view trong ngày-->
@@ -100,7 +100,7 @@
 
                 <div class="d-flex flex-column mt-1">
                     <span></span>
-                    <b>5.000.000đ</b>
+                    <b id="TotalMoney">{{formatPrice this.TotalMoney}}&nbsp;<u>đ</u></b>
                     <span></span>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                 </div>
 
                 <div class="badge badge-light">
-                    <h6>5.000.000&nbsp;<u>đ</u></h6>
+                    <b id="TotalMoney">{{formatPrice this.TotalMoney}}&nbsp;<u>đ</u></b>
                 </div>
             </div>
             <!--End Thẻ chứa lượt view trong ngày-->

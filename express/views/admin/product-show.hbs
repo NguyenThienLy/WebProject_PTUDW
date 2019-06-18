@@ -152,34 +152,34 @@
                             {{#if this.prePageSimple.active}}
                             <li class="page-item">
                                 <a class="page-link" 
-                                href="?page={{this.prePageSimple.value}}{{createQuerySimple categoryIDSimple subCategoryIDSimple brandIDSimple}}" aria-label="Previous">
+                                href="/admin/product/product-show-simple?page={{this.prePageSimple.value}}{{createQuerySimple categoryIDSimple subCategoryIDSimple brandIDSimple nameSimple}}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
                             {{else}}
-
+ 
                             {{/if}}
                             {{#each this.pagesSimple}}
                             {{#if active}}
                             <li class="page-item active"><a class="page-link"
-                                    href="/admin/product/product-show-simple?page={{value}}{{createQuerySimple categoryIDSimple subCategoryIDSimple brandIDSimple}}">{{value}}</a>
+                                    href="/admin/product/product-show-simple?page={{value}}{{createQuerySimple ../categoryIDSimple ../subCategoryIDSimple ../brandIDSimple ../nameSimple}}">{{value}}</a>
                             </li>
                             {{else}}
                             <li class="page-item"><a class="page-link"
-                                    href="/admin/product/product-show-simple?page={{value}}{{createQuerySimple categoryIDSimple subCategoryIDSimple brandIDSimple}}">{{value}}</a>
+                                    href="/admin/product/product-show-simple?page={{value}}{{createQuerySimple ../categoryIDSimple ../subCategoryIDSimple ../brandIDSimple ../nameSimple}}">{{value}}</a>
                             </li>
                             {{/if}}
                             {{/each}}
                             {{#if this.nextPageSimple.active}}
                             <li class="page-item">
                                 <a class="page-link" 
-                                href="?page={{this.nextPageSimple.value}}{{createQuerySimple categoryIDSimple subCategoryIDSimple brandIDSimple}}"
+                                href="/admin/product/product-show-simple?page={{this.nextPageSimple.value}}{{createQuerySimple categoryIDSimple subCategoryIDSimple brandIDSimple nameSimple}}"
                                  aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
                             {{else}}
-
+ 
                             {{/if}}
                             
                         </ul>
