@@ -1,0 +1,109 @@
+{{#section 'css'}}
+<title>Quản lí đơn hàng</title>
+
+{{!-- order list page --}}
+<link href="/admin/css/order-info.css" rel="stylesheet" />
+{{!-- order list page --}}
+
+{{!-- responsive --}}
+<link href="/admin/css/responsive-order-info.css" rel="stylesheet" />
+{{!-- responsive --}}
+{{/section}}
+
+<!--Nội dung trang index-->
+<div id="dashboard-con">
+    <div id="content">
+        <header>
+            <h5 class="page_title mb-0">Thông tin chi tiết đơn hàng</h5>
+        </header>
+        <div class="content-inner">
+            <div class="form-wrapper">
+                <div class="container-fluid mb-3">
+                    <div id="modal_alert"></div>
+                    <div class="row ml-0 mr-0">
+                        <div class="col-3 p-0">
+                            <p>Mã đơn hàng:</p>
+                        </div>
+                        <div class="col-9" id="order_id">{{this.order.ID}}</div>
+                    </div>
+
+                    <div class="row ml-0 mr-0">
+                        <div class="col-3 p-0">
+                            <p>Khách hàng:</p>
+                        </div>
+                        <div class="col-9">{{this.order.CUSTOMERNAME}}</div>
+                    </div>
+
+                    <div class="row ml-0 mr-0">
+                        <div class="col-3 p-0">
+                            <p>Thời gian đặt:</p>
+                        </div>
+                        <div class="col-9">{{this.order.CREATED}}</div>
+                    </div>
+
+                    <div class="row ml-0 mr-0">
+                        <div class="col-3 p-0">
+                            <p>Tổng tiền:</p>
+                        </div>
+                        <div class="col-9">{{formatPrice this.order.TOTALMONEY}}&nbsp;đ</div>
+                    </div>
+
+                    <div class="row ml-0 mr-0">
+                        <div class="col-3 p-0">
+                            <p>Trạng thái:</p>
+                        </div>
+                        <div class="col-9">{{{formatStatus this.order.ORDERSTATUSID this.order.ORDERSTATUSNAME}}}</div>
+                    </div>
+
+                    <br />
+
+                    <h6 class="mb-3"><b>Chi tiết đơn hàng</b></h6>
+                    <div class="row ml-0 mr-0">
+                        <table class="table table-responsive-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Loại sản phẩm</th>
+                                    <th class="text-center" scope="col">Mã sản phẩm</th>
+                                    <th scope="col">Tên sản phẩm</th>
+                                    <th class="text-center" scope="col">Số lượng</th>
+                                    <th class="text-center" scope="col">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.orderDetails}}
+                                <tr>
+                                    <td scope="row">
+                                        {{PRODUCTTYPE}}
+                                    </td>
+                                    <td align="center" scope="row">
+                                        {{PRODUCTID}}
+                                    </td>
+                                    <td scope="row">
+                                        {{PRODUCTNAME}}
+                                    </td>
+                                    <td align="center" scope="row">
+                                        {{QUANTITY}}
+                                    </td>
+                                    <td align="center" scope="row">
+                                        {{formatPrice TOTALMONEY}}&nbsp;đ
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <a href="/admin/order/order-show" class='btn btn-primary pl-3 pr-3 mr-3'>Quay lại</a>
+                    {{{formatButton this.order.ORDERSTATUSID}}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Nội dung trang index-->
+
+{{#section 'js'}}
+<script src="/admin/js/order-info-update-view.js"></script>
+{{/section}}

@@ -36,6 +36,10 @@ module.exports.quantityProductActive = (objQuery) => {
   if (objQuery.BrandID != 0) {
     query += ` AND product.BRANDID = ${objQuery.BrandID}\n`;
   }
+
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
   return db.load(`SELECT COUNT(*) AS QUANTITY FROM product WHERE STATUS = 1
                   ${query}`);
 };
@@ -92,6 +96,10 @@ module.exports.pageallProductFilter = (limit, offset, objQuery) => {
 
   if (objQuery.BrandID != 0) {
     query += ` AND product.BRANDID = ${objQuery.BrandID}\n`;
+  }
+
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
   }
 
   return db.load(`SELECT product.ID, product.IMAGE, product.RESIZEDIMAGE, product.CATEGORYID, 

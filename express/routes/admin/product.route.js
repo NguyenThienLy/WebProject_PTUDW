@@ -16,7 +16,10 @@ const gcsMulter = multer({
 var router = express.Router();
 
 //Xử lý get để render UI
-router.get('/product-show', controller.productShow);
+router.get('/product-show-simple', controller.productShowSimple);
+
+//Xử lý get để render UI
+router.get('/product-show-combo', controller.productShowCombo);
 
 router.get('/product-add', controller.productAdd);
 

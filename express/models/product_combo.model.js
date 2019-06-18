@@ -19,6 +19,62 @@ module.exports.allProductCombos = () => {
             ORDER BY product_combo.CREATED DESC`);
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllProductComboFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product_combo.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  if (objQuery.NameSimple != "") {
+    query += ` AND (MATCH (PRO1.NAME) AGAINST ('${objQuery.NameSimple}' IN NATURAL LANGUAGE MODE) OR
+    MATCH (PRO2.NAME) AGAINST ('${objQuery.NameSimple}' IN NATURAL LANGUAGE MODE) OR
+    MATCH (PRO3.NAME) AGAINST ('${objQuery.NameSimple}' IN NATURAL LANGUAGE MODE)) \n`;
+  }
+
+  return db.load(`
+  SELECT product_combo.ID, 
+  product_combo.PRODUCTID1, product_combo.PRODUCTID2, product_combo.PRODUCTID3, 
+  PRO1.NAME AS PRODUCTNAME1, PRO2.NAME AS PRODUCTNAME2, PRO3.NAME AS PRODUCTNAME3,
+  PRO1.RESIZEDIMAGE AS PRODUCTIMAGE1, PRO2.RESIZEDIMAGE AS PRODUCTIMAGE2, PRO3.RESIZEDIMAGE AS PRODUCTIMAGE3,
+  product_combo.NAME, product_combo.STATUS, product_combo.RATE, product_combo.PRICE, product_combo.KILOGRAM, 
+  product_combo.SALE, product_combo.VIPSALE, product_combo.SHORTDESCRIPTION, product_combo.DESCRIPTION, 
+  product_combo.INVENTORY, DATE_FORMAT(product_combo.CREATED, '%d/%m/%Y %H:%i') AS CREATED
+  FROM ((product_combo
+  JOIN product PRO1 ON product_combo.PRODUCTID1 = PRO1.ID)
+  JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
+  JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID
+  WHERE product_combo.STATUS = 1
+  ${query}
+  limit ${limit} offset ${offset}`);
+};
+
+// Hàm lấy số lượng sản phẩm combo có status = 1
+module.exports.quantityProductComboActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  // Gọi hàm querry từ db
+  var query = "";
+
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product_combo.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  if (objQuery.NameSimple != "") {
+    query += ` AND (MATCH (PRO1.NAME) AGAINST ('${objQuery.NameSimple}' IN NATURAL LANGUAGE MODE) OR
+    MATCH (PRO2.NAME) AGAINST ('${objQuery.NameSimple}' IN NATURAL LANGUAGE MODE) OR
+    MATCH (PRO3.NAME) AGAINST ('${objQuery.NameSimple}' IN NATURAL LANGUAGE MODE)) \n`;
+  }
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+  FROM ((product_combo
+  JOIN product PRO1 ON product_combo.PRODUCTID1 = PRO1.ID)
+  JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
+  JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID
+  WHERE product_combo.STATUS = 1
+  ${query}`);
+};
 
 module.exports.singleByProductComboId = productComboId => {
   return db.load(`SELECT product_combo.ID, 

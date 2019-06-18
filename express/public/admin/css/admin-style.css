@@ -144,12 +144,20 @@ body {
 
 .pagination > .page-item:hover .page-link {
   color: #fff;
-  border-color: #99cc00;
-  background-color: #99cc00;
+  border: 1px solid #568a28;
+  background-color: rgba(153, 204, 0, 0.6);
+  font-weight: bold;
 }
 
 .pagination > .page-item .page-link:focus {
   box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+.pagination > .page-item.active .page-link {
+  color: #fff;
+  background-color: #99cc00;
+  border: 1px solid #568a28;
+  font-weight: bold;
 }
 
 .nav-header .badge-success {
@@ -169,7 +177,8 @@ body {
 .badge-warning,
 .badge-light,
 .badge-danger,
-.badge-info {
+.badge-info,
+.badge-success {
   padding: 0.4rem 0.6rem;
 }
 

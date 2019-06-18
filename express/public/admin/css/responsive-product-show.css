@@ -1,33 +1,188 @@
 @media only screen and (max-width: 2000px) {
-    html {
-      font-size: 16px !important;
-    }
+  html {
+    font-size: 16px !important;
+  }
+
+  .switch {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 55px;
+    height: 30px;
+    background-color: #c6c6c6;
+    border-radius: 40px;
+    border: 1px solid #c6c6c6;
+    outline: none;
+    position: relative;
+    transition: 200ms;
+    cursor: pointer;
+  }
+
+  .switch:before {
+    content: "";
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px gray;
+    top: 0px;
+    left: 0px;
+    transition: 200ms;
+  }
+
+  .switch:checked:before {
+    left: 25px;
+  }
 }
 
 /* Từ lg nhảy sang xl */
 @media only screen and (max-width: 1199px) {
-    html {
-      font-size: 15px !important;
-    }
+  html {
+    font-size: 15px !important;
+  }
+
+  .switch {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 55px;
+    height: 30px;
+    background-color: #c6c6c6;
+    border-radius: 40px;
+    border: 1px solid #c6c6c6;
+    outline: none;
+    position: relative;
+    transition: 200ms;
+    cursor: pointer;
+  }
+
+  .switch:before {
+    content: "";
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px gray;
+    top: 0px;
+    left: 0px;
+    transition: 200ms;
+  }
+
+  .switch:checked:before {
+    left: 25px;
+  }
 }
 
 /* Từ md nhảy sang lg */
 @media only screen and (max-width: 991px) {
-    html {
-      font-size: 15px !important;
-    }
+  html {
+    font-size: 15px !important;
+  }
+
+  .switch {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 48px;
+    height: 25px;
+    background-color: #c6c6c6;
+    border-radius: 40px;
+    border: 1px solid #c6c6c6;
+    outline: none;
+    position: relative;
+    transition: 200ms;
+    cursor: pointer;
+  }
+
+  .switch:before {
+    content: "";
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px gray;
+    top: 0px;
+    left: 0px;
+    transition: 200ms;
+  }
+
+  .switch:checked:before {
+    left: 23px;
+  }
 }
 
 /* Từ sm nhảy sang md */
 @media only screen and (max-width: 767px) {
-    html {
-      font-size: 14px !important;
-    }
+  html {
+    font-size: 14px !important;
+  }
+
+  .switch {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 38px;
+    height: 20px;
+    background-color: #c6c6c6;
+    border-radius: 40px;
+    border: 1px solid #c6c6c6;
+    outline: none;
+    position: relative;
+    transition: 200ms;
+    cursor: pointer;
+  }
+
+  .switch:before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px gray;
+    top: 0px;
+    left: 0px;
+    transition: 200ms;
+  }
+
+  .switch:checked:before {
+    left: 18px;
+  }
 }
 
 /* Từ xm nhảy sang sm */
 @media only screen and (max-width: 575px) {
-    html {
-      font-size: 14px !important;
-    }
+  html {
+    font-size: 14px !important;
+  }
+
+  .switch {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 38px;
+    height: 20px;
+    background-color: #c6c6c6;
+    border-radius: 40px;
+    border: 1px solid #c6c6c6;
+    outline: none;
+    position: relative;
+    transition: 200ms;
+    cursor: pointer;
+  }
+
+  .switch:before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 1px gray;
+    top: 0px;
+    left: 0px;
+    transition: 200ms;
+  }
+
+  .switch:checked:before {
+    left: 18px;
+  }
 }
