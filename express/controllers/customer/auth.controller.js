@@ -312,6 +312,7 @@ module.exports.updateImage = (req, res, next) => {
 
     uploadImageToFirebaseStorage
       .then(values => {
+        
         //Gửi hình về client khi thêm thành công
         res.json(JSON.stringify({ valid: true,image:values}));
       })
