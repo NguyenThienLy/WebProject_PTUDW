@@ -20,6 +20,10 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 
     {{!-- css all page --}}
+    {{!--css input file--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+        rel="stylesheet" type="text/css" />
+    {{!--css input file--}}
     <link href="/customer/css/animate.css" rel="stylesheet" />
     <link href="/customer/css/customer-style.css" rel="stylesheet" />
     <link href="/customer/css/slide-show.css" rel="stylesheet" />
@@ -197,7 +201,7 @@
                 {{#if this.isAuthenticated}}
                 <div class="pt-0 pl-2 pr-2 ml-1 pb-1" id="my-account">
                     <div class="component-avatar-user position-relative">
-                        <img src="{{this.authUser.IMAGE}}" class="rounded-circle h-100 w-100" alt="">
+                        <img id="customer-image_1" src="{{this.authUser.IMAGE}}" class="rounded-circle h-100 w-100" alt="">
                         <div class="card component-avatar-user-content">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
                                 khoản của tôi</a>
@@ -901,10 +905,12 @@
                                 </p>
                                 {{#is3ThLogin this.typeLogin}}
 
+
                                     {{else}}
                                 <p class="nav-item nav-link ml-3" id="header-edit-password-modal-nav-tab" data-toggle="tab"
                                     href="#header-edit-password-modal-nav" role="tab"
                                     aria-controls="header-edit-password-modal-nav" aria-selected="false">
+
                                     Thay đổi mật khẩu
                                 </p>
                                 {{/is3ThLogin}}
@@ -916,16 +922,23 @@
                                 aria-labelledby="header-info-modal-nav-tab">
                                 <form class="p-4">
                                     {{#isEqual this.authUser.CUSTOMERTYPEID 2}}
-                                        <div class="form-group row align-items-center ml-0 mr-0">
-                                            <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng
-                                                vip</label>
-                                        </div>
-                                        {{else}}
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng
+                                            vip</label>
+                                    </div>
+                                    {{else}}
                                     {{/isEqual}}
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Họ tên:</label>
                                         <div class="col-8 p-0">
                                             {{this.authUser.FULLNAME}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label class="col-4 col-form-label">Sinh nhật:</label>
+                                        <div class="col-8 p-0">
+                                            {{formatDate this.authUser.BIRTHDATE}}
                                         </div>
                                     </div>
 
@@ -946,7 +959,7 @@
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Ảnh đại diện:</label>
                                         <div class="col-8 p-0">
-                                            <img src="{{this.authUser.avatar}}" class="user-avatar">
+                                            <img id="customer-image_2" src="{{this.authUser.IMAGE}}" class="user-avatar rounded-circle">
                                         </div>
                                     </div>
                                 </form>
@@ -967,6 +980,15 @@
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-edit-modal-birthdate" class="col-4 col-form-label">Sinh nhật</label>
+                                        <div class="col-8 p-0">
+                                            <input value="{{formatDatePicker this.authUser.BIRTHDATE}}" type="text" name="BIRTHDATE"
+                                                class="form-control form-control-sm" placeholder="Nhập vào ngày sinh"
+                                                id="header-edit-modal-birthdate" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-edit-info-modal-phone"
                                             class="col-4 col-form-label">SĐT</label>
                                         <div class="col-8 p-0">
@@ -980,35 +1002,26 @@
                                         <label for="header-edit-info-modal-email"
                                             class="col-4 col-form-label">Email</label>
                                         <div class="col-8 p-0">
-                                            <input 
-                                            {{#isEqual 'google' this.typeLogin}}
-                                                readonly
-                                            {{else}}
-
-                                            {{/isEqual}}
-                                             value="{{this.authUser.EMAIL}}" type="text" name="EMAIL"
+                                            <input {{#isEqual 'google' this.typeLogin}} readonly {{else}} {{/isEqual}}
+                                                value="{{this.authUser.EMAIL}}" type="text" name="EMAIL"
                                                 class="form-control form-control-sm" placeholder="Nhập email"
                                                 id="header-edit-info-modal-email" />
                                         </div>
                                     </div>
 
                                     <div class="d-flex">
-                                        <div class="col-4 col-form-label"></div>
-                                        <div class="col-8 p-0">
-                                            <img src="{{this.authUser.avatar}}" class="edit-user-avatar">
+                                        <div class="col-4 col-form-label">Ảnh đại diện</div>
+                                        <div class="col-8 p-0 position-relative d-flex justify-content-center">
+                                            <img id="customer-image_3" src="{{this.authUser.IMAGE}}" class="rounded-circle user-avatar">
+                                            <button type="button" style="bottom: 0%; margin-left:8.5rem"
+                                                class="rounded-circle btn-sm btn-info position-absolute mb-1"
+                                                id="header-edit-info-modal-avatar">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </button>
                                         </div>
                                     </div>
 
-                                    <div class="form-group row align-items-end ml-0 mr-0 mt-3">
-                                        <label for="header-edit-info-modal-avatar" class="col-4 col-form-label pb-0">Ảnh
-                                            đại diện</label>
-                                        <div class="col-8 p-0">
-                                            <input type="file" id="header-edit-info-modal-avatar"
-                                                class="form-control-file form-control-sm p-0">
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex mt-2 justify-content-center">
+                                    <div class="d-flex mt-4 justify-content-center">
                                         <div class="col-4 col-form-label"></div>
                                         <button type="submit" class="btn btn-success col-8">
                                             Lưu
@@ -1021,6 +1034,7 @@
                                 {{else}}
                             <div class="tab-pane fade" id="header-edit-password-modal-nav" role="tabpanel"
                                 aria-labelledby="header-edit-password-modal-nav-tab">
+
                                 <form id="frmUpdatePass" class="p-4">
                                     <input hidden value=" {{this.authUser.ID}}" type="text" name="ID" />
                                     <div class="form-group row align-items-center ml-0 mr-0">
@@ -1066,7 +1080,7 @@
                                 </form>
                             </div>
                             {{/is3ThLogin}}
-                            
+
                         </div>
                     </div>
 
@@ -1114,10 +1128,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                   Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!
+
+                    Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!!!
+
                 </div>
                 <div class="modal-footer">
-                     <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng ý</button>
+                    <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng
+                        ý</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
@@ -1125,6 +1142,103 @@
     </div>
     <!-- component not login modal -->
 
+    <!-- component check mail model -->
+    <div class="modal fade" id="checkmail-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-header" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông báo!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Vui lòng <strong>Kiểm tra</strong> Email để lấy link đổi mật khẩu</strong>!!!
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng
+                        ý</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- component check mail model -->
+
+    <!-- component check mail model -->
+    <div class="modal fade" id="update-succes-modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-header" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông báo!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Cập nhật thành công!
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng
+                        ý</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- component check mail model -->
+
+    <!--Component model update avatar-->
+    <div class="modal fade" id="update-Image-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-warning" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header text-center">
+                    <h4 class="modal-title white-text w-100 font-weight-bold py-2">Cập nhật hình ảnh</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" id="frmupdate-avatar" method="POST">
+                        <div class="card">
+
+                            <div class="card-header">
+                                <label class="mb-0"><b>Chọn hình từ máy tính của bạn</b></label>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group" id="user-update-image">
+                                    <div>
+                                        <input id="user-avatar" name="USER_IMAGE" type="file" multiple>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-success pl-5 pr-5">Cập nhật hình
+                                        ảnh</button>
+                                </div>
+                                <input hidden type="text" name="ID" class="form-control"
+                                    value="{{this.authUser.ID}}">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Component model update avatar-->
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -1149,7 +1263,13 @@
     <script src="/customer/js/validate-UI-update-info.js"></script>
     <script src="/customer/js/validate-UI-update-pass.js"></script>
     <script src="/customer/js/validate-UI-send-email.js"></script>
+    <script src="/customer/js/validate-UI-update-avatar.js"></script>
     <script src="/customer/js/main-customer.js"></script>
+
+    {{!--input file --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+    {{!--input file --}}
     {{!-- js all page --}}
 </body>
 

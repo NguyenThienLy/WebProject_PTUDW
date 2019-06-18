@@ -27,9 +27,9 @@ $("#frmForgotPass").validate({
             data: $(form).serialize(),
             success: function (result) {
                 if (result.success == true) {
-                    alert('Vui lòng kiểm tra email để nhận link đổi mật khẩu');
+                    $("#checkmail-modal").modal();
                 } else {
-                    alert('Có lỗi xảy ra');
+                    
                 }
             }
         });

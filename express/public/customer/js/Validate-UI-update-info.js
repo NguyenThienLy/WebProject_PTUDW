@@ -1,4 +1,4 @@
-$("#header-register-modal-birthdate").datetimepicker({
+$("#header-edit-modal-birthdate").datetimepicker({
     format: "d/m/Y",
     timepicker: false,
     mask: true
@@ -16,6 +16,9 @@ $("#frmUpdate").validate({
         PHONE: {
             required: true,
             number:true
+        },
+        BIRTHDATE: {
+            required: true
         }
     },
     messages: {
@@ -30,6 +33,9 @@ $("#frmUpdate").validate({
         PHONE: {
             required: "Bạn cần nhập số điện thoại",
             number:"Bạn cần nhập vào số điện thoại"
+        },
+        BIRTHDATE: {
+            required: "Bạn cần nhập ngày sinh hợp lệ."
         }
     },
 
@@ -43,7 +49,7 @@ $("#frmUpdate").validate({
             data: $(form).serialize(),
             success: function (result) {
                 if (result.success == true) {
-                    alert('Cập nhật thành công');
+                    $("#update-succes-modal").modal();
                 } else {
                 }
             }
