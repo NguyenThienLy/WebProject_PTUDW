@@ -10,7 +10,7 @@ module.exports.allTag = () => {
   return db.load(`SELECT * FROM tag ORDER BY ID ASC`);
 };
 
-module.exports.singleByTagId = tagId => {
+module.exports.singleById = tagId => {
   return db.load(`SELECT * FROM tag WHERE ID = '${tagId}'`);
 };
 
