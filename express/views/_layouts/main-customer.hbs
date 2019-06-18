@@ -75,7 +75,6 @@
                         <li><a href="product-show.html">Hoa quả</a></li>
                         <li><a href="product-show.html">Các loại hạt</a></li>
                     </ul>
-
                 </li>
 
                 <li><a href="info-show.html">Tin tức</a></li>
@@ -907,10 +906,12 @@
                                 </p>
                                 {{#is3ThLogin this.typeLogin}}
 
-                                {{else}}
-                                <p class="nav-item nav-link ml-3" id="header-edit-info-modal-nav-tab" data-toggle="tab"
-                                    href="#header-edit-passwork-modal-nav" role="tab"
-                                    aria-controls="header-edit-passwork-modal-nav" aria-selected="false">
+
+                                    {{else}}
+                                <p class="nav-item nav-link ml-3" id="header-edit-password-modal-nav-tab" data-toggle="tab"
+                                    href="#header-edit-password-modal-nav" role="tab"
+                                    aria-controls="header-edit-password-modal-nav" aria-selected="false">
+
                                     Thay đổi mật khẩu
                                 </p>
                                 {{/is3ThLogin}}
@@ -1031,9 +1032,10 @@
                             </div>
 
                             {{#is3ThLogin this.typeLogin}}
-                            {{else}}
-                            <div class="tab-pane fade" id="header-edit-passwork-modal-nav" role="tabpanel"
-                                aria-labelledby="header-edit-info-modal-nav-tab">
+                                {{else}}
+                            <div class="tab-pane fade" id="header-edit-password-modal-nav" role="tabpanel"
+                                aria-labelledby="header-edit-password-modal-nav-tab">
+
                                 <form id="frmUpdatePass" class="p-4">
                                     <input hidden value=" {{this.authUser.ID}}" type="text" name="ID" />
                                     <div class="form-group row align-items-center ml-0 mr-0">
@@ -1099,13 +1101,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Thông báo!</h5>
+                    <h5 class="modal-title">Thông báo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Sản phẩm này hiện tại đã <strong>hết hàng</strong>, cảm ơn quí khách!!!
+                    Sản phẩm này hiện tại đã <strong>hết hàng</strong>, cảm ơn quí khách!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Đóng</button>
@@ -1121,13 +1123,15 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Thông báo!</h5>
+                    <h5 class="modal-title">Thông báo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+
                     Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!!!
+
                 </div>
                 <div class="modal-footer">
                     <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng

@@ -7,7 +7,8 @@ var productComboModel = require("../../models/product_combo.model");
 var formatPriceHelper = require("../../helpers/format_price.helper");
 // Gọi formatStatusOrder
 var formatOrderStatusHelper = require("../../helpers/format_order_status.helper");
-var formatOrderDetailButtonHelper = require("../../helpers/format_order_detail_button.helper.js");
+var formatOrderDetailButtonHelper = require("../../helpers/format_order_detail_button.helper");
+
 
 module.exports.orderShow = function(req, res, next) {
   orderInfoModel
