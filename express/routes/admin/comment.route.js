@@ -8,9 +8,13 @@ var express = require('express');
 
 var router = express.Router();
 
-router.get('/product-comment/:id', controller.commentOfProductShow);
+router.get('/product-comment-simple/:id', controller.commentOfProductSimpleShow);
 
-router.get('/product-comment', controller.productCommentShow);
+router.get('/product-comment-combo/:id', controller.commentOfProductComboShow);
+
+router.get('/product-comment-simple', controller.productCommentShowSimple);
+
+router.get('/product-comment-combo', controller.productCommentShowCombo);
 
 router.post('/product-comment-delete', controller.postDeleteComment);
 

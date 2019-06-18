@@ -1,6 +1,54 @@
 // Lấy database
 var db = require("../utils/db");
 
+// Hàm trả về tất cả sản phẩm cùng số lượng bình luận của mỗi sản phẩm
+module.exports.allProductComboWithCommentQuantity = () => {
+  return db.load(
+    `SELECT product_combo.ID, 
+    PRO1.RESIZEDIMAGE AS PRODUCTIMAGE1, PRO2.RESIZEDIMAGE AS PRODUCTIMAGE2, PRO3.RESIZEDIMAGE AS PRODUCTIMAGE3,
+    product_combo.NAME, count(COMMENT.ID) AS COMMENT_QUANTITY
+    FROM (((product_combo
+    JOIN product PRO1 ON product_combo.PRODUCTID1 = PRO1.ID)
+    JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
+    JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID)
+    LEFT JOIN (SELECT * FROM comment WHERE comment.ISSIMPLE = 0) AS comment ON product_combo.ID = comment.PRODUCTID
+    WHERE product_combo.STATUS = 1
+    GROUP BY product_combo.ID, PRO1.RESIZEDIMAGE, PRO2.RESIZEDIMAGE, PRO3.RESIZEDIMAGE, product_combo.NAME`
+  );
+};
+
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllProductCommentComboFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product_combo.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  return db.load(`
+  SELECT product_combo.ID, 
+  PRO1.RESIZEDIMAGE AS PRODUCTIMAGE1, PRO2.RESIZEDIMAGE AS PRODUCTIMAGE2, PRO3.RESIZEDIMAGE AS PRODUCTIMAGE3,
+  product_combo.NAME, count(COMMENT.ID) AS COMMENT_QUANTITY
+  FROM (((product_combo
+  JOIN product PRO1 ON product_combo.PRODUCTID1 = PRO1.ID)
+  JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
+  JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID)
+  LEFT JOIN (SELECT * FROM comment WHERE comment.ISSIMPLE = 0) AS comment ON product_combo.ID = comment.PRODUCTID
+  WHERE product_combo.STATUS = 1 ${query}
+  GROUP BY product_combo.ID, PRO1.RESIZEDIMAGE, PRO2.RESIZEDIMAGE, PRO3.RESIZEDIMAGE, product_combo.NAME
+  limit ${limit} offset ${offset}`);
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityProductCommentComboActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (product_combo.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  return db.load(`SELECT COUNT(*) AS QUANITTY FROM product_combo WHERE STATUS = 1 ${query}`);
+};
+
 // Hàm trả về tất cả sản phẩm trong database
 module.exports.allProductCombos = () => {
   // Gọi hàm querry từ db

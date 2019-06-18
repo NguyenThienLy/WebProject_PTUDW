@@ -29,7 +29,10 @@ $("#frmForgotPass").validate({
                 if (result.success == true) {
                     $("#checkmail-modal").modal();
                 } else {
-                    
+                    $("#alert-send-mail").remove();
+                    var alert =
+                      '<div class="alert alert-warning alert-dismissible fade show" id="alert-send-mail" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Lỗi hệ thống. Gửi mail thất bại!</div>';
+                    $("#frmForgotPass").prepend(alert);
                 }
             }
         });

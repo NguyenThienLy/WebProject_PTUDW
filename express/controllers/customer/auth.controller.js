@@ -28,8 +28,6 @@ const bucket = gcs.bucket(bucketName);
 module.exports.postRegister = (req, res, next) => {
   var saltRounds = 10;
   var hash = bcrypt.hashSync(req.body.PASSWORD, saltRounds);
-  // console.log(req.body.PASSWORD);
-  // console.log(hash);
   var dob = moment(req.body.BIRTHDATE, "DD/MM/YYYY").format("YYYY-MM-DD");
   var avatar =
     "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png";
@@ -41,6 +39,7 @@ module.exports.postRegister = (req, res, next) => {
     FULLNAME: req.body.FULLNAME,
     EMAIL: req.body.EMAIL,
     BIRTHDATE: dob,
+    PHONE: req.body.PHONE,
     CASH: 0,
     CUSTOMERTYPEID: 2,
     STATUS: 1
@@ -50,12 +49,23 @@ module.exports.postRegister = (req, res, next) => {
     .addCustomer(newCustomer)
     .then(newCustomerId => {
       res.send({ success: true });
-    }).catch(next);
+    }).catch(err => {
+      res.send({ success: false });
+    });
 };
 
 module.exports.isAvailable = (req, res, next) => {
   var user = req.query.USERNAME;
   customerModel.singleByUserName(user).then(customers => {
+    if (customers.length > 0) return res.json(false);
+
+    return res.json(true);
+  });
+};
+
+module.exports.isValidEmail = (req, res, next) => {
+  var email = req.query.EMAIL;
+  customerModel.singleByEmail(email).then(customers => {
     if (customers.length > 0) return res.json(false);
 
     return res.json(true);
@@ -126,7 +136,9 @@ module.exports.updateInfo = (req, res, next) => {
   //Gọi hàm update
   customerModel.updateInfoCustomer(infoCustomer).then(value => {
     res.send({ success: true });
-  }).catch(next);
+  }).catch(err => {
+    res.send({ success: false });
+  });
 };
 
 //Kiểm tra mật khẩu có chính xác hay không
@@ -153,7 +165,9 @@ module.exports.UpdatePassWord = (req, res, next) => {
   //Gọi hàm update
   customerModel.updateInfoCustomer(infoCustomer).then(value => {
     res.send({ success: true });
-  }).catch(next);
+  }).catch(err => {
+    res.send({ success: false });
+  });
 };
 
 //Gửi mail xác nhận
@@ -216,6 +230,8 @@ module.exports.SendMail = (req, res, next) => {
               console.log('Đã gửi mail');
               done(err, 'done');
             });
+          }).catch(err => {
+            res.send({ success: false });
           })
         },
       ], (err) => {
@@ -316,7 +332,9 @@ module.exports.updateImage = (req, res, next) => {
         //Gửi hình về client khi thêm thành công
         res.json(JSON.stringify({ valid: true,image:values}));
       })
-      .catch(next);
+      .catch(err => {
+        res.json(JSON.stringify({ valid: false }));
+      });
   } else {
     res.json(JSON.stringify({ valid: false }));
   }

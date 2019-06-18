@@ -55,11 +55,11 @@
         <div id="mySidenav" class="side-bar style-scrollbar">
             <div class="top-menu"><span class="logo"></span></div>
             <ul class="main-menu">
-                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="/customer/index">Giới thiệu</a></li>
                 <li><a href="" id="side-bar-open-header-user-modal" data-toggle="modal"
                         data-target="#header-user-modal">Đăng nhập</a></li>
                 <li class="position-relative">
-                    <a>Sản phẩm</a>
+                    <a href="/customer/product/product-all-show">Sản phẩm</a>
                     <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
                     <ul class="dropdown-container transform">
                         {{#each lcCategories}}
@@ -92,7 +92,7 @@
 
                     </ul>
                 </li>
-                <li><a href="/customer/info/show-info">Tin tức</a></li>
+                <li><a href="/customer/info/info-show">Tin tức</a></li>
                 <li><a href="/customer/info/tag/0">Tags</a></li>
             </ul>
         </div>
@@ -114,7 +114,7 @@
                 <ul
                     class="menu-items p-0 nav align-items-center justify-content-center col-sm-8 col-md-8 col-lg-8 col-xl-9">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Giới thiệu</a>
+                        <a class="nav-link active" href="/customer/index">Giới thiệu</a>
                     </li>
                     <li class="nav-item">
 
@@ -663,7 +663,7 @@
     <!-- component login register modal -->
     <div class="component-login-register-modal modal fade" data-backdrop="true" id="header-user-modal" tabindex="-1"
         role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content position-relative">
                 <div class="modal-body p-0">
                     <div class="content-left float-left h-100 rounded-left pl-4 pr-2 pt-4 pb-2">
@@ -760,9 +760,9 @@
                                 <form id="frmRegister" class="p-4">
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-username"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Tài
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Tài
                                             khoản</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                        <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="text" class="form-control form-control-sm"
                                                 placeholder="Nhập tên đăng nhập" name="USERNAME"
                                                 id="header-register-modal-username" />
@@ -771,9 +771,9 @@
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-password"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Mật
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Mật
                                             khẩu</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                        <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="password" class="form-control form-control-sm"
                                                 placeholder="Mật khẩu từ 6 đến 32 ký tự" name="PASSWORD"
                                                 id="header-register-modal-password" />
@@ -782,10 +782,8 @@
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-confirmPassword"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Xác nhận
-                                            mật
-                                            khẩu</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Xác nhận mật khẩu</label>
+                                        <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="password" class="form-control form-control-sm"
                                                 placeholder="Nhập lại mật khẩu" name="CONFIRMPASSWORD"
                                                 id="header-register-modal-confirmPassword" />
@@ -794,9 +792,9 @@
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-name"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Họ
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Họ
                                             tên</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                        <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="text" class="form-control form-control-sm"
                                                 placeholder="Nhập họ tên" name="FULLNAME"
                                                 id="header-register-modal-name" />
@@ -805,8 +803,8 @@
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-email"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Email</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Email</label>
+                                        <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="text" class="form-control form-control-sm"
                                                 placeholder="Nhập email" name="EMAIL"
                                                 id="header-register-modal-email" />
@@ -815,11 +813,21 @@
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-birthdate"
-                                            class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label">Ngày
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Ngày
                                             sinh</label>
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                        <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="text" class="form-control form-control-sm" name="BIRTHDATE"
                                                 id="header-register-modal-birthdate" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row align-items-center ml-0 mr-0">
+                                        <label for="header-register-modal-phone"
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Số điện thoại</label>
+                                        <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="Nhập số điện thoại" name="PHONE"
+                                                id="header-register-modal-phone" />
                                         </div>
                                     </div>
 
@@ -845,8 +853,8 @@
                                     </div> --}}
 
                                     <div class="d-flex">
-                                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-form-label"></div>
-                                        <button type="submit" class="btn btn-success col-sm-9">
+                                        <div class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label"></div>
+                                        <button type="submit" class="btn btn-success col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9">
                                             Đăng ký
                                         </button>
                                     </div>
@@ -889,7 +897,7 @@
     <!-- component user account modal -->
     <div class="component-user-account-modal modal fade" id="header-avatar-modal" tabindex="-1" role="dialog"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content position-relative">
                 <div class="modal-body p-0">
                     <div class="content-left float-left h-100 rounded-left pl-4 pr-2 pt-4 pb-2">
@@ -941,9 +949,9 @@
                                 aria-labelledby="header-info-modal-nav-tab">
                                 <form class="p-4">
                                     {{#isEqual this.authUser.CUSTOMERTYPEID 2}}
-                                    <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label style="color: #e74c3c" class="col-4 col-form-label">Khách hàng
-                                            vip</label>
+                                    <div class="form-group row align-items-center ml-0 mr-0" style="color: #99cc00" >
+                                        <label class="col-4 col-form-label"> <i class="fas fa-crown"></i>Khách hàng
+                                            V.I.P</label>
                                     </div>
                                     {{else}}
                                     {{/isEqual}}
@@ -955,7 +963,7 @@
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label class="col-4 col-form-label">Sinh nhật:</label>
+                                        <label class="col-4 col-form-label">Ngày sinh:</label>
                                         <div class="col-8 p-0">
                                             {{formatDate this.authUser.BIRTHDATE}}
                                         </div>

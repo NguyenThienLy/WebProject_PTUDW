@@ -13,6 +13,37 @@ module.exports.allCustomers = () => {
   );
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllCustomerFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (customer.FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+
+  return db.load(`
+  SELECT customer.ID, customer.USERNAME, customer.IMAGE, customer.FULLNAME, customer.EMAIL,
+  DATE_FORMAT(customer.BIRTHDATE, '%d/%m/%Y') AS BIRTHDATE, customer.CASH, 
+  DATE_FORMAT(customer.CREATED, '%d/%m/%Y %H:%i') AS CREATED, 
+  customer_type.NAME AS TYPENAME, customer.CUSTOMERTYPEID
+  FROM customer JOIN customer_type ON customer.CUSTOMERTYPEID = customer_type.ID
+  WHERE customer.STATUS = 1
+  ${query}
+  ORDER BY customer.CREATED DESC
+  limit ${limit} offset ${offset}`);
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityCustomerActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  return db.load(`SELECT COUNT(*) AS QUANTITY FROM customer WHERE STATUS = 1
+                  ${query}`);
+};
+
 //Hàm ra top 10 khách hàng thanh toán nhiều nhất
 module.exports.Top10Customer = () => {
   return db.load(
@@ -29,6 +60,11 @@ module.exports.Top10Customer = () => {
 // Hàm lấy ra customer có USERNAME = userName
 module.exports.singleByUserName = userName => {
   return db.load(`SELECT * FROM customer where USERNAME = '${userName}'`);
+};
+
+// Hàm lấy ra customer có EMAIL = email
+module.exports.singleByEmail = email => {
+  return db.load(`SELECT * FROM customer where EMAIL = '${email}'`);
 };
 
 // Hàm lấy ra customer có ID = customerId

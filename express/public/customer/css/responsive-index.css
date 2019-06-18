@@ -3,6 +3,10 @@
     font-size: 16px !important;
   }
 
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > p {
+    font-size: 1.2rem;
+  }
+
   /* intro product */
   .component-intro-product {
     width: 100%;
@@ -72,6 +76,10 @@
 @media only screen and (max-width: 1199px) {
   html {
     font-size: 15px !important;
+  }
+
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > p {
+    font-size: 1.2rem;
   }
 
   /* intro product */
@@ -145,6 +153,14 @@
     font-size: 15px !important;
   }
 
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > p {
+    font-size: 1rem;
+  }
+
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > h2 {
+    font-size: 1.5rem;
+  }
+
   /* intro product */
   .component-intro-product {
     width: 100%;
@@ -216,6 +232,14 @@
     font-size: 14px !important;
   }
 
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > p {
+    font-size: 1rem;
+  }
+
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > h2 {
+    font-size: 1.2rem;
+  }
+
   /* intro product */
   .component-intro-product {
     width: 100%;
@@ -285,6 +309,14 @@
 @media only screen and (max-width: 575px) {
   html {
     font-size: 14px !important;
+  }
+
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > p {
+    font-size: 0.8rem;
+  }
+
+  .header-carousel .carousel-inner .carousel-item .carousel-caption > h2 {
+    font-size: 1rem;
   }
 
   /* intro product */

@@ -43,11 +43,11 @@
 	}
 
 	.component-login-register-modal .modal-body .content-left {
-		width: 22.5rem;
+		width: 22.5rem !important;
 	}
 
 	.component-user-account-modal .modal-body .content-left {
-		width: 22.5rem;
+		width: 22.5rem !important;
 	}
 
 	.component-header {
@@ -113,11 +113,11 @@
 	}
 
 	.component-login-register-modal .modal-body .content-left {
-		width: 22.5rem;
+		width: 22.5rem !important;
 	}
 
 	.component-user-account-modal .modal-body .content-left {
-		width: 22.5rem;
+		width: 22.5rem !important;
 	}
 
 	.component-header {
@@ -185,21 +185,21 @@
 	.component-login-register-modal .modal-body .content-left {
 		padding: 0 !important;
 		overflow: hidden;
-		width: 0;
+		width: 0 !important;
 	}
 
 	.component-login-register-modal .modal-body .content-right {
-		width: calc(100% - 3.75rem);
+		width: calc(100% - 3.75rem) !important;
 	}
 
 	.component-user-account-modal .modal-body .content-left {
 		padding: 0 !important;
 		overflow: hidden;
-		width: 0;
+		width: 0 !important;
 	}
 
 	.component-user-account-modal .modal-body .content-right {
-		width: calc(100% - 3.75rem);
+		width: calc(100% - 3.75rem) !important;
 	}
 
 	.component-header {
@@ -271,21 +271,21 @@
 	.component-login-register-modal .modal-body .content-left {
 		padding: 0 !important;
 		overflow: hidden;
-		width: 0;
+		width: 0 !important;
 	}
 
 	.component-login-register-modal .modal-body .content-right {
-		width: calc(100% - 3.75rem);
+		width: calc(100% - 3.75rem) !important;
 	}
 
 	.component-user-account-modal .modal-body .content-left {
 		padding: 0 !important;
 		overflow: hidden;
-		width: 0;
+		width: 0 !important;
 	}
 
 	.component-user-account-modal .modal-body .content-right {
-		width: calc(100% - 3.75rem);
+		width: calc(100% - 3.75rem) !important;
 	}
 
 	.component-header {
@@ -357,21 +357,21 @@
 	.component-login-register-modal .modal-body .content-left {
 		padding: 0 !important;
 		overflow: hidden;
-		width: 0;
+		width: 0 !important;
 	}
 
 	.component-login-register-modal .modal-body .content-right {
-		width: calc(100% - 3.75rem);
+		width: calc(100% - 3.75rem) !important;
 	}
 
 	.component-user-account-modal .modal-body .content-left {
 		padding: 0 !important;
 		overflow: hidden;
-		width: 0;
+		width: 0 !important;
 	}
 
 	.component-user-account-modal .modal-body .content-right {
-		width: calc(100% - 3.75rem);
+		width: calc(100% - 3.75rem) !important;
 	}
 
 	.component-header {

@@ -20,10 +20,10 @@
             <div class="row search-row ml-0 mr-0">
                 <div class="col-md-12 p-0">
                     <div class="input-group input-group-sm mb-3">
-                        <input type="text" class="form-control search-field" id="search" placeholder="Tên khách hàng"
-                            aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                        <input type="text" class="form-control search-field" id="name" value="{{this.name}}"
+                            placeholder="Tên khách hàng" />
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="button">
+                            <button class="btn btn-success" id="btn_search" type="button">
                                 Tìm kiếm
                             </button>
                         </div>
@@ -57,8 +57,8 @@
                         <td align="center"><img src="{{IMAGE}}" class="show-image"></td>
                         <td>{{CREATED}}</td>
                         <td align="center">
-                            <button class="btn btn-sm btn-primary mr-1 post_modal_get_info" id={{ID}} type="button" data-toggle="modal"
-                                data-target="#customerDetailModal">
+                            <button class="btn btn-sm btn-primary mr-1 post_modal_get_info" id={{ID}} type="button"
+                                data-toggle="modal" data-target="#customerDetailModal">
                                 <i class="fas fa-info pl-1 pr-1"></i>
                             </button>
                             <button class="btn btn-sm btn-danger post_delete_customer" id="{{ID}}" type="button">
@@ -106,8 +106,7 @@
                                         <label for="customerTypeId">Loại khách hàng:</label>
                                     </div>
                                     <div class="col-9 input-group input-group-sm">
-                                        <select class="custom-select form-control mr-2"
-                                            id="customerTypeId">
+                                        <select class="custom-select form-control mr-2" id="customerTypeId">
                                         </select>
                                         <button class="btn btn-sm btn-warning post_customer_type_update" type="button">
                                             <i class="far fa-edit"></i>
@@ -174,37 +173,41 @@
 
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePage.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="?page={{this.prePage.value}}{{createQueryCustomer name}}"
+                                aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pages}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link"
+                                href="?page={{value}}{{createQueryCustomer ../name}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link"
+                                href="?page={{value}}{{createQueryCustomer ../name}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPage.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="?page={{this.nextPage.value}}{{createQueryCustomer name}}"
+                                aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
         </div>
@@ -214,27 +217,27 @@
 
 <!-- Button trigger modal -->
 <button hidden type="button" class="btn btn-primary alert_modal" data-toggle="modal" data-target="#cannotRemoveModal">
-  Không thể xóa
+    Không thể xóa
 </button>
 
 <!-- Modal -->
 <div class="modal fade" id="cannotRemoveModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Thông báo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Không thể xóa khách hàng
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-      </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Không thể xóa khách hàng
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 {{#section 'js'}}

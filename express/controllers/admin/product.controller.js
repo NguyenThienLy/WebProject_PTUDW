@@ -74,14 +74,14 @@ module.exports.productShowSimple = function (req, res, next) {
   }
 
   if (pageSimple < 1) {
-    limitSimple = 4;
+    limitSimple = 3;
   }
 
   var offsetSimple = (pageSimple - 1) * limitSimple;
 
   // combo
   var pageCombo = 1;
-  var limitCombo =  4;
+  var limitCombo =  3;
   var offsetCombo = 0;
   var nameCombo = "";
   var nameSimpleCombo = "";

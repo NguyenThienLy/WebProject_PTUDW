@@ -6,6 +6,30 @@ module.exports.allBrand = () => {
   return db.load(`SELECT * FROM brand ORDER BY ID ASC`);
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllBrandFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` MATCH (NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    return db.load(`SELECT * FROM brand WHERE ${query} ORDER BY ID ASC limit ${limit} offset ${offset}`);
+  } else {
+    return db.load(`SELECT * FROM brand ORDER BY ID ASC limit ${limit} offset ${offset}`);
+  }
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityBrandActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.Name != "") {
+    query += ` MATCH (NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    return db.load(`SELECT COUNT(*) AS QUANTITY FROM brand WHERE ${query}`);
+  } else {
+    return db.load(`SELECT COUNT(*) AS QUANTITY FROM brand`);
+  }
+};
+
 // hàm trả về danh sách tất cả nhãn hiệu
 module.exports.allBrandWithDetail = () => {
   return db.load(`SELECT br.ID, br.NAME, COUNT(br.ID) AS QUANTITY

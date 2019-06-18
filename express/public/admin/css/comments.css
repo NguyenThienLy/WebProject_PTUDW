@@ -7,6 +7,10 @@
     margin-bottom: 1.875rem;
 }
 
+header > a > i {
+    color: #99cc00;
+}
+
 .btn-delete-comment{
     /*background-color: #e74c3c;
     border-color: #e74c3c;

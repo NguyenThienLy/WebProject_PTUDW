@@ -75,6 +75,59 @@ module.exports.Nearest5OrderInfo = () => {
   );
 };
 
+// Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
+module.exports.pageAllOrderFilter = (limit, offset, objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.OrderStatus != 0) {
+    query += ` AND order_info.ORDERSTATUSID = ${objQuery.OrderStatus}\n`;
+  }
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (customer.FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  if (objQuery.FromDate != "") {
+    query += ` AND order_info.CREATED >= '${objQuery.FromDate}' \n`;
+  }
+  if (objQuery.ToDate != "") {
+    query += ` AND order_info.CREATED <= '${objQuery.ToDate}' \n`;
+  }
+
+  return db.load(`
+  SELECT order_info.ID, order_info.CUSTOMERID, customer.FULLNAME AS CUSTOMERNAME, 
+    DATE_FORMAT(order_info.CREATED, '%d-%m-%Y %H:%i:%s') AS CREATED,
+    order_info.TOTALMONEY, order_info.ORDERSTATUSID, order_status.NAME AS ORDERSTATUSNAME
+    FROM order_info JOIN customer JOIN order_status 
+    ON order_info.CUSTOMERID = customer.ID AND order_info.ORDERSTATUSID = order_status.ID
+    WHERE order_info.STATUS = 1
+    ${query}
+    ORDER BY order_info.CREATED DESC
+    limit ${limit} offset ${offset}`);
+};
+
+// Hàm lấy số lượng sản phẩm product simple có status = 1
+module.exports.quantityOrderActive = (objQuery) => {
+  // Gọi hàm querry từ db
+  var query = "";
+  if (objQuery.OrderStatus != 0) {
+    query += ` AND order_info.ORDERSTATUSID = ${objQuery.OrderStatus}\n`;
+  }
+  if (objQuery.Name != "") {
+    query += ` AND MATCH (customer.FULLNAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+  }
+  if (objQuery.FromDate != "") {
+    query += ` AND order_info.CREATED >= '${objQuery.FromDate}' \n`;
+  }
+  if (objQuery.ToDate != "") {
+    query += ` AND order_info.CREATED <= '${objQuery.ToDate}' \n`;
+  }
+
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+  FROM order_info JOIN customer JOIN order_status 
+  ON order_info.CUSTOMERID = customer.ID AND order_info.ORDERSTATUSID = order_status.ID
+  WHERE order_info.STATUS = 1
+  ${query}`);
+};
+
 module.exports.allOrderInfoByCustomerId = customerId => {
   return db.load(`SELECT * FROM order_info WHERE CUSTOMERID = '${customerId}'`);
 };
@@ -131,8 +184,7 @@ module.exports.getIdFollowObjectOrderInfo = orderInfo => {
   WHERE CUSTOMERID = ${orderInfo.CUSTOMERID} AND CREATED = '${orderInfo.CREATED}'
   AND TOTALMONEY = ${orderInfo.TOTALMONEY} AND STATUS = ${orderInfo.STATUS}
   LIMIT 1
-  `);
-}
+ `)};
 
 //Hàm trả về thời gian hiện tại
 function getDateTimeNow() {
@@ -167,7 +219,6 @@ function getDateTimeNow() {
   today = yyyy + "-" + mm + "-" + dd + " " + hh + ":" + MM + ":" + ss;
   return today;
 }
-
 
 // Hàm lấy ra danh sách các order info theo id customer và order status id
 module.exports.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset = (cusId, statusId, N, offset) => {
