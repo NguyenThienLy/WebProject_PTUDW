@@ -7,6 +7,16 @@ module.exports.quantityProduct = () => {
   return db.load(`SELECT COUNT(*) AS QUANTITY FROM product`);
 };
 
+//Lấy ra top  loại sản phẩm bán chạy nhất
+module.exports.TopCategorySell = (top) => {
+  // Gọi hàm querry từ db
+  return db.load(`SELECT category.NAME,SUM(order_detail.QUANTITY) AS SUM FROM (order_detail JOIN product ON order_detail.PRODUCTID = product.ID)
+  JOIN category ON category.ID = product.CATEGORYID
+  GROUP BY category.ID
+  ORDER BY SUM(order_detail.QUANTITY) DESC
+  LIMIT ${top}`);
+};
+
 //Lấy ra cấu trúc sản phẩm của cửa hàng
 module.exports.structProduct = () => {
   // Gọi hàm querry từ db

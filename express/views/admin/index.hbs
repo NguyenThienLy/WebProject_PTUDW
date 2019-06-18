@@ -58,7 +58,7 @@
 
                 <div class="d-flex flex-column mt-1">
                     <span></span>
-                    <b>60</b>
+                    <b>{{this.ToltalOrders}}</b>
                     <span></span>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="badge badge-light">
-                    <h6>60</h6>
+                    <h6>{{this.ToltalOrders}}</h6>
                 </div>
             </div>
             <!--End Thẻ chứa lượt view trong ngày-->
@@ -88,7 +88,7 @@
 
                 <div class="d-flex flex-column mt-1">
                     <span></span>
-                    <b>5.000.000đ</b>
+                    <b>{{formatPrice this.TotalMoney}}&nbsp;<u>đ</u></b>
                     <span></span>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 </div>
 
                 <div class="badge badge-light">
-                    <h6>5.000.000&nbsp;<u>đ</u></h6>
+                    <h6>{{formatPrice this.TotalMoney}}&nbsp;<u>đ</u></h6>
                 </div>
             </div>
             <!--End Thẻ chứa lượt view trong ngày-->
@@ -236,78 +236,27 @@
                     <tbody>
 
                         <!--Nội dung một hàng-->
+                        {{#each this.orders}}
                         <tr>
-                            <td>1</td>
-                            <td>13/4/2019</td>
-                            <td>qui021098@gmail.com</td>
-                            <td>23.000.000đ</td>
-                            <td align="center"><a href="#" class="badge badge-light">
-                                    Chưa thanh toán
-                                </a></td>
+                            <td>{{ID}}</td>
+                            <td>{{CREATED}}</td>
+                            <td>{{CUSTOMERNAME}}</td>
+                            <td align="center">{{formatPrice TOTALMONEY}}&nbsp;đ</td>
                             <td align="center">
-                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                            {{{formatStatus ORDERSTATUSID ORDERSTATUSNAME}}}
+                            </td>
+                            <td align="center">
+                                <a class="btn btn-primary btn-sm" href="/admin/order/order-info/{{ID}}" role="button">
                                     Xem
-                                </a>
-                                <a class="btn btn-success btn-sm" href="#" role="button">
-                                    Duyệt
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#" role="button">
-                                    Xóa
                                 </a>
                             </td>
                         </tr>
-                        <!--End Nội dung một hàng-->
-
-                        <!--Nội dung một hàng-->
-                        <tr>
-                            <td>2</td>
-                            <td>13/4/2019</td>
-                            <td>qui021098@gmail.com</td>
-                            <td>23.000.000đ</td>
-                            <td align="center"><a href="#" class="badge badge-light">
-                                    Chưa thanh toán
-                                </a></td>
-                            <td align="center">
-                                <a class="btn btn-primary btn-sm" href="#" role="button">
-                                    Xem
-                                </a>
-                                <a class="btn btn-success btn-sm" href="#" role="button">
-                                    Duyệt
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#" role="button">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-                        <!--End Nội dung một hàng-->
-
-                        <!--Nội dung một hàng-->
-                        <tr>
-                            <td>3</td>
-                            <td>13/4/2019</td>
-                            <td>qui021098@gmail.com</td>
-                            <td>23.000.000đ</td>
-                            <td align="center"><a href="#" class="badge badge-info">
-                                    Đã thanh toán
-                                </a></td>
-                            <td align="center">
-                                <a class="btn btn-primary btn-sm" href="#" role="button">
-                                    Xem
-                                </a>
-                                <a class="btn btn-success btn-sm" href="#" role="button">
-                                    Duyệt
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#" role="button">
-                                    Xóa
-                                </a>
-                            </td>
-                        </tr>
-                        <!--End Nội dung một hàng-->
+                        {{/each}}
                     </tbody>
                 </table>
 
                 <div class="clearfix">
-                    <a href="order-list.html" class="float-right text-link">Xem tất cả đơn hàng</a>
+                    <a href="/admin/order/order-show" class="float-right text-link">Xem tất cả đơn hàng</a>
                 </div>
             </div>
         </div>

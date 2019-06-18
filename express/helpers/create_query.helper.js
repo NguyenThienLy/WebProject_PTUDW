@@ -1,15 +1,18 @@
 
 //Tạo chuỗi query
-module.exports.createQuerySimple = function(catID,subCatID,brandID) {
+module.exports.createQuerySimple = function(catID,subCatID,brandID,name) {
+    console.log(catID, subCatID, brandID, name);
     var data = {
-        'catid': catID,
-        'subcatid': subCatID,
-        'brandid': brandID
+        'catId': catID,
+        'subCatId': subCatID,
+        'brandId': brandID,
+        'name': name
     };
     var query = encodeQueryData(data);
     if(query !=""){
         query = `&${query}`;
     }
+    console.log(query);
     return query;
 };
 

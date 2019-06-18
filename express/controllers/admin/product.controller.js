@@ -55,7 +55,7 @@ const bucket = gcs.bucket(bucketName);
 module.exports.productShowSimple = function (req, res, next) {
   // simple
   var pageSimple = req.query.page || 1;
-  var limitSimple = req.query.limit || 4;
+  var limitSimple = req.query.limit || 3;
 
   var categoryID = req.query.catId || 0;
   var subCategoryID = req.query.subCatId || 0;

@@ -11,10 +11,33 @@ module.exports.checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct = (p
   );
 };
 
+//Lấy ra số lượng đơn hàng trong ngày
+module.exports.orderQuantityInDay =(date)=>{
+  return db.load(
+    `SELECT COUNT(ID) AS ORDER_QUANTITY FROM order_info WHERE DATE(CREATED) ='${date}'`
+  );
+}
+
+//Lấy ra tổng danh thu trong ngày
+module.exports.TotalMoneyInDay =(date)=>{
+  return db.load(
+    `SELECT SUM(TOTALMONEY) AS TOTALMONEY FROM order_info WHERE DATE(CREATED) ='${date}' AND ORDERSTATUSID = 3`
+  );
+}
+
 // hàm lấy ra số lượng customers
 module.exports.ordersQuantity = () => {
   return db.load(
     `SELECT COUNT(ID) AS ORDER_QUANTITY FROM order_info WHERE STATUS = 1`
+  );
+};
+
+//Hàm lấy ra doanh thu trong tháng và năm
+module.exports.ChartMoneyInMonth = (date) => {
+  return db.load(
+    `SELECT DAY(CREATED) AS DATE,SUM(TOTALMONEY) AS TOTALMONEY FROM order_info 
+    WHERE MONTH(CREATED) = MONTH('${date}') AND YEAR(CREATED) = YEAR('${date}') AND ORDERSTATUSID = 3
+    GROUP BY DATE(CREATED)`
   );
 };
 
@@ -37,6 +60,18 @@ module.exports.allOrderInfo = () => {
     ON order_info.CUSTOMERID = customer.ID AND order_info.ORDERSTATUSID = order_status.ID
     WHERE order_info.STATUS = 1
     ORDER BY order_info.CREATED DESC`
+  );
+};
+
+module.exports.Nearest5OrderInfo = () => {
+  return db.load(
+    `SELECT order_info.ID, order_info.CUSTOMERID, customer.FULLNAME AS CUSTOMERNAME, 
+    DATE_FORMAT(order_info.CREATED, '%d-%m-%Y %H:%i:%s') AS CREATED,
+    order_info.TOTALMONEY, order_info.ORDERSTATUSID, order_status.NAME AS ORDERSTATUSNAME
+    FROM order_info JOIN customer JOIN order_status 
+    ON order_info.CUSTOMERID = customer.ID AND order_info.ORDERSTATUSID = order_status.ID
+    WHERE order_info.STATUS = 1
+    ORDER BY order_info.CREATED DESC LIMIT 5`
   );
 };
 

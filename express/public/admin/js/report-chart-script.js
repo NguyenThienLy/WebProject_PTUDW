@@ -21,8 +21,8 @@ var arrRevenueLabel = [];
 var arrRevenueData = [];
 //End dữ liệu biểu đồ Doanh thu
 //Dữ liệu biểu đồ cột top sản phẩm bán chạy
-var arrBarlabel = ['Cà chua', 'Măng tươi', 'Sữa tươi', 'Đậu rang'];
-var arrBarData = [10, 20, 50, 10];
+var arrBarlabel = [];
+var arrBarData = [];
 //End liệu biểu đồ cột top sản phẩm bán chạy
 
 var base_url =
@@ -44,21 +44,30 @@ $.post(
             arrViewData.push(view.VIEW);
         })
 
+        jsonData.arrMoney.forEach(money=>{
+            arrRevenueLabel.push(money.DATE);
+            arrRevenueData.push(money.TOTALMONEY);
+        })
+
+        jsonData.arrTop.forEach(top=>{
+            arrBarlabel.push(top.NAME);
+            arrBarData.push(top.SUM);
+        })
+
         CreatePieChart(ctxPieChar, arrPieLabel, arrPieData);
         CreateLineChart(ctxLineViewChart, arrViewLabel, arrViewData, 'Lượt xem');
+        CreateLineChart(ctxLineRevenueChart, arrRevenueLabel, arrRevenueData, 'Doanh thu');
+        CreateBarChart(ctxBarChar, arrBarlabel, arrBarData);
     }
 );
 
-
-CreateBarChart(ctxBarChar, arrBarlabel, arrBarData);
-
 //End biểu đồ cột
 //Tạo dữ liệu giả
-for (var i = 1; i < 31; i++) {
-    arrRevenueLabel[i] = i;
-    arrRevenueData[i] = Math.floor((Math.random() * 5000000) + 100000);
-}
-CreateLineChart(ctxLineRevenueChart, arrRevenueLabel, arrRevenueData, 'Doanh thu');
+// for (var i = 1; i < 31; i++) {
+//     arrRevenueLabel[i] = i;
+//     arrRevenueData[i] = Math.floor((Math.random() * 5000000) + 100000);
+// }
+
 
 
 function CreatePieChart(context, arrLabel, arrData) {
