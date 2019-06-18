@@ -8,6 +8,8 @@ var formatPriceHelper = require("../../helpers/format_price.helper");
 //Gọi helper so sánh
 var selectedHelper = require("../../helpers/selected_selector.helper");
 var loginHelper = require("../../helpers/login_3th.helper");
+//Định dạng ngày giờ
+var FormatDateHelper = require("../../helpers/moment_convert_date.helper");
 module.exports = function (app) {
   const hbs = exphbs.create({
     layoutsDir: "views/_layouts",
@@ -17,7 +19,9 @@ module.exports = function (app) {
         formatStringHelper.formatTitleProductForFastCart,
       formatPrice: formatPriceHelper,
       isEqual: selectedHelper.isSelected,
-      is3ThLogin: loginHelper.IsLogin3Th
+      is3ThLogin: loginHelper.IsLogin3Th,
+      formatDate:FormatDateHelper.FormatDate,
+      formatDatePicker:FormatDateHelper.FormatDatePicker
     }
   });
   express_handlebars_sections(hbs);

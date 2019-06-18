@@ -1,13 +1,17 @@
 var express = require('express');
-// var multer = require('multer');
-
  var controller = require('../../controllers/admin/order.controller');
-// var validate = require('../validate/user.validate');
-
-// var upload = multer({ dest: './public/uploads/' });
 
 var router = express.Router();
 
-router.get('/', controller.orderListShow);
+router.get('/order-show', controller.orderShow);
+
+//Xử lý lấy thông tin chi tiết đơn hàng
+router.get('/order-info/:id', controller.orderInfo);
+
+// Xử lí post cập nhật trạng thái đơn hàng
+router.post('/order-update-status', controller.postStatusOrderUpdate);
+
+//Xử lý xóa đơn hàng
+router.post('/order-delete', controller.postDeleteOrder);
 
 module.exports = router;

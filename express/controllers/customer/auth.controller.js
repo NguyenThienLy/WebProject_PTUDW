@@ -5,6 +5,25 @@ var moment = require("moment");
 var nodemailer = require("nodemailer");
 var async = require("async");
 var crypto = require("crypto");
+var sharp = require("sharp");
+var UUID = require("uuid-v4");
+
+//Private key fireabase
+const keyFilename = "./oderfood-cf526-firebase-adminsdk-tfbb1-1117032241.json";
+//Id project firebase
+const projectId = "oderfood-cf526";
+//Nơi lưu trữ hình
+const bucketName = `${projectId}.appspot.com`;
+
+//Hỗ trợ upload ảnh lên firebase
+const { Storage } = require("@google-cloud/storage");
+const gcs = new Storage({
+  projectId,
+  keyFilename
+});
+//Đường dẫn đến nơi lưu hình
+const bucket = gcs.bucket(bucketName);
+
 
 module.exports.postRegister = (req, res, next) => {
   var saltRounds = 10;
@@ -94,13 +113,14 @@ module.exports.checkIsLogin = (req, res, next) => {
 //Cập nhật thông tin cá nhân
 module.exports.updateInfo = (req, res, next) => {
   console.log(req.body);
-
+  var dob = moment(req.body.BIRTHDATE, "DD/MM/YYYY").format("YYYY-MM-DD");
   //Trường hợp cập nhật thông tin cá nhân không bao gồm hình ảnh
   var infoCustomer = {
     ID: req.body.ID,
     FULLNAME: req.body.FULLNAME,
     EMAIL: req.body.EMAIL,
-    PHONE: req.body.PHONE
+    PHONE: req.body.PHONE,
+    BIRTHDATE:dob
   };
 
   //Gọi hàm update
@@ -156,17 +176,17 @@ module.exports.SendMail = (req, res, next) => {
         },
         (token, done) => {
           //Cập nhật token và thời gian hết hạn cho người dùng
-          var lastime = Date.now()+3600000;
+          var lastime = Date.now() + 3600000;
           var stringdate = new Date(lastime);
         //  console.log(stringdate);
           //format qua mysql
-          var mysqlDatetime = moment(stringdate,'YYYY-MM-DD hh:mm:ss').format('YYYY-MM-DD hh:mm:ss');
+          var mysqlDatetime = moment(stringdate, 'YYYY-MM-DD hh:mm:ss').format('YYYY-MM-DD hh:mm:ss');
 
         //  console.log(mysqlDatetime);
           var updateToken = {
             ID: IDuser,
             RESETPASSWORDTOKEN: token,
-            RESETPASSWORDEXPIRES:mysqlDatetime
+            RESETPASSWORDEXPIRES: mysqlDatetime
           };
         //  console.log('tao xong token')
           customerModel.updateInfoCustomer(updateToken).then(rows => {
@@ -219,18 +239,18 @@ module.exports.SendMail = (req, res, next) => {
 //Trả về trang cập nhật mật khẩu mới khi reset
 module.exports.renderResetPage = (req, res, next) => {
   //Kiểm tra token còn tồn tại và còn đủ thời gian hay không
-  
+
   customerModel.idOfToken(req.params.token).then(rows => {
     console.log(req.params.token);
     console.log(rows);
-      if(rows.length>0){
-        
-        res.render("customer/forgot-pass", { token: req.params.token });
-      }else{
-        next();
-      }
+    if (rows.length > 0) {
+
+      res.render("customer/forgot-pass", { token: req.params.token });
+    } else {
+      next();
+    }
   });
-  
+
 };
 
 //Xử lý cập nhật mật khẩu khi reset pass
@@ -248,12 +268,12 @@ module.exports.resetPass = (req, res, next) => {
       var updatePass = {
         ID: rows[0].ID,
         PASSWORD: hashpass,
-        RESETPASSWORDTOKEN:"",
-        RESETPASSWORDEXPIRES:resetDate
+        RESETPASSWORDTOKEN: "",
+        RESETPASSWORDEXPIRES: resetDate
       };
 
-      customerModel.updateInfoCustomer(updatePass).then(rows=>{
-        
+      customerModel.updateInfoCustomer(updatePass).then(rows => {
+
         res.redirect('/customer/index');
 
       }).catch(next);
@@ -268,8 +288,94 @@ module.exports.IsAvailaleMail = (req, res, next) => {
   customerModel.idOfEmailUser(req.query.EMAIL).then(rows => {
     if (rows.length > 0) {
       return res.json(true);
-    }else{
+    } else {
       return res.json(false);
     }
   })
 };
+
+module.exports.updateImage = (req, res, next) => {
+
+  //Tạo mới info cho user
+  var userInfo = {
+    ID: req.body.ID,
+    IMAGE: 'https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png'
+  };
+
+  if (req.file) {
+    // Upload hình đại diện lên firebase
+    var uploadImageToFirebaseStorage = uploadImageToStorage(
+      req.file,
+      req.body.ID,
+      userInfo
+    );
+
+    uploadImageToFirebaseStorage
+      .then(values => {
+        
+        //Gửi hình về client khi thêm thành công
+        res.json(JSON.stringify({ valid: true,image:values}));
+      })
+      .catch(next);
+  } else {
+    res.json(JSON.stringify({ valid: false }));
+  }
+
+};
+
+//Up hình lên firebase
+const uploadImageToStorage = (file, UserID, userInfo) => {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      reject("No image file");
+    } else {
+      //Đổi tên hình
+      let gcsname = Date.now() + "-" + file.originalname;
+      //Tạo đường dẫn để lưu file
+      let fileUpload = bucket.file(`UserImages/${UserID}/` + gcsname);
+      //Upload hình
+      let uuid = UUID();
+      const metadata = {
+        contentType: file.mimetype,
+        metadata: {
+          firebaseStorageDownloadTokens: uuid
+        }
+      };
+      const blobStream = fileUpload.createWriteStream({
+        metadata: metadata,
+        resumable: false
+      });
+
+      blobStream.on("error", error => {
+        reject(error);
+      });
+
+      blobStream.on("finish", () => {
+        //Lấy ra url ảnh
+        var url = getPublicUrl(gcsname, UserID, uuid);
+
+        userInfo.IMAGE = url;
+
+        //Cập nhật lại thông tin ảnh đại diện của info
+        customerModel.updateInfoCustomer(userInfo).then(changedRowsNumber => {
+          resolve(url);
+        })
+      });
+
+      blobStream.end(file.buffer);
+    }
+  });
+};
+
+//Lấy ra đường dẫn để lưu vào database
+function getPublicUrl(filename, UserID, uuid) {
+  //return `https://storage.googleapis.com/${bucketName}/InfoImages/${infoID}/${filename}`;
+  return (
+    "https://firebasestorage.googleapis.com/v0/b/" +
+    bucketName +
+    "/o/" +
+    encodeURIComponent(`UserImages/${UserID}/` + filename) +
+    "?alt=media&token=" +
+    uuid
+  );
+}

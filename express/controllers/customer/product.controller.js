@@ -21,8 +21,6 @@ var orderInfoModel = require("../../models/order_info.model");
 
 // Gọi formatStringHelper
 var formatStringHelper = require("../../helpers/format_string_hide.helper");
-// Gọi formatStringHelper
-var formatStringHelper = require("../../helpers/format_string_hide.helper");
 // Gọi convertToDateHelper
 var convertToDateHelper = require("../../helpers/convert_to_date.helper");
 
