@@ -45,7 +45,7 @@
                 class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-12 align-items-center d-flex justify-content-center content-right">
                 <ul class="m-0 p-0">
                     {{#each tags}}
-                    <a href="/customer/info/tag/{{ID}}"
+                    <a href="/customer/info/tag?idTag={{ID}}"
                         class="badge {{#if isSelected}}badge-success{{else}}badge-dark {{/if}}">{{NAME}}</a>
                     {{/each}}
                 </ul>
@@ -59,7 +59,7 @@
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 d-flex justify-content-center">
                 <div class="component-info-small card font-weight-bold border-0">
                     <div class="card-img-top h-50 w-100 position-relative" data-toggle="tooltip" title="{{TITLE}}">
-                        <a class="stretched-link" href="/customer/info/info-detail/{{ID}}"></a>
+                        <a class="stretched-link" href="/customer/info/tag?idTag={{ID}}"></a>
                         <img src={{IMAGE}} id="info{{ID}}" class="w-100 h-100 rounded-top" alt="">
                         <div class="p-2 w-100 d-flex justify-content-center position-absolute info-info">
                             <div class="mr-3">
@@ -92,7 +92,7 @@
 
                         <ul class="m-0 p-0">
                             {{#each tags}}
-                            <a href="/customer/info/tag/{{ID}}" class="badge badge-dark">{{NAME}}</a>
+                            <a href="/customer/info/tag?idTag={{ID}}" class="badge badge-dark">{{NAME}}</a>
                             {{/each}}
                         </ul>
                     </div>
@@ -103,23 +103,42 @@
         </div>
 
         <div class="row justify-content-center mt-5">
-            <nav aria-label="Page navigation example">
+            <nav>
                 <ul class="pagination">
+                    {{#if this.prePage.active}}
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
+                        <a class="page-link"
+                            href="/customer/info/tag?idTag={{this.tagId}}&page={{this.prePage.value}}"
+                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
                         </a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    {{else}}
+
+                    {{/if}}
+                    {{#each this.pages}}
+                    {{#if active}}
+                    <li class="page-item active"><a class="page-link"
+                            href="/customer/info/tag?idTag={{../this.tagId}}&page={{value}}">{{value}}</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item"><a class="page-link"
+                            href="/customer/info/tag?idTag={{../this.tagId}}&page={{value}}">{{value}}</a>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                    {{#if this.nextPage.active}}
                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
+                        <a class="page-link"
+                            href="/customer/info/tag?idTag={{this.tagId}}&page={{this.nextPage.value}}"
+                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
                         </a>
                     </li>
+                    {{else}}
+
+                    {{/if}}
+
                 </ul>
             </nav>
         </div>
