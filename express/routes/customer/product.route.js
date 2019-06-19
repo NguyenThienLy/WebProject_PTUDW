@@ -29,11 +29,13 @@ router.get(
 // Đưa thông tin từ sort lên product-all-show
 //router.post("/product-filter", controller.applyPostValuesFilter);
 
-router.post("/product-all-show", controller.applyPostForProductAllShow);
+// router.post("/product-all-show", controller.applyPostForProductAllShow);
 
-router.post("/product-combo-show", controller.applyPostForProductComboShow);
+// router.post("/product-combo-show", controller.applyPostForProductComboShow);
 
-router.post("/product-show/:idCat/:idSub", controller.applyPostForProductShow);
+// router.post("/product-show/:idCat/:idSub", controller.applyPostForProductShow);
+
+router.post("/get-product-suggestion", controller.getProductSuggestion);
 
 // Đưa thông tin từ sort lên product-all-show
 //router.get("/product-filter", controller.applyGetValuesFilter);

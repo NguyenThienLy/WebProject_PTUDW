@@ -26,7 +26,7 @@ $(document).ready(function() {
         "checked",
         false
       );
-      $(`#ulCategoriesFilter > ul[id=${$id}] input`).prop("checked", true);
+      // $(`#ulCategoriesFilter > ul[id=${$id}] input`).prop("checked", true);
       /* Đánh dấu tích vào một ô đang chọn sub category */
 
       // Tô màu category có id
@@ -168,4 +168,12 @@ $(document).ready(function() {
     }
   });
   /* prices */
+
+  /* Hủy áp dụng */
+  $('#btnCancelFilter').click(function() {
+    $(`#ulBrandsFilter input`).prop("checked", false);
+    $(`#ulPricesFilter input`).prop("checked", false);
+    $(`#ulCategoriesFilter input`).prop("checked", false);
+    $(`#ulSubCategoriesFilter input`).prop("checked", false);
+  });
 });

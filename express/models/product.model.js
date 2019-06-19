@@ -8,7 +8,7 @@ module.exports.quantityProduct = () => {
 };
 
 //Lấy ra top  loại sản phẩm bán chạy nhất
-module.exports.TopCategorySell = (top) => {
+module.exports.TopCategorySell = top => {
   // Gọi hàm querry từ db
   return db.load(`SELECT category.NAME,SUM(order_detail.QUANTITY) AS SUM FROM (order_detail JOIN product ON order_detail.PRODUCTID = product.ID)
   JOIN category ON category.ID = product.CATEGORYID
@@ -28,11 +28,13 @@ module.exports.structProduct = () => {
 // Linh thêm
 module.exports.productsQuantity = () => {
   // Gọi hàm querry từ db
-  return db.load(`SELECT COUNT(ID) AS PRODUCT_QUANTITY FROM product WHERE STATUS = 1`);
+  return db.load(
+    `SELECT COUNT(ID) AS PRODUCT_QUANTITY FROM product WHERE STATUS = 1`
+  );
 };
 
 // Hàm lấy số lượng sản phẩm product simple có status = 1
-module.exports.quantityProductActive = (objQuery) => {
+module.exports.quantityProductActive = objQuery => {
   // Gọi hàm querry từ db
   var query = "";
   if (objQuery.catID != 0) {
@@ -48,26 +50,33 @@ module.exports.quantityProductActive = (objQuery) => {
   }
 
   if (objQuery.Name != "") {
-    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    query += ` AND MATCH (product.NAME) AGAINST ('${
+      objQuery.Name
+    }' IN NATURAL LANGUAGE MODE) \n`;
   }
   return db.load(`SELECT COUNT(*) AS QUANTITY FROM product WHERE STATUS = 1
                   ${query}`);
 };
 
 // Hàm lấy số lượng sản phẩm product simple có status = 1
-module.exports.quantityProductCommentSimpleActive = (objQuery) => {
+module.exports.quantityProductCommentSimpleActive = objQuery => {
   // Gọi hàm querry từ db
   var query = "";
   if (objQuery.Name != "") {
-    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    query += ` AND MATCH (product.NAME) AGAINST ('${
+      objQuery.Name
+    }' IN NATURAL LANGUAGE MODE) \n`;
   }
+
   return db.load(`SELECT COUNT(*) AS QUANTITY FROM product WHERE STATUS = 1 ${query}`);
 };
 
 // Hàm lấy ra số lượng của sản phẩm có ID
-module.exports.inventoryProduct = (productID) => {
+module.exports.inventoryProduct = productID => {
   // Gọi hàm querry từ db
-  return db.load(`SELECT product.INVENTORY FROM product WHERE product.ID = ${productID}`);
+  return db.load(
+    `SELECT product.INVENTORY FROM product WHERE product.ID = ${productID}`
+  );
 };
 
 // Hàm trả về tất cả sản phẩm trong database
@@ -120,7 +129,9 @@ module.exports.pageallProductFilter = (limit, offset, objQuery) => {
   }
 
   if (objQuery.Name != "") {
-    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    query += ` AND MATCH (product.NAME) AGAINST ('${
+      objQuery.Name
+    }' IN NATURAL LANGUAGE MODE) \n`;
   }
 
   return db.load(`SELECT product.ID, product.IMAGE, product.RESIZEDIMAGE, product.CATEGORYID, 
@@ -138,11 +149,17 @@ module.exports.pageallProductFilter = (limit, offset, objQuery) => {
 };
 
 // Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
-module.exports.pageAllProductCommentSimpleFilter = (limit, offset, objQuery) => {
+module.exports.pageAllProductCommentSimpleFilter = (
+  limit,
+  offset,
+  objQuery
+) => {
   // Gọi hàm querry từ db
   var query = "";
   if (objQuery.Name != "") {
-    query += ` AND MATCH (product.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
+    query += ` AND MATCH (product.NAME) AGAINST ('${
+      objQuery.Name
+    }' IN NATURAL LANGUAGE MODE) \n`;
   }
 
   return db.load(`
@@ -174,7 +191,7 @@ module.exports.allProductInStock = () => {
 };
 
 // Hàm trả về tất cả sản phẩm id theo category Id trong database
-module.exports.allProductIdByCategoryId = (categoryId) => {
+module.exports.allProductIdByCategoryId = categoryId => {
   // Gọi hàm querry từ db
   return db.load(`SELECT product.ID
             FROM product
@@ -183,21 +200,21 @@ module.exports.allProductIdByCategoryId = (categoryId) => {
 };
 
 // Hàm trả về số lượng sản phẩm theo id danh mục để xóa danh mục
-module.exports.productQuantityByCategoryId = (categoryId) => {
+module.exports.productQuantityByCategoryId = categoryId => {
   return db.load(`SELECT COUNT(*) AS QUANTITY
             FROM product
             WHERE product.CATEGORYID = ${categoryId}`);
 };
 
 // Hàm trả về số lượng sản phẩm theo id danh mục để xóa danh mục con
-module.exports.productQuantityBySubCategoryId = (subCategoryId) => {
+module.exports.productQuantityBySubCategoryId = subCategoryId => {
   return db.load(`SELECT COUNT(*) AS QUANTITY
             FROM product
             WHERE product.SUBCATEGORYID = ${subCategoryId}`);
 };
 
 // Hàm trả về số lượng sản phẩm theo id thương hiệu để xóa thương hiệu
-module.exports.productQuantityByBrandId = (brandId) => {
+module.exports.productQuantityByBrandId = brandId => {
   return db.load(`SELECT COUNT(*) AS QUANTITY
             FROM product
             WHERE product.BRANDID = ${brandId}`);
@@ -214,8 +231,8 @@ module.exports.addProduct = product => {
 };
 
 //Hàm cập nhật thông tin sản phẩm
-module.exports.updateProduct = product=>{
-    return db.update('product','ID', product);
+module.exports.updateProduct = product => {
+  return db.update("product", "ID", product);
 };
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
@@ -233,7 +250,7 @@ module.exports.updateProductInventory = products => {
 
 //Hàm cập nhật categoryId cho sản phẩm
 module.exports.updateCategoryIdBySubCategoryIdForProduct = product => {
-  return db.update('product', 'SUBCATEGORYID', product);
+  return db.update("product", "SUBCATEGORYID", product);
 };
 
 //Hàm cập nhật ảnh đại diện cho sản phẩm
@@ -241,14 +258,14 @@ module.exports.updateListProducts = products => {
   if (products.constructor === Array) {
     products.forEach(product => {
       //gọi hàm insert
-      db.update("product", 'ID', product);
+      db.update("product", "ID", product);
     });
-  } 
+  }
 };
 
 //Hàm xóa 1 sản phẩm | cập nhật status về 0
-module.exports.deleteProduct = (product)=>{
-  return db.update('product','ID',product);
+module.exports.deleteProduct = product => {
+  return db.update("product", "ID", product);
 };
 
 //Hàm trả về thời gian hiện tại
@@ -549,6 +566,17 @@ module.exports.topNProductFollowTypeSortAndBrandAndPrice = (
     priceFilter
   );
 
+  // console.log(`
+  // SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+  // 								(CASE
+  // 										WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+  // 										ELSE pro.PRICE
+  // 								END) AS SALEPRICE
+  // 								FROM product AS pro
+  // 								${stringValues}
+  // 								LIMIT ${N};
+  // `);
+
   return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
 									(CASE
 											WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
@@ -557,6 +585,23 @@ module.exports.topNProductFollowTypeSortAndBrandAndPrice = (
 									FROM product AS pro 
 									${stringValues}
 									LIMIT ${N};`);
+};
+
+// Hàm lấy số lượng sản phầm theo typeSort brand và price
+module.exports.getQuantiProductFollowTypeSortAndBrandAndPrice = (
+  typeSort,
+  brandFilter,
+  priceFilter
+) => {
+  var stringValues = returnStringFollowTypeSortAndBrandAndPrice(
+    typeSort,
+    brandFilter,
+    priceFilter
+  );
+
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+									FROM product AS pro 
+									${stringValues}`);
 };
 
 function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
@@ -680,13 +725,15 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
           if (priceFilter == 0) {
             return `ORDER BY CREATED DESC`;
           } else {
-            return `${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+            return `WHERE ${
+              priceFilterArray[priceFilter].minPrice
+            } <= pro.PRICE AND
                     pro.PRICE < ${priceFilterArray[priceFilter].maxPrice}
                     ORDER BY CREATED DESC`;
           }
         } else {
           if (priceFilter == 0) {
-            return `pro.BRANDID = ${brandFilter} 
+            return `WHERE pro.BRANDID = ${brandFilter} 
 						        ORDER BY CREATED DESC`;
           } else {
             return `WHERE pro.BRANDID = ${brandFilter} AND
@@ -704,7 +751,9 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
 
             return `ORDER BY CREATED ASC`;
           } else {
-            return `${priceFilterArray[priceFilter].minPrice} <= pro.PRICE AND
+            return `WHERE ${
+              priceFilterArray[priceFilter].minPrice
+            } <= pro.PRICE AND
                     pro.PRICE < ${priceFilterArray[priceFilter].maxPrice} 
                     ORDER BY CREATED ASC`;
           }
@@ -768,7 +817,7 @@ function returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
           }
         }
     }
-  } else if (idSub != 0 && idCat != 0){
+  } else if (idSub != 0 && idCat != 0) {
     switch (typeSort) {
       // Hàng mới nhất
       case 0:
@@ -885,7 +934,8 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
   brandFilter,
   priceFilter,
   N
-) => {    
+) => {
+  console.log("TCL: typeSort",typeof(typeSort));
   var stringValues = returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
     typeSort,
     idCat,
@@ -893,7 +943,16 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
     brandFilter,
     priceFilter
   );
-  console.log("TCL: stringValues", stringValues)
+  console.log(`
+  SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+  (CASE
+  		WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+  		ELSE pro.PRICE
+  END) AS SALEPRICE
+  FROM product AS pro
+  ${stringValues}
+  LIMIT ${N};
+  `)
 
   return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
 	(CASE
@@ -905,8 +964,45 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
 	LIMIT ${N};`);
 };
 
+// Hàm trả về N sản phẩm sắp xếp theo typeSort, brand và price
+module.exports.getQuantityProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
+  typeSort,
+  idCat,
+  idSub,
+  brandFilter,
+  priceFilter
+) => {
+  var stringValues = returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
+    typeSort,
+    idCat,
+    idSub,
+    brandFilter,
+    priceFilter
+  );
+  // console.log(`
+  // SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+  // (CASE
+  // 		WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+  // 		ELSE pro.PRICE
+  // END) AS SALEPRICE
+  // FROM product AS pro
+  // ${stringValues}
+  // LIMIT ${N};
+  // `)
+
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+	FROM product AS pro 
+	${stringValues}`);
+};
+
+// Hàm lấy số lượng theo
+
 // Hàm trả về N sản phẩm cùng loại trong product detail
-module.exports.topNProductTheSameFollowOffsetFollowIdPro = (IdPro, N , Offset) => {
+module.exports.topNProductTheSameFollowOffsetFollowIdPro = (
+  IdPro,
+  N,
+  Offset
+) => {
   return db.load(`SELECT  ID, PRICE, SALE, NAME, IMAGE,
                   (CASE
                       WHEN SALE > 0 THEN (PRICE - PRICE * (SALE / 100))
@@ -961,25 +1057,34 @@ module.exports.top1ProductFollowId = id => {
 
 // Hàm lấy ra số lượng sản phẩm theo id
 module.exports.GetInventoryProductFollowId = id => {
-  return db.load(
-    `SELECT INVENTORY FROM product WHERE ID = ${id}`
-  );
+  return db.load(`SELECT INVENTORY FROM product WHERE ID = ${id}`);
 };
 
 // Cập nhật rate theo sản phẩm
 module.exports.updateRateFollowProductId = id => {
   return db.load(`UPDATE product SET RATE = (SELECT ROUND(AVG(STARS)) FROM comment WHERE PRODUCTID = ${id} AND ISSIMPLE = 1)
   WHERE ID = ${id}`);
-}
+};
 
 // Lấy ra đánh giá của theo sản phẩm
 module.exports.getRateProductSimpleFollowProductId = id => {
   return db.load(`SELECT RATE FROM product 
   WHERE ID = ${id}`);
-}
+};
 
 // hàm cập nhật thông tin product
 module.exports.updateInventoryProductSimple = product => {
   return db.update("product", "ID", product);
 };
 
+// Hàm lấy ra các product theo text
+module.exports.getNProductSimpleForFullTextSearchFollowText = (text, N) => {
+  // console.log(`
+  // SELECT ID, NAME FROM product WHERE MATCH (product.NAME) AGAINST ('${text}' IN NATURAL LANGUAGE MODE)
+  // LIMIT ${N}
+  // `);
+
+  return db.load(`
+  SELECT ID, NAME FROM product WHERE MATCH (NAME) AGAINST ('${text}' IN NATURAL LANGUAGE MODE)
+  LIMIT ${N}`);
+};
