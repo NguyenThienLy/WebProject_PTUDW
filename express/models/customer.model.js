@@ -47,12 +47,14 @@ module.exports.quantityCustomerActive = (objQuery) => {
 //Hàm ra top 10 khách hàng thanh toán nhiều nhất
 module.exports.Top10Customer = () => {
   return db.load(
-    `SELECT customer.ID, customer.FULLNAME, customer.EMAIL, customer.CASH, 
-    DATE_FORMAT(customer.CREATED, '%d/%m/%Y %H:%i') AS CREATED, 
+    `SELECT customer.ID, customer.FULLNAME, customer.EMAIL, 
+    DATE_FORMAT(customer.CREATED, '%d/%m/%Y %H:%i') AS CREATED,SUM(order_info.TOTALMONEY) AS TOTAL,
     customer_type.NAME AS TYPENAME
-    FROM customer JOIN customer_type ON customer.CUSTOMERTYPEID = customer_type.ID
-    WHERE customer.STATUS = 1
-    ORDER BY customer.CASH DESC
+    FROM (customer JOIN customer_type ON customer.CUSTOMERTYPEID = customer_type.ID)
+    left JOIN order_info ON order_info.CUSTOMERID = customer.ID
+    WHERE customer.STATUS = 1 AND order_info.ORDERSTATUSID = 3
+    GROUP BY order_info.CUSTOMERID
+    ORDER BY SUM(order_info.TOTALMONEY) DESC
     LIMIT 5`
   );
 };

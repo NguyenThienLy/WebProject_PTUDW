@@ -184,7 +184,7 @@
                             <th>Tên KH</th>
                             <th>Email</th>
                             <th>Loại</th>
-                            <th>Ví tiền</th>
+                            <th>Đã thanh toán</th>
                             <th>Thời gian đăng kí</th>
                         </tr>
                     </thead>
@@ -196,7 +196,7 @@
                             <td>{{FULLNAME}}</td>
                             <td>{{EMAIL}}</td>
                             <td>{{TYPENAME}}</td>
-                            <td>{{formatPrice CASH}}&nbsp;đ</td>
+                            <td>{{formatPrice TOTAL}}&nbsp;đ</td>
                             <td>{{CREATED}}</td>
                         </tr>
                         {{/each}}
@@ -338,7 +338,7 @@
 
                 <!--End nội dung bình luận-->
                 <div class="clearfix">
-                    <a href="/admin/comment/product-comment" class="float-right text-link">Xem tất cả bình luận</a>
+                    <a href="/admin/comment/product-comment-simple" class="float-right text-link">Xem tất cả bình luận</a>
                 </div>
             </div>
         </div>
