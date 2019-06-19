@@ -122,21 +122,61 @@ module.exports.infoDetail = function(req, res, next) {
 
 module.exports.infoShow = function(req, res, next) {
   try {
-    // Hàm dùng để xử lí các kiểu sắp xếp thông tin
-    typeSort = 0;
+    typeSort = +req.query.radioSortInfoShow || 0;
+
+    var page = req.query.page || 1;
+    var limit = req.query.limit || 6;
+    var offset = (page - 1) * limit;
+
+    var numberPage = newsModel.newsQuantity();
 
     // Phục hồi checked = false
     for (type of typeSortArray) type.selected = false;
     // Gán radio đó dược checked
     typeSortArray[typeSort].selected = true;
 
-    Promise.all([newsModel.topNNewsFollowTypeSort(typeSort, 12)]).then(
+    Promise.all([newsModel.topNNewsFollowTypeSortPage(typeSort, limit,offset),numberPage]).then(
       values => {
+
+        var total = values[1][0].NEWS_QUANTITY;
+        var nPages = Math.floor(total / limit);
+        if (total % limit > 0) nPages++;
+        var pages = createArrPage(nPages, page);
+
+        var prePage = {
+          value: 0,
+          active: false
+        };
+        if (page > 1) {
+          prePage.value = page - 1
+          prePage.active = true;
+        } else {
+          prePage.value = 0
+          prePage.active = false;
+        }
+  
+        var nextPage = {
+          value: 0,
+          active: false
+        }
+  
+        if (page < nPages) {
+          nextPage.value = parseInt(page) + 1
+          nextPage.active = true;
+        } else {
+          nextPage.value = 0
+          nextPage.active = false;
+        }
+
         getAllTagForNews(values[0]).then(infoShow => {
           res.render("customer/info-show", {
             layout: "main-customer.hbs",
             news: infoShow,
             typeSorts: typeSortArray,
+            pages: pages,
+            prePage: prePage,
+            nextPage: nextPage,
+            typeSort:typeSort,
             helpers: {
               // Hàm định dạng title của info lấy 85 kí tự
               formatTitleInfo: formatStringHelper.formatTitleInfo,
@@ -155,10 +195,10 @@ module.exports.infoShow = function(req, res, next) {
 module.exports.handlePostValueFilter = function(req, res, next) {
   try {
     // Lấy giá trị của radio hoặc select tùy theo responsive
-    typeSort = +req.body.radioSortInfoShow;
+    typeSort = +req.body.radioSortInfoShow || 0;
 
     // Nếu typeSort là NaN thì gán mặc định bằng 0
-    if (isNaN(typeSort) == true) typeSort = 0;
+    // (isNaN(typeSort) == true) typeSort = 0;
 
     // Phục hồi checked = false
     for (type of typeSortArray) type.selected = false;
