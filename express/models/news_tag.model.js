@@ -5,6 +5,11 @@ module.exports.deleteTagOfNews = (newsId) => {
   return db.delete("news_tag", "NEWSID", newsId);
 };
 
+//Lấy ra tất cả các bài viết có chứa tag
+module.exports.quantityNewsTag = (tagID) => {
+  return db.load(`SELECT COUNT(news_tag.NEWSID) AS QUANTITY FROM news_tag WHERE TAGID = ${tagID}`);
+};
+
 //Hàm xóa tất cả tag theo id
 module.exports.deleteByTagId = (tagId) => {
   return db.delete("news_tag", "TAGID", tagId);

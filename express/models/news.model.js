@@ -73,6 +73,39 @@ module.exports.topNNewsFollowTypeSort = (typeSort, N) => {
   }
 };
 
+// Hàm trả về 3 thông tin hữu ích mới nhất
+module.exports.topNNewsFollowTypeSortPage = (typeSort, limit,offset) => {
+  switch (typeSort) {
+    // Tin mới nhất
+    case 0:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED	
+                      FROM news
+                      ORDER BY DATE(CREATED) DESC
+                      LIMIT ${limit} OFFSET ${offset}`);
+
+    // Tin cũ nhất
+    case 1:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
+                      FROM news
+                      ORDER BY DATE(CREATED) ASC
+                      LIMIT ${limit} OFFSET ${offset}`);
+
+    // Đọc nhiều nhất
+    case 2:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
+                      FROM news
+                      ORDER BY VIEWS DESC
+                      LIMIT ${limit} OFFSET ${offset}`);
+
+    // Đọc ít nhất
+    default:
+      return db.load(`SELECT ID, IMAGE, TITLE, SHORTCONTENT, VIEWS, DATE_FORMAT(CREATED, '%d/%m/%Y') AS CREATED				
+                      FROM news
+                      ORDER BY VIEWS ASC
+                      LIMIT ${limit} OFFSET ${offset}`);
+  }
+};
+
 module.exports.Top5News = () => {
   return db.load(`SELECT ID, TITLE, DATE_FORMAT(news.CREATED, '%d/%m/%Y %H:%i') AS CREATED, VIEWS			
                   FROM news
@@ -210,7 +243,7 @@ module.exports.topNNewsPopularInWeekFollowOffsetFollowIdNews = (IdInfo, N, Offse
 };
 
 // Hàm lấy các bài báo được đọc nhiều nhất tuần
-module.exports.topNNewsFollowTagId = (tagId, N, Offset, ) => {
+module.exports.topNNewsFollowTagId = (tagId, N, Offset) => {
   var stringTagId = "";
 
   if (+tagId !== 0)

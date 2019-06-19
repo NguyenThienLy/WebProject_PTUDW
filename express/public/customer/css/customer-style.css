@@ -66,6 +66,17 @@ html {
   border-color: #99cc00;
 }
 
+.badge-pill,
+.badge-secondary,
+.badge-warning,
+.badge-light,
+.badge-danger,
+.badge-info,
+.badge-success,
+.badge-primary {
+  padding: 0.4rem 0.6rem;
+}
+
 .item-image:hover {
   transform: scale(1.1);
 }
@@ -92,12 +103,20 @@ footer .footerLink {
 
 .pagination > .page-item:hover .page-link {
   color: #fff;
-  border-color: #99cc00;
-  background-color: #99cc00;
+  border: 1px solid #568a28;
+  background-color: rgba(153, 204, 0, 0.6);
+  font-weight: bold;
 }
 
 .pagination > .page-item .page-link:focus {
   box-shadow: 0 0 0 0.2rem rgba(141, 188, 0, 0.4) !important;
+}
+
+.pagination > .page-item.active .page-link {
+  color: #fff;
+  background-color: #99cc00;
+  border: 1px solid #568a28;
+  font-weight: bold;
 }
 
 input[type="number"] {
@@ -160,5 +179,9 @@ input:checked {
 
 .li-newest a:hover {
   color:#99cc00;
+}
+
+.border-success {
+  border-color: #99cc00 !important;
 }
 

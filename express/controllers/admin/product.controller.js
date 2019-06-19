@@ -52,7 +52,7 @@ const gcs = new Storage({
 const bucket = gcs.bucket(bucketName);
 
 // Thêm dữ liệu vào trang product
-module.exports.productShowSimple = function (req, res, next) {
+module.exports.productShowSimple = function(req, res, next) {
   // simple
   var pageSimple = req.query.page || 1;
   var limitSimple = req.query.limit || 3;
@@ -62,12 +62,28 @@ module.exports.productShowSimple = function (req, res, next) {
   var brandID = req.query.brandId || 0;
   var nameSimple = req.query.name || "";
 
+  if (isNaN(categoryID)) {
+    categoryID = 0;
+  }
+
+  if (isNaN(subCategoryID)) {
+    subCategoryID = 0;
+  }
+
+  if (isNaN(brandID)) {
+    brandID = 0;
+  }
+
   var objQuerySimple = {
     catID: categoryID,
     subCatID: subCategoryID,
     BrandID: brandID,
     Name: nameSimple
   };
+
+  if (isNaN(pageSimple)) {
+    pageSimple = 1;
+  }
 
   if (pageSimple < 1) {
     pageSimple = 1;
@@ -81,7 +97,7 @@ module.exports.productShowSimple = function (req, res, next) {
 
   // combo
   var pageCombo = 1;
-  var limitCombo =  3;
+  var limitCombo = 3;
   var offsetCombo = 0;
   var nameCombo = "";
   var nameSimpleCombo = "";
@@ -95,10 +111,18 @@ module.exports.productShowSimple = function (req, res, next) {
   var dataBrands = brandModel.allBrand();
 
   // Lấy dữ liệu sản phẩm
-  var dataProducts = productModel.pageallProductFilter(limitSimple, offsetSimple, objQuerySimple);
+  var dataProducts = productModel.pageallProductFilter(
+    limitSimple,
+    offsetSimple,
+    objQuerySimple
+  );
 
   // Lấy dữ liệu sản phẩm combo
-  var dataProductCombos = productComboModel.pageAllProductComboFilter(limitCombo, offsetCombo, objQueryCombo);
+  var dataProductCombos = productComboModel.pageAllProductComboFilter(
+    limitCombo,
+    offsetCombo,
+    objQueryCombo
+  );
 
   // Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
@@ -110,7 +134,9 @@ module.exports.productShowSimple = function (req, res, next) {
 
   var numberPageSimple = productModel.quantityProductActive(objQuerySimple);
 
-  var numberPageCombo = productComboModel.quantityProductComboActive(objQueryCombo);
+  var numberPageCombo = productComboModel.quantityProductComboActive(
+    objQueryCombo
+  );
 
   Promise.all([
     dataBrands,
@@ -136,23 +162,23 @@ module.exports.productShowSimple = function (req, res, next) {
         active: false
       };
       if (pageSimple > 1) {
-        prePageSimple.value = pageSimple - 1
+        prePageSimple.value = pageSimple - 1;
         prePageSimple.active = true;
       } else {
-        prePageSimple.value = 0
+        prePageSimple.value = 0;
         prePageSimple.active = false;
       }
 
       var nextPageSimple = {
         value: 0,
         active: false
-      }
+      };
 
       if (pageSimple < nPagesSimple) {
-        nextPageSimple.value = parseInt(pageSimple) + 1
+        nextPageSimple.value = parseInt(pageSimple) + 1;
         nextPageSimple.active = true;
       } else {
-        nextPageSimple.value = 0
+        nextPageSimple.value = 0;
         nextPageSimple.active = false;
       }
 
@@ -168,23 +194,23 @@ module.exports.productShowSimple = function (req, res, next) {
         active: false
       };
       if (pageCombo > 1) {
-        prePageCombo.value = pageCombo - 1
+        prePageCombo.value = pageCombo - 1;
         prePageCombo.active = true;
       } else {
-        prePageCombo.value = 0
+        prePageCombo.value = 0;
         prePageCombo.active = false;
       }
 
       var nextPageCombo = {
         value: 0,
         active: false
-      }
+      };
 
       if (pageCombo < nPagesCombo) {
-        nextPageCombo.value = parseInt(pageCombo) + 1
+        nextPageCombo.value = parseInt(pageCombo) + 1;
         nextPageCombo.active = true;
       } else {
-        nextPageCombo.value = 0
+        nextPageCombo.value = 0;
         nextPageCombo.active = false;
       }
 
@@ -232,6 +258,10 @@ module.exports.productShowCombo = function(req, res, next) {
     NameSimple: nameSimpleCombo
   };
 
+  if (isNaN(pageCombo)) {
+    pageCombo = 1;
+  }
+
   if (pageCombo < 1) {
     pageCombo = 1;
   }
@@ -244,7 +274,7 @@ module.exports.productShowCombo = function(req, res, next) {
 
   // simple
   var pageSimple = 1;
-  var limitSimple =  4;
+  var limitSimple = 4;
   var offsetSimple = 0;
   var categoryID = 0;
   var subCategoryID = 0;
@@ -262,10 +292,18 @@ module.exports.productShowCombo = function(req, res, next) {
   var dataBrands = brandModel.allBrand();
 
   // Lấy dữ liệu sản phẩm
-  var dataProducts = productModel.pageallProductFilter(limitSimple, offsetSimple, objQuerySimple);
+  var dataProducts = productModel.pageallProductFilter(
+    limitSimple,
+    offsetSimple,
+    objQuerySimple
+  );
 
   // Lấy dữ liệu sản phẩm combo
-  var dataProductCombos = productComboModel.pageAllProductComboFilter(limitCombo, offsetCombo, objQueryCombo);
+  var dataProductCombos = productComboModel.pageAllProductComboFilter(
+    limitCombo,
+    offsetCombo,
+    objQueryCombo
+  );
 
   // Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
@@ -273,7 +311,9 @@ module.exports.productShowCombo = function(req, res, next) {
   // Lấy dữ liệu sub category
   var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(0);
 
-  var numberPageCombo = productComboModel.quantityProductComboActive(objQueryCombo);
+  var numberPageCombo = productComboModel.quantityProductComboActive(
+    objQueryCombo
+  );
 
   var numberPageSimple = productModel.quantityProductActive(objQuerySimple);
 
@@ -289,37 +329,37 @@ module.exports.productShowCombo = function(req, res, next) {
     .then(values => {
       res.locals.sidebar[4].active = true;
 
-       // combo
-       var totalCombo = values[5][0].QUANTITY;
-       var nPagesCombo = Math.floor(totalCombo / limitCombo);
-       if (totalCombo % limitCombo > 0) nPagesCombo++;
- 
-       var pagesCombo = createArrPage(nPagesCombo, pageCombo);
- 
-       var prePageCombo = {
-         value: 0,
-         active: false
-       };
-       if (pageCombo > 1) {
-         prePageCombo.value = pageCombo - 1
-         prePageCombo.active = true;
-       } else {
-         prePageCombo.value = 0
-         prePageCombo.active = false;
-       }
- 
-       var nextPageCombo = {
-         value: 0,
-         active: false
-       }
- 
-       if (pageCombo < nPagesCombo) {
-         nextPageCombo.value = parseInt(pageCombo) + 1
-         nextPageCombo.active = true;
-       } else {
-         nextPageCombo.value = 0
-         nextPageCombo.active = false;
-       }
+      // combo
+      var totalCombo = values[5][0].QUANTITY;
+      var nPagesCombo = Math.floor(totalCombo / limitCombo);
+      if (totalCombo % limitCombo > 0) nPagesCombo++;
+
+      var pagesCombo = createArrPage(nPagesCombo, pageCombo);
+
+      var prePageCombo = {
+        value: 0,
+        active: false
+      };
+      if (pageCombo > 1) {
+        prePageCombo.value = pageCombo - 1;
+        prePageCombo.active = true;
+      } else {
+        prePageCombo.value = 0;
+        prePageCombo.active = false;
+      }
+
+      var nextPageCombo = {
+        value: 0,
+        active: false
+      };
+
+      if (pageCombo < nPagesCombo) {
+        nextPageCombo.value = parseInt(pageCombo) + 1;
+        nextPageCombo.active = true;
+      } else {
+        nextPageCombo.value = 0;
+        nextPageCombo.active = false;
+      }
 
       // simple
       var totalSimple = values[6][0].QUANTITY;
@@ -333,23 +373,23 @@ module.exports.productShowCombo = function(req, res, next) {
         active: false
       };
       if (pageSimple > 1) {
-        prePageSimple.value = pageSimple - 1
+        prePageSimple.value = pageSimple - 1;
         prePageSimple.active = true;
       } else {
-        prePageSimple.value = 0
+        prePageSimple.value = 0;
         prePageSimple.active = false;
       }
 
       var nextPageSimple = {
         value: 0,
         active: false
-      }
+      };
 
       if (pageSimple < nPagesSimple) {
-        nextPageSimple.value = parseInt(pageSimple) + 1
+        nextPageSimple.value = parseInt(pageSimple) + 1;
         nextPageSimple.active = true;
       } else {
-        nextPageSimple.value = 0
+        nextPageSimple.value = 0;
         nextPageSimple.active = false;
       }
 
@@ -387,7 +427,7 @@ module.exports.productShowCombo = function(req, res, next) {
 function createArrPage(nPages, page) {
   var pages = [];
   //Chỉ hiện tối đa 5 trang
-  var start = end = 0;
+  var start = (end = 0);
   if (nPages <= 5) {
     start = 1;
     end = nPages;
@@ -395,12 +435,10 @@ function createArrPage(nPages, page) {
     if (page == 1) {
       start = 1;
       end = 5;
-    }
-    else if (page == nPages) {
+    } else if (page == nPages) {
       start = nPages - 5;
       end = nPages;
-    }
-    else {
+    } else {
       if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
         start = page - 2;
         end = parseInt(page) + 2;
@@ -427,7 +465,7 @@ function createArrPage(nPages, page) {
 }
 
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
-module.exports.postProductComboAdd = function (req, res, next) {
+module.exports.postProductComboAdd = function(req, res, next) {
   // Tạo đối tượng để thêm vào cơ sở dữ liệu
   var newProductCombo = {
     PRODUCTID1: req.body.PRODUCTID1,
@@ -491,7 +529,7 @@ module.exports.postProductComboAdd = function (req, res, next) {
 };
 
 //Thêm dữ liệu vào trang productadd
-module.exports.productAdd = function (req, res, next) {
+module.exports.productAdd = function(req, res, next) {
   // Lấy dữ liệu product
   var dataProducts = productModel.allProductInStock();
   //Lấy dữ liệu category
@@ -519,7 +557,7 @@ module.exports.productAdd = function (req, res, next) {
 };
 
 //Xử lý post nhận về product-add -- Lưu ý có xử lý cả mảng hình ảnh
-module.exports.postProductAdd = function (req, res, next) {
+module.exports.postProductAdd = function(req, res, next) {
   let listFile = req.files;
 
   // Tạo đối tượng để thêm vào cơ sở dữ liệu
@@ -712,7 +750,7 @@ function getPublicUrl(filename, productID, uuid) {
   );
 }
 
-module.exports.SubCategory = function (req, res, next) {
+module.exports.SubCategory = function(req, res, next) {
   //Lấy dữ liệu sub category
   var dataSubCategories = subCategoryModel.allSubCategoryByCategoryId(
     req.body.CategoryID
@@ -726,7 +764,7 @@ module.exports.SubCategory = function (req, res, next) {
     .catch(next);
 };
 
-module.exports.productIdByCategoryId = function (req, res, next) {
+module.exports.productIdByCategoryId = function(req, res, next) {
   var catID = req.body.CategoryID;
   var dataProductIds;
 
@@ -743,7 +781,7 @@ module.exports.productIdByCategoryId = function (req, res, next) {
     .catch(next);
 };
 
-module.exports.productByProductId = function (req, res, next) {
+module.exports.productByProductId = function(req, res, next) {
   //Lấy dữ liệu sub category
   var dataProduct = productModel.singleByProductId(req.body.ProductID);
   //Lấy dữ liệu từ tag
@@ -765,61 +803,80 @@ module.exports.postDeleteProduct = (req, res, next) => {
   //Kiểm tra sản phẩm có trong combo ko
   var isInProductCombo = productComboModel.isInProductCombo(productID);
 
-  Promise.all([inventoryProduct, isInProductCombo]).then(values => {
-    var inventory = values[0];
-    var isInProductCombo = values[1];
+  Promise.all([inventoryProduct, isInProductCombo])
+    .then(values => {
+      var inventory = values[0];
+      var isInProductCombo = values[1];
 
-    if (inventory[0].INVENTORY > 0) {
-      res.send(false);
-    } else if (isInProductCombo) {
-      res.send(false);
-    } else {
-      //tạo mới product
-      var updateProduct = {
-        ID: productID,
-        STATUS: 0
-      };
+      if (inventory[0].INVENTORY > 0) {
+        res.send(false);
+      } else if (isInProductCombo) {
+        res.send(false);
+      } else {
+        //tạo mới product
+        var updateProduct = {
+          ID: productID,
+          STATUS: 0
+        };
 
-      //Gọi hàm xóa
-      productModel.deleteProduct(updateProduct).then(changedRowsNumber => {
-        res.send(true);
-      });
-    }
-  });
+        //Gọi hàm xóa
+        productModel
+          .deleteProduct(updateProduct)
+          .then(changedRowsNumber => {
+            res.send(true);
+          })
+          .catch(err => {
+            res.send(false);
+          });
+      }
+    })
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 //Hiển thị thông tin sản phẩm để update
 module.exports.productUpdate = (req, res, next) => {
+  var productId = req.params.id;
+
+  if (isNaN(productId)) {
+    productId = 0;
+  }
+
   //Lấy dữ liệu category
   var dataCategories = categoryModel.allCategory();
 
   //Lấy dữ liệu sub category
   var dataSubCategories = subCategoryModel.allSubCategoryByProductID(
-    req.params.id
+    productId
   );
 
   // Lấy dữ liệu nhãn hiệu
   var dataBrands = brandModel.allBrand();
 
   //Dữ liệu product
-  var productInfo = productModel.singleByProductId(req.params.id);
+  var productInfo = productModel.singleByProductId(productId);
 
   Promise.all([dataCategories, dataSubCategories, dataBrands, productInfo])
     .then(values => {
-      res.locals.sidebar[4].active = true;
+      if (values[3][0]) {
+        res.locals.sidebar[4].active = true;
 
-      //Truyền vào trong UI
-      res.render("admin/product-update", {
-        layout: "main-admin.hbs",
-        categories: values[0],
-        subCategories: values[1],
-        brands: values[2],
-        productinfo: values[3][0],
-        helpers: {
-          isSelected: selectedHelper.isSelected,
-          isSelectedInTag: selectedHelper.isSelectedInTag
-        }
-      });
+        //Truyền vào trong UI
+        res.render("admin/product-update", {
+          layout: "main-admin.hbs",
+          categories: values[0],
+          subCategories: values[1],
+          brands: values[2],
+          productinfo: values[3][0],
+          helpers: {
+            isSelected: selectedHelper.isSelected,
+            isSelectedInTag: selectedHelper.isSelectedInTag
+          }
+        });
+      } else {
+        res.redirect("/admin/product/product-show-simple");
+      }
     })
     .catch(next);
 };
@@ -900,16 +957,24 @@ module.exports.postProductImagesUpdate = (req, res, next) => {
           .then(values => {
             res.send({ valid: true });
           })
-          .catch(next);
+          .catch(err => {
+            res.send({ valid: false });
+          });
       } else {
         res.send({ valid: false });
       }
     })
-    .catch(next);
+    .catch(err => {
+      res.send({ valid: false });
+    });
 };
 
 module.exports.productComboUpdate = (req, res, next) => {
   var id = +req.params.id;
+
+  if (isNaN(id)) {
+    id = 0;
+  }
 
   // Lấy dữ liệu product
   var dataProducts = productModel.allProductInStock();
@@ -922,19 +987,24 @@ module.exports.productComboUpdate = (req, res, next) => {
 
   Promise.all([dataProductCombo, dataProducts, dataCategories])
     .then(values => {
-      res.locals.sidebar[4].active = true;
+      if (values[0][0]) {
+        res.locals.sidebar[4].active = true;
 
-      //Truyền vào trong UI
-      res.render("admin/product-combo-update", {
-        layout: "main-admin.hbs",
-        productCombo: values[0][0],
-        products: values[1],
-        categories: values[2],
-        helpers: {
-          isSelected: selectProductComboEditHelper.isSelected,
-          isExistedInProducts: selectProductComboEditHelper.isExistedInProducts
-        }
-      });
+        //Truyền vào trong UI
+        res.render("admin/product-combo-update", {
+          layout: "main-admin.hbs",
+          productCombo: values[0][0],
+          products: values[1],
+          categories: values[2],
+          helpers: {
+            isSelected: selectProductComboEditHelper.isSelected,
+            isExistedInProducts:
+              selectProductComboEditHelper.isExistedInProducts
+          }
+        });
+      } else {
+        res.redirect("/admin/product/product-show-combo");
+      }
     })
     .catch(next);
 };
@@ -1090,10 +1160,14 @@ module.exports.postDeleteProductCombo = (req, res, next) => {
           .then(values => {
             res.send(true);
           })
-          .catch(next);
+          .catch(err => {
+            res.send(false);
+          });
       }
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 function isChanged(oldProductId, listNewProductId) {

@@ -60,6 +60,8 @@ module.exports.isAvailable = (req, res, next) => {
     if (customers.length > 0) return res.json(false);
 
     return res.json(true);
+  }).catch(err => {
+    return res.json(false);
   });
 };
 
@@ -69,6 +71,8 @@ module.exports.isValidEmail = (req, res, next) => {
     if (customers.length > 0) return res.json(false);
 
     return res.json(true);
+  }).catch(err => {
+    return res.json(false);
   });
 };
 
@@ -116,7 +120,7 @@ module.exports.checkIsLogin = (req, res, next) => {
     }
   }
   catch (error) {
-    next(error);
+    res.send("false");
   }
 };
 
@@ -255,8 +259,8 @@ module.exports.SendMail = (req, res, next) => {
 //Trả về trang cập nhật mật khẩu mới khi reset
 module.exports.renderResetPage = (req, res, next) => {
   //Kiểm tra token còn tồn tại và còn đủ thời gian hay không
-
-  customerModel.idOfToken(req.params.token).then(rows => {
+  var currentdate = moment().format('YYYY-MM-DD hh:mm:ss');
+  customerModel.idOfToken(req.params.token,currentdate).then(rows => {
     console.log(req.params.token);
     console.log(rows);
     if (rows.length > 0) {
@@ -307,6 +311,8 @@ module.exports.IsAvailaleMail = (req, res, next) => {
     } else {
       return res.json(false);
     }
+  }).catch(err => {
+    return res.json(false);
   })
 };
 

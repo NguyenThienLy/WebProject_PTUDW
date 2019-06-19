@@ -1,4 +1,5 @@
 // footer accordion
+// data-parent để close còn lại khi mở 1 cái
 $(".footer-accordion-header-1").click(function(e) {
   if ($(".footer-accordion-header-icon-1").hasClass("transform-left")) {
     $(".footer-accordion-header-icon-1").removeClass("transform-left");

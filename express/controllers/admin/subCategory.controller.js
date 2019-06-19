@@ -17,6 +17,10 @@ module.exports.subCategoryShow = function(req, res, next) {
     Name: name
   };
 
+  if (isNaN(page)) {
+    page = 1;
+  }
+
   if (page < 1) {
     page = 1;
   }
@@ -27,7 +31,11 @@ module.exports.subCategoryShow = function(req, res, next) {
 
   var offset = (page - 1) * limit;
 
-  var dataSubCategories = subCategoryModel.pageAllSubCategoryFilter(limit, offset, objQuery);
+  var dataSubCategories = subCategoryModel.pageAllSubCategoryFilter(
+    limit,
+    offset,
+    objQuery
+  );
 
   var numberPage = subCategoryModel.quantitySubCategoryActive(objQuery);
 
@@ -46,23 +54,23 @@ module.exports.subCategoryShow = function(req, res, next) {
         active: false
       };
       if (page > 1) {
-        prePage.value = page - 1
+        prePage.value = page - 1;
         prePage.active = true;
       } else {
-        prePage.value = 0
+        prePage.value = 0;
         prePage.active = false;
       }
 
       var nextPage = {
         value: 0,
         active: false
-      }
+      };
 
       if (page < nPages) {
-        nextPage.value = parseInt(page) + 1
+        nextPage.value = parseInt(page) + 1;
         nextPage.active = true;
       } else {
-        nextPage.value = 0
+        nextPage.value = 0;
         nextPage.active = false;
       }
 
@@ -85,7 +93,7 @@ module.exports.subCategoryShow = function(req, res, next) {
 function createArrPage(nPages, page) {
   var pages = [];
   //Chỉ hiện tối đa 5 trang
-  var start = end = 0;
+  var start = (end = 0);
   if (nPages <= 5) {
     start = 1;
     end = nPages;
@@ -93,12 +101,10 @@ function createArrPage(nPages, page) {
     if (page == 1) {
       start = 1;
       end = 5;
-    }
-    else if (page == nPages) {
+    } else if (page == nPages) {
       start = nPages - 5;
       end = nPages;
-    }
-    else {
+    } else {
       if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
         start = page - 2;
         end = parseInt(page) + 2;
@@ -143,25 +149,34 @@ module.exports.postSubCategoryAdd = function(req, res, next) {
 
   subCategoryModel.addSubCategory(newSubCategory).then(subCategoryId => {
     res.redirect("/admin/subCategory/subCategory-add");
-  })
+  });
 };
 
 module.exports.subCategoryUpdate = function(req, res, next) {
   var subCategoryId = req.params.id;
+
+  if (isNaN(subCategoryId)) {
+    subCategoryId = 0;
+  }
+
   var dataSubCategory = subCategoryModel.singleById(subCategoryId);
   var dataCategories = categoryModel.allCategory();
 
   Promise.all([dataSubCategory, dataCategories]).then(values => {
-    res.locals.sidebar[9].active = true;
+    if (values[0][0]) {
+      res.locals.sidebar[9].active = true;
 
-    res.render("admin/subCategory-update", {
-      layout: "main-admin.hbs",
-      subCategory: values[0][0],
-      categories: values[1],
-      helpers: {
-        isSelected: selectedHelper.isSelected
-      }
-    });
+      res.render("admin/subCategory-update", {
+        layout: "main-admin.hbs",
+        subCategory: values[0][0],
+        categories: values[1],
+        helpers: {
+          isSelected: selectedHelper.isSelected
+        }
+      });
+    } else {
+      res.redirect("/admin/subCategory/subCategory-show");
+    }
   });
 };
 
@@ -174,18 +189,24 @@ module.exports.postSubCategoryUpdate = function(req, res, next) {
 
   var oldCategoryId = req.body.OLDCATEGORYID;
 
-  subCategoryModel.updateSubCategory(subCategory).then(changedRowsNumber => {
-    if (req.body.CATEGORYID !== oldCategoryId) {
-      var updateProduct = {
-        SUBCATEGORYID: req.body.ID,
-        CATEGORYID: req.body.CATEGORYID
-      }
+  subCategoryModel
+    .updateSubCategory(subCategory)
+    .then(changedRowsNumber => {
+      if (req.body.CATEGORYID !== oldCategoryId) {
+        var updateProduct = {
+          SUBCATEGORYID: req.body.ID,
+          CATEGORYID: req.body.CATEGORYID
+        };
 
-      productModel.updateCategoryIdBySubCategoryIdForProduct(updateProduct).then(changedRowsNumber => {
-        res.redirect(req.get("referer"));
-      }).catch(next);
-    }
-  }).catch(next);
+        productModel
+          .updateCategoryIdBySubCategoryIdForProduct(updateProduct)
+          .then(changedRowsNumber => {
+            res.redirect(req.get("referer"));
+          })
+          .catch(next);
+      }
+    })
+    .catch(next);
 };
 
 // Xóa danh mục phụ
@@ -203,10 +224,14 @@ module.exports.postDeleteSubCategory = (req, res, next) => {
           .then(affectedRowsNumber => {
             res.send(true);
           })
-          .catch(next);
+          .catch(err => {
+            res.send(false);
+          });
       }
     })
-    .catch(next);
+    .catch(err => {
+      res.send(false);
+    });
 };
 
 // Xóa danh mục

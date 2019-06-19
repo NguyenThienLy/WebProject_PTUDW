@@ -5,8 +5,6 @@ var router = express.Router();
 
 router.get("/cart-detail", controller.cartDetail);
 
-router.get("/cart-order", controller.cartOrder);
-
 // router.post('/cart-detail', controller.cartDetail);
 
 // Thêm sản phẩm trong giỏ hàng

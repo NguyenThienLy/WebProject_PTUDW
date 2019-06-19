@@ -186,6 +186,10 @@ module.exports.productSimpleDetail = function(req, res, next) {
     // Lấy id của product simple hiện tại
     var idProduct = req.params.idProduct;
 
+    if (isNaN(idProduct)) {
+      idProduct = 0;
+    }
+
     var isHaveTheSameProduct = true;
     var isHaveBestSalerProduct = true;
 
@@ -201,137 +205,164 @@ module.exports.productSimpleDetail = function(req, res, next) {
         1
       ),
       commentModel.commentsQuantityFollowIdProductAndTypeProduct(idProduct, 1),
-      commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 1)
+      commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 1),
+      commentModel.commentsCustomerBuyProductSimple()
     ]).then(values => {
-      if (values[1].length === 0) isHaveTheSameProduct = false;
-      if (values[2].length === 0) isHaveBestSalerProduct = false;
+      if (values[0][0]) {
+        if (values[1].length === 0) isHaveTheSameProduct = false;
+        if (values[2].length === 0) isHaveBestSalerProduct = false;
 
-      var arrStarProduct = [];
-      var arrStarUnCheckProduct = [];
-      var arrShortDescription = [];
-      var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
+        var arrStarProduct = [];
+        var arrStarUnCheckProduct = [];
+        var arrShortDescription = [];
+        var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
 
-      // Lấy phần giới thiệu về sản phẩm
-      for (short of arrShorts) {
-        if (short.length > 0) {
+        // Lấy phần giới thiệu về sản phẩm
+        for (short of arrShorts) {
+          if (short.length > 0) {
+            var shortDescription = {};
+            shortDescription.content = short;
+
+            arrShortDescription.push(shortDescription);
+          }
+        }
+
+        if (values[0][0].SHORTDESCRIPTION.length === 0) {
           var shortDescription = {};
-          shortDescription.content = short;
+          shortDescription.content = "Sản phẩm này chưa có phần giới thiệu";
 
           arrShortDescription.push(shortDescription);
         }
-      }
 
-      if (values[0][0].SHORTDESCRIPTION.length === 0) {
-        var shortDescription = {};
-        shortDescription.content = "Sản phẩm này chưa có phần giới thiệu";
+        /* Đánh giá sao cho sản phẩm */
+        for (var i = 0; i < values[0][0].RATE; i++) arrStarProduct.push(i);
 
-        arrShortDescription.push(shortDescription);
-      }
+        for (var i = values[0][0].RATE; i < 5; i++)
+          arrStarUnCheckProduct.push(i);
+        /* Đánh giá sao cho sản phẩm */
 
-      /* Đánh giá sao cho sản phẩm */
-      for (var i = 0; i < values[0][0].RATE; i++) arrStarProduct.push(i);
+        /* Đánh giá sao cho bình luận */
+        for (commentRate of values[4]) {
+          var arrStar = [];
+          var arrStarUnCheck = [];
 
-      for (var i = values[0][0].RATE; i < 5; i++) arrStarUnCheckProduct.push(i);
-      /* Đánh giá sao cho sản phẩm */
+          for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
 
-      /* Đánh giá sao cho bình luận */
-      for (commentRate of values[4]) {
-        var arrStar = [];
-        var arrStarUnCheck = [];
+          for (var i = commentRate.STARS; i < 5; i++) arrStarUnCheck.push(i);
 
-        for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
-
-        for (var i = commentRate.STARS; i < 5; i++) arrStarUnCheck.push(i);
-
-        commentRate.rateStar = arrStar;
-        commentRate.rateStarUncheck = arrStarUnCheck;
-      }
-      /* Đánh giá sao cho bình luận */
-
-      /* Tính lượng % đánh giá của người dùng */
-      // Thêm các phần tử thiếu
-
-      // Nếu mảng trống
-      if (values[6].length === 0) {
-        for (var i = 1; i <= 5; i++) {
-          var star = { STARS: i, QUANTITY: 0, percent: 0 };
-
-          values[6].push(star);
+          commentRate.rateStar = arrStar;
+          commentRate.rateStarUncheck = arrStarUnCheck;
         }
-      } else {
-        var arrStarRateTemp = [
-          { STARS: 1, QUANTITY: 0 },
-          { STARS: 2, QUANTITY: 0 },
-          { STARS: 3, QUANTITY: 0 },
-          { STARS: 4, QUANTITY: 0 },
-          { STARS: 5, QUANTITY: 0 }
-        ];
+        /* Đánh giá sao cho bình luận */
 
-        for (var rateStar of values[6]) {
-          arrStarRateTemp[rateStar.STARS - 1].QUANTITY = rateStar.QUANTITY;
+        // xét xem ng bình luận có mua sản phẩm chưa, gán giá trị cho BOUGHT
+        for (var comment of values[4]) {
+          var customer = values[7].find((value, index, array) => {
+            if (
+              value.CUSTOMERID === comment.CUSTOMERID &&
+              value.PRODUCTID === comment.PRODUCTID
+            ) {
+              return value.CUSTOMERID;
+            } else {
+              return null;
+            }
+          });
+
+          if (customer) {
+            comment.BOUGHT = true;
+          } else {
+            comment.BOUGHT = false;
+          }
         }
 
-        values[6] = arrStarRateTemp;
+        /* Tính lượng % đánh giá của người dùng */
+        // Thêm các phần tử thiếu
 
-        // Sắp xếp lại
-        values[6].sort(function(star1, star2) {
-          return star1.STARS < star2.STARS;
+        // Nếu mảng trống
+        if (values[6].length === 0) {
+          for (var i = 1; i <= 5; i++) {
+            var star = { STARS: i, QUANTITY: 0, percent: 0 };
+
+            values[6].push(star);
+          }
+        } else {
+          var arrStarRateTemp = [
+            { STARS: 1, QUANTITY: 0 },
+            { STARS: 2, QUANTITY: 0 },
+            { STARS: 3, QUANTITY: 0 },
+            { STARS: 4, QUANTITY: 0 },
+            { STARS: 5, QUANTITY: 0 }
+          ];
+
+          for (var rateStar of values[6]) {
+            arrStarRateTemp[rateStar.STARS - 1].QUANTITY = rateStar.QUANTITY;
+          }
+
+          values[6] = arrStarRateTemp;
+
+          // Sắp xếp lại
+          values[6].sort(function(star1, star2) {
+            return star1.STARS < star2.STARS;
+          });
+
+          var sumQuantity = values[6].reduce(function(sum, star) {
+            return sum + +star.QUANTITY;
+          }, 0);
+
+          // Thêm thuộc tính phần trăm
+          for (var star of values[6]) {
+            star.percent = Math.round((star.QUANTITY / sumQuantity) * 100);
+          }
+        }
+        /* Tính lượng % đánh giá của người dùng */
+
+        res.render("customer/product-simple-detail", {
+          layout: "main-customer.hbs",
+          arrStarInRate: arrStarProduct,
+          arrStarInRateUnCheck: arrStarUnCheckProduct,
+          arrShortDescription: arrShortDescription,
+          productsTheSame: values[1],
+          productsBestSaler: values[2],
+          productSimpleImages: values[3],
+          productComments: values[4],
+          productCommentsQuantity: values[5][0].COMMENT_QUANTITY,
+          productStarPercentInRate: values[6],
+          productId: idProduct,
+          isSimple: true,
+          isHaveTheSameProduct: isHaveTheSameProduct,
+          isHaveBestSalerProduct: isHaveBestSalerProduct,
+          productRateStar: values[0][0].RATE,
+          productName: values[0][0].NAME,
+          productPrice: values[0][0].PRICE,
+          productSale: values[0][0].SALE,
+          productSalePrice: values[0][0].SALEPRICE,
+          productBrandName: values[0][0].BRANDNAME,
+          productInventory: values[0][0].INVENTORY,
+          productOrigin: values[0][0].ORIGIN,
+          productKilogram: values[0][0].KILOGRAM,
+          productImage: values[0][0].IMAGE,
+          productDescription: values[0][0].DESCRIPTION,
+          productCategoryId: values[0][0].CATEGORYID,
+          productSubCategoryId: values[0][0].SUBCATEGORYID,
+          productCategoryName: values[0][0].CATEGORYNAME,
+          productSubCategoryName: values[0][0].SUBCATEGORYNAME,
+          helpers: {
+            // Hàm chuyển đổi qua kiểu ngày
+            convertToDate: convertToDateHelper,
+            // Hàm định dạng title của product simple lấy 36 kí tự
+            formatTitleProductSimple:
+              formatStringHelper.formatTitleProductSimple,
+            // Hàm định dạng title của product combo lấy 52 kí tự
+            formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
+            // Hàm định dạng title của info lấy 85 kí tự
+            formatTitleInfo: formatStringHelper.formatTitleInfo,
+            // Hàm định dạng trong breadcrumb lấy 30 kí tự
+            formatTitleInBreadCrumb: formatStringHelper.formatTitleInBreadCrumb
+          }
         });
-
-        var sumQuantity = values[6].reduce(function(sum, star) {
-          return sum + +star.QUANTITY;
-        }, 0);
-
-        // Thêm thuộc tính phần trăm
-        for (var star of values[6]) {
-          star.percent = Math.round((star.QUANTITY / sumQuantity) * 100);
-        }
+      } else {
+        res.redirect("/customer/product/product-all-show");
       }
-      /* Tính lượng % đánh giá của người dùng */
-
-      res.render("customer/product-simple-detail", {
-        layout: "main-customer.hbs",
-        arrStarInRate: arrStarProduct,
-        arrStarInRateUnCheck: arrStarUnCheckProduct,
-        arrShortDescription: arrShortDescription,
-        productsTheSame: values[1],
-        productsBestSaler: values[2],
-        productSimpleImages: values[3],
-        productComments: values[4],
-        productCommentsQuantity: values[5][0].COMMENT_QUANTITY,
-        productStarPercentInRate: values[6],
-        productId: idProduct,
-        isSimple: true,
-        isHaveTheSameProduct: isHaveTheSameProduct,
-        isHaveBestSalerProduct: isHaveBestSalerProduct,
-        productRateStar: values[0][0].RATE,
-        productName: values[0][0].NAME,
-        productPrice: values[0][0].PRICE,
-        productSale: values[0][0].SALE,
-        productSalePrice: values[0][0].SALEPRICE,
-        productBrandName: values[0][0].BRANDNAME,
-        productInventory: values[0][0].INVENTORY,
-        productOrigin: values[0][0].ORIGIN,
-        productKilogram: values[0][0].KILOGRAM,
-        productImage: values[0][0].IMAGE,
-        productDescription: values[0][0].DESCRIPTION,
-        productCategoryId: values[0][0].CATEGORYID,
-        productSubCategoryId: values[0][0].SUBCATEGORYID,
-        productCategoryName: values[0][0].CATEGORYNAME,
-        productSubCategoryName: values[0][0].SUBCATEGORYNAME,
-        helpers: {
-          // Hàm chuyển đổi qua kiểu ngày
-          convertToDate: convertToDateHelper,
-          // Hàm định dạng title của product simple lấy 36 kí tự
-          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
-          // Hàm định dạng title của product combo lấy 52 kí tự
-          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
-          // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo,
-          // Hàm định dạng trong breadcrumb lấy 30 kí tự
-          formatTitleInBreadCrumb: formatStringHelper.formatTitleInBreadCrumb
-        }
-      });
     });
   } catch (error) {
     next(error);
@@ -342,6 +373,10 @@ module.exports.productComboDetail = function(req, res, next) {
   try {
     // Lấy id của product simple hiện tại
     var idProduct = req.params.idProduct;
+
+    if (isNaN(idProduct)) {
+      idProduct = 0;
+    }
 
     var isHaveTheSameProduct = true;
     var isHaveBestSalerProduct = true;
@@ -361,143 +396,170 @@ module.exports.productComboDetail = function(req, res, next) {
         0
       ),
       commentModel.commentsQuantityFollowIdProductAndTypeProduct(idProduct, 0),
-      commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 0)
+      commentModel.groupStarQuantityFollowProductIdAndTypeProduct(idProduct, 0),
+      commentModel.commentsCustomerBuyProductCombo()
     ]).then(values => {
-      if (values[1].length === 0) isHaveTheSameProduct = false;
-      if (values[2].length === 0) isHaveBestSalerProduct = false;
+      if (values[0][0]) {
+        if (values[1].length === 0) isHaveTheSameProduct = false;
+        if (values[2].length === 0) isHaveBestSalerProduct = false;
 
-      var arrStarProduct = [];
-      var arrStarUnCheckProduct = [];
-      var arrShortDescription = [];
-      var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
+        var arrStarProduct = [];
+        var arrStarUnCheckProduct = [];
+        var arrShortDescription = [];
+        var arrShorts = values[0][0].SHORTDESCRIPTION.split(".");
 
-      // Lấy phần giới thiệu về sản phẩm
-      for (short of arrShorts) {
-        if (short.length > 0) {
+        // Lấy phần giới thiệu về sản phẩm
+        for (short of arrShorts) {
+          if (short.length > 0) {
+            var shortDescription = {};
+            shortDescription.content = short;
+
+            arrShortDescription.push(shortDescription);
+          }
+        }
+
+        if (values[0][0].SHORTDESCRIPTION.length === 0) {
           var shortDescription = {};
-          shortDescription.content = short;
+          shortDescription.content = "Sản phẩm này chưa có phần giới thiệu";
 
           arrShortDescription.push(shortDescription);
         }
-      }
 
-      if (values[0][0].SHORTDESCRIPTION.length === 0) {
-        var shortDescription = {};
-        shortDescription.content = "Sản phẩm này chưa có phần giới thiệu";
+        //arrShortDescription
+        // console.log(
+        //   "TCL: module.exports.productComboDetail -> arrShortDescription",
+        //   arrShortDescription
+        // );
 
-        arrShortDescription.push(shortDescription);
-      }
+        /* Đánh giá sao cho sản phẩm */
+        for (var i = 0; i < values[0][0].RATE; i++) arrStarProduct.push(i);
 
-      //arrShortDescription
-      // console.log(
-      //   "TCL: module.exports.productComboDetail -> arrShortDescription",
-      //   arrShortDescription
-      // );
+        for (var i = values[0][0].RATE; i < 5; i++)
+          arrStarUnCheckProduct.push(i);
+        /* Đánh giá sao cho sản phẩm */
 
-      /* Đánh giá sao cho sản phẩm */
-      for (var i = 0; i < values[0][0].RATE; i++) arrStarProduct.push(i);
+        /* Đánh giá sao cho bình luận */
+        for (commentRate of values[3]) {
+          var arrStar = [];
+          var arrStarUnCheck = [];
 
-      for (var i = values[0][0].RATE; i < 5; i++) arrStarUnCheckProduct.push(i);
-      /* Đánh giá sao cho sản phẩm */
+          for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
 
-      /* Đánh giá sao cho bình luận */
-      for (commentRate of values[3]) {
-        var arrStar = [];
-        var arrStarUnCheck = [];
+          for (var i = commentRate.STARS; i < 5; i++) arrStarUnCheck.push(i);
 
-        for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
-
-        for (var i = commentRate.STARS; i < 5; i++) arrStarUnCheck.push(i);
-
-        commentRate.rateStar = arrStar;
-        commentRate.rateStarUncheck = arrStarUnCheck;
-      }
-      /* Đánh giá sao cho bình luận */
-
-      /* Tính lượng % đánh giá của người dùng */
-      // Thêm các phần tử thiếu
-      // Nếu mảng trống
-      if (values[5].length === 0) {
-        for (var i = 1; i <= 5; i++) {
-          var star = { STARS: i, QUANTITY: 0, percent: 0 };
-
-          values[5].push(star);
+          commentRate.rateStar = arrStar;
+          commentRate.rateStarUncheck = arrStarUnCheck;
         }
-      } else {
-        var arrStarRateTemp = [
-          { STARS: 1, QUANTITY: 0 },
-          { STARS: 2, QUANTITY: 0 },
-          { STARS: 3, QUANTITY: 0 },
-          { STARS: 4, QUANTITY: 0 },
-          { STARS: 5, QUANTITY: 0 }
-        ];
+        /* Đánh giá sao cho bình luận */
 
-        for (var rateStar of values[5]) {
-          arrStarRateTemp[rateStar.STARS - 1].QUANTITY = rateStar.QUANTITY;
+        // xét xem ng bình luận có mua sản phẩm chưa, gán giá trị cho BOUGHT
+        for (var comment of values[3]) {
+          var customer = values[6].find((value, index, array) => {
+            if (
+              value.CUSTOMERID === comment.CUSTOMERID &&
+              value.PRODUCTID === comment.PRODUCTID
+            ) {
+              return value.CUSTOMERID;
+            } else {
+              return null;
+            }
+          });
+
+          if (customer) {
+            comment.BOUGHT = true;
+          } else {
+            comment.BOUGHT = false;
+          }
         }
 
-        values[5] = arrStarRateTemp;
+        /* Tính lượng % đánh giá của người dùng */
+        // Thêm các phần tử thiếu
+        // Nếu mảng trống
+        if (values[5].length === 0) {
+          for (var i = 1; i <= 5; i++) {
+            var star = { STARS: i, QUANTITY: 0, percent: 0 };
 
-        // Sắp xếp lại
-        values[5].sort(function(star1, star2) {
-          return star1.STARS < star2.STARS;
+            values[5].push(star);
+          }
+        } else {
+          var arrStarRateTemp = [
+            { STARS: 1, QUANTITY: 0 },
+            { STARS: 2, QUANTITY: 0 },
+            { STARS: 3, QUANTITY: 0 },
+            { STARS: 4, QUANTITY: 0 },
+            { STARS: 5, QUANTITY: 0 }
+          ];
+
+          for (var rateStar of values[5]) {
+            arrStarRateTemp[rateStar.STARS - 1].QUANTITY = rateStar.QUANTITY;
+          }
+
+          values[5] = arrStarRateTemp;
+
+          // Sắp xếp lại
+          values[5].sort(function(star1, star2) {
+            return star1.STARS < star2.STARS;
+          });
+
+          var sumQuantity = values[5].reduce(function(sum, star) {
+            return sum + +star.QUANTITY;
+          }, 0);
+
+          // Thêm thuộc tính phần trăm
+          for (var star of values[5]) {
+            star.percent = Math.round((star.QUANTITY / sumQuantity) * 100);
+          }
+        }
+        /* Tính lượng % đánh giá của người dùng */
+
+        res.render("customer/product-combo-detail", {
+          layout: "main-customer.hbs",
+          arrStarInRate: arrStarProduct,
+          arrStarInRateUnCheck: arrStarUnCheckProduct,
+          arrShortDescription: arrShortDescription,
+          productsTheSame: values[1],
+          productsBestSaler: values[2],
+          productComments: values[3],
+          productCommentsQuantity: values[4][0].COMMENT_QUANTITY,
+          productStarPercentInRate: values[5],
+          isHaveTheSameProduct: isHaveTheSameProduct,
+          isHaveBestSalerProduct: isHaveBestSalerProduct,
+          productRateStar: values[0][0].RATE,
+          productImage1: values[0][0].IMAGE1,
+          productImage2: values[0][0].IMAGE2,
+          productImage3: values[0][0].IMAGE3,
+          productId1: values[0][0].ID1,
+          productId2: values[0][0].ID2,
+          productId3: values[0][0].ID3,
+          productName1: values[0][0].NAME1,
+          productName2: values[0][0].NAME2,
+          productName3: values[0][0].NAME3,
+          productId: idProduct,
+          isSimple: false,
+          productName: values[0][0].NAME,
+          productPrice: values[0][0].SALE,
+          productSalePrice: values[0][0].SALEPRICE,
+          productInventory: values[0][0].INVENTORY,
+          productKilogram: values[0][0].KILOGRAM,
+          productImage: values[0][0].IMAGE,
+          productDescription: values[0][0].DESCRIPTION,
+          helpers: {
+            // Hàm chuyển đổi qua kiểu ngày
+            convertToDate: convertToDateHelper,
+            // Hàm định dạng title của product simple lấy 36 kí tự
+            formatTitleProductSimple:
+              formatStringHelper.formatTitleProductSimple,
+            // Hàm định dạng title của product combo lấy 52 kí tự
+            formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
+            // Hàm định dạng title của info lấy 85 kí tự
+            formatTitleInfo: formatStringHelper.formatTitleInfo,
+            // Hàm định dạng trong breadcrumb lấy 30 kí tự
+            formatTitleInBreadCrumb: formatStringHelper.formatTitleInBreadCrumb
+          }
         });
-
-        var sumQuantity = values[5].reduce(function(sum, star) {
-          return sum + +star.QUANTITY;
-        }, 0);
-
-        // Thêm thuộc tính phần trăm
-        for (var star of values[5]) {
-          star.percent = Math.round((star.QUANTITY / sumQuantity) * 100);
-        }
+      } else {
+        res.redirect("/customer/product/product-all-show");
       }
-      /* Tính lượng % đánh giá của người dùng */
-
-      res.render("customer/product-combo-detail", {
-        layout: "main-customer.hbs",
-        arrStarInRate: arrStarProduct,
-        arrStarInRateUnCheck: arrStarUnCheckProduct,
-        arrShortDescription: arrShortDescription,
-        productsTheSame: values[1],
-        productsBestSaler: values[2],
-        productComments: values[3],
-        productCommentsQuantity: values[4][0].COMMENT_QUANTITY,
-        productStarPercentInRate: values[5],
-        isHaveTheSameProduct: isHaveTheSameProduct,
-        isHaveBestSalerProduct: isHaveBestSalerProduct,
-        productRateStar: values[0][0].RATE,
-        productImage1: values[0][0].IMAGE1,
-        productImage2: values[0][0].IMAGE2,
-        productImage3: values[0][0].IMAGE3,
-        productId1: values[0][0].ID1,
-        productId2: values[0][0].ID2,
-        productId3: values[0][0].ID3,
-        productName1: values[0][0].NAME1,
-        productName2: values[0][0].NAME2,
-        productName3: values[0][0].NAME3,
-        productId: idProduct,
-        isSimple: false,
-        productName: values[0][0].NAME,
-        productPrice: values[0][0].SALE,
-        productSalePrice: values[0][0].SALEPRICE,
-        productInventory: values[0][0].INVENTORY,
-        productKilogram: values[0][0].KILOGRAM,
-        productImage: values[0][0].IMAGE,
-        productDescription: values[0][0].DESCRIPTION,
-        helpers: {
-          // Hàm chuyển đổi qua kiểu ngày
-          convertToDate: convertToDateHelper,
-          // Hàm định dạng title của product simple lấy 36 kí tự
-          formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
-          // Hàm định dạng title của product combo lấy 52 kí tự
-          formatTitleProductCombo: formatStringHelper.formatTitleProductCombo,
-          // Hàm định dạng title của info lấy 85 kí tự
-          formatTitleInfo: formatStringHelper.formatTitleInfo,
-          // Hàm định dạng trong breadcrumb lấy 30 kí tự
-          formatTitleInBreadCrumb: formatStringHelper.formatTitleInBreadCrumb
-        }
-      });
     });
   } catch (error) {
     next(error);
@@ -528,127 +590,121 @@ module.exports.postCommentProductDetail = function(req, res, next) {
         COMMENT: contentComment,
         STARS: starComment,
         LIKES: 0,
-        VERIFYCATION: 0,
         ISSIMPLE: 1
       };
 
-      orderInfoModel
-        .checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct(
-          comment.PRODUCTID,
-          comment.CUSTOMERID,
-          comment.ISSIMPLE
-        )
-        .then(quantity => {
-          // Nếu khách hàng đã mua sản phẩm
-          if (+quantity[0].QUANTITY > 0) {
-            comment.VERIFYCATION = 1;
-          }
+      // orderInfoModel
+      //   .checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct(
+      //     comment.PRODUCTID,
+      //     comment.CUSTOMERID,
+      //     comment.ISSIMPLE
+      //   )
+      //   .then(quantity => {
+      //     // Nếu khách hàng đã mua sản phẩm
+      //     if (+quantity[0].QUANTITY > 0) {
+      //       comment.VERIFYCATION = 1;
+      //     }
 
-          commentModel
-            .addComment(comment)
-            .then(successAdd => {
-              // Cập nhật đánh giá
-              productModel
-                .updateRateFollowProductId(idProduct)
-                .then(successUpdate => {
-                  Promise.all([
-                    commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
-                      idProduct,
-                      5,
-                      0,
-                      comment.ISSIMPLE
-                    ),
-                    commentModel.groupStarQuantityFollowProductIdAndTypeProduct(
-                      idProduct,
-                      comment.ISSIMPLE
-                    ),
-                    productModel.getRateProductSimpleFollowProductId(idProduct),
-                    commentModel.commentsQuantityFollowIdProductAndTypeProduct(
-                      idProduct,
-                      comment.ISSIMPLE
-                    )
-                  ])
-                    .then(values => {
-                      var arrStar = [];
-                      var arrStarUnCheck = [];
+      commentModel
+        .addComment(comment)
+        .then(successAdd => {
+          // Cập nhật đánh giá
+          productModel
+            .updateRateFollowProductId(idProduct)
+            .then(successUpdate => {
+              Promise.all([
+                commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
+                  idProduct,
+                  5,
+                  0,
+                  comment.ISSIMPLE
+                ),
+                commentModel.groupStarQuantityFollowProductIdAndTypeProduct(
+                  idProduct,
+                  comment.ISSIMPLE
+                ),
+                productModel.getRateProductSimpleFollowProductId(idProduct),
+                commentModel.commentsQuantityFollowIdProductAndTypeProduct(
+                  idProduct,
+                  comment.ISSIMPLE
+                )
+              ])
+                .then(values => {
+                  var arrStar = [];
+                  var arrStarUnCheck = [];
 
-                      /* Đánh giá sao cho bình luận */
-                      for (commentRate of values[0]) {
-                        var arrStar = [];
-                        var arrStarUnCheck = [];
+                  /* Đánh giá sao cho bình luận */
+                  for (commentRate of values[0]) {
+                    var arrStar = [];
+                    var arrStarUnCheck = [];
 
-                        for (var i = 0; i < commentRate.STARS; i++)
-                          arrStar.push(i);
+                    for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
 
-                        for (var i = commentRate.STARS; i < 5; i++)
-                          arrStarUnCheck.push(i);
+                    for (var i = commentRate.STARS; i < 5; i++)
+                      arrStarUnCheck.push(i);
 
-                        commentRate.rateStar = arrStar;
-                        commentRate.rateStarUncheck = arrStarUnCheck;
-                      }
-                      /* Đánh giá sao cho bình luận */
+                    commentRate.rateStar = arrStar;
+                    commentRate.rateStarUncheck = arrStarUnCheck;
+                  }
+                  /* Đánh giá sao cho bình luận */
 
-                      /* Tính lượng % đánh giá của người dùng */
-                      // Thêm các phần tử thiếu
-                      if (values[1].length === 0) {
-                        for (var i = 1; i <= 5; i++) {
-                          var star = { STARS: i, QUANTITY: 0, percent: 0 };
+                  /* Tính lượng % đánh giá của người dùng */
+                  // Thêm các phần tử thiếu
+                  if (values[1].length === 0) {
+                    for (var i = 1; i <= 5; i++) {
+                      var star = { STARS: i, QUANTITY: 0, percent: 0 };
 
-                          values[1].push(star);
-                        }
-                      } else {
-                        var arrStarRateTemp = [
-                          { STARS: 1, QUANTITY: 0 },
-                          { STARS: 2, QUANTITY: 0 },
-                          { STARS: 3, QUANTITY: 0 },
-                          { STARS: 4, QUANTITY: 0 },
-                          { STARS: 5, QUANTITY: 0 }
-                        ];
+                      values[1].push(star);
+                    }
+                  } else {
+                    var arrStarRateTemp = [
+                      { STARS: 1, QUANTITY: 0 },
+                      { STARS: 2, QUANTITY: 0 },
+                      { STARS: 3, QUANTITY: 0 },
+                      { STARS: 4, QUANTITY: 0 },
+                      { STARS: 5, QUANTITY: 0 }
+                    ];
 
-                        for (var rateStar of values[1]) {
-                          arrStarRateTemp[rateStar.STARS - 1].QUANTITY =
-                            rateStar.QUANTITY;
-                        }
+                    for (var rateStar of values[1]) {
+                      arrStarRateTemp[rateStar.STARS - 1].QUANTITY =
+                        rateStar.QUANTITY;
+                    }
 
-                        values[1] = arrStarRateTemp;
+                    values[1] = arrStarRateTemp;
 
-                        // Sắp xếp lại
-                        values[1].sort(function(star1, star2) {
-                          return star1.STARS < star2.STARS;
-                        });
-
-                        var sumQuantity = values[1].reduce(function(sum, star) {
-                          return sum + +star.QUANTITY;
-                        }, 0);
-
-                        // Thêm thuộc tính phần trăm
-                        for (var star of values[1]) {
-                          star.percent = Math.round(
-                            (+star.QUANTITY / sumQuantity) * 100
-                          );
-                        }
-                      }
-                      /* Tính lượng % đánh giá của người dùng */
-                      //values[0]
-                      //console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
-                      //values[1]
-                      //console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
-                      //values[2].RATE
-                      // console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
-                      // //values[2].COMMENT_QUANTITY
-                      // console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
-                      res.json({
-                        comments: JSON.stringify(values[0]),
-                        percentsStar: JSON.stringify(values[1]),
-                        rate: JSON.stringify(values[2][0].RATE),
-                        quantityComment: JSON.stringify(
-                          values[3][0].COMMENT_QUANTITY
-                        )
-                      });
-                    })
-                    .catch(err => {
-                      res.send("fail");
+                    // Sắp xếp lại
+                    values[1].sort(function(star1, star2) {
+                      return star1.STARS < star2.STARS;
                     });
+
+                    var sumQuantity = values[1].reduce(function(sum, star) {
+                      return sum + +star.QUANTITY;
+                    }, 0);
+
+                    // Thêm thuộc tính phần trăm
+                    for (var star of values[1]) {
+                      star.percent = Math.round(
+                        (+star.QUANTITY / sumQuantity) * 100
+                      );
+                    }
+                  }
+                  /* Tính lượng % đánh giá của người dùng */
+                  //values[0]
+                  //console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
+                  //values[1]
+                  //console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
+                  //values[2].RATE
+                  // console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
+                  // //values[2].COMMENT_QUANTITY
+                  // console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
+                  res.json({
+                    comments: JSON.stringify(values[0]),
+                    percentsStar: JSON.stringify(values[1]),
+                    rate: JSON.stringify(values[2][0].RATE),
+                    quantityComment: JSON.stringify(
+                      values[3][0].COMMENT_QUANTITY
+                    )
+                  });
                 })
                 .catch(err => {
                   res.send("fail");
@@ -661,6 +717,10 @@ module.exports.postCommentProductDetail = function(req, res, next) {
         .catch(err => {
           res.send("fail");
         });
+      // })
+      // .catch(err => {
+      //   res.send("fail");
+      // });
     } else {
       var comment = {
         CUSTOMERID: customer.ID,
@@ -670,128 +730,120 @@ module.exports.postCommentProductDetail = function(req, res, next) {
         COMMENT: contentComment,
         STARS: starComment,
         LIKES: 0,
-        VERIFYCATION: 0,
         ISSIMPLE: 0
       };
 
-      orderInfoModel
-        .checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct(
-          comment.PRODUCTID,
-          comment.CUSTOMERID,
-          comment.ISSIMPLE
-        )
-        .then(quantity => {
-          // Nếu khách hàng đã mua sản phẩm
-          if (+quantity[0].QUANTITY > 0) {
-            comment.VERIFYCATION = 1;
-          }
-          commentModel
-            .addComment(comment)
-            .then(successAdd => {
-              // Cập nhật đánh giá
-              productComboModel
-                .updateRateFollowProductId(idProduct)
-                .then(successUpdate => {
-                  Promise.all([
-                    commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
-                      idProduct,
-                      5,
-                      0,
-                      comment.ISSIMPLE
-                    ),
-                    commentModel.groupStarQuantityFollowProductIdAndTypeProduct(
-                      idProduct,
-                      comment.ISSIMPLE
-                    ),
-                    productComboModel.getRateProductComboFollowProductId(
-                      idProduct
-                    ),
-                    commentModel.commentsQuantityFollowIdProductAndTypeProduct(
-                      idProduct,
-                      comment.ISSIMPLE
-                    )
-                  ])
-                    .then(values => {
-                      var arrStar = [];
-                      var arrStarUnCheck = [];
+      // orderInfoModel
+      //   .checkVerifyProductFollowProductIdAndCustomerIdAndTypeProduct(
+      //     comment.PRODUCTID,
+      //     comment.CUSTOMERID,
+      //     comment.ISSIMPLE
+      //   )
+      //   .then(quantity => {
+      //     // Nếu khách hàng đã mua sản phẩm
+      //     if (+quantity[0].QUANTITY > 0) {
+      //       comment.VERIFYCATION = 1;
+      //     }
+      commentModel
+        .addComment(comment)
+        .then(successAdd => {
+          // Cập nhật đánh giá
+          productComboModel
+            .updateRateFollowProductId(idProduct)
+            .then(successUpdate => {
+              Promise.all([
+                commentModel.topNCommentsOfProductFollowCreatedAndLimitAndOffsetAndTypeProduct(
+                  idProduct,
+                  5,
+                  0,
+                  comment.ISSIMPLE
+                ),
+                commentModel.groupStarQuantityFollowProductIdAndTypeProduct(
+                  idProduct,
+                  comment.ISSIMPLE
+                ),
+                productComboModel.getRateProductComboFollowProductId(idProduct),
+                commentModel.commentsQuantityFollowIdProductAndTypeProduct(
+                  idProduct,
+                  comment.ISSIMPLE
+                )
+              ])
+                .then(values => {
+                  var arrStar = [];
+                  var arrStarUnCheck = [];
 
-                      /* Đánh giá sao cho bình luận */
-                      for (commentRate of values[0]) {
-                        var arrStar = [];
-                        var arrStarUnCheck = [];
+                  /* Đánh giá sao cho bình luận */
+                  for (commentRate of values[0]) {
+                    var arrStar = [];
+                    var arrStarUnCheck = [];
 
-                        for (var i = 0; i < commentRate.STARS; i++)
-                          arrStar.push(i);
+                    for (var i = 0; i < commentRate.STARS; i++) arrStar.push(i);
 
-                        for (var i = commentRate.STARS; i < 5; i++)
-                          arrStarUnCheck.push(i);
+                    for (var i = commentRate.STARS; i < 5; i++)
+                      arrStarUnCheck.push(i);
 
-                        commentRate.rateStar = arrStar;
-                        commentRate.rateStarUncheck = arrStarUnCheck;
-                      }
-                      /* Đánh giá sao cho bình luận */
+                    commentRate.rateStar = arrStar;
+                    commentRate.rateStarUncheck = arrStarUnCheck;
+                  }
+                  /* Đánh giá sao cho bình luận */
 
-                      /* Tính lượng % đánh giá của người dùng */
-                      // Thêm các phần tử thiếu
-                      if (values[1].length === 0) {
-                        for (var i = 1; i <= 5; i++) {
-                          var star = { STARS: i, QUANTITY: 0, percent: 0 };
+                  /* Tính lượng % đánh giá của người dùng */
+                  // Thêm các phần tử thiếu
+                  if (values[1].length === 0) {
+                    for (var i = 1; i <= 5; i++) {
+                      var star = { STARS: i, QUANTITY: 0, percent: 0 };
 
-                          values[1].push(star);
-                        }
-                      } else {
-                        var arrStarRateTemp = [
-                          { STARS: 1, QUANTITY: 0 },
-                          { STARS: 2, QUANTITY: 0 },
-                          { STARS: 3, QUANTITY: 0 },
-                          { STARS: 4, QUANTITY: 0 },
-                          { STARS: 5, QUANTITY: 0 }
-                        ];
+                      values[1].push(star);
+                    }
+                  } else {
+                    var arrStarRateTemp = [
+                      { STARS: 1, QUANTITY: 0 },
+                      { STARS: 2, QUANTITY: 0 },
+                      { STARS: 3, QUANTITY: 0 },
+                      { STARS: 4, QUANTITY: 0 },
+                      { STARS: 5, QUANTITY: 0 }
+                    ];
 
-                        for (var rateStar of values[1]) {
-                          arrStarRateTemp[rateStar.STARS - 1].QUANTITY =
-                            rateStar.QUANTITY;
-                        }
+                    for (var rateStar of values[1]) {
+                      arrStarRateTemp[rateStar.STARS - 1].QUANTITY =
+                        rateStar.QUANTITY;
+                    }
 
-                        values[1] = arrStarRateTemp;
+                    values[1] = arrStarRateTemp;
 
-                        // Sắp xếp lại
-                        values[1].sort(function(star1, star2) {
-                          return star1.STARS < star2.STARS;
-                        });
-
-                        var sumQuantity = values[1].reduce(function(sum, star) {
-                          return sum + +star.QUANTITY;
-                        }, 0);
-
-                        // Thêm thuộc tính phần trăm
-                        for (var star of values[1]) {
-                          star.percent = Math.round(
-                            (+star.QUANTITY / sumQuantity) * 100
-                          );
-                        }
-                      }
-                      /* Tính lượng % đánh giá của người dùng */
-                      //   //values[0]
-                      //   console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
-                      //   //values[1]
-                      //   console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
-                      //  // values[2].RATE
-                      //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
-                      //   //values[2].COMMENT_QUANTITY
-                      //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
-                      res.json({
-                        comments: JSON.stringify(values[0]),
-                        percentsStar: JSON.stringify(values[1]),
-                        rate: JSON.stringify(values[2][0].RATE),
-                        quantityComment: JSON.stringify(
-                          values[3][0].COMMENT_QUANTITY
-                        )
-                      });
-                    })
-                    .catch(err => {
-                      res.send("fail");
+                    // Sắp xếp lại
+                    values[1].sort(function(star1, star2) {
+                      return star1.STARS < star2.STARS;
                     });
+
+                    var sumQuantity = values[1].reduce(function(sum, star) {
+                      return sum + +star.QUANTITY;
+                    }, 0);
+
+                    // Thêm thuộc tính phần trăm
+                    for (var star of values[1]) {
+                      star.percent = Math.round(
+                        (+star.QUANTITY / sumQuantity) * 100
+                      );
+                    }
+                  }
+                  /* Tính lượng % đánh giá của người dùng */
+                  //   //values[0]
+                  //   console.log("TCL: module.exports.postCommentProductDetail -> values[0]", values[0])
+                  //   //values[1]
+                  //   console.log("TCL: module.exports.postCommentProductDetail ->  values[1]",  values[1])
+                  //  // values[2].RATE
+                  //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].RATE", values[2][0].RATE)
+                  //   //values[2].COMMENT_QUANTITY
+                  //   console.log("TCL: module.exports.postCommentProductDetail -> values[2].COMMENT_QUANTITY", values[3][0].COMMENT_QUANTITY)
+                  res.json({
+                    comments: JSON.stringify(values[0]),
+                    percentsStar: JSON.stringify(values[1]),
+                    rate: JSON.stringify(values[2][0].RATE),
+                    quantityComment: JSON.stringify(
+                      values[3][0].COMMENT_QUANTITY
+                    )
+                  });
                 })
                 .catch(err => {
                   res.send("fail");
@@ -804,6 +856,10 @@ module.exports.postCommentProductDetail = function(req, res, next) {
         .catch(err => {
           res.send("fail");
         });
+      // })
+      // .catch(err => {
+      //   res.send("fail");
+      // });
     }
   } catch (error) {
     next(error);
@@ -1129,7 +1185,27 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
           // Hàm định dạng title của product simple lấy 36 kí tự
           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple
         }
-      });
+
+        res.render("customer/product-show", {
+          layout: "main-customer.hbs",
+          products: values[0],
+          brands: values[1],
+          isShowSimple: true,
+          isShowCombo: false,
+          isSelectSimpleSort: true,
+          idCategory: catFilter,
+          idSubCategory: subFilter,
+          typeSorts: typeSortArray,
+          priceFilters: priceFilterArray,
+          helpers: {
+            // Hàm định dạng title của product simple lấy 36 kí tự
+            formatTitleProductSimple:
+              formatStringHelper.formatTitleProductSimple
+          }
+        });
+      } else {
+        res.redirect("/customer/product/product-all-show");
+      }
     });
   } catch (error) {
     next(error);

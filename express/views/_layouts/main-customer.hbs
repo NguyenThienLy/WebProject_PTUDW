@@ -56,8 +56,14 @@
             <div class="top-menu"><span class="logo"></span></div>
             <ul class="main-menu">
                 <li><a href="/customer/index">Giới thiệu</a></li>
+
+                {{#if this.isAuthenticated}}
+                <li><a href="javascript: $('#frmLogout').submit();">Đăng xuất</a></li>
+                {{else}}
                 <li><a href="" id="side-bar-open-header-user-modal" data-toggle="modal"
                         data-target="#header-user-modal">Đăng nhập</a></li>
+                {{/if}}
+
                 <li class="position-relative">
                     <a href="/customer/product/product-all-show">Sản phẩm</a>
                     <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
@@ -234,7 +240,7 @@
                         <div class="card component-avatar-user-content">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
                                 khoản của tôi</a>
-                            <a class="dropdown-item" href="/customer/order/order-info-show/">Đơn
+                            <a class="dropdown-item" href="/customer/order/order-info-show-status-1">Đơn
                                 hàng của tôi</a>
                             {{#if this.authUser.typeLogin}}
                             <a href="javascript: $('#frmLogout').submit();" class="dropdown-item">
@@ -478,19 +484,19 @@
                     <ul class="list-unstyled text-left">
                         <li class="mb-3">
                             <i class="fas fa-envelope mr-2"></i>
-                            <a class="footerLink" href="#">Giới thiệu</a>
+                            <a class="footerLink" href="/customer/index">Giới thiệu</a>
                         </li>
                         <li class="mb-3">
                             <i class="fab fa-product-hunt mr-2"></i>
-                            <a class="footerLink" href="product-show.html">Sản phẩm</a>
+                            <a class="footerLink" href="/customer/product/product-all-show">Sản phẩm</a>
                         </li>
                         <li class="mb-3">
                             <i class="far fa-newspaper mr-2"></i>
-                            <a class="footerLink" href="info-show.html">Tin tức</a>
+                            <a class="footerLink" href="/customer/info/info-show">Tin tức</a>
                         </li>
                         <li class="mb-3">
                             <i class="fas fa-info mr-2"></i>
-                            <a class="footerLink" href="#">Liên hệ</a>
+                            <a class="footerLink" href="/customer/info/tag/0">Tags</a>
                         </li>
                     </ul>
                 </div>
@@ -501,6 +507,12 @@
                     <p class="text-uppercase">Tài khoản khách hàng</p>
 
                     <ul class="list-unstyled text-left">
+                        {{#if this.isAuthenticated}}
+                        <li class="mb-3">
+                            <i class="fas fa-sign-out-alt mr-2"></i>
+                            <a class="footerLink" href="javascript: $('#frmLogout').submit();">Đăng xuất</a>
+                        </li>
+                        {{else}}
                         <li class="mb-3">
                             <i class="far fa-registered mr-2"></i>
                             <a class="footerLink" href="" data-toggle="modal" data-target="#header-user-modal">Đăng
@@ -511,10 +523,7 @@
                             <a class="footerLink" href="" data-toggle="modal" data-target="#header-user-modal">Đăng
                                 nhập</a>
                         </li>
-                        <li class="mb-3">
-                            <i class="fas fa-sign-out-alt mr-2"></i>
-                            <a class="footerLink" href="#">Đăng xuất</a>
-                        </li>
+                        {{/if}}
                     </ul>
                 </div>
                 <!-- Grid column -->
@@ -560,19 +569,19 @@
                                 <ul class="list-unstyled text-left">
                                     <li class="mb-3">
                                         <i class="fas fa-envelope mr-2"></i>
-                                        <a class="footerLink" href="#">Giới thiệu</a>
+                                        <a class="footerLink" href="/customer/index">Giới thiệu</a>
                                     </li>
                                     <li class="mb-3">
                                         <i class="fab fa-product-hunt mr-2"></i>
-                                        <a class="footerLink" href="product-show.html">Sản phẩm</a>
+                                        <a class="footerLink" href="/customer/product/product-all-show">Sản phẩm</a>
                                     </li>
                                     <li class="mb-3">
                                         <i class="far fa-newspaper mr-2"></i>
-                                        <a class="footerLink" href="info-show.html">Tin tức</a>
+                                        <a class="footerLink" href="/customer/info/info-show">Tin tức</a>
                                     </li>
                                     <li class="mb-3">
                                         <i class="fas fa-info mr-2"></i>
-                                        <a class="footerLink" href="#">Liên hệ</a>
+                                        <a class="footerLink" href="/customer/info/tag/0">Tag</a>
                                     </li>
                                 </ul>
                             </div>
@@ -595,20 +604,25 @@
                         <div id="footer-collapse2" class="collapse" aria-labelledby="footer-heading2">
                             <div>
                                 <ul class="list-unstyled text-left">
+                                    {{#if this.isAuthenticated}}
+                                    <li class="mb-3">
+                                        <i class="fas fa-sign-out-alt mr-2"></i>
+                                        <a class="footerLink" href="javascript: $('#frmLogout').submit();">Đăng xuất</a>
+                                    </li>
+                                    {{else}}
                                     <li class="mb-3">
                                         <i class="far fa-registered mr-2"></i>
                                         <a class="footerLink" href="" data-toggle="modal"
-                                            data-target="#header-user-modal">Đăng kí</a>
+                                            data-target="#header-user-modal">Đăng
+                                            kí</a>
                                     </li>
                                     <li class="mb-3">
                                         <i class="fas fa-sign-in-alt mr-2"></i>
                                         <a class="footerLink" href="" data-toggle="modal"
-                                            data-target="#header-user-modal">Đăng nhập</a>
+                                            data-target="#header-user-modal">Đăng
+                                            nhập</a>
                                     </li>
-                                    <li class="mb-3">
-                                        <i class="fas fa-sign-out-alt mr-2"></i>
-                                        <a class="footerLink" href="#">Đăng xuất</a>
-                                    </li>
+                                    {{/if}}
                                 </ul>
                             </div>
                         </div>
@@ -967,8 +981,11 @@
                                 <form class="p-4">
                                     {{#isEqual this.authUser.CUSTOMERTYPEID 2}}
                                     <div class="form-group row align-items-center ml-0 mr-0" style="color: #99cc00">
-                                        <label class="col-4 col-form-label"> <i class="fas fa-crown"></i>Khách hàng
-                                            V.I.P</label>
+
+                                        <label class="col-4 col-form-label"> <i
+                                                class="fas fa-crown"></i>&ensp;<strong>Khách hàng
+                                                V.I.P</strong></label>
+
                                     </div>
                                     {{else}}
                                     {{/isEqual}}
@@ -979,19 +996,23 @@
                                         </div>
                                     </div>
 
+                                    {{#if this.authUser.BIRTHDATE}}
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Ngày sinh:</label>
                                         <div class="col-8 p-0">
                                             {{formatDate this.authUser.BIRTHDATE}}
                                         </div>
                                     </div>
+                                    {{/if}}
 
+                                    {{#if this.authUser.PHONE}}
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">SĐT:</label>
                                         <div class="col-8 p-0">
                                             {{this.authUser.PHONE}}
                                         </div>
                                     </div>
+                                    {{/if}}
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Email:</label>
@@ -1178,7 +1199,7 @@
                 <div class="modal-body">
 
 
-                    Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!!!
+                    Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!
 
 
                 </div>
@@ -1204,7 +1225,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Vui lòng <strong>Kiểm tra</strong> Email để lấy link đổi mật khẩu</strong>!!!
+                    Vui lòng <strong>kiểm tra</strong> email để lấy link đổi mật khẩu</strong>!
                 </div>
                 <div class="modal-footer">
                     <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng

@@ -15,7 +15,7 @@
 {{!-- product detail page --}}
 
 {{!-- responsive --}}
-<link href="/customer/css/responsive-product-detail.css" rel="stylesheet" />
+<link href="/customer/css/responsive-order-info-show.css" rel="stylesheet" />
 {{!-- responsive --}}
 {{/section}}
 
@@ -51,35 +51,35 @@
                     <button class="btn btn-link text-decoration-none p-0 text-primary w-100" type="button"
                         data-toggle="collapse" data-target="#collapse-order-type-1" aria-expanded="true"
                         aria-controls="collapse-order-type-1">
-                        <h5 class="mb-0">Đang xác nhận ({{quantityHaveType1}})</h5>
+                        <h5 class="mb-0">Chờ xác nhận ({{quantityHaveType1}})</h5>
                     </button>
                 </div>
             </div>
 
             <div id="collapse-order-type-1" class="collapse show pt-3" aria-labelledby="heading-order-type-1"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType1}}
                     <!--Table hiển thị sản phẩm-->
-                    <table class="table table-responsive w-100">
-                        <thead class="d-flex justify-content-center align-items-center">
+                    <table class="table table-responsive-md w-100">
+                        <thead>
                             <tr>
-                                <th class="text-center">Mã ĐH</th>
-                                <th class="text-center">Thời gian đặt hàng</th>
-                                <th class="text-center">Tổng tiền hóa đơn</th>
+                                <th class="text-center">Mã đơn hàng</th>
+                                <th>Thời gian đặt hàng</th>
+                                <th>Tổng tiền</th>
                                 <th class="text-center">Tình trạng đơn hàng</th>
                                 <th class="text-center">Tác vụ</th>
                             </tr>
                         </thead>
 
-                        <tbody class="d-flex justify-content-center align-items-center flex-column">
+                        <tbody>
                             {{#each this.orderInfoType1}}
                             <!--Nội dung của một hàng-->
                             <tr>
                                 <td align="center">{{ID}}</td>
                                 <td>{{CREATED}}</td>
                                 <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                                <td><span class="badge badge-primary">{{STATUSNAME}}</span></td>
+                                <td align="center"><span class="badge badge-primary">{{STATUSNAME}}</span></td>
                                 <td align="center">
                                     <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
                                         type="button" data-toggle="modal" data-target="#customerDetailModal">
@@ -96,37 +96,37 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus1.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.prePageStatus1.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus1}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus1.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.nextPageStatus1.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
@@ -148,7 +148,7 @@
         <div class="card mb-3 border-0">
             <div id="heading-order-type-2">
                 <div class="product-detail-accordion-header-1 p-2">
-                    <button class="btn btn-link text-decoration-none p-0 text-success w-100" type="button"
+                    <button class="btn btn-link text-decoration-none p-0 text-warning w-100" type="button"
                         data-toggle="collapse" data-target="#collapse-order-type-2" aria-expanded="true"
                         aria-controls="collapse-order-type-2">
                         <h5 class="mb-0">Đang giao ({{quantityHaveType2}})</h5>
@@ -157,32 +157,32 @@
             </div>
 
             <div id="collapse-order-type-2" class="collapse show pt-3" aria-labelledby="heading-order-type-2"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType2}}
                     <!--Table hiển thị sản phẩm-->
-                    <table class="table table-responsive w-100">
-                        <thead class="d-flex justify-content-center align-items-center">
+                    <table class="table table-responsive-md w-100">
+                        <thead>
                             <tr>
-                                <th class="text-center">Mã ĐH</th>
-                                <th class="text-center">Thời gian đặt hàng</th>
-                                <th class="text-center">Tổng tiền hóa đơn</th>
+                                <th class="text-center">Mã đơn hàng</th>
+                                <th>Thời gian đặt hàng</th>
+                                <th>Tổng tiền</th>
                                 <th class="text-center">Tình trạng đơn hàng</th>
                                 <th class="text-center">Tác vụ</th>
                             </tr>
                         </thead>
 
-                        <tbody class="d-flex justify-content-center align-items-center flex-column">
+                        <tbody>
                             {{#each this.orderInfoType2}}
                             <!--Nội dung của một hàng-->
                             <tr>
                                 <td align="center">{{ID}}</td>
                                 <td>{{CREATED}}</td>
                                 <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                                <td><span class="badge badge-success">{{STATUSNAME}}</span></td>
+                                <td align="center"><span class="badge badge-warning">{{STATUSNAME}}</span></td>
                                 <td align="center">
-                                    <button class="btn btn-sm btn-success mr-1" id="btnShowDetail" id-show-detail={{ID}} type="button"
-                                        data-toggle="modal" data-target="#customerDetailModal">
+                                    <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
+                                        type="button" data-toggle="modal" data-target="#customerDetailModal">
                                         <i class="fas fa-info pl-1 pr-1"></i>
                                     </button>
                                 </td>
@@ -196,44 +196,44 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus2.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.prePageStatus2.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus2}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus2.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.nextPageStatus2.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
                     <div class="d-flex flex-column align-items-center mt-5 mb-5">
-                        <h1 id="h1EmptyCartDetail" class="text-center text-success w-50 p-2"><i
+                        <h1 id="h1EmptyCartDetail" class="text-center text-warning w-50 p-2"><i
                                 class="fab fa-opencart fa-5x"></i></h1>
-                        <a class="d-block btn btn-outline-success btn-lg w-50 p-2 mt-4 mb-4"
+                        <a class="d-block btn btn-outline-warning btn-lg w-50 p-2 mt-4 mb-4"
                             href="/customer/product/product-all-show">
                             Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
                         </a>
@@ -248,7 +248,7 @@
         <div class="card mb-3 border-0">
             <div id="heading-order-type-3">
                 <div class="product-detail-accordion-header-1 p-2">
-                    <button class="btn btn-link text-decoration-none p-0 text-info w-100" type="button"
+                    <button class="btn btn-link text-decoration-none p-0 text-success w-100" type="button"
                         data-toggle="collapse" data-target="#collapse-order-type-3" aria-expanded="true"
                         aria-controls="collapse-order-type-3">
                         <h5 class="mb-0">Đã giao ({{quantityHaveType3}})</h5>
@@ -257,32 +257,32 @@
             </div>
 
             <div id="collapse-order-type-3" class="collapse show pt-3" aria-labelledby="heading-order-type-3"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType3}}
                     <!--Table hiển thị sản phẩm-->
-                    <table class="table table-responsive w-100">
-                        <thead class="d-flex justify-content-center align-items-center">
+                    <table class="table table-responsive-md w-100">
+                        <thead>
                             <tr>
-                                <th class="text-center">Mã ĐH</th>
-                                <th class="text-center">Thời gian đặt hàng</th>
-                                <th class="text-center">Tổng tiền hóa đơn</th>
+                                <th class="text-center">Mã đơn hàng</th>
+                                <th>Thời gian đặt hàng</th>
+                                <th>Tổng tiền</th>
                                 <th class="text-center">Tình trạng đơn hàng</th>
                                 <th class="text-center">Tác vụ</th>
                             </tr>
                         </thead>
 
-                        <tbody class="d-flex justify-content-center align-items-center flex-column">
+                        <tbody>
                             {{#each this.orderInfoType3}}
                             <!--Nội dung của một hàng-->
                             <tr>
                                 <td align="center">{{ID}}</td>
                                 <td>{{CREATED}}</td>
                                 <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                                <td><span class="badge badge-info">{{STATUSNAME}}</span></td>
+                                <td align="center"><span class="badge badge-success">{{STATUSNAME}}</span></td>
                                 <td align="center">
-                                    <button class="btn btn-sm btn-info mr-1" id="btnShowDetail" id-show-detail={{ID}} type="button" data-toggle="modal"
-                                        data-target="#customerDetailModal">
+                                    <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
+                                        type="button" data-toggle="modal" data-target="#customerDetailModal">
                                         <i class="fas fa-info pl-1 pr-1"></i>
                                     </button>
                                 </td>
@@ -296,45 +296,45 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus3.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.prePageStatus3.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus3}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus3.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.nextPageStatus3.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
                     <div class="d-flex flex-column align-items-center mt-5 mb-5">
-                        <h1 id="h1EmptyCartDetail" class="text-center text-info w-50 p-2"><i
+                        <h1 id="h1EmptyCartDetail" class="text-center text-success w-50 p-2"><i
                                 class="fab fa-opencart fa-5x"></i>
                         </h1>
-                        <a class="d-block btn btn-outline-info btn-lg w-50 p-2 mt-4 mb-4"
+                        <a class="d-block btn btn-outline-success btn-lg w-50 p-2 mt-4 mb-4"
                             href="/customer/product/product-all-show">
                             Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
                         </a>
@@ -358,32 +358,32 @@
             </div>
 
             <div id="collapse-order-type-4" class="collapse show pt-3" aria-labelledby="heading-order-type-4"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType4}}
                     <!--Table hiển thị sản phẩm-->
-                    <table class="table table-responsive w-100">
-                        <thead class="d-flex justify-content-center align-items-center">
+                    <table class="table table-responsive-md w-100">
+                        <thead>
                             <tr>
-                                <th class="text-center">Mã ĐH</th>
-                                <th class="text-center">Thời gian đặt hàng</th>
-                                <th class="text-center">Tổng tiền hóa đơn</th>
+                                <th class="text-center">Mã đơn hàng</th>
+                                <th>Thời gian đặt hàng</th>
+                                <th>Tổng tiền</th>
                                 <th class="text-center">Tình trạng đơn hàng</th>
                                 <th class="text-center">Tác vụ</th>
                             </tr>
                         </thead>
 
-                        <tbody class="d-flex justify-content-center align-items-center flex-column">
+                        <tbody>
                             {{#each this.orderInfoType4}}
                             <!--Nội dung của một hàng-->
                             <tr>
                                 <td align="center">{{ID}}</td>
                                 <td>{{CREATED}}</td>
                                 <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                                <td><span class="badge badge-danger ">{{STATUSNAME}}</span></td>
+                                <td align="center"><span class="badge badge-danger">{{STATUSNAME}}</span></td>
                                 <td align="center">
-                                    <button class="btn btn-sm btn-danger mr-1" id="btnShowDetail" id-show-detail={{ID}} type="button"
-                                        data-toggle="modal" data-target="#customerDetailModal">
+                                    <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
+                                        type="button" data-toggle="modal" data-target="#customerDetailModal">
                                         <i class="fas fa-info pl-1 pr-1"></i>
                                     </button>
                                 </td>
@@ -397,37 +397,37 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus4.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.prePageStatus4.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus4}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus4.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.nextPageStatus4.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
@@ -453,13 +453,12 @@
         <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
             <h5 class="nav-item nav-link pb-3 active text-primary border-primary" id="nav-order-info-type-1-tab"
                 data-toggle="tab" href="#nav-order-info-type-1" role="tab" aria-controls="nav-order-info-type-1"
-                aria-selected="true">Chờ
-                xác nhận ({{quantityHaveType1}})</h5>
-            <h5 class="nav-item nav-link ml-5 pb-3 text-success border-success" id="nav-order-info-type-2-tab"
+                aria-selected="true">Chờ xác nhận ({{quantityHaveType1}})</h5>
+            <h5 class="nav-item nav-link ml-5 pb-3 text-warning border-warning" id="nav-order-info-type-2-tab"
                 data-toggle="tab" href="#nav-order-info-type-2" role="tab" aria-controls="nav-order-info-type-2"
                 aria-selected="false">
                 &nbsp Đang giao ({{quantityHaveType2}})&nbsp</h5>
-            <h5 class="nav-item nav-link ml-5 pb-3 text-info border-info" id="nav-order-info-type-3-tab"
+            <h5 class="nav-item nav-link ml-5 pb-3 text-success border-success" id="nav-order-info-type-3-tab"
                 data-toggle="tab" href="#nav-order-info-type-3" role="tab" aria-controls="nav-order-info-type-3"
                 aria-selected="false"> &nbsp &nbsp Đã
                 giao ({{quantityHaveType3}}) &nbsp &nbsp </h5>
@@ -479,26 +478,26 @@
 
             {{#if isHaveType1}}
             <!--Table hiển thị sản phẩm-->
-            <table class="table table-responsive w-100">
-                <thead class="d-flex justify-content-center align-items-center">
+            <table class="table table-responsive-md w-100">
+                <thead>
                     <tr>
-                        <th class="text-center">Mã ĐH</th>
-                        <th class="text-center">Thời gian đặt hàng</th>
-                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Mã đơn hàng</th>
+                        <th>Thời gian đặt hàng</th>
+                        <th>Tổng tiền</th>
                         <th class="text-center">Tình trạng đơn hàng</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
                 </thead>
 
-                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                <tbody>
                     {{#each this.orderInfoType1}}
                     <!--Nội dung của một hàng-->
                     <tr>
-                        <td>{{ID}}</td>
+                        <td align="center">{{ID}}</td>
                         <td>{{CREATED}}</td>
                         <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                        <td><span class="badge badge-primary">{{STATUSNAME}}</span></td>
-                        <td>
+                        <td align="center"><span class="badge badge-primary">{{STATUSNAME}}</span></td>
+                        <td align="center">
                             <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
                                 type="button" data-toggle="modal" data-target="#customerDetailModal">
                                 <i class="fas fa-info pl-1 pr-1"></i>
@@ -514,37 +513,37 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus1.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.prePageStatus1.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus1}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus1.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.nextPageStatus1.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}
@@ -566,28 +565,28 @@
 
             {{#if isHaveType2}}
             <!--Table hiển thị sản phẩm-->
-            <table class="table table-responsive w-100">
-                <thead class="d-flex justify-content-center align-items-center">
+            <table class="table table-responsive-md w-100">
+                <thead>
                     <tr>
-                        <th class="text-center">Mã ĐH</th>
-                        <th class="text-center">Thời gian đặt hàng</th>
-                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Mã đơn hàng</th>
+                        <th>Thời gian đặt hàng</th>
+                        <th>Tổng tiền</th>
                         <th class="text-center">Tình trạng đơn hàng</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
                 </thead>
 
-                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                <tbody>
                     {{#each this.orderInfoType2}}
                     <!--Nội dung của một hàng-->
                     <tr>
-                        <td>{{ID}}</td>
+                        <td align="center">{{ID}}</td>
                         <td>{{CREATED}}</td>
                         <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                        <td><span class="badge badge-success">{{STATUSNAME}}</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-success mr-1" id="btnShowDetail" id-show-detail={{ID}} type="button" data-toggle="modal"
-                                data-target="#customerDetailModal">
+                        <td align="center"><span class="badge badge-warning">{{STATUSNAME}}</span></td>
+                        <td align="center">
+                            <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
+                                type="button" data-toggle="modal" data-target="#customerDetailModal">
                                 <i class="fas fa-info pl-1 pr-1"></i>
                             </button>
                         </td>
@@ -601,44 +600,44 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus2.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.prePageStatus2.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus2}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus2.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.nextPageStatus2.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}
             <div class="d-flex flex-column align-items-center mt-5 mb-5">
-                <h1 id="h1EmptyCartDetail" class="text-center text-success w-50 p-2"><i
+                <h1 id="h1EmptyCartDetail" class="text-center text-warning w-50 p-2"><i
                         class="fab fa-opencart fa-5x"></i></h1>
-                <a class="d-block btn btn-outline-success btn-lg w-50 p-2 mt-4 mb-4"
+                <a class="d-block btn btn-outline-warning btn-lg w-50 p-2 mt-4 mb-4"
                     href="/customer/product/product-all-show">
                     Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
                 </a>
@@ -652,28 +651,28 @@
             aria-labelledby="nav-order-info-type-3-tab">
             {{#if isHaveType3}}
             <!--Table hiển thị sản phẩm-->
-            <table class="table table-responsive w-100">
-                <thead class="d-flex justify-content-center align-items-center">
+            <table class="table table-responsive-md w-100">
+                <thead>
                     <tr>
-                        <th class="text-center">Mã ĐH</th>
-                        <th class="text-center">Thời gian đặt hàng</th>
-                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Mã đơn hàng</th>
+                        <th>Thời gian đặt hàng</th>
+                        <th>Tổng tiền</th>
                         <th class="text-center">Tình trạng đơn hàng</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
                 </thead>
 
-                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                <tbody>
                     {{#each this.orderInfoType3}}
                     <!--Nội dung của một hàng-->
                     <tr>
-                        <td>{{ID}}</td>
+                        <td align="center">{{ID}}</td>
                         <td>{{CREATED}}</td>
                         <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                        <td><span class="badge badge-info">{{STATUSNAME}}</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-info mr-1" id="btnShowDetail" id-show-detail={{ID}} type="button" data-toggle="modal"
-                                data-target="#customerDetailModal">
+                        <td align="center"><span class="badge badge-success">{{STATUSNAME}}</span></td>
+                        <td align="center">
+                            <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
+                                type="button" data-toggle="modal" data-target="#customerDetailModal">
                                 <i class="fas fa-info pl-1 pr-1"></i>
                             </button>
                         </td>
@@ -687,44 +686,45 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus3.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.prePageStatus3.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus3}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus3.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.nextPageStatus3.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}
             <div class="d-flex flex-column align-items-center mt-5 mb-5">
-                <h1 id="h1EmptyCartDetail" class="text-center text-info w-50 p-2"><i class="fab fa-opencart fa-5x"></i>
+                <h1 id="h1EmptyCartDetail" class="text-center text-success w-50 p-2"><i
+                        class="fab fa-opencart fa-5x"></i>
                 </h1>
-                <a class="d-block btn btn-outline-info btn-lg w-50 p-2 mt-4 mb-4"
+                <a class="d-block btn btn-outline-success btn-lg w-50 p-2 mt-4 mb-4"
                     href="/customer/product/product-all-show">
                     Tiếp tục mua hàng&ensp;<i class="fas fa-shopping-basket"></i>
                 </a>
@@ -739,28 +739,28 @@
 
             {{#if isHaveType4}}
             <!--Table hiển thị sản phẩm-->
-            <table class="table table-responsive w-100">
-                <thead class="d-flex justify-content-center align-items-center">
+            <table class="table table-responsive-md w-100">
+                <thead>
                     <tr>
-                        <th class="text-center">Mã ĐH</th>
-                        <th class="text-center">Thời gian đặt hàng</th>
-                        <th class="text-center">Tổng tiền hóa đơn</th>
+                        <th class="text-center">Mã đơn hàng</th>
+                        <th>Thời gian đặt hàng</th>
+                        <th>Tổng tiền</th>
                         <th class="text-center">Tình trạng đơn hàng</th>
                         <th class="text-center">Tác vụ</th>
                     </tr>
                 </thead>
 
-                <tbody class="d-flex justify-content-center align-items-center flex-column">
+                <tbody>
                     {{#each this.orderInfoType4}}
                     <!--Nội dung của một hàng-->
                     <tr>
-                        <td>{{ID}}</td>
+                        <td align="center">{{ID}}</td>
                         <td>{{CREATED}}</td>
                         <td>{{formatPrice TOTALMONEY}} &nbsp;đ</td>
-                        <td><span class="badge badge-danger ">{{STATUSNAME}}</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-danger mr-1" id="btnShowDetail" id-show-detail={{ID}} type="button" data-toggle="modal"
-                                data-target="#customerDetailModal">
+                        <td align="center"><span class="badge badge-danger">{{STATUSNAME}}</span></td>
+                        <td align="center">
+                            <button class="btn btn-sm btn-primary mr-1" id="btnShowDetail" id-show-detail={{ID}}
+                                type="button" data-toggle="modal" data-target="#customerDetailModal">
                                 <i class="fas fa-info pl-1 pr-1"></i>
                             </button>
                         </td>
@@ -774,37 +774,37 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus4.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.prePageStatus4.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus4}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus4.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.nextPageStatus4.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}

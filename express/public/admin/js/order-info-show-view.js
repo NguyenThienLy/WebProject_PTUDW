@@ -1,13 +1,13 @@
 $("#from_date").datetimepicker({
   format: "d/m/Y",
   timepicker: false,
-  mask: false
+  mask: true
 });
 
 $("#to_date").datetimepicker({
   format: "d/m/Y",
   timepicker: false,
-  mask: false
+  mask: true
 });
 
 // Xóa đơn hàng

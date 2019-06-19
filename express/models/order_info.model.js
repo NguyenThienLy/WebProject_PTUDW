@@ -221,7 +221,7 @@ function getDateTimeNow() {
 }
 
 // Hàm lấy ra danh sách các order info theo id customer và order status id
-module.exports.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset = (cusId, statusId, N, offset) => {
+module.exports.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset = (cusId, statusId, limit, offset) => {
 
   return db.load(`
   SELECT ORDER_INFO.ID AS ID, DATE_FORMAT(ORDER_INFO.CREATED , '%m/%d/%Y %H:%i') AS CREATED, ORDER_INFO.TOTALMONEY AS TOTALMONEY,
@@ -229,8 +229,8 @@ module.exports.topNOrderInfoFollowIdCustomerAndOrderStatusIdAndOffset = (cusId, 
   FROM order_info ORDER_INFO JOIN order_status ORDER_STATUS ON ORDER_INFO.ORDERSTATUSID = ORDER_STATUS.ID
   WHERE ORDER_INFO.CUSTOMERID = ${cusId} AND ORDER_STATUS.ID = ${statusId}
   ORDER BY DATE(ORDER_INFO.CREATED) DESC
-  LIMIT ${N} 
-  OFFSET ${N * offset}
+  LIMIT ${limit} 
+  OFFSET ${offset}
   `);
 }
 

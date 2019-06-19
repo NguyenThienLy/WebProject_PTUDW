@@ -67,9 +67,8 @@ module.exports.quantityProductCommentSimpleActive = objQuery => {
       objQuery.Name
     }' IN NATURAL LANGUAGE MODE) \n`;
   }
-  return db.load(
-    `SELECT COUNT(*) AS QUANITTY FROM product WHERE STATUS = 1 ${query}`
-  );
+
+  return db.load(`SELECT COUNT(*) AS QUANTITY FROM product WHERE STATUS = 1 ${query}`);
 };
 
 // Hàm lấy ra số lượng của sản phẩm có ID
@@ -94,7 +93,7 @@ module.exports.allProduct = () => {
             INNER JOIN category ON product.CATEGORYID = category.ID)
             INNER JOIN brand ON product.BRANDID = brand.ID 
             WHERE STATUS = 1
-            ORDER BY product.CREATED DESC`);
+            ORDER BY product.ID ASC`);
 };
 
 // Hàm trả về tất cả sản phẩm trong database có phân trang
@@ -109,6 +108,7 @@ module.exports.pageallProduct = (limit, offset) => {
             INNER JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID)
             INNER JOIN category ON product.CATEGORYID = category.ID)
             INNER JOIN brand ON product.BRANDID = brand.ID WHERE STATUS = 1 
+            ORDER BY product.ID ASC
             limit ${limit} offset ${offset}`);
 };
 
@@ -144,6 +144,7 @@ module.exports.pageallProductFilter = (limit, offset, objQuery) => {
             INNER JOIN category ON product.CATEGORYID = category.ID)
             INNER JOIN brand ON product.BRANDID = brand.ID WHERE STATUS = 1
             ${query}
+            ORDER BY product.ID ASC
             limit ${limit} offset ${offset}`);
 };
 
@@ -170,6 +171,7 @@ module.exports.pageAllProductCommentSimpleFilter = (
   JOIN sub_category ON product.SUBCATEGORYID = sub_category.ID
   WHERE product.STATUS = 1 ${query}
   GROUP BY product.ID, product.NAME, product.IMAGE, category.NAME, sub_category.NAME
+  ORDER BY product.ID ASC
   limit ${limit} offset ${offset}`);
 };
 
@@ -231,6 +233,19 @@ module.exports.addProduct = product => {
 //Hàm cập nhật thông tin sản phẩm
 module.exports.updateProduct = product => {
   return db.update("product", "ID", product);
+};
+
+//Hàm cập nhật ảnh đại diện cho sản phẩm
+module.exports.updateProductInventory = products => {
+  if (products.constructor === Array) {
+    products.forEach(product => {
+      //gọi hàm insert
+      db.update("product", 'ID', product);
+    });
+  } else {
+    //gọi hàm insert
+    db.update("product", 'ID', product);
+  }
 };
 
 //Hàm cập nhật categoryId cho sản phẩm

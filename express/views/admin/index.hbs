@@ -180,34 +180,32 @@
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Tên</th>
+                            <th class="text-center">Mã KH</th>
+                            <th>Tên KH</th>
                             <th>Email</th>
                             <th>Loại</th>
-                            <th>Thanh toán</th>
-                            <th>Ngày tạo</th>
-                            <th class="text-center">#</th>
+                            <th>Đã thanh toán</th>
+                            <th>Thời gian đăng kí</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {{#each this.TopCustomer}}
                         <tr>
-                            <td>{{ID}}</td>
+                            <td align="center">{{ID}}</td>
                             <td>{{FULLNAME}}</td>
                             <td>{{EMAIL}}</td>
                             <td>{{TYPENAME}}</td>
-                            <td>{{CASH}}</td>
+                            <td>{{formatPrice TOTAL}}&nbsp;đ</td>
                             <td>{{CREATED}}</td>
-                            <td align="center"><a href="/admin/customer/customer-show"
-                                    class="badge badge-pill badge-danger">
-                                    xem
-                                </a>
-                            </td>
                         </tr>
                         {{/each}}
                     </tbody>
                 </table>
+
+                <div class="clearfix">
+                    <a href="/admin/customer/customer-show" class="float-right text-link">Xem tất cả khách hàng</a>
+                </div>
             </div>
         </div>
     </div>
@@ -224,10 +222,10 @@
                 <table class="table table-responsive-md">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Thời gian</th>
-                            <th>Tài khoản</th>
-                            <th>Số tiền</th>
+                            <th class="text-center">Mã đơn hàng</th>
+                            <th>Thời gian đặt</th>
+                            <th>Khách hàng</th>
+                            <th>Tổng tiền</th>
                             <th class="text-center">Trạng thái</th>
                             <th class="text-center">Tác vụ</th>
                         </tr>
@@ -238,17 +236,17 @@
                         <!--Nội dung một hàng-->
                         {{#each this.orders}}
                         <tr>
-                            <td>{{ID}}</td>
+                            <td align="center">{{ID}}</td>
                             <td>{{CREATED}}</td>
                             <td>{{CUSTOMERNAME}}</td>
-                            <td align="center">{{formatPrice TOTALMONEY}}&nbsp;đ</td>
+                            <td>{{formatPrice TOTALMONEY}}&nbsp;đ</td>
                             <td align="center">
                             {{{formatStatus ORDERSTATUSID ORDERSTATUSNAME}}}
                             </td>
                             <td align="center">
-                                <a class="btn btn-primary btn-sm" href="/admin/order/order-info/{{ID}}" role="button">
-                                    Xem
-                                </a>
+                                <a href="/admin/order/order-info/{{ID}}" class="btn btn-sm btn-primary mr-1">
+                                <i class="fas fa-info pl-1 pr-1"></i>
+                            </a>
                             </td>
                         </tr>
                         {{/each}}
@@ -269,10 +267,10 @@
         <!--Danh sách bài đăng bên trái-->
         <div class="col-12 col-md-6">
             <div class="admin-content-con">
-                <header class="d-flex align-items-center justify-content-between">
+                <header class="d-flex mb-3 align-items-center justify-content-between">
                     <h5>Bài viết xem nhiều</h5>
-                    <a class="btn btn-sm btn-primary" href="/admin/info/info-add" role="button">
-                        Tạo mới bài viết
+                    <a class="btn btn-sm btn-success" href="/admin/info/info-add">
+                        Tạo mới
                     </a>
                 </header>
 
@@ -281,8 +279,8 @@
                         <tr>
                             <th>Tiêu đề</th>
                             <th>Ngày đăng</th>
-                            <th>Lượt xem</th>
-                            <th style="text-align:center">Tác vụ</th>
+                            <th class="text-center">Lượt xem</th>
+                            <th class="text-center">Tác vụ</th>
                         </tr>
                     </thead>
 
@@ -295,10 +293,10 @@
                                 </div>
                             </td>
                             <td>{{CREATED}}</td>
-                            <td>{{VIEWS}}</td>
+                            <td align="center">{{VIEWS}}</td>
                             <td align="center">
-                                <a class="btn btn-primary btn-sm" href="/admin/info/info-update/{{ID}}" role="button">
-                                    Xem
+                                <a class="btn btn-primary btn-sm" href="/admin/info/info-update/{{ID}}">
+                                    <i class="fas fa-info pl-1 pr-1"></i>
                                 </a>
                             </td>
                         </tr>
@@ -318,9 +316,10 @@
         <div class="col-12 col-md-6">
 
             <div class="admin-content-con">
-                <header>
+                <header class="mb-4">
                     <h5>Bình luận gần đây</h5>
                 </header>
+                <hr>
                 <!--Nội dung bình luận-->
                 {{#each this.Comment}}
                 <div class="comment-header-dash clearfix">
@@ -339,7 +338,7 @@
 
                 <!--End nội dung bình luận-->
                 <div class="clearfix">
-                    <a href="/admin/comment/product-comment" class="float-right text-link">Xem tất cả bình luận</a>
+                    <a href="/admin/comment/product-comment-simple" class="float-right text-link">Xem tất cả bình luận</a>
                 </div>
             </div>
         </div>
