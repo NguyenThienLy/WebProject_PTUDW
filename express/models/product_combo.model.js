@@ -406,6 +406,29 @@ module.exports.topNProductComboFollowTypeSortAndPrice = (
           LIMIT ${N};`);
 };
 
+// Hàm trả về N sản phẩm sắp xếp theo typeSort, brand và price
+module.exports.topNProductComboFollowTypeSortAndPricePage = (
+  typeSort,
+  priceFilter,
+  N,
+  offset
+) => {
+  var stringValues = returnStringFollowTypeSortAndPrice(typeSort, priceFilter);
+
+  return db.load(`SELECT pro_cb.ID, pro_cb.PRICE, pro_cb.SALE, pro_cb.NAME, 
+          pro_1.ID AS PROID1, pro_2.ID AS PROID2, pro_3.ID AS PROID3, 
+          pro_1.IMAGE AS IMAGE1, pro_2.IMAGE AS IMAGE2, pro_3.IMAGE AS IMAGE3,
+          (CASE
+                  WHEN pro_cb.SALE > 0 THEN (pro_cb.PRICE - pro_cb.PRICE * (pro_cb.SALE / 100))
+                  ELSE pro_cb.PRICE
+          END) AS SALEPRICE
+          FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
+          ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
+          pro_cb.PRODUCTID3 = pro_3.ID
+          ${stringValues}
+          LIMIT ${N} OFFSET ${offset*N};`);
+};
+
 // Hàm trả về số lượng sản phẩm combo theo type sort và price
 module.exports.getQuantityProductComboFollowTypeSortAndPrice = (
   typeSort,
