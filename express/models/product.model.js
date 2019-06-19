@@ -218,6 +218,19 @@ module.exports.updateProduct = product=>{
     return db.update('product','ID', product);
 };
 
+//Hàm cập nhật ảnh đại diện cho sản phẩm
+module.exports.updateProductInventory = products => {
+  if (products.constructor === Array) {
+    products.forEach(product => {
+      //gọi hàm insert
+      db.update("product", 'ID', product);
+    });
+  } else {
+    //gọi hàm insert
+    db.update("product", 'ID', product);
+  }
+};
+
 //Hàm cập nhật categoryId cho sản phẩm
 module.exports.updateCategoryIdBySubCategoryIdForProduct = product => {
   return db.update('product', 'SUBCATEGORYID', product);
