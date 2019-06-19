@@ -181,7 +181,7 @@ function funcCategory(categories) {
   return categoriesDetail;
 }
 
-module.exports.productSimpleDetail = function(req, res, next) {
+module.exports.productSimpleDetail = function (req, res, next) {
   try {
     // Lấy id của product simple hiện tại
     var idProduct = req.params.idProduct;
@@ -301,11 +301,11 @@ module.exports.productSimpleDetail = function(req, res, next) {
           values[6] = arrStarRateTemp;
 
           // Sắp xếp lại
-          values[6].sort(function(star1, star2) {
+          values[6].sort(function (star1, star2) {
             return star1.STARS < star2.STARS;
           });
 
-          var sumQuantity = values[6].reduce(function(sum, star) {
+          var sumQuantity = values[6].reduce(function (sum, star) {
             return sum + +star.QUANTITY;
           }, 0);
 
@@ -369,7 +369,7 @@ module.exports.productSimpleDetail = function(req, res, next) {
   }
 };
 
-module.exports.productComboDetail = function(req, res, next) {
+module.exports.productComboDetail = function (req, res, next) {
   try {
     // Lấy id của product simple hiện tại
     var idProduct = req.params.idProduct;
@@ -497,11 +497,11 @@ module.exports.productComboDetail = function(req, res, next) {
           values[5] = arrStarRateTemp;
 
           // Sắp xếp lại
-          values[5].sort(function(star1, star2) {
+          values[5].sort(function (star1, star2) {
             return star1.STARS < star2.STARS;
           });
 
-          var sumQuantity = values[5].reduce(function(sum, star) {
+          var sumQuantity = values[5].reduce(function (sum, star) {
             return sum + +star.QUANTITY;
           }, 0);
 
@@ -566,7 +566,7 @@ module.exports.productComboDetail = function(req, res, next) {
   }
 };
 
-module.exports.postCommentProductDetail = function(req, res, next) {
+module.exports.postCommentProductDetail = function (req, res, next) {
   try {
     // Lấy ID của product simple
     var idProduct = req.body.idProduct;
@@ -673,11 +673,11 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                     values[1] = arrStarRateTemp;
 
                     // Sắp xếp lại
-                    values[1].sort(function(star1, star2) {
+                    values[1].sort(function (star1, star2) {
                       return star1.STARS < star2.STARS;
                     });
 
-                    var sumQuantity = values[1].reduce(function(sum, star) {
+                    var sumQuantity = values[1].reduce(function (sum, star) {
                       return sum + +star.QUANTITY;
                     }, 0);
 
@@ -812,11 +812,11 @@ module.exports.postCommentProductDetail = function(req, res, next) {
                     values[1] = arrStarRateTemp;
 
                     // Sắp xếp lại
-                    values[1].sort(function(star1, star2) {
+                    values[1].sort(function (star1, star2) {
                       return star1.STARS < star2.STARS;
                     });
 
-                    var sumQuantity = values[1].reduce(function(sum, star) {
+                    var sumQuantity = values[1].reduce(function (sum, star) {
                       return sum + +star.QUANTITY;
                     }, 0);
 
@@ -867,7 +867,7 @@ module.exports.postCommentProductDetail = function(req, res, next) {
 };
 
 // Hàm hiển thị product simple và product combo
-module.exports.productAllShow = function(req, res, next) {
+module.exports.productAllShow = function (req, res, next) {
   try {
     var quantityProductSearchResult = 0;
     var quantityProductSimple = 0;
@@ -997,7 +997,7 @@ module.exports.productAllShow = function(req, res, next) {
 };
 
 // Hàm hiển thị product compo
-module.exports.productComboShow = function(req, res, next) {
+module.exports.productComboShow = function (req, res, next) {
   try {
     var quantityProductSearchResult = 0;
     var quantityProductSimple = 0;
@@ -1086,7 +1086,7 @@ module.exports.productComboShow = function(req, res, next) {
 };
 
 // Hàm hiển thị product theo id category và id sub category
-module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
+module.exports.productShowFollowIdCatAndIdSub = function (req, res, next) {
   try {
     var quantityProductSearchResult = 0;
     var quantityProductSimple = 0;
@@ -1185,27 +1185,7 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
           // Hàm định dạng title của product simple lấy 36 kí tự
           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple
         }
-
-        res.render("customer/product-show", {
-          layout: "main-customer.hbs",
-          products: values[0],
-          brands: values[1],
-          isShowSimple: true,
-          isShowCombo: false,
-          isSelectSimpleSort: true,
-          idCategory: catFilter,
-          idSubCategory: subFilter,
-          typeSorts: typeSortArray,
-          priceFilters: priceFilterArray,
-          helpers: {
-            // Hàm định dạng title của product simple lấy 36 kí tự
-            formatTitleProductSimple:
-              formatStringHelper.formatTitleProductSimple
-          }
-        });
-      } else {
-        res.redirect("/customer/product/product-all-show");
-      }
+      });
     });
   } catch (error) {
     next(error);
@@ -1537,7 +1517,7 @@ module.exports.productShowFollowIdCatAndIdSub = function(req, res, next) {
 // };
 
 // Hàm xử lí khi người dùng post các giá trị lọc
-module.exports.applyGetValuesFilter = function(req, res, next) {
+module.exports.applyGetValuesFilter = function (req, res, next) {
   try {
     var isSelectAllBrands = false;
     var isSelectAllPrices = false;
@@ -1714,7 +1694,7 @@ module.exports.applyGetValuesFilter = function(req, res, next) {
 };
 
 // Hàm xử lí reset các giá trị lọc
-module.exports.cancelPostValuesFilter = function(req, res, next) {
+module.exports.cancelPostValuesFilter = function (req, res, next) {
   try {
   } catch (error) {
     next(error);
@@ -1722,7 +1702,7 @@ module.exports.cancelPostValuesFilter = function(req, res, next) {
 };
 
 // Hàm lấy các sản phẩm gợi ý
-module.exports.getProductSuggestion = function(req, res, next) {
+module.exports.getProductSuggestion = function (req, res, next) {
   try {
     var textSearch = req.body.textSearch;
 
