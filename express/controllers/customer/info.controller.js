@@ -241,7 +241,7 @@ module.exports.showInfoFollowTagPage = function(req, res, next) {
     var tagId = req.query.idTag||0;
 
     var page = req.query.page || 1;
-    var limit = req.query.limit || 1;
+    var limit = req.query.limit || 3;
     var offset = page -1;
 
     var numberPage = newTagModel.quantityNewsTag(tagId);
