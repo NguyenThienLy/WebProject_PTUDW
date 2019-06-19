@@ -19,4 +19,7 @@ router.post("/info-show", controller.handlePostValueFilter);
 // Hiển thị các bài viết cùng tag
 router.get("/tag/:idTag", controller.showInfoFollowTag);
 
+// Hiển thị các bài viết cùng tag
+router.get("/tag", controller.showInfoFollowTagPage);
+
 module.exports = router;
