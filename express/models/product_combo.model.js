@@ -13,7 +13,8 @@ module.exports.allProductComboWithCommentQuantity = () => {
     JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID)
     LEFT JOIN (SELECT * FROM comment WHERE comment.ISSIMPLE = 0) AS comment ON product_combo.ID = comment.PRODUCTID
     WHERE product_combo.STATUS = 1
-    GROUP BY product_combo.ID, PRO1.RESIZEDIMAGE, PRO2.RESIZEDIMAGE, PRO3.RESIZEDIMAGE, product_combo.NAME`
+    GROUP BY product_combo.ID, PRO1.RESIZEDIMAGE, PRO2.RESIZEDIMAGE, PRO3.RESIZEDIMAGE, product_combo.NAME
+    ORDER BY product_combo.ID ASC`
   );
 };
 
@@ -36,6 +37,7 @@ module.exports.pageAllProductCommentComboFilter = (limit, offset, objQuery) => {
   LEFT JOIN (SELECT * FROM comment WHERE comment.ISSIMPLE = 0) AS comment ON product_combo.ID = comment.PRODUCTID
   WHERE product_combo.STATUS = 1 ${query}
   GROUP BY product_combo.ID, PRO1.RESIZEDIMAGE, PRO2.RESIZEDIMAGE, PRO3.RESIZEDIMAGE, product_combo.NAME
+  ORDER BY product_combo.ID ASC
   limit ${limit} offset ${offset}`);
 };
 
@@ -46,7 +48,7 @@ module.exports.quantityProductCommentComboActive = (objQuery) => {
   if (objQuery.Name != "") {
     query += ` AND MATCH (product_combo.NAME) AGAINST ('${objQuery.Name}' IN NATURAL LANGUAGE MODE) \n`;
   }
-  return db.load(`SELECT COUNT(*) AS QUANITTY FROM product_combo WHERE STATUS = 1 ${query}`);
+  return db.load(`SELECT COUNT(*) AS QUANTITY FROM product_combo WHERE STATUS = 1 ${query}`);
 };
 
 // Hàm trả về tất cả sản phẩm trong database
@@ -64,7 +66,7 @@ module.exports.allProductCombos = () => {
             JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
             JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID
             WHERE product_combo.STATUS = 1
-            ORDER BY product_combo.CREATED DESC`);
+            ORDER BY product_combo.ID ASC`);
 };
 
 // Hàm trả về sản phẩm lọc theo tiêu chí trong database có phân trang
@@ -96,6 +98,7 @@ module.exports.pageAllProductComboFilter = (limit, offset, objQuery) => {
   JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID
   WHERE product_combo.STATUS = 1
   ${query}
+  ORDER BY product_combo.ID ASC
   limit ${limit} offset ${offset}`);
 };
 

@@ -74,12 +74,14 @@ module.exports.productCommentShowSimple = function(req, res, next) {
       res.locals.sidebar[8].active = true;
 
       // simple
+      console.log("quantity: " + values[2][0].QUANTITY);
       var totalSimple = values[2][0].QUANTITY;
       var nPagesSimple = Math.floor(totalSimple / limitSimple);
       if (totalSimple % limitSimple > 0) nPagesSimple++;
 
+      console.log("total page: " + nPagesSimple);
       var pagesSimple = createArrPage(nPagesSimple, pageSimple);
-
+      console.log("array page: " + pagesSimple);
       var prePageSimple = {
         value: 0,
         active: false
