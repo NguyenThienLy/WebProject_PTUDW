@@ -63,7 +63,7 @@
                 <li><a href="" id="side-bar-open-header-user-modal" data-toggle="modal"
                         data-target="#header-user-modal">Đăng nhập</a></li>
                 {{/if}}
-                
+
                 <li class="position-relative">
                     <a href="/customer/product/product-all-show">Sản phẩm</a>
                     <i id="dropdown-icon" class="dropdown-icon fa fa-caret-left"></i>
@@ -228,7 +228,7 @@
                         <div class="card component-avatar-user-content">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
                                 khoản của tôi</a>
-                            <a class="dropdown-item" href="/customer/order/order-info-show/">Đơn
+                            <a class="dropdown-item" href="/customer/order/order-info-show-status-1">Đơn
                                 hàng của tôi</a>
                             {{#if this.authUser.typeLogin}}
                             <a href="javascript: $('#frmLogout').submit();" class="dropdown-item">
@@ -377,7 +377,8 @@
         </nav>
 
         <form id="frmSearchProductCustomer" method="GET" class="form-inline text-center col-12 pl-0 pr-0">
-            <input class="form-control mr-2" type="search" name="searchProduct" placeholder="Tên sản phẩm" aria-label="Tên sản phẩm" />
+            <input class="form-control mr-2" type="search" name="searchProduct" placeholder="Tên sản phẩm"
+                aria-label="Tên sản phẩm" />
             <button class="btn btn-outline-success" type="submit">
                 Tìm kiếm
             </button>
@@ -968,8 +969,9 @@
                                 <form class="p-4">
                                     {{#isEqual this.authUser.CUSTOMERTYPEID 2}}
                                     <div class="form-group row align-items-center ml-0 mr-0" style="color: #99cc00">
-                                        <label class="col-4 col-form-label"> <i class="fas fa-crown"></i>Khách hàng
-                                            V.I.P</label>
+                                        <label class="col-4 col-form-label"> <i
+                                                class="fas fa-crown"></i>&ensp;<strong>Khách hàng
+                                                V.I.P</strong></label>
                                     </div>
                                     {{else}}
                                     {{/isEqual}}
@@ -980,19 +982,23 @@
                                         </div>
                                     </div>
 
+                                    {{#if this.authUser.BIRTHDATE}}
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Ngày sinh:</label>
                                         <div class="col-8 p-0">
                                             {{formatDate this.authUser.BIRTHDATE}}
                                         </div>
                                     </div>
+                                    {{/if}}
 
+                                    {{#if this.authUser.PHONE}}
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">SĐT:</label>
                                         <div class="col-8 p-0">
                                             {{this.authUser.PHONE}}
                                         </div>
                                     </div>
+                                    {{/if}}
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Email:</label>
@@ -1179,7 +1185,7 @@
                 <div class="modal-body">
 
 
-                    Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!!!
+                    Bạn chưa <strong>đăng nhập</strong> vào hệ thống, mời bạn <strong>đăng nhập</strong>!
 
 
                 </div>
@@ -1205,7 +1211,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Vui lòng <strong>Kiểm tra</strong> Email để lấy link đổi mật khẩu</strong>!!!
+                    Vui lòng <strong>kiểm tra</strong> email để lấy link đổi mật khẩu</strong>!
                 </div>
                 <div class="modal-footer">
                     <button id="btnAceptLoginSystem" type="button" class="btn btn-success" data-dismiss="modal">Đồng

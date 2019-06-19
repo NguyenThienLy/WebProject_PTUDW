@@ -57,7 +57,7 @@
             </div>
 
             <div id="collapse-order-type-1" class="collapse show pt-3" aria-labelledby="heading-order-type-1"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType1}}
                     <!--Table hiển thị sản phẩm-->
@@ -96,37 +96,37 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus1.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.prePageStatus1.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus1}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus1.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.nextPageStatus1.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
@@ -157,7 +157,7 @@
             </div>
 
             <div id="collapse-order-type-2" class="collapse show pt-3" aria-labelledby="heading-order-type-2"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType2}}
                     <!--Table hiển thị sản phẩm-->
@@ -196,37 +196,37 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus2.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.prePageStatus2.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus2}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus2.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.nextPageStatus2.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
@@ -257,7 +257,7 @@
             </div>
 
             <div id="collapse-order-type-3" class="collapse show pt-3" aria-labelledby="heading-order-type-3"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType3}}
                     <!--Table hiển thị sản phẩm-->
@@ -296,37 +296,37 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus3.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.prePageStatus3.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus3}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus3.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.nextPageStatus3.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
@@ -358,7 +358,7 @@
             </div>
 
             <div id="collapse-order-type-4" class="collapse show pt-3" aria-labelledby="heading-order-type-4"
-                data-parent="#product-detail-accordion">
+                >
                 <div>
                     {{#if isHaveType4}}
                     <!--Table hiển thị sản phẩm-->
@@ -397,37 +397,37 @@
                     <hr />
                     <!--Thanh điều hướng trang-->
                     <div class="row justify-content-center">
-                        <!-- <div class="col-md-12"> -->
                         <nav>
                             <ul class="pagination">
+                                {{#if this.prePageStatus4.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.prePageStatus4.value}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">1</a>
+                                {{else}}
+
+                                {{/if}}
+                                {{#each this.pagesStatus4}}
+                                {{#if active}}
+                                <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
+                                {{else}}
+                                <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                                 </li>
+                                {{/if}}
+                                {{/each}}
+                                {{#if this.nextPageStatus4.active}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.nextPageStatus4.value}}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
+                                {{else}}
+
+                                {{/if}}
                             </ul>
                         </nav>
-                        <!-- </div> -->
                     </div>
                     <!--end Thanh điều hướng trang-->
                     {{else}}
@@ -513,37 +513,37 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus1.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.prePageStatus1.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus1}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-1?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus1.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-1?page={{this.nextPageStatus1.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}
@@ -576,7 +576,7 @@
                     </tr>
                 </thead>
 
-                <tbody >
+                <tbody>
                     {{#each this.orderInfoType2}}
                     <!--Nội dung của một hàng-->
                     <tr>
@@ -600,37 +600,37 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus2.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.prePageStatus2.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus2}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-2?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus2.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-2?page={{this.nextPageStatus2.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}
@@ -686,42 +686,43 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus3.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.prePageStatus3.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus3}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-3?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus3.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-3?page={{this.nextPageStatus3.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}
             <div class="d-flex flex-column align-items-center mt-5 mb-5">
-                <h1 id="h1EmptyCartDetail" class="text-center text-success w-50 p-2"><i class="fab fa-opencart fa-5x"></i>
+                <h1 id="h1EmptyCartDetail" class="text-center text-success w-50 p-2"><i
+                        class="fab fa-opencart fa-5x"></i>
                 </h1>
                 <a class="d-block btn btn-outline-success btn-lg w-50 p-2 mt-4 mb-4"
                     href="/customer/product/product-all-show">
@@ -773,37 +774,37 @@
             <hr />
             <!--Thanh điều hướng trang-->
             <div class="row justify-content-center">
-                <!-- <div class="col-md-12"> -->
                 <nav>
                     <ul class="pagination">
+                        {{#if this.prePageStatus4.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.prePageStatus4.value}}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
+                        {{else}}
+
+                        {{/if}}
+                        {{#each this.pagesStatus4}}
+                        {{#if active}}
+                        <li class="page-item active"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
+                        {{else}}
+                        <li class="page-item"><a class="page-link" href="/customer/order/order-info-show-status-4?page={{value}}">{{value}}</a>
                         </li>
+                        {{/if}}
+                        {{/each}}
+                        {{#if this.nextPageStatus4.active}}
                         <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="/customer/order/order-info-show-status-4?page={{this.nextPageStatus4.value}}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+                        {{else}}
+
+                        {{/if}}
                     </ul>
                 </nav>
-                <!-- </div> -->
             </div>
             <!--end Thanh điều hướng trang-->
             {{else}}
@@ -1004,7 +1005,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    Thông tin chi tiết đơn hàng 
+                    Thông tin chi tiết đơn hàng
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
