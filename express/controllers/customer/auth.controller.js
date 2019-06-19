@@ -259,8 +259,8 @@ module.exports.SendMail = (req, res, next) => {
 //Trả về trang cập nhật mật khẩu mới khi reset
 module.exports.renderResetPage = (req, res, next) => {
   //Kiểm tra token còn tồn tại và còn đủ thời gian hay không
-
-  customerModel.idOfToken(req.params.token).then(rows => {
+  var currentdate = moment().format('YYYY-MM-DD hh:mm:ss');
+  customerModel.idOfToken(req.params.token,currentdate).then(rows => {
     console.log(req.params.token);
     console.log(rows);
     if (rows.length > 0) {
