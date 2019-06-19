@@ -46,3 +46,10 @@ module.exports.formatTitleInBreadCrumb = function(value) {
 
     return value;
 };
+
+// Hàm định dạng title của product khi ở full text
+module.exports.formatTitleInFullTextSearch = function(value) {
+    if (value.length > 37) return value.substr(0, 37) + "...";
+
+    return value;
+};

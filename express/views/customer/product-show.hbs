@@ -15,7 +15,7 @@
 {{!-- responsive --}}
 {{/section}}
 
-<form method="POST" name="frmProductShow" {{#if isSelectAllCategory}}action="/customer/product/product-all-show" {{/if}}
+<form method="GET" name="frmProductShow" {{#if isSelectAllCategory}}action="/customer/product/product-all-show" {{/if}}
     {{#if isSelectComboCategory}}action="/customer/product/product-combo-show" {{/if}}
     {{#if isSelectSimpleCategory}}action="/customer/product/product-show/{{idCategory}}/{{idSubCategory}}" {{/if}}>
     <!-- Breadcrumb
@@ -240,12 +240,14 @@
         {{!-- Các loại sắp xếp của product --}}
 
         <div class="row justify-content-start mt-4">
-            <h5 class="text-secondary">Số lượng Kết quả: <b id="bQuantityInCartDetail">{{quantityProduct}}</b> sp
+            <h5 class="text-secondary">Số lượng Kết quả: <b>{{quantityProductSearchResult}}</b> sp
             </h5>
         </div>
 
+        {{#if quantityProductSearchResult}}
         {{!-- product simple --}}
         {{#if isShowSimple}}
+        {{#if quantityProductSimple}}
         <div class="row mt-5" id="containProductSimple">
             {{!-- load sản phẩm simple theo các giá trị của filter --}}
             {{#each this.products}}
@@ -330,10 +332,12 @@
             </nav>
         </div>
         {{/if}}
+        {{/if}}
         {{!-- product simple --}}
 
         {{!-- product combo --}}
         {{#if isShowCombo}}
+        {{#if quantityProductCombo}}
         <div class="row mt-5" id="containProductCombo">
             {{!-- Load sản phẩm combo theo các giá trị của filter  --}}
             {{#each this.productsCombo}}
@@ -426,7 +430,18 @@
             </nav>
         </div>
         {{/if}}
+        {{/if}}
         {{!-- product combo --}}
+        {{else}}
+        <div class="d-flex flex-column align-items-center mt-5 mb-5">
+            <h1 id="h1EmptyCartDetail" class="text-center text-danger w-50 p-2"><i class="fab fa-opencart fa-5x"></i>
+            </h1>
+            <a class="d-block btn btn-outline-danger btn-lg w-50 p-2 mt-4 mb-4"
+                href="/customer/product/product-all-show">
+                Hủy bỏ các áp dụng&ensp;<i class="fas fa-ban"></i>
+            </a>
+        </div>
+        {{/if}}
     </div>
     <!-- Product -->
 </form>

@@ -213,6 +213,29 @@ module.exports.topNProductComboBestSalerFollowOffset = (N, Offset) => {
                       LIMIT ${N} OFFSET ${Offset * N}`);
 };
 
+// module.exports.topNProductBestSellerFollowOffset = (N, Offset) => {
+//   return db.load(`SELECT product_combo.ID,
+//   product_combo.PRODUCTID1, product_combo.PRODUCTID2, product_combo.PRODUCTID3,
+//   PRO1.RESIZEDIMAGE AS PRODUCTIMAGE1, PRO2.RESIZEDIMAGE AS PRODUCTIMAGE2, PRO3.RESIZEDIMAGE AS PRODUCTIMAGE3,
+//   product_combo.NAME, product_combo.STATUS, product_combo.RATE, product_combo.PRICE, product_combo.KILOGRAM,
+//   product_combo.SALE, product_combo.VIPSALE, product_combo.SHORTDESCRIPTION, product_combo.DESCRIPTION,
+//   product_combo.INVENTORY, DATE_FORMAT(product_combo.CREATED, '%d/%m/%Y %H:%i') AS CREATED, COUNT(order_detail.PRODUCTID) AS BUYNUMBER
+//               FROM (((product_combo
+//               JOIN product PRO1 ON product_combo.PRODUCTID1 = PRO1.ID)
+//               JOIN product PRO2 ON product_combo.PRODUCTID2 = PRO2.ID)
+//               JOIN product PRO3 ON product_combo.PRODUCTID3 = PRO3.ID)
+//               JOIN (SELECT * FROM order_detail WHERE ISSIMPLE = 0) AS order_detail ON product_combo.ID = order_detail.PRODUCTID
+//               WHERE product_combo.STATUS = 1
+//               GROUP BY product_combo.ID, product_combo.PRODUCTID1, product_combo.PRODUCTID2, product_combo.PRODUCTID3,
+//               PRO1.NAME, PRO2.NAME, PRO3.NAME, PRO1.RESIZEDIMAGE, PRO2.RESIZEDIMAGE, PRO3.RESIZEDIMAGE,
+//               product_combo.NAME, product_combo.STATUS, product_combo.RATE, product_combo.PRICE, product_combo.KILOGRAM,
+//               product_combo.SALE, product_combo.VIPSALE, product_combo.SHORTDESCRIPTION, product_combo.DESCRIPTION,
+//               product_combo.INVENTORY, product_combo.CREATED
+//               ORDER BY COUNT(order_detail.PRODUCTID) DESC
+  
+//                       LIMIT ${N} OFFSET ${Offset * N}`);
+// };
+
 module.exports.topNProductComboNewestFollowOffsetFollowIdPro = (idProduct, N, Offset) => {
   return db.load(`SELECT a.ID, a.PRICE, a.SALE, a.NAME, b.ID AS PROID1, c.ID AS PROID2, d.ID AS PROID3, 
                       b.IMAGE AS IMAGE1 , c.IMAGE AS IMAGE2, d.IMAGE AS IMAGE3, 
@@ -380,6 +403,20 @@ module.exports.topNProductComboFollowTypeSortAndPrice = (
           LIMIT ${N};`);
 };
 
+// Hàm trả về số lượng sản phẩm combo theo type sort và price
+module.exports.getQuantityProductComboFollowTypeSortAndPrice = (
+  typeSort,
+  priceFilter
+) => {
+  var stringValues = returnStringFollowTypeSortAndPrice(typeSort, priceFilter);
+
+  return db.load(`SELECT COUNT(*) AS QUANTITY
+          FROM product_combo AS pro_cb INNER JOIN product AS pro_1 INNER JOIN product AS pro_2 INNER JOIN product AS pro_3
+          ON pro_cb.PRODUCTID1 = pro_1.ID  AND pro_cb.PRODUCTID2 = pro_2.ID AND
+          pro_cb.PRODUCTID3 = pro_3.ID
+          ${stringValues} `);
+};
+
 // Hàm lấy 1 sản phẩm theo id
 module.exports.top1ProductComboFollowId = id => {
   return db.load(
@@ -424,6 +461,15 @@ module.exports.getRateProductComboFollowProductId = id => {
 // hàm cập nhật thông tin product
 module.exports.updateInventoryProductCombo = product => {
   return db.update("product_combo", "ID", product);
+};
+
+// Hàm lấy ra các product theo text
+module.exports.getNProductComboForFullTextSearchFollowText = (text, N) => {
+
+  return db.load(`
+  SELECT ID, NAME FROM product_combo WHERE MATCH (NAME) AGAINST ('${text}' IN NATURAL LANGUAGE MODE)
+  LIMIT ${N}`
+  );
 };
 
 

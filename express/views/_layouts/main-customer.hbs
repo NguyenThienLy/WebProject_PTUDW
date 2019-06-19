@@ -31,7 +31,7 @@
     <link href="/customer/css/component-header.css" rel="stylesheet" />
     <link href="/customer/css/component-image-divider.css" rel="stylesheet" />
     <link href="/customer/css/component-login-register-modal.css" rel="stylesheet" />
-     <link href="/customer/css/component-user-account-modal.css" rel="stylesheet" />
+    <link href="/customer/css/component-user-account-modal.css" rel="stylesheet" />
     <link href="/customer/css/component-show-fast-cart.css" rel="stylesheet" />
     <link href="/customer/css/component-get-email.css" rel="stylesheet" />
     <link href="/customer/css/component-sidebar-menu.css" rel="stylesheet" />
@@ -187,18 +187,30 @@
                 </ul>
             </div>
 
-            <form class="col-sm-4 col-md-6 col-lg-3 col-xl-3 p-0 pl-2 align-items-center">
+            <form method="GET" action="/customer/product/product-all-show/" class="col-sm-4 col-md-6 col-lg-3 col-xl-3 p-0 pl-2 align-items-center">
                 <div class="form-group row align-items-center m-0">
                     <div class="col-8 col-sm-8 col-md-9 col-lg-7 col-xl-7 p-0 pr-2">
-                        <input class="form-control" type="search" placeholder="Tên sản phẩm"
+                        <input id="inputSearchFullTextCustomer" class="form-control" name="inputSearch" type="search" placeholder="Tên sản phẩm"
                             aria-label="Tên sản phẩm" />
+
+                        <div id="divSuggestionFullTextCustomer" class="bg-light position-fixed shadow rounded-bottom" style="width:18rem">
+                            {{!-- <small class="d-block ml-1"><strong>Gợi ý:</strong></small> --}}
+                            <div id="divContainProductsSimple" class="mt-2">
+                            
+                            </div>
+                            <div id="divContainProductsCombo">
+                           
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-4 col-sm-4 col-md-3 col-lg-5 col-xl-5 p-0">
-                        <button class="btn btn-outline-success" type="submit">
+                        <button id="btnSearchFullTextSeach" class="btn btn-outline-success" type="submit">
                             Tìm kiếm
                         </button>
                     </div>
+
+
                 </div>
             </form>
 
@@ -217,7 +229,8 @@
                 {{#if this.isAuthenticated}}
                 <div class="pt-0 pl-2 pr-2 ml-1 pb-1" id="my-account">
                     <div class="component-avatar-user position-relative">
-                        <img id="customer-image_1" src="{{this.authUser.IMAGE}}" class="rounded-circle h-100 w-100" alt="">
+                        <img id="customer-image_1" src="{{this.authUser.IMAGE}}" class="rounded-circle h-100 w-100"
+                            alt="">
                         <div class="card component-avatar-user-content">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#header-avatar-modal">Tài
                                 khoản của tôi</a>
@@ -370,7 +383,8 @@
         </nav>
 
         <form id="frmSearchProductCustomer" method="GET" class="form-inline text-center col-12 pl-0 pr-0">
-            <input class="form-control mr-2" type="search" name="searchProduct" placeholder="Tên sản phẩm" aria-label="Tên sản phẩm" />
+            <input class="form-control mr-2" type="search" name="searchProduct" placeholder="Tên sản phẩm"
+                aria-label="Tên sản phẩm" />
             <button class="btn btn-outline-success" type="submit">
                 Tìm kiếm
             </button>
@@ -782,7 +796,8 @@
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-confirmPassword"
-                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Xác nhận mật khẩu</label>
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Xác nhận
+                                            mật khẩu</label>
                                         <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="password" class="form-control form-control-sm"
                                                 placeholder="Nhập lại mật khẩu" name="CONFIRMPASSWORD"
@@ -823,7 +838,8 @@
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label for="header-register-modal-phone"
-                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Số điện thoại</label>
+                                            class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label">Số điện
+                                            thoại</label>
                                         <div class="col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9 p-0">
                                             <input type="text" class="form-control form-control-sm"
                                                 placeholder="Nhập số điện thoại" name="PHONE"
@@ -854,7 +870,8 @@
 
                                     <div class="d-flex">
                                         <div class="col-5 col-sm-4 col-md-4 col-lg-4 col-xl-3 col-form-label"></div>
-                                        <button type="submit" class="btn btn-success col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9">
+                                        <button type="submit"
+                                            class="btn btn-success col-7 col-sm-8 col-md-8 col-lg-8 col-xl-9">
                                             Đăng ký
                                         </button>
                                     </div>
@@ -933,9 +950,9 @@
 
 
 
-                                    {{else}}
-                                <p class="nav-item nav-link ml-3" id="header-edit-password-modal-nav-tab" data-toggle="tab"
-                                    href="#header-edit-password-modal-nav" role="tab"
+                                {{else}}
+                                <p class="nav-item nav-link ml-3" id="header-edit-password-modal-nav-tab"
+                                    data-toggle="tab" href="#header-edit-password-modal-nav" role="tab"
                                     aria-controls="header-edit-password-modal-nav" aria-selected="false">
 
                                     Thay đổi mật khẩu
@@ -949,7 +966,7 @@
                                 aria-labelledby="header-info-modal-nav-tab">
                                 <form class="p-4">
                                     {{#isEqual this.authUser.CUSTOMERTYPEID 2}}
-                                    <div class="form-group row align-items-center ml-0 mr-0" style="color: #99cc00" >
+                                    <div class="form-group row align-items-center ml-0 mr-0" style="color: #99cc00">
                                         <label class="col-4 col-form-label"> <i class="fas fa-crown"></i>Khách hàng
                                             V.I.P</label>
                                     </div>
@@ -986,7 +1003,8 @@
                                     <div class="form-group row align-items-center ml-0 mr-0">
                                         <label class="col-4 col-form-label">Ảnh đại diện:</label>
                                         <div class="col-8 p-0">
-                                            <img id="customer-image_2" src="{{this.authUser.IMAGE}}" class="user-avatar rounded-circle">
+                                            <img id="customer-image_2" src="{{this.authUser.IMAGE}}"
+                                                class="user-avatar rounded-circle">
                                         </div>
                                     </div>
                                 </form>
@@ -1007,11 +1025,12 @@
                                     </div>
 
                                     <div class="form-group row align-items-center ml-0 mr-0">
-                                        <label for="header-edit-modal-birthdate" class="col-4 col-form-label">Sinh nhật</label>
+                                        <label for="header-edit-modal-birthdate" class="col-4 col-form-label">Sinh
+                                            nhật</label>
                                         <div class="col-8 p-0">
-                                            <input value="{{formatDatePicker this.authUser.BIRTHDATE}}" type="text" name="BIRTHDATE"
-                                                class="form-control form-control-sm" placeholder="Nhập vào ngày sinh"
-                                                id="header-edit-modal-birthdate" />
+                                            <input value="{{formatDatePicker this.authUser.BIRTHDATE}}" type="text"
+                                                name="BIRTHDATE" class="form-control form-control-sm"
+                                                placeholder="Nhập vào ngày sinh" id="header-edit-modal-birthdate" />
                                         </div>
                                     </div>
 
@@ -1039,7 +1058,8 @@
                                     <div class="d-flex">
                                         <div class="col-4 col-form-label">Ảnh đại diện</div>
                                         <div class="col-8 p-0 position-relative d-flex justify-content-center">
-                                            <img id="customer-image_3" src="{{this.authUser.IMAGE}}" class="rounded-circle user-avatar">
+                                            <img id="customer-image_3" src="{{this.authUser.IMAGE}}"
+                                                class="rounded-circle user-avatar">
                                             <button type="button" style="bottom: 0%; margin-left:8.5rem"
                                                 class="rounded-circle btn-sm btn-info position-absolute mb-1"
                                                 id="header-edit-info-modal-avatar">
@@ -1059,7 +1079,7 @@
 
                             {{#is3ThLogin this.typeLogin}}
 
-                                {{else}}
+                            {{else}}
                             <div class="tab-pane fade" id="header-edit-password-modal-nav" role="tabpanel"
                                 aria-labelledby="header-edit-password-modal-nav-tab">
 
@@ -1252,8 +1272,7 @@
                                     <button type="submit" class="btn btn-success pl-5 pr-5">Cập nhật hình
                                         ảnh</button>
                                 </div>
-                                <input hidden type="text" name="ID" class="form-control"
-                                    value="{{this.authUser.ID}}">
+                                <input hidden type="text" name="ID" class="form-control" value="{{this.authUser.ID}}">
                             </div>
 
                         </div>
@@ -1295,6 +1314,7 @@
     <script src="/customer/js/validate-UI-send-email.js"></script>
     <script src="/customer/js/validate-UI-update-avatar.js"></script>
     <script src="/customer/js/main-customer.js"></script>
+    <script src="/customer/js/full-text-search-customer.js"></script>
 
     {{!--input file --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
