@@ -24,11 +24,22 @@ module.exports.orderShow = function(req, res, next) {
   var fromDate = req.query.fromDate || "";
   var toDate = req.query.toDate || "";
   var orderStatus = req.query.orderStatus || 0;
+
   if (fromDate !== "") {
-    fromDate = moment(fromDate, "DD/MM/YYYY").format("YYYY-MM-DD");
+    var date = moment(fromDate);
+    if (date.isValid()) {
+      fromDate = moment(fromDate, "DD/MM/YYYY").format("YYYY-MM-DD");
+    } else {
+      fromDate = "";
+    }
   }
   if (toDate !== "") {
-    toDate = moment(toDate, "DD/MM/YYYY").format("YYYY-MM-DD");
+    var date = moment(toDate);
+    if (date.isValid()) {
+      toDate = moment(toDate, "DD/MM/YYYY").format("YYYY-MM-DD");
+    } else {
+      toDate = "";
+    }
   }
 
   if (isNaN(orderStatus)) {
@@ -181,29 +192,29 @@ module.exports.orderInfo = function(req, res, next) {
   orderInfoModel.singleById(orderInfoId).then(orderInfo => {
     if (orderInfo[0]) {
       orderDetailModel
-      .orderDetailByOrderInfoId(orderInfoId)
-      .then(orderDetails => {
-        res.locals.sidebar[3].active = true;
+        .orderDetailByOrderInfoId(orderInfoId)
+        .then(orderDetails => {
+          res.locals.sidebar[3].active = true;
 
-        for (var orderDetail of orderDetails) {
-          if (orderDetail.ISSIMPLE === 1) {
-            orderDetail.PRODUCTTYPE = "Sản phẩm thường";
-          } else {
-            orderDetail.PRODUCTTYPE = "Sản phẩm combo";
+          for (var orderDetail of orderDetails) {
+            if (orderDetail.ISSIMPLE === 1) {
+              orderDetail.PRODUCTTYPE = "Sản phẩm thường";
+            } else {
+              orderDetail.PRODUCTTYPE = "Sản phẩm combo";
+            }
           }
-        }
 
-        res.render("admin/order-info-update", {
-          layout: "main-admin.hbs",
-          order: orderInfo[0],
-          orderDetails: orderDetails,
-          helpers: {
-            formatStatus: formatOrderStatusHelper,
-            formatPrice: formatPriceHelper,
-            formatButton: formatOrderDetailButtonHelper
-          }
+          res.render("admin/order-info-update", {
+            layout: "main-admin.hbs",
+            order: orderInfo[0],
+            orderDetails: orderDetails,
+            helpers: {
+              formatStatus: formatOrderStatusHelper,
+              formatPrice: formatPriceHelper,
+              formatButton: formatOrderDetailButtonHelper
+            }
+          });
         });
-      });
     } else {
       res.redirect("/admin/order/order-show");
     }

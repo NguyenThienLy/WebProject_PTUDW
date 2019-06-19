@@ -6,7 +6,6 @@
 <link href="/customer/css/component-comment.css" rel="stylesheet" />
 <link href="/customer/css/component-product-simple.css" rel="stylesheet" />
 <link href="/customer/css/component-image-show.css" rel="stylesheet" />
-<link href="/customer/css/component-show-rate.css" rel="stylesheet" />
 <link href="/customer/css/component-product-detail.css" rel="stylesheet" />
 {{!-- product detail page --}}
 
@@ -68,10 +67,10 @@
                     <h1 id="h1ProductNameProductDetail">{{productName}}</h1>
 
                     <div>
-                        <span>Thương hiệu: </span>
+                        <span>Thương hiệu:&ensp;</span>
                         <span class="text-success"><strong>{{productBrandName}}</strong></span>
-                        <span>&nbsp;|&nbsp;</span>
-                        <span> Tình trạng: </span>
+                        <span>&ensp;|&ensp;</span>
+                        <span>Số lượng:&ensp;</span>
                         <span class="text-success"><strong>{{productInventory}}</strong></span>
                         <span> sp </span>
                     </div>
@@ -90,25 +89,24 @@
                     </h1>
                     <h1 class="d-inline text-success"><u>đ</u></h1>
 
-                    {{#if productSale}} &nbsp<p class="d-inline"><del>{{formatPrice productPrice}} đ</del></p> {{/if}}
+                    {{#if productSale}} &ensp;<p class="d-inline"><del>{{formatPrice productPrice}} đ</del></p> {{/if}}
 
                     <div class="mt-2">
-                        <span>Nguồn gốc: </span>
+                        <span>Nguồn gốc:&ensp;</span>
                         <span class="text-success"><strong>{{productOrigin}}</strong></span>
                     </div>
 
                     <div class="mt-2">
-                        <span>Khối lượng: </span>
-                        <span class="text-success"><strong>{{productKilogram}} </strong></span> <span>/ 1 sp</span>
+                        <span>Khối lượng:&ensp;</span>
+                        <span class="text-success"><strong>{{productKilogram}} KG</strong></span> <span>/ 1 sp</span>
                     </div>
                 </div>
 
                 <hr />
 
                 <div>
+                    <strong>Giới thiệu về sản phẩm này</strong>
                     <ul>
-                        <li><strong>Giới thiệu về sản phẩm này</strong>
-                        </li>
                         {{#each arrShortDescription}}
                         <li>{{content}}</li>
                         {{/each}}
