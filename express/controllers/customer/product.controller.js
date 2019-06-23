@@ -1037,11 +1037,15 @@ module.exports.productComboShow = function (req, res, next) {
       priceFilterArray[priceFilter - 1].selected = true;
     }
 
+    var page = req.query.page || 1;
+    var limit = req.query.limit || 2;
+    var offset = page -1;
+
     Promise.all([
-      productComboModel.topNProductComboFollowTypeSortAndPrice(
+      productComboModel.topNProductComboFollowTypeSortAndPricePage(
         typeSort,
         priceFilter,
-        12
+        limit,offset
       ),
       brandModel.allBrandWithDetail(),
       productComboModel.getQuantityProductComboFollowTypeSortAndPrice(
@@ -1062,6 +1066,40 @@ module.exports.productComboShow = function (req, res, next) {
       quantityProductCombo = values[0].length;
       quantityProductSearchResult = +values[2][0].QUANTITY;
 
+      //Phân trang
+
+      var total = quantityProductSearchResult;
+      
+      var nPages = Math.floor(total / limit);
+      
+        if (total % limit > 0) nPages++;
+      var pagesCombo = createArrPage(nPages, page);
+
+        var prePagesCombo = {
+          value: 0,
+          active: false
+        };
+        if (page > 1) {
+          prePagesCombo.value = page - 1
+          prePagesCombo.active = true;
+        } else {
+          prePagesCombo.value = 0
+          prePagesCombo.active = false;
+        }
+  
+        var nextPagesCombo = {
+          value: 0,
+          active: false
+        }
+  
+        if (page < nPages) {
+          nextPagesCombo.value = parseInt(page) + 1
+          nextPagesCombo.active = true;
+        } else {
+          nextPagesCombo.value = 0
+          nextPagesCombo.active = false;
+        }
+
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         productsCombo: values[0],
@@ -1074,6 +1112,11 @@ module.exports.productComboShow = function (req, res, next) {
         priceFilters: priceFilterArray,
         quantityProductSearchResult: quantityProductSearchResult,
         quantityProductCombo: quantityProductCombo,
+        pagesCombo:pagesCombo,
+        radioSortProductShow:typeSort,
+        nextPagesCombo:nextPagesCombo,
+        prePagesCombo:prePagesCombo,
+        checkboxPrice:priceFilter,
         helpers: {
           // Hàm định dạng title của product combo lấy 52 kí tự
           formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
@@ -1131,14 +1174,19 @@ module.exports.productShowFollowIdCatAndIdSub = function (req, res, next) {
       priceFilterArray[priceFilter - 1].selected = true;
     }
 
+    var page = req.query.page || 1;
+    var limit = req.query.limit || 2;
+    var offset = page -1;
+
     Promise.all([
-      productModel.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
+      productModel.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPricePage(
         typeSort,
         catFilter,
         subFilter,
         brandFilter,
         priceFilter,
-        12
+        limit,
+        offset
       ),
       brandModel.allBrandWithDetail(),
       productModel.getQuantityProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
@@ -1167,6 +1215,40 @@ module.exports.productShowFollowIdCatAndIdSub = function (req, res, next) {
       quantityProductSimple = values[0].length;
       quantityProductSearchResult = +values[2][0].QUANTITY;
 
+      //Phân trang
+
+      var total = quantityProductSearchResult;
+      
+      var nPages = Math.floor(total / limit);
+      
+        if (total % limit > 0) nPages++;
+      var pagesSimple = createArrPage(nPages, page);
+
+        var prePageSimple = {
+          value: 0,
+          active: false
+        };
+        if (page > 1) {
+          prePageSimple.value = page - 1
+          prePageSimple.active = true;
+        } else {
+          prePageSimple.value = 0
+          prePageSimple.active = false;
+        }
+  
+        var nextPageSimple = {
+          value: 0,
+          active: false
+        }
+  
+        if (page < nPages) {
+          nextPageSimple.value = parseInt(page) + 1
+          nextPageSimple.active = true;
+        } else {
+          nextPageSimple.value = 0
+          nextPageSimple.active = false;
+        }
+
       res.render("customer/product-show", {
         layout: "main-customer.hbs",
         products: values[0],
@@ -1181,6 +1263,12 @@ module.exports.productShowFollowIdCatAndIdSub = function (req, res, next) {
         priceFilters: priceFilterArray,
         quantityProductSimple: quantityProductSimple,
         quantityProductSearchResult: quantityProductSearchResult,
+        pagesSimple: pagesSimple,
+        prePageSimple: prePageSimple,
+        nextPageSimple: nextPageSimple,
+        checkboxBrand:brandFilter,
+        radioSortProductShow:typeSort,
+        checkboxPrice:priceFilter,
         helpers: {
           // Hàm định dạng title của product simple lấy 36 kí tự
           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple
@@ -1192,329 +1280,7 @@ module.exports.productShowFollowIdCatAndIdSub = function (req, res, next) {
   }
 };
 
-// // Hàm xử lí khi người dùng post các giá trị lọc
-// module.exports.applyPostForProductAllShow = function(req, res, next) {
-//   try {
-//     var quantityProductSearchResult = 0;
-//     var quantityProductSimple = 0;
-//     var quantityProductCombo = 0;
 
-//     // Loại sắp xếp
-//     // 1 sản phẩm mới nhất
-//     // 2 sản phẩm cũ nhất
-//     // 3 sản phẩm giá tăng dần
-//     // 4 sản phẩm giá giảm dần
-
-//     // Lấy giá trị của radio hoặc select tùy theo responsive
-//     typeSort = +req.body.radioSortProductShow;
-
-//     catFilter = +req.body.checkboxCategory;
-
-//     subFilter = +req.body.checkboxSubCategory;
-
-//     brandFilter = +req.body.checkboxBrand;
-
-//     priceFilter = +req.body.checkboxPrice;
-
-//     // Nếu typeSort là NaN thì gán mặc định bằng 0
-//     if (isNaN(typeSort) == true) typeSort = 0;
-//     // Nếu catFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(catFilter) == true) catFilter = 0;
-//     // Nếu subFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(subFilter) == true) subFilter = 0;
-//     // Nếu brandFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(brandFilter) == true) brandFilter = 0;
-//     // Nếu priceFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(priceFilter) == true) priceFilter = 0;
-
-//     // Phục hồi checked = false
-//     for (type of typeSortArray) type.selected = false;
-//     // Gán radio đó dược checked
-//     typeSortArray[typeSort].selected = true;
-
-//     // Phục hồi select = false của priceFilterArray
-//     for (price of priceFilterArray) price.selected = false;
-//     // Gán radio đó dược selected
-//     if (priceFilter > 0) {
-//       priceFilterArray[priceFilter - 1].selected = true;
-//     }
-
-//     Promise.all([
-//       productModel.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
-//         typeSort,
-//         catFilter,
-//         subFilter,
-//         brandFilter,
-//         priceFilter,
-//         8
-//       ),
-//       productComboModel.topNProductComboFollowTypeSortAndPrice(
-//         typeSort,
-//         priceFilter,
-//         6
-//       ),
-//       brandModel.allBrandWithDetail(),
-//       categoryModel.allWithDetailQuantity(),
-//       productModel.getQuantityProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
-//         typeSort,
-//         catFilter,
-//         subFilter,
-//         brandFilter,
-//         priceFilter
-//       ),
-//       productComboModel.getQuantityProductComboFollowTypeSortAndPrice(
-//         typeSort,
-//         priceFilter
-//       )
-//     ]).then(values => {
-//       // console.log(
-//       //   "TCL: module.exports.applyPostForProductAllShow -> products",
-//       //   values[0]
-//       // );
-
-//       // Đang hiện tất cả
-//       for (product of values[0]) {
-//         product.isSelectAll = true;
-//         product.CATEGORYID = 0;
-//         product.SUBCATEGORYID = 0;
-//       }
-
-//       // Đang hiện tất cả
-//       for (productCombo of values[1]) {
-//         productCombo.isSelectAll = true;
-//       }
-
-//       if (brandFilter > 0) {
-//         // Đang hiện thị tại brand nào
-//         values[2][brandFilter - 1].selected = true;
-//       }
-
-//       quantityProductSimple = values[0].length;
-//       quantityProductCombo = values[1].length;
-
-//       quantityProductSearchResult =
-//         +values[4][0].QUANTITY + +values[5][0].QUANTITY;
-
-//       var categoriesFilter = funcCategory(values[3], catFilter, subFilter);
-
-//       res.render("customer/product-show", {
-//         layout: "main-customer.hbs",
-//         products: values[0],
-//         productsCombo: values[1],
-//         brands: values[2],
-//         categoriesFilter: categoriesFilter,
-//         isSelectAllCategory: true,
-//         isSelectAllSort: true,
-//         isShowSimple: true,
-//         isShowCombo: true,
-//         quantityProductSimple: quantityProductSimple,
-//         quantityProductCombo: quantityProductCombo,
-//         quantityProductSearchResult: quantityProductSearchResult,
-//         typeSorts: typeSortArray,
-//         priceFilters: priceFilterArray,
-//         helpers: {
-//           // Hàm định dạng title của product simple lấy 36 kí tự
-//           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple,
-//           // Hàm định dạng title của product combo lấy 52 kí tự
-//           formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
-//         }
-//       });
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// // Hàm xử lí khi người dùng post các giá trị lọc
-// module.exports.applyPostForProductComboShow = function(req, res, next) {
-//   try {
-//     var quantityProductSearchResult = 0;
-//     var quantityProductSimple = 0;
-//     var quantityProductCombo = 0;
-
-//     // Loại sắp xếp
-//     // 1 sản phẩm mới nhất
-//     // 2 sản phẩm cũ nhất
-//     // 3 sản phẩm giá tăng dần
-//     // 4 sản phẩm giá giảm dần
-
-//     // Lấy giá trị của radio hoặc select tùy theo responsive
-//     typeSort = +req.body.radioSortProductShow;
-
-//     priceFilter = +req.body.checkboxPrice;
-
-//     // Nếu typeSort là NaN thì gán mặc định bằng 0
-//     if (isNaN(typeSort) == true) typeSort = 0;
-//     // Nếu priceFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(priceFilter) == true) priceFilter = 0;
-
-//     // Phục hồi checked = false
-//     for (type of typeSortArray) type.selected = false;
-//     // Gán radio đó dược checked
-//     typeSortArray[typeSort].selected = true;
-
-//     // Phục hồi select = false của priceFilterArray
-//     for (price of priceFilterArray) price.selected = false;
-//     // Gán radio đó dược selected
-//     if (priceFilter > 0) {
-//       priceFilterArray[priceFilter - 1].selected = true;
-//     }
-
-//     Promise.all([
-//       productComboModel.topNProductComboFollowTypeSortAndPrice(
-//         typeSort,
-//         priceFilter,
-//         12
-//       ),
-//       brandModel.allBrandWithDetail(),
-//       productComboModel.getQuantityProductComboFollowTypeSortAndPrice(
-//         typeSort,
-//         priceFilter
-//       )
-//     ]).then(values => {
-//       // Không phải đang hiện tất cả
-//       for (productCombo of values[0]) {
-//         productCombo.isSelectAll = false;
-//       }
-
-//       if (brandFilter > 0) {
-//         // Đang hiện thị tại brand nào
-//         values[1][brandFilter - 1].selected = true;
-//       }
-
-//       quantityProductCombo = values[0].length;
-//       quantityProductSearchResult = +values[2][0].QUANTITY;
-
-//       res.render("customer/product-show", {
-//         layout: "main-customer.hbs",
-//         productsCombo: values[0],
-//         brands: values[1],
-//         isShowSimple: false,
-//         isShowCombo: true,
-//         isSelectComboCategory: true,
-//         isSelectComboSort: true,
-//         quantityProductCombo: quantityProductCombo,
-//         quantityProductSearchResult: quantityProductSearchResult,
-//         typeSorts: typeSortArray,
-//         priceFilters: priceFilterArray,
-//         helpers: {
-//           // Hàm định dạng title của product combo lấy 52 kí tự
-//           formatTitleProductCombo: formatStringHelper.formatTitleProductCombo
-//         }
-//       });
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// // Hàm xử lí khi người dùng post các giá trị lọc
-// module.exports.applyPostForProductShow = function(req, res, next) {
-//   try {
-//     var quantityProductSearchResult = 0;
-//     var quantityProductSimple = 0;
-//     var quantityProductCombo = 0;
-
-//     // Lấy id của category
-//     var idCat = +req.params.idCat;
-//     // Lấy id của sub category
-//     var idSub = +req.params.idSub;
-
-//     // Loại sắp xếp
-//     // 1 sản phẩm mới nhất
-//     // 2 sản phẩm cũ nhất
-//     // 3 sản phẩm giá tăng dần
-//     // 4 sản phẩm giá giảm dần
-
-//     // Lấy giá trị của radio hoặc select tùy theo responsive
-//     typeSort = +req.body.radioSortProductShow;
-
-//     catFilter = idCat;
-
-//     subFilter = idSub;
-
-//     brandFilter = +req.body.checkboxBrand;
-
-//     priceFilter = +req.body.checkboxPrice;
-
-//     // Nếu typeSort là NaN thì gán mặc định bằng 0
-//     if (isNaN(typeSort) == true) typeSort = 0;
-//     // Nếu catFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(catFilter) == true) catFilter = 0;
-//     // Nếu subFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(subFilter) == true) subFilter = 0;
-//     // Nếu brandFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(brandFilter) == true) brandFilter = 0;
-//     // Nếu priceFilter là NaN thì gán mặc định bằng 0
-//     if (isNaN(priceFilter) == true) priceFilter = 0;
-
-//     // Phục hồi checked = false
-//     for (type of typeSortArray) type.selected = false;
-//     // Gán radio đó dược checked
-//     typeSortArray[typeSort].selected = true;
-
-//     // Phục hồi select = false của priceFilterArray
-//     for (price of priceFilterArray) price.selected = false;
-//     // Gán radio đó dược selected
-//     if (priceFilter > 0) {
-//       priceFilterArray[priceFilter - 1].selected = true;
-//     }
-
-//     Promise.all([
-//       productModel.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
-//         typeSort,
-//         catFilter,
-//         subFilter,
-//         brandFilter,
-//         priceFilter,
-//         12
-//       ),
-//       brandModel.allBrandWithDetail(),
-//       productModel.getQuantityProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
-//         typeSort,
-//         catFilter,
-//         subFilter,
-//         brandFilter,
-//         priceFilter
-//       )
-//     ]).then(values => {
-//       // Cài đặt các thuộc tính hỗ trợ
-//       for (product of values[0]) {
-//         product.SUBCATEGORYID = subFilter;
-//         product.isSelectAll = false;
-//       }
-
-//       if (brandFilter > 0) {
-//         // Đang hiện thị tại brand nào
-//         values[1][brandFilter - 1].selected = true;
-//       }
-
-//       quantityProductSimple = values[0].length;
-//       quantityProductSearchResult = +values[2][0].QUANTITY;
-
-//       res.render("customer/product-show", {
-//         layout: "main-customer.hbs",
-//         products: values[0],
-//         brands: values[1],
-//         isShowSimple: true,
-//         isShowCombo: false,
-//         isSelectSimpleSort: true,
-//         idCategory: catFilter,
-//         idSubCategory: subFilter,
-//         typeSorts: typeSortArray,
-//         priceFilters: priceFilterArray,
-//         quantityProductSimple: quantityProductSimple,
-//         quantityProductSearchResult: quantityProductSearchResult,
-//         helpers: {
-//           // Hàm định dạng title của product simple lấy 36 kí tự
-//           formatTitleProductSimple: formatStringHelper.formatTitleProductSimple
-//         }
-//       });
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 
 // Hàm xử lí khi người dùng post các giá trị lọc
 module.exports.applyGetValuesFilter = function (req, res, next) {
@@ -1864,3 +1630,46 @@ module.exports.getProductSuggestion = function (req, res, next) {
 //     next(error);
 //   }
 // };
+
+//Hàm tạo mảng trang
+function createArrPage(nPages, page) {
+  var pages = [];
+  //Chỉ hiện tối đa 5 trang
+  var start = end = 0;
+  if (nPages <= 5) {
+    start = 1;
+    end = nPages;
+  } else {
+    if (page == 1) {
+      start = 1;
+      end = 5;
+    }
+    else if (page == nPages) {
+      start = nPages - 5;
+      end = nPages;
+    }
+    else {
+      if (page - 2 >= 1 && parseInt(page) + 2 <= nPages) {
+        start = page - 2;
+        end = parseInt(page) + 2;
+      } else {
+        if (page - 2 == 0) {
+          start = page - 1;
+          end = parseInt(page) + 3;
+        } else {
+          start = page - 3;
+          end = parseInt(page) + 1;
+        }
+      }
+    }
+  }
+  for (i = start; i <= end; i++) {
+    var obj = {
+      value: i,
+      active: i === +page
+    };
+    pages.push(obj);
+  }
+
+  return pages;
+}

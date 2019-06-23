@@ -965,6 +965,45 @@ module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
 };
 
 // Hàm trả về N sản phẩm sắp xếp theo typeSort, brand và price
+module.exports.topNProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPricePage = (
+  typeSort,
+  idCat,
+  idSub,
+  brandFilter,
+  priceFilter,
+  N, 
+  offset
+) => {
+  console.log("TCL: typeSort",typeof(typeSort));
+  var stringValues = returnStringFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice(
+    typeSort,
+    idCat,
+    idSub,
+    brandFilter,
+    priceFilter
+  );
+  console.log(`
+  SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+  (CASE
+  		WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+  		ELSE pro.PRICE
+  END) AS SALEPRICE
+  FROM product AS pro
+  ${stringValues}
+  LIMIT ${N};
+  `)
+
+  return db.load(`SELECT pro.ID, pro.PRICE, pro.SALE, pro.NAME, pro.IMAGE, pro.CATEGORYID, pro.SUBCATEGORYID,
+	(CASE
+			WHEN pro.SALE > 0 THEN (pro.PRICE - pro.PRICE * (pro.SALE / 100))
+			ELSE pro.PRICE
+	END) AS SALEPRICE
+	FROM product AS pro 
+	${stringValues}
+	LIMIT ${N} OFFSET ${offset * N};`);
+};
+
+// Hàm trả về N sản phẩm sắp xếp theo typeSort, brand và price
 module.exports.getQuantityProductFollowTypeSortAndIdCatAndIdSubAndBrandAndPrice = (
   typeSort,
   idCat,
