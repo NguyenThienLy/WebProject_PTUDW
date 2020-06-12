@@ -10,10 +10,10 @@ var CreateConnection = () => {
   //   database: "new_organic"
   // });
   return mysql.createConnection({
-    host: "localhost",
+    host: "my_sql",
     user: "root",
     port: "3306",
-    password: "",
+    password: "mypass123",
     database: "newest_organic"
     //database: "CpQZk1ZFm6"
     //database: "newest_organic"

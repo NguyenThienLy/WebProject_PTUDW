@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  nodejs:
+    container_name: organic_food_app
+    build: "./nodejs"
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - "./nodejs/src:/usr/src/organic_food_app"
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: my_sql
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "newest_organic"
+      MYSQL_ROOT_PASSWORD: ""

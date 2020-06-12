@@ -6,7 +6,7 @@ var cookieParser = require("cookie-parser");
 var morgan = require("morgan");
 var createError = require('http-errors');
 
-var port = 3000;
+var port = 3001;
 
 var app = express();
 
@@ -50,5 +50,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, function() {
-  console.log("Server listening on port" + port);
+  console.log("Server listening on port " + port);
 });

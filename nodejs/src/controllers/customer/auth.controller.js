@@ -1,4 +1,4 @@
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcryptjs");
 var customerModel = require("../../models/customer.model");
 var passport = require("passport");
 var moment = require("moment");

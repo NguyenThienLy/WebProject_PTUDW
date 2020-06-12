@@ -2,7 +2,7 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
 var FacebookStrategy = require("passport-facebook").Strategy;
-var bcrypt = require("bcrypt");
+var bcrypt = require("bcryptjs");
 var customerModel = require("../../models/customer.model");
 
 module.exports = function(app) {
