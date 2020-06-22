@@ -2,18 +2,20 @@ version: '3'
 
 services:
 
-  # nodejs:
-  #   container_name: organic_food_app
-  #   build: "./nodejs"
-  #   restart: always
-  #   ports:
-  #     - "3001:3001"
-  #   volumes:
-  #     - "./nodejs/src:/usr/src/organic_food_app"
+  nodejs:
+    container_name: organic_food_app
+    build: "./nodejs"
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+     - "./nodejs/src:/usr/src/organic_food_app"
+     - "/usr/src/organic_food_app/node_modules"
 
   mysql:
-    container_name: maria_db
-    image: mariadb:latest
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:latest
     ports:
       - "3306:3306"
     environment:
