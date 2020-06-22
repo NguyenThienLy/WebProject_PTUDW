@@ -40,7 +40,15 @@ module.exports = {
     //Return veef sau kho querry xong
     return new Promise((resolve, reject) => {
       var connection = CreateConnection();
-      connection.connect();
+      connection.connect(
+        (err) => {
+
+          if(!err)
+              console.log('Database is connected!');
+          else
+              console.log('Database not connected! : '+ JSON.stringify(err, undefined,2));
+          }
+      );
 
       connection.query(sql, (error, results, fields) => {
         if (error)
