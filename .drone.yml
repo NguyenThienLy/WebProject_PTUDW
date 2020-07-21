@@ -7,3 +7,4 @@
         image: node:12.2
         commands: 
             - npm install
+            - npm test
